@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window id="1122" type="dialog">
+	<defaultcontrol>9001</defaultcontrol>
+	<controls>
+		<control type="group">
+			<visible>!Window.IsActive(DialogSelect.xml) + !Window.IsActive(1110) + !Window.IsActive(1111)</visible>
+			<left>-485</left>
+			<include content="Animation_Dialog_MediaMenu">
+				<param name="slide">485</param>
+			</include>
+			<include>MediaMenu_Background</include>
+			<control type="grouplist" id="9001">
+				<left>0</left>
+				<top>0</top>
+				<width>470</width>
+				<height>1080</height>
+				<onleft>9001</onleft>
+				<onright>Dialog.Close(1122)</onright>
+				<onup>9001</onup>
+				<ondown>9001</ondown>
+				<onback>Dialog.Close(1122)</onback>
+				<include condition="Window.IsActive(weather)">MediaMenu_Viewsettings_Weather</include>
+				<include condition="Window.IsActive(settings) | Window.IsActive(SettingsCategory.xml) | Window.IsActive(profiles) |  Window.IsActive(skinsettings) | Window.IsActive(eventlog) | Window.IsActive(systeminfo) | Window.IsActive(filemanager) | Window.IsActive(script-skinshortcuts.xml)">MediaMenu_Viewsettings_Settings</include>
+				<include condition="String.IsEqual(Container.Viewmode,$LOCALIZE[535])">MediaMenu_Viewsettings_View50</include>
+				<include condition="Window.IsVisible(home)">MediaMenu_Home_MainMenu</include>
+				<include condition="Window.IsVisible(videos)">MediaMenu_CommonViewsettings_Videos</include>
+				<include condition="Window.IsVisible(music)">MediaMenu_CommonViewsettings_Music</include>
+			</control>
+		</control>
+	</controls>
+</window>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window id="1127" type="dialog">
+	<defaultcontrol always="true">100</defaultcontrol>
+	<onunload>ClearProperty(BackgroundsLabel,home)</onunload>
+	<controls>
+		<include>Dialog_Furniture_BackgroundFade</include>
+		<include>Dialog_Furniture_Close_Onclick</include>
+		<control type="group">
+			<include content="Dialog_Furniture_Background">
+				<param name="label">$LOCALIZE[19190]</param>
+				<param name="width">854</param>
+				<param name="height">528</param>
+				<param name="bottomseparatorvisible">false</param>
+				<param name="bottomrightlabel">$VAR[DialogItemsLabelVar]</param>
+			</include>
+			<control type="image">
+				<centerleft>50%</centerleft>
+				<bottom>30</bottom>
+				<width>40</width>
+				<height>40</height>
+				<texture colordiffuse="$VAR[HighlightColorVar]">icons/default/arrowdown.png</texture>
+				<include>Animation_CommonFade</include>
+				<visible>Container(100).HasNext</visible>
+			</control>
+			<!-- Movie Background Settings -->
+			<control type="grouplist" id="100">
+				<visible>String.IsEqual(Window(home).Property(BackgroundsLabel),$LOCALIZE[342])</visible>
+				<left>20</left>
+				<top>88</top>
+				<width>814</width>
+				<height>420</height>
+				<pagecontrol>60</pagecontrol>
+				<onleft>60</onleft>
+				<onright>9001</onright>
+				<onup>100</onup>
+				<ondown>100</ondown>
+				<control type="button" id="101">
+					<label>Fanart</label>
+					<label2>$VAR[DialogMovieBackgroundLabelVar]</label2>
+					<onclick condition="String.IsEmpty(Skin.String(MovieFanart))">Skin.SetString(MovieFanart,Extrafanart)</onclick>
+					<onclick condition="String.IsEqual(Skin.String(MovieFanart),ExtraFanart)">Skin.SetString(MovieFanart,Fallback)</onclick>
+					<onclick condition="String.IsEqual(Skin.String(MovieFanart),Fallback)">Skin.SetString(MovieFanart,None)</onclick>
+					<onclick condition="String.IsEqual(Skin.String(MovieFanart),None)">Skin.Reset(MovieFanart)</onclick>
+					<include>Dialog_Button_Narrow</include>
+				</control>
+				<control type="radiobutton" id="102">
+					<label>Darken</label>
+					<onclick>Skin.ToggleSetting(MovieDarkenBackground)</onclick>
+					<selected>Skin.HasSetting(MovieDarkenBackground)</selected>
+					<include>Dialog_RadioButton_Narrow</include>
+				</control>
+				<control type="radiobutton" id="103">
+					<label>Animated</label>
+					<onclick>Skin.ToggleSetting(MovieAnimatedBackground)</onclick>
+					<selected>Skin.HasSetting(MovieAnimatedBackground)</selected>
+					<include>Dialog_RadioButton_Narrow</include>
+				</control>
+				<control type="label" id="104">
+					<label>Fallback</label>
+					<include>Dialog_Label_Narrow</include>
+				</control>
+				<control type="radiobutton" id="105">
+					<label>$LOCALIZE[31007]</label>
+					<onclick>RunScript(script.skin.helper.service,action=selectimage,skinstring=MovieFanartFallback,resourceaddon=resource.images.skinbackgrounds)</onclick>
+					<selected>String.Endswith(Skin.String(MovieFanartFallback.path),jpg)</selected>
+					<include>Dialog_RadioButton_Narrow</include>
+				</control>
+				<control type="radiobutton" id="106">
+					<label>$LOCALIZE[31008]</label>
+					<onclick>RunScript(script.skin.helper.service,action=setresourceaddon,skinstring=MovieFanartFallback,addontype=resource.images.skinbackgrounds)</onclick>
+					<selected>String.Endswith(Skin.String(MovieFanartFallback.path),/)</selected>
+					<include>Dialog_RadioButton_Narrow</include>
+				</control>
+			</control>
+			<!-- Music Background Settings -->
+			<control type="grouplist" id="100">
+				<visible>String.IsEqual(Window(home).Property(BackgroundsLabel),$LOCALIZE[2])</visible>
+				<left>20</left>
+				<top>88</top>
+				<width>814</width>
+				<height>420</height>
+				<pagecontrol>60</pagecontrol>
+				<onleft>60</onleft>
+				<onright>9001</onright>
+				<onup>100</onup>
+				<ondown>100</ondown>
+				<control type="button" id="101">
+					<label>Fanart</label>
+					<label2>$VAR[DialogMusicBackgroundLabelVar]</label2>
+					<onclick condition="String.IsEmpty(Skin.String(MusicFanart))">Skin.SetString(MusicFanart,Extrafanart)</onclick>
+					<onclick condition="String.IsEqual(Skin.String(MusicFanart),ExtraFanart)">Skin.SetString(MusicFanart,Fallback)</onclick>
+					<onclick condition="String.IsEqual(Skin.String(MusicFanart),Fallback)">Skin.SetString(MusicFanart,None)</onclick>
+					<onclick condition="String.IsEqual(Skin.String(MusicFanart),None)">Skin.Reset(MusicFanart)</onclick>
+					<include>Dialog_Button_Narrow</include>
+				</control>
+				<control type="radiobutton" id="102">
+					<label>Darken</label>
+					<onclick>Skin.ToggleSetting(MovieDarkenBackground)</onclick>
+					<selected>Skin.HasSetting(MovieDarkenBackground)</selected>
+					<include>Dialog_RadioButton_Narrow</include>
+				</control>
+				<control type="radiobutton" id="103">
+					<label>Animated</label>
+					<onclick>Skin.ToggleSetting(MovieAnimatedBackground)</onclick>
+					<selected>Skin.HasSetting(MovieAnimatedBackground)</selected>
+					<include>Dialog_RadioButton_Narrow</include>
+				</control>
+				<control type="label" id="104">
+					<label>Fallback</label>
+					<include>Dialog_Label_Narrow</include>
+				</control>
+				<control type="radiobutton" id="105">
+					<label>$LOCALIZE[31007]</label>
+					<onclick>RunScript(script.skin.helper.service,action=selectimage,skinstring=MusicFanartFallback,resourceaddon=resource.images.skinbackgrounds)</onclick>
+					<selected>String.Endswith(Skin.String(MusicFanartFallback.path),jpg)</selected>
+					<include>Dialog_RadioButton_Narrow</include>
+				</control>
+				<control type="radiobutton" id="106">
+					<label>$LOCALIZE[31008]</label>
+					<onclick>RunScript(script.skin.helper.service,action=setresourceaddon,skinstring=MusicFanartFallback,addontype=resource.images.skinbackgrounds)</onclick>
+					<selected>String.Endswith(Skin.String(MusicFanartFallback.path),/)</selected>
+					<include>Dialog_RadioButton_Narrow</include>
+				</control>
+			</control>
+			<control type="grouplist" id="9001">
+				<right>60</right>
+				<top>28</top>
+				<width>400</width>
+				<onleft>100</onleft>
+				<ondown>100</ondown>
+				<align>right</align>
+				<itemgap>10</itemgap>
+				<orientation>horizontal</orientation>
+				<include content="Dialog_Button_TopRight">
+					<param name="id">9002</param>
+					<param name="label">$LOCALIZE[15067]</param>
+					<param name="onclick">Action(close)</param>
+				</include>
+			</control>
+			<control type="scrollbar" id="60">
+				<left>1</left>
+				<top>88</top>
+				<height>420</height>
+				<onright>3</onright>
+			</control>
+		</control>
+	</controls>
+</window>

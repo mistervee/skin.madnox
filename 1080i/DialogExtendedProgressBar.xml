@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<onload condition="Library.IsScanningVideo + Skin.HasSetting(UpdateArtworkDownloader)">SetProperty(UpdateArt,1)</onload>
+	<onunload condition="!String.IsEmpty(Window.Property(UpdateArt)) + System.HasAddon(script.artwork.downloader)">RunScript(script.artwork.downloader,silent=true)</onunload>
+	<onunload>ClearProperty(UpdateArt)</onunload>
+	<controls>
+		<control type="group">
+			<visible>!Window.IsActive(startup)</visible>
+			<include>Animation_DialogPopup</include>
+			<animation effect="zoom" end="80" center="auto" time="240" tween="cubic" easing="inout" condition="Skin.HasSetting(SmallerNotifications)">Conditional</animation>
+			<top>49</top>
+			<centerleft>50%</centerleft>
+			<height>134</height>
+			<width>730</width>
+			<visible>!Window.IsActive(notification)</visible>
+			<control type="image">
+				<texture colordiffuse="$VAR[GlowColorVar]" border="20">dialogs/scan-glow.png</texture>
+			</control>
+			<control type="image">
+				<texture colordiffuse="$VAR[PanelColorVar]" border="20">dialogs/scan-back.png</texture>
+			</control>
+			<control type="image">
+				<top>27</top>
+				<left>32</left>
+				<width>80</width>
+				<height>80</height>
+				<animation effect="rotate" end="-360" center="auto" time="2000" loop="true" condition="true">Conditional</animation>
+				<texture colordiffuse="$VAR[HighlightColorVar]">dialogs/spinner.png</texture>
+			</control>
+			<control type="grouplist">
+				<top>12</top>
+				<left>150</left>
+				<width>530</width>
+				<height>110</height>
+				<align>center</align>
+				<itemgap>5</itemgap>
+				<control type="label">
+					<description>Line 1 Label</description>
+					<height>30</height>
+					<label>$INFO[Control.GetLabel(30)]$INFO[Control.GetLabel(32), ,%]</label>
+					<font>Font29_Cond</font>
+				</control>
+				<control type="label" id="31">
+					<description>Line 2 Label</description>
+					<height>30</height>
+					<textcolor>grey</textcolor>
+					<font>Font29_Cond</font>
+				</control>
+				<control type="progress" id="32">
+				</control>
+			</control>
+		</control>
+		<control type="label" id="30">
+			<description>Line 1 Label</description>
+			<include>HiddenObject</include>
+		</control>
+	</controls>
+</window>

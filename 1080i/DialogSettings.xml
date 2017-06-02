@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<defaultcontrol always="true">5</defaultcontrol>
+	<controls>
+		<include>Dialog_Furniture_Close_Onclick</include>
+		<control type="group">
+			<include content="Dialog_Furniture_Background">
+				<param name="labelid">2</param>
+				<param name="bottomseparatorvisible">Integer.IsLess(Container(5).NumItems,7)</param>
+				<param name="bottomrightlabel">$INFO[Container(5).CurrentItem,$LOCALIZE[31001] ]$INFO[Container(5).NumItems,/]</param>
+			</include>
+			<control type="image">
+				<centerleft>50%</centerleft>
+				<bottom>30</bottom>
+				<width>40</width>
+				<height>40</height>
+				<texture colordiffuse="$VAR[HighlightColorVar]">icons/default/arrowdown.png</texture>
+				<include>Animation_CommonFade</include>
+				<visible>Container(5).HasNext</visible>
+			</control>
+			<control type="grouplist" id="5">
+				<description>control area</description>
+				<left>20</left>
+				<top>88</top>
+				<width>1074</width>
+				<height>422</height>
+				<pagecontrol>60</pagecontrol>
+				<onright>8000</onright>
+				<onleft>60</onleft>
+			</control>
+			<control type="button" id="7">
+				<include>Dialog_Button_Default</include>
+			</control>
+			<control type="radiobutton" id="8">
+				<include>Dialog_RadioButton_Default</include>
+			</control>
+			<control type="spincontrolex" id="9">
+				<include>Dialog_Button_Default</include>
+			</control>
+			<control type="image" id="11">
+				<description>Default separator</description>
+				<height>1</height>
+			</control>
+			<control type="edit" id="12">
+				<include>Dialog_Button_Default</include>
+			</control>
+			<control type="sliderex" id="13">
+				<include>Dialog_Button_Default</include>
+			</control>
+			<control type="label" id="14">
+				<include>Dialog_Button_Default</include>
+			</control>
+			<control type="grouplist" id="8000">
+				<right>60</right>
+				<top>28</top>
+				<width>600</width>
+				<onleft>5</onleft>
+				<ondown>5</ondown>
+				<align>right</align>
+				<itemgap>10</itemgap>
+				<orientation>horizontal</orientation>
+				<include content="Dialog_Button_TopRight">
+					<param name="id">28</param>
+				</include>
+				<include content="Dialog_Button_TopRight">
+					<param name="id">29</param>
+				</include>
+				<include content="Dialog_Button_TopRight">
+					<param name="id">30</param>
+				</include>
+			</control>
+			<control type="scrollbar" id="60">
+				<left>1</left>
+				<top>88</top>
+				<height>540</height>
+				<onright>5</onright>
+			</control>
+		</control>
+	</controls>
+</window>

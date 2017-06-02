@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<defaultcontrol>9000</defaultcontrol>
+	<controls>
+		<include>Dialog_Furniture_BackgroundFade</include>
+		<include>Dialog_Furniture_Close_Onclick</include>
+		<control type="group">
+			<include>Animation_Dialog_Popup</include>
+			<centerleft>50%</centerleft>
+			<centertop>50%</centertop>
+			<width>500</width>
+			<height>540</height>
+			<control type="image">
+				<top>-20</top>
+				<width>500</width>
+				<height>540</height>
+				<texture colordiffuse="$VAR[GlowColorVar]" border="40">dialogs/dialog-glow.png</texture>
+			</control>
+			<control type="image">
+				<top>-20</top>
+				<width>500</width>
+				<height>540</height>
+				<texture colordiffuse="$VAR[PanelColorVar]" border="40">dialogs/dialog-back.png</texture>
+			</control>
+			<control type="image">
+				<top>2</top>
+				<left>20</left>
+				<width>460</width>
+				<height>40</height>
+				<texture colordiffuse="$VAR[PanelColorVar]" border="30">buttons/list-select-nofocus.png</texture>
+			</control>
+			<control type="image">
+				<left>230</left>
+				<top>0</top>
+				<width>40</width>
+				<height>40</height>
+				<texture flipy="true" colordiffuse="$VAR[HighlightColorVar]">icons/default/arrowdown.png</texture>
+				<include>Animation_CommonFade</include>
+				<visible>Container(9000).HasPrevious</visible>
+			</control>
+			<control type="image">
+				<left>230</left>
+				<top>460</top>
+				<width>40</width>
+				<height>40</height>
+				<texture colordiffuse="$VAR[HighlightColorVar]">icons/default/arrowdown.png</texture>
+				<include>Animation_CommonFade</include>
+				<visible>Container(9000).HasNext</visible>
+			</control>
+			<control type="grouplist" id="9000">
+				<top>40</top>
+				<bottom>20</bottom>
+				<left>20</left>
+				<width>460</width>
+				<height>420</height>
+				<usecontrolcoords>true</usecontrolcoords>
+				<control type="button" id="101">
+					<label>$LOCALIZE[5]</label>
+					<onclick>ActivateWindow(Settings,return)</onclick>
+					<include>Dialog_Button_ContextMenu</include>
+				</control>
+				<control type="button" id="102">
+					<label>$LOCALIZE[13012]</label>
+					<onclick>Quit()</onclick>
+					<visible>System.ShowExitButton</visible>
+					<include>Dialog_Button_ContextMenu</include>
+				</control>
+				<control type="button" id="103">
+					<label>$LOCALIZE[13016]</label>
+					<onclick>Powerdown()</onclick>
+					<visible>System.CanPowerDown</visible>
+					<include>Dialog_Button_ContextMenu</include>
+				</control>
+				<control type="button" id="104">
+					<label>$LOCALIZE[20150]</label>
+					<onclick>AlarmClock(shutdowntimer,Shutdown())</onclick>
+					<visible>!System.HasAlarm(shutdowntimer)</visible>
+					<visible>System.CanPowerDown | System.CanSuspend | System.CanHibernate</visible>
+					<include>Dialog_Button_ContextMenu</include>
+				</control>
+				<control type="button" id="105">
+					<label>$LOCALIZE[20151] $INFO[System.AlarmPos,(,)]</label>
+					<onclick>CancelAlarm(shutdowntimer)</onclick>
+					<visible>System.HasAlarm(shutdowntimer)</visible>
+					<include>Dialog_Button_ContextMenu</include>
+				</control>
+				<control type="button" id="106">
+					<label>$LOCALIZE[13011]</label>
+					<onclick>Suspend()</onclick>
+					<visible>System.CanSuspend</visible>
+					<include>Dialog_Button_ContextMenu</include>
+				</control>
+				<control type="button" id="107">
+					<label>$LOCALIZE[13010]</label>
+					<onclick>Hibernate()</onclick>
+					<visible>System.CanHibernate</visible>
+					<include>Dialog_Button_ContextMenu</include>
+				</control>
+				<control type="button" id="108">
+					<label>$LOCALIZE[13013]</label>
+					<onclick>Reset()</onclick>
+					<visible>System.CanReboot</visible>
+					<include>Dialog_Button_ContextMenu</include>
+				</control>
+				<control type="button" id="109">
+					<label>$LOCALIZE[20126] $INFO[system.profilename]</label>
+					<onclick>dialog.close(all,true)</onclick>
+					<onclick>System.LogOff</onclick>
+					<visible>System.HasLoginScreen | Integer.IsGreater(System.ProfileCount,1)</visible>
+					<visible>System.Loggedon</visible>
+					<include>Dialog_Button_ContextMenu</include>
+				</control>
+				<control type="togglebutton" id="110">
+					<label>$LOCALIZE[20046]</label>
+					<altlabel>$LOCALIZE[20045]</altlabel>
+					<usealttexture>!System.IsMaster</usealttexture>
+					<onclick>mastermode</onclick>
+					<visible>System.HasLocks</visible>
+					<include>Dialog_Button_ContextMenu</include>
+				</control>
+				<control type="button" id="111">
+					<label>$LOCALIZE[13017]</label>
+					<onclick>InhibitIdleShutdown(true)</onclick>
+					<visible>System.HasShutdown +!System.IsInhibit</visible>
+					<include>Dialog_Button_ContextMenu</include>
+				</control>
+				<control type="button" id="112">
+					<label>$LOCALIZE[13018]</label>
+					<onclick>InhibitIdleShutdown(false)</onclick>
+					<visible>System.HasShutdown + System.IsInhibit</visible>
+					<include>Dialog_Button_ContextMenu</include>
+				</control>
+			</control>
+		</control>
+	</controls>
+</window>

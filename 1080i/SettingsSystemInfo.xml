@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<defaultcontrol always="true">8000</defaultcontrol>
+	<menucontrol>9000</menucontrol>
+	<controls>
+		<!-- Backdrop -->
+		<include>Background_Nowplaying</include>
+		<include content="Background_Fanart_Default">
+			<param name="imagepath">$VAR[SettingsFanartVar]</param>
+			<param name="opencondition">!Window.Previous(settings)</param>
+			<param name="closecondition">!Window.Next(settings)</param>
+		</include>
+		<!-- Floor -->
+		<control type="group">
+			<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
+			<include content="Animation_Slide_Bottom">
+				<param name="slide">218</param>
+				<param name="opencondition">!Window.Previous(settings)</param>
+				<param name="closecondition">!Window.Next(settings)</param>
+			</include>
+			<include>Floor_Background_Default</include>
+		</control>
+		<!-- Content -->
+		<control type="group">
+			<include>Animation_Zoom_OpenClose</include>
+			<include content="Animation_FurnitureShift">
+				<param name="slidetopbarcondition">Skin.HasSetting(SettingsHideTopBar)</param>
+				<param name="slidefloorcondition">!Skin.HasSetting(SettingsHideTopBar) + Skin.HasSetting(SettingsHideFloor)</param>
+			</include>
+			<include content="Panel_Background_Settings">
+				<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
+			</include>
+			<!-- Left menu -->
+			<control type="label">
+				<label>$LOCALIZE[130]</label>
+				<include>Settings_LeftLabel</include>
+			</control>
+			<control type="grouplist" id="8000">
+				<left>101</left>
+				<top>200</top>
+				<width>323</width>
+				<height>612</height>
+				<onleft>9000</onleft>
+				<onright>60</onright>
+				<control type="button" id="95">
+					<description>Button Summary Values</description>
+					<include>Settings_LeftButton</include>
+					<label>$LOCALIZE[20037]</label>
+				</control>
+				<control type="button" id="94">
+					<description>Button Storage</description>
+					<include>Settings_LeftButton</include>
+					<label>$LOCALIZE[13277]</label>
+				</control>
+				<control type="button" id="96">
+					<description>Button Network</description>
+					<include>Settings_LeftButton</include>
+					<label>$LOCALIZE[13279]</label>
+				</control>
+				<control type="button" id="97">
+					<description>Button Video</description>
+					<include>Settings_LeftButton</include>
+					<label>$LOCALIZE[13280]</label>
+				</control>
+				<control type="button" id="98">
+					<description>Button Hardware</description>
+					<include>Settings_LeftButton</include>
+					<label>$LOCALIZE[13281]</label>
+				</control>
+				<control type="button" id="99">
+					<description>Button PVR</description>
+					<include>Settings_LeftButton</include>
+					<label>$LOCALIZE[19191]</label>
+				</control>
+				<control type="button" id="100">
+					<description>Button Privacy policy</description>
+					<include>Settings_LeftButton</include>
+					<label>$LOCALIZE[12389]</label>
+				</control>
+			</control>
+			<!-- Right menu -->
+			<control type="grouplist">
+				<top>100</top>
+				<left>471</left>
+				<width>1413</width>
+				<height>100</height>
+				<orientation>horizontal</orientation>
+				<control type="label" id="52">
+					<width>auto</width>
+					<font>Font33_Bold_Caps</font>
+				</control>
+				<control type="label">
+					<width>auto</width>
+					<font>Font33_Bold_Caps</font>
+					<label> - </label>
+				</control>
+				<control type="label" id="53">
+					<width>auto</width>
+					<font>Font33_Bold_Caps</font>
+				</control>
+			</control>
+			<control type="grouplist" id="8000">
+				<left>426</left>
+				<top>200</top>
+				<width>1393</width>
+				<height>616</height>
+				<control type="label" id="2">
+					<include>Settings_Label_SystemInfo</include>
+				</control>
+				<control type="label" id="3">
+					<include>Settings_Label_SystemInfo</include>
+				</control>
+				<control type="label" id="4">
+					<include>Settings_Label_SystemInfo</include>
+				</control>
+				<control type="label" id="5">
+					<include>Settings_Label_SystemInfo</include>
+				</control>
+				<control type="label" id="6">
+					<include>Settings_Label_SystemInfo</include>
+				</control>
+				<control type="label" id="7">
+					<include>Settings_Label_SystemInfo</include>
+				</control>
+				<control type="label" id="8">
+					<include>Settings_Label_SystemInfo</include>
+				</control>
+				<control type="label" id="9">
+					<include>Settings_Label_SystemInfo</include>
+				</control>
+				<control type="label" id="10">
+					<include>Settings_Label_SystemInfo</include>
+				</control>
+				<control type="label" id="11">
+					<include>Settings_Label_SystemInfo</include>
+				</control>
+				<control type="label" id="12">
+					<include>Settings_Label_SystemInfo</include>
+				</control>
+			</control>
+			<control type="textbox" id="30">
+				<left>471</left>
+				<top>200</top>
+				<width>1303</width>
+				<height>620</height>
+				<textcolor>grey2</textcolor>
+				<font>Font29_Cond</font>
+				<pagecontrol>60</pagecontrol>
+				<autoscroll delay="5000" repeat="7500" time="5000">!Control.HasFocus(60)</autoscroll>
+			</control>
+			<control type="grouplist">
+				<left>471</left>
+				<bottom>116</bottom>
+				<width>1303</width>
+				<height>120</height>
+				<itemgap>5</itemgap>
+				<control type="label">
+					<height>30</height>
+					<font>Font29_Cond</font>
+					<textcolor>white2</textcolor>
+					<label>$LOCALIZE[31022][COLOR grey2]$INFO[System.CPUUsage,  ][/COLOR]</label>
+				</control>
+				<control type="progress">
+					<info>System.CPUUsage</info>
+				</control>
+				<control type="label">
+					<height>30</height>
+					<font>Font29_Cond</font>
+					<textcolor>white2</textcolor>
+					<label>$LOCALIZE[31023][COLOR grey2]$INFO[system.memory(used.percent),  ][/COLOR]</label>
+				</control>
+				<control type="progress">
+					<info>system.memory(used)</info>
+				</control>
+			</control>
+			<control type="scrollbar" id="60">
+				<right>81</right>
+				<top>200</top>
+				<bottom>267</bottom>
+				<onleft>8000</onleft>
+				<visible>ControlGroup(8000).HasFocus(100)</visible>
+			</control>
+		</control>
+		<!-- Topbar -->
+		<control type="group">
+			<visible>!Skin.HasSetting(SettingsHideTopBar)</visible>
+			<include content="Animation_Slide_Top">
+				<param name="slide">90</param>
+				<param name="opencondition">!Window.Previous(settings)</param>
+				<param name="closecondition">!Window.Next(settings)</param>
+			</include>
+			<include content="TopBar">
+				<param name="breadcrumbs_label">$LOCALIZE[10007]</param>
+				<param name="breadcrumbs_icon">info.png</param>
+			</include>
+		</control>
+		<!-- Media Menu -->
+		<include>MediaMenu_MouseOverlay</include>
+		<control type="group">
+			<include>MediaMenu_Common</include>
+			<control type="grouplist" id="9000">
+				<usecontrolcoords>true</usecontrolcoords>
+				<onleft condition="!Skin.HasSetting(DisableQuickNav)">ActivateWindow(1113)</onleft>
+				<onright>95</onright>
+				<onback>95</onback>
+				<include>MediaMenu_Settings</include>
+			</control>
+		</control>
+	</controls>
+</window>

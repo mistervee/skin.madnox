@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+	<include name="Background_Nowplaying">
+		<control type="visualisation">
+			<include>FullscreenDimensions</include>
+			<visible>Player.HasAudio + !Skin.HasSetting(DisableBackgroundMusicNowPlaying)</visible>
+		</control>
+		<control type="videowindow">
+			<include>FullscreenDimensions</include>
+			<visible>Player.HasVideo + !Skin.HasSetting(DisableBackgroundVideoNowPlaying)</visible>
+		</control>
+	</include>
+	<include name="Background_Fanart_Default">
+		<param name="opencondition">true</param>
+		<param name="closecondition">true</param>
+		<param name="sideshade">true</param>
+		<param name="fullshade">false</param>
+		<param name="bottomshade">false</param>
+		<param name="imagepath"></param>
+		<definition>
+			<control type="group">
+				<visible>$EXP[Fanart_Visible_MediaPlaying]</visible>
+				<animation effect="fade" time="240" tween="cubic" condition="$PARAM[opencondition]">WindowOpen</animation>
+				<animation effect="fade" time="240" tween="cubic" easing="in" condition="$PARAM[closecondition]">WindowClose</animation>
+				<control type="multiimage">
+					<include>FullscreenDimensions</include>
+					<aspectratio>scale</aspectratio>
+					<imagepath background="true">$PARAM[imagepath]</imagepath>
+					<randomize>true</randomize>
+					<fadetime>TextureFadeTime</fadetime>
+					<animation type="Conditional" pulse="true" condition="Skin.HasSetting(MovieAnimatedBackground)">
+						<effect type="zoom" start="110" end="130" center="auto" time="12000"/>
+						<effect type="slide" start="-15,-15" end="15,15" time="6000"/>
+					</animation>
+				</control>
+				<control type="image">
+					<include>FullscreenDimensions</include>
+					<texture colordiffuse="FF000000">colors/white50.png</texture>
+					<visible>Skin.HasSetting(MovieDarkenBackground)</visible>
+				</control>
+				<control type="image">
+					<include>FullscreenDimensions</include>
+					<texture colordiffuse="$VAR[BackgroundColorVar]">panels/sideshade.png</texture>
+					<visible>$PARAM[sideshade]</visible>
+				</control>
+				<control type="image">
+					<include>FullscreenDimensions</include>
+					<texture colordiffuse="$VAR[BackgroundColorVar]">colors/white50.png</texture>
+					<visible>$PARAM[fullshade]</visible>
+				</control>
+				<control type="image">
+					<top>880</top>
+					<width>1920</width>
+					<height>200</height>
+					<texture colordiffuse="$VAR[BackgroundColorVar]">panels/floor-gradient.png</texture>
+					<visible>$PARAM[bottomshade]</visible>
+				</control>
+			</control>
+		</definition>
+	</include>
+</includes>

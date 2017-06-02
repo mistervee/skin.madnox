@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+	<include name="Animation_Dialog_BackgroundFade">
+		<animation effect="fade" delay="200" start="0" end="100" time="300">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+		<animation effect="fade" delay="200" start="0" end="100" time="300">Visible</animation>
+		<animation effect="fade" start="100" end="0" time="300">Hidden</animation>
+	</include>
+	<include name="Animation_CommonFade">
+		<animation effect="fade" time="160">Visible</animation>
+		<animation effect="fade" time="160">Hidden</animation>
+		<animation effect="fade" time="400">WindowOpen</animation>
+		<animation effect="fade" time="160">WindowClose</animation>
+	</include>
+	<include name="Animation_VisibleFade">
+		<animation effect="fade" time="160">Visible</animation>
+		<animation effect="fade" time="160">Hidden</animation>
+	</include>
+	<include name="Animation_Dialog_Popup">
+		<param name="condition">true</param>
+		<definition>
+			<animation type="WindowOpen" reversible="false" condition="$PARAM[condition]">
+				<effect type="zoom" start="80" end="100" center="auto" delay="200" easing="out" tween="back" time="300" />
+				<effect type="fade" delay="200" start="0" end="100" time="300" />
+			</animation>
+			<animation type="WindowClose" reversible="false" condition="$PARAM[condition]">
+				<effect type="zoom" start="100" end="80" center="auto" easing="in" tween="back" time="300" />
+				<effect type="fade" start="100" end="0" time="300" />
+			</animation>
+			<animation type="Visible" reversible="false" condition="$PARAM[condition]">
+				<effect type="zoom" start="80" end="100" center="auto" delay="200" easing="out" tween="back" time="300" />
+				<effect type="fade" delay="200" start="0" end="100" time="300" />
+			</animation>
+			<animation type="Hidden" reversible="false" condition="$PARAM[condition]">
+				<effect type="zoom" start="100" end="80" center="auto" easing="in" tween="back" time="300" />
+				<effect type="fade" start="100" end="0" time="300" />
+			</animation>
+		</definition>
+	</include>
+	<include name="Animation_Dialog_MediaMenu">
+		<param name="slide">430</param>
+		<definition>
+			<animation type="WindowOpen" reversible="false">
+				<effect type="slide" start="0" end="$PARAM[slide]" time="320" delay="0" tween="cubic" easing="in" />
+			</animation>
+			<animation type="WindowClose" reversible="false">
+				<effect type="slide" start="$PARAM[slide]" end="0" time="320" delay="0" tween="cubic" easing="out" />
+			</animation>
+			<animation type="Visible" reversible="false">
+				<effect type="slide" start="-$PARAM[slide]" end="0" time="320" delay="0" tween="cubic" easing="in" />
+			</animation>
+			<animation type="Hidden" reversible="false">
+				<effect type="slide" start="0" end="-$PARAM[slide]" time="320" delay="0" tween="cubic" easing="out" />
+			</animation>
+		</definition>
+	</include>
+	<include name="Animation_Zoom_OpenClose">
+		<animation type="WindowOpen" reversible="false">
+			<effect type="zoom" start="150" end="100" center="auto" time="240" tween="cubic" />
+			<effect type="fade" end="100" time="240" />
+		</animation>
+		<animation type="WindowClose" reversible="false">
+			<effect type="fade" start="100" end="0" time="240" />
+			<effect type="zoom" start="100" end="130" center="auto" time="240" tween="cubic" easing="in" />
+		</animation>
+	</include>
+	<include name="Animation_Slide_Top">
+		<param name="slide">1080</param>
+		<param name="opencondition">true</param>
+		<param name="closecondition">true</param>
+		<definition>
+			<animation effect="slide" start="0,-$PARAM[slide]" end="0,0" time="240" tween="cubic" condition="$PARAM[opencondition]">WindowOpen</animation>
+			<animation effect="slide" start="0,0" end="0,-$PARAM[slide]" time="240" tween="cubic" easing="in" condition="$PARAM[closecondition]">WindowClose</animation>
+			<animation effect="slide" start="0,-$PARAM[slide]" end="0,0" time="240" tween="cubic">Visible</animation>
+			<animation effect="slide" start="0,0" end="0,-$PARAM[slide]" time="240" tween="cubic" easing="in">Hidden</animation>
+		</definition>
+	</include>
+	<include name="Animation_Slide_Bottom">
+		<param name="slide">1080</param>
+		<param name="opencondition">true</param>
+		<param name="closecondition">true</param>
+		<definition>
+			<animation effect="slide" start="0,$PARAM[slide]" end="0,0" time="240" tween="cubic" condition="$PARAM[opencondition]">WindowOpen</animation>
+			<animation effect="slide" start="0,0" end="0,$PARAM[slide]" time="240" tween="cubic" easing="in" condition="$PARAM[closecondition]">WindowClose</animation>
+			<animation effect="slide" start="0,$PARAM[slide]" end="0,0" time="240" tween="cubic">Visible</animation>
+			<animation effect="slide" start="0,0" end="0,$PARAM[slide]" time="240" tween="cubic" easing="in">Hidden</animation>
+		</definition>
+	</include>
+	<include name="Animation_Slide_Left">
+		<param name="slide">960</param>
+		<param name="opencondition">true</param>
+		<param name="closecondition">true</param>
+		<definition>
+			<animation effect="slide" start="-$PARAM[slide]" end="0" time="240" tween="cubic" condition="$PARAM[opencondition]">WindowOpen</animation>
+			<animation effect="slide" start="0" end="-$PARAM[slide]" time="240" tween="cubic" easing="in" condition="$PARAM[closecondition]">WindowClose</animation>
+			<animation effect="slide" start="-$PARAM[slide]" end="0" time="240" tween="cubic">Visible</animation>
+			<animation effect="slide" start="0" end="-$PARAM[slide]" time="240" tween="cubic" easing="in">Hidden</animation>
+		</definition>
+	</include>
+	<include name="Animation_Slide_Right">
+		<param name="slide">960</param>
+		<param name="opencondition">true</param>
+		<param name="closecondition">true</param>
+		<definition>
+			<animation effect="slide" start="$PARAM[slide]" end="0" time="240" tween="cubic" condition="$PARAM[opencondition]">WindowOpen</animation>
+			<animation effect="slide" start="0" end="$PARAM[slide]" time="240" tween="cubic" easing="in" condition="$PARAM[closecondition]">WindowClose</animation>
+			<animation effect="slide" start="$PARAM[slide]" end="0" time="240" tween="cubic">Visible</animation>
+			<animation effect="slide" start="0" end="$PARAM[slide]" time="240" tween="cubic" easing="in">Hidden</animation>
+		</definition>
+	</include>
+	<include name="Animation_FurnitureShift">
+		<param name="slidetopbar">-5</param>
+		<param name="slidefloor">15</param>
+		<param name="slidetopbarcondition">false</param>
+		<param name="slidefloorcondition">false</param>
+		<definition>
+			<animation effect="slide" end="0,$PARAM[slidetopbar]" time="400" tween="cubic" easing="out" condition="$PARAM[slidetopbarcondition]">Conditional</animation>
+			<animation effect="slide" end="0,$PARAM[slidefloor]" time="400" tween="cubic" easing="out" condition="$PARAM[slidefloorcondition]">Conditional</animation>
+		</definition>
+	</include>
+</includes>

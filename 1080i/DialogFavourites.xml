@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<defaultcontrol>450</defaultcontrol>
+	<controls>
+		<include>Dialog_Furniture_BackgroundFade</include>
+		<include>Dialog_Furniture_Close_Onclick</include>
+		<control type="group">
+			<include content="Dialog_Furniture_Background">
+				<param name="width">1320</param>
+				<param name="height">768</param>
+				<param name="label">$LOCALIZE[1036]</param>
+				<param name="bottomseparatorvisible">Integer.IsLess(Container(450).NumItems,10)</param>
+				<param name="bottomrightlabel">$INFO[Container(450).NumItems,, $LOCALIZE[31001]]$INFO[Container(450).CurrentPage, - $LOCALIZE[31000] (]$INFO[Container(450).NumPages,/,)]</param>
+			</include>
+			<control type="image">
+				<centerleft>50%</centerleft>
+				<bottom>30</bottom>
+				<width>40</width>
+				<height>40</height>
+				<texture colordiffuse="$VAR[HighlightColorVar]">icons/default/arrowdown.png</texture>
+				<include>Animation_CommonFade</include>
+				<visible>Container(450).HasNext</visible>
+			</control>
+			<control type="panel" id="450">
+				<left>20</left>
+				<top>88</top>
+				<width>760</width>
+				<height>600</height>
+				<onleft>60</onleft>
+				<onright>8000</onright>
+				<pagecontrol>60</pagecontrol>
+				<include content="Dialog_List_Default">
+					<param name="id">450</param>
+					<param name="width">760</param>
+				</include>
+			</control>
+			<control type="image">
+				<right>20</right>
+				<bottom>80</bottom>
+				<width>550</width>
+				<height>60</height>
+				<texture colordiffuse="$VAR[PanelColorVar]" border="30">buttons/list-select-nofocus.png</texture>
+				<visible>!Integer.IsLess(Container(450).NumItems,10)</visible>
+			</control>
+			<control type="image">
+				<right>50</right>
+				<top>78</top>
+				<width>500</width>
+				<height>620</height>
+				<aspectratio align="center" aligny="center">keep</aspectratio>
+				<texture>$INFO[Container(450).Listitem.Icon]</texture>
+				<bordertexture border="20" colordiffuse="FF000000">thumbs/shadow-square.png</bordertexture>
+				<bordersize>20</bordersize>
+			</control>
+			<control type="grouplist" id="8000">
+				<right>60</right>
+				<top>28</top>
+				<width>400</width>
+				<onleft>450</onleft>
+				<ondown>450</ondown>
+				<align>right</align>
+				<itemgap>10</itemgap>
+				<orientation>horizontal</orientation>
+				<include content="Dialog_Button_TopRight">
+					<param name="id">8001</param>
+					<param name="label">$LOCALIZE[15067]</param>
+					<param name="onclick">Action(close)</param>
+				</include>
+			</control>
+			<control type="scrollbar" id="60">
+				<left>1</left>
+				<top>88</top>
+				<bottom>80</bottom>
+				<onright>450</onright>
+			</control>
+		</control>
+	</controls>
+</window>

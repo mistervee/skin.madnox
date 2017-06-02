@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+	<include file="Defaults.xml"/>
+	<include file="Variables.xml"/>
+	<include file="Variables_Colors.xml"/>
+	<include file="Includes_CommonObjects.xml"/>
+	<include file="Includes_Animations.xml"/>
+	<include file="Includes_Backgrounds.xml"/>
+	<include condition="!Skin.HasSetting(HomeVertical)" file="Includes_Home_Horizontal.xml"/>
+	<include condition="Skin.HasSetting(HomeVertical)" file="Includes_Home_Vertical.xml"/>
+	<include file="script-skinshortcuts-includes.xml" />
+	<include file="Includes_MediaFlags.xml"/>
+	<include file="Includes_MediaMenu.xml"/>
+	<include file="Includes_Views.xml"/>
+	<include file="View_50_List.xml"/>
+	<constant name="TextureFadeTime">240</constant>
+	<expression name="Fanart_Visible_MediaPlaying">!Player.HasMedia | [Player.HasAudio + Skin.HasSetting(DisableBackgroundMusicNowPlaying)] | [Player.HasVideo + Skin.HasSetting(DisableBackgroundVideoNowPlaying)]</expression>
+	<expression name="Area_Visible_Settings">Window.IsActive(settings) | Window.IsActive(SettingsCategory.xml) | Window.IsActive(profiles) |  Window.IsActive(skinsettings) | Window.IsActive(eventlog) | Window.IsActive(systeminfo) | Window.IsActive(filemanager) | Window.IsActive(script-skinshortcuts.xml)</expression>
+	<expression name="Settings_Animation_OpenCondition">![Window.Previous(settings) | Window.Previous(SettingsCategory.xml) | Window.Previous(skinsettings) | Window.Previous(profiles) | Window.Previous(systeminfo) | Window.Previous(eventlog) | Window.Previous(filemanager)]</expression>
+	<expression name="Settings_Animation_CloseCondition">![Window.Next(settings) | Window.Next(SettingsCategory.xml) | Window.Next(skinsettings) | Window.Next(profiles) | Window.Next(systeminfo) | Window.Next(eventlog) | Window.Next(filemanager)]</expression>
+	<include name="onunload_SkinSettings">
+		<onunload condition="Window.IsActive(startup) + System.HasAddon(script.tv.show.next.aired)">RunScript(script.tv.show.next.aired,silent=True)</onunload>
+		<onunload condition="!Skin.HasSetting(SkinHelper.EnableMusicArt)">Skin.SetBool(SkinHelper.EnableMusicArt)</onunload>
+		<onunload condition="!Skin.HasSetting(SkinHelper.EnableExtraFanart)">Skin.SetBool(SkinHelper.EnableExtraFanart)</onunload>
+		<onunload condition="!Skin.HasSetting(SkinHelper.EnableExtendedArt)">Skin.SetBool(SkinHelper.EnableExtendedArt)</onunload>
+		<onunload condition="!Skin.HasSetting(SkinHelper.EnableAddonsLookups)">Skin.SetBool(SkinHelper.EnableAddonsLookups)</onunload>
+		<onunload condition="!Skin.HasSetting(SkinHelper.RandomFanartDelay)">Skin.SetString(SkinHelper.RandomFanartDelay,10)</onunload>
+	</include>
+</includes>

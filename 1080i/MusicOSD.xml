@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<defaultcontrol always="true">703</defaultcontrol>
+	<controls>
+		<include>Dialog_Furniture_Close_Onclick</include>
+		<control type="group">
+			<include content="Animation_Slide_Bottom">
+				<param name="slide">160</param>
+			</include>
+			<top>942</top>
+			<control type="image">
+				<top>-10</top>
+				<width>1920</width>
+				<height>20</height>
+				<texture colordiffuse="$VAR[GlowColorVar]">dialogs/glow-bottom.png</texture>
+			</control>
+			<control type="image">
+				<width>1920</width>
+				<height>150</height>
+				<texture colordiffuse="$VAR[PanelColorVar]" border="10">dialogs/osd-back.png</texture>
+			</control>
+			<control type="grouplist">
+				<left>5</left>
+				<bottom>5</bottom>
+				<height>120</height>
+				<width>600</width>
+				<onright>701</onright>
+				<itemgap>-10</itemgap>
+				<orientation>horizontal</orientation>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="601" />
+					<param name="texture" value="buttons/player/list.png" />
+					<param name="onclick" value="Close" />
+					<param name="onclick2" value="ActivateWindow(MusicPlaylist)" />
+				</include>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="500" />
+					<param name="texture" value="buttons/player/visualisation.png" />
+				</include>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="602" />
+					<param name="texture" value="buttons/player/settings.png" />
+					<param name="onclick" value="Addon.Default.OpenSettings(xbmc.player.musicviz)" />
+					<param name="visible" value="Visualisation.Enabled" />
+				</include>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="603" />
+					<param name="texture" value="buttons/player/visualisationpreset.png" />
+					<param name="onclick" value="ActivateWindow(visualisationpresetlist)" />
+					<param name="visible" value="Visualisation.HasPresets" />
+				</include>
+				<control type="label" id="604">
+					<width>150</width>
+					<font>Font26_Reg_08</font>
+					<textcolor>grey</textcolor>
+					<wrapmultiline>true</wrapmultiline>
+					<label>$VAR[MusicOSDLabelVar]</label>
+				</control>
+			</control>
+			<control type="group">
+				<left>5</left>
+				<bottom>5</bottom>
+				<height>120</height>
+				<width>600</width>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="visible" value="Control.HasFocus(601)" />
+				</include>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">110</param>
+					<param name="visible" value="Control.HasFocus(500)" />
+				</include>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">220</param>
+					<param name="visible" value="Control.HasFocus(602)" />
+				</include>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">330</param>
+					<param name="visible" value="Control.HasFocus(603)" />
+				</include>
+			</control>
+			<control type="grouplist">
+				<left>625</left>
+				<right>625</right>
+				<bottom>5</bottom>
+				<height>120</height>
+				<onright>801</onright>
+				<onleft>603</onleft>
+				<align>center</align>
+				<itemgap>-10</itemgap>
+				<orientation>horizontal</orientation>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="701" />
+					<param name="texture" value="buttons/player/previous.png" />
+					<param name="onclick" value="PlayerControl(Previous)" />
+				</include>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="702" />
+					<param name="texture" value="buttons/player/rw.png" />
+					<param name="onclick" value="PlayerControl(Rewind)" />
+				</include>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="703" />
+					<param name="texture" value="buttons/player/stop.png" />
+					<param name="onclick" value="PlayerControl(Stop)" />
+				</include>
+				<include content="Dialog_ToggleButton_OSD">
+					<param name="id" value="704" />
+					<param name="texture" value="buttons/player/pause.png" />
+					<param name="alttexture" value="buttons/player/play.png" />
+					<param name="usealttexture" value="Player.Paused" />
+					<param name="onclick" value="PlayerControl(Play)" />
+				</include>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="705" />
+					<param name="texture" value="buttons/player/ff.png" />
+					<param name="onclick" value="PlayerControl(Foward)" />
+				</include>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="706" />
+					<param name="texture" value="buttons/player/next.png" />
+					<param name="onclick" value="PlayerControl(Next)" />
+				</include>
+			</control>
+			<control type="group">
+				<left>625</left>
+				<right>625</right>
+				<bottom>5</bottom>
+				<height>120</height>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="visible" value="Control.HasFocus(701)" />
+				</include>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">110</param>
+					<param name="visible" value="Control.HasFocus(702)" />
+				</include>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">220</param>
+					<param name="visible" value="Control.HasFocus(703)" />
+				</include>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">330</param>
+					<param name="visible" value="Control.HasFocus(704)" />
+				</include>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">440</param>
+					<param name="visible" value="Control.HasFocus(705)" />
+				</include>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">550</param>
+					<param name="visible" value="Control.HasFocus(706)" />
+				</include>
+			</control>
+			<control type="grouplist">
+				<right>5</right>
+				<bottom>5</bottom>
+				<height>120</height>
+				<width>600</width>
+				<onleft>706</onleft>
+				<align>right</align>
+				<itemgap>-10</itemgap>
+				<orientation>horizontal</orientation>
+				<usecontrolcoords>true</usecontrolcoords>
+				<control type="label" id="801">
+					<width>120</width>
+					<align>right</align>
+					<font>Font26_Reg_08</font>
+					<textcolor>grey</textcolor>
+					<wrapmultiline>true</wrapmultiline>
+					<label>$VAR[MusicOSDLabel2Var]</label>
+				</control>
+				<control type="button" id="802">
+					<width>120</width>
+					<height>120</height>
+					<texturefocus>buttons/player/lyrics.png</texturefocus>
+					<texturenofocus>buttons/player/lyrics.png</texturenofocus>
+					<onclick condition="System.HasAddon(script.cu.lrclyrics)">RunScript(script.cu.lrclyrics)</onclick>
+					<onclick condition="!System.HasAddon(script.cu.lrclyrics)">InstallAddon(script.cu.lrclyrics)</onclick>
+					<onclick>Close</onclick>
+				</control>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="803" />
+					<param name="onclick" value="PlayerControl(Repeat)" />
+				</include>
+				<control type="image" id="804">
+					<left>-120</left>
+					<width>120</width>
+					<height>120</height>
+					<texture>$VAR[MusicOSDRepeatButtonVar]</texture>
+				</control>
+				<include content="Dialog_ToggleButton_OSD">
+					<param name="id" value="805" />
+					<param name="texture" value="buttons/player/randomon.png" />
+					<param name="alttexture" value="buttons/player/randomoff.png" />
+					<param name="usealttexture" value="Playlist.IsRandom" />
+					<param name="onclick" value="PlayerControl(Random)" />
+				</include>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="806" />
+					<param name="texture" value="buttons/player/settings.png" />
+					<param name="onclick" value="ActivateWindow(1117)" />
+				</include>
+			</control>
+			<control type="group">
+				<right>5</right>
+				<bottom>5</bottom>
+				<height>120</height>
+				<width>600</width>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">160</param>
+					<param name="visible" value="Control.HasFocus(802)" />
+				</include>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">260</param>
+					<param name="visible" value="Control.HasFocus(803)" />
+				</include>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">370</param>
+					<param name="visible" value="Control.HasFocus(805)" />
+				</include>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">480</param>
+					<param name="visible" value="Control.HasFocus(806)" />
+				</include>
+			</control>
+		</control>
+	</controls>
+</window>

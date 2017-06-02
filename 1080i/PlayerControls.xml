@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window type="dialog" id="114">
+	<defaultcontrol always="true">300</defaultcontrol>
+	<!--<include>Animation_DialogZoom</include>-->
+	<onload>Dialog.Close(1121)</onload>
+	<onload condition="Window.IsActive(script.pseudotv.TVOverlay.xml)">Dialog.Close(114)</onload>
+	<onload condition="!Integer.IsGreater(Container(9011).NumItems,0) + !Player.HasMedia">Close</onload>
+	<onunload>ClearProperty(quicknavsetup,home)</onunload>
+	<controls>
+		<include>DialogBackFade</include>
+		<control type="image">
+			<texture>common/bgcolor.png</texture>
+			<include>FullscreenDimensions</include>
+			<animation effect="fade" start="100" end="80" time="40" condition="true">Conditional</animation>
+			<visible>!String.IsEmpty(Window(home).Property(quicknavsetup))</visible>
+			<include>Animation_VisibleChange400</include>
+			<animation effect="fade" end="100" time="560">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="240">WindowClose</animation>
+		</control>
+		<control type="group">
+			<animation effect="slide" start="0,-730" end="0,-473" time="400" tween="cubic" delay="160">WindowOpen</animation>
+			<animation effect="slide" end="0,-730" start="0,-473" time="400" tween="cubic" delay="160">WindowClose</animation>
+			<animation effect="slide" end="0,100" time="400" tween="cubic" delay="160" condition="Player.HasMedia">Conditional</animation>
+			<animation effect="slide" end="0,-473" time="400" tween="cubic" delay="160" condition="Window.IsActive(1154)">Conditional</animation>
+			<animation effect="slide" end="0,-135" time="0" condition="!Integer.IsGreater(Container(9011).NumItems,0)">Conditional</animation>
+			<!--         <control type="button" id="451">
+
+            <left>-30</left>
+            <top>-30</top>
+            <width>1</width>
+            <height>1</height>
+            <label>-</label>
+            <font>-</font>
+            <texturenofocus>-</texturenofocus>
+            <texturefocus>-</texturefocus>
+            <onfocus>RunScript(script.playlists,type=video)</onfocus>
+            <onfocus>RunScript(script.playlists,type=music)</onfocus>
+            <onfocus>RunScript(script.favourites,playlists=play)</onfocus>
+            <onfocus>SetFocus(9011)</onfocus>
+        </control> -->
+			<control type="group" id="300">
+				<control type="image">
+					<width>1920</width>
+					<height>630</height>
+					<texture flipy="true">views/lowlist_panelback.png</texture>
+					<animation effect="fade" start="100" end="80" time="40" condition="true">Conditional</animation>
+				</control>
+				<control type="group" id="301">
+					<animation effect="slide" end="0,135" time="0" condition="!Integer.IsGreater(Container(9011).NumItems,0)">Conditional</animation>
+					<control type="group">
+						<top>355</top>
+						<visible>Player.HasVideo</visible>
+						<include condition="VideoPlayer.Content(LiveTV)">LiveTVVideoOSD</include>
+						<include condition="!VideoPlayer.Content(LiveTV)">DefaultVideoOSD</include>
+					</control>
+					<control type="group">
+						<top>355</top>
+						<visible>Player.HasAudio</visible>
+						<include condition="Skin.HasSetting(ClassicOSD)">ClassicMusicOSD</include>
+						<include condition="!Skin.HasSetting(ClassicOSD)">DefaultMusicOSD</include>
+					</control>
+				</control>
+				<control type="list" id="9011">
+					<visible>Integer.IsGreater(Container(9011).NumItems,0)</visible>
+					<top>472</top>
+					<width>1920</width>
+					<height>135</height>
+					<orientation>horizontal</orientation>
+					<onup>301</onup>
+					<ondown>Close</ondown>
+					<itemlayout height="225" width="209">
+						<control type="image">
+							<left>63</left>
+							<width>88</width>
+							<height>88</height>
+							<texture>$INFO[ListItem.Icon]</texture>
+							
+						</control>
+						<control type="label">
+							<left></left>
+							<top>29</top>
+							<width>213</width>
+							<height>120</height>
+							<align>center</align>
+							<label>$INFO[ListItem.Label]</label>
+							<font>Font_Reg30_Caps</font>
+							<textcolor>grey2</textcolor>
+						</control>
+					</itemlayout>
+					<focusedlayout height="225" width="209">
+						<control type="image">
+							<width>213</width>
+							<height>115</height>
+							<texture border="8">views/tripanel/listselect_fo.png</texture>
+							<colordiffuse>$VAR[FocusTextureColorVar]</colordiffuse>
+							<visible>Control.HasFocus(9011)</visible>
+						</control>
+						<control type="image">
+							<left>63</left>
+							<width>88</width>
+							<height>88</height>
+							<texture>$INFO[ListItem.Icon]</texture>
+							<colordiffuse>white2</colordiffuse>
+						</control>
+						<control type="label">
+							<left></left>
+							<top>29</top>
+							<width>213</width>
+							<height>120</height>
+							<align>center</align>
+							<label>$INFO[ListItem.Label]</label>
+							<font>Font_Reg30_Caps</font>
+						</control>
+					</focusedlayout>
+					<content>
+						<include>skinshortcuts-group-madnox-quicknav</include>
+					</content>
+				</control>
+			</control>
+		</control>
+		<control type="button">
+			<animation effect="slide" end="0,100" time="400" tween="cubic" delay="160" condition="Player.HasMedia">Conditional</animation>
+			<include>HiddenObject</include>
+			<hitrect x="0" y="200" w="1920" h="945" />
+			<onfocus>Dialog.Close(playercontrols)</onfocus>
+		</control>
+		<control type="group">
+			<visible>Player.HasMedia + !VideoPlayer.Content(LiveTV)</visible>
+			<include>BottomProgressBar</include>
+		</control>
+	</controls>
+</window>

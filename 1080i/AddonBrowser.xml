@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<defaultcontrol>50</defaultcontrol>
+	<views>50</views>
+	<controls>
+		<control type="group">
+			<include>Animation_CommonFade</include>
+			<include>View_50_List</include>
+		</control>
+		<!-- Top bar -->
+		<control type="group">
+			<visible>!Skin.HasSetting(AddonHideTopBar)</visible>
+			<include content="Animation_Slide_Top">
+				<param name="slide">90</param>
+			</include>
+			<include content="TopBar">
+				<param name="breadcrumbs_label">$LOCALIZE[24001]</param>
+				<param name="breadcrumbs_icon">addon.png</param>
+			</include>
+		</control>
+		<!-- Media Menu -->
+		<include>MediaMenu_MouseOverlay</include>
+		<control type="group">
+			<include>MediaMenu_Common</include>
+			<control type="grouplist" id="9000">
+				<usecontrolcoords>true</usecontrolcoords>
+				<onleft condition="!Skin.HasSetting(DisableQuickNav)">ActivateWindow(1113)</onleft>
+				<onright>50</onright>
+				<onback>50</onback>
+				<include>MediaMenu_MyXML_Common</include>
+				<!-- Hide foreign -->
+				<include content="MediaMenu_Icon_RadioButton">
+					<param name="id" value="7" />
+					<param name="label" value="$LOCALIZE[25001]" />
+					<param name="visible">Control.IsEnabled(7)</param>
+				</include>
+				<!-- Hide Incompatible -->
+				<include content="MediaMenu_Icon_RadioButton">
+					<param name="id" value="8" />
+					<param name="label" value="$LOCALIZE[24999]" />
+					<param name="visible">Control.IsEnabled(8)</param>
+				</include>
+				<!-- Check for repository updates -->
+				<include content="MediaMenu_Icon_Button">
+					<param name="id" value="9" />
+					<param name="icon" value="icons/mediamenu/refresh.png" />
+					<param name="label" value="$LOCALIZE[24034]" />
+				</include>
+				<!-- Addon Settings -->
+				<include content="MediaMenu_Icon_Button">
+					<param name="id" value="5" />
+					<param name="icon" value="icons/mediamenu/settings.png" />
+					<param name="label" value="$LOCALIZE[10004]" />
+				</include>
+				<!-- Quicknav -->
+				<include content="MediaMenu_Icon_Button">
+					<param name="id" value="9011" />
+					<param name="icon" value="icons/mediamenu/arrowleft.png" />
+					<param name="label" value="$LOCALIZE[31040]" />
+					<param name="onclick" value="ActivateWindow(1113)" />
+					<param name="visible" value="!Skin.HasSetting(DisableQuickNav)" />
+				</include>
+			</control>
+		</control>
+	</controls>
+</window>

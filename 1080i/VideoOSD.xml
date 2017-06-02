@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<defaultcontrol always="true">703</defaultcontrol>
+	<controls>
+		<include>Dialog_Furniture_Close_Onclick</include>
+		<control type="group">
+			<visible>!Window.IsActive(videobookmarks) + !Window.IsActive(dialogsettings.xml) + !Window.IsActive(dialogselect.xml) + !Window.IsActive(subtitlesearch) + !Window.IsActive(1118)</visible>
+			<include content="Animation_Slide_Bottom">
+				<param name="slide">220</param>
+			</include>
+			<top>870</top>
+			<control type="image">
+				<top>-10</top>
+				<width>1920</width>
+				<height>20</height>
+				<texture colordiffuse="$VAR[GlowColorVar]">dialogs/glow-bottom.png</texture>
+			</control>
+			<control type="image">
+				<width>1920</width>
+				<height>210</height>
+				<texture colordiffuse="$VAR[PanelColorVar]" border="15">dialogs/osd-back.png</texture>
+			</control>
+			<control type="grouplist">
+				<left>5</left>
+				<bottom>80</bottom>
+				<height>120</height>
+				<width>600</width>
+				<onright>701</onright>
+				<itemgap>-10</itemgap>
+				<orientation>horizontal</orientation>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="601" />
+					<param name="texture" value="buttons/player/bookmark.png" />
+					<param name="onclick" value="ActivateWindow(videobookmarks)" />
+				</include>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="602" />
+					<param name="texture" value="buttons/player/audio.png" />
+					<param name="onclick" value="ActivateWindow(osdaudiosettings)" />
+				</include>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="603" />
+					<param name="texture" value="buttons/player/video.png" />
+					<param name="onclick" value="ActivateWindow(osdvideosettings)" />
+				</include>
+				<control type="label" id="604">
+					<width>240</width>
+					<font>Font26_Reg_08</font>
+					<textcolor>grey</textcolor>
+					<wrapmultiline>true</wrapmultiline>
+					<label>$VAR[VideoOSDLabelVar]</label>
+				</control>
+			</control>
+			<control type="group">
+				<left>5</left>
+				<bottom>80</bottom>
+				<height>120</height>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="visible" value="Control.HasFocus(601)" />
+				</include>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">110</param>
+					<param name="visible" value="Control.HasFocus(602)" />
+				</include>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">220</param>
+					<param name="visible" value="Control.HasFocus(603)" />
+				</include>
+			</control>
+			<control type="grouplist">
+				<left>625</left>
+				<right>625</right>
+				<bottom>80</bottom>
+				<height>120</height>
+				<onright>801</onright>
+				<onleft>603</onleft>
+				<align>center</align>
+				<itemgap>-10</itemgap>
+				<orientation>horizontal</orientation>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="701" />
+					<param name="texture" value="buttons/player/previous.png" />
+					<param name="onclick" value="PlayerControl(Previous)" />
+				</include>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="702" />
+					<param name="texture" value="buttons/player/rw.png" />
+					<param name="onclick" value="PlayerControl(Rewind)" />
+				</include>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="703" />
+					<param name="texture" value="buttons/player/stop.png" />
+					<param name="onclick" value="PlayerControl(Stop)" />
+				</include>
+				<include content="Dialog_ToggleButton_OSD">
+					<param name="id" value="704" />
+					<param name="texture" value="buttons/player/pause.png" />
+					<param name="alttexture" value="buttons/player/play.png" />
+					<param name="usealttexture" value="Player.Paused" />
+					<param name="onclick" value="PlayerControl(Play)" />
+				</include>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="705" />
+					<param name="texture" value="buttons/player/ff.png" />
+					<param name="onclick" value="PlayerControl(Foward)" />
+				</include>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="706" />
+					<param name="texture" value="buttons/player/next.png" />
+					<param name="onclick" value="PlayerControl(Next)" />
+				</include>
+			</control>
+			<control type="group">
+				<left>625</left>
+				<right>625</right>
+				<bottom>80</bottom>
+				<height>120</height>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="visible" value="Control.HasFocus(701)" />
+				</include>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">110</param>
+					<param name="visible" value="Control.HasFocus(702)" />
+				</include>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">220</param>
+					<param name="visible" value="Control.HasFocus(703)" />
+				</include>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">330</param>
+					<param name="visible" value="Control.HasFocus(704)" />
+				</include>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">440</param>
+					<param name="visible" value="Control.HasFocus(705)" />
+				</include>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">550</param>
+					<param name="visible" value="Control.HasFocus(706)" />
+				</include>
+			</control>
+			<control type="grouplist" id="8000">
+				<right>5</right>
+				<bottom>80</bottom>
+				<height>120</height>
+				<width>600</width>
+				<onleft>706</onleft>
+				<align>right</align>
+				<itemgap>-10</itemgap>
+				<orientation>horizontal</orientation>
+				<control type="label" id="801">
+					<width>120</width>
+					<align>right</align>
+					<font>Font26_Reg_08</font>
+					<textcolor>grey</textcolor>
+					<wrapmultiline>true</wrapmultiline>
+					<label>$VAR[VideoOSDLabel2Var]</label>
+				</control>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="802" />
+					<param name="texture" value="buttons/player/disc.png" />
+					<param name="onclick" value="PlayerControl(ShowVideoMenu)" />
+					<param name="visible" value="VideoPlayer.HasMenu" />
+				</include>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="803" />
+					<param name="texture" value="buttons/player/3d.png" />
+					<param name="onclick" value="StereoMode" />
+					<param name="visible" value="VideoPlayer.IsStereoscopic" />
+				</include>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="804" />
+					<param name="texture" value="buttons/player/subtitle.png" />
+					<param name="onclick" value="ActivateWindow(SubtitleSearch)" />
+				</include>
+				<include content="Dialog_Button_OSD">
+					<param name="id" value="805" />
+					<param name="texture" value="buttons/player/settings.png" />
+					<param name="onclick" value="ActivateWindow(1118)" />
+				</include>
+			</control>
+			<control type="group">
+				<right>5</right>
+				<bottom>80</bottom>
+				<height>120</height>
+				<width>600</width>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">150</param>
+					<param name="visible" value="Control.HasFocus(802)" />
+				</include>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">260</param>
+					<param name="visible" value="Control.HasFocus(803)" />
+				</include>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">370</param>
+					<param name="visible" value="Control.HasFocus(804)" />
+				</include>
+				<include content="Dialog_Button_OSD_Highlight">
+					<param name="left">480</param>
+					<param name="visible" value="Control.HasFocus(805)" />
+				</include>
+			</control>
+			<control type="group">
+				<bottom>0</bottom>
+				<width>1920</width>
+				<height>40</height>
+				<control type="progress">
+					<centerleft>50%</centerleft>
+					<bottom>59</bottom>
+					<width>1862</width>
+					<info>Player.ProgressCache</info>
+					<texturebg border="8">dialogs/progress-control/progress-back.png</texturebg>
+					<midtexture border="8">dialogs/progress-control/progress-mid-cache.png</midtexture>
+				</control>
+				<control type="progress">
+					<centerleft>50%</centerleft>
+					<bottom>59</bottom>
+					<width>1862</width>
+					<texturebg border="8">dialogs/progress-control/progress-back-cache.png</texturebg>
+					<info>Player.Progress</info>
+				</control>
+				<control type="slider">
+					<centerleft>50%</centerleft>
+					<bottom>59</bottom>
+					<width>1862</width>
+					<height>20</height>
+					<action>seek</action>
+					<texturesliderbar />
+					<textureslidernib />
+					<textureslidernibfocus />
+				</control>
+				<control type="label">
+					<left>30</left>
+					<bottom>20</bottom>
+					<width>400</width>
+					<height>40</height>
+					<align>left</align>
+					<font>Font26_Reg</font>
+					<textcolor>grey</textcolor>
+					<label>$INFO[Player.Time(hh:mm:ss),, / ]$INFO[Player.Duration(hh:mm:ss)]</label>
+				</control>
+				<control type="label">
+					<right>30</right>
+					<bottom>20</bottom>
+					<width>400</width>
+					<height>40</height>
+					<align>right</align>
+					<font>Font26_Reg</font>
+					<textcolor>grey</textcolor>
+					<label>$INFO[System.Time,, / ]$INFO[Player.FinishTime]</label>
+				</control>
+				<control type="label">
+					<centerleft>50%</centerleft>
+					<bottom>20</bottom>
+					<width>1100</width>
+					<height>40</height>
+					<align>center</align>
+					<font>Font26_Reg</font>
+					<textcolor>grey</textcolor>
+					<label>$INFO[Player.Title]</label>
+				</control>
+			</control>
+		</control>
+	</controls>
+</window>

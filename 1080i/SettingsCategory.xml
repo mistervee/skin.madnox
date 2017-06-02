@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<defaultcontrol>3</defaultcontrol>
+	<menucontrol>9000</menucontrol>
+	<include condition="Window.IsActive(interfacesettings)">onunload_SkinSettings</include>
+		<controls>
+		<!-- Backdrop -->
+		<include>Background_Nowplaying</include>
+		<include content="Background_Fanart_Default">
+			<param name="imagepath">$VAR[SettingsFanartVar]</param>
+			<param name="opencondition">$EXP[Settings_Animation_OpenCondition]</param>
+			<param name="closecondition">$EXP[Settings_Animation_CloseCondition]</param>
+		</include>
+		<!-- Floor -->
+		<control type="group">
+			<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
+			<include content="Animation_Slide_Bottom">
+				<param name="slide">218</param>
+				<param name="opencondition">$EXP[Settings_Animation_OpenCondition]</param>
+				<param name="closecondition">$EXP[Settings_Animation_CloseCondition]</param>
+			</include>
+			<include>Floor_Background_Default</include>
+		</control>
+		<!-- Content -->
+		<control type="group">
+			<include>Animation_Zoom_OpenClose</include>
+			<include content="Animation_FurnitureShift">
+				<param name="slidetopbarcondition">Skin.HasSetting(SettingsHideTopBar)</param>
+				<param name="slidefloorcondition">!Skin.HasSetting(SettingsHideTopBar) + Skin.HasSetting(SettingsHideFloor)</param>
+			</include>
+			<include content="Panel_Background_Settings">
+				<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
+			</include>
+			<!-- Left menu -->
+			<control type="label" id="2">
+				<include>Settings_LeftLabel</include>
+			</control>
+			<control type="grouplist" id="3">
+				<left>101</left>
+				<top>200</top>
+				<width>323</width>
+				<height>612</height>
+				<onleft>9000</onleft>
+				<onright>5</onright>
+			</control>
+			<control type="button" id="10">
+				<include>Settings_LeftButton</include>
+			</control>
+			<!-- Right menu -->
+			<control type="label">
+				<label>$LOCALIZE[33063]</label>
+				<include>Settings_RightLabel</include>
+			</control>
+			<control type="grouplist" id="5">
+				<left>426</left>
+				<top>200</top>
+				<width>1393</width>
+				<height>615</height>
+				<pagecontrol>60</pagecontrol>
+				<onleft>3</onleft>
+				<onright>60</onright>
+			</control>
+			<control type="label" id="14">
+				<description>Default Label</description>
+				<width>1393</width>
+				<textoffsetx>45</textoffsetx>
+				<height>68</height>
+				<align>left</align>
+				<font>Font28_Bold</font>
+				<textcolor>$VAR[HighlightColorVar]</textcolor>
+			</control>
+			<control type="image" id="11">
+				<description>separator image</description>
+				<height>1</height>
+				<texture />
+			</control>
+			<control type="textbox" id="6">
+				<description>description area</description>
+				<left>471</left>
+				<bottom>116</bottom>
+				<width>1303</width>
+				<height>120</height>
+				<font>Font29_Cond</font>
+			</control>
+			<control type="scrollbar" id="60">
+				<right>81</right>
+				<top>200</top>
+				<bottom>267</bottom>
+				<onleft>5</onleft>
+			</control>
+		</control>
+		<control type="button" id="7">
+			<include>Settings_Button</include>
+		</control>
+		<control type="radiobutton" id="8">
+			<include>Settings_RadioButton</include>
+		</control>
+		<control type="spincontrolex" id="9">
+			<include>Settings_Button</include>
+		</control>
+		<!-- Topbar -->
+		<control type="group">
+			<visible>!Skin.HasSetting(SettingsHideTopBar)</visible>
+			<include content="Animation_Slide_Top">
+				<param name="slide">90</param>
+				<param name="opencondition">$EXP[Settings_Animation_OpenCondition]</param>
+				<param name="closecondition">$EXP[Settings_Animation_CloseCondition]</param>
+			</include>
+			<include content="TopBar">
+				<param name="breadcrumbs_label">$LOCALIZE[5]$INFO[Control.GetLabel(2), / ]</param>
+				<param name="breadcrumbs_icon">settings.png</param>
+			</include>
+		</control>
+		<!-- Media Menu -->
+		<include>MediaMenu_MouseOverlay</include>
+		<control type="group">
+			<include>MediaMenu_Common</include>
+			<control type="grouplist" id="9000">
+				<usecontrolcoords>true</usecontrolcoords>
+				<onleft condition="!Skin.HasSetting(DisableQuickNav)">ActivateWindow(1113)</onleft>
+				<onright>3</onright>
+				<onback>3</onback>
+				<include content="MediaMenu_Icon_Button">
+					<param name="id" value="20" />
+					<param name="label" value="$INFO[Control.GetLabel(20)]" />
+					<param name="icon" value="icons/mediamenu/level.png" />
+					<param name="onclick" value="SettingsLevelChange" />
+					<param name="visible" value="Window.IsActive(SettingsCategory.xml)" />
+				</include>
+				<include>MediaMenu_Settings</include>
+			</control>
+		</control>
+	</controls>
+</window>

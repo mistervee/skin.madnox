@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<defaultcontrol always="true">50</defaultcontrol>
+	<views>50</views>
+	<menucontrol>9000</menucontrol>
+	<controls>
+		<control type="group">
+			<include>Animation_VisibleFade</include>
+			<include>View_50_List</include>
+		</control>
+		<!-- Topbar -->
+		<control type="group">
+			<visible>!Skin.HasSetting(VideoHideTopBar)</visible>
+			<include content="Animation_Slide_Top">
+				<param name="slide">90</param>
+			</include>
+			<include content="TopBar">
+				<param name="breadcrumbs_label">$VAR[BreadcrumbsVideoVar]</param>
+				<param name="breadcrumbs_icon">video.png</param>
+			</include>
+		</control>
+		<!-- Media Menu -->
+		<include>MediaMenu_MouseOverlay</include>
+		<control type="group">
+			<include>MediaMenu_Common</include>
+			<control type="grouplist" id="9000">
+				<usecontrolcoords>true</usecontrolcoords>
+				<onleft condition="!Skin.HasSetting(DisableQuickNav)">ActivateWindow(1113)</onleft>
+				<onright>50</onright>
+				<onback>50</onback>
+				<include>MediaMenu_MyXML_Common</include>
+				<!-- Shuffle -->
+				<include content="MediaMenu_Icon_RadioButton">
+					<param name="id" value="20" />
+					<param name="iconon" value="icons/mediamenu/random.png" />
+					<param name="iconoff" value="icons/mediamenu/randomoff.png" />
+					<param name="label" value="$LOCALIZE[590]" />
+					<param name="visible" value="Control.IsEnabled(20)" />
+				</include>
+				<!-- Repeat -->
+				<include content="MediaMenu_Icon_Button">
+					<param name="id" value="26" />
+					<param name="icon" value="$VAR[PlaylistRepeatIconVar]" />
+					<param name="label" value="$INFO[Control.GetLabel(26)]" />
+					<param name="visible" value="Control.IsEnabled(26)" />
+				</include>
+				<!-- Save -->
+				<include content="MediaMenu_Icon_Button">
+					<param name="id" value="21" />
+					<param name="icon" value="icons/mediamenu/save.png" />
+					<param name="label" value="$LOCALIZE[190]" />
+					<param name="visible" value="Control.IsEnabled(21)" />
+				</include>
+				<!-- Clear -->
+				<include content="MediaMenu_Icon_Button">
+					<param name="id" value="22" />
+					<param name="icon" value="icons/mediamenu/clear.png" />
+					<param name="label" value="$LOCALIZE[192]" />
+					<param name="visible" value="Control.IsEnabled(22)" />
+				</include>
+				<!-- Quicknav -->
+				<include content="MediaMenu_Icon_Button">
+					<param name="id" value="9011" />
+					<param name="icon" value="icons/mediamenu/arrowleft.png" />
+					<param name="label" value="$LOCALIZE[31040]" />
+					<param name="onclick" value="ActivateWindow(1113)" />
+					<param name="visible" value="!Skin.HasSetting(DisableQuickNav)" />
+				</include>
+			</control>
+		</control>
+	</controls>
+</window>

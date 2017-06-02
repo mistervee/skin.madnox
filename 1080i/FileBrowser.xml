@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">450</defaultcontrol>
+	<controls>
+		<include>Dialog_Furniture_BackgroundFade</include>
+		<include>Dialog_Furniture_Close_Onclick</include>
+		<control type="group">
+			<include content="Dialog_Furniture_Background">
+				<param name="labelid">411</param>
+				<param name="labelright">800</param>
+				<param name="width">1440</param>
+				<param name="height">659</param>
+				<param name="bottomleftlabelid">412</param>
+				<param name="bottomseparatorvisible">[Control.IsVisible(450) + Integer.IsLess(Container(450).NumItems,7)] | [Control.IsVisible(451) + Integer.IsLess(Container(451).NumItems,7)]</param>
+				<param name="bottomrightlabel">$VAR[DialogItemsLabelVar]</param>
+				<param name="haspath">true</param>
+			</include>
+			<control type="image">
+				<left>840</left>
+				<bottom>30</bottom>
+				<width>40</width>
+				<height>40</height>
+				<texture colordiffuse="$VAR[HighlightColorVar]">icons/default/arrowdown.png</texture>
+				<include>Animation_CommonFade</include>
+				<visible>Container(450).HasNext | Container(451).HasNext</visible>
+			</control>
+			<control type="image">
+				<bottom>81</bottom>
+				<left>860</left>
+				<right>20</right>
+				<height>60</height>
+				<texture colordiffuse="$VAR[PanelColorVar]" border="30">buttons/list-select-nofocus.png</texture>
+				<include>Animation_CommonFade</include>
+				<visible>[Control.IsVisible(450) + Integer.IsGreater(Container(450).NumItems,6)] | [Control.IsVisible(451) + !Integer.IsLess(Container(450).NumItems,7)]</visible>
+			</control>
+			<control type="list" id="450">
+				<left>20</left>
+				<top>88</top>
+				<width>871</width>
+				<height>490</height>
+				<onleft>60</onleft>
+				<onright>8001</onright>
+				<pagecontrol>60</pagecontrol>
+				<itemlayout height="70" width="871">
+					<control type="image">
+						<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
+					</control>
+					<control type="image">
+						<left>50</left>
+						<top>10</top>
+						<width>50</width>
+						<height>50</height>
+						<texture>$INFO[ListItem.Icon]</texture>
+						<aspectratio>keep</aspectratio>
+					</control>
+					<control type="label">
+						<left>120</left>
+						<width>701</width>
+						<height>70</height>
+						<textcolor>grey</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</itemlayout>
+				<focusedlayout height="70" width="871">
+					<control type="image">
+						<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+						<animation effect="fade" start="100" end="30" time="40" condition="!Control.HasFocus(450)">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>50</left>
+						<top>10</top>
+						<width>50</width>
+						<height>50</height>
+						<texture>$INFO[ListItem.Icon]</texture>
+						<aspectratio>keep</aspectratio>
+					</control>
+					<control type="label">
+						<left>120</left>
+						<width>701</width>
+						<height>70</height>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="list" id="451">
+				<left>20</left>
+				<top>88</top>
+				<width>871</width>
+				<height>490</height>
+				<onleft>60</onleft>
+				<onright>8001</onright>
+				<pagecontrol>60</pagecontrol>
+				<itemlayout height="70" width="871">
+					<control type="image">
+						<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
+					</control>
+					<control type="image">
+						<left>50</left>
+						<top>10</top>
+						<width>50</width>
+						<height>50</height>
+						<texture>$INFO[ListItem.Icon]</texture>
+						<aspectratio>keep</aspectratio>
+					</control>
+					<control type="label">
+						<left>120</left>
+						<width>701</width>
+						<height>70</height>
+						<textcolor>grey</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</itemlayout>
+				<focusedlayout height="70" width="871">
+					<control type="image">
+						<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+						<animation effect="fade" start="100" end="30" time="40" condition="!Control.HasFocus(451)">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>50</left>
+						<top>10</top>
+						<width>50</width>
+						<height>50</height>
+						<texture>$INFO[ListItem.Icon]</texture>
+						<aspectratio>keep</aspectratio>
+					</control>
+					<control type="label">
+						<left>120</left>
+						<width>701</width>
+						<height>70</height>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="image">
+				<right>50</right>
+				<top>78</top>
+				<width>509</width>
+				<height>509</height>
+				<aspectratio align="center" aligny="center">keep</aspectratio>
+				<texture>$INFO[Listitem.Icon]</texture>
+				<bordertexture border="20" colordiffuse="FF000000">thumbs/shadow-square.png</bordertexture>
+				<bordersize>20</bordersize>
+			</control>
+			<control type="grouplist" id="8001">
+				<right>60</right>
+				<top>28</top>
+				<width>750</width>
+				<onleft>450</onleft>
+				<onleft>451</onleft>
+				<ondown>450</ondown>
+				<ondown>451</ondown>
+				<align>right</align>
+				<itemgap>10</itemgap>
+				<orientation>horizontal</orientation>
+				<include content="Dialog_Button_TopRight">
+					<param name="id" value="413" />
+					<param name="label" value="$LOCALIZE[186]" />
+					<param name="visible" value="Control.IsEnabled(413)" />
+				</include>
+				<include content="Dialog_Button_TopRight">
+					<param name="id" value="414" />
+					<param name="label" value="$LOCALIZE[222]" />
+				</include>
+				<include content="Dialog_Button_TopRight">
+					<param name="id" value="415" />
+					<param name="label" value="$LOCALIZE[119]" />
+					<param name="visible" value="Control.IsEnabled(415)" />
+				</include>
+				<include content="Dialog_Button_TopRight">
+					<param name="id" value="416" />
+					<param name="label" value="$LOCALIZE[749]" />
+					<param name="visible" value="Control.IsEnabled(416)" />
+				</include>
+			</control>
+			<control type="scrollbar" id="60">
+				<left>1</left>
+				<top>88</top>
+				<bottom>80</bottom>
+				<onright>450</onright>
+				<onright>451</onright>
+			</control>
+		</control>
+	</controls>
+</window>

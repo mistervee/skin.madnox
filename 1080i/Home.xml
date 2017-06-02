@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<defaultcontrol always="true">9000</defaultcontrol>
+	<onload condition="!System.HasAddon(script.skinshortcuts)">InstallAddon(script.skinshortcuts)</onload>
+	<onload condition="!System.HasAddon(script.skin.helper.service)">InstallAddon(script.skin.helper.service)</onload>
+	<onload condition="!System.HasAddon(script.skin.helper.colorpicker)">InstallAddon(script.skin.helper.colorpicker)</onload>
+	<onload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;levels=2&amp;group=mainmenu|madnox-quicknav)</onload>
+	<onunload>ClearProperty(SkinHelper.WidgetContainer,home)</onunload>
+	<onunload>ClearProperty(Widget.CaseHome,home)</onunload>
+	<controls>
+		<!-- Backdrop -->
+		<include>Background_Nowplaying</include>
+		<include content="Background_Fanart_Default">
+			<param name="imagepath">$VAR[HomeFanartVar]</param>
+		</include>
+		<control type="image">
+			<left>0</left>
+			<top>0</top>
+			<width>1920</width>
+			<height>1080</height>
+			<texture colordiffuse="88FFFFFF">background-test.png</texture>
+		</control>
+		<!-- Menu -->
+		<control type="group">
+			<include>Home_Info</include>
+			<include>Home_RSS</include>
+			<include condition="!Skin.HasSetting(HomeFixedList)">Home_Menu</include>
+			<include condition="Skin.HasSetting(HomeFixedList)" content="Home_Menu">
+				<param name="listtype">fixedlist</param>
+			</include>
+		</control>
+		<!-- Media Menu -->
+		<include>MediaMenu_MouseOverlay</include>
+		<control type="group">
+			<include>MediaMenu_Common</include>
+			<control type="grouplist" id="9050">
+				<usecontrolcoords>true</usecontrolcoords>
+				<onright>9000</onright>
+				<onback>9000</onback>
+				<!-- Menu -->
+				<include content="MediaMenu_Icon_Button">
+					<param name="id" value="9051" />
+					<param name="icon" value="icons/mediamenu/menu.png" />
+					<param name="label" value="$LOCALIZE[31017]" />
+					<param name="onclick" value="RunScript(script.skinshortcuts,type=manage&amp;group=mainmenu)" />
+				</include>
+				<include content="MediaMenu_Icon_Button">
+					<param name="id" value="9052" />
+					<param name="icon" value="icons/mediamenu/settings.png" />
+					<param name="label" value="$LOCALIZE[31041]" />
+					<param name="onclick" value="ActivateWindow(1122)" />
+				</include>
+				<include content="MediaMenu_Icon_Button">
+					<param name="id" value="9053" />
+					<param name="icon" value="icons/mediamenu/widgets.png" />
+					<param name="label" value="$LOCALIZE[31039]" />
+					<param name="onclick" value="" />
+				</include>
+				<include content="MediaMenu_Icon_Button">
+					<param name="id" value="9054" />
+					<param name="icon" value="icons/mediamenu/play.png" />
+					<param name="label" value="$LOCALIZE[31002]" />
+					<param name="onclick" value="" />
+				</include>
+				<include content="MediaMenu_Icon_Button">
+					<param name="id" value="9055" />
+					<param name="icon" value="icons/mediamenu/colors.png" />
+					<param name="label" value="$LOCALIZE[31021]" />
+					<param name="onclick" value="SetProperty(CustomColorLabel,$LOCALIZE[10000],home)" />
+					<param name="onclick2" value="ActivateWindow(1110)" />
+				</include>
+				<include content="MediaMenu_Icon_Button">
+					<param name="id" value="9056" />
+					<param name="icon" value="icons/mediamenu/reset.png" />
+					<param name="label" value="$LOCALIZE[31018]" />
+					<param name="onclick" value="RunScript(script.skinshortcuts,type=resetall)" />
+				</include>
+			</control>
+		</control>
+	</controls>
+</window>

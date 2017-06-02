@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<defaultcontrol always="true">8000</defaultcontrol>
+	<controls>
+		<include>Dialog_Furniture_BackgroundFade</include>
+		<include>Dialog_Furniture_Close_Onclick</include>
+		<control type="group">
+			<include content="Dialog_Furniture_Background">
+				<param name="height">598</param>
+				<param name="labelid">1</param>
+			</include>
+			<control type="image">
+				<centerleft>50%</centerleft>
+				<bottom>30</bottom>
+				<width>40</width>
+				<height>40</height>
+				<texture colordiffuse="$VAR[HighlightColorVar]">icons/default/arrowdown.png</texture>
+				<include>Animation_CommonFade</include>
+				<visible>Container(5).HasNext</visible>
+			</control>
+			<control type="textbox" id="5">
+				<left>70</left>
+				<right>70</right>
+				<top>98</top>
+				<bottom>92</bottom>
+				<pagecontrol>60</pagecontrol>
+			</control>
+			<control type="grouplist" id="8000">
+				<right>60</right>
+				<top>28</top>
+				<width>400</width>
+				<onleft>60</onleft>
+				<ondown>60</ondown>
+				<align>right</align>
+				<itemgap>10</itemgap>
+				<orientation>horizontal</orientation>
+				<include content="Dialog_Button_TopRight">
+					<param name="id">8001</param>
+					<param name="label">$LOCALIZE[15067]</param>
+					<param name="onclick">Action(close)</param>
+				</include>
+			</control>
+			<control type="scrollbar" id="60">
+				<left>1</left>
+				<top>88</top>
+				<height>420</height>
+				<onright>8000</onright>
+			</control>
+		</control>
+	</controls>
+</window>

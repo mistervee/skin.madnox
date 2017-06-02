@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+	<include name="MediaMenu_Common">
+		<left>-410</left>
+		<animation type="Conditional" condition="[ControlGroup(9000).HasFocus | ControlGroup(9050).HasFocus | Control.HasFocus(6130)] + !System.HasActiveModalDialog" reversible="true">
+			<effect type="slide" start="0" end="410" time="320" tween="cubic" easing="out" />
+		</animation>
+		<animation type="WindowOpen">
+			<effect type="slide" start="-420" end="0" time="320" delay="0" tween="cubic" easing="out" />
+		</animation>
+		<animation type="WindowClose">
+			<effect type="slide" start="0" end="-420" time="320" delay="0" tween="cubic" easing="out" />
+		</animation>
+		<control type="image">
+			<left>0</left>
+			<width>410</width>
+			<height>1080</height>
+			<texture colordiffuse="$VAR[PanelColorVar]" border="20">dialogs/mediamenu-back.png</texture>
+		</control>
+		<control type="image">
+			<left>400</left>
+			<width>20</width>
+			<height>1080</height>
+			<texture colordiffuse="$VAR[GlowColorVar]">dialogs/glow-right.png</texture>
+		</control>
+	</include>
+	<include name="MediaMenu_Icon_Button">
+		<param name="id"></param>
+		<param name="icon"></param>
+		<param name="label"></param>
+		<param name="onclick"></param>
+		<param name="onclick2"></param>
+		<param name="onfocus"></param>
+		<param name="visible">true</param>
+		<definition>
+			<control type="button" id="$PARAM[id]">
+				<width>400</width>
+				<height>90</height>
+				<font />
+				<texturefocus colordiffuse="$VAR[HighlightColorVar]" border="10">buttons/list-select-focus.png</texturefocus>
+				<texturenofocus colordiffuse="$VAR[PanelColorVar]" border="30">buttons/list-select-nofocus.png</texturenofocus>
+				<onclick>$PARAM[onclick]</onclick>
+				<onclick>$PARAM[onclick2]</onclick>
+				<onfocus>$PARAM[onfocus]</onfocus>
+				<visible>$PARAM[visible]</visible>
+			</control>
+			<control type="image" id="9$PARAM[id]01">
+				<top>-70</top>
+				<left>20</left>
+				<width>50</width>
+				<height>50</height>
+				<texture colordiffuse="grey">$PARAM[icon]</texture>
+				<visible>$PARAM[visible]</visible>
+				<visible>!Control.HasFocus($PARAM[id])</visible>
+			</control>
+			<control type="image" id="9$PARAM[id]02">
+				<top>-70</top>
+				<left>20</left>
+				<width>50</width>
+				<height>50</height>
+				<texture colordiffuse="white">$PARAM[icon]</texture>
+				<visible>$PARAM[visible]</visible>
+				<visible>Control.HasFocus($PARAM[id])</visible>
+			</control>
+			<control type="label" id="9$PARAM[id]03">
+				<top>-70</top>
+				<left>80</left>
+				<width>320</width>
+				<height>90</height>
+				<textcolor>grey</textcolor>
+				<textoffsetx>10</textoffsetx>
+				<label>$PARAM[label]</label>
+				<visible>$PARAM[visible]</visible>
+				<visible>!Control.HasFocus($PARAM[id])</visible>
+			</control>
+			<control type="label" id="9$PARAM[id]04">
+				<top>-70</top>
+				<left>80</left>
+				<width>320</width>
+				<height>90</height>
+				<textoffsetx>10</textoffsetx>
+				<label>$PARAM[label]</label>
+				<visible>$PARAM[visible]</visible>
+				<visible>Control.HasFocus($PARAM[id])</visible>
+			</control>
+		</definition>
+	</include>
+	<include name="MediaMenu_Icon_RadioButton">
+		<param name="id"></param>
+		<param name="iconon">icons/mediamenu/ok.png</param>
+		<param name="iconoff">icons/mediamenu/cancel.png</param>
+		<param name="label"></param>
+		<param name="onclick"></param>
+		<param name="onfocus"></param>
+		<param name="selected"></param>
+		<param name="visible">true</param>
+		<definition>
+			<control type="radiobutton" id="$PARAM[id]">
+				<width>400</width>
+				<height>90</height>
+				<radiowidth>50</radiowidth>
+				<radioheight>50</radioheight>
+				<radioposx>20</radioposx>
+				<radioposy>20</radioposy>
+				<font />
+				<textureradioonfocus colordiffuse="white">$PARAM[iconon]</textureradioonfocus>
+				<textureradioonnofocus colordiffuse="grey">$PARAM[iconon]</textureradioonnofocus>
+				<textureradioofffocus colordiffuse="white">$PARAM[iconoff]</textureradioofffocus>
+				<textureradiooffnofocus colordiffuse="grey">$PARAM[iconoff]</textureradiooffnofocus>
+				<texturefocus colordiffuse="$VAR[HighlightColorVar]" border="10">buttons/list-select-focus.png</texturefocus>
+				<texturenofocus colordiffuse="$VAR[PanelColorVar]" border="30">buttons/list-select-nofocus.png</texturenofocus>
+				<selected>$PARAM[selected]</selected>
+				<onclick>$PARAM[onclick]</onclick>
+				<onfocus>$PARAM[onfocus]</onfocus>.
+				<visible>$PARAM[visible]</visible>
+			</control>
+			<control type="label" id="9$PARAM[id]01">
+				<top>-90</top>
+				<left>80</left>
+				<width>320</width>
+				<height>90</height>
+				<textcolor>grey</textcolor>
+				<textoffsetx>10</textoffsetx>
+				<label>$PARAM[label]</label>
+				<visible>$PARAM[visible]</visible>
+				<visible>!Control.HasFocus($PARAM[id])</visible>
+			</control>
+			<control type="label" id="9$PARAM[id]02">
+				<top>-90</top>
+				<left>80</left>
+				<width>320</width>
+				<height>90</height>
+				<textoffsetx>10</textoffsetx>
+				<label>$PARAM[label]</label>
+				<visible>$PARAM[visible]</visible>
+				<visible>Control.HasFocus($PARAM[id])</visible>
+			</control>
+		</definition>
+	</include>
+	<include name="MediaMenu_Icon_ToggleButton">
+		<param name="id"></param>
+		<param name="icon"></param>
+		<param name="label"></param>
+		<param name="altlabel"></param>
+		<param name="onclick"></param>
+		<param name="onfocus"></param>
+		<param name="visible">true</param>
+		<definition>
+			<control type="togglebutton" id="$PARAM[id]">
+				<width>400</width>
+				<height>90</height>
+				<font />
+				<label>$PARAM[label]</label>
+				<altlabel>$PARAM[altlabel]</altlabel>
+				<texturefocus colordiffuse="$VAR[HighlightColorVar]" border="10">buttons/list-select-focus.png</texturefocus>
+				<texturenofocus colordiffuse="$VAR[PanelColorVar]" border="30">buttons/list-select-nofocus.png</texturenofocus>
+				<alttexturefocus colordiffuse="$VAR[HighlightColorVar]" border="10">buttons/list-select-focus.png</alttexturefocus>
+				<alttexturenofocus colordiffuse="$VAR[PanelColorVar]" border="30">buttons/list-select-nofocus.png</alttexturenofocus>
+				<onclick>$PARAM[onclick]</onclick>
+				<onfocus>$PARAM[onfocus]</onfocus>.
+				<visible>$PARAM[visible]</visible>
+			</control>
+			<control type="image" id="9$PARAM[id]01">
+				<top>-70</top>
+				<left>20</left>
+				<width>50</width>
+				<height>50</height>
+				<texture colordiffuse="grey">$PARAM[icon]</texture>
+				<visible>$PARAM[visible]</visible>
+				<visible>!Control.HasFocus($PARAM[id])</visible>
+			</control>
+			<control type="image" id="9$PARAM[id]02">
+				<top>-70</top>
+				<left>20</left>
+				<width>50</width>
+				<height>50</height>
+				<texture colordiffuse="white">$PARAM[icon]</texture>
+				<visible>$PARAM[visible]</visible>
+				<visible>Control.HasFocus($PARAM[id])</visible>
+			</control>
+			<control type="label" id="9$PARAM[id]03">
+				<top>-70</top>
+				<left>80</left>
+				<width>320</width>
+				<height>90</height>
+				<textcolor>grey</textcolor>
+				<textoffsetx>10</textoffsetx>
+				<label>$INFO[Control.GetLabel($PARAM[id])]</label>
+				<visible>$PARAM[visible]</visible>
+				<visible>!Control.HasFocus($PARAM[id])</visible>
+			</control>
+			<control type="label" id="9$PARAM[id]04">
+				<top>-70</top>
+				<left>80</left>
+				<width>320</width>
+				<height>90</height>
+				<textoffsetx>10</textoffsetx>
+				<label>$INFO[Control.GetLabel($PARAM[id])]</label>
+				<visible>$PARAM[visible]</visible>
+				<visible>Control.HasFocus($PARAM[id])</visible>
+			</control>
+		</definition>
+	</include>
+	<include name="MediaMenu_MouseOverlay">
+		<control type="button" id="6130">
+			<label></label>
+			<height>100%</height>
+			<width>50</width>
+			<left>-50</left>
+			<top>0</top>
+			<texturefocus />
+			<texturenofocus />
+		</control>
+	</include>
+	<include name="MediaMenu_Label_ViewSettings">
+		<width>470</width>
+		<height>45</height>
+		<textoffsetx>15</textoffsetx>
+		<font>Font26_Bold_Caps</font>
+		<textcolor>$VAR[HighlightColorVar]</textcolor>
+	</include>
+	<include name="MediaMenu_Button_ViewSettings">
+		<width>470</width>
+		<height>60</height>
+		<textoffsetx>15</textoffsetx>
+		<font>Font28_Reg</font>
+	</include>
+	<include name="MediaMenu_RadioButton_ViewSettings">
+		<width>470</width>
+		<height>60</height>
+		<radioposx>394</radioposx>
+		<textoffsetx>15</textoffsetx>
+		<font>Font28_Reg</font>
+	</include>
+	<include name="MediaMenu_Button_ViewType">
+		<width>230</width>
+		<height>60</height>
+		<textoffsetx>15</textoffsetx>
+		<font>Font28_Reg</font>
+	</include>
+	<include name="MediaMenu_Background">
+		<param name="width">480</param>
+		<param name="glowleft">471</param>
+		<definition>
+			<control type="button">
+				<include>FullscreenDimensions</include>
+				<font />
+				<texturefocus />
+				<texturenofocus />
+				<onclick>Action(close)</onclick>
+			</control>
+			<control type="image">
+				<left>0</left>
+				<width>$PARAM[width]</width>
+				<height>1080</height>
+				<texture colordiffuse="$VAR[PanelColorVar]" border="20">dialogs/mediamenu-back.png</texture>
+			</control>
+			<control type="image">
+				<left>$PARAM[glowleft]</left>
+				<width>20</width>
+				<height>1080</height>
+				<texture colordiffuse="$VAR[GlowColorVar]">dialogs/glow-right.png</texture>
+			</control>
+		</definition>
+	</include>
+	<!-- Home -->
+	<include name="MediaMenu_Home_MainMenu">
+		<control type="label" id="101">
+			<label>$LOCALIZE[33061]</label>
+			<include>MediaMenu_Label_ViewSettings</include>
+		</control>
+		<control type="button" id="102">
+			<label>$LOCALIZE[31059]</label>
+			<label2>$INFO[Skin.String(HomeLayout)]</label2>
+			<onclick condition="String.IsEmpty(Skin.String(HomeLayout))">Skin.SetString(HomeLayout,wide)</onclick>
+			<onclick condition="String.IsEqual(Skin.String(HomeLayout),wide)">Skin.SetString(HomeLayout,7icons)</onclick>
+			<onclick condition="String.IsEqual(Skin.String(HomeLayout),7icons)">Skin.SetString(HomeLayout,5icons)</onclick>
+			<onclick condition="String.IsEqual(Skin.String(HomeLayout),5icons)">Skin.SetString(HomeLayout,3icons)</onclick>
+			<onclick condition="String.IsEqual(Skin.String(HomeLayout),3icons)">Skin.Reset(HomeLayout)</onclick>
+			<include>MediaMenu_Button_ViewSettings</include>
+		</control>
+		<control type="radiobutton" id="103">
+			<label>$LOCALIZE[31043]</label>
+			<onclick>Skin.ToggleSetting(HomeFixedList)</onclick>
+			<onclick>ReloadSkin()</onclick>
+			<onclick>Control.SetFocus(9052)</onclick>
+			<onclick>ActivateWindow(1122)</onclick>
+			<selected>Skin.HasSetting(HomeFixedList)</selected>
+			<include>MediaMenu_RadioButton_ViewSettings</include>
+		</control>
+		<control type="radiobutton" id="104">
+			<label>$LOCALIZE[19297]</label>
+			<onclick>Skin.ToggleSetting(HomeVertical)</onclick>
+			<onclick>ReloadSkin()</onclick>
+			<onclick>Control.SetFocus(9052)</onclick>
+			<onclick>ActivateWindow(1122)</onclick>
+			<selected>Skin.HasSetting(HomeVertical)</selected>
+			<include>MediaMenu_RadioButton_ViewSettings</include>
+		</control>
+		<control type="radiobutton" id="105">
+			<label>$LOCALIZE[538]</label>
+			<onclick>Skin.ToggleSetting(HomeBigIcon)</onclick>
+			<selected>Skin.HasSetting(HomeBigIcon)</selected>
+			<include>MediaMenu_RadioButton_ViewSettings</include>
+			<visible>String.Contains(Skin.String(HomeLayout),icons)</visible>
+		</control>
+		<control type="radiobutton" id="106">
+			<label>$LOCALIZE[21899]</label>
+			<onclick>Skin.ToggleSetting(HomeBigIconDisableLabel)</onclick>
+			<selected>!Skin.HasSetting(HomeBigIconDisableLabel)</selected>
+			<include>MediaMenu_RadioButton_ViewSettings</include>
+			<visible>Skin.HasSetting(HomeBigIcon) + !Skin.HasSetting(HomeVertical)</visible>
+		</control>
+	</include>
+	<!-- Settings -->
+	<include name="MediaMenu_Settings">
+		<include content="MediaMenu_Icon_Button">
+			<param name="id" value="9010" />
+			<param name="icon" value="icons/mediamenu/viewsettings.png" />
+			<param name="label" value="$LOCALIZE[14018]" />
+			<param name="onclick" value="ActivateWindow(1122)" />
+		</include>
+		<include content="MediaMenu_Icon_Button">
+			<param name="id" value="9011" />
+			<param name="icon" value="icons/mediamenu/arrowleft.png" />
+			<param name="label" value="$LOCALIZE[31040]" />
+			<param name="onclick" value="ActivateWindow(1113)" />
+			<param name="visible" value="!Skin.HasSetting(DisableQuickNav)" />
+		</include>
+	</include>
+	<include name="MediaMenu_Viewsettings_Settings">
+		<control type="label" id="101">
+			<label>$LOCALIZE[20445]</label>
+			<include>MediaMenu_Label_ViewSettings</include>
+		</control>
+		<control type="button" id="103">
+			<label>$LOCALIZE[31007]</label>
+			<onclick>RunScript(script.skin.helper.service,action=selectimage,skinstring=SettingsFanart,resourceaddon=resource.images.skinbackgrounds)</onclick>
+			<include>MediaMenu_Button_ViewSettings</include>
+		</control>
+		<control type="button" id="104">
+			<label>$LOCALIZE[31008]</label>
+			<onclick>RunScript(script.skin.helper.service,action=setresourceaddon,skinstring=SettingsFanart,addontype=resource.images.skinbackgrounds)</onclick>
+			<include>MediaMenu_Button_ViewSettings</include>
+		</control>
+		<control type="label" id="105">
+			<label>$LOCALIZE[14018]</label>
+			<include>MediaMenu_Label_ViewSettings</include>
+		</control>
+		<control type="radiobutton" id="106">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(SettingsHideFloor)</onclick>
+			<selected>!Skin.HasSetting(SettingsHideFloor)</selected>
+			<include>MediaMenu_RadioButton_ViewSettings</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31042]</label>
+			<onclick>Skin.ToggleSetting(SettingsHideTopBar)</onclick>
+			<selected>!Skin.HasSetting(SettingsHideTopBar)</selected>
+			<include>MediaMenu_Button_ViewSettings</include>
+		</control>
+		<control type="label" id="108">
+			<label>$LOCALIZE[128]</label>
+			<include>MediaMenu_Label_ViewSettings</include>
+		</control>
+		<control type="button" id="109">
+			<label>$LOCALIZE[31021]</label>
+			<onclick>SetProperty(CustomColorLabel,$LOCALIZE[24992],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
+			<include>MediaMenu_Button_ViewSettings</include>
+		</control>
+	</include>
+	<!-- Weather -->
+	<include name="MediaMenu_Viewsettings_Weather">
+		<control type="label" id="101">
+			<label>$LOCALIZE[20445]</label>
+			<include>MediaMenu_Label_ViewSettings</include>
+		</control>
+		<control type="button" id="102">
+			<label>$LOCALIZE[31007]</label>
+			<onclick>RunScript(script.skin.helper.service,action=selectimage,skinstring=WeatherFanart,resourceaddon=resource.images.skinbackgrounds)</onclick>
+			<include>MediaMenu_Button_ViewSettings</include>
+		</control>
+		<control type="button" id="103">
+			<label>$LOCALIZE[31004]</label>
+			<onclick>RunScript(script.skin.helper.service,action=setresourceaddon,skinstring=WeatherFanart,addontype=resource.images.weatherfanart)</onclick>
+			<include>MediaMenu_Button_ViewSettings</include>
+		</control>
+		<control type="label" id="104">
+			<label>$LOCALIZE[14018]</label>
+			<include>MediaMenu_Label_ViewSettings</include>
+		</control>
+		<control type="button" id="105">
+			<label>$LOCALIZE[14302]</label>
+			<onclick>RunScript(script.skin.helper.service,action=setresourceaddon,skinstring=WeatherIcons,addontype=resource.images.weathericons)</onclick>
+			<include>MediaMenu_Button_ViewSettings</include>
+		</control>
+		<control type="radiobutton" id="106">
+			<label>$LOCALIZE[31047]</label>
+			<radioposx>394</radioposx>
+			<onclick>Skin.ToggleSetting(WeatherHideFloor)</onclick>
+			<selected>!Skin.HasSetting(WeatherHideFloor)</selected>
+			<include>MediaMenu_Button_ViewSettings</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31042]</label>
+			<radioposx>394</radioposx>
+			<onclick>Skin.ToggleSetting(WeatherHideTopBar)</onclick>
+			<selected>!Skin.HasSetting(WeatherHideTopBar)</selected>
+			<include>MediaMenu_Button_ViewSettings</include>
+		</control>
+		<control type="label" id="108">
+			<label>$LOCALIZE[128]</label>
+			<include>MediaMenu_Label_ViewSettings</include>
+		</control>
+		<control type="button" id="109">
+			<label>$LOCALIZE[31021]</label>
+			<onclick>SetProperty(CustomColorLabel,$LOCALIZE[400],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
+			<include>MediaMenu_Button_ViewSettings</include>
+		</control>
+	</include>
+	<!-- MyXML Common media window settings -->
+	<include name="MediaMenu_MyXML_Common">
+		<include content="MediaMenu_Icon_Button">
+			<param name="id" value="9001" />
+			<param name="icon" value="icons/mediamenu/view.png" />
+			<param name="label" value="$INFO[Container.Viewmode]" />
+			<param name="onclick" value="ActivateWindow(1124)" />
+		</include>
+		<include content="MediaMenu_Icon_Button">
+			<param name="id" value="9002" />
+			<param name="icon" value="icons/mediamenu/viewoptions.png" />
+			<param name="label" value="$LOCALIZE[31025]" />
+			<param name="onclick" value="ActivateWindow(1122)" />
+		</include>
+		<include content="MediaMenu_Icon_Button">
+			<param name="id" value="3" />
+			<param name="icon" value="icons/mediamenu/sort.png" />
+			<param name="label" value="$INFO[Container.SortMethod]" />
+			<param name="visible" value="Control.IsEnabled(3)" />
+		</include>
+		<include content="MediaMenu_Icon_RadioButton">
+			<param name="id" value="4" />
+			<param name="iconon" value="icons/mediamenu/ascending.png" />
+			<param name="iconoff" value="icons/mediamenu/descending.png" />
+			<param name="label" value="$INFO[Container.SortOrder]" />
+			<param name="selected">String.IsEqual(Container.SortOrder,$LOCALIZE[584])</param>
+			<param name="visible" value="Control.IsEnabled(4)" />
+		</include>
+		<include content="MediaMenu_Icon_Button">
+			<param name="id" value="19" />
+			<param name="icon" value="icons/mediamenu/search.png" />
+			<param name="label" value="$LOCALIZE[137]" />
+			<param name="visible" value="Container.CanFilter + !Container.CanFilterAdvanced" />
+		</include>
+		<include content="MediaMenu_Icon_Button">
+			<param name="id" value="199" />
+			<param name="icon" value="icons/mediamenu/filter.png" />
+			<param name="label" value="$LOCALIZE[587]" />
+			<param name="onclick" value="Filter" />
+			<param name="visible" value="Container.CanFilterAdvanced" />
+		</include>
+	</include>
+	<!-- Common view settings -->
+	<include name="MediaMenu_CommonViewsettings_Videos">
+		<control type="label" id="201">
+			<label>$LOCALIZE[128]</label>
+			<include>MediaMenu_Label_ViewSettings</include>
+		</control>
+		<control type="button" id="202">
+			<label>$LOCALIZE[33069]</label>
+			<onclick>SetProperty(BackgroundsLabel,$LOCALIZE[342],home)</onclick>
+			<onclick>ActivateWindow(1127)</onclick>
+			<include>MediaMenu_Button_ViewSettings</include>
+		</control>
+		<control type="button" id="203">
+			<label>$LOCALIZE[31021]</label>
+			<onclick>SetProperty(CustomColorLabel,$LOCALIZE[3],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
+			<include>MediaMenu_Button_ViewSettings</include>
+		</control>
+	</include>
+	<include name="MediaMenu_CommonViewsettings_Music">
+		<control type="label" id="201">
+			<label>$LOCALIZE[128]</label>
+			<include>MediaMenu_Label_ViewSettings</include>
+		</control>
+		<control type="button" id="202">
+			<label>$LOCALIZE[33069]</label>
+			<onclick>SetProperty(BackgroundsLabel,$LOCALIZE[2],home)</onclick>
+			<onclick>ActivateWindow(1127)</onclick>
+			<include>MediaMenu_Button_ViewSettings</include>
+		</control>
+		<control type="button" id="203">
+			<label>$LOCALIZE[31021]</label>
+			<onclick>SetProperty(CustomColorLabel,$LOCALIZE[2],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
+			<include>MediaMenu_Button_ViewSettings</include>
+		</control>
+	</include>
+	<include name="MediaMenu_Viewsettings_View50">
+		<control type="label" id="101">
+			<label>$LOCALIZE[20445]</label>
+			<include>MediaMenu_Label_ViewSettings</include>
+		</control>
+	</include>
+</includes>

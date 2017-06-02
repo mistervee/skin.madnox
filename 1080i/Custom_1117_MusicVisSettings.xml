@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window type="dialog" id="1117">
+	<defaultcontrol always="true">100</defaultcontrol>
+	<controls>
+		<include>Dialog_Furniture_BackgroundFade</include>
+		<include>Dialog_Furniture_Close_Onclick</include>
+		<control type="group">
+			<include content="Dialog_Furniture_Background">
+				<param name="label">$LOCALIZE[12006]</param>
+				<param name="bottomseparatorvisible">false</param>
+				<param name="bottomleftlabel"></param>
+				<param name="bottomrightlabel">$VAR[DialogItemsLabelVar]</param>
+			</include>
+			<control type="image">
+				<centerleft>50%</centerleft>
+				<bottom>30</bottom>
+				<width>40</width>
+				<height>40</height>
+				<texture colordiffuse="$VAR[HighlightColorVar]">icons/default/arrowdown.png</texture>
+				<include>Animation_CommonFade</include>
+				<visible>Container(100).HasNext</visible>
+			</control>
+			<control type="grouplist" id="100">
+				<left>20</left>
+				<right>20</right>
+				<top>88</top>
+				<bottom>82</bottom>
+				<onup>8000</onup>
+				<onright>8000</onright>
+				<onleft>60</onleft>
+				<pagecontrol>60</pagecontrol>
+				<!-- <control type="button" id="101">
+					<label>$LOCALIZE[31102] [LOWERCASE]$LOCALIZE[31115][/LOWERCASE]</label>
+					<label2>[COLOR $VAR[FontColorVar]]$INFO[Skin.String(MusicViz.MultiFanart)][/COLOR]</label2>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>SetProperty(MusicVizBG,True,visualisation)</onclick>
+					<onclick>ActivateWindow(1134)</onclick>
+				</control>
+				<control type="radiobutton" id="102">
+					<label>31800</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(FadeVizBG)</onclick>
+					<selected>Skin.HasSetting(FadeVizBG)</selected>
+				</control>
+				<control type="radiobutton" id="103">
+					<label>31320</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(HideVizBG)</onclick>
+					<selected>Skin.HasSetting(HideVizBG)</selected>
+				</control>
+				<control type="radiobutton" id="104">
+					<label>31864</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(widgetpola)</onclick>
+					<onclick>Skin.Reset(AltMusicVizLayout)</onclick>
+					<onclick>Skin.Reset(ThirdMusicVizLayout)</onclick>
+					<onclick>Skin.Reset(FourthMusicVizLayout)</onclick>
+					<selected>Skin.HasSetting(widgetpola)</selected>
+				</control>
+				<control type="radiobutton" id="105">
+					<label>31801</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(showvisinfo)</onclick>
+					<selected>Skin.HasSetting(showvisinfo)</selected>
+				</control>
+				<control type="button" id="106">
+					<label>$LOCALIZE[31377]:</label>
+					<label2>[COLOR $VAR[FontColorVar]]$VAR[CDArtLabelVar][/COLOR]</label2>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick condition="!Skin.HasSetting(CDArtinVis)">Skin.SetBool(CDArtinVis)</onclick>
+					<onclick condition="Skin.HasSetting(CDArtinVis) + !Skin.HasSetting(blurayart) + !Skin.HasSetting(vinylart)">Skin.SetBool(blurayart)</onclick>
+					<onclick condition="Skin.HasSetting(CDArtinVis) + Skin.HasSetting(blurayart) + !Skin.HasSetting(vinylart)">Skin.SetBool(vinylart)</onclick>
+					<onclick condition="Skin.HasSetting(CDArtinVis) + Skin.HasSetting(blurayart) + !Skin.HasSetting(vinylart)">Skin.Reset(blurayart)</onclick>
+					<onclick condition="Skin.HasSetting(CDArtinVis) + !Skin.HasSetting(blurayart) + Skin.HasSetting(vinylart)">Skin.Reset(vinylart)</onclick>
+					<onclick condition="Skin.HasSetting(CDArtinVis) + !Skin.HasSetting(blurayart) + Skin.HasSetting(vinylart)">Skin.Reset(CDArtinVis)</onclick>
+				</control>
+				<control type="radiobutton" id="107">
+					<label>31887</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(musicvisinfomode)</onclick>
+					<selected>Skin.HasSetting(musicvisinfomode)</selected>
+				</control>
+				<control type="button" id="108">
+					<label>$LOCALIZE[31632]:</label>
+					<label2>[COLOR $VAR[FontColorVar]]$VAR[VisPanelLabelVar][/COLOR]</label2>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick condition="!Skin.HasSetting(DisablePanelWidgetVis) + !Skin.HasSetting(activatepanelrotation)">Skin.SetBool(activatepanelrotation)</onclick>
+					<onclick condition="!Skin.HasSetting(DisablePanelWidgetVis) + !Skin.HasSetting(activatepanelrotation)">Notification($LOCALIZE[31902],$LOCALIZE[31916],10000)</onclick>
+					<onclick condition="Skin.HasSetting(activatepanelrotation)">Skin.SetBool(DisablePanelWidgetVis)</onclick>
+					<onclick condition="Skin.HasSetting(activatepanelrotation)">Skin.Reset(activatepanelrotation)</onclick>
+					<onclick condition="Skin.HasSetting(DisablePanelWidgetVis)">Skin.Reset(DisablePanelWidgetVis)</onclick>
+					<enable>!Skin.HasSetting(musicvisinfomode)</enable>
+				</control>
+				<control type="radiobutton" id="109">
+					<label>31627</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(RemovePlayerControls)</onclick>
+					<selected>Skin.HasSetting(RemovePlayerControls)</selected>
+					<enable>!Skin.HasSetting(ClassicOSD)</enable>
+				</control>
+				<control type="radiobutton" id="110">
+					<label>31148</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(showtimeonviz)</onclick>
+					<selected>Skin.HasSetting(showtimeonviz)</selected>
+				</control>
+				<control type="radiobutton" id="111">
+					<label>31143</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(animation_bg)</onclick>
+					<selected>Skin.HasSetting(animation_bg)</selected>
+				</control>
+				<control type="radiobutton" id="112">
+					<label>31097</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(ClassicOSD)</onclick>
+					<selected>Skin.HasSetting(ClassicOSD)</selected>
+				</control>
+				<control type="radiobutton" id="113">
+					<label>31319</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(MusicAuto)</onclick>
+					<selected>Skin.HasSetting(MusicAuto)</selected>
+				</control>
+				<control type="button" id="114">
+					<label>$LOCALIZE[31127]</label>
+					<label2>[COLOR $VAR[FontColorVar]]$INFO[system.addontitle(Skin.String(LyricScript_Path))][/COLOR]</label2>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.SetAddon(LyricScript_Path,xbmc.python.lyrics)</onclick>
+				</control> -->
+				<!--Layout 2 -->
+				<!-- <control type="label" id="115">
+					<width>600</width>
+					<height>60</height>
+					<label>Music Viz Settings</label>
+					<font>Font_Bold33</font>
+					<textcolor>$VAR[TitleColorVar]</textcolor>
+				</control>
+					<control type="radiobutton" id="116">
+					<label>manfeeds Video Lyrics</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(manfeedlyrics)</onclick>
+					<selected>Skin.HasSetting(manfeedlyrics)</selected>
+				</control>
+				<control type="button" id="117">
+					<label>Music Visualisation </label>
+					<label2>[COLOR $VAR[FontColorVar]]$VAR[MusicVizSettingsVar][/COLOR]</label2>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick condition="!Skin.HasSetting(AltMusicVizLayout) | !Skin.HasSetting(ThirdMusicVizLayout) | !Skin.HasSetting(ThirdMusicVizLayout)">Skin.Reset(widgetpola)</onclick>
+					<onclick condition="!Skin.HasSetting(AltMusicVizLayout) + !Skin.HasSetting(ThirdMusicVizLayout) + !Skin.HasSetting(FourthMusicVizLayout)">Skin.SetBool(AltMusicVizLayout)</onclick>
+					<onclick condition="Skin.HasSetting(AltMusicVizLayout)">Skin.SetBool(ThirdMusicVizLayout)</onclick>
+					<onclick condition="Skin.HasSetting(AltMusicVizLayout)">Skin.Reset(AltMusicVizLayout)</onclick>
+					<onclick condition="Skin.HasSetting(ThirdMusicVizLayout)">Skin.SetBool(FourthMusicVizLayout)</onclick>
+					<onclick condition="Skin.HasSetting(ThirdMusicVizLayout)">Skin.Reset(ThirdMusicVizLayout)</onclick>
+					<onclick condition="Skin.HasSetting(FourthMusicVizLayout)">Skin.Reset(FourthMusicVizLayout)</onclick>
+				</control>
+				<control type="radiobutton" id="118">
+					<label>31437</label>
+					<visible>Skin.HasSetting(AltMusicVizLayout)</visible>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(AltMusicVizLayoutPlaylist)</onclick>
+					<selected>Skin.HasSetting(AltMusicVizLayoutPlaylist)</selected>
+				</control>
+				<control type="radiobutton" id="119">
+					<label>31438</label>
+					<enable>Skin.HasSetting(AltMusicVizLayoutPlaylist)</enable>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(AltMusicVizLayoutPlaylistTen)</onclick>
+					<onclick>Skin.Reset(AltMusicVizLayoutPlaylistNext)</onclick>
+					<selected>Skin.HasSetting(AltMusicVizLayoutPlaylistTen)</selected>
+					<visible>Skin.HasSetting(AltMusicVizLayoutPlaylist)</visible>
+					<visible>Skin.HasSetting(AltMusicVizLayout)</visible>
+				</control>
+				<control type="radiobutton" id="120">
+					<label>31439</label>
+					<enable>Skin.HasSetting(AltMusicVizLayoutPlaylist)</enable>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(AltMusicVizLayoutPlaylistNext)</onclick>
+					<onclick>Skin.Reset(AltMusicVizLayoutPlaylistTen)</onclick>
+					<onclick>Skin.Reset(AltMusicVizLayoutNext)</onclick>
+					<selected>Skin.HasSetting(AltMusicVizLayoutPlaylistNext)</selected>
+					<visible>Skin.HasSetting(AltMusicVizLayoutPlaylist)</visible>
+					<visible>Skin.HasSetting(AltMusicVizLayout)</visible>
+				</control>
+				<control type="radiobutton" id="121">
+					<label>31440</label>
+					<enable>Skin.HasSetting(AltMusicVizLayoutPlaylist)</enable>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(AltMusicVizLayoutPlaylistFadeBG)</onclick>
+					<selected>!Skin.HasSetting(AltMusicVizLayoutPlaylistFadeBG)</selected>
+					<visible>Skin.HasSetting(AltMusicVizLayoutPlaylist)</visible>
+					<visible>Skin.HasSetting(AltMusicVizLayout)</visible>
+				</control>
+				<control type="radiobutton" id="122">
+					<label>31441</label>
+					<enable>Skin.HasSetting(AltMusicVizLayoutPlaylist)</enable>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(AltMusicVizLayoutPlaylistNr)</onclick>
+					<selected>!Skin.HasSetting(AltMusicVizLayoutPlaylistNr)</selected>
+					<visible>Skin.HasSetting(AltMusicVizLayoutPlaylist)</visible>
+					<visible>Skin.HasSetting(AltMusicVizLayout)</visible>
+				</control>
+				<control type="radiobutton" id="123">
+					<label>31338</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(AltMusicVizLayoutInfo)</onclick>
+					<selected>Skin.HasSetting(AltMusicVizLayoutInfo)</selected>
+					<enable>Skin.HasSetting(AltMusicVizLayout)</enable>
+					<visible>Skin.HasSetting(AltMusicVizLayout)</visible>
+				</control>
+				<control type="radiobutton" id="124">
+					<label>31442</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(AltMusicVizLayoutRating)</onclick>
+					<selected>!Skin.HasSetting(AltMusicVizLayoutRating)</selected>
+					<enable>Skin.HasSetting(AltMusicVizLayout)</enable>
+					<visible>Skin.HasSetting(AltMusicVizLayout)</visible>
+					<visible>Skin.HasSetting(AltMusicVizLayoutInfo)</visible>
+				</control>
+				<control type="radiobutton" id="125">
+					<label>31443</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(AltMusicVizLayoutGenre)</onclick>
+					<selected>Skin.HasSetting(AltMusicVizLayoutGenre)</selected>
+					<enable>Skin.HasSetting(AltMusicVizLayout)</enable>
+					<visible>Skin.HasSetting(AltMusicVizLayout)</visible>
+					<visible>Skin.HasSetting(AltMusicVizLayoutInfo)</visible>
+				</control>
+				<control type="radiobutton" id="126">
+					<label>31339</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(AltMusicVizLayoutNext)</onclick>
+					<onclick>Skin.Reset(AltMusicVizLayoutPlaylistNext)</onclick>
+					<selected>Skin.HasSetting(AltMusicVizLayoutNext)</selected>
+					<enable>Skin.HasSetting(AltMusicVizLayout)</enable>
+					<visible>Skin.HasSetting(AltMusicVizLayout)</visible>
+				</control>
+				<control type="radiobutton" id="127">
+					<label>31340</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(AltMusicVizLayoutProgress)</onclick>
+					<selected>Skin.HasSetting(AltMusicVizLayoutProgress)</selected>
+					<enable>Skin.HasSetting(AltMusicVizLayout)</enable>
+					<visible>Skin.HasSetting(AltMusicVizLayout)</visible>
+				</control>
+				<control type="radiobutton" id="128">
+					<label>31436</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(AltMusicVizLayoutShuffle)</onclick>
+					<selected>Skin.HasSetting(AltMusicVizLayoutShuffle)</selected>
+					<enable>Skin.HasSetting(AltMusicVizLayout)</enable>
+					<visible>Skin.HasSetting(AltMusicVizLayout)</visible>
+				</control>
+				<control type="radiobutton" id="129">
+					<label>31341</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(AltMusicVizLayoutCover)</onclick>
+					<selected>Skin.HasSetting(AltMusicVizLayoutCover)</selected>
+					<enable>Skin.HasSetting(AltMusicVizLayout)</enable>
+					<visible>Skin.HasSetting(AltMusicVizLayout)</visible>
+				</control>
+				<control type="radiobutton" id="130">
+					<label>31342</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(AltMusicVizLayoutArtist)</onclick>
+					<selected>Skin.HasSetting(AltMusicVizLayoutArtist)</selected>
+					<enable>Skin.HasSetting(AltMusicVizLayout)</enable>
+					<visible>Skin.HasSetting(AltMusicVizLayout)</visible>
+				</control>
+				<control type="radiobutton" id="131">
+					<label>31343</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(AltMusicVizLayoutCDArtist)</onclick>
+					<selected>Skin.HasSetting(AltMusicVizLayoutCDArtist)</selected>
+					<enable>Skin.HasSetting(AltMusicVizLayout)</enable>
+					<visible>Skin.HasSetting(AltMusicVizLayout)</visible>
+				</control>
+				<control type="radiobutton" id="132">
+					<label>31344</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(AltMusicVizLayoutBackground)</onclick>
+					<selected>Skin.HasSetting(AltMusicVizLayoutBackground)</selected>
+					<enable>Skin.HasSetting(AltMusicVizLayout)</enable>
+					<visible>Skin.HasSetting(AltMusicVizLayout)</visible>
+				</control> -->
+				<!--Music Viz Layout 3-->
+				<!-- <control type="radiobutton" id="133">
+					<label>31346</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(ThirdMusicVizLayoutWaveform)</onclick>
+					<selected>Skin.HasSetting(ThirdMusicVizLayoutWaveform)</selected>
+					<visible>Skin.HasSetting(ThirdMusicVizLayout)</visible>
+				</control>
+				<control type="radiobutton" id="134">
+					<label>31338</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(ThirdMusicVizLayoutInfo)</onclick>
+					<selected>Skin.HasSetting(ThirdMusicVizLayoutInfo)</selected>
+					<enable>Skin.HasSetting(ThirdMusicVizLayout)</enable>
+					<visible>Skin.HasSetting(ThirdMusicVizLayout)</visible>
+				</control>
+				<control type="radiobutton" id="135">
+					<label>$LOCALIZE[31404]</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(ThirdMusicVizRecordPlayer)</onclick>
+					<onclick>Skin.Reset(ThirdMusicVizSimArtists)</onclick>
+					<selected>Skin.HasSetting(ThirdMusicVizRecordPlayer)</selected>
+					<enable>Skin.HasSetting(ThirdMusicVizLayout)</enable>
+					<visible>Skin.HasSetting(ThirdMusicVizLayout)</visible>
+				</control>
+				<control type="radiobutton" id="136">
+					<label>  •  Similar Artists</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(ThirdMusicVizSimArtists)</onclick>
+					<onclick>Skin.Reset(ThirdMusicVizRecordPlayer)</onclick>
+					<selected>Skin.HasSetting(ThirdMusicVizSimArtists)</selected>
+					<enable>Skin.HasSetting(ThirdMusicVizLayout)</enable>
+					<visible>Skin.HasSetting(ThirdMusicVizLayout)</visible>
+				</control>
+				<control type="radiobutton" id="137">
+					<label>$LOCALIZE[31407]</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(ThirdMusicVizShowViz)</onclick>
+					<selected>Skin.HasSetting(ThirdMusicVizShowViz)</selected>
+					<enable>Skin.HasSetting(ThirdMusicVizLayout) + Skin.HasSetting(HideVizBG)</enable>
+					<visible>Skin.HasSetting(ThirdMusicVizLayout)</visible>
+				</control> -->
+				<!-- FourthMusicVizLayout -->
+				<!-- <control type="radiobutton" id="138">
+					<label>Move Down</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(FourthMusicVizLayoutDown)</onclick>
+					<selected>Skin.HasSetting(FourthMusicVizLayoutDown)</selected>
+					<visible>Skin.HasSetting(FourthMusicVizLayout)</visible>
+				</control>
+				<control type="radiobutton" id="139">
+					<label>Show Info</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(FourthMusicVizLayoutShowInfo)</onclick>
+					<selected>Skin.HasSetting(FourthMusicVizLayoutShowinfo)</selected>
+					<visible>Skin.HasSetting(FourthMusicVizLayout)</visible>
+				</control>
+				<control type="radiobutton" id="140">
+					<label>Show Rating</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(FourthMusicVizLayoutShowRating)</onclick>
+					<selected>Skin.HasSetting(FourthMusicVizLayoutShowRating)</selected>
+					<visible>Skin.HasSetting(FourthMusicVizLayout)</visible>
+				</control>
+				<control type="radiobutton" id="141">
+					<label>Show Time and Progress</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(FourthMusicVizLayoutProgress)</onclick>
+					<selected>Skin.HasSetting(FourthMusicVizLayoutProgress)</selected>
+					<visible>Skin.HasSetting(FourthMusicVizLayout)</visible>
+				</control>
+				<control type="label" id="142">
+					<width>600</width>
+					<height>60</height>
+					<label>$LOCALIZE[12006] $LOCALIZE[31046]</label>
+					<font>Font_Bold33</font>
+					<textcolor>$VAR[TitleColorVar]</textcolor>
+				</control>
+				<control type="radiobutton" id="143">
+					<label>$LOCALIZE[31253]</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(WeatherBreadcrumVis)</onclick>
+					<selected>Skin.HasSetting(WeatherBreadcrumVis)</selected>
+				</control>
+				<control type="radiobutton" id="144">
+					<label>$LOCALIZE[31252]</label>
+					<include>Dialog_RadioButton_Default</include>
+					<onclick>Skin.ToggleSetting(WeatherConditionVis)</onclick>
+					<selected>Skin.HasSetting(WeatherConditionVis)</selected>
+					<enable>!Skin.HasSetting(WeatherBreadcrumVis)</enable>
+				</control> -->
+			</control>
+			<control type="grouplist" id="8000">
+				<right>60</right>
+				<top>28</top>
+				<width>400</width>
+				<onleft>100</onleft>
+				<ondown>100</ondown>
+				<align>right</align>
+				<itemgap>10</itemgap>
+				<orientation>horizontal</orientation>
+				<include content="Dialog_Button_TopRight">
+					<param name="id">8001</param>
+					<param name="label">$LOCALIZE[15067]</param>
+					<param name="onclick">Action(close)</param>
+				</include>
+			</control>
+			<control type="scrollbar" id="60">
+				<left>1</left>
+				<top>88</top>
+				<height>420</height>
+				<onright>100</onright>
+			</control>
+		</control>
+	</controls>
+</window>

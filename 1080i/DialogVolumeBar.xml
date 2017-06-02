@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<controls>
+		<control type="group">
+			<visible>!Window.IsActive(startup) + !Player.Muted</visible>
+			<include>Animation_DialogPopup</include>
+			<animation effect="slide" end="0,-50" time="240" tween="cubic" easing="in" condition="Window.IsActive(Visualisation) | Window.IsActive(fullscreenvideo)">Conditional</animation>
+			<right>0</right>
+			<top>50</top>
+			<width>134</width>
+			<height>134</height>
+			<control type="progress" id="29999">
+				<include>HiddenObject</include>
+				<info>Player.Volume</info>
+			</control>
+			<control type="image">
+				<texture colordiffuse="$VAR[PanelColorVar]" border="20">dialogs/volume-back.png</texture>
+			</control>
+			<control type="image">
+				<texture colordiffuse="$VAR[GlowColorVar]" border="20">dialogs/scan-glow.png</texture>
+			</control>
+			<control type="image">
+				<left>12</left>
+				<top>12</top>
+				<width>110</width>
+				<height>110</height>
+				<texture colordiffuse="$VAR[HighlightColorVar]">$INFO[Control.GetLabel(29999),dialogs/progress/p,.png]</texture>
+			</control>
+		</control>
+	</controls>
+</window>
