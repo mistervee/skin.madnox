@@ -1,1175 +1,1178 @@
 <?xml version="1.0" encoding="utf-8"?>
 <includes>
 	<include name="View_50_List">
-		<!-- Floor -->
 		<control type="group">
-			<visible>!Skin.HasSetting(View50HideFloor)</visible>
-			<include content="Animation_Slide_Bottom">
-				<param name="slide">218</param>
-			</include>
-			<include>Floor_Background_Right</include>
-		</control>
-		<!-- Left Content -->
-		<control type="group">
-			<include content="Animation_Slide_Left">
-				<param name="slide">1263</param>
-				<param name="opencondition">true</param>
-				<param name="closecondition">true</param>
-			</include>
-			<include content="Animation_FurnitureShift">
-				<param name="slidetopbarcondition">Skin.HasSetting(View50HideTopBar)</param>
-				<param name="slidefloorcondition">!Skin.HasSetting(View50HideTopBar) + Skin.HasSetting(View50HideFloor)</param>
-			</include>
-			<include content="Panel_Background_Default">
-				<param name="width">1163</param>
-				<param name="reflect">!Skin.HasSetting(View50HideFloor)</param>
-			</include>
-			<control type="image">
-				<left>953</left>
-				<top>145</top>
-				<width>200</width>
-				<height>800</height>
-				<texture colordiffuse="$VAR[PanelColorVar]" border="40">panels/list-detail-underlay.png</texture>
-				<visible>!String.IsEmpty(Container(50).ListItem(1).Label2) | !String.IsEmpty(Container(50).ListItem(2).Label2) | !String.IsEmpty(Container(50).ListItem(3).Label2) | Container.Content(seasons) | Container.Content(artists) | Container.Content(addons)</visible>
-			</control>
-			<control type="image">
-				<left>120</left>
-				<top>145</top>
-				<width>120</width>
-				<height>800</height>
-				<texture colordiffuse="$VAR[PanelColorVar]" border="40">panels/list-detail-underlay.png</texture>
-				<visible>Container.Content(episodes) | Container.Content(songs)</visible>
-			</control>
-			<control type="list" id="50">
-				<left>100</left>
-				<top>145</top>
-				<width>1133</width>
-				<height>800</height>
-				<onleft>9000</onleft>
-				<onright>60</onright>
-				<viewtype label="535">list</viewtype>
-				<pagecontrol>60</pagecontrol>
-				<itemlayout width="1133" height="100" condition="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows)">
-					<control type="image">
-						<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
-					</control>
-					<control type="image">
-						<left>20</left>
-						<top>8</top>
-						<width>120</width>
-						<height>84</height>
-						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="grey" fallback="flags/default/studio-fallback.png">$VAR[StudioIconsVar]</texture>
-						<visible>!ListItem.IsParentFolder + !Skin.HasSetting(ColoredMediaFlags)</visible>
-					</control>
-					<control type="image">
-						<left>20</left>
-						<top>8</top>
-						<width>120</width>
-						<height>84</height>
-						<aspectratio>keep</aspectratio>
-						<texture fallback="flags/colored/studio-fallback.png">$VAR[StudioIconsVar]</texture>
-						<visible>!ListItem.IsParentFolder + Skin.HasSetting(ColoredMediaFlags)</visible>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>12</top>
-						<width>693</width>
-						<height>40</height>
-						<label fallback="..">$INFO[ListItem.Label]</label>
-						<font>Font38_Reg</font>
-						<textcolor>white2</textcolor>
-						<visible>!String.IsEqual(ListItem.DBTYPE,set)</visible>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>0</top>
-						<width>693</width>
-						<height>100</height>
-						<label fallback="..">$INFO[ListItem.Label]</label>
-						<font>Font38_Reg</font>
-						<textcolor>white2</textcolor>
-						<visible>String.IsEqual(ListItem.DBTYPE,set)</visible>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>52</top>
-						<width>693</width>
-						<height>30</height>
-						<font>Font28_Reg</font>
-						<label>$INFO[ListItem.Genre]</label>
-						<textcolor>grey</textcolor>
-						<visible>!String.IsEqual(ListItem.DBTYPE,set)</visible>
-					</control>
-					<control type="label">
-						<right>85</right>
-						<top>12</top>
-						<width>190</width>
-						<height>40</height>
-						<align>center</align>
-						<label>$VAR[ViewListLabel2Var]</label>
-						<font>Font29_Cond</font>
-						<textcolor>grey</textcolor>
-					</control>
-					<control type="image">
-						<right>85</right>
-						<top>52</top>
-						<width>190</width>
-						<height>30</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ViewImageRatingVar]</texture>
-						<colordiffuse>grey</colordiffuse>
-					</control>
-					<control type="image">
-						<right>10</right>
-						<width>60</width>
-						<height>100</height>
-						<aligny>center</aligny>
-						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
-					</control>
-				</itemlayout>
-				<focusedlayout width="1133" height="100" condition="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows)">
-					<control type="image">
-						<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
-						<animation effect="fade" start="100" end="25" tween="sine" easing="inout" time="240" condition="!Control.HasFocus(50)">Conditional</animation>
-					</control>
-					<control type="image">
-						<left>20</left>
-						<top>8</top>
-						<width>120</width>
-						<height>84</height>
-						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="grey" fallback="flags/default/studio-fallback.png">$VAR[StudioIconsVar]</texture>
-						<visible>!ListItem.IsParentFolder + !Skin.HasSetting(ColoredMediaFlags)</visible>
-					</control>
-					<control type="image">
-						<left>20</left>
-						<top>8</top>
-						<width>120</width>
-						<height>84</height>
-						<aspectratio>keep</aspectratio>
-						<texture fallback="flags/colored/studio-fallback.png">$VAR[StudioIconsVar]</texture>
-						<visible>!ListItem.IsParentFolder + Skin.HasSetting(ColoredMediaFlags)</visible>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>12</top>
-						<width>693</width>
-						<height>40</height>
-						<label fallback="..">$INFO[ListItem.Label]</label>
-						<font>Font38_Reg</font>
-						<visible>!String.IsEqual(ListItem.DBTYPE,set)</visible>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>0</top>
-						<width>693</width>
-						<height>100</height>
-						<label fallback="..">$INFO[ListItem.Label]</label>
-						<font>Font38_Reg</font>
-						<visible>String.IsEqual(ListItem.DBTYPE,set)</visible>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>52</top>
-						<width>693</width>
-						<height>30</height>
-						<font>Font28_Reg</font>
-						<label>$INFO[ListItem.Genre]</label>
-						<visible>!String.IsEqual(ListItem.DBTYPE,set)</visible>
-					</control>
-					<control type="label">
-						<right>85</right>
-						<top>12</top>
-						<width>190</width>
-						<height>40</height>
-						<align>center</align>
-						<label>$VAR[ViewListLabel2Var]</label>
-						<font>Font29_Cond</font>
-						<textcolor>white2</textcolor>
-					</control>
-					<control type="image">
-						<right>85</right>
-						<top>52</top>
-						<width>190</width>
-						<height>30</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ViewImageRatingVar]</texture>
-					</control>
-					<control type="image">
-						<right>10</right>
-						<width>60</width>
-						<height>100</height>
-						<aligny>center</aligny>
-						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
-					</control>
-				</focusedlayout>
-				<itemlayout width="1133" height="100" condition="Container.Content(seasons)">
-					<control type="image">
-						<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
-					</control>
-					<control type="image">
-						<left>20</left>
-						<top>8</top>
-						<width>120</width>
-						<height>84</height>
-						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="grey" fallback="flags/default/studio-fallback.png">$VAR[StudioIconsVar]</texture>
-						<visible>!ListItem.IsParentFolder + !Skin.HasSetting(ColoredMediaFlags)</visible>
-					</control>
-					<control type="image">
-						<left>20</left>
-						<top>8</top>
-						<width>120</width>
-						<height>84</height>
-						<aspectratio>keep</aspectratio>
-						<texture fallback="flags/colored/studio-fallback.png">$VAR[StudioIconsVar]</texture>
-						<visible>!ListItem.IsParentFolder + Skin.HasSetting(ColoredMediaFlags)</visible>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>12</top>
-						<width>693</width>
-						<height>40</height>
-						<label fallback="..">$INFO[ListItem.Label]</label>
-						<font>Font38_Reg</font>
-						<textcolor>white2</textcolor>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>52</top>
-						<width>693</width>
-						<height>30</height>
-						<font>Font28_Reg</font>
-						<label>$INFO[ListItem.TVShowTitle]</label>
-						<textcolor>grey</textcolor>
-					</control>
-					<control type="label">
-						<right>85</right>
-						<top>12</top>
-						<width>190</width>
-						<height>40</height>
-						<align>center</align>
-						<label>$INFO[ListItem.Property(WatchedEpisodes)]$INFO[ListItem.Property(TotalEpisodes), / ,]</label>
-						<font>Font29_Cond</font>
-						<textcolor>grey</textcolor>
-					</control>
-					<control type="label">
-						<right>85</right>
-						<top>52</top>
-						<width>190</width>
-						<height>30</height>
-						<align>center</align>
-						<label>$LOCALIZE[16102]</label>
-						<font>Font29_Cond</font>
-						<textcolor>grey</textcolor>
-						<visible>!ListItem.IsParentFolder</visible>
-					</control>
-					<control type="image">
-						<right>10</right>
-						<width>60</width>
-						<height>100</height>
-						<aligny>center</aligny>
-						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
-					</control>
-				</itemlayout>
-				<focusedlayout width="1133" height="100" condition="Container.Content(seasons)">
-					<control type="image">
-						<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
-						<animation effect="fade" start="100" end="25" tween="sine" easing="inout" time="240" condition="!Control.HasFocus(50)">Conditional</animation>
-					</control>
-					<control type="image">
-						<left>20</left>
-						<top>8</top>
-						<width>120</width>
-						<height>84</height>
-						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="grey" fallback="flags/default/studio-fallback.png">$VAR[StudioIconsVar]</texture>
-						<visible>!ListItem.IsParentFolder + !Skin.HasSetting(ColoredMediaFlags)</visible>
-					</control>
-					<control type="image">
-						<left>20</left>
-						<top>8</top>
-						<width>120</width>
-						<height>84</height>
-						<aspectratio>keep</aspectratio>
-						<texture fallback="flags/colored/studio-fallback.png">$VAR[StudioIconsVar]</texture>
-						<visible>!ListItem.IsParentFolder + Skin.HasSetting(ColoredMediaFlags)</visible>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>12</top>
-						<width>693</width>
-						<height>40</height>
-						<label fallback="..">$INFO[ListItem.Label]</label>
-						<font>Font38_Reg</font>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>52</top>
-						<width>693</width>
-						<height>30</height>
-						<font>Font28_Reg</font>
-						<textcolor>white2</textcolor>
-						<label>$INFO[ListItem.TVShowTitle]</label>
-						<scroll>true</scroll>
-					</control>
-					<control type="label">
-						<right>85</right>
-						<top>12</top>
-						<width>190</width>
-						<height>40</height>
-						<align>center</align>
-						<label>$INFO[ListItem.Property(WatchedEpisodes)]$INFO[ListItem.Property(TotalEpisodes), / ,]</label>
-						<font>Font29_Cond</font>
-						<textcolor>white2</textcolor>
-					</control>
-					<control type="label">
-						<right>85</right>
-						<top>52</top>
-						<width>190</width>
-						<height>30</height>
-						<align>center</align>
-						<label>$LOCALIZE[16102]</label>
-						<font>Font29_Cond</font>
-						<textcolor>white2</textcolor>
-						<visible>!ListItem.IsParentFolder</visible>
-					</control>
-					<control type="image">
-						<right>10</right>
-						<width>60</width>
-						<height>100</height>
-						<aligny>center</aligny>
-						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
-					</control>
-				</focusedlayout>
-				<itemlayout width="1133" height="100" condition="Container.Content(episodes)">
-					<control type="image">
-						<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
-					</control>
-					<control type="label">
-						<left>30</left>
-						<width>100</width>
-						<height>100</height>
-						<align>center</align>
-						<textcolor>grey</textcolor>
-						<font>Font49_Bold_Caps</font>
-						<label>$INFO[ListItem.Episode]</label>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>12</top>
-						<width>693</width>
-						<height>40</height>
-						<label fallback="..">$INFO[ListItem.Title]</label>
-						<font>Font38_Reg</font>
-						<textcolor>white2</textcolor>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>52</top>
-						<width>693</width>
-						<height>30</height>
-						<font>Font28_Reg</font>
-						<label>$INFO[ListItem.TVShowTitle]</label>
-						<textcolor>grey</textcolor>
-					</control>
-					<control type="label">
-						<right>85</right>
-						<top>12</top>
-						<width>190</width>
-						<height>40</height>
-						<align>center</align>
-						<label>$VAR[ViewListLabel2Var]</label>
-						<font>Font29_Cond</font>
-						<textcolor>grey</textcolor>
-					</control>
-					<control type="image">
-						<right>85</right>
-						<top>52</top>
-						<width>190</width>
-						<height>30</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ViewImageRatingVar]</texture>
-						<colordiffuse>grey</colordiffuse>
-					</control>
-					<control type="image">
-						<right>10</right>
-						<width>60</width>
-						<height>100</height>
-						<aligny>center</aligny>
-						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
-					</control>
-				</itemlayout>
-				<focusedlayout width="1133" height="100" condition="Container.Content(episodes)">
-					<control type="image">
-						<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
-						<animation effect="fade" start="100" end="25" tween="sine" easing="inout" time="240" condition="!Control.HasFocus(50)">Conditional</animation>
-					</control>
-					<control type="label">
-						<left>30</left>
-						<width>100</width>
-						<height>100</height>
-						<align>center</align>
-						<textcolor>grey</textcolor>
-						<font>Font49_Bold_Caps</font>
-						<label>$INFO[ListItem.Episode]</label>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>12</top>
-						<width>693</width>
-						<height>40</height>
-						<label fallback="..">$INFO[ListItem.Title]</label>
-						<font>Font38_Reg</font>
-						<scroll>true</scroll>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>52</top>
-						<width>693</width>
-						<height>30</height>
-						<font>Font28_Reg</font>
-						<textcolor>white2</textcolor>
-						<label>$INFO[ListItem.TVShowTitle]</label>
-						<scroll>true</scroll>
-					</control>
-					<control type="label">
-						<right>85</right>
-						<top>12</top>
-						<width>190</width>
-						<height>40</height>
-						<align>center</align>
-						<label>$VAR[ViewListLabel2Var]</label>
-						<font>Font29_Cond</font>
-						<textcolor>white2</textcolor>
-					</control>
-					<control type="image">
-						<right>85</right>
-						<top>52</top>
-						<width>190</width>
-						<height>30</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ViewImageRatingVar]</texture>
-					</control>
-					<control type="image">
-						<right>10</right>
-						<width>60</width>
-						<height>100</height>
-						<aligny>center</aligny>
-						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
-					</control>
-				</focusedlayout>
-				<itemlayout width="1133" height="100" condition="Container.Content(musicvideos)">
-					<control type="image">
-						<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
-					</control>
-					<control type="image">
-						<left>38</left>
-						<top>8</top>
-						<width>84</width>
-						<height>84</height>
-						<aspectratio>scale</aspectratio>
-						<texture fallback="DefaultMusicVideos.png">$VAR[MusicPosterVar]</texture>
-						<visible>!ListItem.IsParentFolder</visible>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>12</top>
-						<width>693</width>
-						<height>40</height>
-						<label fallback="..">$INFO[ListItem.Label]</label>
-						<font>Font38_Reg</font>
-						<textcolor>white2</textcolor>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>52</top>
-						<width>693</width>
-						<height>30</height>
-						<font>Font28_Reg</font>
-						<label>$INFO[ListItem.Artist]</label>
-						<textcolor>grey</textcolor>
-					</control>
-					<control type="label">
-						<right>85</right>
-						<top>12</top>
-						<width>190</width>
-						<height>40</height>
-						<align>center</align>
-						<label>$VAR[ViewListLabel2Var]</label>
-						<font>Font29_Cond</font>
-						<textcolor>grey</textcolor>
-					</control>
-					<control type="image">
-						<right>85</right>
-						<top>52</top>
-						<width>190</width>
-						<height>30</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ViewImageRatingVar]</texture>
-						<colordiffuse>grey</colordiffuse>
-					</control>
-					<control type="image">
-						<right>10</right>
-						<width>60</width>
-						<height>100</height>
-						<aligny>center</aligny>
-						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
-					</control>
-				</itemlayout>
-				<focusedlayout width="1133" height="100" condition="Container.Content(musicvideos)">
-					<control type="image">
-						<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
-						<animation effect="fade" start="100" end="25" tween="sine" easing="inout" time="240" condition="!Control.HasFocus(50)">Conditional</animation>
-					</control>
-					<control type="image">
-						<left>38</left>
-						<top>8</top>
-						<width>84</width>
-						<height>84</height>
-						<aspectratio>scale</aspectratio>
-						<texture fallback="DefaultMusicVideos.png">$VAR[MusicPosterVar]</texture>
-						<visible>!ListItem.IsParentFolder</visible>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>12</top>
-						<width>693</width>
-						<height>40</height>
-						<label fallback="..">$INFO[ListItem.Label]</label>
-						<font>Font38_Reg</font>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>52</top>
-						<width>693</width>
-						<height>30</height>
-						<font>Font28_Reg</font>
-						<label>$INFO[ListItem.Artist]</label>
-					</control>
-					<control type="label">
-						<right>85</right>
-						<top>12</top>
-						<width>190</width>
-						<height>40</height>
-						<align>center</align>
-						<label>$VAR[ViewListLabel2Var]</label>
-						<font>Font29_Cond</font>
-					</control>
-					<control type="image">
-						<right>85</right>
-						<top>52</top>
-						<width>190</width>
-						<height>30</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ViewImageRatingVar]</texture>
-					</control>
-					<control type="image">
-						<right>10</right>
-						<width>60</width>
-						<height>100</height>
-						<aligny>center</aligny>
-						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
-					</control>
-				</focusedlayout>
-				<itemlayout width="1133" height="100" condition="Container.Content(artists)">
-					<control type="image">
-						<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
-					</control>
-					<control type="image">
-						<left>38</left>
-						<top>8</top>
-						<width>84</width>
-						<height>84</height>
-						<aspectratio>scale</aspectratio>
-						<texture fallback="DefaultArtist.png">$VAR[MusicPosterVar]</texture>
-						<visible>!ListItem.IsParentFolder</visible>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>12</top>
-						<width>693</width>
-						<height>40</height>
-						<label fallback="..">$INFO[ListItem.Label]</label>
-						<font>Font38_Reg</font>
-						<textcolor>white2</textcolor>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>52</top>
-						<width>693</width>
-						<height>30</height>
-						<font>Font28_Reg</font>
-						<label>$INFO[ListItem.Genre]</label>
-						<textcolor>grey</textcolor>
-					</control>
-					<control type="label">
-						<right>85</right>
-						<width>190</width>
-						<height>100</height>
-						<align>center</align>
-						<label>$VAR[ViewListLabel2Var]</label>
-						<font>Font29_Cond</font>
-						<textcolor>grey</textcolor>
-					</control>
-					<control type="image">
-						<right>10</right>
-						<width>60</width>
-						<height>100</height>
-						<aligny>center</aligny>
-						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
-					</control>
-				</itemlayout>
-				<focusedlayout width="1133" height="100" condition="Container.Content(artists)">
-					<control type="image">
-						<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
-						<animation effect="fade" start="100" end="25" tween="sine" easing="inout" time="240" condition="!Control.HasFocus(50)">Conditional</animation>
-					</control>
-					<control type="image">
-						<left>38</left>
-						<top>8</top>
-						<width>84</width>
-						<height>84</height>
-						<aspectratio>scale</aspectratio>
-						<texture fallback="DefaultArtist.png">$VAR[MusicPosterVar]</texture>
-						<visible>!ListItem.IsParentFolder</visible>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>12</top>
-						<width>693</width>
-						<height>40</height>
-						<label fallback="..">$INFO[ListItem.Label]</label>
-						<font>Font38_Reg</font>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>52</top>
-						<width>693</width>
-						<height>30</height>
-						<font>Font28_Reg</font>
-						<label>$INFO[ListItem.Genre]</label>
-					</control>
-					<control type="label">
-						<right>85</right>
-						<width>190</width>
-						<height>100</height>
-						<align>center</align>
-						<label>$VAR[ViewListLabel2Var]</label>
-						<font>Font29_Cond</font>
-					</control>
-					<control type="image">
-						<right>10</right>
-						<width>60</width>
-						<height>100</height>
-						<aligny>center</aligny>
-						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
-					</control>
-				</focusedlayout>
-				<itemlayout width="1133" height="100" condition="Container.Content(albums)">
-					<control type="image">
-						<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
-					</control>
-					<control type="image">
-						<left>20</left>
-						<top>8</top>
-						<width>120</width>
-						<height>84</height>
-						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="grey" fallback="flags/default/recordlabel-fallback.png">$VAR[StudioIconsVar]</texture>
-						<visible>!ListItem.IsParentFolder</visible>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>12</top>
-						<width>693</width>
-						<height>40</height>
-						<label fallback="..">$INFO[ListItem.Label]</label>
-						<font>Font38_Reg</font>
-						<textcolor>white2</textcolor>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>52</top>
-						<width>693</width>
-						<height>30</height>
-						<font>Font28_Reg</font>
-						<label>$INFO[ListItem.Genre]</label>
-						<textcolor>grey</textcolor>
-					</control>
-					<control type="label">
-						<right>85</right>
-						<top>12</top>
-						<width>190</width>
-						<height>40</height>
-						<align>center</align>
-						<label>$VAR[ViewListLabel2Var]</label>
-						<font>Font29_Cond</font>
-						<textcolor>grey</textcolor>
-					</control>
-					<control type="image">
-						<right>85</right>
-						<top>52</top>
-						<width>190</width>
-						<height>30</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ViewImageRatingVar]</texture>
-						<colordiffuse>grey</colordiffuse>
-					</control>
-					<control type="image">
-						<right>10</right>
-						<width>60</width>
-						<height>100</height>
-						<aligny>center</aligny>
-						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
-					</control>
-				</itemlayout>
-				<focusedlayout width="1133" height="100" condition="Container.Content(albums)">
-					<control type="image">
-						<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
-						<animation effect="fade" start="100" end="25" tween="sine" easing="inout" time="240" condition="!Control.HasFocus(50)">Conditional</animation>
-					</control>
-					<control type="image">
-						<left>20</left>
-						<top>8</top>
-						<width>120</width>
-						<height>84</height>
-						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="grey" fallback="flags/default/recordlabel-fallback.png">$VAR[StudioIconsVar]</texture>
-						<visible>!ListItem.IsParentFolder</visible>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>12</top>
-						<width>693</width>
-						<height>40</height>
-						<label fallback="..">$INFO[ListItem.Label]</label>
-						<font>Font38_Reg</font>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>52</top>
-						<width>693</width>
-						<height>30</height>
-						<font>Font28_Reg</font>
-						<label>$INFO[ListItem.Genre]</label>
-					</control>
-					<control type="label">
-						<right>85</right>
-						<top>12</top>
-						<width>190</width>
-						<height>40</height>
-						<align>center</align>
-						<label>$VAR[ViewListLabel2Var]</label>
-						<font>Font29_Cond</font>
-						<textcolor>white2</textcolor>
-					</control>
-					<control type="image">
-						<right>85</right>
-						<top>52</top>
-						<width>190</width>
-						<height>30</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ViewImageRatingVar]</texture>
-					</control>
-					<control type="image">
-						<right>10</right>
-						<width>60</width>
-						<height>100</height>
-						<aligny>center</aligny>
-						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
-					</control>
-				</focusedlayout>
-				<itemlayout width="1133" height="100" condition="Container.Content(songs)">
-					<control type="image">
-						<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
-					</control>
-					<control type="label">
-						<left>30</left>
-						<width>100</width>
-						<height>100</height>
-						<align>center</align>
-						<textcolor>grey</textcolor>
-						<font>Font49_Bold_Caps</font>
-						<label>$INFO[ListItem.TrackNumber]</label>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>12</top>
-						<width>693</width>
-						<height>40</height>
-						<label fallback="..">$INFO[ListItem.Title]</label>
-						<font>Font38_Reg</font>
-						<textcolor>white2</textcolor>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>52</top>
-						<width>693</width>
-						<height>30</height>
-						<font>Font28_Reg</font>
-						<label>$INFO[ListItem.Artist]</label>
-						<textcolor>grey</textcolor>
-					</control>
-					<control type="label">
-						<right>85</right>
-						<top>12</top>
-						<width>190</width>
-						<height>40</height>
-						<align>center</align>
-						<label>$VAR[ViewListLabel2Var]</label>
-						<font>Font29_Cond</font>
-						<textcolor>grey</textcolor>
-					</control>
-					<control type="image">
-						<right>85</right>
-						<top>52</top>
-						<width>190</width>
-						<height>30</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ViewImageRatingVar]</texture>
-						<colordiffuse>grey</colordiffuse>
-					</control>
-					<control type="image">
-						<right>10</right>
-						<width>60</width>
-						<height>100</height>
-						<aligny>center</aligny>
-						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
-					</control>
-				</itemlayout>
-				<focusedlayout width="1133" height="100" condition="Container.Content(songs)">
-					<control type="image">
-						<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
-						<animation effect="fade" start="100" end="25" tween="sine" easing="inout" time="240" condition="!Control.HasFocus(50)">Conditional</animation>
-					</control>
-					<control type="label">
-						<left>30</left>
-						<width>100</width>
-						<height>100</height>
-						<align>center</align>
-						<font>Font49_Bold_Caps</font>
-						<label>$INFO[ListItem.TrackNumber]</label>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>12</top>
-						<width>693</width>
-						<height>40</height>
-						<label fallback="..">$INFO[ListItem.Title]</label>
-						<font>Font38_Reg</font>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>52</top>
-						<width>693</width>
-						<height>30</height>
-						<font>Font28_Reg</font>
-						<label>$INFO[ListItem.Artist]</label>
-					</control>
-					<control type="label">
-						<right>85</right>
-						<top>12</top>
-						<width>190</width>
-						<height>40</height>
-						<align>center</align>
-						<label>$VAR[ViewListLabel2Var]</label>
-						<font>Font29_Cond</font>
-						<textcolor>white2</textcolor>
-					</control>
-					<control type="image">
-						<right>85</right>
-						<top>52</top>
-						<width>190</width>
-						<height>30</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ViewImageRatingVar]</texture>
-					</control>
-					<control type="image">
-						<right>10</right>
-						<width>60</width>
-						<height>100</height>
-						<aligny>center</aligny>
-						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
-					</control>
-				</focusedlayout>
-				<itemlayout width="1133" height="100" condition="Container.Content(addons)">
-					<control type="image">
-						<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
-					</control>
-					<control type="image">
-						<left>20</left>
-						<top>8</top>
-						<width>120</width>
-						<height>84</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$INFO[ListItem.Icon]</texture>
-						<visible>!ListItem.IsParentFolder</visible>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>12</top>
-						<width>693</width>
-						<height>40</height>
-						<label fallback="..">$INFO[ListItem.Label]</label>
-						<font>Font38_Reg</font>
-						<textcolor>white2</textcolor>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>52</top>
-						<width>693</width>
-						<height>30</height>
-						<font>Font28_Reg</font>
-						<label>$INFO[ListItem.AddonSummary]</label>
-						<textcolor>grey</textcolor>
-					</control>
-					<control type="label">
-						<right>85</right>
-						<width>190</width>
-						<height>100</height>
-						<align>center</align>
-						<label>$VAR[ViewListLabel2Var]</label>
-						<font>Font29_Cond</font>
-						<textcolor>grey</textcolor>
-					</control>
-					<control type="image">
-						<right>10</right>
-						<width>60</width>
-						<height>100</height>
-						<aligny>center</aligny>
-						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
-					</control>
-				</itemlayout>
-				<focusedlayout width="1133" height="100" condition="Container.Content(addons)">
-					<control type="image">
-						<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
-						<animation effect="fade" start="100" end="25" tween="sine" easing="inout" time="240" condition="!Control.HasFocus(50)">Conditional</animation>
-					</control>
-					<control type="image">
-						<left>20</left>
-						<top>8</top>
-						<width>120</width>
-						<height>84</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$INFO[ListItem.Icon]</texture>
-						<visible>!ListItem.IsParentFolder</visible>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>12</top>
-						<width>693</width>
-						<height>40</height>
-						<label fallback="..">$INFO[ListItem.Label]</label>
-						<font>Font38_Reg</font>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<top>52</top>
-						<width>693</width>
-						<height>30</height>
-						<font>Font28_Reg</font>
-						<label>$INFO[ListItem.AddonSummary]</label>
-					</control>
-					<control type="label">
-						<right>85</right>
-						<width>190</width>
-						<height>100</height>
-						<align>center</align>
-						<label>$VAR[ViewListLabel2Var]</label>
-						<font>Font29_Cond</font>
-					</control>
-				</focusedlayout>
-				<itemlayout width="1133" height="100" condition="!Container.Content(movies) + !Container.Content(sets) + !Container.Content(tvshows) + !Container.Content(seasons) + !Container.Content(episodes) + !Container.Content(albums) + !Container.Content(artists) + !Container.Content(songs) + !Container.Content(addons)">
-					<control type="image">
-						<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
-					</control>
-					<control type="image">
-						<left>20</left>
-						<top>8</top>
-						<width>120</width>
-						<height>84</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ViewListIconVar]</texture>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<width>693</width>
-						<height>100</height>
-						<label fallback="..">$INFO[ListItem.Label]</label>
-						<font>Font38_Reg</font>
-						<textcolor>white2</textcolor>
-					</control>
-					<control type="label">
-						<right>85</right>
-						<width>190</width>
-						<height>100</height>
-						<align>center</align>
-						<label>$VAR[ViewListLabel2Var]</label>
-						<font>Font29_Cond</font>
-						<textcolor>grey</textcolor>
-					</control>
-				</itemlayout>
-				<focusedlayout width="1133" height="100" condition="!Container.Content(movies) + !Container.Content(sets) + !Container.Content(tvshows) + !Container.Content(seasons) + !Container.Content(episodes) + !Container.Content(albums) + !Container.Content(artists) + !Container.Content(songs) + !Container.Content(addons)">
-					<control type="image">
-						<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
-						<animation effect="fade" start="100" end="25" tween="sine" easing="inout" time="240" condition="!Control.HasFocus(50)">Conditional</animation>
-					</control>
-					<control type="image">
-						<left>20</left>
-						<top>8</top>
-						<width>120</width>
-						<height>84</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ViewListIconVar]</texture>
-					</control>
-					<control type="label">
-						<left>160</left>
-						<width>693</width>
-						<height>100</height>
-						<label fallback="..">$INFO[ListItem.Label]</label>
-						<font>Font38_Reg</font>
-					</control>
-					<control type="label">
-						<right>85</right>
-						<width>190</width>
-						<height>100</height>
-						<align>center</align>
-						<label>$VAR[ViewListLabel2Var]</label>
-						<font>Font29_Cond</font>
-					</control>
-				</focusedlayout>
-			</control>
-			<control type="scrollbar" id="60">
-				<left>1213</left>
-				<top>143</top>
-				<bottom>132</bottom>
-				<height>800</height>
-				<onleft>50</onleft>
-			</control>
-		</control>
-		<!-- Right Content -->
-		<control type="group">
-			<right>85</right>
-			<width>567</width>
-			<include content="Animation_Slide_Right">
-				<param name="slide">652</param>
-				<param name="opencondition">true</param>
-				<param name="closecondition">true</param>
-			</include>
-			<include content="Animation_FurnitureShift">
-				<param name="slidetopbarcondition">Skin.HasSetting(view50HideTopBar)</param>
-				<param name="slidefloorcondition">!Skin.HasSetting(View50HideTopBar) + Skin.HasSetting(View50HideFloor)</param>
-			</include>
+			<visible>Control.IsVisible(50)</visible>
+			<!-- Floor -->
 			<control type="group">
-				<visible>Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos)</visible>
-				<control type="image">
-					<visible>!Container.Content(artists)</visible>
-					<top>173</top>
-					<right>35</right>
-					<width>497</width>
-					<height>497</height>
-					<fadetime>TextureFadeTime</fadetime>
-					<aspectratio>keep</aspectratio>
-					<texture background="true">$VAR[MusicDiscArtVar]</texture>
-				</control>
-				<control type="image">
-					<visible>Container.Content(artists)</visible>
-					<top>144</top>
-					<right>15</right>
-					<width>537</width>
-					<height>268</height>
-					<fadetime>TextureFadeTime</fadetime>
-					<aspectratio>keep</aspectratio>
-					<texture background="true">$VAR[MusicClearLogoVar]</texture>
-				</control>
-				<control type="image">
-					<bottom>117</bottom>
-					<width>567</width>
-					<height>567</height>
-					<fadetime>TextureFadeTime</fadetime>
-					<bordersize>15</bordersize>
-					<aspectratio aligny="top">scale</aspectratio>
-					<bordertexture border="30">thumbs/poster-frame.png</bordertexture>
-					<texture diffuse="thumbs/poster-mask.png" fallback="DefaultMusicArtists.png" background="true">$VAR[MusicPosterVar]</texture>
-				</control>
-				<control type="image">
-					<bottom>-420</bottom>
-					<width>567</width>
-					<height>567</height>
-					<fadetime>TextureFadeTime</fadetime>
-					<bordersize>15</bordersize>
-					<aspectratio aligny="top">scale</aspectratio>
-					<texture flipy="true" diffuse="thumbs/poster-flipmask.png" fallback="DefaultMusicArtists.png" background="true">$VAR[MusicPosterVar]</texture>
-				</control>
+				<visible>!Skin.HasSetting(View50HideFloor)</visible>
+				<include content="Animation_Slide_Bottom">
+					<param name="slide">218</param>
+				</include>
+				<include>Floor_Background_Right</include>
 			</control>
+			<!-- Left Content -->
 			<control type="group">
-				<visible>Container.Content(genres)</visible>
+				<include content="Animation_Slide_Left">
+					<param name="slide">1263</param>
+					<param name="opencondition">true</param>
+					<param name="closecondition">true</param>
+				</include>
+				<include content="Animation_FurnitureShift">
+					<param name="slidetopbarcondition">Skin.HasSetting(View50HideTopBar)</param>
+					<param name="slidefloorcondition">!Skin.HasSetting(View50HideTopBar) + Skin.HasSetting(View50HideFloor)</param>
+				</include>
+				<include content="Panel_Background_Default">
+					<param name="width">1163</param>
+					<param name="reflect">!Skin.HasSetting(View50HideFloor)</param>
+				</include>
 				<control type="image">
-					<bottom>117</bottom>
-					<width>567</width>
-					<height>835</height>
-					<fadetime>TextureFadeTime</fadetime>
-					<bordersize>15</bordersize>
-					<aspectratio aligny="bottom">keep</aspectratio>
-					<bordertexture border="30">thumbs/poster-frame.png</bordertexture>
-					<texture fallback="DefaultGenre.png" diffuse="thumbs/poster-mask.png" background="true">$VAR[GenrePosterVar]</texture>
+					<left>953</left>
+					<top>145</top>
+					<width>200</width>
+					<height>800</height>
+					<texture colordiffuse="$VAR[PanelColorVar]" border="40">panels/list-detail-underlay.png</texture>
+					<visible>!String.IsEmpty(Container(50).ListItem(1).Label2) | !String.IsEmpty(Container(50).ListItem(2).Label2) | !String.IsEmpty(Container(50).ListItem(3).Label2) | Container.Content(seasons) | Container.Content(artists) | Container.Content(addons)</visible>
 				</control>
 				<control type="image">
-					<bottom>-688</bottom>
-					<width>567</width>
-					<height>835</height>
-					<fadetime>TextureFadeTime</fadetime>
-					<bordersize>15</bordersize>
-					<aspectratio aligny="top">keep</aspectratio>
-					<texture fallback="DefaultGenre.png" flipy="true" diffuse="thumbs/poster-flipmask.png" background="true">$VAR[GenrePosterVar]</texture>
+					<left>120</left>
+					<top>145</top>
+					<width>120</width>
+					<height>800</height>
+					<texture colordiffuse="$VAR[PanelColorVar]" border="40">panels/list-detail-underlay.png</texture>
+					<visible>Container.Content(episodes) | Container.Content(songs)</visible>
+				</control>
+				<control type="list" id="50">
+					<left>100</left>
+					<top>145</top>
+					<width>1133</width>
+					<height>800</height>
+					<onleft>9000</onleft>
+					<onright>60</onright>
+					<viewtype label="535">list</viewtype>
+					<pagecontrol>60</pagecontrol>
+					<itemlayout width="1133" height="100" condition="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows)">
+						<control type="image">
+							<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>8</top>
+							<width>120</width>
+							<height>84</height>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="grey" fallback="flags/default/studio-fallback.png">$VAR[StudioIconsVar]</texture>
+							<visible>!ListItem.IsParentFolder + !Skin.HasSetting(ColoredMediaFlags)</visible>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>8</top>
+							<width>120</width>
+							<height>84</height>
+							<aspectratio>keep</aspectratio>
+							<texture fallback="flags/colored/studio-fallback.png">$VAR[StudioIconsVar]</texture>
+							<visible>!ListItem.IsParentFolder + Skin.HasSetting(ColoredMediaFlags)</visible>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>12</top>
+							<width>693</width>
+							<height>40</height>
+							<label fallback="..">$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+							<textcolor>white2</textcolor>
+							<visible>!String.IsEqual(ListItem.DBTYPE,set)</visible>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>0</top>
+							<width>693</width>
+							<height>100</height>
+							<label fallback="..">$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+							<textcolor>white2</textcolor>
+							<visible>String.IsEqual(ListItem.DBTYPE,set)</visible>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>52</top>
+							<width>693</width>
+							<height>30</height>
+							<font>Font28_Reg</font>
+							<label>$INFO[ListItem.Genre]</label>
+							<textcolor>grey</textcolor>
+							<visible>!String.IsEqual(ListItem.DBTYPE,set)</visible>
+						</control>
+						<control type="label">
+							<right>85</right>
+							<top>12</top>
+							<width>190</width>
+							<height>40</height>
+							<align>center</align>
+							<label>$VAR[ViewListLabel2Var]</label>
+							<font>Font29_Cond</font>
+							<textcolor>grey</textcolor>
+						</control>
+						<control type="image">
+							<right>85</right>
+							<top>52</top>
+							<width>190</width>
+							<height>30</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[ViewImageRatingVar]</texture>
+							<colordiffuse>grey</colordiffuse>
+						</control>
+						<control type="image">
+							<right>10</right>
+							<width>60</width>
+							<height>100</height>
+							<aligny>center</aligny>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
+						</control>
+					</itemlayout>
+					<focusedlayout width="1133" height="100" condition="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows)">
+						<control type="image">
+							<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+							<animation effect="fade" start="100" end="25" tween="sine" easing="inout" time="240" condition="!Control.HasFocus(50)">Conditional</animation>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>8</top>
+							<width>120</width>
+							<height>84</height>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="grey" fallback="flags/default/studio-fallback.png">$VAR[StudioIconsVar]</texture>
+							<visible>!ListItem.IsParentFolder + !Skin.HasSetting(ColoredMediaFlags)</visible>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>8</top>
+							<width>120</width>
+							<height>84</height>
+							<aspectratio>keep</aspectratio>
+							<texture fallback="flags/colored/studio-fallback.png">$VAR[StudioIconsVar]</texture>
+							<visible>!ListItem.IsParentFolder + Skin.HasSetting(ColoredMediaFlags)</visible>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>12</top>
+							<width>693</width>
+							<height>40</height>
+							<label fallback="..">$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+							<visible>!String.IsEqual(ListItem.DBTYPE,set)</visible>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>0</top>
+							<width>693</width>
+							<height>100</height>
+							<label fallback="..">$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+							<visible>String.IsEqual(ListItem.DBTYPE,set)</visible>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>52</top>
+							<width>693</width>
+							<height>30</height>
+							<font>Font28_Reg</font>
+							<label>$INFO[ListItem.Genre]</label>
+							<visible>!String.IsEqual(ListItem.DBTYPE,set)</visible>
+						</control>
+						<control type="label">
+							<right>85</right>
+							<top>12</top>
+							<width>190</width>
+							<height>40</height>
+							<align>center</align>
+							<label>$VAR[ViewListLabel2Var]</label>
+							<font>Font29_Cond</font>
+							<textcolor>white2</textcolor>
+						</control>
+						<control type="image">
+							<right>85</right>
+							<top>52</top>
+							<width>190</width>
+							<height>30</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[ViewImageRatingVar]</texture>
+						</control>
+						<control type="image">
+							<right>10</right>
+							<width>60</width>
+							<height>100</height>
+							<aligny>center</aligny>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
+						</control>
+					</focusedlayout>
+					<itemlayout width="1133" height="100" condition="Container.Content(seasons)">
+						<control type="image">
+							<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>8</top>
+							<width>120</width>
+							<height>84</height>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="grey" fallback="flags/default/studio-fallback.png">$VAR[StudioIconsVar]</texture>
+							<visible>!ListItem.IsParentFolder + !Skin.HasSetting(ColoredMediaFlags)</visible>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>8</top>
+							<width>120</width>
+							<height>84</height>
+							<aspectratio>keep</aspectratio>
+							<texture fallback="flags/colored/studio-fallback.png">$VAR[StudioIconsVar]</texture>
+							<visible>!ListItem.IsParentFolder + Skin.HasSetting(ColoredMediaFlags)</visible>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>12</top>
+							<width>693</width>
+							<height>40</height>
+							<label fallback="..">$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+							<textcolor>white2</textcolor>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>52</top>
+							<width>693</width>
+							<height>30</height>
+							<font>Font28_Reg</font>
+							<label>$INFO[ListItem.TVShowTitle]</label>
+							<textcolor>grey</textcolor>
+						</control>
+						<control type="label">
+							<right>85</right>
+							<top>12</top>
+							<width>190</width>
+							<height>40</height>
+							<align>center</align>
+							<label>$INFO[ListItem.Property(WatchedEpisodes)]$INFO[ListItem.Property(TotalEpisodes), / ,]</label>
+							<font>Font29_Cond</font>
+							<textcolor>grey</textcolor>
+						</control>
+						<control type="label">
+							<right>85</right>
+							<top>52</top>
+							<width>190</width>
+							<height>30</height>
+							<align>center</align>
+							<label>$LOCALIZE[16102]</label>
+							<font>Font29_Cond</font>
+							<textcolor>grey</textcolor>
+							<visible>!ListItem.IsParentFolder</visible>
+						</control>
+						<control type="image">
+							<right>10</right>
+							<width>60</width>
+							<height>100</height>
+							<aligny>center</aligny>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
+						</control>
+					</itemlayout>
+					<focusedlayout width="1133" height="100" condition="Container.Content(seasons)">
+						<control type="image">
+							<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+							<animation effect="fade" start="100" end="25" tween="sine" easing="inout" time="240" condition="!Control.HasFocus(50)">Conditional</animation>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>8</top>
+							<width>120</width>
+							<height>84</height>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="grey" fallback="flags/default/studio-fallback.png">$VAR[StudioIconsVar]</texture>
+							<visible>!ListItem.IsParentFolder + !Skin.HasSetting(ColoredMediaFlags)</visible>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>8</top>
+							<width>120</width>
+							<height>84</height>
+							<aspectratio>keep</aspectratio>
+							<texture fallback="flags/colored/studio-fallback.png">$VAR[StudioIconsVar]</texture>
+							<visible>!ListItem.IsParentFolder + Skin.HasSetting(ColoredMediaFlags)</visible>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>12</top>
+							<width>693</width>
+							<height>40</height>
+							<label fallback="..">$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>52</top>
+							<width>693</width>
+							<height>30</height>
+							<font>Font28_Reg</font>
+							<textcolor>white2</textcolor>
+							<label>$INFO[ListItem.TVShowTitle]</label>
+							<scroll>true</scroll>
+						</control>
+						<control type="label">
+							<right>85</right>
+							<top>12</top>
+							<width>190</width>
+							<height>40</height>
+							<align>center</align>
+							<label>$INFO[ListItem.Property(WatchedEpisodes)]$INFO[ListItem.Property(TotalEpisodes), / ,]</label>
+							<font>Font29_Cond</font>
+							<textcolor>white2</textcolor>
+						</control>
+						<control type="label">
+							<right>85</right>
+							<top>52</top>
+							<width>190</width>
+							<height>30</height>
+							<align>center</align>
+							<label>$LOCALIZE[16102]</label>
+							<font>Font29_Cond</font>
+							<textcolor>white2</textcolor>
+							<visible>!ListItem.IsParentFolder</visible>
+						</control>
+						<control type="image">
+							<right>10</right>
+							<width>60</width>
+							<height>100</height>
+							<aligny>center</aligny>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
+						</control>
+					</focusedlayout>
+					<itemlayout width="1133" height="100" condition="Container.Content(episodes)">
+						<control type="image">
+							<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
+						</control>
+						<control type="label">
+							<left>30</left>
+							<width>100</width>
+							<height>100</height>
+							<align>center</align>
+							<textcolor>grey</textcolor>
+							<font>Font49_Bold_Caps</font>
+							<label>$INFO[ListItem.Episode]</label>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>12</top>
+							<width>693</width>
+							<height>40</height>
+							<label fallback="..">$INFO[ListItem.Title]</label>
+							<font>Font38_Reg</font>
+							<textcolor>white2</textcolor>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>52</top>
+							<width>693</width>
+							<height>30</height>
+							<font>Font28_Reg</font>
+							<label>$INFO[ListItem.TVShowTitle]</label>
+							<textcolor>grey</textcolor>
+						</control>
+						<control type="label">
+							<right>85</right>
+							<top>12</top>
+							<width>190</width>
+							<height>40</height>
+							<align>center</align>
+							<label>$VAR[ViewListLabel2Var]</label>
+							<font>Font29_Cond</font>
+							<textcolor>grey</textcolor>
+						</control>
+						<control type="image">
+							<right>85</right>
+							<top>52</top>
+							<width>190</width>
+							<height>30</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[ViewImageRatingVar]</texture>
+							<colordiffuse>grey</colordiffuse>
+						</control>
+						<control type="image">
+							<right>10</right>
+							<width>60</width>
+							<height>100</height>
+							<aligny>center</aligny>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
+						</control>
+					</itemlayout>
+					<focusedlayout width="1133" height="100" condition="Container.Content(episodes)">
+						<control type="image">
+							<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+							<animation effect="fade" start="100" end="25" tween="sine" easing="inout" time="240" condition="!Control.HasFocus(50)">Conditional</animation>
+						</control>
+						<control type="label">
+							<left>30</left>
+							<width>100</width>
+							<height>100</height>
+							<align>center</align>
+							<textcolor>grey</textcolor>
+							<font>Font49_Bold_Caps</font>
+							<label>$INFO[ListItem.Episode]</label>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>12</top>
+							<width>693</width>
+							<height>40</height>
+							<label fallback="..">$INFO[ListItem.Title]</label>
+							<font>Font38_Reg</font>
+							<scroll>true</scroll>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>52</top>
+							<width>693</width>
+							<height>30</height>
+							<font>Font28_Reg</font>
+							<textcolor>white2</textcolor>
+							<label>$INFO[ListItem.TVShowTitle]</label>
+							<scroll>true</scroll>
+						</control>
+						<control type="label">
+							<right>85</right>
+							<top>12</top>
+							<width>190</width>
+							<height>40</height>
+							<align>center</align>
+							<label>$VAR[ViewListLabel2Var]</label>
+							<font>Font29_Cond</font>
+							<textcolor>white2</textcolor>
+						</control>
+						<control type="image">
+							<right>85</right>
+							<top>52</top>
+							<width>190</width>
+							<height>30</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[ViewImageRatingVar]</texture>
+						</control>
+						<control type="image">
+							<right>10</right>
+							<width>60</width>
+							<height>100</height>
+							<aligny>center</aligny>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
+						</control>
+					</focusedlayout>
+					<itemlayout width="1133" height="100" condition="Container.Content(musicvideos)">
+						<control type="image">
+							<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
+						</control>
+						<control type="image">
+							<left>38</left>
+							<top>8</top>
+							<width>84</width>
+							<height>84</height>
+							<aspectratio>scale</aspectratio>
+							<texture fallback="DefaultMusicVideos.png">$VAR[MusicPosterVar]</texture>
+							<visible>!ListItem.IsParentFolder</visible>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>12</top>
+							<width>693</width>
+							<height>40</height>
+							<label fallback="..">$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+							<textcolor>white2</textcolor>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>52</top>
+							<width>693</width>
+							<height>30</height>
+							<font>Font28_Reg</font>
+							<label>$INFO[ListItem.Artist]</label>
+							<textcolor>grey</textcolor>
+						</control>
+						<control type="label">
+							<right>85</right>
+							<top>12</top>
+							<width>190</width>
+							<height>40</height>
+							<align>center</align>
+							<label>$VAR[ViewListLabel2Var]</label>
+							<font>Font29_Cond</font>
+							<textcolor>grey</textcolor>
+						</control>
+						<control type="image">
+							<right>85</right>
+							<top>52</top>
+							<width>190</width>
+							<height>30</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[ViewImageRatingVar]</texture>
+							<colordiffuse>grey</colordiffuse>
+						</control>
+						<control type="image">
+							<right>10</right>
+							<width>60</width>
+							<height>100</height>
+							<aligny>center</aligny>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
+						</control>
+					</itemlayout>
+					<focusedlayout width="1133" height="100" condition="Container.Content(musicvideos)">
+						<control type="image">
+							<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+							<animation effect="fade" start="100" end="25" tween="sine" easing="inout" time="240" condition="!Control.HasFocus(50)">Conditional</animation>
+						</control>
+						<control type="image">
+							<left>38</left>
+							<top>8</top>
+							<width>84</width>
+							<height>84</height>
+							<aspectratio>scale</aspectratio>
+							<texture fallback="DefaultMusicVideos.png">$VAR[MusicPosterVar]</texture>
+							<visible>!ListItem.IsParentFolder</visible>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>12</top>
+							<width>693</width>
+							<height>40</height>
+							<label fallback="..">$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>52</top>
+							<width>693</width>
+							<height>30</height>
+							<font>Font28_Reg</font>
+							<label>$INFO[ListItem.Artist]</label>
+						</control>
+						<control type="label">
+							<right>85</right>
+							<top>12</top>
+							<width>190</width>
+							<height>40</height>
+							<align>center</align>
+							<label>$VAR[ViewListLabel2Var]</label>
+							<font>Font29_Cond</font>
+						</control>
+						<control type="image">
+							<right>85</right>
+							<top>52</top>
+							<width>190</width>
+							<height>30</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[ViewImageRatingVar]</texture>
+						</control>
+						<control type="image">
+							<right>10</right>
+							<width>60</width>
+							<height>100</height>
+							<aligny>center</aligny>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
+						</control>
+					</focusedlayout>
+					<itemlayout width="1133" height="100" condition="Container.Content(artists)">
+						<control type="image">
+							<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
+						</control>
+						<control type="image">
+							<left>38</left>
+							<top>8</top>
+							<width>84</width>
+							<height>84</height>
+							<aspectratio>scale</aspectratio>
+							<texture fallback="DefaultArtist.png">$VAR[MusicPosterVar]</texture>
+							<visible>!ListItem.IsParentFolder</visible>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>12</top>
+							<width>693</width>
+							<height>40</height>
+							<label fallback="..">$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+							<textcolor>white2</textcolor>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>52</top>
+							<width>693</width>
+							<height>30</height>
+							<font>Font28_Reg</font>
+							<label>$INFO[ListItem.Genre]</label>
+							<textcolor>grey</textcolor>
+						</control>
+						<control type="label">
+							<right>85</right>
+							<width>190</width>
+							<height>100</height>
+							<align>center</align>
+							<label>$VAR[ViewListLabel2Var]</label>
+							<font>Font29_Cond</font>
+							<textcolor>grey</textcolor>
+						</control>
+						<control type="image">
+							<right>10</right>
+							<width>60</width>
+							<height>100</height>
+							<aligny>center</aligny>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
+						</control>
+					</itemlayout>
+					<focusedlayout width="1133" height="100" condition="Container.Content(artists)">
+						<control type="image">
+							<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+							<animation effect="fade" start="100" end="25" tween="sine" easing="inout" time="240" condition="!Control.HasFocus(50)">Conditional</animation>
+						</control>
+						<control type="image">
+							<left>38</left>
+							<top>8</top>
+							<width>84</width>
+							<height>84</height>
+							<aspectratio>scale</aspectratio>
+							<texture fallback="DefaultArtist.png">$VAR[MusicPosterVar]</texture>
+							<visible>!ListItem.IsParentFolder</visible>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>12</top>
+							<width>693</width>
+							<height>40</height>
+							<label fallback="..">$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>52</top>
+							<width>693</width>
+							<height>30</height>
+							<font>Font28_Reg</font>
+							<label>$INFO[ListItem.Genre]</label>
+						</control>
+						<control type="label">
+							<right>85</right>
+							<width>190</width>
+							<height>100</height>
+							<align>center</align>
+							<label>$VAR[ViewListLabel2Var]</label>
+							<font>Font29_Cond</font>
+						</control>
+						<control type="image">
+							<right>10</right>
+							<width>60</width>
+							<height>100</height>
+							<aligny>center</aligny>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
+						</control>
+					</focusedlayout>
+					<itemlayout width="1133" height="100" condition="Container.Content(albums)">
+						<control type="image">
+							<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>8</top>
+							<width>120</width>
+							<height>84</height>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="grey" fallback="flags/default/recordlabel-fallback.png">$VAR[StudioIconsVar]</texture>
+							<visible>!ListItem.IsParentFolder</visible>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>12</top>
+							<width>693</width>
+							<height>40</height>
+							<label fallback="..">$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+							<textcolor>white2</textcolor>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>52</top>
+							<width>693</width>
+							<height>30</height>
+							<font>Font28_Reg</font>
+							<label>$INFO[ListItem.Genre]</label>
+							<textcolor>grey</textcolor>
+						</control>
+						<control type="label">
+							<right>85</right>
+							<top>12</top>
+							<width>190</width>
+							<height>40</height>
+							<align>center</align>
+							<label>$VAR[ViewListLabel2Var]</label>
+							<font>Font29_Cond</font>
+							<textcolor>grey</textcolor>
+						</control>
+						<control type="image">
+							<right>85</right>
+							<top>52</top>
+							<width>190</width>
+							<height>30</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[ViewImageRatingVar]</texture>
+							<colordiffuse>grey</colordiffuse>
+						</control>
+						<control type="image">
+							<right>10</right>
+							<width>60</width>
+							<height>100</height>
+							<aligny>center</aligny>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
+						</control>
+					</itemlayout>
+					<focusedlayout width="1133" height="100" condition="Container.Content(albums)">
+						<control type="image">
+							<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+							<animation effect="fade" start="100" end="25" tween="sine" easing="inout" time="240" condition="!Control.HasFocus(50)">Conditional</animation>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>8</top>
+							<width>120</width>
+							<height>84</height>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="grey" fallback="flags/default/recordlabel-fallback.png">$VAR[StudioIconsVar]</texture>
+							<visible>!ListItem.IsParentFolder</visible>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>12</top>
+							<width>693</width>
+							<height>40</height>
+							<label fallback="..">$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>52</top>
+							<width>693</width>
+							<height>30</height>
+							<font>Font28_Reg</font>
+							<label>$INFO[ListItem.Genre]</label>
+						</control>
+						<control type="label">
+							<right>85</right>
+							<top>12</top>
+							<width>190</width>
+							<height>40</height>
+							<align>center</align>
+							<label>$VAR[ViewListLabel2Var]</label>
+							<font>Font29_Cond</font>
+							<textcolor>white2</textcolor>
+						</control>
+						<control type="image">
+							<right>85</right>
+							<top>52</top>
+							<width>190</width>
+							<height>30</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[ViewImageRatingVar]</texture>
+						</control>
+						<control type="image">
+							<right>10</right>
+							<width>60</width>
+							<height>100</height>
+							<aligny>center</aligny>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
+						</control>
+					</focusedlayout>
+					<itemlayout width="1133" height="100" condition="Container.Content(songs)">
+						<control type="image">
+							<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
+						</control>
+						<control type="label">
+							<left>30</left>
+							<width>100</width>
+							<height>100</height>
+							<align>center</align>
+							<textcolor>grey</textcolor>
+							<font>Font49_Bold_Caps</font>
+							<label>$INFO[ListItem.TrackNumber]</label>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>12</top>
+							<width>693</width>
+							<height>40</height>
+							<label fallback="..">$INFO[ListItem.Title]</label>
+							<font>Font38_Reg</font>
+							<textcolor>white2</textcolor>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>52</top>
+							<width>693</width>
+							<height>30</height>
+							<font>Font28_Reg</font>
+							<label>$INFO[ListItem.Artist]</label>
+							<textcolor>grey</textcolor>
+						</control>
+						<control type="label">
+							<right>85</right>
+							<top>12</top>
+							<width>190</width>
+							<height>40</height>
+							<align>center</align>
+							<label>$VAR[ViewListLabel2Var]</label>
+							<font>Font29_Cond</font>
+							<textcolor>grey</textcolor>
+						</control>
+						<control type="image">
+							<right>85</right>
+							<top>52</top>
+							<width>190</width>
+							<height>30</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[ViewImageRatingVar]</texture>
+							<colordiffuse>grey</colordiffuse>
+						</control>
+						<control type="image">
+							<right>10</right>
+							<width>60</width>
+							<height>100</height>
+							<aligny>center</aligny>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
+						</control>
+					</itemlayout>
+					<focusedlayout width="1133" height="100" condition="Container.Content(songs)">
+						<control type="image">
+							<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+							<animation effect="fade" start="100" end="25" tween="sine" easing="inout" time="240" condition="!Control.HasFocus(50)">Conditional</animation>
+						</control>
+						<control type="label">
+							<left>30</left>
+							<width>100</width>
+							<height>100</height>
+							<align>center</align>
+							<font>Font49_Bold_Caps</font>
+							<label>$INFO[ListItem.TrackNumber]</label>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>12</top>
+							<width>693</width>
+							<height>40</height>
+							<label fallback="..">$INFO[ListItem.Title]</label>
+							<font>Font38_Reg</font>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>52</top>
+							<width>693</width>
+							<height>30</height>
+							<font>Font28_Reg</font>
+							<label>$INFO[ListItem.Artist]</label>
+						</control>
+						<control type="label">
+							<right>85</right>
+							<top>12</top>
+							<width>190</width>
+							<height>40</height>
+							<align>center</align>
+							<label>$VAR[ViewListLabel2Var]</label>
+							<font>Font29_Cond</font>
+							<textcolor>white2</textcolor>
+						</control>
+						<control type="image">
+							<right>85</right>
+							<top>52</top>
+							<width>190</width>
+							<height>30</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[ViewImageRatingVar]</texture>
+						</control>
+						<control type="image">
+							<right>10</right>
+							<width>60</width>
+							<height>100</height>
+							<aligny>center</aligny>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
+						</control>
+					</focusedlayout>
+					<itemlayout width="1133" height="100" condition="Container.Content(addons)">
+						<control type="image">
+							<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>8</top>
+							<width>120</width>
+							<height>84</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$INFO[ListItem.Icon]</texture>
+							<visible>!ListItem.IsParentFolder</visible>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>12</top>
+							<width>693</width>
+							<height>40</height>
+							<label fallback="..">$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+							<textcolor>white2</textcolor>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>52</top>
+							<width>693</width>
+							<height>30</height>
+							<font>Font28_Reg</font>
+							<label>$INFO[ListItem.AddonSummary]</label>
+							<textcolor>grey</textcolor>
+						</control>
+						<control type="label">
+							<right>85</right>
+							<width>190</width>
+							<height>100</height>
+							<align>center</align>
+							<label>$VAR[ViewListLabel2Var]</label>
+							<font>Font29_Cond</font>
+							<textcolor>grey</textcolor>
+						</control>
+						<control type="image">
+							<right>10</right>
+							<width>60</width>
+							<height>100</height>
+							<aligny>center</aligny>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="$VAR[HighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
+						</control>
+					</itemlayout>
+					<focusedlayout width="1133" height="100" condition="Container.Content(addons)">
+						<control type="image">
+							<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+							<animation effect="fade" start="100" end="25" tween="sine" easing="inout" time="240" condition="!Control.HasFocus(50)">Conditional</animation>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>8</top>
+							<width>120</width>
+							<height>84</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$INFO[ListItem.Icon]</texture>
+							<visible>!ListItem.IsParentFolder</visible>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>12</top>
+							<width>693</width>
+							<height>40</height>
+							<label fallback="..">$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<top>52</top>
+							<width>693</width>
+							<height>30</height>
+							<font>Font28_Reg</font>
+							<label>$INFO[ListItem.AddonSummary]</label>
+						</control>
+						<control type="label">
+							<right>85</right>
+							<width>190</width>
+							<height>100</height>
+							<align>center</align>
+							<label>$VAR[ViewListLabel2Var]</label>
+							<font>Font29_Cond</font>
+						</control>
+					</focusedlayout>
+					<itemlayout width="1133" height="100" condition="!Container.Content(movies) + !Container.Content(sets) + !Container.Content(tvshows) + !Container.Content(seasons) + !Container.Content(episodes) + !Container.Content(albums) + !Container.Content(artists) + !Container.Content(songs) + !Container.Content(addons)">
+						<control type="image">
+							<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>8</top>
+							<width>120</width>
+							<height>84</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[ViewListIconVar]</texture>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<width>693</width>
+							<height>100</height>
+							<label fallback="..">$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+							<textcolor>white2</textcolor>
+						</control>
+						<control type="label">
+							<right>85</right>
+							<width>190</width>
+							<height>100</height>
+							<align>center</align>
+							<label>$VAR[ViewListLabel2Var]</label>
+							<font>Font29_Cond</font>
+							<textcolor>grey</textcolor>
+						</control>
+					</itemlayout>
+					<focusedlayout width="1133" height="100" condition="!Container.Content(movies) + !Container.Content(sets) + !Container.Content(tvshows) + !Container.Content(seasons) + !Container.Content(episodes) + !Container.Content(albums) + !Container.Content(artists) + !Container.Content(songs) + !Container.Content(addons)">
+						<control type="image">
+							<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+							<animation effect="fade" start="100" end="25" tween="sine" easing="inout" time="240" condition="!Control.HasFocus(50)">Conditional</animation>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>8</top>
+							<width>120</width>
+							<height>84</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[ViewListIconVar]</texture>
+						</control>
+						<control type="label">
+							<left>160</left>
+							<width>693</width>
+							<height>100</height>
+							<label fallback="..">$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+						</control>
+						<control type="label">
+							<right>85</right>
+							<width>190</width>
+							<height>100</height>
+							<align>center</align>
+							<label>$VAR[ViewListLabel2Var]</label>
+							<font>Font29_Cond</font>
+						</control>
+					</focusedlayout>
+				</control>
+				<control type="scrollbar" id="60">
+					<left>1213</left>
+					<top>143</top>
+					<bottom>132</bottom>
+					<height>800</height>
+					<onleft>50</onleft>
 				</control>
 			</control>
+			<!-- Right Content -->
 			<control type="group">
-				<visible>!Container.Content(genres) + !Container.Content(musicvideos) + !Container.Content(artists) + !Container.Content(albums) + !Container.Content(songs)</visible>
-				<control type="image">
-					<bottom>117</bottom>
-					<width>567</width>
-					<height>835</height>
-					<fadetime>400</fadetime>
-					<bordersize>15</bordersize>
-					<aspectratio aligny="bottom">keep</aspectratio>
-					<bordertexture border="30">thumbs/poster-frame.png</bordertexture>
-					<texture diffuse="thumbs/poster-mask.png" background="true">$VAR[PosterVar]</texture>
+				<right>85</right>
+				<width>567</width>
+				<include content="Animation_Slide_Right">
+					<param name="slide">652</param>
+					<param name="opencondition">true</param>
+					<param name="closecondition">true</param>
+				</include>
+				<include content="Animation_FurnitureShift">
+					<param name="slidetopbarcondition">Skin.HasSetting(view50HideTopBar)</param>
+					<param name="slidefloorcondition">!Skin.HasSetting(View50HideTopBar) + Skin.HasSetting(View50HideFloor)</param>
+				</include>
+				<control type="group">
+					<visible>Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos)</visible>
+					<control type="image">
+						<visible>!Container.Content(artists)</visible>
+						<top>173</top>
+						<right>35</right>
+						<width>497</width>
+						<height>497</height>
+						<fadetime>TextureFadeTime</fadetime>
+						<aspectratio>keep</aspectratio>
+						<texture background="true">$VAR[MusicDiscArtVar]</texture>
+					</control>
+					<control type="image">
+						<visible>Container.Content(artists)</visible>
+						<top>144</top>
+						<right>15</right>
+						<width>537</width>
+						<height>268</height>
+						<fadetime>TextureFadeTime</fadetime>
+						<aspectratio>keep</aspectratio>
+						<texture background="true">$VAR[MusicClearLogoVar]</texture>
+					</control>
+					<control type="image">
+						<bottom>117</bottom>
+						<width>567</width>
+						<height>567</height>
+						<fadetime>TextureFadeTime</fadetime>
+						<bordersize>15</bordersize>
+						<aspectratio aligny="top">scale</aspectratio>
+						<bordertexture border="30">thumbs/poster-frame.png</bordertexture>
+						<texture diffuse="thumbs/poster-mask.png" fallback="DefaultMusicArtists.png" background="true">$VAR[MusicPosterVar]</texture>
+					</control>
+					<control type="image">
+						<bottom>-420</bottom>
+						<width>567</width>
+						<height>567</height>
+						<fadetime>TextureFadeTime</fadetime>
+						<bordersize>15</bordersize>
+						<aspectratio aligny="top">scale</aspectratio>
+						<texture flipy="true" diffuse="thumbs/poster-flipmask.png" fallback="DefaultMusicArtists.png" background="true">$VAR[MusicPosterVar]</texture>
+					</control>
 				</control>
-				<control type="image">
-					<bottom>-688</bottom>
-					<width>567</width>
-					<height>835</height>
-					<fadetime>TextureFadeTime</fadetime>
-					<bordersize>15</bordersize>
-					<aspectratio aligny="top">keep</aspectratio>
-					<texture flipy="true" diffuse="thumbs/poster-flipmask.png" background="true">$VAR[PosterVar]</texture>
+				<control type="group">
+					<visible>Container.Content(genres)</visible>
+					<control type="image">
+						<bottom>117</bottom>
+						<width>567</width>
+						<height>835</height>
+						<fadetime>TextureFadeTime</fadetime>
+						<bordersize>15</bordersize>
+						<aspectratio aligny="bottom">keep</aspectratio>
+						<bordertexture border="30">thumbs/poster-frame.png</bordertexture>
+						<texture fallback="DefaultGenre.png" diffuse="thumbs/poster-mask.png" background="true">$VAR[GenrePosterVar]</texture>
+					</control>
+					<control type="image">
+						<bottom>-688</bottom>
+						<width>567</width>
+						<height>835</height>
+						<fadetime>TextureFadeTime</fadetime>
+						<bordersize>15</bordersize>
+						<aspectratio aligny="top">keep</aspectratio>
+						<texture fallback="DefaultGenre.png" flipy="true" diffuse="thumbs/poster-flipmask.png" background="true">$VAR[GenrePosterVar]</texture>
+					</control>
+				</control>
+				<control type="group">
+					<visible>!Container.Content(genres) + !Container.Content(musicvideos) + !Container.Content(artists) + !Container.Content(albums) + !Container.Content(songs)</visible>
+					<control type="image">
+						<bottom>117</bottom>
+						<width>567</width>
+						<height>835</height>
+						<fadetime>400</fadetime>
+						<bordersize>15</bordersize>
+						<aspectratio aligny="bottom">keep</aspectratio>
+						<bordertexture border="30">thumbs/poster-frame.png</bordertexture>
+						<texture diffuse="thumbs/poster-mask.png" background="true">$VAR[PosterVar]</texture>
+					</control>
+					<control type="image">
+						<bottom>-688</bottom>
+						<width>567</width>
+						<height>835</height>
+						<fadetime>TextureFadeTime</fadetime>
+						<bordersize>15</bordersize>
+						<aspectratio aligny="top">keep</aspectratio>
+						<texture flipy="true" diffuse="thumbs/poster-flipmask.png" background="true">$VAR[PosterVar]</texture>
+					</control>
 				</control>
 			</control>
-		</control>
-		<!-- Media Flags -->
-		<control type="group">
-			<include content="Animation_Slide_Bottom">
-				<param name="slide">111</param>
-			</include>
-			<include>MediaFlags_Right</include>
+			<!-- Media Flags -->
+			<control type="group">
+				<include content="Animation_Slide_Bottom">
+					<param name="slide">111</param>
+				</include>
+				<include>MediaFlags_Right</include>
+			</control>
 		</control>
 	</include>
 </includes>
