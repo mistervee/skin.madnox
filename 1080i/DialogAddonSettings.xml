@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
-	<defaultcontrol always="true">9</defaultcontrol>
+	<defaultcontrol always="true">3</defaultcontrol>
 	<controls>
 		<include>Dialog_Furniture_BackgroundFade</include>
 		<include>Dialog_Furniture_Close_Onclick</include>
 		<control type="group">
 			<include content="Dialog_Furniture_Background">
-				<param name="labelid">20</param>
+				<param name="labelid">2</param>
 				<param name="labelright">70</param>
 				<param name="width">1440</param>
 				<param name="height">590</param>
@@ -19,7 +19,7 @@
 				<height>40</height>
 				<texture colordiffuse="$VAR[DialogColorVar]">icons/default/arrowdown.png</texture>
 				<include>Animation_CommonFade</include>
-				<visible>Container(9).HasNext</visible>
+				<visible>Container(3).HasNext</visible>
 			</control>
 			<control type="image">
 				<left>850</left>
@@ -28,17 +28,18 @@
 				<height>40</height>
 				<texture colordiffuse="$VAR[DialogColorVar]">icons/default/arrowdown.png</texture>
 				<include>Animation_CommonFade</include>
-				<visible>Container(2).HasNext</visible>
+				<visible>Container(5).HasNext</visible>
 			</control>
 			<!-- Left menu -->
-			<control type="grouplist" id="9">
+			<control type="grouplist" id="3">
 				<left>20</left>
 				<top>88</top>
 				<width>340</width>
 				<height>420</height>
-				<onright>2</onright>
+				<onright>5</onright>
+				<onleft>8000</onleft>
 			</control>
-			<control type="button" id="13">
+			<control type="button" id="10">
 				<include>Dialog_Button_Left</include>
 			</control>
 			<control type="image">
@@ -56,13 +57,13 @@
 				<texture colordiffuse="$VAR[PanelColorVar]" border="30,0,0,0">panels/line-horizontal-leftfade.png</texture>
 			</control>
 			<!-- Right menu -->
-			<control type="grouplist" id="2">
+			<control type="grouplist" id="5">
 				<left>360</left>
 				<top>88</top>
 				<width>1060</width>
 				<height>420</height>
 				<pagecontrol>60</pagecontrol>
-				<onleft>9</onleft>
+				<onleft>3</onleft>
 				<onright>8000</onright>
 			</control>
 			<control type="image">
@@ -72,24 +73,27 @@
 				<height>4</height>
 				<texture colordiffuse="$VAR[PanelColorVar]" flipx="true" border="0,0,30,0">panels/line-horizontal-leftfade.png</texture>
 			</control>
-			<control type="label" id="7">
+			<control type="label" id="14">
 				<font>Font30_Reg</font>
 				<textcolor>white</textcolor>
 				<include>Dialog_Button_Right</include>
 			</control>
-			<control type="button" id="3">
+			<control type="button" id="7">
 				<include>Dialog_Button_Right</include>
 			</control>
-			<control type="radiobutton" id="4">
+			<control type="radiobutton" id="8">
 				<include>Dialog_RadioButton_Right</include>
 			</control>
-			<control type="spincontrolex" id="5">
+			<control type="spincontrolex" id="9">
 				<include>Dialog_Button_Right</include>
 			</control>
-			<control type="sliderex" id="8">
+			<control type="sliderex" id="13">
 				<include>Dialog_Button_Right</include>
 			</control>
-			<control type="image" id="6">
+			<control type="edit" id="12">
+				<include>Dialog_Button_Right</include>
+			</control>
+			<control type="image" id="11">
 				<description>separator image</description>
 				<height>1</height>
 				<texture />
@@ -100,10 +104,10 @@
 				<right>70</right>
 				<height>60</height>
 				<align>right</align>
-				<label>$INFO[Container(2).CurrentItem,$LOCALIZE[31001] ]$INFO[Container(2).NumItems,/]</label>
+				<label>$INFO[Container(5).CurrentItem,$LOCALIZE[31001] ]$INFO[Container(5).NumItems,/]</label>
 				<font>Font25_Cond</font>
 				<textcolor>grey</textcolor>
-				<visible>ControlGroup(2).HasFocus</visible>
+				<visible>ControlGroup(5).HasFocus</visible>
 			</control>
 			<control type="label">
 				<bottom>20</bottom>
@@ -111,32 +115,31 @@
 				<right>70</right>
 				<height>60</height>
 				<align>right</align>
-				<label>$LOCALIZE[31001]$INFO[Container(2).NumItems, 1/]</label>
+				<label>$LOCALIZE[31001]$INFO[Container(5).NumItems, 1/]</label>
 				<font>Font25_Cond</font>
 				<textcolor>grey</textcolor>
-				<visible>!ControlGroup(2).HasFocus + !String.IsEqual(Container(2).NumItems,0)</visible>
+				<visible>!ControlGroup(5).HasFocus + !String.IsEqual(Container(5).NumItems,0)</visible>
 			</control>
 			<control type="grouplist" id="8000">
 				<right>60</right>
 				<top>28</top>
 				<width>400</width>
-				<onleft>2</onleft>
-				<ondown>2</ondown>
-				<onleft>2</onleft>
+				<onleft>5</onleft>
+				<ondown>5</ondown>
 				<onright>60</onright>
 				<align>right</align>
 				<itemgap>10</itemgap>
 				<orientation>horizontal</orientation>
 				<include content="Dialog_Button_TopRight">
-					<param name="id">10</param>
+					<param name="id">28</param>
 					<param name="label">$LOCALIZE[186]</param>
 				</include>
 				<include content="Dialog_Button_TopRight">
-					<param name="id">11</param>
+					<param name="id">29</param>
 					<param name="label">$LOCALIZE[222]</param>
 				</include>
 				<include content="Dialog_Button_TopRight">
-					<param name="id">12</param>
+					<param name="id">30</param>
 					<param name="label">$LOCALIZE[409]</param>
 				</include>
 			</control>
