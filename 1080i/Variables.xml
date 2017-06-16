@@ -309,8 +309,25 @@
 		<value condition="Playlist.IsRepeat">buttons/player/repeat.png</value>
 		<value>buttons/player/repeatoff.png</value>
 	</variable>
+	<variable name="VideoPlayerForwardRewindVar">
+		<value condition="Player.Forwarding2x | Player.Rewinding2x">2x</value>
+		<value condition="Player.Forwarding4x | Player.Rewinding4x">4x</value>
+		<value condition="Player.Forwarding8x | Player.Rewinding8x">8x</value>
+		<value condition="Player.Forwarding16x | Player.Rewinding16x">16x</value>
+		<value condition="Player.Forwarding32x | Player.Rewinding32x">32x</value>
+	</variable>
+    <variable name="SeekLabelVar">
+        <value condition="Player.Paused + !Player.Caching">$LOCALIZE[112]</value>
+        <value condition="Player.Playing + !Player.Seeking + !Player.DisplayAfterSeek | [Player.Paused + !Player.Caching]">$INFO[System.Time]$INFO[Player.FinishTime, - ,]</value>
+        <value condition="[Player.Paused + Player.Caching] + !Player.Seeking + !Player.DisplayAfterSeek">$INFO[Player.CacheLevel,$LOCALIZE[15107] ,%]</value>
+        <value condition="!String.IsEmpty(Player.SeekStepSize) + ![Player.Forwarding | Player.Rewinding]">$LOCALIZE[773] $INFO[Player.SeekStepSize]</value>
+        <value condition="Player.DisplayAfterSeek + ![Player.Forwarding | Player.Rewinding]">$LOCALIZE[773] $INFO[Player.SeekOffset]</value>
+        <value condition="!Player.DisplayAfterSeek + Player.Seeking">$LOCALIZE[773]</value>
+	    <value condition="Player.Forwarding">$LOCALIZE[31065] $VAR[VideoPlayerForwardRewindVar]</value>
+		<value condition="Player.Rewinding">$LOCALIZE[31066] $VAR[VideoPlayerForwardRewindVar]</value>
+    </variable>
 
-
+	
 	<!-- END REWORK VARIABLES -->
 
 
@@ -524,13 +541,6 @@
 		<value condition="[Player.Paused + Player.Caching] + !Player.Seeking">$LOCALIZE[15107] $INFO[Player.CacheLevel]%</value>
 		<value condition="Player.Seeking">$LOCALIZE[773]</value>
 		<value condition="Player.DisplayAfterSeek + ![player.forwarding | player.rewinding] + !String.IsEmpty(Player.SeekOffset)">$LOCALIZE[773] $INFO[Player.SeekOffset]</value>
-	</variable>
-	<variable name="VideoPlayerForwardRewindVar">
-		<value condition="Player.Forwarding2x | Player.Rewinding2x">2x</value>
-		<value condition="Player.Forwarding4x | Player.Rewinding4x">4x</value>
-		<value condition="Player.Forwarding8x | Player.Rewinding8x">8x</value>
-		<value condition="Player.Forwarding16x | Player.Rewinding16x">16x</value>
-		<value condition="Player.Forwarding32x | Player.Rewinding32x">32x</value>
 	</variable>
 	
 	<variable name="TvGuideVarTxtScript">
