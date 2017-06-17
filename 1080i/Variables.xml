@@ -309,6 +309,7 @@
 		<value condition="Playlist.IsRepeat">buttons/player/repeat.png</value>
 		<value>buttons/player/repeatoff.png</value>
 	</variable>
+	<!-- SeekBar -->
 	<variable name="VideoPlayerForwardRewindVar">
 		<value condition="Player.Forwarding2x | Player.Rewinding2x">2x</value>
 		<value condition="Player.Forwarding4x | Player.Rewinding4x">4x</value>
@@ -317,6 +318,7 @@
 		<value condition="Player.Forwarding32x | Player.Rewinding32x">32x</value>
 	</variable>
 	<variable name="SeekLabelVar">
+	    <value condition="!Player.Paused + !Player.Caching + !Player.Forwarding + !Player.Rewinding + !Player.Seeking">$INFO[Player.Title]</value>
 		<value condition="Player.Paused + !Player.Caching">$LOCALIZE[112]</value>
 		<value condition="Player.Playing + !Player.Seeking + !Player.DisplayAfterSeek | [Player.Paused + !Player.Caching]">$INFO[System.Time]$INFO[Player.FinishTime, - ,]</value>
 		<value condition="[Player.Paused + Player.Caching] + !Player.Seeking + !Player.DisplayAfterSeek">$INFO[Player.CacheLevel,$LOCALIZE[15107] ,%]</value>
