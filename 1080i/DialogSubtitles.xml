@@ -1,366 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
-<window type="dialog">
-	<zorder>2</zorder>
+<window>
 	<defaultcontrol always="true">120</defaultcontrol>
-	<coordinates>
-		<left>92</left>
-		<top>180</top>
-		<system>1</system>
-	</coordinates>
 	<controls>
-		<include>DialogBackFade</include>
-		<control type="group" id="250">
-			<include>dialogeffect</include><!-- undefined include -->
-			<control type="image">
-				<width>1736</width>
-				<height>722</height>
-				<visible>!Skin.HasSetting(DisableGlowbar)</visible>
-				<texture colordiffuse="$VAR[FocusTextureColorVar]">settings/settings_panelback_shadow.png</texture>
+		<include>Dialog_Furniture_BackgroundFade</include>
+		<include>Dialog_Furniture_Close_Onclick</include>
+		<control type="group">
+			<include content="Dialog_Furniture_Background">
+				<param name="width">1770</param>
+				<param name="height">610</param>
+				<param name="labelid">100</param>
+				<param name="label">$LOCALIZE[24012]</param>
+				<param name="bottomleftlabelid">130</param>
+				<param name="bottomleftlabel">$LOCALIZE[31067]</param>
+				<param name="bottomseparatorvisible">true</param>
+				<param name="bottomrightlabel">$INFO[Container(120).NumItems,, $LOCALIZE[31001]]$INFO[Container(120).CurrentPage, - $LOCALIZE[31000] (]$INFO[Container(120).NumPages,/,)]</param>
+			</include>
+			<control type="image" id="110">
+				<left>280</left>
+				<top>35</top>
+				<width>400</width>
+				<height>45</height>
+				<aspectratio align="center">keep</aspectratio>
 			</control>
-			<control type="image">
-				<width>1736</width>
-				<height>722</height>
-				<texture colordiffuse="$VAR[DialogColorVar]" flipx="true">settings/settings_panelback.png</texture>
-			</control>
-			<control type="label" id="100">
-				<left>30</left>
-				<top>32</top>
-				<width>1676</width>
-				<height>40</height>
-				<font>font15_title</font>
-				<label>XBMC Subtitles</label>
+			<control type="label">
+				<left>385</left>
+				<bottom>22</bottom>
+				<width>750</width>
+				<height>60</height>
 				<align>center</align>
-				
-			</control>
-			<control type="group">
-				<control type="image" id="110">
-					<left>1361</left>
-					<top>28</top>
-					<width>345</width>
-					<height>60</height>
-					<aspectratio align="right">keep</aspectratio>
-				</control>
-				<control type="label" id="140">
-					<left>40</left>
-					<top>640</top>
-					<width>900</width>
-					<height>48</height>
-					<font>font15</font>
-					<textcolor>grey2</textcolor>
-				</control>
-				<control type="label">
-					<left>1361</left>
-					<top>640</top>
-					<width>300</width>
-					<height>48</height>
-					<align>right</align>
-					<font>font13_title</font>
-					<textcolor>grey2</textcolor>
-					<label>$INFO[Container(120).NumItems,[B], $LOCALIZE[31001][/B]]$INFO[Container(120).CurrentPage,[COLOR grey3] | ,]$INFO[Container(120).NumPages,/,[/COLOR]]</label>
-				</control>
-				<control type="label">
-					<description>Video label</description>
-					<left>397</left>
-					<top>640</top>
-					<width>1000</width>
-					<height>48</height>
-					<scroll>true</scroll>
-					<font>font15</font>
-					<label>$INFO[Player.Filename]</label>
-					<align>center</align>
-					<textcolor>grey</textcolor>
-				</control>
-				<control type="group" id="130">
-					<control type="grouplist">
-						<left>40</left>
-						<top>32</top>
-						<width>1734</width>
-						<height>60</height>
-						<align>left</align>
-						<orientation>horizontal</orientation>
-						<itemgap>5</itemgap>
-						<control type="image">
-							<width>52</width>
-							<height>52</height>
-							<texture colordiffuse="white">subtitles/default_icon_info.png</texture>
-						</control>
-						<control type="label">
-							<width min="10" max="393">auto</width>
-							<height>48</height>
-							<label>$LOCALIZE[31414]</label>
-							<font>font15</font>
-							<textcolor>grey2</textcolor>
-						</control>
-					</control>
-				</control>
+				<textcolor>$VAR[HighlightColorVar]</textcolor>
+				<font>Font28_Bold</font>
+				<label>$INFO[Player.Filename,$LOCALIZE[561]: ]</label>
+				<haspath>true</haspath>
+			</control>			
+			<control type="label" id="140">
+				<left>50</left>
+				<top>88</top>
+				<width>1250</width>
+				<height>420</height>
+				<align>center</align>
+				<visible>String.IsEmpty(Container(120).ListItem.Label)</visible>
 			</control>
 			<control type="list" id="120">
 				<left>30</left>
 				<top>88</top>
-				<width>1362</width>
-				<height>540</height>
-				<onleft>121</onleft>
-				<onright>121</onright>
+				<width>1335</width>
+				<height>420</height>
+				<onleft>60</onleft>
+				<onright>150</onright>
 				<onup>120</onup>
 				<ondown>120</ondown>
-				<pagecontrol>121</pagecontrol>
-				<scrolltime tween="quadratic" easing="out">200</scrolltime>
-				<itemlayout width="1262" height="90">
+				<pagecontrol>60</pagecontrol>
+				<itemlayout width="1335" height="60">
 					<control type="image">
-						<top>30</top>
-						<width>1362</width>
+						<width>1335</width>
 						<height>60</height>
-						<texture colordiffuse="$VAR[FocusTextureColorVar]" border="1">settings/settings_separator.png</texture>
+						<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
 					</control>
 					<control type="image">
-						<left>16</left>
-						<top>25</top>
+						<left>10</left>
+						<top>10</top>
 						<width>40</width>
 						<height>40</height>
-						<texture>$INFO[ListItem.Thumb,subtitles/flags/,.png]</texture>
+						<texture>$INFO[ListItem.Art(thumb),flags/subtitles/flags/,.png]</texture>
 					</control>
 					<control type="image">
-						<left>80</left>
-						<top>0</top>
+						<left>60</left>
+						<top>10</top>
 						<width>60</width>
-						<height>60</height>
+						<height>40</height>
 						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="grey2">subtitles/icon_sync.png</texture>
+						<texture>flags/subtitles/icon_sync.png</texture>
 						<visible>ListItem.property(sync)</visible>
-						<animation effect="slide" start="0,0" end="0,15" time="0" condition="!ListItem.property(hearing_imp)">Conditional</animation>
 					</control>
 					<control type="image">
-						<left>90</left>
-						<top>45</top>
+						<left>130</left>
+						<top>10</top>
 						<width>40</width>
 						<height>40</height>
 						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="grey2">subtitles/icon_close_caption.png</texture>
+						<texture>flags/subtitles/icon_close_caption.png</texture>
 						<visible>ListItem.property(hearing_imp)</visible>
-						<animation effect="slide" start="0,0" end="0,-20" time="0" condition="!ListItem.property(sync)">Conditional</animation>
 					</control>
 					<control type="label">
-						<left>80</left>
-						<width>1100</width>
-						<height>90</height>
-						<font>font15</font>
+						<left>180</left>
+						<height>60</height>
+						<width>820</width>
+						<align>left</align>
+						<font>Font28_Reg</font>
 						<label>$INFO[ListItem.Label2]</label>
-						<textcolor>grey2</textcolor>
-						<visible>!ListItem.property(sync) + !ListItem.property(hearing_imp)</visible>
 					</control>
 					<control type="label">
-						<left>1080</left>
-						<width>1100</width>
-						<height>90</height>
-						<align>right</align>
-						<font>font15</font>
+						<right>20</right>
+						<width>160</width>
+						<height>60</height>
+						<font>Font26_Reg</font>
 						<label>$INFO[ListItem.Label]</label>
-						<textcolor>grey4</textcolor>
-						<visible>!ListItem.property(sync) + !ListItem.property(hearing_imp)</visible>
-					</control>
-					<control type="label">
-						<left>155</left>
-						<width>1045</width>
-						<height>90</height>
-						<font>font15</font>
-						<label>$INFO[ListItem.Label2]</label>
-						<textcolor>grey2</textcolor>
-						<visible>ListItem.property(sync) | ListItem.property(hearing_imp)</visible>
-					</control>
-					<control type="label">
-						<left>1080</left>
-						<width>1045</width>
-						<height>90</height>
 						<align>right</align>
-						<font>font15</font>
-						<label>$INFO[ListItem.Label]</label>
-						<textcolor>grey4</textcolor>
-						<visible>ListItem.property(sync) | ListItem.property(hearing_imp)</visible>
 					</control>
 					<control type="image">
-						<left>1200</left>
-						<top>0</top>
+						<left>1005</left>
+						<top>10</top>
 						<width>150</width>
-						<height>90</height>
+						<height>45</height>
+						<texture fallback="flags/ratingstars/rating0.png">$INFO[ListItem.ActualIcon,flags/ratingstars/rating,.png]</texture>
 						<aspectratio>keep</aspectratio>
-						<texture colordiffuse="grey2">$INFO[ListItem.ActualIcon,rating,.png]</texture>
 					</control>
 				</itemlayout>
-				<focusedlayout width="1262" height="90">
+				<focusedlayout width="1335" height="60">
 					<control type="image">
-						<top>30</top>
-						<width>1262</width>
-						<height>60</height>
-						<texture colordiffuse="$VAR[FocusTextureColorVar]" border="1">settings/settings_separator.png</texture>
-					</control>
-					<control type="image">
-						<width>1362</width>
-						<height>90</height>
-						<texture colordiffuse="$VAR[FocusTextureColorVar]" border="5">views/tripanel/listselect_fo.png</texture>
-						<include>VisibleFadeEffect</include>
 						<visible>Control.HasFocus(120)</visible>
-					</control>
-					<control type="image">
-						<left>16</left>
-						<top>25</top>
-						<width>40</width>
-						<height>40</height>
-						<texture>$INFO[ListItem.Thumb,subtitles/flags/,.png]</texture>
-					</control>
-					<control type="image">
-						<left>80</left>
-						<top>0</top>
-						<width>60</width>
+						<width>1335</width>
 						<height>60</height>
-						<aspectratio>keep</aspectratio>
-						<texture>subtitles/icon_sync.png</texture>
-						<visible>ListItem.property(sync)</visible>
-						<animation effect="slide" start="0,0" end="0,15" time="0" condition="!ListItem.property(hearing_imp)">Conditional</animation>
+						<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
 					</control>
 					<control type="image">
-						<left>90</left>
-						<top>45</top>
+						<left>10</left>
+						<top>10</top>
+						<width>40</width>
+						<height>40</height>
+						<texture>$INFO[ListItem.Art(thumb),flags/subtitles/flags/,.png]</texture>
+					</control>
+					<control type="image">
+						<left>60</left>
+						<top>10</top>
+						<width>60</width>
+						<height>40</height>
+						<aspectratio>keep</aspectratio>
+						<texture>flags/subtitles/icon_sync.png</texture>
+						<visible>ListItem.property(sync)</visible>
+					</control>
+					<control type="image">
+						<left>130</left>
+						<top>10</top>
 						<width>40</width>
 						<height>40</height>
 						<aspectratio>keep</aspectratio>
-						<texture>subtitles/icon_close_caption.png</texture>
+						<texture>flags/subtitles/icon_close_caption.png</texture>
 						<visible>ListItem.property(hearing_imp)</visible>
-						<animation effect="slide" start="0,0" end="0,-20" time="0" condition="!ListItem.property(sync)">Conditional</animation>
 					</control>
 					<control type="label">
-						<left>80</left>
-						<width>1000</width>
-						<height>90</height>
-						<font>font15</font>
+						<left>180</left>
+						<height>60</height>
+						<width>820</width>
+						<align>left</align>
+						<font>Font28_Reg</font>
 						<label>$INFO[ListItem.Label2]</label>
-						<visible>!ListItem.property(sync) + !ListItem.property(hearing_imp)</visible>
 					</control>
 					<control type="label">
-						<left>1180</left>
-						<width>1100</width>
-						<height>90</height>
-						<align>right</align>
-						<font>font15</font>
+						<right>20</right>
+						<width>160</width>
+						<height>60</height>
+						<font>Font26_Reg</font>
 						<label>$INFO[ListItem.Label]</label>
-						<visible>!ListItem.property(sync) + !ListItem.property(hearing_imp)</visible>
-					</control>
-					<control type="label">
-						<left>155</left>
-						<width>945</width>
-						<height>90</height>
-						<font>font15</font>
-						<label>$INFO[ListItem.Label2]</label>
-						<visible>ListItem.property(sync) | ListItem.property(hearing_imp)</visible>
-					</control>
-					<control type="label">
-						<left>1180</left>
-						<width>945</width>
-						<height>90</height>
 						<align>right</align>
-						<font>font15</font>
-						<label>$INFO[ListItem.Label]</label>
-						<visible>ListItem.property(sync) | ListItem.property(hearing_imp)</visible>
 					</control>
 					<control type="image">
-						<left>1200</left>
-						<top>0</top>
+						<left>1005</left>
+						<top>10</top>
 						<width>150</width>
-						<height>90</height>
+						<height>45</height>
+						<texture fallback="flags/ratingstars/rating0.png">$INFO[ListItem.ActualIcon,flags/ratingstars/rating,.png]</texture>
 						<aspectratio>keep</aspectratio>
-						<texture>$INFO[ListItem.ActualIcon,rating,.png]</texture>
 					</control>
 				</focusedlayout>
 			</control>
-			<control type="scrollbar" id="121">
-				<left>1390</left>
+			<control type="image">
+				<left>1370</left>
 				<top>88</top>
-				<width>14</width>
-				<height>540</height>
-				<onup>121</onup>
-				<ondown>121</ondown>
-				<onleft>120</onleft>
-				<onright>150</onright>
-				<texturesliderbackground>-</texturesliderbackground>
-				<texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
-				<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
-				<showonepage>false</showonepage>
-				<orientation>vertical</orientation>
+				<width>4</width>
+				<height>440</height>
+				<texture colordiffuse="$VAR[PanelColorVar]">panels/line-vertical.png</texture>
 			</control>
-			<control type="group">
-				<control type="image">
-					<left>1306</left>
-					<top>88</top>
-					<width>400</width>
-					<height>540</height>
-					<texture border="5">dialogs/default/inner2.png</texture>
-				</control>
-				<control type="list" id="150">
-					<left>1406</left>
-					<top>88</top>
-					<width>300</width>
-					<height>450</height>
-					<onleft>120</onleft>
-					<onright>120</onright>
-					<onup>160</onup>
-					<ondown>160</ondown>
-					<viewtype label="535">list</viewtype>
-					<scrolltime tween="quadratic" easing="out">200</scrolltime>
-					<itemlayout width="400" height="90">
-						<control type="image">
-							<top>30</top>
-							<width>400</width>
-							<height>60</height>
-							<texture colordiffuse="$VAR[FocusTextureColorVar]" border="1">settings/settings_separator.png</texture>
-						</control>
-						<control type="label">
-							<width>600</width>
-							<height>90</height>
-							<textoffsetx>15</textoffsetx>
-							<font>font15</font>
-							<textcolor>grey2</textcolor>
-							<selectedcolor>selected</selectedcolor>
-							<info>ListItem.Label</info>
-						</control>
-					</itemlayout>
-					<focusedlayout width="400" height="90">
-						<control type="image">
-							<top>30</top>
-							<width>400</width>
-							<height>60</height>
-							<texture colordiffuse="$VAR[FocusTextureColorVar]" border="1">settings/settings_separator.png</texture>
-						</control>
-						<control type="image">
-							<width>400</width>
-							<height>90</height>
-							<texture colordiffuse="$VAR[FocusTextureColorVar]" border="5">views/tripanel/listselect_fo.png</texture>
-							<include>VisibleFadeEffect</include>
-							<visible>Control.HasFocus(150)</visible>
-						</control>
-						<control type="label">
-							<width>600</width>
-							<height>90</height>
-							<textoffsetx>15</textoffsetx>
-							<font>font15</font>
-							<selectedcolor>selected</selectedcolor>
-							<info>ListItem.Label</info>
-						</control>
-					</focusedlayout>
-				</control>
-				<control type="button" id="160">
-					<description>Manual Button</description>
-					<top>538</top>
-					<left>1406</left>
-					<onleft>120</onleft>
-					<onright>120</onright>
-					<onup>150</onup>
-					<ondown>150</ondown>
-					<texturefocus colordiffuse="$VAR[FocusTextureColorVar]">views/tripanel/listselect_fo.png</texturefocus>
-					<texturenofocus>-</texturenofocus>
-					<width>300</width>
-					<height>90</height>
-					<label>$LOCALIZE[24120]</label>
-					<font>font15</font>
-				</control>
+			<control type="list" id="150">
+				<left>1375</left>
+				<top>88</top>
+				<width>360</width>
+				<height>300</height>
+				<onleft>120</onleft>
+				<onright>8000</onright>
+				<onup>8000</onup>
+				<ondown>160</ondown>
+				<viewtype label="535">list</viewtype>
+				<scrolltime>200</scrolltime>
+				<itemlayout width="360" height="60">
+					<control type="image">
+						<width>360</width>
+						<height>60</height>
+						<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
+					</control>
+					<control type="label">
+						<width>360</width>
+						<height>60</height>
+						<textoffsetx>15</textoffsetx>
+						<info>ListItem.Label</info>
+					</control>
+				</itemlayout>
+				<focusedlayout width="360" height="60">
+					<control type="image">
+						<visible>Control.HasFocus(150)</visible>
+						<width>360</width>
+						<height>60</height>
+						<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+					</control>
+					<control type="label">
+						<width>360</width>
+						<height>60</height>
+						<textoffsetx>15</textoffsetx>
+						<info>ListItem.Label</info>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="button" id="160">
+				<width>360</width>
+		        <height>60</height>
+		        <align>center</align>
+		        <textoffsetx>20</textoffsetx>
+				<right>35</right>
+				<bottom>81</bottom>
+				<onup>150</onup>
+				<onright>8000</onright>
+				<onleft>150</onleft>
+				<label>$LOCALIZE[24120]</label>
+			</control>
+			<control type="grouplist" id="8000">
+				<right>60</right>
+				<top>28</top>
+				<width>600</width>
+				<onleft>150</onleft>
+				<onright>150</onright>
+				<ondown>150</ondown>
+				<align>right</align>
+				<itemgap>10</itemgap>
+				<orientation>horizontal</orientation>
+				<include content="Dialog_Button_TopRight">
+					<param name="id">8001</param>
+					<param name="label">$LOCALIZE[15067]</param>
+					<param name="onclick">Action(close)</param>
+				</include>
+			</control>
+			<control type="scrollbar" id="60">
+				<left>1</left>
+				<top>88</top>
+				<height>420</height>
+				<onleft>8000</onleft>
+				<onright>120</onright>
 			</control>
 		</control>
 	</controls>
