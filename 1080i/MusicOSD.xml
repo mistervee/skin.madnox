@@ -1,226 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
-	<defaultcontrol always="true">703</defaultcontrol>
+	<onload condition="MusicPlayer.Content(LiveTV) + !Player.PauseEnabled">SetFocus(201)</onload>
+	<defaultcontrol always="true">206</defaultcontrol>
 	<controls>
-		<include>Dialog_Furniture_Close_Onclick</include>
 		<control type="group">
+			<visible>!Window.IsActive(dialogsettings.xml) + !Window.IsActive(dialogselect.xml) + !Window.IsActive(subtitlesearch) + !Window.IsActive(pvrosdChannels) + !Window.IsActive(pvrchannelguide) + !Window.IsActive(1117)</visible>
 			<include content="Animation_Slide_Bottom">
 				<param name="slide">160</param>
 			</include>
-			<top>942</top>
+			<top>950</top>
 			<control type="image">
-				<top>-10</top>
+				<top>-20</top>
 				<width>1920</width>
 				<height>20</height>
 				<texture colordiffuse="$VAR[GlowColorVar]">dialogs/glow-bottom.png</texture>
 			</control>
 			<control type="image">
 				<width>1920</width>
-				<height>150</height>
-				<texture colordiffuse="$VAR[PanelColorVar]" border="10">dialogs/osd-back.png</texture>
+				<height>130</height>
+				<texture colordiffuse="$VAR[PanelColorVar]" border="15">dialogs/osd-back.png</texture>
 			</control>
 			<control type="grouplist">
 				<left>5</left>
-				<bottom>5</bottom>
+				<bottom>-5</bottom>
 				<height>120</height>
-				<width>600</width>
-				<onright>701</onright>
+				<onleft>308</onleft>
+				<onright>201</onright>
 				<itemgap>-10</itemgap>
 				<orientation>horizontal</orientation>
-				<include content="Dialog_Button_OSD">
-					<param name="id" value="601" />
-					<param name="texture" value="buttons/player/list.png" />
-					<param name="onclick" value="Close" />
-					<param name="onclick2" value="ActivateWindow(MusicPlaylist)" />
-				</include>
-				<include content="Dialog_Button_OSD">
-					<param name="id" value="500" />
-					<param name="texture" value="buttons/player/visualisation.png" />
-				</include>
-				<include content="Dialog_Button_OSD">
-					<param name="id" value="602" />
-					<param name="texture" value="buttons/player/settings.png" />
-					<param name="onclick" value="Addon.Default.OpenSettings(xbmc.player.musicviz)" />
-					<param name="visible" value="Visualisation.Enabled" />
-				</include>
-				<include content="Dialog_Button_OSD">
-					<param name="id" value="603" />
-					<param name="texture" value="buttons/player/visualisationpreset.png" />
-					<param name="onclick" value="ActivateWindow(visualisationpresetlist)" />
-					<param name="visible" value="Visualisation.HasPresets" />
-				</include>
-				<control type="label" id="604">
-					<width>150</width>
-					<font>Font26_Reg_08</font>
-					<textcolor>grey</textcolor>
-					<wrapmultiline>true</wrapmultiline>
-					<label>$VAR[MusicOSDLabelVar]</label>
+				<control type="radiobutton" id="101">
+					<include content="Dialog_Button_OSD">
+						<param name="texture" value="buttons/player/settings.png"/>
+					</include>
+					<onclick>ActivateWindow(1117)</onclick>
+				</control>
+				<control type="radiobutton" id="102">
+					<include content="Dialog_Button_OSD">
+						<param name="texture" value="buttons/player/rating.png"/>
+					</include>
+					<onclick>SetRating</onclick>
+				</control>
+				<control type="radiobutton" id="103">
+					<include content="Dialog_Button_OSD">
+						<param name="texture" value="buttons/player/list.png"/>
+					</include>
+					<onclick>Close</onclick>
+					<onclick>ActivateWindow(MusicPlaylist)</onclick>
+					<visible>!MusicPlayer.Content(LiveTV)</visible>
 				</control>
 			</control>
-			<control type="group">
-				<left>5</left>
-				<bottom>5</bottom>
-				<height>120</height>
-				<width>600</width>
-				<include content="Dialog_Button_OSD_Highlight">
-					<param name="visible" value="Control.HasFocus(601)" />
-				</include>
-				<include content="Dialog_Button_OSD_Highlight">
-					<param name="left">110</param>
-					<param name="visible" value="Control.HasFocus(500)" />
-				</include>
-				<include content="Dialog_Button_OSD_Highlight">
-					<param name="left">220</param>
-					<param name="visible" value="Control.HasFocus(602)" />
-				</include>
-				<include content="Dialog_Button_OSD_Highlight">
-					<param name="left">330</param>
-					<param name="visible" value="Control.HasFocus(603)" />
-				</include>
-			</control>
 			<control type="grouplist">
-				<left>625</left>
-				<right>625</right>
-				<bottom>5</bottom>
+				<bottom>-5</bottom>
 				<height>120</height>
-				<onright>801</onright>
-				<onleft>603</onleft>
+				<onright>301</onright>
+				<onleft>103</onleft>
 				<align>center</align>
 				<itemgap>-10</itemgap>
 				<orientation>horizontal</orientation>
-				<include content="Dialog_Button_OSD">
-					<param name="id" value="701" />
-					<param name="texture" value="buttons/player/previous.png" />
-					<param name="onclick" value="PlayerControl(Previous)" />
-				</include>
-				<include content="Dialog_Button_OSD">
-					<param name="id" value="702" />
-					<param name="texture" value="buttons/player/rw.png" />
-					<param name="onclick" value="PlayerControl(Rewind)" />
-				</include>
-				<include content="Dialog_Button_OSD">
-					<param name="id" value="703" />
-					<param name="texture" value="buttons/player/stop.png" />
-					<param name="onclick" value="PlayerControl(Stop)" />
-				</include>
-				<include content="Dialog_ToggleButton_OSD">
-					<param name="id" value="704" />
-					<param name="texture" value="buttons/player/pause.png" />
-					<param name="alttexture" value="buttons/player/play.png" />
-					<param name="usealttexture" value="Player.Paused" />
-					<param name="onclick" value="PlayerControl(Play)" />
-				</include>
-				<include content="Dialog_Button_OSD">
-					<param name="id" value="705" />
-					<param name="texture" value="buttons/player/ff.png" />
-					<param name="onclick" value="PlayerControl(Foward)" />
-				</include>
-				<include content="Dialog_Button_OSD">
-					<param name="id" value="706" />
-					<param name="texture" value="buttons/player/next.png" />
-					<param name="onclick" value="PlayerControl(Next)" />
-				</include>
-			</control>
-			<control type="group">
-				<left>625</left>
-				<right>625</right>
-				<bottom>5</bottom>
-				<height>120</height>
-				<include content="Dialog_Button_OSD_Highlight">
-					<param name="visible" value="Control.HasFocus(701)" />
-				</include>
-				<include content="Dialog_Button_OSD_Highlight">
-					<param name="left">110</param>
-					<param name="visible" value="Control.HasFocus(702)" />
-				</include>
-				<include content="Dialog_Button_OSD_Highlight">
-					<param name="left">220</param>
-					<param name="visible" value="Control.HasFocus(703)" />
-				</include>
-				<include content="Dialog_Button_OSD_Highlight">
-					<param name="left">330</param>
-					<param name="visible" value="Control.HasFocus(704)" />
-				</include>
-				<include content="Dialog_Button_OSD_Highlight">
-					<param name="left">440</param>
-					<param name="visible" value="Control.HasFocus(705)" />
-				</include>
-				<include content="Dialog_Button_OSD_Highlight">
-					<param name="left">550</param>
-					<param name="visible" value="Control.HasFocus(706)" />
-				</include>
+				<usecontrolcoords>true</usecontrolcoords>
+				<control type="radiobutton" id="201">
+					<include content="Dialog_Button_OSD">
+						<param name="texture" value="buttons/player/up.png"/>
+					</include>
+					<onclick>PlayerControl(Previous)</onclick>
+					<visible>MusicPlayer.Content(LiveTV)</visible>
+				</control>
+				<control type="radiobutton" id="202">
+					<include content="Dialog_Button_OSD">
+						<param name="texture" value="buttons/player/down.png"/>
+					</include>
+					<onclick>PlayerControl(Next)</onclick>
+					<visible>MusicPlayer.Content(LiveTV)</visible>
+				</control>
+				<control type="radiobutton" id="203">
+					<include content="Dialog_Button_OSD">
+						<param name="texture" value="buttons/player/previous.png"/>
+					</include>
+					<onclick>PlayerControl(Previous)</onclick>
+					<visible>!MusicPlayer.Content(LiveTV)</visible>
+				</control>
+				<control type="radiobutton" id="204">
+					<include content="Dialog_Button_OSD">
+						<param name="texture" value="buttons/player/rw.png"/>
+					</include>
+					<onclick>PlayerControl(Rewind)</onclick>
+					<visible>Player.SeekEnabled</visible>
+				</control>
+				<control type="radiobutton" id="205">
+					<include content="Dialog_Button_OSD">
+						<param name="texture" value="buttons/player/stop.png"/>
+					</include>
+					<onclick>PlayerControl(Stop)</onclick>
+				</control>
+				<control type="radiobutton" id="206">
+					<include>Dialog_Button_OSD</include>
+					<onclick>PlayerControl(Play)</onclick>
+					<visible>Player.PauseEnabled</visible>
+				</control>
+				<control type="image" id="207">
+					<left>-110</left>
+					<width>120</width>
+					<height>120</height>
+					<texture>$VAR[OSDPlayButtonVar]</texture>
+					<visible>Player.PauseEnabled</visible>
+				</control>
+				<control type="radiobutton" id="208">
+					<include content="Dialog_Button_OSD">
+						<param name="texture" value="buttons/player/ff.png"/>
+					</include>
+					<onclick>PlayerControl(Forward)</onclick>
+					<visible>Player.SeekEnabled</visible>
+				</control>
+				<control type="radiobutton" id="209">
+					<include content="Dialog_Button_OSD">
+						<param name="texture" value="buttons/player/next.png"/>
+					</include>
+					<onclick>PlayerControl(Next) + MusicPlayer.HasNext</onclick>
+					<visible>!VideoPlayer.Content(livetv)</visible>
+				</control>
+				<control type="radiobutton" id="210">
+					<include>Dialog_Button_OSD</include>
+					<onclick>PlayerControl(Record)</onclick>
+					<visible>Player.CanRecord</visible>
+				</control>
+				<control type="image" id="211">
+					<left>-110</left>
+					<width>120</width>
+					<height>120</height>
+					<texture>$VAR[OSDRecordButtonVar]</texture>
+					<visible>Player.CanRecord</visible>
+				</control>
 			</control>
 			<control type="grouplist">
 				<right>5</right>
-				<bottom>5</bottom>
+				<bottom>-5</bottom>
 				<height>120</height>
-				<width>600</width>
-				<onleft>706</onleft>
+				<onleft>211</onleft>
+				<onright>101</onright>
 				<align>right</align>
 				<itemgap>-10</itemgap>
 				<orientation>horizontal</orientation>
 				<usecontrolcoords>true</usecontrolcoords>
-				<control type="label" id="801">
-					<width>120</width>
-					<align>right</align>
-					<font>Font26_Reg_08</font>
-					<textcolor>grey</textcolor>
-					<wrapmultiline>true</wrapmultiline>
-					<label>$VAR[MusicOSDLabel2Var]</label>
+				<control type="radiobutton" id="301">
+					<include content="Dialog_Button_OSD">
+						<param name="texture" value="buttons/player/info.png"/>
+					</include>
+					<onclick>Info</onclick>
 				</control>
-				<control type="button" id="802">
+				<control type="radiobutton" id="302">
+					<include>Dialog_Button_OSD</include>
+					<onclick>PlayerControl(Repeat)</onclick>
+					<visible>!MusicPlayer.Content(LiveTV)</visible>
+				</control>
+				<control type="image" id="303">
+					<left>-110</left>
 					<width>120</width>
 					<height>120</height>
-					<texturefocus>buttons/player/lyrics.png</texturefocus>
-					<texturenofocus>buttons/player/lyrics.png</texturenofocus>
-					<onclick condition="System.HasAddon(script.cu.lrclyrics)">RunScript(script.cu.lrclyrics)</onclick>
-					<onclick condition="!System.HasAddon(script.cu.lrclyrics)">InstallAddon(script.cu.lrclyrics)</onclick>
+					<texture>$VAR[OSDRepeatButtonVar]</texture>
+					<visible>!MusicPlayer.Content(LiveTV)</visible>
+				</control>
+				<control type="radiobutton" id="304">
+					<include>Dialog_Button_OSD</include>
+					<onclick>PlayerControl(Random)</onclick>
+					<visible>!MusicPlayer.Content(LiveTV)</visible>
+				</control>
+				<control type="image" id="305">
+					<left>-110</left>
+					<width>120</width>
+					<height>120</height>
+					<texture>$VAR[OSDRandomButtonVar]</texture>
+					<visible>!MusicPlayer.Content(LiveTV)</visible>
+				</control>
+				<control type="radiobutton" id="306">
+					<include content="Dialog_Button_OSD">
+						<param name="texture" value="buttons/player/lyrics.png"/>
+					</include>
+					<onclick>Info</onclick>
 					<onclick>Close</onclick>
+					<onclick condition="!String.IsEmpty(Skin.String(LyricScript_Path))">RunScript($INFO[Skin.String(LyricScript_Path)])</onclick>
+					<onclick condition="String.IsEmpty(Skin.String(LyricScript_Path))">Skin.SetAddon(LyricScript_Path,xbmc.python.lyrics)</onclick>
+					<onclick condition="String.IsEmpty(Skin.String(LyricScript_Path))">Close</onclick>
+					<onclick condition="String.IsEmpty(Skin.String(LyricScript_Path))">RunScript($INFO[Skin.String(LyricScript_Path)])</onclick>
+					<onclick>Close</onclick>
+					<visible>!MusicPlayer.Content(LiveTV)</visible>
 				</control>
-				<include content="Dialog_Button_OSD">
-					<param name="id" value="803" />
-					<param name="onclick" value="PlayerControl(Repeat)" />
-				</include>
-				<control type="image" id="804">
-					<left>-120</left>
-					<width>120</width>
-					<height>120</height>
-					<texture>$VAR[MusicOSDRepeatButtonVar]</texture>
+				<control type="radiobutton" id="307">
+					<include content="Dialog_Button_OSD">
+						<param name="texture" value="buttons/player/channels.png"/>
+					</include>
+					<onclick>ActivateWindow(pvrosdChannels)</onclick>
+					<visible>VideoPlayer.HasEpg</visible>
+					<visible>MusicPlayer.Content(LiveTV)</visible>
 				</control>
-				<include content="Dialog_ToggleButton_OSD">
-					<param name="id" value="805" />
-					<param name="texture" value="buttons/player/randomon.png" />
-					<param name="alttexture" value="buttons/player/randomoff.png" />
-					<param name="usealttexture" value="Playlist.IsRandom" />
-					<param name="onclick" value="PlayerControl(Random)" />
-				</include>
-				<include content="Dialog_Button_OSD">
-					<param name="id" value="806" />
-					<param name="texture" value="buttons/player/settings.png" />
-					<param name="onclick" value="ActivateWindow(1117)" />
-				</include>
-			</control>
-			<control type="group">
-				<right>5</right>
-				<bottom>5</bottom>
-				<height>120</height>
-				<width>600</width>
-				<include content="Dialog_Button_OSD_Highlight">
-					<param name="left">160</param>
-					<param name="visible" value="Control.HasFocus(802)" />
-				</include>
-				<include content="Dialog_Button_OSD_Highlight">
-					<param name="left">260</param>
-					<param name="visible" value="Control.HasFocus(803)" />
-				</include>
-				<include content="Dialog_Button_OSD_Highlight">
-					<param name="left">370</param>
-					<param name="visible" value="Control.HasFocus(805)" />
-				</include>
-				<include content="Dialog_Button_OSD_Highlight">
-					<param name="left">480</param>
-					<param name="visible" value="Control.HasFocus(806)" />
-				</include>
+				<control type="radiobutton" id="308">
+					<include content="Dialog_Button_OSD">
+						<param name="texture" value="buttons/player/guide.png"/>
+					</include>
+					<onclick>ActivateWindow(pvrchannelguide)</onclick>
+					<visible>VideoPlayer.HasEpg</visible>
+					<visible>MusicPlayer.Content(LiveTV)</visible>
+				</control>
 			</control>
 		</control>
 	</controls>

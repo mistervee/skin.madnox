@@ -1,34 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
-	<visible>Player.Seeking | Player.DisplayAfterSeek | [Player.Paused + !Player.Caching] | Player.Forwarding | Player.Rewinding | Player.ShowInfo | Window.IsActive(videoosd) | Window.IsActive(musicosd) | Window.IsActive(playerprocessinfo) | !String.IsEmpty(Player.SeekNumeric)</visible>
-	<visible>!Window.IsActive(sliderdialog)</visible>
-	<visible>Window.IsActive(fullscreenvideo) | Window.IsActive(visualisation)</visible>
+	<visible>Player.Seeking | Player.DisplayAfterSeek | [Player.Paused + !Player.Caching] | Player.Forwarding | Player.Rewinding | Window.IsActive(videoosd)</visible>
+	<visible>!Window.IsActive(videobookmarks) + !Window.IsActive(dialogsettings.xml) + !Window.IsActive(dialogselect.xml) + !Window.IsActive(subtitlesearch) + !Window.IsActive(pvrosdChannels) + !Window.IsActive(pvrchannelguide) + !Window.IsActive(teletext) + !Window.IsActive(1118)</visible>
+	<visible>Window.IsActive(fullscreenvideo)</visible>
 	<zorder>0</zorder>
 	<controls>
-		<include>Dialog_Furniture_Close_Onclick</include>
+		<control type="grouplist">
+			<include>FullscreenDimensions</include>
+			<align>center</align>
+			<itemgap>20</itemgap>
+			<orientation>horizontal</orientation>
+			<include>Animation_VisibleFade</include>
+			<visible>!Player.Caching + [Player.Paused | Player.Forwarding | Player.Rewinding]</visible>
+			<control type="label">
+				<width>auto</width>
+				<align>center</align>
+				<font>Font120_Bold_Caps</font>
+				<textcolor>grey3</textcolor>
+				<label>$VAR[SeekLabelVar]</label>
+			</control>
+			<control type="label">
+				<width>auto</width>
+				<align>center</align>
+				<font>Font120_Icon</font>
+				<textcolor>grey3</textcolor>
+				<label>$VAR[SeekIconVar]</label>
+			</control>
+		</control>
 		<control type="group">
 			<include content="Animation_Slide_Bottom">
-				<param name="slide">220</param>
+				<param name="slide">98</param>
 			</include>
-			<top>870</top>
-			<control type="image">
-				<top>-10</top>
-				<width>1920</width>
-				<height>20</height>
-				<texture colordiffuse="$VAR[GlowColorVar]">dialogs/glow-bottom.png</texture>
-			</control>
-			<control type="image">
-				<width>1920</width>
-				<height>210</height>
-				<texture colordiffuse="$VAR[PanelColorVar]" border="15">dialogs/osd-back.png</texture>
+			<top>982</top>
+			<control type="group">
+				<animation effect="slide" end="0,-100" time="300" tween="quadratic" easing="out" condition="Window.IsActive(videoosd)">Conditional</animation>
+				<control type="image">
+					<width>1920</width>
+					<height>20</height>
+					<texture colordiffuse="$VAR[GlowColorVar]">dialogs/glow-bottom.png</texture>
+				</control>
+				<control type="image">
+					<width>1920</width>
+					<height>98</height>
+					<texture colordiffuse="$VAR[PanelColorVar]" border="15">dialogs/osd-back.png</texture>
+					<animation effect="zoom" end="0,0,1920,198" time="300" tween="quadratic" easing="out" condition="Window.IsActive(videoosd)">Conditional</animation>
+				</control>
 			</control>
 			<control type="group">
-				<bottom>0</bottom>
+				<bottom>10</bottom>
 				<width>1920</width>
 				<height>40</height>
 				<control type="progress">
 					<centerleft>50%</centerleft>
-					<bottom>59</bottom>
+					<bottom>39</bottom>
 					<width>1862</width>
 					<info>Player.ProgressCache</info>
 					<texturebg border="8">dialogs/progress-control/progress-back.png</texturebg>
@@ -36,49 +60,37 @@
 				</control>
 				<control type="progress">
 					<centerleft>50%</centerleft>
-					<bottom>59</bottom>
+					<bottom>39</bottom>
 					<width>1862</width>
 					<texturebg border="8">dialogs/progress-control/progress-back-cache.png</texturebg>
 					<info>Player.Progress</info>
 				</control>
-				<control type="slider" id="401">
-					<centerleft>50%</centerleft>
-					<bottom>59</bottom>
-					<width>1862</width>
-					<height>20</height>
-					<texturesliderbar />
-					<textureslidernib />
-					<textureslidernibfocus />
-				</control>
 				<control type="label">
 					<left>30</left>
-					<bottom>20</bottom>
-					<width>400</width>
+					<width>350</width>
 					<height>40</height>
 					<align>left</align>
-					<font>Font26_Reg</font>
+					<font>Font28_Reg</font>
 					<textcolor>grey</textcolor>
 					<label>$INFO[Player.Time(hh:mm:ss),, / ]$INFO[Player.Duration(hh:mm:ss)]</label>
 				</control>
 				<control type="label">
 					<right>30</right>
-					<bottom>20</bottom>
-					<width>400</width>
+					<width>350</width>
 					<height>40</height>
 					<align>right</align>
-					<font>Font26_Reg</font>
+					<font>Font28_Reg</font>
 					<textcolor>grey</textcolor>
 					<label>$INFO[System.Time,, / ]$INFO[Player.FinishTime]</label>
 				</control>
 				<control type="label">
-				    <centerleft>50%</centerleft>
-					<bottom>20</bottom>
-					<width>1100</width>
+					<centerleft>50%</centerleft>
+					<width>1220</width>
 					<height>40</height>
 					<align>center</align>
-					<font>Font26_Reg</font>
+					<font>Font28_Reg</font>
 					<textcolor>grey</textcolor>
-					<label>$VAR[SeekLabelVar]</label>
+					<label>$VAR[PlayerLabelVar]</label>
 				</control>
 			</control>
 		</control>

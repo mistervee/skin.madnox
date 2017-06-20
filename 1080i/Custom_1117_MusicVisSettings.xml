@@ -6,9 +6,8 @@
 		<include>Dialog_Furniture_Close_Onclick</include>
 		<control type="group">
 			<include content="Dialog_Furniture_Background">
-				<param name="label">$LOCALIZE[12006]</param>
+				<param name="label">$LOCALIZE[5]</param>
 				<param name="bottomseparatorvisible">false</param>
-				<param name="bottomleftlabel"></param>
 				<param name="bottomrightlabel">$VAR[DialogItemsLabelVar]</param>
 			</include>
 			<control type="image">
@@ -29,6 +28,47 @@
 				<onright>8000</onright>
 				<onleft>60</onleft>
 				<pagecontrol>60</pagecontrol>
+				<control type="button" id="101">
+					<include>Dialog_Button_Default</include>
+					<label>$LOCALIZE[15047]</label>
+					<onclick>ActivateWindow(OSDAudioDSPSettings)</onclick>
+					<visible>system.getbool(audiooutput.dspaddonsenabled)</visible>
+				</control>
+				<control type="button" id="102">
+					<include>Dialog_Button_Default</include>
+					<label>$LOCALIZE[15020]</label>
+					<onclick>ActivateWindow(AudioDSPManager)</onclick>
+					<visible>system.getbool(audiooutput.dspaddonsenabled)</visible>
+				</control>
+				<control type="button" id="103">
+					<include>Dialog_Button_Default</include>
+					<label>$LOCALIZE[250]</label>
+					<label2>$INFO[Visualisation.Name]</label2>
+					<onclick>SendClick(500)</onclick>
+				</control>
+				<control type="button" id="104">
+					<include>Dialog_Button_Default</include>
+					<label>$LOCALIZE[31065]</label>
+					<onclick>Addon.Default.OpenSettings(xbmc.player.musicviz)</onclick>
+				</control>
+				<control type="button" id="105">
+					<include>Dialog_Button_Default</include>
+					<label>$LOCALIZE[31066]</label>
+					<onclick>ActivateWindow(visualisationpresetlist)</onclick>
+					<visible>Visualisation.HasPresets</visible>
+				</control>
+				<control type="button" id="106">
+					<include>Dialog_Button_Default</include>
+					<label>$LOCALIZE[31068]</label>
+					<label2>$INFO[Skin.String(LyricScript_Path)]</label2>
+					<onclick>Skin.SetAddon(LyricScript_Path,xbmc.python.lyrics)</onclick>
+				</control>
+				<control type="button" id="107">
+					<include>Dialog_Button_Default</include>
+					<label>$LOCALIZE[31069]</label>
+					<onclick>Addon.OpenSettings($INFO[Skin.String(LyricScript_Path)])</onclick>
+					<visible>!String.IsEmpty(Skin.String(LyricScript_Path))</visible>
+				</control>
 				<!-- <control type="button" id="101">
 					<label>$LOCALIZE[31102] [LOWERCASE]$LOCALIZE[31115][/LOWERCASE]</label>
 					<label2>[COLOR $VAR[FontColorVar]]$INFO[Skin.String(MusicViz.MultiFanart)][/COLOR]</label2>
