@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<!-- Video FanartList -->
+	<include name="View_507_FanartList">
+		<control type="group">
+			<visible>Control.IsVisible(507)</visible>
+			<!-- Left Content -->
+			<control type="group">
+				<include content="Animation_Slide_Left">
+					<param name="slide">1263</param>
+					<param name="opencondition">true</param>
+					<param name="closecondition">true</param>
+				</include>
+				<include content="Animation_FurnitureShift">
+					<param name="slidetopbarcondition">Skin.HasSetting(View507HideTopBar)</param>
+				</include>
+				<include content="Panel_Background_Default">
+					<param name="width">1863</param>
+					<param name="height">930</param>
+					<param name="left">45</param>
+					<param name="top">85</param>
+					<param name="reflect">!Skin.HasSetting(View507HideFloor)</param>
+				</include>
+				<control type="image">
+					<left>928</left>
+					<top>145</top>
+					<width>200</width>
+					<height>800</height>
+					<texture colordiffuse="$VAR[PanelColorVar]" border="40">panels/list-detail-underlay.png</texture>
+					<visible>!String.IsEmpty(Container(507).ListItem(1).Label2) | !String.IsEmpty(Container(507).ListItem(2).Label2) | !String.IsEmpty(Container(507).ListItem(3).Label2) | Container.Content(seasons) | Container.Content(artists) | Container.Content(addons)</visible>
+				</control>
+				<control type="image">
+					<left>120</left>
+					<top>145</top>
+					<width>120</width>
+					<height>800</height>
+					<texture colordiffuse="$VAR[PanelColorVar]" border="40">panels/list-detail-underlay.png</texture>
+					<visible>Container.Content(episodes) | Container.Content(songs)</visible>
+				</control>
+				<control type="group">
+					<posx>76</posx>
+					<posy>60</posy>
+					<control type="list" id="507">
+						<posx>0</posx>
+						<posy>92</posy>
+						<width>1133</width>
+						<height>800</height>
+						<onleft>9000</onleft>
+						<onright>60</onright>
+						<viewtype label="Fanart List">list</viewtype>
+						<pagecontrol>60</pagecontrol>
+						<preloaditems>2</preloaditems>
+						<include>View_50</include>
+					</control>
+					<control type="scrollbar" id="60">
+						<left>1797</left>
+						<top>181</top>
+						<bottom>132</bottom>
+						<height>820</height>
+						<onleft>507</onleft>
+						<onright>507</onright>
+					</control>
+				</control>
+			</control>
+			<!-- Right Content -->
+			<control type="group">
+				<posx>1150</posx>
+				<posy>136</posy>
+				<include content="Animation_Slide_Right">
+					<param name="slide">652</param>
+					<param name="opencondition">true</param>
+					<param name="closecondition">true</param>
+				</include>
+				<control type="image">
+					<posx>65</posx>	
+					<posy>495</posy>
+					<width>600</width>
+					<height>500</height>
+					<aspectratio aligny="top">keep</aspectratio>
+					<texture background="true">$INFO[Container.ListItem.Art(clearlogo)]</texture>
+					<animation effect="fade" end="15" time="0" condition="true">Conditional</animation>
+				</control>
+				<control type="image">
+					<visible>Container.Content(artists) | Container.Content(albums) | Container.Content(songs)</visible>
+					<posx>65</posx>	
+					<posy>495</posy>
+					<width>600</width>
+					<height>500</height>
+					<aspectratio aligny="top">keep</aspectratio>
+					<fadetime>TextureFadeTime</fadetime>
+					<texture background="true">$VAR[MusicClearLogoVar]</texture>
+					<animation effect="fade" end="15" time="0" condition="true">Conditional</animation>
+				</control>
+				
+				<control type="textbox" id="70">
+					<label>$VAR[GlobalPlotVar]</label>
+					<posx>63</posx>
+					<posy>425</posy>
+					<width>660</width>
+					<height>250</height>
+					<font>font14_textbox</font>
+					<pagecontrol>61</pagecontrol>
+					<include>ShowCaseInfoPanelButtonsValues</include>
+					<autoscroll time="3000" delay="4000" repeat="5000">!Control.HasFocus(60)</autoscroll>
+					<visible>![Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
+				</control>
+				<control type="textbox" id="70">
+					<label>$VAR[MusicPlotVar]</label>
+					<posx>63</posx>
+					<posy>425</posy>
+					<width>660</width>
+					<height>250</height>
+					<font>font14_textbox</font>
+					<pagecontrol>61</pagecontrol>
+					<include>ShowCaseInfoPanelButtonsValues</include>
+					<autoscroll time="3000" delay="4000" repeat="5000">!Control.HasFocus(60)</autoscroll>
+					<visible>Container.Content(artists) | Container.Content(albums)</visible>
+				</control>
+				<control type="group">
+					<top>10</top>
+					<left>60</left>
+					<width>673</width>
+					<height>390</height>
+					<control type="image">
+						<visible>!Container.Content(episodes) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
+						<aspectratio>scale</aspectratio>
+						<texture background="true" fallback="special://skin/extras/backgrounds/music.jpg">$INFO[Container.ListItem.Art(fanart)]</texture>
+						<fadetime>400</fadetime>
+						<bordertexture border="2">views/507/thumbs/panel_border.png</bordertexture>
+						<bordersize>2</bordersize>
+					</control>
+					<control type="image">
+						<visible>[Container.Content(movies) | Container.Content(tvshows)] + !Skin.HasSetting(View507ExtraFanart)images)</visible>
+						<aspectratio>scale</aspectratio>
+						<texture background="true" fallback="special://skin/extras/backgrounds/movies.jpg">$INFO[Container.ListItem.Art(fanart)]</texture>
+						<fadetime>400</fadetime>
+						<bordertexture border="2">views/507/panel_border.png</bordertexture>
+						<bordersize>2</bordersize>
+					</control>
+					<control type="image">
+						<visible>ListItem.IsCollection + String.IsEmpty(Container.Listitem.Art(fanart))</visible>
+						<aspectratio>scale</aspectratio>
+						<texture background="true" fallback="thumbs/fallback_episode_tp.png">$INFO[Container.ListItem.Art(landscape)]</texture>
+						<fadetime>400</fadetime>
+						<bordertexture border="2">views/507/panel_border.png</bordertexture>
+						<bordersize>2</bordersize>
+					</control>
+					<control type="multiimage">
+						<visible>!Container.Content(episodes) + Skin.HasSetting(View507ExtraFanart)</visible>
+						<aspectratio>scale</aspectratio>
+						<fadetime>FanartCrossfadeTime</fadetime>
+						<include condition="Window.IsActive(pictures)">Aspectratio_Keep</include>
+						<include condition="!Window.IsActive(pictures)">Aspectratio_Scale</include>
+						<timeperimage>4000</timeperimage>
+						<imagepath background="true" fallback="thumbs/fallback_episode_tp.png">$VAR[VideoExtraFanartVar]</imagepath>
+						<include>Animation_VisibleChange200</include>
+					</control>
+					<control type="image">
+						<aspectratio>scale</aspectratio>
+						<texture background="true"  fallback="thumbs/fallback_episode_tp.png">$INFO[Container.ListItem.Art(extrafanart1)]</texture>
+						<visible>String.IsEqual(Control.GetLabel(4420),fanart) + ListItem.IsCollection + !String.IsEmpty(Container.ListItem.Art(extrafanart1))</visible>
+					</control>
+					<control type="image">
+						<visible>Container.Content(episodes)</visible>
+						<aspectratio>scale</aspectratio>
+						<texture background="true" fallback="thumbs/fallback_episode_tp.png">$INFO[Container.ListItem.Art(thumb)]</texture>
+						<fadetime>400</fadetime>
+						<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+						<bordersize>2</bordersize>
+					</control>
+					<control type="image">
+						<visible>Skin.HasSetting(SkinHelperAnimations) + !String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Art.AnimatedFanart)) + !Skin.HasSetting(FanartListDisableAnimatedFanart)</visible>
+						<aspectratio>scale</aspectratio>
+						<texture background="true">$INFO[Window(home).Property(SkinHelper.ListItem.Art.AnimatedFanart)]</texture>
+						<fadetime>400</fadetime>
+					</control>
+				</control>
+				<control type="image">
+					<top>10</top>
+					<left>-20</left>
+					<width>758</width>
+					<height>810</height>
+					<visible>Container.Content(images) | Container.Content(addons)</visible>
+					<align>center</align>
+					<aspectratio>keep</aspectratio>
+					<texture background="true">$VAR[ViewListIconVar]</texture>
+					<fadetime>400</fadetime>
+				</control>
+			</control>
+		</control>
+	</include>
+</includes>

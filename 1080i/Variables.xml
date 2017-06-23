@@ -279,42 +279,57 @@
 		<value condition="String.IsEqual(Skin.String(TopBarStyle),flat)">panels/topbar-flat.png</value>
 		<value>panels/topbar.png</value>
 	</variable>
-	<!--  OSD Buttons -->
-	<variable name="OSDPlayButtonVar">
-		<value condition="Player.Paused | Player.Forwarding | Player.Rewinding">buttons/player/play.png</value>
-		<value>buttons/player/pause.png</value>
+	<!--  Video OSD Buttons -->
+	<variable name="VideoOSDLabelVar">
+		<value condition="Control.HasFocus(601)">$LOCALIZE[298]</value>
+		<value condition="Control.HasFocus(602)">$LOCALIZE[13396]</value>
+		<value condition="Control.HasFocus(603)">$LOCALIZE[13395]</value>
 	</variable>
-	<variable name="OSDRecordButtonVar">
-		<value condition="Player.Recording">buttons/player/recording.png</value>
-		<value>buttons/player/record.png</value>
+	<variable name="VideoOSDLabel2Var">
+		<value condition="Control.HasFocus(802)">$LOCALIZE[33061]</value>
+		<value condition="Control.HasFocus(803)">$LOCALIZE[36501]</value>
+		<value condition="Control.HasFocus(804)">$LOCALIZE[24012]</value>
+		<value condition="Control.HasFocus(805)">$LOCALIZE[264]</value>
+		<value condition="Control.HasFocus(806)">$LOCALIZE[14301]</value>
+		<value condition="Control.HasFocus(807)">$LOCALIZE[19069]</value>
+		<value condition="Control.HasFocus(808)">$LOCALIZE[1212] $LOCALIZE[478] $LOCALIZE[1390]</value>
 	</variable>
-	<variable name="OSDRepeatButtonVar">
+	<!--  Music OSD Buttons -->
+	<variable name="MusicOSDLabelVar">
+		<value condition="Control.HasFocus(601)">$LOCALIZE[559]</value>
+		<value condition="Control.HasFocus(500)">$LOCALIZE[24010]</value>
+		<value condition="Control.HasFocus(602)">$LOCALIZE[250][CR][LOWERCASE]$LOCALIZE[5][/LOWERCASE]</value>
+		<value condition="Control.HasFocus(603)">$LOCALIZE[31048]</value>
+	</variable>
+	<variable name="MusicOSDLabel2Var">
+		<value condition="Control.HasFocus(802)">$LOCALIZE[24013]</value>
+		<value condition="Control.HasFocus(803)">$LOCALIZE[486][CR]$INFO[Playlist.Repeat]</value>
+		<value condition="Control.HasFocus(805)">$LOCALIZE[590][CR]$INFO[Playlist.Random]</value>
+		<value condition="Control.HasFocus(806)">$LOCALIZE[33063]</value>
+	</variable>
+	<variable name="MusicOSDRepeatButtonVar">
 		<value condition="Playlist.IsRepeatOne">buttons/player/repeatone.png</value>
 		<value condition="Playlist.IsRepeat">buttons/player/repeat.png</value>
 		<value>buttons/player/repeatoff.png</value>
 	</variable>
-	<variable name="OSDRandomButtonVar">
-		<value condition="Playlist.IsRandom">buttons/player/randomon.png</value>
-		<value>buttons/player/randomoff.png</value>
-	</variable>
 	<!-- SeekBar -->
-	<variable name="PlayerLabelVar">
-		<value condition="!String.IsEmpty(Player.SeekStepSize)">$LOCALIZE[773] $INFO[Player.SeekStepSize]</value>
-		<value condition="VideoPlayer.Content(episodes)">$INFO[VideoPlayer.TVShowTitle,, - ]$INFO[VideoPlayer.Season]$INFO[VideoPlayer.Episode,x, ]$INFO[Player.Title]</value>
-		<value condition="VideoPlayer.Content(musicvideos)">$INFO[VideoPlayer.Artist,, - ]$INFO[Player.Title]</value>
-		<value>$INFO[Player.Title]</value>
-	</variable>
-	<variable name="SeekIconVar">
-		<value condition="Player.Rewinding"></value>
-		<value condition="Player.Forwarding"></value>
-	</variable>
-	<variable name="SeekLabelVar">
-		<value condition="Player.Paused">$LOCALIZE[112]</value>
+	<variable name="VideoPlayerForwardRewindVar">
 		<value condition="Player.Forwarding2x | Player.Rewinding2x">2x</value>
 		<value condition="Player.Forwarding4x | Player.Rewinding4x">4x</value>
 		<value condition="Player.Forwarding8x | Player.Rewinding8x">8x</value>
 		<value condition="Player.Forwarding16x | Player.Rewinding16x">16x</value>
 		<value condition="Player.Forwarding32x | Player.Rewinding32x">32x</value>
+	</variable>
+	<variable name="SeekLabelVar">
+		<value condition="!Player.Paused + !Player.Caching + !Player.Forwarding + !Player.Rewinding + !Player.Seeking">$INFO[Player.Title]</value>
+		<value condition="Player.Paused + !Player.Caching">$LOCALIZE[112]</value>
+		<value condition="Player.Playing + !Player.Seeking + !Player.DisplayAfterSeek | [Player.Paused + !Player.Caching]">$INFO[System.Time]$INFO[Player.FinishTime, - ,]</value>
+		<value condition="[Player.Paused + Player.Caching] + !Player.Seeking + !Player.DisplayAfterSeek">$INFO[Player.CacheLevel,$LOCALIZE[15107] ,%]</value>
+		<value condition="!String.IsEmpty(Player.SeekStepSize) + ![Player.Forwarding | Player.Rewinding]">$LOCALIZE[773] $INFO[Player.SeekStepSize]</value>
+		<value condition="Player.DisplayAfterSeek + ![Player.Forwarding | Player.Rewinding]">$LOCALIZE[773] $INFO[Player.SeekOffset]</value>
+		<value condition="!Player.DisplayAfterSeek + Player.Seeking">$LOCALIZE[773]</value>
+		<value condition="Player.Forwarding">$LOCALIZE[31065] $VAR[VideoPlayerForwardRewindVar]</value>
+		<value condition="Player.Rewinding">$LOCALIZE[31066] $VAR[VideoPlayerForwardRewindVar]</value>
 	</variable>
 
 
@@ -1473,7 +1488,11 @@
 		<value condition="Playlist.IsRandom">mooviz/shuffle.png</value>
 		<value>mooviz/shuffleoff.png</value>
 	</variable>
-
+	<variable name="MusicOSDRepeatButtonVar">
+		<value condition="Playlist.IsRepeatOne">special://skin/extras/BigIcons/ButtonRepeatOne.png</value>
+		<value condition="Playlist.IsRepeat">special://skin/extras/BigIcons/ButtonReload.png</value>
+		<value>special://skin/extras/BigIcons/ButtonRepeatOff.png</value>
+	</variable>
 	<variable name="MusicOSDRepeatClassicButtonVar">
 		<value condition="[!Playlist.IsRepeat + !Playlist.IsRepeatOne] + !Control.HasFocus(704)">osd/buttons/OSDRepeatNF.png</value>
 		<value condition="Playlist.IsRepeatOne+!Control.HasFocus(704)">osd/buttons/OSDRepeatOneNF.png</value>
