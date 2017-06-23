@@ -279,57 +279,63 @@
 		<value condition="String.IsEqual(Skin.String(TopBarStyle),flat)">panels/topbar-flat.png</value>
 		<value>panels/topbar.png</value>
 	</variable>
-	<!--  Video OSD Buttons -->
-	<variable name="VideoOSDLabelVar">
-		<value condition="Control.HasFocus(601)">$LOCALIZE[298]</value>
-		<value condition="Control.HasFocus(602)">$LOCALIZE[13396]</value>
-		<value condition="Control.HasFocus(603)">$LOCALIZE[13395]</value>
+	<!--  OSD Buttons -->
+	<variable name="OSDPlayButtonVar">
+		<value condition="Player.Paused | Player.Forwarding | Player.Rewinding">buttons/player/play.png</value>
+		<value>buttons/player/pause.png</value>
 	</variable>
-	<variable name="VideoOSDLabel2Var">
-		<value condition="Control.HasFocus(802)">$LOCALIZE[33061]</value>
-		<value condition="Control.HasFocus(803)">$LOCALIZE[36501]</value>
-		<value condition="Control.HasFocus(804)">$LOCALIZE[24012]</value>
-		<value condition="Control.HasFocus(805)">$LOCALIZE[264]</value>
-		<value condition="Control.HasFocus(806)">$LOCALIZE[14301]</value>
-		<value condition="Control.HasFocus(807)">$LOCALIZE[19069]</value>
-		<value condition="Control.HasFocus(808)">$LOCALIZE[1212] $LOCALIZE[478] $LOCALIZE[1390]</value>
+	<variable name="OSDRecordButtonVar">
+		<value condition="Player.Recording">buttons/player/recording.png</value>
+		<value>buttons/player/record.png</value>
 	</variable>
-	<!--  Music OSD Buttons -->
-	<variable name="MusicOSDLabelVar">
-		<value condition="Control.HasFocus(601)">$LOCALIZE[559]</value>
-		<value condition="Control.HasFocus(500)">$LOCALIZE[24010]</value>
-		<value condition="Control.HasFocus(602)">$LOCALIZE[250][CR][LOWERCASE]$LOCALIZE[5][/LOWERCASE]</value>
-		<value condition="Control.HasFocus(603)">$LOCALIZE[31048]</value>
-	</variable>
-	<variable name="MusicOSDLabel2Var">
-		<value condition="Control.HasFocus(802)">$LOCALIZE[24013]</value>
-		<value condition="Control.HasFocus(803)">$LOCALIZE[486][CR]$INFO[Playlist.Repeat]</value>
-		<value condition="Control.HasFocus(805)">$LOCALIZE[590][CR]$INFO[Playlist.Random]</value>
-		<value condition="Control.HasFocus(806)">$LOCALIZE[33063]</value>
-	</variable>
-	<variable name="MusicOSDRepeatButtonVar">
+	<variable name="OSDRepeatButtonVar">
 		<value condition="Playlist.IsRepeatOne">buttons/player/repeatone.png</value>
 		<value condition="Playlist.IsRepeat">buttons/player/repeat.png</value>
 		<value>buttons/player/repeatoff.png</value>
 	</variable>
+	<variable name="OSDRandomButtonVar">
+		<value condition="Playlist.IsRandom">buttons/player/randomon.png</value>
+		<value>buttons/player/randomoff.png</value>
+	</variable>
 	<!-- SeekBar -->
-	<variable name="VideoPlayerForwardRewindVar">
+	<variable name="PlayerLabelVar">
+		<value condition="!String.IsEmpty(Player.SeekStepSize)">$LOCALIZE[773] $INFO[Player.SeekStepSize]</value>
+		<value condition="VideoPlayer.Content(episodes)">$INFO[VideoPlayer.TVShowTitle,, - ]$INFO[VideoPlayer.Season]$INFO[VideoPlayer.Episode,x, ]$INFO[Player.Title]</value>
+		<value condition="VideoPlayer.Content(musicvideos)">$INFO[VideoPlayer.Artist,, - ]$INFO[Player.Title]</value>
+		<value>$INFO[Player.Title]</value>
+	</variable>
+	<variable name="SeekIconVar">
+		<value condition="Player.Rewinding"></value>
+		<value condition="Player.Forwarding"></value>
+	</variable>
+	<variable name="SeekLabelVar">
+		<value condition="Player.Paused">$LOCALIZE[112]</value>
 		<value condition="Player.Forwarding2x | Player.Rewinding2x">2x</value>
 		<value condition="Player.Forwarding4x | Player.Rewinding4x">4x</value>
 		<value condition="Player.Forwarding8x | Player.Rewinding8x">8x</value>
 		<value condition="Player.Forwarding16x | Player.Rewinding16x">16x</value>
 		<value condition="Player.Forwarding32x | Player.Rewinding32x">32x</value>
 	</variable>
-	<variable name="SeekLabelVar">
-		<value condition="!Player.Paused + !Player.Caching + !Player.Forwarding + !Player.Rewinding + !Player.Seeking">$INFO[Player.Title]</value>
-		<value condition="Player.Paused + !Player.Caching">$LOCALIZE[112]</value>
-		<value condition="Player.Playing + !Player.Seeking + !Player.DisplayAfterSeek | [Player.Paused + !Player.Caching]">$INFO[System.Time]$INFO[Player.FinishTime, - ,]</value>
-		<value condition="[Player.Paused + Player.Caching] + !Player.Seeking + !Player.DisplayAfterSeek">$INFO[Player.CacheLevel,$LOCALIZE[15107] ,%]</value>
-		<value condition="!String.IsEmpty(Player.SeekStepSize) + ![Player.Forwarding | Player.Rewinding]">$LOCALIZE[773] $INFO[Player.SeekStepSize]</value>
-		<value condition="Player.DisplayAfterSeek + ![Player.Forwarding | Player.Rewinding]">$LOCALIZE[773] $INFO[Player.SeekOffset]</value>
-		<value condition="!Player.DisplayAfterSeek + Player.Seeking">$LOCALIZE[773]</value>
-		<value condition="Player.Forwarding">$LOCALIZE[31065] $VAR[VideoPlayerForwardRewindVar]</value>
-		<value condition="Player.Rewinding">$LOCALIZE[31066] $VAR[VideoPlayerForwardRewindVar]</value>
+    <!-- VideoFullScreenInfo -->
+	<variable name="VideoPlayerPosterVar">
+		<value condition="VideoPlayer.Content(episodes) + !String.IsEmpty(Player.Art(season.poster))">$INFO[Player.Art(season.poster)]</value>
+		<value condition="VideoPlayer.Content(episodes) + !String.IsEmpty(Player.Art(tvshow.poster))">$INFO[Player.Art(tvshow.poster)]</value>
+		<value condition="!String.IsEmpty(Player.Art(poster))">$INFO[Player.Art(poster)]</value>
+		<value condition="!String.IsEmpty(Player.Art(thumb))">$INFO[Player.Art(thumb)]</value>
+	</variable>
+	<variable name="VideoPlayerArtworkVar">
+		<value condition="VideoPlayer.Content(episodes) + !String.IsEmpty(Player.Art(tvshow.clearart))">$INFO[Player.Art(tvshow.clearart)]</value>
+		<value condition="VideoPlayer.Content(episodes) + !String.IsEmpty(Player.Art(tvshow.clearlogo))">$INFO[Player.Art(tvshow.clearlogo)]</value>
+		<value condition="!String.IsEmpty(Player.Art(discart))">$INFO[Player.Art(discart)]</value>
+		<value condition="!String.IsEmpty(Player.Art(clearart))">$INFO[Player.Art(clearart)]</value>
+		<value>$INFO[Player.Art(clearlogo)]</value>
+	</variable>
+	<variable name="VideoPlayerDiscArtVar">
+		<value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.DiscArt))">$INFO[Window(Home).Property(SkinHelper.Player.Art.DiscArt)]</value>
+		<value condition="!String.IsEmpty(Player.Artist)">http://localhost:52307/getmusicart&amp;artist=$INFO[Player.Artist]&amp;album=$INFO[Player.Album]&amp;fallback=&amp;type=discart</value>
+	</variable>
+    <variable name="VideoPlayerTop250Var">
+	    <value condition="VideoPlayer.Content(movies) + !String.IsEmpty(VideoPlayer.Top250)">  •  Top250 $INFO[VideoPlayer.Top250,#]</value>
 	</variable>
 
 
