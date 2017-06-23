@@ -43,43 +43,33 @@
 				<onleft>9000</onleft>
 				<onright>8010</onright>
 				<visible>!Window.IsActive(script-skinshortcuts.xml)</visible>
-				<itemlayout height="68" width="323">
+				<itemlayout height="67" width="323">
 					<control type="label">
-						<width>323</width>
-						<height>68</height>
 						<textoffsetx>25</textoffsetx>
 						<font>Font36_Reg</font>
 						<textcolor>grey</textcolor>
 						<label>$INFO[ListItem.Label]</label>
 					</control>
 				</itemlayout>
-				<focusedlayout height="68" width="323">
+				<focusedlayout height="67" width="323">
 					<control type="image">
-						<width>323</width>
-						<height>68</height>
 						<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
 						<animation effect="fade" start="100" end="50" time="40" condition="!Control.HasFocus(8000)">Conditional</animation>
 					</control>
 					<control type="label">
-						<width>323</width>
-						<height>68</height>
 						<textoffsetx>25</textoffsetx>
 						<font>Font36_Reg</font>
 						<label>$INFO[ListItem.Label]</label>
 					</control>
 				</focusedlayout>
 				<content>
-					<item id="1">
-						<description>Main Menu</description>
-						<label>$LOCALIZE[31041]</label>
-					</item>
 					<item id="2">
 						<description>General</description>
 						<label>$LOCALIZE[128]</label>
 					</item>
 					<item id="3">
 						<description>Furniture</description>
-						<label>$LOCALIZE[31041]</label>
+						<label>$LOCALIZE[31070]</label>
 					</item>
 					<item id="4">
 						<description>Artwork</description>
@@ -102,15 +92,15 @@
 			<control type="label">
 				<label>$LOCALIZE[33063]</label>
 				<include>Settings_RightLabel</include>
-				<visible>!Container(8000).Hasfocus(9)</visible>
+				<visible>!Container(8000).Position(5)</visible>
 			</control>
 			<!-- Main menu -->
 			<control type="group" id="8010">
 				<visible>!Window.IsActive(script-skinshortcuts.xml)</visible>
 				<control type="grouplist" id="8001">
-					<left>426</left>
+					<left>435</left>
 					<top>200</top>
-					<width>1393</width>
+					<width>1335</width>
 					<height>748</height>
 					<pagecontrol>60</pagecontrol>
 					<onleft>8000</onleft>
@@ -129,14 +119,36 @@
 				</control>
 				<!-- General -->
 				<control type="grouplist" id="8002">
-					<left>426</left>
+					<left>435</left>
 					<top>200</top>
-					<width>1393</width>
+					<width>1335</width>
 					<height>748</height>
 					<pagecontrol>60</pagecontrol>
 					<onleft>8000</onleft>
 					<onright>60</onright>
 					<visible>Container(8000).Hasfocus(2)</visible>
+					<control type="label" id="301">
+						<label>$LOCALIZE[31041]</label>
+						<font>Font28_Bold</font>
+						<textcolor>$VAR[HighlightColorVar]</textcolor>
+						<include>Settings_Button</include>
+					</control>
+					<control type="button" id="999400">
+						<label>$LOCALIZE[31017]</label>
+						<include>Settings_Button</include>
+						<onclick>RunScript(script.skinshortcuts,type=manage&amp;group=mainmenu)</onclick>
+					</control>
+					<control type="button" id="999401">
+						<label>$LOCALIZE[31018]</label>
+						<include>Settings_Button</include>
+						<onclick>RunScript(script.skinshortcuts,type=resetall)</onclick>
+					</control>
+					<control type="label" id="301">
+						<label>$LOCALIZE[16000]</label>
+						<font>Font28_Bold</font>
+						<textcolor>$VAR[HighlightColorVar]</textcolor>
+						<include>Settings_Button</include>
+					</control>
 					<control type="radiobutton" id="201">
 						<label>$LOCALIZE[20189]</label>
 						<include>Settings_RadioButton</include>
@@ -205,9 +217,9 @@
 				</control>
 				<!-- Furniture -->
 				<control type="grouplist" id="8003">
-					<left>426</left>
+					<left>435</left>
 					<top>200</top>
-					<width>1393</width>
+					<width>1335</width>
 					<height>748</height>
 					<pagecontrol>60</pagecontrol>
 					<onleft>8000</onleft>
@@ -262,9 +274,9 @@
 				</control>
 				<!--  Artwork -->
 				<control type="grouplist" id="8004">
-					<left>426</left>
+					<left>435</left>
 					<top>200</top>
-					<width>1393</width>
+					<width>1335</width>
 					<height>748</height>
 					<pagecontrol>60</pagecontrol>
 					<onleft>8000</onleft>
@@ -336,9 +348,9 @@
 				</control>
 				<!--  Colors -->
 				<control type="grouplist" id="8005">
-					<left>426</left>
+					<left>435</left>
 					<top>200</top>
-					<width>1393</width>
+					<width>1335</width>
 					<height>748</height>
 					<pagecontrol>60</pagecontrol>
 					<onleft>8000</onleft>
@@ -447,9 +459,9 @@
 				</control>
 				<!-- Scripts -->
 				<control type="grouplist" id="8008">
-					<left>426</left>
+					<left>435</left>
 					<top>200</top>
-					<width>1393</width>
+					<width>1335</width>
 					<height>748</height>
 					<pagecontrol>60</pagecontrol>
 					<onleft>8000</onleft>
@@ -724,19 +736,26 @@
 					</control> -->
 				</control>
 				<control type="grouplist" id="8009">	<!-- CREDIT SCREEN -->
-					<left>471</left>
-					<top>125</top>
-					<width>1303</width>
-					<height>848</height>
+					<left>470</left>
+					<top>132</top>
+					<width>1335</width>
+					<height>792</height>
 					<pagecontrol>60</pagecontrol>
 					<onleft>8000</onleft>
 					<onright>60</onright>
 					<visible>Container(8000).Hasfocus(9)</visible>
 					<usecontrolcoords>true</usecontrolcoords>
 					<control type="label">
-						<height>80</height>
-						<label>[B]AEON  M A D N O X[/B]  - [ RC.2 ] JARVIS</label>
-						<font>Font_MainClassic2</font>
+						<font>Font33_Bold_Caps</font>
+						<height>67</height>
+						<label>MADNOX</label>
+						<font>Font33_Bold_Caps</font>
+						<textcolor>grey2</textcolor>
+					</control>
+					<control type="label">
+						<height>30</height>
+						<label>by Team Madnox</label>
+						<font>Font_Bold28_Caps</font>
 						<textcolor>grey2</textcolor>
 					</control>
 					<control type="label">
@@ -855,7 +874,7 @@
 				</control>
 			</control>
 			<control type="scrollbar" id="60">
-				<right>81</right>
+				<right>126</right>
 				<top>200</top>
 				<bottom>132</bottom>
 				<height>800</height>
