@@ -1,46 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">8000</defaultcontrol>
-	<menucontrol>9000</menucontrol>
+	<menucontrol>9050</menucontrol>
 	<controls>
-		<!-- Backdrop -->
-		<include>Background_Nowplaying</include>
-		<include content="Background_Fanart_Default">
-			<param name="imagepath">$VAR[SettingsFanartVar]</param>
+		<!-- Background -->
+		<include content="Background_Default">
+			<param name="imagepath">$VAR[SystemBackgroundVar]</param>
 			<param name="opencondition">!Window.Previous(settings)</param>
 			<param name="closecondition">!Window.Next(settings)</param>
+			<param name="backgroundcolor">SystemBackground.Color.base</param>
 		</include>
 		<!-- Floor -->
 		<control type="group">
 			<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
-			<include content="Animation_Slide_Bottom">
-				<param name="slide">218</param>
+			<include content="Animation_Slide_Bottom_Window">
+				<param name="slide">220</param>
 				<param name="opencondition">!Window.Previous(settings)</param>
 				<param name="closecondition">!Window.Next(settings)</param>
 			</include>
-			<include>Floor_Background_Default</include>
+			<include content="Animation_Slide_Bottom_Visible">
+				<param name="slide">220</param>
+			</include>
+			<include>Floor_Default</include>
+		</control>
+		<!-- Panel -->
+		<control type="group">
+			<include>Animation_Zoom_Window</include>
+			<include content="Panel_Side">
+				<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
+			</include>
 		</control>
 		<!-- Content -->
 		<control type="group">
-			<include>Animation_Zoom_OpenClose</include>
-			<include content="Animation_FurnitureShift">
-				<param name="slidetopbarcondition">Skin.HasSetting(SettingsHideTopBar)</param>
-				<param name="slidefloorcondition">!Skin.HasSetting(SettingsHideTopBar) + Skin.HasSetting(SettingsHideFloor)</param>
-			</include>
-			<include content="Panel_Background_Settings">
-				<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
-			</include>
+			<include>Animation_Zoom_Window</include>
 			<!-- Left menu -->
 			<control type="label">
 				<label>$LOCALIZE[130]</label>
 				<include>Settings_LeftLabel</include>
 			</control>
 			<control type="grouplist" id="8000">
-				<left>101</left>
+				<left>105</left>
 				<top>200</top>
-				<width>323</width>
+				<width>321</width>
 				<height>612</height>
-				<onleft>9000</onleft>
+				<onleft>9050</onleft>
 				<onright>60</onright>
 				<control type="button" id="95">
 					<description>Button Summary Values</description>
@@ -92,7 +95,7 @@
 				<control type="label">
 					<width>auto</width>
 					<font>Font33_Bold_Caps</font>
-					<label> - </label>
+					<label>-</label>
 				</control>
 				<control type="label" id="53">
 					<width>auto</width>
@@ -101,7 +104,7 @@
 			</control>
 			<control type="grouplist" id="8000">
 				<left>435</left>
-				<top>200</top>
+				<top>203</top>
 				<width>1335</width>
 				<height>605</height>
 				<control type="label" id="2">
@@ -140,9 +143,9 @@
 			</control>
 			<control type="textbox" id="30">
 				<left>470</left>
-				<top>200</top>
+				<top>213</top>
 				<width>1265</width>
-				<height>605</height>
+				<height>595</height>
 				<textcolor>grey2</textcolor>
 				<font>Font32_Cond</font>
 				<pagecontrol>60</pagecontrol>
@@ -174,9 +177,9 @@
 				</control>
 			</control>
 			<control type="scrollbar" id="60">
-				<right>81</right>
-				<top>200</top>
-				<bottom>267</bottom>
+				<right>126</right>
+				<top>199</top>
+				<bottom>274</bottom>
 				<onleft>8000</onleft>
 				<visible>ControlGroup(8000).HasFocus(100)</visible>
 			</control>
@@ -184,13 +187,16 @@
 		<!-- Topbar -->
 		<control type="group">
 			<visible>!Skin.HasSetting(SettingsHideTopBar)</visible>
-			<include content="Animation_Slide_Top">
+			<include content="Animation_Slide_Top_Window">
 				<param name="slide">90</param>
 				<param name="opencondition">!Window.Previous(settings)</param>
 				<param name="closecondition">!Window.Next(settings)</param>
 			</include>
+			<include content="Animation_Slide_Top_Visible">
+				<param name="slide">90</param>
+			</include>
 			<include content="TopBar">
-				<param name="breadcrumbs_label">$LOCALIZE[10007]</param>
+				<param name="breadcrumbs_label">$LOCALIZE[13000] / $LOCALIZE[10007]</param>
 				<param name="breadcrumbs_icon">info.png</param>
 			</include>
 		</control>
@@ -198,12 +204,11 @@
 		<include>MediaMenu_MouseOverlay</include>
 		<control type="group">
 			<include>MediaMenu_Common</include>
-			<control type="grouplist" id="9000">
-				<usecontrolcoords>true</usecontrolcoords>
-				<onleft condition="!Skin.HasSetting(DisableQuickNav)">ActivateWindow(1113)</onleft>
+			<control type="grouplist" id="9050">
 				<onright>95</onright>
 				<onback>95</onback>
-				<include>MediaMenu_Settings</include>
+				<include>MediaMenu_System</include>
+				<include>MediaMenu_Common_Bottom</include>
 			</control>
 		</control>
 	</controls>

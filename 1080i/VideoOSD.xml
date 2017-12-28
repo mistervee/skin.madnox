@@ -5,13 +5,16 @@
 	<controls>
 		<control type="group">
 			<visible>!Window.IsActive(videobookmarks) + !Window.IsActive(dialogsettings.xml) + !Window.IsActive(dialogselect.xml) + !Window.IsActive(subtitlesearch) + !Window.IsActive(pvrosdChannels) + !Window.IsActive(pvrchannelguide) + !Window.IsActive(teletext) + !Window.IsActive(1118)</visible>
-			<include>Animation_CommonFade</include>
+			<animation effect="fade" delay="200" time="400">Visible</animation>
+			<animation effect="fade" time="0">Hidden</animation>
+			<animation effect="fade" delay="200" time="400">WindowOpen</animation>
+			<animation effect="fade" time="0">WindowClose</animation>
 			<top>870</top>
 			<control type="grouplist">
 				<left>5</left>
 				<bottom>64</bottom>
 				<height>120</height>
-				<onleft>304</onleft>
+				<onleft>307</onleft>
 				<onright>201</onright>
 				<itemgap>-10</itemgap>
 				<orientation>horizontal</orientation>
@@ -19,7 +22,9 @@
 					<include content="Dialog_Button_OSD">
 						<param name="texture" value="buttons/player/settings.png"/>
 					</include>
-					<onclick>ActivateWindow(1118)</onclick>
+					<onclick>SetProperty(CustomSelect,$LOCALIZE[10123],home)</onclick>
+					<onclick>ActivateWindow(1111)</onclick>
+					<visible>!String.Contains(Skin.String(KioskMode),HideOptions) + !String.IsEqual(Skin.String(KioskMode),HideMenu)</visible>
 				</control>
 				<control type="radiobutton" id="102">
 					<include content="Dialog_Button_OSD">
@@ -160,21 +165,21 @@
 					<onclick>ActivateWindow(SubtitleSearch)</onclick>
 					<visible>VideoPlayer.Content(movies) | VideoPlayer.Content(episodes)</visible>
 				</control>
-				<control type="radiobutton" id="302">
+				<control type="radiobutton" id="305">
 					<include content="Dialog_Button_OSD">
 						<param name="texture" value="buttons/player/channels.png"/>
 					</include>
 					<onclick>ActivateWindow(pvrosdChannels)</onclick>
 					<visible>VideoPlayer.HasEpg</visible>
 				</control>
-				<control type="radiobutton" id="303">
+				<control type="radiobutton" id="306">
 					<include content="Dialog_Button_OSD">
 						<param name="texture" value="buttons/player/guide.png"/>
 					</include>
 					<onclick>ActivateWindow(pvrchannelguide)</onclick>
 					<visible>VideoPlayer.HasEpg</visible>
 				</control>
-				<control type="radiobutton" id="304">
+				<control type="radiobutton" id="307">
 					<include content="Dialog_Button_OSD">
 						<param name="texture" value="buttons/player/txt.png"/>
 					</include>

@@ -1,82 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">50</defaultcontrol>
-	<views>50,507,700</views>
-	<menucontrol>9000</menucontrol>
+	<views>50</views>
+	<menucontrol>9050</menucontrol>
 	<controls>
+		<!-- Backdrop -->
+		<include content="Background_Default">
+			<param name="imagepath">$VAR[PicturesBackgroundVar]</param>
+			<param name="backgroundcolor">PicturesBackground.Color.base</param>
+		</include>
+		<!-- Floor -->
 		<control type="group">
-			<include>Animation_VisibleFade</include>
+			<visible>Control.IsVisible(50)</visible>
+			<include content="Animation_Slide_Bottom_Window">
+				<param name="slide">220</param>
+			</include>
+			<include content="Animation_Slide_Bottom_Visible">
+				<param name="slide">220</param>
+			</include>
+			<include>Floor_Right</include>
+		</control>
+		<!-- Views -->
+		<control type="group">
 			<include>View_50_List</include>
-			<include>View_507_FanartList</include>
-			<include>View_700_RightList</include>
 		</control>
 		<!-- Top Bar -->
 		<control type="group">
 			<visible>!Skin.HasSetting(PicturesHideTopBar)</visible>
-			<include content="Animation_Slide_Top">
+			<include content="Animation_Slide_Top_Window">
+				<param name="slide">90</param>
+			</include>
+			<include content="Animation_Slide_Top_Visible">
 				<param name="slide">90</param>
 			</include>
 			<include content="TopBar">
 				<param name="breadcrumbs_label">$LOCALIZE[1213]</param>
-				<param name="breadcrumbs_icon">picture.png</param>
+				<param name="breadcrumbs_icon">pictures.png</param>
 			</include>
 		</control>
 		<!-- Media Menu -->
 		<include>MediaMenu_MouseOverlay</include>
 		<control type="group">
 			<include>MediaMenu_Common</include>
-			<control type="grouplist" id="9000">
-				<usecontrolcoords>true</usecontrolcoords>
-				<onleft condition="!Skin.HasSetting(DisableQuickNav)">ActivateWindow(1113)</onleft>
+			<control type="grouplist" id="9050">
 				<onright>50</onright>
 				<onback>50</onback>
-				<include>MediaMenu_MyXML_Common</include>
+				<include>MediaMenu_Common_Top</include>
 				<!-- Slideshow -->
-				<include content="MediaMenu_Icon_Button">
-					<param name="id" value="6" />
-					<param name="icon" value="icons/mediamenu/image.png" />
-					<param name="label" value="$LOCALIZE[13317]" />
-					<param name="visible">Container.Content(images)</param>
-				</include>
+				<control type="radiobutton" id="6">
+					<include content="MediaMenu_Icon_Button">
+						<param name="iconon" value="icons/mediamenu/image.png" />
+						<param name="iconoff" value="icons/mediamenu/image.png" />
+					</include>
+					<label>$LOCALIZE[13317]</label>
+					<visible>Container.Content(images)</visible>
+				</control>
 				<!-- Recursive slideshow -->
-				<include content="MediaMenu_Icon_Button">
-					<param name="id" value="7" />
-					<param name="icon" value="icons/mediamenu/repeat.png" />
-					<param name="label" value="$LOCALIZE[13318]" />
-					<param name="visible">Container.Content(images)</param>
-				</include>
+				<control type="radiobutton" id="7">
+					<include content="MediaMenu_Icon_Button">
+						<param name="iconon" value="icons/mediamenu/repeat.png" />
+						<param name="iconoff" value="icons/mediamenu/repeat.png" />
+					</include>
+					<label>$LOCALIZE[13318]</label>
+					<visible>Container.Content(images)</visible>
+				</control>
 				<!-- Randomise -->
-				<include content="MediaMenu_Icon_RadioButton">
-					<param name="id" value="9" />
-					<param name="iconon" value="icons/mediamenu/random.png" />
-					<param name="iconoff" value="icons/mediamenu/randomoff.png" />
-					<param name="label" value="$LOCALIZE[13319]" />
-					<param name="visible">Container.Content(images)</param>
-				</include>
+				<control type="radiobutton" id="9">
+					<include content="MediaMenu_Icon_Button">
+						<param name="iconon" value="icons/mediamenu/random.png" />
+						<param name="iconoff" value="icons/mediamenu/randomoff.png" />
+					</include>
+					<label>$LOCALIZE[13319]</label>
+					<visible>Container.Content(images)</visible>
+				</control>
 				<!-- Get more -->
-				<include content="MediaMenu_Icon_Button">
-					<param name="id" value="621" />
-					<param name="icon" value="icons/mediamenu/add.png" />
-					<param name="label" value="$LOCALIZE[21452]" />
-					<param name="onclick" value="ActivateWindow(addonbrowser,addons://more/image/,return)" />
-					<param name="visible">Container.Content(addons)</param>
-				</include>
+				<control type="radiobutton" id="9061">
+					<include content="MediaMenu_Icon_Button">
+						<param name="iconon" value="icons/mediamenu/add.png" />
+						<param name="iconoff" value="icons/mediamenu/add.png" />
+					</include>
+					<label>$LOCALIZE[21452]</label>
+					<onclick>ActivateWindow(addonbrowser,addons://more/image/,return)</onclick>
+					<visible>Container.Content(addons)</visible>
+				</control>
 				<!-- Open Settings -->
-				<include content="MediaMenu_Icon_Button">
-					<param name="id" value="624" />
-					<param name="icon" value="icons/mediamenu/settings.png" />
-					<param name="label" value="$LOCALIZE[10140]" />
-					<param name="onclick" value="Addon.OpenSettings($INFO[Container.PluginName])" />
-					<param name="visible">!String.IsEmpty(Container.PluginName)</param>
-				</include>
-				<!-- Quicknav -->
-				<include content="MediaMenu_Icon_Button">
-					<param name="id" value="9011" />
-					<param name="icon" value="icons/mediamenu/arrowleft.png" />
-					<param name="label" value="$LOCALIZE[31040]" />
-					<param name="onclick" value="ActivateWindow(1113)" />
-					<param name="visible" value="!Skin.HasSetting(DisableQuickNav)" />
-				</include>
+				<control type="radiobutton" id="9062">
+					<include content="MediaMenu_Icon_Button">
+						<param name="iconon" value="icons/mediamenu/settings.png" />
+						<param name="iconoff" value="icons/mediamenu/settings.png" />
+					</include>
+					<label>$LOCALIZE[10140]</label>
+					<onclick>Addon.OpenSettings($INFO[Container.PluginName])</onclick>
+					<visible>!String.IsEmpty(Container.PluginName)</visible>
+				</control>
+				<include>MediaMenu_Common_Bottom</include>
 			</control>
 		</control>
 	</controls>

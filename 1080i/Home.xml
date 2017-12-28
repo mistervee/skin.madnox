@@ -4,77 +4,84 @@
 	<onload condition="!System.HasAddon(script.skinshortcuts)">InstallAddon(script.skinshortcuts)</onload>
 	<onload condition="!System.HasAddon(script.skin.helper.service)">InstallAddon(script.skin.helper.service)</onload>
 	<onload condition="!System.HasAddon(script.skin.helper.colorpicker)">InstallAddon(script.skin.helper.colorpicker)</onload>
-	<onload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;levels=2&amp;group=mainmenu|madnox-quicknav)</onload>
-	<onunload>ClearProperty(SkinHelper.WidgetContainer,home)</onunload>
-	<onunload>ClearProperty(Widget.CaseHome,home)</onunload>
+	<onload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;levels=2&amp;group=mainmenu|quicknav)</onload>
 	<controls>
 		<!-- Backdrop -->
-		<include>Background_Nowplaying</include>
-		<include content="Background_Fanart_Default">
-			<param name="imagepath">$VAR[HomeFanartVar]</param>
+		<include content="Background_Default">
+			<param name="imagepath">$INFO[Container(9000).ListItem.Property(background)]</param>
 		</include>
-		<!-- <control type="image">
-			<left>0</left>
-			<top>0</top>
-			<width>1920</width>
-			<height>1080</height>
-			<texture colordiffuse="88FFFFFF">background-test.png</texture>
-		</control> -->
 		<!-- Menu -->
 		<control type="group">
+
 			<include>Home_Info</include>
 			<include>Home_RSS</include>
 			<include condition="!Skin.HasSetting(HomeFixedList)">Home_Menu</include>
 			<include condition="Skin.HasSetting(HomeFixedList)" content="Home_Menu">
 				<param name="listtype">fixedlist</param>
 			</include>
+			<include>HomeNowPlayingAudio</include>
+			<include>HomeNowPlayingVideo</include>
 		</control>
 		<!-- Media Menu -->
 		<include>MediaMenu_MouseOverlay</include>
 		<control type="group">
+			<visible>!String.IsEqual(Skin.String(KioskMode),HideOptions) + !String.IsEqual(Skin.String(KioskMode),HideMenu)</visible>
 			<include>MediaMenu_Common</include>
 			<control type="grouplist" id="9050">
 				<usecontrolcoords>true</usecontrolcoords>
 				<onright>9000</onright>
 				<onback>9000</onback>
 				<!-- Menu -->
-				<include content="MediaMenu_Icon_Button">
-					<param name="id" value="9051" />
-					<param name="icon" value="icons/mediamenu/menu.png" />
-					<param name="label" value="$LOCALIZE[31017]" />
-					<param name="onclick" value="RunScript(script.skinshortcuts,type=manage&amp;group=mainmenu)" />
-				</include>
-				<include content="MediaMenu_Icon_Button">
-					<param name="id" value="9052" />
-					<param name="icon" value="icons/mediamenu/settings.png" />
-					<param name="label" value="$LOCALIZE[31041]" />
-					<param name="onclick" value="ActivateWindow(1122)" />
-				</include>
-				<include content="MediaMenu_Icon_Button">
-					<param name="id" value="9053" />
-					<param name="icon" value="icons/mediamenu/widgets.png" />
-					<param name="label" value="$LOCALIZE[31039]" />
-					<param name="onclick" value="" />
-				</include>
-				<include content="MediaMenu_Icon_Button">
-					<param name="id" value="9054" />
-					<param name="icon" value="icons/mediamenu/play.png" />
-					<param name="label" value="$LOCALIZE[31002]" />
-					<param name="onclick" value="" />
-				</include>
-				<include content="MediaMenu_Icon_Button">
-					<param name="id" value="9055" />
-					<param name="icon" value="icons/mediamenu/colors.png" />
-					<param name="label" value="$LOCALIZE[31021]" />
-					<param name="onclick" value="SetProperty(CustomColorLabel,$LOCALIZE[10000],home)" />
-					<param name="onclick2" value="ActivateWindow(1110)" />
-				</include>
-				<include content="MediaMenu_Icon_Button">
-					<param name="id" value="9056" />
-					<param name="icon" value="icons/mediamenu/reset.png" />
-					<param name="label" value="$LOCALIZE[31018]" />
-					<param name="onclick" value="RunScript(script.skinshortcuts,type=resetall)" />
-				</include>
+				<control type="radiobutton" id="9051">
+					<include content="MediaMenu_Icon_Button">
+						<param name="iconon" value="icons/mediamenu/settings.png" />
+						<param name="iconoff" value="icons/mediamenu/settings.png" />
+					</include>
+					<label>$LOCALIZE[31041]</label>
+					<onclick>ActivateWindow(1115)</onclick>
+				</control>
+				<control type="radiobutton" id="9053">
+					<include content="MediaMenu_Icon_Button">
+						<param name="iconon" value="icons/mediamenu/menu.png" />
+						<param name="iconoff" value="icons/mediamenu/menu.png" />
+					</include>
+					<label>$LOCALIZE[31017]</label>
+					<onclick>RunScript(script.skinshortcuts,type=manage&amp;group=mainmenu)</onclick>
+				</control>
+				<control type="radiobutton" id="9054">
+					<include content="MediaMenu_Icon_Button">
+						<param name="iconon" value="icons/mediamenu/widgets.png" />
+						<param name="iconoff" value="icons/mediamenu/widgets.png" />
+					</include>
+					<label>$LOCALIZE[31039]</label>
+					<onclick>noop</onclick>
+				</control>
+				<control type="radiobutton" id="9055">
+					<include content="MediaMenu_Icon_Button">
+						<param name="iconon" value="icons/mediamenu/play.png" />
+						<param name="iconoff" value="icons/mediamenu/play.png" />
+					</include>
+					<label>$LOCALIZE[31002]</label>
+					<onclick>noop</onclick>
+				</control>
+				<control type="radiobutton" id="9056">
+					<include content="MediaMenu_Icon_Button">
+						<param name="iconon" value="icons/mediamenu/colors.png" />
+						<param name="iconoff" value="icons/mediamenu/colors.png" />
+					</include>
+					<label>$LOCALIZE[14078]</label>
+					<onclick>SetProperty(CustomSelect,$LOCALIZE[10000] $LOCALIZE[31105],home)</onclick>
+					<onclick>ActivateWindow(1110)</onclick>
+				</control>
+				<control type="radiobutton" id="9057">
+					<include content="MediaMenu_Icon_Button">
+						<param name="iconon" value="icons/mediamenu/reset.png" />
+						<param name="iconoff" value="icons/mediamenu/reset.png" />
+					</include>
+					<label>$LOCALIZE[31018]</label>
+					<onclick>RunScript(script.skinshortcuts,type=resetall)</onclick>
+				</control>
+				<include>MediaMenu_Common_Bottom</include>
 			</control>
 		</control>
 	</controls>

@@ -1,0 +1,1098 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+	<include name="FullscreenDimensions">
+		<width>1920</width>
+		<height>1080</height>
+	</include>
+	<include name="HiddenObject">
+		<left>-300</left>
+		<top>-300</top>
+		<width>1</width>
+		<height>1</height>
+		<texturefocus />
+		<texturenofocus />
+		<font />
+	</include>
+	<include name="HiddenList">
+		<left>-100</left>
+		<top>-100</top>
+		<width>100</width>
+		<height>100</height>
+		<itemlayout height="10" width="10" />
+		<focusedlayout height="10" width="10" />
+	</include>
+	<!--  Topbar -->
+	<include name="TopBar">
+		<param name="breadcrumbs_icon"></param>
+		<param name="breadcrumbs_label"></param>
+		<param name="container_id"></param>
+		<definition>
+			<control type="group">
+				<control type="image">
+					<description>background image</description>
+					<left>0</left>
+					<top>0</top>
+					<width>1920</width>
+					<height>87</height>
+					<texture colordiffuse="$VAR[TopbarColorVar]">$VAR[TopBarStyleVar]</texture>
+				</control>
+				<control type="progress">
+					<description>Progressbar</description>
+					<width>1920</width>
+					<height>40</height>
+					<info>Player.ProgressCache</info>
+					<texturebg>colors/none.png</texturebg>
+					<lefttexture />
+					<midtexture colordiffuse="$VAR[HighlightColorVar]">colors/white20.png</midtexture>
+					<righttexture></righttexture>
+					<overlaytexture />
+					<include>Animation_VisibleFade</include>
+					<visible>Player.HasMedia + !Skin.HasSetting(DisableTopbarNowPlaying) + !String.IsEqual(Skin.String(TopBarStyle),shadow)</visible>
+				</control>
+				<control type="progress">
+					<description>Progressbar</description>
+					<width>1920</width>
+					<height>40</height>
+					<info>Player.Progress</info>
+					<texturebg>colors/none.png</texturebg>
+					<lefttexture />
+					<midtexture colordiffuse="$VAR[HighlightColorVar]">colors/white20.png</midtexture>
+					<righttexture></righttexture>
+					<overlaytexture />
+					<include>Animation_VisibleFade</include>
+					<visible>Player.HasMedia + !Skin.HasSetting(DisableTopbarNowPlaying) +  !String.IsEqual(Skin.String(TopBarStyle),shadow)</visible>
+				</control>
+				<control type="progress">
+					<description>Progressbar</description>
+					<width>1920</width>
+					<height>87</height>
+					<info>Player.ProgressCache</info>
+					<texturebg>panels/topbar-shadow-empty.png</texturebg>
+					<lefttexture />
+					<midtexture colordiffuse="$VAR[HighlightColorVar]">panels/topbar-shadow20.png</midtexture>
+					<righttexture></righttexture>
+					<overlaytexture />
+					<include>Animation_VisibleFade</include>
+					<visible>Player.HasMedia + !Skin.HasSetting(DisableTopbarNowPlaying) + String.IsEqual(Skin.String(TopBarStyle),shadow)</visible>
+				</control>
+				<control type="progress">
+					<description>Progressbar</description>
+					<width>1920</width>
+					<height>87</height>
+					<info>Player.Progress</info>
+					<texturebg>panels/topbar-shadow-empty.png</texturebg>
+					<lefttexture />
+					<midtexture colordiffuse="$VAR[HighlightColorVar]">panels/topbar-shadow20.png</midtexture>
+					<righttexture></righttexture>
+					<overlaytexture />
+					<include>Animation_VisibleFade</include>
+					<visible>Player.HasMedia + !Skin.HasSetting(DisableTopbarNowPlaying) +  String.IsEqual(Skin.String(TopBarStyle),shadow)</visible>
+				</control>
+				<control type="button">
+					<top>0</top>
+					<width>200</width>
+					<height>40</height>
+					<label></label>
+					<onclick>Action(Back)</onclick>
+					<texturefocus />
+					<texturenofocus />
+				</control>
+				<control type="grouplist">
+					<description>breadcrumbs top bar</description>
+					<visible>!Player.HasMedia | [Player.HasMedia + Skin.HasSetting(DisableTopbarNowPlaying)]</visible>
+					<include>Animation_VisibleFade</include>
+					<left>5</left>
+					<width>760</width>
+					<height>40</height>
+					<orientation>horizontal</orientation>
+					<usecontrolcoords>true</usecontrolcoords>
+					<control type="image">
+						<top>2</top>
+						<width>36</width>
+						<height>36</height>
+						<texture colordiffuse="$VAR[HighlightColorVar]">icons/default/$PARAM[breadcrumbs_icon]</texture>
+						<visible>!Skin.HasSetting(ColoredIcons)</visible>
+					</control>
+					<control type="image">
+						<top>2</top>
+						<width>36</width>
+						<height>36</height>
+						<texture>icons/colored/$PARAM[breadcrumbs_icon]</texture>
+						<visible>Skin.HasSetting(ColoredIcons)</visible>
+					</control>
+					<control type="label">
+						<width>10</width>
+						<label />
+					</control>
+					<control type="label">
+						<label>$PARAM[breadcrumbs_label]</label>
+						<include>BreadcrumbsLabel</include>
+					</control>
+					<control type="label">
+						<label>$INFO[Container.ShowTitle, / ]</label>
+						<include>BreadcrumbsLabel</include>
+						<visible>!String.IsEmpty(Container.ShowTitle) + !String.IsEqual(Container.ShowTitle,Container.FolderName)</visible>
+					</control>
+					<control type="label">
+						<label>$INFO[Container.FolderName, / ]</label>
+						<include>BreadcrumbsLabel</include>
+						<visible>![Container.Content() + Window.IsActive(videos)]</visible>
+						<visible>![Window.IsActive(MyPVRChannels.xml) | Window.IsActive(MyPVRTimers.xml) | Window.IsActive(MyPVRRecordings.xml) | Window.IsActive(MyPVRSearch.xml)]</visible>
+					</control>
+					<control type="label">
+						<label>$INFO[Container.PluginCategory, / ]</label>
+						<include>BreadcrumbsLabel</include>
+						<visible>!String.IsEmpty(Container.PluginCategory)</visible>
+					</control>
+					<control type="label">
+						<label>: $LOCALIZE[16101]</label>
+						<include>BreadcrumbsLabel</include>
+						<visible>String.StartsWith(Control.GetLabel(10),$LOCALIZE[16101]) + Window.IsActive(videos)</visible>
+					</control>
+					<control type="label">
+						<label>: $LOCALIZE[16102]</label>
+						<include>BreadcrumbsLabel</include>
+						<visible>String.StartsWith(Control.GetLabel(10),$LOCALIZE[16102]) + Window.IsActive(videos)</visible>
+					</control>
+					<control type="label">
+						<label>- $LOCALIZE[31052]</label>
+						<include>BreadcrumbsLabel</include>
+						<visible>Container.Filtered</visible>
+					</control>
+				</control>
+				<control type="grouplist">
+					<description>now playing topbar</description>
+					<visible>Player.HasMedia + !Skin.HasSetting(DisableTopbarNowPlaying)</visible>
+					<include>Animation_VisibleFade</include>
+					<left>5</left>
+					<width>760</width>
+					<height>40</height>
+					<orientation>horizontal</orientation>
+					<usecontrolcoords>true</usecontrolcoords>
+					<itemgap>10</itemgap>
+					<control type="image">
+						<top>2</top>
+						<width>36</width>
+						<height>36</height>
+						<texture colordiffuse="$VAR[HighlightColorVar]">icons/default/play.png</texture>
+						<visible>Player.Playing + !Skin.HasSetting(ColoredIcons)</visible>
+					</control>
+					<control type="image">
+						<top>2</top>
+						<width>36</width>
+						<height>36</height>
+						<texture>icons/colored/play.png</texture>
+						<visible>Player.Playing + Skin.HasSetting(ColoredIcons)</visible>
+					</control>
+					<control type="image">
+						<top>2</top>
+						<width>36</width>
+						<height>36</height>
+						<texture colordiffuse="$VAR[HighlightColorVar]">icons/default/pause.png</texture>
+						<visible>Player.Paused + !Skin.HasSetting(ColoredIcons)</visible>
+					</control>
+					<control type="image">
+						<top>2</top>
+						<width>36</width>
+						<height>36</height>
+						<texture>icons/colored/pause.png</texture>
+						<visible>Player.Paused + Skin.HasSetting(ColoredIcons)</visible>
+					</control>
+					<control type="label">
+						<label>$INFO[Player.Time]</label>
+						<textcolor>grey</textcolor>
+						<include>BreadcrumbsLabel</include>
+					</control>
+					<control type="fadelabel">
+						<label>$INFO[Player.Title]</label>
+						<label>$INFO[MusicPlayer.Artist]</label>
+						<include>BreadcrumbsLabel</include>
+						<visible>Player.HasAudio + !String.IsEmpty(Musicplayer.Artist)</visible>
+					</control>
+					<control type="label">
+						<label>$INFO[Player.Title]</label>
+						<scroll>true</scroll>
+						<include>BreadcrumbsLabel</include>
+						<visible>Player.HasAudio + String.IsEmpty(Musicplayer.Artist)</visible>
+					</control>
+					<control type="fadelabel">
+						<label>$INFO[Videoplayer.Season,S]$INFO[Videoplayer.Episode,E, ]$INFO[Videoplayer.Title]</label>
+						<label>$INFO[Videoplayer.TVShowTitle]</label>
+						<include>BreadcrumbsLabel</include>
+						<visible>Player.HasVideo + !String.IsEmpty(Videoplayer.TVShowTitle)</visible>
+					</control>
+					<control type="fadelabel">
+						<label>$INFO[Videoplayer.ChannelName]</label>
+						<label>$INFO[Videoplayer.Title]</label>
+						<include>BreadcrumbsLabel</include>
+						<visible>Player.HasVideo + !String.IsEmpty(VideoPlayer.ChannelName)</visible>
+					</control>
+					<control type="fadelabel">
+						<label>$INFO[Videoplayer.Title]</label>
+						<label>$INFO[VideoPlayer.Artist]</label>
+						<include>BreadcrumbsLabel</include>
+						<visible>Player.HasVideo + !String.IsEmpty(Videoplayer.Artist)</visible>
+					</control>
+					<control type="label">
+						<label>$INFO[Videoplayer.Title]</label>
+						<include>BreadcrumbsLabel</include>
+						<visible>Player.HasVideo + String.IsEmpty(Videoplayer.TVShowTitle) + String.IsEmpty(VideoPlayer.ChannelName) + String.IsEmpty(Videoplayer.Artist)</visible>
+					</control>
+				</control>
+				<control type="grouplist">
+					<description>right info top bar</description>
+					<right>5</right>
+					<width>760</width>
+					<orientation>horizontal</orientation>
+					<align>right</align>
+					<usecontrolcoords>true</usecontrolcoords>
+					<itemgap>0</itemgap>
+					<control type="multiimage">
+						<left>20</left>
+						<width>40</width>
+						<height>40</height>
+						<imagepath>$INFO[Skin.String(WeatherIcons.path)]$INFO[Weather.FanartCode]$INFO[Skin.String(WeatherIcons.ext)]</imagepath>
+						<fadetime>1</fadetime>
+						<pauseatend>1</pauseatend>
+						<timeperimage>080</timeperimage>
+						<randomize>false</randomize>
+						<loop>true</loop>
+						<visible>!Skin.HasSetting(DisableTopbarWeather) + !String.IsEmpty(Window(Weather).Property(Current.Temperature))</visible>
+					</control>
+					<control type="label">
+						<label>$INFO[Window(weather).Property(Current.Temperature), ]$INFO[System.TemperatureUnits]</label>
+						<include>BreadcrumbsLabel</include>
+						<visible>!Skin.HasSetting(DisableTopbarWeather) + !String.IsEmpty(Window(Weather).Property(Current.Temperature))</visible>
+					</control>
+					<control type="label">
+						<textcolor>grey2</textcolor>
+						<shadowcolor>shadow</shadowcolor>
+						<label>$INFO[System.Date,  ]</label>
+						<include>BreadcrumbsLabel</include>
+						<visible>!Skin.HasSetting(DisableTopbarDate)</visible>
+					</control>
+					<control type="label">
+						<textcolor>$VAR[HighlightColorVar]</textcolor>
+						<shadowcolor>shadow</shadowcolor>
+						<label>$INFO[System.Time,  ]</label>
+						<include>BreadcrumbsLabel</include>
+						<visible>!Skin.HasSetting(DisableTopbarTime)</visible>
+					</control>
+				</control>
+				<control type="grouplist">
+					<description>item and page count top bar</description>
+					<visible>!Skin.HasSetting(DisableTopbarItemCount)</visible>
+					<include>Animation_VisibleFade</include>
+					<centerleft>50%</centerleft>
+					<width>350</width>
+					<orientation>horizontal</orientation>
+					<align>center</align>
+					<usecontrolcoords>true</usecontrolcoords>
+					<itemgap>0</itemgap>
+					<control type="image">
+						<top>2</top>
+						<width>36</width>
+						<height>36</height>
+						<texture colordiffuse="$VAR[HighlightColorVar]">icons/default/list.png</texture>
+						<visible>Integer.IsGreater(Container($PARAM[container_id]).NumItems,0) + !Skin.HasSetting(ColoredIcons)</visible>
+					</control>
+					<control type="image">
+						<top>2</top>
+						<width>36</width>
+						<height>36</height>
+						<texture>icons/colored/list.png</texture>
+						<visible>Integer.IsGreater(Container($PARAM[container_id]).NumItems,0) + Skin.HasSetting(ColoredIcons)</visible>
+					</control>
+					<control type="label">
+						<shadowcolor>shadow</shadowcolor>
+						<label>$INFO[Container($PARAM[container_id]).NumItems, , $LOCALIZE[31001]]</label>
+						<include>BreadcrumbsLabel</include>
+						<visible>Integer.IsGreater(Container($PARAM[container_id]).NumItems,0)</visible>
+					</control>
+					<control type="label">
+						<width>10</width>
+						<visible>Integer.IsGreater(Container($PARAM[container_id]).NumPages,0)</visible>
+					</control>
+					<control type="image">
+						<top>2</top>
+						<width>36</width>
+						<height>36</height>
+						<texture colordiffuse="$VAR[HighlightColorVar]">icons/default/pages.png</texture>
+						<visible>Integer.IsGreater(Container($PARAM[container_id]).NumPages,0) + !Skin.HasSetting(ColoredIcons)</visible>
+					</control>
+					<control type="image">
+						<top>2</top>
+						<width>36</width>
+						<height>36</height>
+						<texture>icons/colored/pages.png</texture>
+						<visible>Integer.IsGreater(Container($PARAM[container_id]).NumPages,0) + Skin.HasSetting(ColoredIcons)</visible>
+					</control>
+					<control type="label">
+						<shadowcolor>shadow</shadowcolor>
+						<label>$INFO[Container($PARAM[container_id]).CurrentPage, ]$INFO[Container($PARAM[container_id]).NumPages,/]</label>
+						<include>BreadcrumbsLabel</include>
+						<visible>Integer.IsGreater(Container($PARAM[container_id]).NumPages,0)</visible>
+					</control>
+				</control>
+			</control>
+			<control type="group" id="6111">
+				<description>scroll label</description>
+				<visible>!Skin.HasSetting(DisableScrollLetter)</visible>
+				<visible>Container.Scrolling + [String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561]) | String.IsEqual(Container.SortMethod,$LOCALIZE[558]) | String.IsEqual(Container.SortMethod,$LOCALIZE[557]) | String.IsEqual(Container.SortMethod,$LOCALIZE[556])]</visible>
+				<include>Animation_VisibleFade</include>
+				<right>0</right>
+				<top>50</top>
+				<width>134</width>
+				<control type="image">
+					<width>134</width>
+					<height>134</height>
+					<texture colordiffuse="$VAR[PanelColorVar]" border="20">dialogs/volume-back.png</texture>
+				</control>
+				<control type="image">
+					<width>134</width>
+					<height>134</height>
+					<texture colordiffuse="$VAR[GlowColorVar]" border="20">dialogs/scan-glow.png</texture>
+				</control>
+				<control type="label">
+					<left>12</left>
+					<top>12</top>
+					<width>110</width>
+					<height>110</height>
+					<align>center</align>
+					<label>$INFO[ListItem.SortLetter]</label>
+					<textcolor>$VAR[HighlightColorVar]</textcolor>
+					<font>Font80_Bold_Caps</font>
+				</control>
+			</control>
+		</definition>
+	</include>
+	<include name="BreadcrumbsLabel">
+		<shadowcolor>shadow</shadowcolor>
+		<font>Font28_Reg</font>
+		<height>38</height>
+		<width min="1" max="590">auto</width>
+	</include>
+	<!-- Settings -->
+	<include name="Settings_Button">
+		<width>1335</width>
+		<height>67</height>
+		<textoffsetx>35</textoffsetx>
+	</include>
+	<include name="Settings_RadioButton">
+		<width>1335</width>
+		<height>67</height>
+		<textoffsetx>35</textoffsetx>
+		<textwidth>872</textwidth>
+		<radioposx>1238</radioposx>
+	</include>
+	<include name="Settings_LeftLabel">
+		<top>132</top>
+		<left>105</left>
+		<width>321</width>
+		<height>67</height>
+		<textoffsetx>25</textoffsetx>
+		<font>Font33_Bold_Caps</font>
+	</include>
+	<include name="Settings_LeftButton">
+		<width>321</width>
+		<height>67</height>
+		<textoffsetx>25</textoffsetx>
+		<font>Font36_Reg</font>
+		<texturenofocus />
+	</include>
+	<include name="Settings_RightLabel">
+		<top>132</top>
+		<left>435</left>
+		<width>1335</width>
+		<height>67</height>
+		<textoffsetx>35</textoffsetx>
+		<font>Font33_Bold_Caps</font>
+	</include>
+	<include name="Settings_Label_SystemInfo">
+		<width>1335</width>
+		<height>55</height>
+		<textoffsetx>35</textoffsetx>
+	</include>
+	<!--  Floor -->
+	<include name="Floor_Default">
+		<control type="image">
+			<top>860</top>
+			<width>1920</width>
+			<height>20</height>
+			<texture colordiffuse="$VAR[GlowColorVar]" border="1">panels/floor-glow.png</texture>
+		</control>
+		<control type="image">
+			<top>860</top>
+			<width>1920</width>
+			<height>220</height>
+			<texture colordiffuse="$VAR[FloorColorVar]" border="1">panels/floor.png</texture>
+		</control>
+	</include>
+	<include name="Floor_Background_Left">
+		<control type="image">
+			<top>860</top>
+			<width>1920</width>
+			<height>20</height>
+			<texture colordiffuse="$VAR[GlowColorVar]" border="1">panels/floor-glow.png</texture>
+		</control>
+		<control type="image">
+			<top>860</top>
+			<width>1920</width>
+			<height>210</height>
+			<texture flipx="true" colordiffuse="$VAR[FloorColorVar]">panels/floor-right.png</texture>
+		</control>
+		<control type="image">
+			<top>880</top>
+			<width>1920</width>
+			<height>200</height>
+			<texture flipx="true" colordiffuse="$VAR[FloorColorVar]">panels/floor-spot-right.png</texture>
+		</control>
+	</include>
+	<include name="Floor_Right">
+		<control type="image">
+			<top>860</top>
+			<width>1920</width>
+			<height>20</height>
+			<texture colordiffuse="$VAR[GlowColorVar]" border="1">panels/floor-glow.png</texture>
+		</control>
+		<control type="image">
+			<top>860</top>
+			<width>1920</width>
+			<height>220</height>
+			<texture colordiffuse="$VAR[FloorColorVar]">panels/floor.png</texture>
+		</control>
+		<control type="image">
+			<top>880</top>
+			<width>1920</width>
+			<height>200</height>
+			<texture colordiffuse="$VAR[HighlightColorVar]">panels/floor-spot-right.png</texture>
+		</control>
+	</include>
+	<include name="Floor_Background_Middle">
+		<control type="image">
+			<top>860</top>
+			<width>1920</width>
+			<height>220</height>
+			<texture colordiffuse="$VAR[FloorColorVar]">panels/floor.png</texture>
+		</control>
+		<control type="image">
+			<top>880</top>
+			<width>1920</width>
+			<height>200</height>
+			<texture colordiffuse="$VAR[FloorColorVar]">panels/floor-spot-middle.png</texture>
+		</control>
+		<control type="image">
+			<top>860</top>
+			<width>1920</width>
+			<height>20</height>
+			<texture colordiffuse="$VAR[GlowColorVar]" border="1">panels/floor-glow.png</texture>
+		</control>
+	</include>
+	<!-- Panels -->
+	<include name="Panel_Default">
+		<param name="left">80</param>
+		<param name="top">80</param>
+		<param name="width">1760</param>
+		<param name="height">920</param>
+		<param name="reflect">true</param>
+		<param name="reflecttop">971</param>
+		<definition>
+			<control type="image">
+				<left>$PARAM[left]</left>
+				<top>$PARAM[top]</top>
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<texture colordiffuse="$VAR[GlowColorVar]" border="50">panels/panel-glow.png</texture>
+			</control>
+			<control type="image">
+				<left>$PARAM[left]</left>
+				<top>$PARAM[top]</top>
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<texture colordiffuse="$VAR[PanelColorVar]" border="80">panels/panel-back.png</texture>
+			</control>
+			<control type="image">
+				<left>$PARAM[left]</left>
+				<top>$PARAM[reflecttop]</top>
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<texture flipy="true" diffuse="panels/reflect.png" colordiffuse="$VAR[PanelColorVar]" border="80">panels/panel-back.png</texture>
+				<visible>$PARAM[reflect]</visible>
+			</control>
+		</definition>
+	</include>
+	<include name="Panel_Side">
+		<param name="left">85</param>
+		<param name="top">85</param>
+		<param name="width">1750</param>
+		<param name="height">920</param>
+		<param name="reflect">true</param>
+		<param name="reflecttop">981</param>
+		<param name="visible">true</param>
+		<definition>
+			<!-- <control type="image">
+				<include>FullscreenDimensions</include>
+				<texture colordiffuse="$VAR[BackgroundColorVar]">colors/black.png</texture>
+				<visible>![$PARAM[visible]]</visible>
+			</control> -->
+			<control type="group">
+				<visible>$PARAM[visible]</visible>
+				<control type="image">
+					<left>$PARAM[left]</left>
+					<top>$PARAM[top]</top>
+					<width>$PARAM[width]</width>
+					<height>$PARAM[height]</height>
+					<texture colordiffuse="$VAR[GlowColorVar]" border="50">panels/panel-glow.png</texture>
+				</control>
+				<control type="image">
+					<left>$PARAM[left]</left>
+					<top>$PARAM[top]</top>
+					<width>$PARAM[width]</width>
+					<height>$PARAM[height]</height>
+					<texture colordiffuse="$VAR[PanelColorVar]" border="365,65,75,65">panels/panel-settings-back.png</texture>
+				</control>
+				<control type="image">
+					<left>$PARAM[left]</left>
+					<top>$PARAM[reflecttop]</top>
+					<width>$PARAM[width]</width>
+					<height>$PARAM[height]</height>
+					<texture flipy="true" diffuse="panels/reflect.png" colordiffuse="$VAR[PanelColorVar]" border="365,65,75,65">panels/panel-settings-back.png</texture>
+					<visible>$PARAM[reflect]</visible>
+				</control>
+				<control type="image">
+					<left>100</left>
+					<bottom>90</bottom>
+					<width>323</width>
+					<height>172</height>
+					<aspectratio>keep</aspectratio>
+					<texture>icons/logo.png</texture>
+				</control>
+			</control>
+		</definition>
+	</include>
+	<!-- File Manager -->
+	<include name="FileManager_List">
+		<param name="id"></param>
+		<param name="left"></param>
+		<param name="onleft"></param>
+		<param name="onright"></param>
+		<param name="scrollbar_id"></param>
+		<definition>
+			<control type="list" id="$PARAM[id]">
+				<left>$PARAM[left]</left>
+				<top>144</top>
+				<width>746</width>
+				<height>804</height>
+				<onleft>$PARAM[onleft]</onleft>
+				<onright>$PARAM[onright]</onright>
+				<pagecontrol>$PARAM[scrollbar_id]</pagecontrol>
+				<itemlayout height="66">
+					<control type="image">
+						<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
+					</control>
+					<control type="label">
+						<left>45</left>
+						<right>20</right>
+						<label>$INFO[ListItem.Label]</label>
+						<textcolor>grey</textcolor>
+					</control>
+					<control type="label">
+						<textoffsetx>45</textoffsetx>
+						<right>0</right>
+						<align>right</align>
+						<label>$INFO[ListItem.Label2]</label>
+						<textcolor>grey</textcolor>
+					</control>
+				</itemlayout>
+				<focusedlayout height="66">
+					<control type="group">
+						<visible>Control.HasFocus($PARAM[id])</visible>
+						<control type="image">
+							<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+						</control>
+						<control type="label">
+							<left>45</left>
+							<right>20</right>
+							<scroll>true</scroll>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+						<control type="label">
+							<textoffsetx>20</textoffsetx>
+							<right>25</right>
+							<align>right</align>
+							<label>$INFO[ListItem.Label2]</label>
+						</control>
+					</control>
+					<control type="group">
+						<visible>!Control.HasFocus($PARAM[id])</visible>
+						<control type="image">
+							<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
+						</control>
+						<control type="label">
+							<left>45</left>
+							<right>20</right>
+							<scroll>true</scroll>
+							<label>$INFO[ListItem.Label]</label>
+							<textcolor>grey</textcolor>
+						</control>
+						<control type="label">
+							<textoffsetx>20</textoffsetx>
+							<right>25</right>
+							<align>right</align>
+							<label>$INFO[ListItem.Label2]</label>
+							<textcolor>grey</textcolor>
+						</control>
+					</control>
+				</focusedlayout>
+			</control>
+		</definition>
+	</include>
+
+
+
+
+
+
+	<!-- Home Now Playing -->
+	<include name="HomeNowPlayingVideo">
+		<control type="group">
+			<height>400</height>
+			<visible>Player.HasVideo</visible>
+			<include>Animation_Slide_Left_Window</include>
+			<include>Animation_Slide_Left_Visible</include>
+			<control type="group">
+				<left>60</left>
+				<right>60</right>
+				<top>60</top>
+				<control type="group">
+					<visible>!String.IsEmpty(Player.Art(poster)) | !String.IsEmpty(Player.Art(tvshow.poster))</visible>
+					<include content="HomeNowPlayingContent">
+						<param name="left">213</param>
+						<param name="width">213</param>
+						<param name="widthback">253</param>
+						<param name="aspect">scale</param>
+					</include>
+				</control>
+				<control type="group">
+					<visible>Pvr.IsPlayingTv</visible>
+					<include content="HomeNowPlayingContent">
+						<param name="left">320</param>
+						<param name="width">320</param>
+						<param name="widthback">360</param>
+						<param name="aspect">keep</param>
+					</include>
+				</control>
+				<control type="group">
+					<visible>String.IsEmpty(Player.Art(poster)) + String.IsEmpty(Player.Art(tvshow.poster)) + !Pvr.IsPlayingTv</visible>
+					<include content="HomeNowPlayingContent">
+						<param name="left">320</param>
+						<param name="width">320</param>
+						<param name="widthback">360</param>
+						<param name="aspect">scale</param>
+					</include>
+				</control>
+			</control>
+		</control>
+	</include>
+	<include name="HomeNowPlayingAudio">
+		<control type="group">
+			<height>400</height>
+			<visible>Player.HasAudio</visible>
+			<include>Animation_Slide_Left_Window</include>
+			<include>Animation_Slide_Left_Visible</include>
+			<animation effect="slide" end="550,20" condition="Skin.HasSetting(HomeVertical)">Conditional</animation>
+			<control type="group">
+				<left>60</left>
+				<right>60</right>
+				<top>60</top>
+				<control type="group">
+					<visible>Pvr.IsPlayingRadio</visible>
+					<include content="HomeNowPlayingContent">
+						<param name="left">320</param>
+						<param name="width">320</param>
+						<param name="widthback">360</param>
+						<param name="aspect">keep</param>
+					</include>
+				</control>
+				<control type="group">
+					<visible>!Pvr.IsPlayingRadio</visible>
+					<include content="HomeNowPlayingContent">
+						<param name="left">320</param>
+						<param name="width">320</param>
+						<param name="widthback">360</param>
+						<param name="aspect">scale</param>
+					</include>
+				</control>
+			</control>
+		</control>
+	</include>
+	<include name="HomeNowPlayingContent">
+		<control type="group">
+			<animation effect="slide" end="90,0" delay="200" time="200" condition="Player.HasAudio + !Skin.HasSetting(disableaudionowplayingcdart) + !Pvr.IsPlayingRadio + !Player.IsInternetStream + !Player.Paused">Conditional</animation>
+			<control type="label" id="9052">
+				<top>20</top>
+				<left>$PARAM[left]</left>
+				<height>40</height>
+				<textoffsetx>40</textoffsetx>
+				<label>$VAR[NowPlayingInfo1Var]</label>
+				<font>Font34_Reg</font>
+			</control>
+			<control type="image">
+				<top>62</top>
+				<left>$PARAM[left]</left>
+				<height>4</height>
+				<width>388</width>
+				<texture>panels/nowplaying-separator.png</texture>
+				<visible>!String.IsEmpty(Control.GetLabel(9052)) | !String.IsEmpty(Control.GetLabel(9052))</visible>
+			</control>
+			<control type="label" id="9053">
+				<top>60</top>
+				<left>$PARAM[left]</left>
+				<height>40</height>
+				<textcolor>grey</textcolor>
+				<textoffsetx>40</textoffsetx>
+				<label>$VAR[NowPlayingInfo2Var]</label>
+				<font>Font28_Reg</font>
+			</control>
+			<control type="label">
+				<top>137</top>
+				<left>$PARAM[left]</left>
+				<textcolor>grey</textcolor>
+				<textoffsetx>40</textoffsetx>
+				<label>$VAR[NowPlayingStatusVar]</label>
+				<font>Font28_Reg</font>
+				<visible></visible>
+			</control>
+			<control type="image">
+				<top>260</top>
+				<left>$PARAM[left]</left>
+				<height>36</height>
+				<width>18</width>
+				<texture>panels/nowplaying.png</texture>
+			</control>
+			<control type="label">
+				<top>210</top>
+				<left>$PARAM[left]</left>
+				<textoffsetx>40</textoffsetx>
+				<label>$VAR[NowPlayingInfo3Var]</label>
+				<font>Font34_Reg</font>
+			</control>
+		</control>
+		<control type="image">
+			<top>20</top>
+			<width>213</width>
+			<height>213</height>
+			<include>TextureFadeTime</include>
+			<animation effect="slide" end="105,0" delay="200" time="200" condition="!Player.Paused">Conditional</animation>
+			<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" reversible="false" condition="!Player.Paused + !Player.Forwarding + !Player.Rewinding">Conditional</animation>
+			<animation effect="rotate" end="-360" center="auto" time="800" loop="true" reversible="false" condition="Player.Forwarding">Conditional</animation>
+			<animation effect="rotate" end="360" center="auto" time="800" loop="true" reversible="false" condition="Player.Rewinding">Conditional</animation>
+			<texture diffuse="thumbs/disc-diffuse.png" fallback="thumbs/disc/bd.png">$INFO[Player.Folderpath,,disc.png]</texture>
+			<visible>!Skin.HasSetting(disablevideonowplayingdiscart) + VideoPlayer.Content(movies)</visible>
+		</control>
+		<control type="image">
+			<top>20</top>
+			<width>281</width>
+			<height>281</height>
+			<include>TextureFadeTime</include>
+			<animation effect="slide" end="170,0" delay="200" time="200" condition="!Player.Paused">Conditional</animation>
+			<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" reversible="false" condition="!Player.Paused + !Player.Forwarding + !Player.Rewinding">Conditional</animation>
+			<animation effect="rotate" end="-360" center="auto" time="400" loop="true" reversible="false" condition="Player.Forwarding">Conditional</animation>
+			<animation effect="rotate" end="360" center="auto" time="400" loop="true" reversible="false" condition="Player.Rewinding">Conditional</animation>
+			<texture diffuse="thumbs/disc-diffuse.png" fallback="thumbs/disc/default.png">$INFO[Player.FolderPath]cdart.png</texture>
+			<aspectratio align="center" aligny="center">keep</aspectratio>
+			<visible>!Skin.HasSetting(disableaudionowplayingcdart) + Player.HasAudio + !Pvr.IsPlayingRadio + !Player.IsInternetStream</visible>
+		</control>
+		<control type="image">
+			<left>-20</left>
+			<top>-20</top>
+			<description>Back image</description>
+			<width>$PARAM[widthback]</width>
+			<height>360</height>
+			<texture border="20">thumbs/square-frame.png</texture>
+		</control>
+		<control type="image">
+			<description>Cover image</description>
+			<width>$PARAM[width]</width>
+			<height>320</height>
+			<include>TextureFadeTime</include>
+			<aspectratio align="center" aligny="center" scalediffuse="false">$PARAM[aspect]</aspectratio>
+			<texture diffuse="thumbs/square-mask.png" fallback="DefaultAlbumCover.png">$VAR[NowPlayingThumbVar]</texture>
+		</control>
+	</include>
+	<!-- Weather -->
+	<include name="WeatherDayList">
+		<param name="item"></param>
+		<definition>
+			<control type="button" id="10$PARAM[item]">
+				<width>299</width>
+				<height>299</height>
+				<align>center</align>
+				<aligny>top</aligny>
+				<textcolor>grey</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<font>Font33_Bold_Caps</font>
+				<textoffsetx>10</textoffsetx>
+				<textoffsety>2</textoffsety>
+				<label>$INFO[Window(weather).Property(Daily.$PARAM[item].LongDay),, ]</label>
+				<texturefocus colordiffuse="$VAR[WeatherHighlightColorVar]" border="10">buttons/panel-select-focus.png</texturefocus>
+				<texturenofocus colordiffuse="FF000000" border="10">buttons/panel-select-focus.png</texturenofocus>
+				<visible>!String.IsEmpty(Window(weather).Property(Daily.$PARAM[item].Outlook))</visible>
+			</control>
+			<control type="multiimage" id="10$PARAM[item]01">
+				<left>-329</left>
+				<top>53</top>
+				<width>299</width>
+				<height>155</height>
+				<aspectratio align="center" aligny="center">keep</aspectratio>
+				<imagepath>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Daily.$PARAM[item].FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</imagepath>
+				<fadetime>1</fadetime>
+				<pauseatend>1</pauseatend>
+				<timeperimage>080</timeperimage>
+				<randomize>false</randomize>
+				<loop>true</loop>
+				<visible>!String.IsEmpty(Window(weather).Property(Daily.$PARAM[item].Outlook))</visible>
+			</control>
+			<control type="label" id="10$PARAM[item]02">
+				<left>-329</left>
+				<top>203</top>
+				<width>299</width>
+				<height>50</height>
+				<align>center</align>
+				<textcolor>grey</textcolor>
+				<textoffsetx>5</textoffsetx>
+				<label>$INFO[Window(weather).Property(Daily.$PARAM[item].Outlook)]</label>
+			</control>
+			<control type="label" id="10$PARAM[item]03">
+				<left>-329</left>
+				<top>237</top>
+				<width>299</width>
+				<height>50</height>
+				<align>center</align>
+				<textcolor>grey</textcolor>
+				<textoffsetx>5</textoffsetx>
+				<label>$INFO[Window(weather).Property(Daily.$PARAM[item].HighTemperature),[COLOR red],[/COLOR]  ]$INFO[Window(weather).Property(Daily.$PARAM[item].LowTemperature),[COLOR blue],[/COLOR]]</label>
+			</control>
+		</definition>
+	</include>
+	<include name="WeatherDailyList">
+		<param name="item"></param>
+		<definition>
+			<control type="button" id="20$PARAM[item]">
+				<width>1286</width>
+				<height>170</height>
+				<aligny>top</aligny>
+				<textcolor>grey</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<font>Font33_Bold_Caps</font>
+				<textoffsetx>170</textoffsetx>
+				<textoffsety>20</textoffsety>
+				<label>$INFO[Window.Property(Daily.$PARAM[item].LongDay)]$INFO[Window.Property(Daily.$PARAM[item].LongDate), ]</label>
+				<texturefocus colordiffuse="$VAR[WeatherHighlightColorVar]" border="10">buttons/panel-select-focus.png</texturefocus>
+				<texturenofocus colordiffuse="FF000000" border="10">buttons/panel-select-focus.png</texturenofocus>
+				<visible>!String.IsEmpty(Window(weather).Property(Daily.$PARAM[item].Outlook))</visible>
+			</control>
+			<control type="multiimage" id="20$PARAM[item]01">
+				<left>20</left>
+				<top>-200</top>
+				<width>130</width>
+				<height>170</height>
+				<aspectratio align="center" aligny="center">keep</aspectratio>
+				<imagepath>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Daily.$PARAM[item].FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</imagepath>
+				<fadetime>1</fadetime>
+				<pauseatend>1</pauseatend>
+				<timeperimage>080</timeperimage>
+				<randomize>false</randomize>
+				<loop>true</loop>
+				<visible>!String.IsEmpty(Window(weather).Property(Daily.$PARAM[item].Outlook))</visible>
+			</control>
+			<control type="label" id="20$PARAM[item]02">
+				<left>170</left>
+				<top>-200</top>
+				<width>800</width>
+				<height>170</height>
+				<textcolor>grey</textcolor>
+				<label>[CR]$INFO[Window.Property(Daily.$PARAM[item].HighTemperature),[COLOR red],[/COLOR]]$INFO[Window.Property(Daily.$PARAM[item].LowTemperature),  [COLOR blue],[/COLOR]]$INFO[Window.Property(Daily.$PARAM[item].Outlook),[CR]]</label>
+				<visible>!String.IsEmpty(Window(weather).Property(Daily.$PARAM[item].Outlook))</visible>
+			</control>
+			<control type="label" id="20$PARAM[item]03">
+				<right>20</right>
+				<top>-200</top>
+				<width>800</width>
+				<height>170</height>
+				<align>right</align>
+				<textcolor>grey</textcolor>
+				<label>$INFO[Window.Property(Daily.$PARAM[item].Precipitation),$LOCALIZE[1448]: ][CR]$INFO[Window.Property(Daily.$PARAM[item].WindSpeed)]$INFO[Window.Property(Daily.$PARAM[item].WindDirection),  ]$INFO[Window.Property(Daily.$PARAM[item].WindDegree),  ,]$INFO[Window.Property(Daily.$PARAM[item].Humidity),[CR]$LOCALIZE[406]: ]</label>
+				<visible>!String.IsEmpty(Window(weather).Property(Daily.$PARAM[item].Outlook))</visible>
+			</control>
+		</definition>
+	</include>
+	<include name="Weather36hourList">
+		<param name="item"></param>
+		<definition>
+			<control type="image">
+				<width>409</width>
+				<height>770</height>
+				<texture colordiffuse="FF000000" border="10">buttons/panel-select-focus.png</texture>
+			</control>
+			<control type="label">
+				<left>-439</left>
+				<width>409</width>
+				<height>60</height>
+				<align>center</align>
+				<textcolor>grey</textcolor>
+				<font>Font33_Bold_Caps</font>
+				<label>$INFO[Window.Property(36Hour.$PARAM[item].Heading)]</label>
+			</control>
+			<control type="multiimage">
+				<left>-439</left>
+				<top>83</top>
+				<width>409</width>
+				<height>350</height>
+				<aspectratio align="center" aligny="top">keep</aspectratio>
+				<imagepath>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(36Hour.$PARAM[item].FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</imagepath>
+				<timeperimage>050</timeperimage>
+				<fadetime>1</fadetime>
+				<pauseatend>1</pauseatend>
+				<timeperimage>080</timeperimage>
+				<randomize>false</randomize>
+				<loop>true</loop>
+			</control>
+			<control type="textbox">
+				<left>-439</left>
+				<top>473</top>
+				<width>409</width>
+				<height>272</height>
+				<align>center</align>
+				<aligny>center</aligny>
+				<textcolor>grey</textcolor>
+				<textoffsetx>20</textoffsetx>
+				<label>$INFO[Window.Property(36Hour.$PARAM[item].Outlook)]$INFO[Window.Property(36Hour.$PARAM[item].TemperatureHeading),[CR],: ]$INFO[Window.Property(36Hour.$PARAM[item].Temperature)]$INFO[Window.Property(36Hour.$PARAM[item].FeelsLike),[CR]$LOCALIZE[402]: ]$INFO[Window.Property(36Hour.$PARAM[item].Precipitation),[CR]$LOCALIZE[1448]: ][CR]$INFO[Window.Property(36Hour.1.WindSpeed)]$INFO[Window.Property(36Hour.$PARAM[item].WindDirection),  ]$INFO[Window.Property(36Hour.$PARAM[item].WindDegree),  ,]$INFO[Window.Property(36Hour.$PARAM[item].Humidity),[CR]$LOCALIZE[406]: ]</label>
+			</control>
+		</definition>
+	</include>
+	<include name="WeatherWeekendList">
+		<param name="item"></param>
+		<definition>
+			<control type="image">
+				<width>628</width>
+				<height>770</height>
+				<texture colordiffuse="FF000000" border="10">buttons/panel-select-focus.png</texture>
+			</control>
+			<control type="label">
+				<left>-658</left>
+				<width>628</width>
+				<height>60</height>
+				<align>center</align>
+				<textcolor>grey</textcolor>
+				<font>Font33_Bold_Caps</font>
+				<label>$INFO[Window.Property(Weekend.$PARAM[item].LongDay)] $INFO[Window.Property(Weekend.$PARAM[item].LongDate)]</label>
+			</control>
+			<control type="multiimage">
+				<left>-658</left>
+				<top>83</top>
+				<width>628</width>
+				<height>350</height>
+				<aspectratio align="center" aligny="top">keep</aspectratio>
+				<imagepath>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Weekend.$PARAM[item].FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</imagepath>
+				<fadetime>1</fadetime>
+				<pauseatend>1</pauseatend>
+				<timeperimage>080</timeperimage>
+				<randomize>false</randomize>
+				<loop>true</loop>
+			</control>
+			<control type="label">
+				<left>-658</left>
+				<top>473</top>
+				<width>628</width>
+				<height>272</height>
+				<align>center</align>
+				<textcolor>grey</textcolor>
+				<textoffsetx>20</textoffsetx>
+				<label>$INFO[Window.Property(Weekend.1.HighTemperature),[COLOR red],[/COLOR]]$INFO[Window.Property(Weekend.1.LowTemperature),  [COLOR blue],[/COLOR]]$INFO[Window.Property(Weekend.1.Outlook),[CR]]$INFO[Window.Property(Weekend.$PARAM[item].Precipitation),[CR]$LOCALIZE[1448]: ][CR]$INFO[Window.Property(Weekend.1.WindSpeed)]$INFO[Window.Property(Weekend.$PARAM[item].WindDirection),  ]$INFO[Window.Property(Weekend.$PARAM[item].WindDegree),  ,]$INFO[Window.Property(Weekend.$PARAM[item].Humidity),[CR]$LOCALIZE[406]: ]</label>
+			</control>
+		</definition>
+	</include>
+	<include name="WeatherHourlyList">
+		<param name="item"></param>
+		<definition>
+			<control type="button" id="30$PARAM[item]01">
+				<width>1286</width>
+				<height>170</height>
+				<aligny>top</aligny>
+				<textcolor>grey</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<font>Font33_Bold_Caps</font>
+				<textoffsetx>170</textoffsetx>
+				<textoffsety>20</textoffsety>
+				<label>$INFO[Window(weather).Property(Hourly.$PARAM[item].Time)]$INFO[Window(weather).Property(Hourly.$PARAM[item].LongDate), ]</label>
+				<texturefocus colordiffuse="$VAR[WeatherHighlightColorVar]" border="10">buttons/panel-select-focus.png</texturefocus>
+				<texturenofocus colordiffuse="FF000000" border="10">buttons/panel-select-focus.png</texturenofocus>
+				<visible>!String.IsEmpty(Window(weather).Property(Hourly.$PARAM[item].Outlook))</visible>
+			</control>
+			<control type="multiimage" id="30$PARAM[item]02">
+				<left>20</left>
+				<top>-200</top>
+				<width>130</width>
+				<height>170</height>
+				<aspectratio align="center" aligny="center">keep</aspectratio>
+				<imagepath>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Hourly.$PARAM[item].FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</imagepath>
+				<fadetime>1</fadetime>
+				<pauseatend>1</pauseatend>
+				<timeperimage>080</timeperimage>
+				<randomize>false</randomize>
+				<loop>true</loop>
+				<visible>!String.IsEmpty(Window(weather).Property(Hourly.$PARAM[item].Outlook))</visible>
+			</control>
+			<control type="label" id="30$PARAM[item]03">
+				<left>170</left>
+				<top>-200</top>
+				<width>800</width>
+				<height>170</height>
+				<textcolor>grey</textcolor>
+				<label>[CR]$INFO[Window(weather).Property(Hourly.$PARAM[item].Outlook)][CR]$INFO[Window(weather).Property(Hourly.$PARAM[item].Temperature)]</label>
+				<visible>!String.IsEmpty(Window(weather).Property(Hourly.$PARAM[item].Outlook))</visible>
+			</control>
+			<control type="label" id="30$PARAM[item]04">
+				<right>20</right>
+				<top>-200</top>
+				<width>800</width>
+				<height>170</height>
+				<align>right</align>
+				<textcolor>grey</textcolor>
+				<label>$INFO[Window.Property(Hourly.$PARAM[item].Precipitation),$LOCALIZE[1448]: ][CR]$INFO[Window.Property(Hourly.$PARAM[item].WindSpeed)]$INFO[Window.Property(Hourly.$PARAM[item].WindDirection),  ]$INFO[Window.Property(Hourly.$PARAM[item].WindDegree),  ,]$INFO[Window.Property(Hourly.$PARAM[item].Humidity),[CR]$LOCALIZE[406]: ]</label>
+				<visible>!String.IsEmpty(Window(weather).Property(Hourly.$PARAM[item].Outlook))</visible>
+			</control>
+		</definition>
+	</include>
+	<include name="WeatherMapItem">
+		<param name="item"></param>
+		<param name="visible">false</param>
+		<definition>
+			<control type="group">
+				<visible>$PARAM[visible]</visible>
+				<include>Animation_VisibleFade</include>
+				<left>460</left>
+				<top>159</top>
+				<width>1287</width>
+				<height>770</height>
+				<control type="image">
+					<aspectratio>scale</aspectratio>
+					<texture>$INFO[Window(weather).Property(Map.$PARAM[item].Area)]</texture>
+				</control>
+				<control type="image">
+					<aspectratio>scale</aspectratio>
+					<texture colordiffuse="55FFFFFF">$INFO[Window(weather).Property(Map.$PARAM[item].Layer)]</texture>
+				</control>
+				<control type="image">
+					<right>20</right>
+					<bottom>20</bottom>
+					<width>356</width>
+					<height>100</height>
+					<aspectratio align="right" aligny="bottom">keep</aspectratio>
+					<texture>$INFO[Window(weather).Property(Map.$PARAM[item].Legend)]</texture>
+				</control>
+			</control>
+		</definition>
+	</include>
+</includes>

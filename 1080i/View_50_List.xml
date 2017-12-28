@@ -1,173 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <includes>
 	<include name="View_50_List">
+		<!-- Left Content -->
 		<control type="group">
 			<visible>Control.IsVisible(50)</visible>
-			<!-- Floor -->
-			<control type="group">
-				<visible>!Skin.HasSetting(View50HideFloor)</visible>
-				<include content="Animation_Slide_Bottom">
-					<param name="slide">218</param>
+			<include content="Animation_Slide_Left_Window">
+				<param name="slide">1243</param>
+			</include>
+			<include content="Animation_Slide_Left_Visible">
+				<param name="slide">1243</param>
+			</include>
+			<include content="Panel_Default">
+				<param name="width">1163</param>
+				<param name="reflect">!Skin.HasSetting(View50HideFloor)</param>
+			</include>
+			<control type="panel" id="50">
+				<left>142</left>
+				<top>147</top>
+				<width>1036</width>
+				<height>792</height>
+				<onleft>9050</onleft>
+				<onright>60</onright>
+				<viewtype label="535">list</viewtype>
+				<pagecontrol>60</pagecontrol>
+				<include content="View_Container_List">
+					<param name="width">1036</param>
 				</include>
-				<include>Floor_Background_Right</include>
 			</control>
-			<!-- Left Content -->
-			<control type="group">
-				<include content="Animation_Slide_Left">
-					<param name="slide">1263</param>
-					<param name="opencondition">true</param>
-					<param name="closecondition">true</param>
-				</include>
-				<include content="Animation_FurnitureShift">
-					<param name="slidetopbarcondition">Skin.HasSetting(View50HideTopBar)</param>
-					<param name="slidefloorcondition">!Skin.HasSetting(View50HideTopBar) + Skin.HasSetting(View50HideFloor)</param>
-				</include>
-				<include content="Panel_Background_Default">
-					<param name="width">1163</param>
-					<param name="reflect">!Skin.HasSetting(View50HideFloor)</param>
-				</include>
-				<control type="image">
-					<left>953</left>
-					<top>145</top>
-					<width>200</width>
-					<height>800</height>
-					<texture colordiffuse="$VAR[PanelColorVar]" border="40">panels/list-detail-underlay.png</texture>
-					<visible>!String.IsEmpty(Container(50).ListItem(1).Label2) | !String.IsEmpty(Container(50).ListItem(2).Label2) | !String.IsEmpty(Container(50).ListItem(3).Label2) | Container.Content(seasons) | Container.Content(artists) | Container.Content(addons)</visible>
-				</control>
-				<control type="image">
-					<left>120</left>
-					<top>145</top>
-					<width>120</width>
-					<height>800</height>
-					<texture colordiffuse="$VAR[PanelColorVar]" border="40">panels/list-detail-underlay.png</texture>
-					<visible>Container.Content(episodes) | Container.Content(songs)</visible>
-				</control>
-				<control type="list" id="50">
-					<left>100</left>
-					<top>145</top>
-					<width>1133</width>
-					<height>800</height>
-					<onleft>9000</onleft>
-					<onright>60</onright>
-					<viewtype label="535">list</viewtype>
-					<pagecontrol>60</pagecontrol>
-					<include>View_50</include>
-				</control>
-				<control type="scrollbar" id="60">
-					<left>1213</left>
-					<top>143</top>
-					<bottom>132</bottom>
-					<height>800</height>
-					<onleft>50</onleft>
-				</control>
+			<control type="scrollbar" id="60">
+				<left>1162</left>
+				<top>140</top>
+				<bottom>130</bottom>
+				<onleft>50</onleft>
 			</control>
-			<!-- Right Content -->
-			<control type="group">
-				<right>85</right>
-				<width>567</width>
-				<include content="Animation_Slide_Right">
-					<param name="slide">652</param>
-					<param name="opencondition">true</param>
-					<param name="closecondition">true</param>
-				</include>
-				<include content="Animation_FurnitureShift">
-					<param name="slidetopbarcondition">Skin.HasSetting(view50HideTopBar)</param>
-					<param name="slidefloorcondition">!Skin.HasSetting(View50HideTopBar) + Skin.HasSetting(View50HideFloor)</param>
-				</include>
-				<control type="group">
-					<visible>Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos)</visible>
-					<control type="image">
-						<visible>!Container.Content(artists)</visible>
-						<top>173</top>
-						<right>35</right>
-						<width>497</width>
-						<height>497</height>
-						<fadetime>TextureFadeTime</fadetime>
-						<aspectratio>keep</aspectratio>
-						<texture background="true">$VAR[MusicDiscArtVar]</texture>
-					</control>
-					<control type="image">
-						<visible>Container.Content(artists)</visible>
-						<top>144</top>
-						<right>15</right>
-						<width>537</width>
-						<height>268</height>
-						<fadetime>TextureFadeTime</fadetime>
-						<aspectratio>keep</aspectratio>
-						<texture background="true">$VAR[MusicClearLogoVar]</texture>
-					</control>
-					<control type="image">
-						<bottom>117</bottom>
-						<width>567</width>
-						<height>567</height>
-						<fadetime>TextureFadeTime</fadetime>
-						<bordersize>15</bordersize>
-						<aspectratio aligny="top">scale</aspectratio>
-						<bordertexture border="30">thumbs/poster-frame.png</bordertexture>
-						<texture diffuse="thumbs/poster-mask.png" fallback="DefaultMusicArtists.png" background="true">$VAR[MusicPosterVar]</texture>
-					</control>
-					<control type="image">
-						<bottom>-420</bottom>
-						<width>567</width>
-						<height>567</height>
-						<fadetime>TextureFadeTime</fadetime>
-						<bordersize>15</bordersize>
-						<aspectratio aligny="top">scale</aspectratio>
-						<texture flipy="true" diffuse="thumbs/poster-flipmask.png" fallback="DefaultMusicArtists.png" background="true">$VAR[MusicPosterVar]</texture>
-					</control>
-				</control>
-				<control type="group">
-					<visible>Container.Content(genres)</visible>
-					<control type="image">
-						<bottom>117</bottom>
-						<width>567</width>
-						<height>835</height>
-						<fadetime>TextureFadeTime</fadetime>
-						<bordersize>15</bordersize>
-						<aspectratio aligny="bottom">keep</aspectratio>
-						<bordertexture border="30">thumbs/poster-frame.png</bordertexture>
-						<texture fallback="DefaultGenre.png" diffuse="thumbs/poster-mask.png" background="true">$VAR[GenrePosterVar]</texture>
-					</control>
-					<control type="image">
-						<bottom>-688</bottom>
-						<width>567</width>
-						<height>835</height>
-						<fadetime>TextureFadeTime</fadetime>
-						<bordersize>15</bordersize>
-						<aspectratio aligny="top">keep</aspectratio>
-						<texture fallback="DefaultGenre.png" flipy="true" diffuse="thumbs/poster-flipmask.png" background="true">$VAR[GenrePosterVar]</texture>
-					</control>
-				</control>
-				<control type="group">
-					<visible>!Container.Content(genres) + !Container.Content(musicvideos) + !Container.Content(artists) + !Container.Content(albums) + !Container.Content(songs)</visible>
-					<control type="image">
-						<bottom>117</bottom>
-						<width>567</width>
-						<height>835</height>
-						<fadetime>400</fadetime>
-						<bordersize>15</bordersize>
-						<aspectratio aligny="bottom">keep</aspectratio>
-						<bordertexture border="30">thumbs/poster-frame.png</bordertexture>
-						<texture diffuse="thumbs/poster-mask.png" background="true">$VAR[PosterVar]</texture>
-					</control>
-					<control type="image">
-						<bottom>-688</bottom>
-						<width>567</width>
-						<height>835</height>
-						<fadetime>TextureFadeTime</fadetime>
-						<bordersize>15</bordersize>
-						<aspectratio aligny="top">keep</aspectratio>
-						<texture flipy="true" diffuse="thumbs/poster-flipmask.png" background="true">$VAR[PosterVar]</texture>
-					</control>
-				</control>
-			</control>
-			<!-- Media Flags -->
-			<control type="group">
-				<include content="Animation_Slide_Bottom">
-					<param name="slide">111</param>
-				</include>
-				<include>MediaFlags_Right</include>
-			</control>
+		</control>
+		<!-- Right Content -->
+		<control type="group">
+			<visible>Control.IsVisible(50)</visible>
+			<include content="Animation_Slide_Right_Window">
+				<param name="slide">652</param>
+			</include>
+			<include content="Animation_Slide_Right_Visible">
+				<param name="slide">652</param>
+			</include>
+			<include content="View_Poster">
+				<!-- <param name="top"></param>
+				<param name="left"></param>
+				<param name="width"></param>
+				<param name="height"></param> -->
+			</include>
 		</control>
 	</include>
 </includes>

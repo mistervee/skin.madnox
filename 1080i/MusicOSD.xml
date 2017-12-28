@@ -4,25 +4,26 @@
 	<defaultcontrol always="true">206</defaultcontrol>
 	<controls>
 		<control type="group">
-			<visible>!Window.IsActive(dialogsettings.xml) + !Window.IsActive(dialogselect.xml) + !Window.IsActive(subtitlesearch) + !Window.IsActive(pvrosdChannels) + !Window.IsActive(pvrchannelguide) + !Window.IsActive(1117)</visible>
-			<include content="Animation_Slide_Bottom">
-				<param name="slide">160</param>
+			<visible>!Window.IsActive(dialogsettings.xml) + !Window.IsActive(dialogselect.xml) + !Window.IsActive(subtitlesearch) + !Window.IsActive(pvrosdChannels) + !Window.IsActive(pvrchannelguide) + !Window.IsActive(1111)</visible>
+			<include content="Animation_Slide_Top_Window">
+				<param name="slide">130</param>
 			</include>
-			<top>950</top>
+			<include content="Animation_Slide_Top_Visible">
+				<param name="slide">130</param>
+			</include>
 			<control type="image">
-				<top>-20</top>
 				<width>1920</width>
 				<height>20</height>
-				<texture colordiffuse="$VAR[GlowColorVar]">dialogs/glow-bottom.png</texture>
+				<texture flipy="true" colordiffuse="$VAR[GlowColorVar]">dialogs/glow-bottom.png</texture>
 			</control>
 			<control type="image">
 				<width>1920</width>
 				<height>130</height>
-				<texture colordiffuse="$VAR[PanelColorVar]" border="15">dialogs/osd-back.png</texture>
+				<texture flipy="true" colordiffuse="$VAR[PanelColorVar]" border="20">dialogs/osd-back.png</texture>
 			</control>
 			<control type="grouplist">
 				<left>5</left>
-				<bottom>-5</bottom>
+				<top>-5</top>
 				<height>120</height>
 				<onleft>308</onleft>
 				<onright>201</onright>
@@ -32,7 +33,9 @@
 					<include content="Dialog_Button_OSD">
 						<param name="texture" value="buttons/player/settings.png"/>
 					</include>
-					<onclick>ActivateWindow(1117)</onclick>
+					<onclick>SetProperty(CustomSelect,$LOCALIZE[10120],home)</onclick>
+					<onclick>ActivateWindow(1111)</onclick>
+					<visible>!String.Contains(Skin.String(KioskMode),HideOptions) + !String.IsEqual(Skin.String(KioskMode),HideMenu)</visible>
 				</control>
 				<control type="radiobutton" id="102">
 					<include content="Dialog_Button_OSD">
@@ -50,7 +53,7 @@
 				</control>
 			</control>
 			<control type="grouplist">
-				<bottom>-5</bottom>
+				<top>-5</top>
 				<height>120</height>
 				<onright>301</onright>
 				<onleft>103</onleft>
@@ -133,7 +136,7 @@
 			</control>
 			<control type="grouplist">
 				<right>5</right>
-				<bottom>-5</bottom>
+				<top>-5</top>
 				<height>120</height>
 				<onleft>211</onleft>
 				<onright>101</onright>

@@ -1,530 +1,533 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
-	<defaultcontrol>7500</defaultcontrol>
-	<menucontrol>9000</menucontrol>
+	<defaultcontrol>8000</defaultcontrol>
+	<menucontrol>9050</menucontrol>
 	<controls>
 		<!-- Backdrop -->
-		<include>Background_Nowplaying</include>
-		<include content="Background_Fanart_Default">
+		<include content="Background_Default">
 			<param name="imagepath">$VAR[WeatherFanartVar]</param>
+			<param name="backgroundcolor">WeatherBackground.Color.base</param>
 		</include>
 		<!-- Floor -->
 		<control type="group">
 			<visible>!Skin.HasSetting(WeatherHideFloor)</visible>
-			<include content="Animation_Slide_Bottom">
-				<param name="slide">218</param>
+			<include content="Animation_Slide_Bottom_Window">
+				<param name="slide">220</param>
 			</include>
-			<include>Floor_Background_Default</include>
+			<include content="Animation_Slide_Bottom_Visible">
+				<param name="slide">220</param>
+			</include>
+			<include>Floor_Default</include>
+		</control>
+		<!-- Panel -->
+		<control type="group">
+			<include>Animation_Zoom_Window</include>
+			<include content="Panel_Side">
+				<param name="reflect">!Skin.HasSetting(WeatherHideFloor)</param>
+			</include>
 		</control>
 		<!-- Content -->
 		<control type="group">
-			<include>Animation_Zoom_OpenClose</include>
-			<include content="Animation_FurnitureShift">
-				<param name="slidetopbarcondition">Skin.HasSetting(WeatherHideTopBar)</param>
-				<param name="slidefloorcondition">!Skin.HasSetting(WeatherHideTopBar) + Skin.HasSetting(WeatherHideFloor)</param>
-			</include>
-			<include content="Panel_Background_Default">
-				<param name="reflect">!Skin.HasSetting(WeatherHideFloor)</param>
-			</include>
-			<control type="image">
-				<left>960</left>
-				<top>144</top>
-				<width>1</width>
-				<height>803</height>
-				<texture colordiffuse="$VAR[PanelColorVar]">panels/line-vertical.png</texture>
-			</control>
-			<control type="group">
-				<left>101</left>
-				<top>144</top>
-				<width>859</width>
-				<include>Animation_CommonFade</include>
-				<control type="grouplist">
-					<usecontrolcoords>true</usecontrolcoords>
+			<include>Animation_Zoom_Window</include>
+			<control type="panel" id="8000">
+				<left>105</left>
+				<top>159</top>
+				<width>321</width>
+				<height>737</height>
+				<onleft>9050</onleft>
+				<onright condition="Container(8000).HasFocus(1)">8001</onright>
+				<onright condition="Container(8000).HasFocus(2)">8002</onright>
+				<onright condition="Container(8000).HasFocus(5)">8005</onright>
+				<itemlayout height="67">
+					<control type="label">
+						<include>Settings_LeftButton</include>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</itemlayout>
+				<focusedlayout height="67">
 					<control type="image">
-						<height>92</height>
-						<aspectratio align="center" aligny="center">keep</aspectratio>
-						<texture>$INFO[Window(weather).Property(WeatherProviderLogo)]</texture>
+						<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
 					</control>
 					<control type="label">
-						<description>weather location label</description>
-						<top>25</top>
-						<height>50</height>
+						<include>Settings_LeftButton</include>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</focusedlayout>
+				<content>
+					<item id="1">
+						<label>$LOCALIZE[31092]</label>
+					</item>
+					<item id="2">
+						<label>$LOCALIZE[31090]</label>
+						<visible>!String.IsEmpty(Window(weather).Property(Daily.IsFetched))</visible>
+					</item>
+					<item id="3">
+						<label>$LOCALIZE[33034]</label>
+						<visible>!String.IsEmpty(Window(weather).Property(36Hour.IsFetched))</visible>
+					</item>
+					<item id="4">
+						<label>$LOCALIZE[33037]</label>
+						<visible>!String.IsEmpty(Window(weather).Property(Weekend.IsFetched))</visible>
+					</item>
+					<item id="5">
+						<label>$LOCALIZE[33036]</label>
+						<visible>!String.IsEmpty(Window(weather).Property(Hourly.IsFetched))</visible>
+					</item>
+					<item id="6">
+						<label>$LOCALIZE[31091]</label>
+						<visible>!String.IsEmpty(Window(weather).Property(Radar))</visible>
+					</item>
+					<item id="7">
+						<label fallback="1448">$INFO[Window(weather).Property(Map.1.Heading)]</label>
+						<visible>!String.IsEmpty(Window(weather).Property(Map.1.Area)) + !String.IsEmpty(Window(weather).Property(Map.IsFetched))</visible>
+					</item>
+					<item id="8">
+						<label fallback="387">$INFO[Window(weather).Property(Map.2.Heading)]</label>
+						<visible>!String.IsEmpty(Window(weather).Property(Map.2.Area)) + !String.IsEmpty(Window(weather).Property(Map.IsFetched))</visible>
+					</item>
+					<item id="9">
+						<label fallback="1375">$INFO[Window(weather).Property(Map.3.Heading)]</label>
+						<visible>!String.IsEmpty(Window(weather).Property(Map.3.Area)) + !String.IsEmpty(Window(weather).Property(Map.IsFetched))</visible>
+					</item>
+					<item id="10">
+						<label fallback="404">$INFO[Window(weather).Property(Map.4.Heading)]</label>
+						<visible>!String.IsEmpty(Window(weather).Property(Map.4.Area)) + !String.IsEmpty(Window(weather).Property(Map.IsFetched))</visible>
+					</item>
+					<item id="11">
+						<label fallback="1376">$INFO[Window(weather).Property(Map.5.Heading)]</label>
+						<visible>!String.IsEmpty(Window(weather).Property(Map.5.Area)) + !String.IsEmpty(Window(weather).Property(Map.IsFetched))</visible>
+					</item>
+				</content>
+			</control>
+			<control type="group">
+				<visible>Container(8000).HasFocus(1)</visible>
+				<left>460</left>
+				<top>159</top>
+				<width>1286</width>
+				<height>775</height>
+				<include>Animation_VisibleFade</include>
+				<control type="image">
+					<height>439</height>
+					<texture colordiffuse="FF000000" border="10">buttons/panel-select-focus.png</texture>
+				</control>
+				<control type="image">
+					<left>608</left>
+					<top>20</top>
+					<width>647</width>
+					<height>113</height>
+					<aspectratio align="right">keep</aspectratio>
+					<texture colordiffuse="grey">$INFO[Window(weather).Property(WeatherProviderLogo)]</texture>
+				</control>
+				<control type="multiimage">
+					<left>20</left>
+					<top>143</top>
+					<width>261</width>
+					<height>261</height>
+					<imagepath>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Current.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</imagepath>
+					<fadetime>1</fadetime>
+					<pauseatend>1</pauseatend>
+					<timeperimage>080</timeperimage>
+					<randomize>false</randomize>
+					<loop>true</loop>
+				</control>
+				<control type="grouplist">
+					<top>153</top>
+					<left>301</left>
+					<width>647</width>
+					<height>261</height>
+					<align>center</align>
+					<usecontrolcoords>true</usecontrolcoords>
+					<control type="label">
+						<height>80</height>
+						<font>Font80_Bold</font>
+						<label>$INFO[Window(weather).Property(Current.Temperature)]$INFO[System.TemperatureUnits]</label>
+					</control>
+					<control type="label">
+						<height>40</height>
+						<label>$INFO[Window(weather).Property(Current.Condition)]</label>
+					</control>
+					<control type="label">
+						<height>40</height>
+						<label>$LOCALIZE[402] $INFO[Window(weather).Property(Current.FeelsLike)]$INFO[System.TemperatureUnits]</label>
+					</control>
+				</control>
+				<control type="grouplist">
+					<left>40</left>
+					<top>20</top>
+					<width>628</width>
+					<height>113</height>
+					<align>center</align>
+					<control type="label">
+						<height>40</height>
 						<font>Font28_Bold_Caps</font>
-						<textcolor>white</textcolor>
-						<align>center</align>
 						<label>$INFO[Window(weather).Property(Location)]</label>
 					</control>
 					<control type="label">
-						<description>update label</description>
-						<height>30</height>
-						<font>Font32_Reg</font>
-						<align>center</align>
+						<height>40</height>
 						<textcolor>grey2</textcolor>
+						<font>Font28_Reg</font>
 						<label>$LOCALIZE[12014] $INFO[Window(weather).Property(Updated)]</label>
 					</control>
-					<control type="multiimage">
-						<top>21</top>
-						<width>400</width>
-						<height>228</height>
-						<aspectratio align="right" aligny="center">keep</aspectratio>
-						<imagepath>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Current.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</imagepath>
-						<timeperimage>50</timeperimage>
-						<fadetime>TextureFadeTime</fadetime>
-						<randomize>false</randomize>
-						<loop>true</loop>
-					</control>
+				</control>
+				<control type="grouplist">
+					<left>627</left>
+					<top>153</top>
+					<width>628</width>
+					<height>261</height>
+					<align>center</align>
+					<itemgap>10</itemgap>
 					<control type="label">
-						<left>420</left>
-						<top>-184</top>
-						<width>400</width>
-						<height>70</height>
-						<label>$INFO[Window(weather).Property(Current.Temperature)] $INFO[System.TemperatureUnits]</label>
-						<font>Font80_Bold_Caps</font>
-					</control>
-					<control type="label">
-						<left>420</left>
-						<width>400</width>
-						<height>114</height>
-						<aligny>top</aligny>
-						<label>$INFO[Window(weather).Property(Current.Condition)]</label>
-						<wrapmultiline>true</wrapmultiline>
-						<font>Font40_Reg</font>
-						<textcolor>grey2</textcolor>
-					</control>
-					<control type="label">
-						<width>400</width>
-						<height>39</height>
+						<height>40</height>
 						<align>right</align>
-						<label>$LOCALIZE[402]:</label>
-						<font>Font32_Reg</font>
-						<textcolor>grey2</textcolor>
-						<visible>!String.IsEmpty(Window(weather).Property(Current.FeelsLike))</visible>
+						<font>Font36_Reg</font>
+						<textcolor>grey</textcolor>
+						<label>[COLOR white]$LOCALIZE[406][/COLOR] $INFO[Window(weather).Property(Current.Humidity)]</label>
 					</control>
 					<control type="label">
-						<left>420</left>
-						<top>-39</top>
-						<width>400</width>
-						<height>39</height>
-						<label>$INFO[Window(weather).Property(Current.FeelsLike)] $INFO[System.TemperatureUnits]</label>
-						<font>Font32_Reg</font>
-						<visible>!String.IsEmpty(Window(weather).Property(Current.FeelsLike))</visible>
-					</control>
-					<control type="label">
-						<width>400</width>
-						<height>39</height>
+						<height>40</height>
 						<align>right</align>
-						<label>$LOCALIZE[405]:</label>
-						<font>Font32_Reg</font>
-						<textcolor>grey2</textcolor>
-						<visible>!String.IsEmpty(Window(weather).Property(Current.DewPoint))</visible>
+						<font>Font36_Reg</font>
+						<textcolor>grey</textcolor>
+						<label>[COLOR white]$LOCALIZE[404][/COLOR] $INFO[Window(weather).Property(Current.Wind)]</label>
 					</control>
 					<control type="label">
-						<left>420</left>
-						<top>-39</top>
-						<width>400</width>
-						<height>39</height>
-						<label>$INFO[Window(weather).Property(Current.DewPoint)]$INFO[System.TemperatureUnits]</label>
-						<font>Font32_Reg</font>
-						<visible>!String.IsEmpty(Window(weather).Property(Current.DewPoint))</visible>
-					</control>
-					<control type="label">
-						<width>400</width>
-						<height>39</height>
+						<height>40</height>
 						<align>right</align>
-						<label>$LOCALIZE[403]:</label>
-						<font>Font32_Reg</font>
-						<textcolor>grey2</textcolor>
-						<visible>!String.IsEmpty(Window(weather).Property(Current.UVIndex))</visible>
+						<font>Font36_Reg</font>
+						<textcolor>grey</textcolor>
+						<label>[COLOR white]$LOCALIZE[33027][/COLOR] [LOWERCASE]$INFO[Window(weather).Property(Today.Sunrise)][/LOWERCASE]</label>
 					</control>
 					<control type="label">
-						<left>420</left>
-						<top>-39</top>
-						<width>400</width>
-						<height>39</height>
-						<label>$INFO[Window(weather).Property(Current.UVIndex)]</label>
-						<font>Font32_Reg</font>
-						<visible>!String.IsEmpty(Window(weather).Property(Current.UVIndex))</visible>
-					</control>
-					<control type="label">
-						<width>400</width>
-						<height>39</height>
+						<height>40</height>
 						<align>right</align>
-						<label>$LOCALIZE[406]:</label>
-						<font>Font32_Reg</font>
-						<textcolor>grey2</textcolor>
-						<visible>!String.IsEmpty(Window(weather).Property(Current.Humidity))</visible>
-					</control>
-					<control type="label">
-						<left>420</left>
-						<top>-39</top>
-						<width>400</width>
-						<height>39</height>
-						<label>$INFO[Window(weather).Property(Current.Humidity)]</label>
-						<font>Font32_Reg</font>
-						<visible>!String.IsEmpty(Window(weather).Property(Current.Humidity))</visible>
-					</control>
-					<control type="label">
-						<width>400</width>
-						<height>39</height>
-						<align>right</align>
-						<label>$LOCALIZE[33021]:</label>
-						<font>Font32_Reg</font>
-						<textcolor>grey2</textcolor>
-						<visible>!String.IsEmpty(Window(weather).Property(Current.Precipitation))</visible>
-					</control>
-					<control type="label">
-						<left>420</left>
-						<top>-39</top>
-						<width>400</width>
-						<height>39</height>
-						<label>$INFO[Window(weather).Property(Current.Precipitation)]</label>
-						<font>Font32_Reg</font>
-						<visible>!String.IsEmpty(Window(weather).Property(Current.Precipitation))</visible>
-					</control>
-					<control type="label">
-						<width>400</width>
-						<height>39</height>
-						<align>right</align>
-						<label>$LOCALIZE[404]:</label>
-						<font>Font32_Reg</font>
-						<textcolor>grey2</textcolor>
-						<visible>!String.IsEmpty(Window(weather).Property(Current.Wind))</visible>
-					</control>
-					<control type="label">
-						<left>420</left>
-						<top>-39</top>
-						<width>400</width>
-						<height>39</height>
-						<label>$INFO[Window(weather).Property(Current.Wind)]</label>
-						<font>Font32_Reg</font>
-						<visible>!String.IsEmpty(Window(weather).Property(Current.Wind))</visible>
-					</control>
-					<control type="label">
-						<width>400</width>
-						<height>39</height>
-						<align>right</align>
-						<label>$LOCALIZE[33027]:</label>
-						<font>Font32_Reg</font>
-						<textcolor>grey2</textcolor>
-						<visible>!String.IsEmpty(Window(weather).Property(Today.Sunrise))</visible>
-					</control>
-					<control type="label">
-						<left>420</left>
-						<top>-39</top>
-						<width>400</width>
-						<height>39</height>
-						<label>$INFO[Window(weather).Property(Today.Sunrise)]</label>
-						<visible>!String.IsEmpty(Window(weather).Property(Today.Sunrise))</visible>
-						<font>Font32_Reg</font>
-					</control>
-					<control type="label">
-						<width>400</width>
-						<height>39</height>
-						<align>right</align>
-						<label>$LOCALIZE[33028]:</label>
-						<font>Font32_Reg</font>
-						<textcolor>grey2</textcolor>
-						<visible>!String.IsEmpty(Window(weather).Property(Today.Sunset))</visible>
-					</control>
-					<control type="label">
-						<left>420</left>
-						<top>-39</top>
-						<width>400</width>
-						<height>39</height>
-						<label>$INFO[Window(weather).Property(Today.Sunset)]</label>
-						<font>Font32_Reg</font>
-						<visible>!String.IsEmpty(Window(weather).Property(Today.Sunset))</visible>
+						<font>Font36_Reg</font>
+						<textcolor>grey</textcolor>
+						<label>[COLOR white]$LOCALIZE[33028][/COLOR] [LOWERCASE]$INFO[Window(weather).Property(Today.Sunset)][/LOWERCASE]</label>
 					</control>
 				</control>
+				<control type="grouplist" id="8001">
+					<visible>Container(8000).HasFocus(1)</visible>
+					<include>Animation_VisibleFade</include>
+					<top>469</top>
+					<width>1286</width>
+					<height>299</height>
+					<onleft>8000</onleft>
+					<itemgap>30</itemgap>
+					<pagecontrol>60</pagecontrol>
+					<orientation>horizontal</orientation>
+					<usecontrolcoords>true</usecontrolcoords>
+					<include content="WeatherDayList">
+						<param name="item">1</param>
+					</include>
+					<include content="WeatherDayList">
+						<param name="item">2</param>
+					</include>
+					<include content="WeatherDayList">
+						<param name="item">3</param>
+					</include>
+					<include content="WeatherDayList">
+						<param name="item">4</param>
+					</include>
+					<include content="WeatherDayList">
+						<param name="item">5</param>
+					</include>
+					<include content="WeatherDayList">
+						<param name="item">6</param>
+					</include>
+				</control>
+			</control>
+			<control type="grouplist" id="8002">
+				<visible>Container(8000).HasFocus(2)</visible>
+				<include>Animation_CommonFade</include>
+				<left>460</left>
+				<top>159</top>
+				<width>1286</width>
+				<height>770</height>
+				<onleft>8000</onleft>
+				<itemgap>30</itemgap>
+				<pagecontrol>60</pagecontrol>
+				<usecontrolcoords>true</usecontrolcoords>
+				<include content="WeatherDailyList">
+					<param name="item">1</param>
+				</include>
+				<include content="WeatherDailyList">
+					<param name="item">2</param>
+				</include>
+				<include content="WeatherDailyList">
+					<param name="item">3</param>
+				</include>
+				<include content="WeatherDailyList">
+					<param name="item">4</param>
+				</include>
+				<include content="WeatherDailyList">
+					<param name="item">5</param>
+				</include>
+				<include content="WeatherDailyList">
+					<param name="item">6</param>
+				</include>
+				<include content="WeatherDailyList">
+					<param name="item">7</param>
+				</include>
+				<include content="WeatherDailyList">
+					<param name="item">8</param>
+				</include>
+				<include content="WeatherDailyList">
+					<param name="item">9</param>
+				</include>
+				<include content="WeatherDailyList">
+					<param name="item">10</param>
+				</include>
+				<include content="WeatherDailyList">
+					<param name="item">11</param>
+				</include>
+				<include content="WeatherDailyList">
+					<param name="item">12</param>
+				</include>
+				<include content="WeatherDailyList">
+					<param name="item">13</param>
+				</include>
+				<include content="WeatherDailyList">
+					<param name="item">14</param>
+				</include>
+				<include content="WeatherDailyList">
+					<param name="item">15</param>
+				</include>
+				<include content="WeatherDailyList">
+					<param name="item">16</param>
+				</include>
+			</control>
+			<control type="grouplist">
+				<visible>Container(8000).HasFocus(3)</visible>
+				<include>Animation_VisibleFade</include>
+				<left>460</left>
+				<top>159</top>
+				<width>1286</width>
+				<height>770</height>
+				<itemgap>30</itemgap>
+				<orientation>horizontal</orientation>
+				<usecontrolcoords>true</usecontrolcoords>
+				<include content="Weather36hourList">
+					<param name="item">1</param>
+				</include>
+				<include content="Weather36hourList">
+					<param name="item">2</param>
+				</include>
+				<include content="Weather36hourList">
+					<param name="item">3</param>
+				</include>
+			</control>
+			<control type="grouplist">
+				<visible>Container(8000).HasFocus(4)</visible>
+				<include>Animation_VisibleFade</include>
+				<left>460</left>
+				<top>159</top>
+				<width>1286</width>
+				<height>770</height>
+				<itemgap>30</itemgap>
+				<orientation>horizontal</orientation>
+				<usecontrolcoords>true</usecontrolcoords>
+				<include content="WeatherWeekendList">
+					<param name="item">1</param>
+				</include>
+				<include content="WeatherWeekendList">
+					<param name="item">2</param>
+				</include>
+			</control>
+			<control type="grouplist" id="8005">
+				<visible>Container(8000).HasFocus(5)</visible>
+				<include>Animation_VisibleFade</include>
+				<left>460</left>
+				<top>159</top>
+				<width>1286</width>
+				<height>770</height>
+				<onleft>8000</onleft>
+				<itemgap>30</itemgap>
+				<pagecontrol>60</pagecontrol>
+				<usecontrolcoords>true</usecontrolcoords>
+				<include content="WeatherHourlyList">
+					<param name="item">1</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">2</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">3</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">4</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">5</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">6</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">7</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">8</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">9</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">10</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">11</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">12</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">13</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">14</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">15</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">16</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">17</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">18</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">19</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">20</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">21</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">22</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">23</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">24</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">25</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">26</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">27</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">28</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">29</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">30</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">31</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">32</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">33</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">34</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">35</param>
+				</include>
+				<include content="WeatherHourlyList">
+					<param name="item">36</param>
+				</include>
 			</control>
 			<control type="group">
-				<control type="group" id="7500">
-					<control type="group">
-						<control type="grouplist" id="7501">
-							<visible>String.IsEmpty(Window(weather).Property(Weather.CurrentView))</visible>
-							<include>Animation_CommonFade</include>
-							<left>961</left>
-							<top>145</top>
-							<width>858</width>
-							<height>798</height>
-							<onleft>9000</onleft>
-							<onright>60</onright>
-							<onup>7501</onup>
-							<ondown>7501</ondown>
-							<pagecontrol>60</pagecontrol>
-							<orientation>vertical</orientation>
-							<usecontrolcoords>true</usecontrolcoords>
-							<include content="WeatherDailyList">
-								<param name="item">1</param>
-							</include>
-							<include content="WeatherDailyList">
-								<param name="item">2</param>
-							</include>
-							<include content="WeatherDailyList">
-								<param name="item">3</param>
-							</include>
-							<include content="WeatherDailyList">
-								<param name="item">4</param>
-							</include>
-							<include content="WeatherDailyList">
-								<param name="item">5</param>
-							</include>
-							<include content="WeatherDailyList">
-								<param name="item">6</param>
-							</include>
-							<include content="WeatherDailyList">
-								<param name="item">7</param>
-							</include>
-							<include content="WeatherDailyList">
-								<param name="item">8</param>
-							</include>
-							<include content="WeatherDailyList">
-								<param name="item">9</param>
-							</include>
-							<include content="WeatherDailyList">
-								<param name="item">10</param>
-							</include>
-						</control>
-						<control type="grouplist" id="7502">
-							<visible>String.IsEqual(Window(weather).Property(Weather.CurrentView),36hour)</visible>
-							<include>Animation_CommonFade</include>
-							<left>961</left>
-							<top>145</top>
-							<width>858</width>
-							<height>798</height>
-							<onleft>9000</onleft>
-							<onright>60</onright>
-							<onup>7502</onup>
-							<ondown>7502</ondown>
-							<pagecontrol>60</pagecontrol>
-							<orientation>vertical</orientation>
-							<usecontrolcoords>true</usecontrolcoords>
-							<include content="Weather36hourList">
-								<param name="item">1</param>
-							</include>
-							<include content="Weather36hourList">
-								<param name="item">2</param>
-							</include>
-							<include content="Weather36hourList">
-								<param name="item">3</param>
-							</include>
-						</control>
-						<control type="grouplist" id="7503">
-							<visible>String.IsEqual(Window(weather).Property(Weather.CurrentView),weekend)</visible>
-							<include>Animation_CommonFade</include>
-							<left>961</left>
-							<top>145</top>
-							<width>858</width>
-							<height>798</height>
-							<onleft>9000</onleft>
-							<onright>60</onright>
-							<onup>7503</onup>
-							<ondown>7503</ondown>
-							<pagecontrol>60</pagecontrol>
-							<orientation>vertical</orientation>
-							<usecontrolcoords>true</usecontrolcoords>
-							<include content="WeatherWeekendList">
-								<param name="item">1</param>
-							</include>
-							<include content="WeatherWeekendList">
-								<param name="item">2</param>
-							</include>
-							<include content="WeatherWeekendList">
-								<param name="item">3</param>
-							</include>
-						</control>
-						<control type="grouplist" id="7504">
-							<visible>String.IsEqual(Window(weather).Property(Weather.CurrentView),hourly)</visible>
-							<include>Animation_CommonFade</include>
-							<left>961</left>
-							<top>145</top>
-							<width>858</width>
-							<height>798</height>
-							<onleft>9000</onleft>
-							<onright>60</onright>
-							<onup>7504</onup>
-							<ondown>7504</ondown>
-							<pagecontrol>60</pagecontrol>
-							<orientation>vertical</orientation>
-							<usecontrolcoords>true</usecontrolcoords>
-							<include content="WeatherHourlyList">
-								<param name="item">1</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">2</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">3</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">4</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">5</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">6</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">7</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">8</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">9</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">10</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">11</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">12</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">13</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">14</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">15</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">16</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">17</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">18</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">19</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">20</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">21</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">22</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">23</param>
-							</include>
-							<include content="WeatherHourlyList">
-								<param name="item">24</param>
-							</include>
-						</control>
-						<control type="button" id="7505">
-							<top>205</top>
-							<left>970</left>
-							<width>840</width>
-							<height>733</height>
-							<onup>7504</onup>
-							<ondown>7504</ondown>
-							<onleft>9000</onleft>
-							<texturefocus border="20" colordiffuse="$VAR[WeatherHighlightColorVar]">thumbs/shadow-square.png</texturefocus>
-							<texturenofocus border="20" colordiffuse="FF111111">thumbs/shadow-square.png</texturenofocus>
-							<visible>String.IsEqual(Window(weather).Property(Weather.CurrentView),map) | String.IsEqual(Window(weather).Property(Weather.CurrentView),map1) | String.IsEqual(Window(weather).Property(Weather.CurrentView),map2) | String.IsEqual(Window(weather).Property(Weather.CurrentView),map3)</visible>
-							<include>Animation_CommonFade</include>
-						</control>
-						<control type="group">
-							<visible>String.IsEqual(Window(weather).Property(Weather.CurrentView),map)</visible>
-							<include>Animation_CommonFade</include>
-							<top>153</top>
-							<left>990</left>
-							<control type="label">
-								<width>800</width>
-								<height>60</height>
-								<align>center</align>
-								<label>Radar ($INFO[Window(weather).Property(Radar)]) @ $INFO[Window(weather).Property(Updated)]</label>
-								<font>Font28_Bold_Caps</font>
-							</control>
-							<control type="image">
-								<top>72</top>
-								<width>800</width>
-								<height>693</height>
-								<texture>special://profile/addon_data/weather.ozweather/radarbackgrounds/$INFO[Window(weather).Property(Radar)]/legend.png</texture>
-							</control>
-							<control type="image">
-								<top>72</top>
-								<width>800</width>
-								<height>638</height>
-								<aspectratio>scale</aspectratio>
-								<texture>special://profile/addon_data/weather.ozweather/radarbackgrounds/$INFO[Window(weather).Property(Radar)]/background.png</texture>
-							</control>
-							<control type="image">
-								<top>72</top>
-								<width>800</width>
-								<height>638</height>
-								<aspectratio>scale</aspectratio>
-								<texture>special://profile/addon_data/weather.ozweather/radarbackgrounds/$INFO[Window(weather).Property(Radar)]/topography.png</texture>
-							</control>
-							<control type="image">
-								<top>72</top>
-								<width>800</width>
-								<height>638</height>
-								<aspectratio>scale</aspectratio>
-								<texture>special://profile/addon_data/weather.ozweather/radarbackgrounds/$INFO[Window(weather).Property(Radar)]/catchments.png</texture>
-							</control>
-							<control type="image">
-								<top>72</top>
-								<width>800</width>
-								<height>638</height>
-								<aspectratio>scale</aspectratio>
-								<texture>special://profile/addon_data/weather.ozweather/radarbackgrounds/$INFO[Window(weather).Property(Radar)]/range.png</texture>
-							</control>
-							<control type="image">
-								<top>72</top>
-								<width>800</width>
-								<height>638</height>
-								<aspectratio>scale</aspectratio>
-								<texture>special://profile/addon_data/weather.ozweather/radarbackgrounds/$INFO[Window(weather).Property(Radar)]/locations.png</texture>
-							</control>
-							<control type="multiimage">
-								<top>72</top>
-								<width>800</width>
-								<height>645</height>
-								<aspectratio>scale</aspectratio>
-								<imagepath>special://profile/addon_data/weather.ozweather/currentloop/$INFO[Window(weather).Property(Radar)]/</imagepath>
-								<timeperimage>500</timeperimage>
-								<pauseatend>1000</pauseatend>
-								<fadetime>TextureFadeTime</fadetime>
-								<randomize>false</randomize>
-							</control>
-						</control>
-						<include content="WeatherMapItem">
-							<param name="item">1</param>
-							<param name="visible">String.IsEqual(Window(weather).Property(Weather.CurrentView),map1)</param>
-							<param name="key">weather/key2.png</param>
-						</include>
-						<include content="WeatherMapItem">
-							<param name="item">2</param>
-							<param name="visible">String.IsEqual(Window(weather).Property(Weather.CurrentView),map2)</param>
-							<param name="key">weather/key1.png</param>
-						</include>
-						<include content="WeatherMapItem">
-							<param name="item">3</param>
-							<param name="visible">String.IsEqual(Window(weather).Property(Weather.CurrentView),map3)</param>
-							<param name="key">weather/key1.png</param>
-						</include>
-					</control>
+				<visible>Container(8000).HasFocus(6)</visible>
+				<include>Animation_VisibleFade</include>
+				<left>460</left>
+				<top>159</top>
+				<width>1287</width>
+				<height>770</height>
+				<control type="image">
+					<aspectratio>scale</aspectratio>
+					<texture>special://profile/addon_data/weather.ozweather/radarbackgrounds/$INFO[Window(weather).Property(Radar)]/background.png</texture>
+				</control>
+				<control type="image">
+					<aspectratio>scale</aspectratio>
+					<texture>special://profile/addon_data/weather.ozweather/radarbackgrounds/$INFO[Window(weather).Property(Radar)]/topography.png</texture>
+				</control>
+				<control type="image">
+					<aspectratio>scale</aspectratio>
+					<texture>special://profile/addon_data/weather.ozweather/radarbackgrounds/$INFO[Window(weather).Property(Radar)]/catchments.png</texture>
+				</control>
+				<control type="image">
+					<aspectratio>scale</aspectratio>
+					<texture>special://profile/addon_data/weather.ozweather/radarbackgrounds/$INFO[Window(weather).Property(Radar)]/range.png</texture>
+				</control>
+				<control type="image">
+					<aspectratio>scale</aspectratio>
+					<texture>special://profile/addon_data/weather.ozweather/radarbackgrounds/$INFO[Window(weather).Property(Radar)]/locations.png</texture>
+				</control>
+				<control type="multiimage">
+					<aspectratio>scale</aspectratio>
+					<imagepath>special://profile/addon_data/weather.ozweather/currentloop/$INFO[Window(weather).Property(Radar)]/</imagepath>
+					<timeperimage>500</timeperimage>
+					<pauseatend>1000</pauseatend>
+					<randomize>false</randomize>
+				</control>
+				<control type="image">
+					<right>20</right>
+					<bottom>20</bottom>
+					<width>430</width>
+					<height>500</height>
+					<aspectratio align="right" aligny="bottom">keep</aspectratio>
+					<texture>special://profile/addon_data/weather.ozweather/radarbackgrounds/$INFO[Window(weather).Property(Radar)]/legend.png</texture>
 				</control>
 			</control>
+			<include content="WeatherMapItem">
+				<param name="item">1</param>
+				<param name="visible">Container(8000).HasFocus(7)</param>
+			</include>
+			<include content="WeatherMapItem">
+				<param name="item">2</param>
+				<param name="visible">Container(8000).HasFocus(8)</param>
+			</include>
+			<include content="WeatherMapItem">
+				<param name="item">3</param>
+				<param name="visible">Container(8000).HasFocus(9)</param>
+			</include>
+			<include content="WeatherMapItem">
+				<param name="item">4</param>
+				<param name="visible">Container(8000).HasFocus(10)</param>
+			</include>
+			<include content="WeatherMapItem">
+				<param name="item">5</param>
+				<param name="visible">Container(8000).HasFocus(11)</param>
+			</include>
 		</control>
 		<!-- Topbar -->
 		<control type="group">
 			<visible>!Skin.HasSetting(WeatherHideTopBar)</visible>
-			<include content="Animation_Slide_Top">
+			<include content="Animation_Slide_Top_Window">
+				<param name="slide">90</param>
+			</include>
+			<include content="Animation_Slide_Top_Visible">
 				<param name="slide">90</param>
 			</include>
 			<include content="TopBar">
-				<param name="breadcrumbs_label">$LOCALIZE[12600]</param>
+				<param name="breadcrumbs_label">$LOCALIZE[12600]$INFO[Window(weather).Property(Location), / ]</param>
 				<param name="breadcrumbs_icon">weather.png</param>
 			</include>
 		</control>
@@ -532,96 +535,42 @@
 		<include>MediaMenu_MouseOverlay</include>
 		<control type="group">
 			<include>MediaMenu_Common</include>
-			<control type="grouplist" id="9000">
+			<control type="grouplist" id="9050">
+				<onright>8000</onright>
+				<onback>8000</onback>
 				<usecontrolcoords>true</usecontrolcoords>
 				<onleft condition="!Skin.HasSetting(DisableQuickNav)">ActivateWindow(1113)</onleft>
-				<onright>7500</onright>
-				<onback>7500</onback>
-				<include content="MediaMenu_Icon_Button">
-					<param name="id">3</param>
-					<param name="label">$INFO[Control.GetLabel(3)]</param>
-					<param name="icon">icons/mediamenu/pin.png</param>
-					<param name="onclick">Weather.LocationNext</param>
-				</include>
-				<include content="MediaMenu_Icon_Button">
-					<param name="id">2</param>
-					<param name="label">$LOCALIZE[184]</param>
-					<param name="icon">icons/mediamenu/refresh.png</param>
-				</include>
-				<include content="MediaMenu_Icon_Button">
-					<param name="id">9001</param>
-					<param name="icon">icons/mediamenu/settings.png</param>
-					<param name="label">$LOCALIZE[5]</param>
-					<param name="onclick">ActivateWindow(servicesettings,weather)</param>
-				</include>
-				<include content="MediaMenu_Icon_Button">
-					<param name="id">9002</param>
-					<param name="icon">icons/mediamenu/timeline.png</param>
-					<param name="label">$LOCALIZE[10508]</param>
-					<param name="onfocus">ClearProperty(Weather.CurrentView,weather)</param>
-				</include>
-				<include content="MediaMenu_Icon_Button">
-					<param name="id">9003</param>
-					<param name="icon">icons/mediamenu/repeat.png</param>
-					<param name="label">$LOCALIZE[33034]</param>
-					<param name="onfocus">SetProperty(Weather.CurrentView,36hour)</param>
-					<param name="visible">!String.IsEmpty(Window(weather).Property(36hour.IsFetched))</param>
-				</include>
-				<include content="MediaMenu_Icon_Button">
-					<param name="id">9004</param>
-					<param name="icon">icons/mediamenu/calendar.png</param>
-					<param name="label">$LOCALIZE[33037]</param>
-					<param name="onfocus">SetProperty(Weather.CurrentView,weekend)</param>
-					<param name="visible">!String.IsEmpty(Window(weather).Property(Weekend.IsFetched))</param>
-				</include>
-				<include content="MediaMenu_Icon_Button">
-					<param name="id">9005</param>
-					<param name="icon">icons/mediamenu/time.png</param>
-					<param name="label">$LOCALIZE[33036]</param>
-					<param name="onfocus">SetProperty(Weather.CurrentView,hourly)</param>
-					<param name="visible">!String.IsEmpty(Window(weather).Property(Hourly.IsFetched))</param>
-				</include>
-				<include content="MediaMenu_Icon_Button">
-					<param name="id">9006</param>
-					<param name="icon">icons/mediamenu/map.png</param>
-					<param name="label">$LOCALIZE[33035]</param>
-					<param name="onfocus">SetProperty(Weather.CurrentView,map)</param>
-					<param name="visible">!String.IsEmpty(Window(weather).Property(Radar))</param>
-				</include>
-				<include content="MediaMenu_Icon_Button">
-					<param name="id">9007</param>
-					<param name="icon">icons/mediamenu/infrared.png</param>
-					<param name="label">$INFO[Window(weather).Property(Map.1.Heading)]</param>
-					<param name="onfocus">SetProperty(Weather.CurrentView,map1)</param>
-					<param name="visible">!String.IsEmpty(Window(weather).Property(Map.1.Area)) + !String.IsEmpty(Window(weather).Property(Map.IsFetched))</param>
-				</include>
-				<include content="MediaMenu_Icon_Button">
-					<param name="id">9008</param>
-					<param name="icon">icons/mediamenu/satellite.png</param>
-					<param name="label">$INFO[Window(weather).Property(Map.2.Heading)]</param>
-					<param name="onfocus">SetProperty(Weather.CurrentView,map2)</param>
-					<param name="visible">!String.IsEmpty(Window(weather).Property(Map.2.Area)) + !String.IsEmpty(Window(weather).Property(Map.IsFetched))</param>
-				</include>
-				<include content="MediaMenu_Icon_Button">
-					<param name="id">9009</param>
-					<param name="icon">icons/mediamenu/radar.png</param>
-					<param name="label">$INFO[Window(weather).Property(Map.3.Heading)]</param>
-					<param name="onfocus">SetProperty(Weather.CurrentView,map3)</param>
-					<param name="visible">!String.IsEmpty(Window(weather).Property(Map.3.Area)) + !String.IsEmpty(Window(weather).Property(Map.IsFetched))</param>
-				</include>
-				<include content="MediaMenu_Icon_Button">
-					<param name="id">9010</param>
-					<param name="icon">icons/mediamenu/viewoptions.png</param>
-					<param name="label">$LOCALIZE[14018]</param>
-					<param name="onclick">ActivateWindow(1122)</param>
-				</include>
-				<include content="MediaMenu_Icon_Button">
-					<param name="id">9011</param>
-					<param name="icon">icons/mediamenu/arrowleft.png</param>
-					<param name="label">$LOCALIZE[31040]</param>
-					<param name="onclick">ActivateWindow(1113)</param>
-					<param name="visible">!Skin.HasSetting(DisableQuickNav)</param>
-				</include>
+				<control type="radiobutton" id="9061">
+					<include content="MediaMenu_Icon_Button">
+						<param name="iconon" value="icons/mediamenu/viewoptions.png" />
+						<param name="iconoff" value="icons/mediamenu/viewoptions.png" />
+					</include>
+					<label>$LOCALIZE[31025]</label>
+					<onclick>ActivateWindow(1115)</onclick>
+					<visible>!String.Contains(Skin.String(KioskMode),HideOptions)</visible>
+				</control>
+				<control type="radiobutton" id="3">
+					<include content="MediaMenu_Icon_Button">
+						<param name="iconon" value="icons/mediamenu/pin.png" />
+						<param name="iconoff" value="icons/mediamenu/pin.png" />
+					</include>
+					<onclick>Weather.LocationNext</onclick>
+				</control>
+				<control type="radiobutton" id="2">
+					<include content="MediaMenu_Icon_Button">
+						<param name="iconon" value="icons/mediamenu/refresh.png" />
+						<param name="iconoff" value="icons/mediamenu/refresh.png" />
+					</include>
+				</control>
+				<control type="radiobutton" id="9062">
+					<include content="MediaMenu_Icon_Button">
+						<param name="iconon" value="icons/mediamenu/settings.png" />
+						<param name="iconoff" value="icons/mediamenu/settings.png" />
+					</include>
+					<label>$LOCALIZE[5]</label>
+					<onclick>ActivateWindow(servicesettings,weather)</onclick>
+				</control>
+				<include>MediaMenu_Common_Bottom</include>
 			</control>
 		</control>
 	</controls>

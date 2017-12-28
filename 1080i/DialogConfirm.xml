@@ -1,31 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
 	<defaultcontrol>9000</defaultcontrol>
+	<include>Animation_Dialog_Popup_Window</include>
 	<controls>
-		<include>Dialog_Furniture_BackgroundFade</include>
-		<include>Dialog_Furniture_Close_Onclick</include>
 		<control type="group">
-			<include content="Dialog_Furniture_Background">
-				<param name="labelid">1</param>
-				<param name="labelright">20</param>
-				<param name="labelalign">center</param>
-				<param name="width">955</param>
-				<param name="height">420</param>
-				<param name="bottomseparatorvisible">false</param>
-			</include>
+			<include>Dialog_BackgroundFade</include>
+			<include>Dialog_CloseOnclick</include>
+			<centertop>50%</centertop>
+			<centerleft>50%</centerleft>
+			<height>470</height>
+			<width>955</width>
+			<control type="image">
+				<texture colordiffuse="$VAR[GlowColorVar]" border="40">dialogs/dialog-glow.png</texture>
+			</control>
+			<control type="image">
+				<texture colordiffuse="$VAR[PanelColorVar]" border="40">dialogs/dialog-back.png</texture>
+			</control>
+			<control type="label" id="1">
+				<top>20</top>
+				<left>70</left>
+				<right>70</right>
+				<height>70</height>
+				<font>Font33_Bold</font>
+				<align>center</align>
+				<textcolor>$VAR[HighlightColorVar]</textcolor>
+				<shadowcolor>shadow</shadowcolor>
+			</control>
+			<control type="image">
+				<left>20</left>
+				<right>20</right>
+				<height>90</height>
+				<texture colordiffuse="$VAR[PanelColorVar]" border="30">buttons/list-select-nofocus.png</texture>
+			</control>
 			<control type="textbox" id="9">
 				<description>dialog line 1/2/3</description>
 				<left>70</left>
 				<top>111</top>
 				<width>815</width>
-				<height>130</height>
+				<height>170</height>
 				<align>center</align>
 				<font>Font30_Reg</font>
 				<autoscroll time="2000" delay="2000" repeat="4000">True</autoscroll>
 			</control>
 			<control type="progress" id="20">
 				<left>70</left>
-				<top>260</top>
+				<top>310</top>
 				<width>815</width>
 				<info>System.Progressbar</info>
 			</control>

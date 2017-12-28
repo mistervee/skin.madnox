@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window id="1113" type="dialog">
-	<defaultcontrol always="true">9001</defaultcontrol>
+	<defaultcontrol always="true">9090</defaultcontrol>
 	<controls>
 		<control type="group">
-			<left>-230</left>
-			<include content="Animation_Dialog_MediaMenu">
-				<param name="slide">230</param>
+			<left>-240</left>
+			<include>Dialog_CloseOnclick</include>
+			<include content="Animation_Dialog_MediaMenu_Window">
+				<param name="slide">240</param>
 			</include>
 			<include content="MediaMenu_Background">
-				<param name="width">230</param>
-				<param name="glowleft">221</param>
-				<param name="dialog">1113</param>
+				<param name="width">240</param>
+				<param name="glowleft">220</param>
 			</include>
-			<control type="list" id="9001">
+			<control type="panel" id="9090">
 				<width>220</width>
 				<height>1080</height>
-				<onleft>9001</onleft>
 				<onright>Dialog.Close(1113)</onright>
-				<onup>9001</onup>
-				<ondown>9001</ondown>
 				<onback>Dialog.Close(1113)</onback>
 				<itemlayout height="120" width="220">
+					<control type="image">
+						<texture border="30">buttons/list-select-nofocus.png</texture>
+					</control>
 					<control type="image">
 						<top>14</top>
 						<height>63</height>
 						<aspectratio align="center" aligny="center">keep</aspectratio>
-						<texture colordiffuse="grey2">$INFO[ListItem.Icon]</texture>
+						<texture colordiffuse="grey2">$INFO[ListItem.Property(MenuIcon)]</texture>
 					</control>
 					<control type="label">
 						<top>66</top>
@@ -36,18 +36,16 @@
 						<textcolor>grey2</textcolor>
 						<label>$INFO[ListItem.Label]</label>
 					</control>
-					<control type="image">
-						<width>220</width>
-						<height>120</height>
-						<texture colordiffuse="$VAR[PanelColorVar]" border="30">buttons/list-select-nofocus.png</texture>
-					</control>
 				</itemlayout>
 				<focusedlayout height="120" width="220">
+					<control type="image">
+						<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+					</control>
 					<control type="image">
 						<top>14</top>
 						<height>63</height>
 						<aspectratio align="center" aligny="center">keep</aspectratio>
-						<texture colordiffuse="white6">$INFO[ListItem.Icon]</texture>
+						<texture>$INFO[ListItem.Property(MenuIcon)]</texture>
 					</control>
 					<control type="label">
 						<top>66</top>
@@ -57,14 +55,9 @@
 						<textoffsetx>10</textoffsetx>
 						<label>$INFO[ListItem.Label]</label>
 					</control>
-					<control type="image">
-						<width>220</width>
-						<height>120</height>
-						<texture colordiffuse="$VAR[HighlightColorVar]" border="10">buttons/list-select-focus.png</texture>
-					</control>
 				</focusedlayout>
 				<content>
-					<include>skinshortcuts-group-madnox-quicknav</include>
+					<include>skinshortcuts-group-quicknav</include>
 				</content>
 			</control>
 		</control>

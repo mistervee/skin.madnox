@@ -3,8 +3,11 @@
 	<include file="Defaults.xml"/>
 	<include file="Variables.xml"/>
 	<include file="Variables_Colors.xml"/>
+	<include file="Variables_Backgrounds.xml"/>
 	<include file="Variables_Temp.xml"/>
-	<include file="Includes_CommonObjects.xml"/>
+	<include file="Includes_Temp.xml"/>
+	<include file="Includes_Dialogs.xml"/>
+	<include file="Includes_CustomSelect.xml"/>
 	<include file="Includes_Animations.xml"/>
 	<include file="Includes_Backgrounds.xml"/>
 	<include condition="!Skin.HasSetting(HomeVertical)" file="Includes_Home_Horizontal.xml"/>
@@ -15,21 +18,28 @@
 	<include file="Includes_MediaMenu.xml"/>
 	<include file="Includes_Views.xml"/>
 	<include file="View_50_List.xml"/>
-	<include file="View_51_WideList.xml"/>
+	<!-- <include file="View_51_WideList.xml"/>
 	<include file="View_52_2ColumnList.xml"/>
 	<include file="View_511_LowList.xml"/>
 	<include file="View_507_FanartList.xml"/>
-	<include file="View_700_RightList.xml"/>
+	<include file="View_700_RightList.xml"/> -->
 	<constant name="TextureFadeTime">400</constant>
 	<expression name="infodialog_active">Window.IsActive(musicinformation) | Window.IsActive(songinformation) | Window.IsActive(movieinformation) | Window.IsActive(addoninformation) | Window.IsActive(pvrguideinfo) | Window.IsActive(pvrrecordinginfo) | Window.IsActive(pictureinfo) | Window.IsVisible(script-script.extendedinfo-DialogVideoInfo.xml) | Window.IsVisible(script-script.extendedinfo-DialogInfo.xml) | Window.IsVisible(script-script.extendedinfo-VideoList.xml)</expression>
 	<expression name="Fanart_Visible_MediaPlaying">!Player.HasMedia | [Player.HasAudio + Skin.HasSetting(DisableBackgroundMusicNowPlaying)] | [Player.HasVideo + Skin.HasSetting(DisableBackgroundVideoNowPlaying)]</expression>
-	<expression name="Area_Visible_Settings">Window.IsActive(settings) | Window.IsActive(SettingsCategory.xml) | Window.IsActive(profiles) |  Window.IsActive(skinsettings) | Window.IsActive(eventlog) | Window.IsActive(systeminfo) | Window.IsActive(filemanager) | Window.IsActive(script-skinshortcuts.xml)</expression>
-
+	<expression name="Area_Visible_Home">Window.IsVisible(home)</expression>
+	<expression name="Area_Visible_Videos">Window.IsVisible(videos)</expression>
 	<expression name="Area_Visible_TV">Window.IsVisible(tvchannels) | Window.IsVisible(tvrecordings) | Window.IsVisible(tvguide) | Window.IsVisible(tvtimers) | Window.IsVisible(tvsearch) | Window.IsVisible(tvtimerrules) | Window.IsVisible(fullscreenlivetv)</expression>
 	<expression name="Area_Visible_Radio">Window.IsVisible(radiochannels) | Window.IsVisible(radiorecordings) | Window.IsVisible(radioguide) | Window.IsVisible(radiotimers) | Window.IsVisible(radiosearch) | Window.IsVisible(radiotimerrules) | Window.IsVisible(fullscreenlivetv)</expression>
-
-	<expression name="Settings_Animation_OpenCondition">![Window.Previous(settings) | Window.Previous(SettingsCategory.xml) | Window.Previous(skinsettings) | Window.Previous(profiles) | Window.Previous(systeminfo) | Window.Previous(eventlog) | Window.Previous(filemanager)]</expression>
-	<expression name="Settings_Animation_CloseCondition">![Window.Next(settings) | Window.Next(SettingsCategory.xml) | Window.Next(skinsettings) | Window.Next(profiles) | Window.Next(systeminfo) | Window.Next(eventlog) | Window.Next(filemanager)]</expression>
+	<expression name="Area_Visible_Music">Window.IsVisible(music) | Window.IsVisible(musicplaylist) | Window.IsVisible(musicplaylisteditor) | Window.IsVisible(visualisation)</expression>
+	<expression name="Area_Visible_Games">Window.IsVisible(games)</expression>
+	<expression name="Area_Visible_Pictures">Window.IsVisible(pictures)</expression>
+	<expression name="Area_Visible_Addons">Window.IsVisible(1114) | Window.IsVisible(programs) | Window.IsVisible(addonbrowser)</expression>
+	<expression name="Area_Visible_Weather">Window.IsVisible(weather)</expression>
+	<expression name="Area_Visible_System">Window.IsActive(settings) | Window.IsActive(SettingsCategory.xml) | Window.IsActive(profiles) |  Window.IsActive(skinsettings) | Window.IsActive(eventlog) | Window.IsActive(systeminfo) | Window.IsActive(filemanager) | Window.IsActive(script-skinshortcuts.xml)</expression>
+	<expression name="System_Animation_OpenCondition">![Window.Previous(settings) | Window.Previous(SettingsCategory.xml) | Window.Previous(skinsettings) | Window.Previous(profiles) | Window.Previous(systeminfo) | Window.Previous(eventlog) | Window.Previous(filemanager))]</expression>
+	<expression name="System_Animation_CloseCondition">![Window.Next(settings) | Window.Next(SettingsCategory.xml) | Window.Next(skinsettings) | Window.Next(profiles) | Window.Next(systeminfo) | Window.Next(eventlog) | Window.Next(filemanager)]</expression>
+	<expression name="PVR_Animation_OpenCondition">![Window.Previous(MyPVRChannels.xml) | Window.Previous(MyPVRGuide.xml) | Window.Previous(MyPVRRecordings.xml) | Window.Previous(MyPVRSearch.xml) | Window.Previous(MyPVRTimers.xml)]</expression>
+	<expression name="PVR_Animation_CloseCondition">![Window.Next(MyPVRChannels.xml) | Window.Next(MyPVRGuide.xml) | Window.Next(MyPVRRecordings.xml) | Window.Next(MyPVRSearch.xml) | Window.Next(MyPVRTimers.xml)]</expression>
 	<include name="onunload_SkinSettings">
 		<onunload condition="Window.IsActive(startup) + System.HasAddon(script.tv.show.next.aired)">RunScript(script.tv.show.next.aired,silent=True)</onunload>
 		<onunload condition="!Skin.HasSetting(SkinHelper.EnableMusicArt)">Skin.SetBool(SkinHelper.EnableMusicArt)</onunload>
@@ -37,5 +47,6 @@
 		<onunload condition="!Skin.HasSetting(SkinHelper.EnableExtendedArt)">Skin.SetBool(SkinHelper.EnableExtendedArt)</onunload>
 		<onunload condition="!Skin.HasSetting(SkinHelper.EnableAddonsLookups)">Skin.SetBool(SkinHelper.EnableAddonsLookups)</onunload>
 		<onunload condition="!Skin.HasSetting(SkinHelper.RandomFanartDelay)">Skin.SetString(SkinHelper.RandomFanartDelay,10)</onunload>
+		<onunload condition="!Skin.HasSetting(SmartShortcuts.playlists)">Skin.SetBool(SmartShortcuts.playlists)</onunload>
 	</include>
 </includes>

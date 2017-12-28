@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
 	<defaultcontrol>50</defaultcontrol>
+	<menucontrol>9050</menucontrol>
 	<views>50,51,52</views>
 	<controls>
-		<include>PVRCommonBackground</include>
+		<!-- Backdrop -->
+		<include content="Background_Default">
+			<param name="imagepath">$VAR[PVRBackgroundVar]</param>
+			<param name="backgroundcolor">PVRBackground.Color.base</param>
+		</include>
 		<control type="group">
 			<description>Big list - View 50</description>
 			<visible>Control.IsVisible(50)</visible>
@@ -984,7 +989,7 @@
 							<info>ListItem.Progress</info>
 							<visible>!String.IsEmpty(ListItem.Title)</visible>
 							<midtexture colordiffuse="$VAR[FontColorVar]">new_pvr/texturebg_white.png</midtexture>
-							<texturebg colordiffuse="white3">new_pvr/texturebg.png</texturebg>
+							<texturebg>new_pvr/texturebg.png</texturebg>
 							<lefttexture>-</lefttexture>
 							<righttexture>-</righttexture>
 						</control>
@@ -1199,17 +1204,34 @@
 				</control>
 			</control>
 		</control>
+		<!-- Topbar -->
 		<control type="label" id="29">
-			<font>-</font>
 			<include>HiddenObject</include>
 		</control>
-		<control type="label" id="30">
-			<font>-</font>
-			<include>HiddenObject</include>
+		<control type="group">
+			<visible>!Skin.HasSetting(PVRHideTopBar)</visible>
+			<include content="Animation_Slide_Top_Window">
+				<param name="slide">90</param>
+			</include>
+			<include content="Animation_Slide_Top_Visible">
+				<param name="slide">90</param>
+			</include>
+			<include content="TopBar">
+				<param name="breadcrumbs_label">$VAR[BreadcrumbsPVRChannelsVar]</param>
+				<param name="breadcrumbs_icon">channels.png</param>
+			</include>
 		</control>
-		<include>BreadcrumbsContent</include>
-		<include>Media_Menu_Furniture</include>
-		<include>PVRSideblade</include>
-		<include>ContextMenuOverlay</include>
+		<!-- Media Menu -->
+		<include>MediaMenu_MouseOverlay</include>
+		<control type="group">
+			<visible>!String.IsEqual(Skin.String(KioskMode),HideMenu)</visible>
+			<include>MediaMenu_Common</include>
+			<control type="grouplist" id="9050">
+				<onright>50</onright>
+				<onback>50</onback>
+				<include>MediaMenu_PVR</include>
+				<include>MediaMenu_Common_Bottom</include>
+			</control>
+		</control>
 	</controls>
 </window>

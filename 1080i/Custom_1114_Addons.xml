@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window id="1114" type="window">
+	<defaultcontrol>50</defaultcontrol>
+	<menucontrol>9050</menucontrol>
+	<controls>
+		<!-- Background -->
+		<include content="Background_Default">
+			<param name="imagepath">$VAR[AddonBackgroundVar]</param>
+			<param name="backgroundcolor">AddonBackground.Color.base</param>
+		</include>
+		<!-- Floor -->
+		<control type="group">
+			<visible>!Skin.HasSetting(AddonsHideFloor)</visible>
+			<include content="Animation_Slide_Bottom_Window">
+				<param name="slide">220</param>
+			</include>
+			<include content="Animation_Slide_Bottom_Visible">
+				<param name="slide">220</param>
+			</include>
+			<include>Floor_Default</include>
+		</control>
+		<control type="group">
+			<!-- Left Panel -->
+			<control type="group">
+				<visible>!Window.IsActive(addoninformation)</visible>
+				<include>Animation_Slide_Left_Window</include>
+				<include>Animation_Slide_Left_Visible</include>
+				<include content="Panel_Default">
+					<param name="width">875</param>
+					<param name="reflect">!Skin.HasSetting(AddonsHideFloor)</param>
+				</include>
+				<control type="panel" id="50">
+					<left>141</left>
+					<top>140</top>
+					<width>749</width>
+					<height>800</height>
+					<onleft>9050</onleft>
+					<onright>51</onright>
+					<itemlayout height="100">
+						<control type="image">
+							<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>8</top>
+							<width>120</width>
+							<height>84</height>
+							<aspectratio>keep</aspectratio>
+							<texture background="true">$INFO[ListItem.Icon]</texture>
+						</control>
+						<control type="label">
+							<left>150</left>
+							<width>693</width>
+							<height>100</height>
+							<label>$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+							<textcolor>white2</textcolor>
+						</control>
+					</itemlayout>
+					<focusedlayout height="100">
+						<control type="image">
+							<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+							<animation effect="fade" start="100" end="25" tween="sine" easing="inout" time="240" condition="!Control.HasFocus(50)">Conditional</animation>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>8</top>
+							<width>120</width>
+							<height>84</height>
+							<aspectratio>keep</aspectratio>
+							<texture background="true">$INFO[ListItem.Icon]</texture>
+						</control>
+						<control type="label">
+							<left>150</left>
+							<width>693</width>
+							<height>100</height>
+							<label>$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+						</control>
+					</focusedlayout>
+					<content>
+						<item id="1">
+							<label>$LOCALIZE[1037]</label>
+							<icon>DefaultAddonVideo.png</icon>
+							<property name="AppsTarget">videos</property>
+							<property name="AppsContent">addons://sources/video/</property>
+							<property name="AppsSortBy">lastused</property>
+							<onclick>ActivateWindow(Videos,Addons,return)</onclick>
+						</item>
+						<item id="2">
+							<label>$LOCALIZE[1038]</label>
+							<icon>DefaultAddonMusic.png</icon>
+							<property name="AppsTarget">music</property>
+							<property name="AppsContent">addons://sources/audio/</property>
+							<property name="AppsSortBy">lastused</property>
+							<onclick>ActivateWindow(Music,Addons,return)</onclick>
+						</item>
+						<item id="3">
+							<label>$LOCALIZE[1039]</label>
+							<icon>DefaultAddonPicture.png</icon>
+							<property name="AppsTarget">pictures</property>
+							<property name="AppsContent">addons://sources/image/</property>
+							<property name="AppsSortBy">lastused</property>
+							<onclick>ActivateWindow(Pictures,Addons,return)</onclick>
+						</item>
+						<item id="4">
+							<label>$LOCALIZE[1043]</label>
+							<icon>DefaultAddonProgram.png</icon>
+							<property name="AppsTarget">programs</property>
+							<property name="AppsContent">addons://sources/executable/</property>
+							<property name="AppsSortBy">lastused</property>
+							<onclick>ActivateWindow(Programs,Addons,return)</onclick>
+						</item>
+						<item id="5">
+							<label>$LOCALIZE[20244]</label>
+							<icon>DefaultAddonAndroid.png</icon>
+							<property name="AppsTarget">programs</property>
+							<property name="AppsContent">androidapp://sources/apps/</property>
+							<property name="AppsSortBy">lastused</property>
+							<onclick>ActivateWindow(Programs,return)</onclick>
+							<visible>System.Platform.Android</visible>
+						</item>
+						<item id="6">
+							<label>$LOCALIZE[10040]</label>
+							<icon>DefaultAddon.png</icon>
+							<property name="AppsTarget"></property>
+							<property name="AppsContent">addons://user/all/</property>
+							<property name="AppsSortBy">lastused</property>
+							<onclick>ActivateWindow(AddonBrowser,return)</onclick>
+						</item>
+						<item id="7">
+							<label>$LOCALIZE[24004]</label>
+							<icon>DefaultAddonsRecentlyUpdated.png</icon>
+							<property name="AppsTarget"></property>
+							<property name="AppsContent">addons://recently_updated/</property>
+							<property name="AppsSortBy">lastupdated</property>
+							<onclick>ActivateWindow(AddonBrowser,return)</onclick>
+						</item>
+						<item id="8">
+							<label>$LOCALIZE[1036]</label>
+							<icon>DefaultFavourites.png</icon>
+							<property name="AppsTarget" />
+							<property name="AppsContent">favourites://</property>
+							<property name="AppsSortBy" />
+							<onclick>ActivateWindow(Favourites)</onclick>
+						</item>
+					</content>
+				</control>
+			</control>
+			<!-- Right Panel -->
+			<control type="group">
+				<visible>!Window.IsActive(addoninformation)</visible>
+				<include>Animation_Slide_Right_Window</include>
+				<include>Animation_Slide_Right_Visible</include>
+				<include content="Panel_Default">
+					<param name="left">965</param>
+					<param name="width">875</param>
+					<param name="reflect">!Skin.HasSetting(AddonsHideFloor)</param>
+				</include>
+				<control type="panel" id="51">
+					<left>1026</left>
+					<top>140</top>
+					<width>749</width>
+					<height>800</height>
+					<onleft>50</onleft>
+					<onright>60</onright>
+					<pagecontrol>60</pagecontrol>
+					<itemlayout height="100">
+						<control type="image">
+							<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>8</top>
+							<width>120</width>
+							<height>84</height>
+							<aspectratio>keep</aspectratio>
+							<texture background="true">$INFO[ListItem.Icon,views/list/]</texture>
+							<visible>String.StartsWith(ListItem.Icon,Default)</visible>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>8</top>
+							<width>120</width>
+							<height>84</height>
+							<aspectratio>keep</aspectratio>
+							<texture background="true">$INFO[ListItem.Icon]</texture>
+							<visible>!String.StartsWith(ListItem.Icon,Default)</visible>
+						</control>
+						<control type="label">
+							<left>150</left>
+							<top>12</top>
+							<width>555</width>
+							<height>40</height>
+							<label>$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+							<textcolor>white2</textcolor>
+							<visible>!String.IsEmpty(ListItem.AddonSummary)</visible>
+						</control>
+						<control type="label">
+							<left>150</left>
+							<width>555</width>
+							<height>100</height>
+							<label>$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+							<textcolor>white2</textcolor>
+							<visible>String.IsEmpty(ListItem.AddonSummary)</visible>
+						</control>
+						<control type="label">
+							<left>150</left>
+							<top>52</top>
+							<width>555</width>
+							<height>30</height>
+							<font>Font28_Reg</font>
+							<textcolor>white2</textcolor>
+							<label>$INFO[ListItem.AddonSummary]</label>
+						</control>
+					</itemlayout>
+					<focusedlayout height="100">
+						<control type="image">
+							<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+							<animation effect="fade" start="100" end="25" tween="sine" easing="inout" time="240" condition="!Control.HasFocus(51)">Conditional</animation>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>8</top>
+							<width>120</width>
+							<height>84</height>
+							<aspectratio>keep</aspectratio>
+							<texture background="true">$INFO[ListItem.Icon,views/list/]</texture>
+							<visible>String.StartsWith(ListItem.Icon,Default)</visible>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>8</top>
+							<width>120</width>
+							<height>84</height>
+							<aspectratio>keep</aspectratio>
+							<texture background="true">$INFO[ListItem.Icon]</texture>
+							<visible>!String.StartsWith(ListItem.Icon,Default)</visible>
+						</control>
+						<control type="label">
+							<left>150</left>
+							<top>12</top>
+							<width>555</width>
+							<height>40</height>
+							<label>$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+							<textcolor>white2</textcolor>
+							<visible>!String.IsEmpty(ListItem.AddonSummary)</visible>
+						</control>
+						<control type="label">
+							<left>150</left>
+							<width>555</width>
+							<height>100</height>
+							<label>$INFO[ListItem.Label]</label>
+							<font>Font38_Reg</font>
+							<textcolor>white2</textcolor>
+							<visible>String.IsEmpty(ListItem.AddonSummary)</visible>
+						</control>
+						<control type="label">
+							<left>150</left>
+							<top>52</top>
+							<width>555</width>
+							<height>30</height>
+							<font>Font28_Reg</font>
+							<textcolor>white2</textcolor>
+							<label>$INFO[ListItem.AddonSummary]</label>
+						</control>
+					</focusedlayout>
+					<content target="$INFO[Container(50).ListItem.Property(AppsTarget)]" sortby="$INFO[Container(50).ListItem.Property(AppsSortBy)]" sortorder="descending">$INFO[Container(50).ListItem.Property(AppsContent)]</content>
+				</control>
+				<control type="scrollbar" id="60">
+					<right>121</right>
+					<top>143</top>
+					<bottom>145</bottom>
+					<onleft>51</onleft>
+				</control>
+			</control>
+		</control>
+		<!-- Topbar -->
+		<control type="group">
+			<visible>!Skin.HasSetting(AddonsHideTopBar)</visible>
+			<include content="Animation_Slide_Top_Window">
+				<param name="slide">90</param>
+				<param name="opencondition">true</param>
+				<param name="closecondition">true</param>
+			</include>
+			<include content="Animation_Slide_Top_Visible">
+				<param name="slide">90</param>
+			</include>
+			<include content="TopBar">
+				<param name="breadcrumbs_label">$LOCALIZE[24001]</param>
+				<param name="breadcrumbs_icon">addons.png</param>
+				<param name="container_id">51</param>
+			</include>
+		</control>
+		<!-- Media Menu -->
+		<include>MediaMenu_MouseOverlay</include>
+		<control type="group">
+			<include>MediaMenu_Common</include>
+			<control type="grouplist" id="9050">
+				<onright>50</onright>
+				<onback>50</onback>
+				<include>MediaMenu_Addons</include>
+				<include>MediaMenu_Common_Bottom</include>
+			</control>
+		</control>
+	</controls>
+</window>

@@ -1,67 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol>50</defaultcontrol>
-	<views>50,507,700</views>
+	<menucontrol>9050</menucontrol>
+	<views>50</views>
 	<controls>
+		<!-- Background -->
+		<include content="Background_Default">
+			<param name="imagepath">$VAR[AddonBackgroundVar]</param>
+			<param name="backgroundcolor">AddonBackground.Color.base</param>
+		</include>
+		<!-- Views -->
 		<control type="group">
-			<include>Animation_CommonFade</include>
 			<include>View_50_List</include>
-			<include>View_507_FanartList</include>
-			<include>View_700_RightList</include>
+			<!-- <include>View_507_FanartList</include>
+			<include>View_700_RightList</include> -->
 		</control>
 		<!-- Top bar -->
 		<control type="group">
 			<visible>!Skin.HasSetting(AddonHideTopBar)</visible>
-			<include content="Animation_Slide_Top">
+			<include content="Animation_Slide_Top_Window">
+				<param name="slide">90</param>
+			</include>
+			<include content="Animation_Slide_Top_Visible">
 				<param name="slide">90</param>
 			</include>
 			<include content="TopBar">
 				<param name="breadcrumbs_label">$LOCALIZE[24001]</param>
-				<param name="breadcrumbs_icon">addon.png</param>
+				<param name="breadcrumbs_icon">addons.png</param>
 			</include>
 		</control>
 		<!-- Media Menu -->
 		<include>MediaMenu_MouseOverlay</include>
 		<control type="group">
 			<include>MediaMenu_Common</include>
-			<control type="grouplist" id="9000">
-				<usecontrolcoords>true</usecontrolcoords>
-				<onleft condition="!Skin.HasSetting(DisableQuickNav)">ActivateWindow(1113)</onleft>
+			<control type="grouplist" id="9050">
 				<onright>50</onright>
 				<onback>50</onback>
-				<include>MediaMenu_MyXML_Common</include>
+				<include>MediaMenu_Common_Top</include>
 				<!-- Hide foreign -->
-				<include content="MediaMenu_Icon_RadioButton">
-					<param name="id" value="7" />
-					<param name="label" value="$LOCALIZE[25001]" />
-					<param name="visible">Control.IsEnabled(7)</param>
-				</include>
+				<control type="radiobutton" id="7">
+					<include>MediaMenu_Icon_Button</include>
+					<label>$LOCALIZE[25001]</label>
+					<visible>Control.IsEnabled(7)</visible>
+				</control>
 				<!-- Hide Incompatible -->
-				<include content="MediaMenu_Icon_RadioButton">
-					<param name="id" value="8" />
-					<param name="label" value="$LOCALIZE[24999]" />
-					<param name="visible">Control.IsEnabled(8)</param>
-				</include>
+				<control type="radiobutton" id="8">
+					<include>MediaMenu_Icon_Button</include>
+					<label>$LOCALIZE[24999]</label>
+					<visible>Control.IsEnabled(8)</visible>
+				</control>
 				<!-- Check for repository updates -->
-				<include content="MediaMenu_Icon_Button">
-					<param name="id" value="9" />
-					<param name="icon" value="icons/mediamenu/refresh.png" />
-					<param name="label" value="$LOCALIZE[24034]" />
-				</include>
+				<control type="radiobutton" id="9">
+					<include content="MediaMenu_Icon_Button">
+						<param name="iconon" value="icons/mediamenu/refresh.png" />
+						<param name="iconoff" value="icons/mediamenu/refresh.png" />
+					</include>
+					<label>$LOCALIZE[24034]</label>
+				</control>
 				<!-- Addon Settings -->
-				<include content="MediaMenu_Icon_Button">
-					<param name="id" value="5" />
-					<param name="icon" value="icons/mediamenu/settings.png" />
-					<param name="label" value="$LOCALIZE[10004]" />
-				</include>
-				<!-- Quicknav -->
-				<include content="MediaMenu_Icon_Button">
-					<param name="id" value="9011" />
-					<param name="icon" value="icons/mediamenu/arrowleft.png" />
-					<param name="label" value="$LOCALIZE[31040]" />
-					<param name="onclick" value="ActivateWindow(1113)" />
-					<param name="visible" value="!Skin.HasSetting(DisableQuickNav)" />
-				</include>
+				<control type="radiobutton" id="5">
+					<include content="MediaMenu_Icon_Button">
+						<param name="iconon" value="icons/mediamenu/settings.png" />
+						<param name="iconoff" value="icons/mediamenu/settings.png" />
+					</include>
+					<label>$LOCALIZE[10004]</label>
+				</control>
+				<include>MediaMenu_Common_Bottom</include>
 			</control>
 		</control>
 	</controls>

@@ -2,51 +2,54 @@
 <window>
 	<controls>
 		<control type="group">
-			<visible>!Window.IsActive(startup)</visible>
-			<include>Animation_DialogPopup</include>
 			<animation effect="zoom" end="80" center="auto" time="240" tween="cubic" easing="inout" condition="Skin.HasSetting(SmallerNotifications)">Conditional</animation>
 			<top>49</top>
 			<centerleft>50%</centerleft>
 			<height>134</height>
 			<width>730</width>
-			<control type="image">
-				<texture colordiffuse="$VAR[GlowColorVar]" border="20">dialogs/scan-glow.png</texture>
-			</control>
-			<control type="image">
-				<texture colordiffuse="$VAR[PanelColorVar]" border="20">dialogs/scan-back.png</texture>
-			</control>
-			<control type="image" id="400">
-				<top>22</top>
-				<left>26</left>
-				<width>90</width>
-				<height>90</height>
-				<animation effect="fade" start="50" time="800" condition="true" pulse="true">Conditional</animation>
-			</control>
-			<control type="image">
-				<top>22</top>
-				<left>26</left>
-				<width>90</width>
-				<height>90</height>
-				<texture>icons/exclamation.png</texture>
-				<animation effect="fade" start="50" time="800" condition="true" pulse="true">Conditional</animation>
-				<visible>String.IsEmpty(Control.GetLabel(400))</visible>
-			</control>
-			<control type="grouplist">
-				<top>12</top>
-				<left>150</left>
-				<width>530</width>
-				<height>110</height>
-				<align>center</align>
-				<control type="fadelabel" id="401">
-					<description>Line 1 Label</description>
-					<height>40</height>
-					<font>Font29_Cond</font>
+			<control type="group">
+				<visible>!Window.IsActive(startup)</visible>
+				<include>Animation_Dialog_Popup_Window</include>
+				<include>Animation_Dialog_Popup_Visible</include>
+				<control type="image">
+					<texture colordiffuse="$VAR[GlowColorVar]" border="20">dialogs/scan-glow.png</texture>
 				</control>
-				<control type="textbox" id="402">
-					<description>Line 2 Label</description>
-					<height>40</height>
-					<textcolor>grey</textcolor>
-					<font>Font29_Cond</font>
+				<control type="image">
+					<texture colordiffuse="$VAR[PanelColorVar]" border="20">dialogs/scan-back.png</texture>
+				</control>
+				<control type="image" id="400">
+					<top>22</top>
+					<left>26</left>
+					<width>90</width>
+					<height>90</height>
+					<animation effect="fade" start="50" time="800" condition="true" pulse="true">Conditional</animation>
+				</control>
+				<control type="image">
+					<top>22</top>
+					<left>26</left>
+					<width>90</width>
+					<height>90</height>
+					<texture>icons/exclamation.png</texture>
+					<animation effect="fade" start="50" time="800" condition="true" pulse="true">Conditional</animation>
+					<visible>String.IsEmpty(Control.GetLabel(400))</visible>
+				</control>
+				<control type="grouplist">
+					<top>12</top>
+					<left>150</left>
+					<width>530</width>
+					<height>110</height>
+					<align>center</align>
+					<control type="fadelabel" id="401">
+						<description>Line 1 Label</description>
+						<height>40</height>
+						<font>Font29_Cond</font>
+					</control>
+					<control type="textbox" id="402">
+						<description>Line 2 Label</description>
+						<height>40</height>
+						<textcolor>grey</textcolor>
+						<font>Font29_Cond</font>
+					</control>
 				</control>
 			</control>
 		</control>

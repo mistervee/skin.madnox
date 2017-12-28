@@ -5,6 +5,14 @@
 	<visible>Window.IsActive(fullscreenvideo)</visible>
 	<zorder>0</zorder>
 	<controls>
+		<control type="image">
+			<bottom>90</bottom>
+			<width>1920</width>
+			<height>500</height>
+			<texture>home/gradient.png</texture>
+			<include>Animation_CommonFade</include>
+			<visible>Window.IsActive(fullscreeninfo)</visible>
+		</control>
 		<control type="grouplist">
 			<include>FullscreenDimensions</include>
 			<align>center</align>
@@ -28,12 +36,15 @@
 			</control>
 		</control>
 		<control type="group">
-			<include content="Animation_Slide_Bottom">
-				<param name="slide">98</param>
+			<include content="Animation_Slide_Bottom_Window">
+				<param name="slide">110</param>
 			</include>
-			<top>982</top>
+			<include content="Animation_Slide_Bottom_Visible">
+				<param name="slide">110</param>
+			</include>
+			<top>970</top>
 			<control type="group">
-				<animation effect="slide" end="0,-100" time="300" tween="quadratic" easing="out" condition="Window.IsActive(videoosd)">Conditional</animation>
+				<animation effect="slide" end="0,-88" time="300" tween="quadratic" easing="out" condition="Window.IsActive(videoosd)">Conditional</animation>
 				<control type="image">
 					<width>1920</width>
 					<height>20</height>
@@ -41,9 +52,8 @@
 				</control>
 				<control type="image">
 					<width>1920</width>
-					<height>98</height>
-					<texture colordiffuse="$VAR[PanelColorVar]" border="15">dialogs/osd-back.png</texture>
-					<animation effect="zoom" end="0,0,1920,198" time="300" tween="quadratic" easing="out" condition="Window.IsActive(videoosd)">Conditional</animation>
+					<height>198</height>
+					<texture colordiffuse="$VAR[PanelColorVar]" border="20">dialogs/osd-back.png</texture>
 				</control>
 			</control>
 			<control type="group">

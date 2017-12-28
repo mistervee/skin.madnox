@@ -1,79 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">8000</defaultcontrol>
-	<menucontrol>9000</menucontrol>
+	<menucontrol>9050</menucontrol>
 	<controls>
-		<!-- Backdrop -->
-		<include>Background_Nowplaying</include>
-		<include content="Background_Fanart_Default">
-			<param name="imagepath">$VAR[SettingsFanartVar]</param>
-			<param name="opencondition">$EXP[Settings_Animation_OpenCondition]</param>
-			<param name="closecondition">$EXP[Settings_Animation_CloseCondition]</param>
+		<!-- Background -->
+		<include content="Background_Default">
+			<param name="imagepath">$VAR[SystemBackgroundVar]</param>
+			<param name="opencondition">$EXP[System_Animation_OpenCondition]</param>
+			<param name="closecondition">$EXP[System_Animation_CloseCondition]</param>
+			<param name="backgroundcolor">SystemBackground.Color.base</param>
 		</include>
 		<!-- Floor -->
 		<control type="group">
 			<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
-			<include content="Animation_Slide_Bottom">
-				<param name="slide">218</param>
-				<param name="opencondition">$EXP[Settings_Animation_OpenCondition]</param>
-				<param name="closecondition">$EXP[Settings_Animation_CloseCondition]</param>
+			<include content="Animation_Slide_Bottom_Window">
+				<param name="slide">220</param>
+				<param name="opencondition">$EXP[System_Animation_OpenCondition]</param>
+				<param name="closecondition">$EXP[System_Animation_CloseCondition]</param>
 			</include>
-			<include>Floor_Background_Default</include>
+			<include content="Animation_Slide_Bottom_Visible">
+				<param name="slide">220</param>
+			</include>
+			<include>Floor_Default</include>
+		</control>
+		<!-- Panel -->
+		<control type="group">
+			<include>Animation_Zoom_Window</include>
+			<include content="Panel_Default">
+				<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
+			</include>
 		</control>
 		<!-- Content -->
 		<control type="group">
-			<include>Animation_Zoom_OpenClose</include>
-			<include content="Animation_FurnitureShift">
-				<param name="slidetopbarcondition">Skin.HasSetting(SettingsHideTopBar)</param>
-				<param name="slidefloorcondition">!Skin.HasSetting(SettingsHideTopBar) + Skin.HasSetting(SettingsHideFloor)</param>
-			</include>
-			<include content="Panel_Background_Default">
-				<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
-			</include>
+			<include>Animation_Zoom_Window</include>
 			<control type="panel" id="8000">
-				<left>170</left>
-				<top>155</top>
-				<width>1600</width>
-				<height>804</height>
-				<onleft>9000</onleft>
+				<left>171</left>
+				<top>130</top>
+				<width>1608</width>
+				<height>820</height>
+				<onleft>9050</onleft>
 				<onright>60</onright>
 				<pagecontrol>60</pagecontrol>
-				<itemlayout height="268" width="400">
+				<itemlayout height="267" width="402">
 					<control type="image">
-						<width>370</width>
-						<height>238</height>
-						<aspectratio>scale</aspectratio>
-						<texture>$INFO[ListItem.Icon]</texture>
-						<bordertexture border="4" colordiffuse="55FFFFFF">buttons/list-select-focus.png</bordertexture>
+						<top>24</top>
+						<width>372</width>
+						<height>237</height>
+						<aspectratio scalediffuse="false">scale</aspectratio>
+						<texture border="10" diffuse="thumbs/landscape-mask.png">$INFO[ListItem.Icon]</texture>
+						<bordertexture border="10" colordiffuse="55FFFFFF">buttons/panel-select-focus.png</bordertexture>
 						<bordersize>4</bordersize>
 					</control>
 					<control type="label">
-						<top>188</top>
-						<width>370</width>
+						<top>211</top>
+						<width>372</width>
 						<height>40</height>
 						<label>$INFO[ListItem.Label]</label>
-						<font>Font36_Reg</font>
+						<font>Font32_Reg</font>
 						<align>center</align>
-						<textcolor>white2</textcolor>
+						<textcolor>grey</textcolor>
 					</control>
 				</itemlayout>
-				<focusedlayout height="268" width="400">
+				<focusedlayout height="267" width="402">
 					<control type="group">
-						<animation effect="zoom" center="196,114" start="100" end="107" time="250" tween="sine">Focus</animation>
+						<animation effect="zoom" center="auto" start="100" end="107" time="250" tween="sine">Focus</animation>
 						<control type="image">
-							<width>370</width>
-							<height>238</height>
-							<aspectratio>scale</aspectratio>
-							<texture colordiffuse="$VAR[HighlightColorVar]">$INFO[ListItem.Icon]</texture>
-							<bordertexture border="4" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</bordertexture>
+							<top>24</top>
+							<width>372</width>
+							<height>237</height>
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<texture colordiffuse="$VAR[HighlightColorVar]" diffuse="thumbs/landscape-mask.png">$INFO[ListItem.Icon]</texture>
+							<bordertexture border="10" colordiffuse="55FFFFFF">buttons/panel-select-focus.png</bordertexture>
 							<bordersize>4</bordersize>
 						</control>
 						<control type="label">
-							<top>188</top>
-							<width>370</width>
+							<top>211</top>
+							<width>372</width>
 							<height>40</height>
 							<label>$INFO[ListItem.Label]</label>
-							<font>Font36_Reg</font>
+							<font>Font32_Reg</font>
 							<align>center</align>
 						</control>
 					</control>
@@ -82,90 +87,93 @@
 					<item>
 						<label>$LOCALIZE[14207]</label>
 						<onclick>ActivateWindow(InterfaceSettings)</onclick>
-						<icon>special://skin/extras/backgrounds/settings/interface.jpg</icon>
+						<icon>special://skin/extras/backgrounds/system/interface.jpg</icon>
 					</item>
 					<item>
 						<label>$LOCALIZE[20077]</label>
 						<onclick>ActivateWindow(SkinSettings)</onclick>
-						<icon>special://skin/extras/backgrounds/settings/skinsettings.jpg</icon>
+						<icon>special://skin/extras/backgrounds/system/skinsettings.jpg</icon>
 					</item>
 					<item>
 						<label>$LOCALIZE[14201]</label>
 						<onclick>ActivateWindow(PlayerSettings)</onclick>
-						<icon>special://skin/extras/backgrounds/settings/player.jpg</icon>
+						<icon>special://skin/extras/backgrounds/system/player.jpg</icon>
 					</item>
 					<item>
 						<label>$LOCALIZE[14212]</label>
 						<onclick>ActivateWindow(MediaSettings)</onclick>
-						<icon>special://skin/extras/backgrounds/settings/media.jpg</icon>
+						<icon>special://skin/extras/backgrounds/system/media.jpg</icon>
 					</item>
 					<item>
 						<label>$LOCALIZE[24001]</label>
-						<onclick>ActivateWindow(addonbrowser)</onclick>
-						<icon>special://skin/extras/backgrounds/settings/addons.jpg</icon>
+						<onclick>ActivateWindow(1114)</onclick>
+						<icon>special://skin/extras/backgrounds/system/addons.jpg</icon>
 					</item>
 					<item>
 						<label>$LOCALIZE[14208]</label>
 						<onclick>ActivateWindow(ServiceSettings)</onclick>
-						<icon>special://skin/extras/backgrounds/settings/network.jpg</icon>
+						<icon>special://skin/extras/backgrounds/system/network.jpg</icon>
 					</item>
 					<item>
 						<label>$LOCALIZE[14209]</label>
 						<onclick>ActivateWindow(SystemSettings)</onclick>
-						<icon>special://skin/extras/backgrounds/settings/system.jpg</icon>
+						<icon>special://skin/extras/backgrounds/system/system.jpg</icon>
 					</item>
 					<item>
 						<label>$LOCALIZE[14205]</label>
 						<onclick>ActivateWindow(PVRSettings)</onclick>
-						<icon>special://skin/extras/backgrounds/settings/livetv.jpg</icon>
+						<icon>special://skin/extras/backgrounds/system/livetv.jpg</icon>
 					</item>
 					<item>
 						<label>$LOCALIZE[15016]</label>
 						<onclick>ActivateWindow(GameSettings)</onclick>
-						<icon>special://skin/extras/backgrounds/settings/games.jpg</icon>
+						<icon>special://skin/extras/backgrounds/system/games.jpg</icon>
 					</item>
 					<item>
 						<label>$LOCALIZE[14210]</label>
 						<onclick>ActivateWindow(Profiles)</onclick>
-						<icon>special://skin/extras/backgrounds/settings/profiles.jpg</icon>
+						<icon>special://skin/extras/backgrounds/system/profiles.jpg</icon>
 					</item>
 					<item>
 						<label>$LOCALIZE[10003]</label>
 						<onclick>ActivateWindow(filemanager)</onclick>
-						<icon>special://skin/extras/backgrounds/settings/filemanager.jpg</icon>
+						<icon>special://skin/extras/backgrounds/system/filemanager.jpg</icon>
 					</item>
 					<item>
 						<label>LibreELEC</label>
 						<onclick>RunAddon(service.libreelec.settings)</onclick>
-						<icon>special://skin/extras/backgrounds/settings/libreelec.jpg</icon>
+						<icon>special://skin/extras/backgrounds/system/libreelec.jpg</icon>
 						<visible>System.HasAddon(service.libreelec.settings)</visible>
 					</item>
 					<item>
 						<label>$LOCALIZE[138]</label>
 						<onclick>ActivateWindow(systeminfo)</onclick>
-						<icon>special://skin/extras/backgrounds/settings/sysinfo.jpg</icon>
+						<icon>special://skin/extras/backgrounds/system/sysinfo.jpg</icon>
 					</item>
 					<item>
 						<label>$LOCALIZE[14114]</label>
 						<onclick>ActivateWindow(eventlog)</onclick>
-						<icon>special://skin/extras/backgrounds/settings/eventlog.jpg</icon>
+						<icon>special://skin/extras/backgrounds/system/eventlog.jpg</icon>
 					</item>
 				</content>
 			</control>
 			<control type="scrollbar" id="60">
-				<right>122</right>
+				<right>121</right>
 				<top>140</top>
-				<bottom>130</bottom>
+				<bottom>140</bottom>
 				<onleft>8000</onleft>
 			</control>
 		</control>
 		<!-- Topbar -->
 		<control type="group">
 			<visible>!Skin.HasSetting(SettingsHideTopBar)</visible>
-			<include content="Animation_Slide_Top">
+			<include content="Animation_Slide_Top_Window">
 				<param name="slide">90</param>
-				<param name="opencondition">$EXP[Settings_Animation_OpenCondition]</param>
-				<param name="closecondition">$EXP[Settings_Animation_CloseCondition]</param>
+				<param name="opencondition">$EXP[System_Animation_OpenCondition]</param>
+				<param name="closecondition">$EXP[System_Animation_CloseCondition]</param>
+			</include>
+			<include content="Animation_Slide_Top_Visible">
+				<param name="slide">90</param>
 			</include>
 			<include content="TopBar">
 				<param name="breadcrumbs_label">$LOCALIZE[13000]</param>
@@ -176,12 +184,11 @@
 		<include>MediaMenu_MouseOverlay</include>
 		<control type="group">
 			<include>MediaMenu_Common</include>
-			<control type="grouplist" id="9000">
-				<usecontrolcoords>true</usecontrolcoords>
-				<onleft condition="!Skin.HasSetting(DisableQuickNav)">ActivateWindow(1113)</onleft>
+			<control type="grouplist" id="9050">
 				<onright>8000</onright>
 				<onback>8000</onback>
-				<include>MediaMenu_Settings</include>
+				<include>MediaMenu_System</include>
+				<include>MediaMenu_Common_Bottom</include>
 			</control>
 		</control>
 	</controls>

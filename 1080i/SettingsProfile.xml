@@ -1,46 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">8000</defaultcontrol>
-	<menucontrol>9000</menucontrol>
+	<menucontrol>9050</menucontrol>
 	<controls>
-		<!-- Backdrop -->
-		<include>Background_Nowplaying</include>
-		<include content="Background_Fanart_Default">
-			<param name="imagepath">$VAR[SettingsFanartVar]</param>
+		<!-- Background -->
+		<include content="Background_Default">
+			<param name="imagepath">$VAR[SystemBackgroundVar]</param>
 			<param name="opencondition">!Window.Previous(settings)</param>
 			<param name="closecondition">!Window.Next(settings)</param>
+			<param name="backgroundcolor">SystemBackground.Color.base</param>
 		</include>
 		<!-- Floor -->
 		<control type="group">
 			<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
-			<include content="Animation_Slide_Bottom">
-				<param name="slide">218"</param>
+			<include content="Animation_Slide_Bottom_Window">
+				<param name="slide">220</param>
 				<param name="opencondition">!Window.Previous(settings)</param>
 				<param name="closecondition">!Window.Next(settings)</param>
 			</include>
-			<include>Floor_Background_Default</include>
+			<include content="Animation_Slide_Bottom_Visible">
+				<param name="slide">220</param>
+			</include>
+			<include>Floor_Default</include>
+		</control>
+		<!-- Panel -->
+		<control type="group">
+			<include>Animation_Zoom_Window</include>
+			<include content="Panel_Side">
+				<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
+			</include>
 		</control>
 		<!-- Content -->
 		<control type="group">
-			<include>Animation_Zoom_OpenClose</include>
-			<include content="Animation_FurnitureShift">
-				<param name="slidetopbarcondition">Skin.HasSetting(SettingsHideTopBar)</param>
-				<param name="slidefloorcondition">!Skin.HasSetting(SettingsHideTopBar) + Skin.HasSetting(SettingsHideFloor)</param>
-			</include>
-			<include content="Panel_Background_Settings">
-				<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
-			</include>
+			<include>Animation_Zoom_Window</include>
 			<!-- Left menu -->
 			<control type="label">
 				<label>$LOCALIZE[13200]</label>
 				<include>Settings_LeftLabel</include>
 			</control>
 			<control type="list" id="8000">
-				<left>101</left>
+				<left>105</left>
 				<top>200</top>
-				<width>323</width>
+				<width>321</width>
 				<height>612</height>
-				<onleft>9000</onleft>
+				<onleft>9050</onleft>
 				<onright>8010</onright>
 				<itemlayout height="67" width="323">
 					<control type="label">
@@ -140,9 +143,9 @@
 				</control>
 			</control>
 			<control type="scrollbar" id="60">
-				<right>127</right>
-				<top>150</top>
-				<bottom>140</bottom>
+				<right>126</right>
+				<top>199</top>
+				<bottom>142</bottom>
 				<onleft>2</onleft>
 				<visible>!Container(8000).Hasfocus(1)</visible>
 			</control>
@@ -150,13 +153,16 @@
 		<!-- Topbar -->
 		<control type="group">
 			<visible>!Skin.HasSetting(SettingsHideTopBar)</visible>
-			<include content="Animation_Slide_Top">
+			<include content="Animation_Slide_Top_Window">
 				<param name="slide">90"</param>
 				<param name="opencondition">!Window.Previous(settings)</param>
 				<param name="closecondition">!Window.Next(settings)</param>
 			</include>
+			<include content="Animation_Slide_Top_Visible">
+				<param name="slide">90</param>
+			</include>
 			<include content="TopBar">
-				<param name="breadcrumbs_label">$LOCALIZE[5] / $LOCALIZE[13200]</param>
+				<param name="breadcrumbs_label">$LOCALIZE[13000] / $LOCALIZE[13200]</param>
 				<param name="breadcrumbs_icon">settings.png</param>
 			</include>
 		</control>
@@ -164,12 +170,11 @@
 		<include>MediaMenu_MouseOverlay</include>
 		<control type="group">
 			<include>MediaMenu_Common</include>
-			<control type="grouplist" id="9000">
-				<usecontrolcoords>true</usecontrolcoords>
-				<onleft condition="!Skin.HasSetting(DisableQuickNav)">ActivateWindow(1113)</onleft>
+			<control type="grouplist" id="9050">
 				<onright>8000</onright>
 				<onback>8000</onback>
-				<include>MediaMenu_Settings</include>
+				<include>MediaMenu_System</include>
+				<include>MediaMenu_Common_Bottom</include>
 			</control>
 		</control>
 	</controls>

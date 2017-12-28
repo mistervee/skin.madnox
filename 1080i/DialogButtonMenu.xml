@@ -1,60 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
-	<defaultcontrol>9000</defaultcontrol>
+	<defaultcontrol always="true">100</defaultcontrol>
+	<include>Animation_Dialog_Popup_Window</include>
 	<controls>
-		<include>Dialog_Furniture_BackgroundFade</include>
-		<include>Dialog_Furniture_Close_Onclick</include>
 		<control type="group">
-			<include>Animation_Dialog_Popup</include>
-			<centerleft>50%</centerleft>
+			<include>Dialog_BackgroundFade</include>
+			<include>Dialog_CloseOnclick</include>
 			<centertop>50%</centertop>
-			<width>500</width>
+			<centerleft>50%</centerleft>
 			<height>540</height>
+			<width>500</width>
 			<control type="image">
-				<top>-20</top>
-				<width>500</width>
-				<height>540</height>
 				<texture colordiffuse="$VAR[GlowColorVar]" border="40">dialogs/dialog-glow.png</texture>
 			</control>
 			<control type="image">
-				<top>-20</top>
-				<width>500</width>
-				<height>540</height>
 				<texture colordiffuse="$VAR[PanelColorVar]" border="40">dialogs/dialog-back.png</texture>
 			</control>
 			<control type="image">
-				<top>2</top>
+				<top>20</top>
 				<left>20</left>
-				<width>460</width>
+				<right>20</right>
 				<height>40</height>
 				<texture colordiffuse="$VAR[PanelColorVar]" border="30">buttons/list-select-nofocus.png</texture>
 			</control>
 			<control type="image">
 				<left>230</left>
-				<top>0</top>
+				<top>20</top>
 				<width>40</width>
 				<height>40</height>
 				<texture flipy="true" colordiffuse="$VAR[HighlightColorVar]">icons/default/arrowdown.png</texture>
-				<include>Animation_CommonFade</include>
-				<visible>Container(9000).HasPrevious</visible>
+				<include>Animation_VisibleFade</include>
+				<visible>Container(100).HasPrevious</visible>
 			</control>
 			<control type="image">
 				<left>230</left>
-				<top>460</top>
+				<bottom>20</bottom>
 				<width>40</width>
 				<height>40</height>
 				<texture colordiffuse="$VAR[HighlightColorVar]">icons/default/arrowdown.png</texture>
-				<include>Animation_CommonFade</include>
-				<visible>Container(9000).HasNext</visible>
+				<include>Animation_VisibleFade</include>
+				<visible>Container(100).HasNext</visible>
 			</control>
-			<control type="grouplist" id="9000">
-				<top>40</top>
+			<control type="grouplist" id="100">
+				<top>60</top>
 				<bottom>20</bottom>
 				<left>20</left>
 				<width>460</width>
 				<height>420</height>
 				<control type="button" id="101">
 					<label>$LOCALIZE[5]</label>
+					<onclick>Dialog.Close(all,true)</onclick>
 					<onclick>ActivateWindow(Settings,return)</onclick>
 					<include>Dialog_Button_ContextMenu</include>
 				</control>

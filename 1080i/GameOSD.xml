@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<defaultcontrol always="true">202</defaultcontrol>
+	<include content="Animation_Slide_Bottom_Window">
+		<param name="slide">130</param>
+	</include>
+	<controls>
+		<control type="group">
+			<visible>!Window.IsActive(GameVideoFilter) + !Window.IsActive(GameViewMode) + !Window.IsActive(GameControllers)</visible>
+			<top>950</top>
+			<include content="Animation_Slide_Bottom_Visible">
+				<param name="slide">130</param>
+			</include>
+			<control type="image">
+				<width>1920</width>
+				<height>20</height>
+				<texture colordiffuse="$VAR[GlowColorVar]">dialogs/glow-bottom.png</texture>
+			</control>
+			<control type="image">
+				<width>1920</width>
+				<height>130</height>
+				<texture colordiffuse="$VAR[PanelColorVar]" border="20">dialogs/osd-back.png</texture>
+			</control>
+			<control type="grouplist">
+				<left>5</left>
+				<bottom>-5</bottom>
+				<height>120</height>
+				<onleft>302</onleft>
+				<onright>201</onright>
+				<itemgap>-10</itemgap>
+				<orientation>horizontal</orientation>
+				<control type="radiobutton" id="101">
+					<description>Video filter button</description>
+					<include content="Dialog_Button_OSD">
+						<param name="texture" value="buttons/player/filter.png"/>
+					</include>
+					<onclick>ActivateWindow(GameVideoFilter)</onclick>
+				</control>
+				<control type="radiobutton" id="102">
+					<description>View mode button</description>
+					<include content="Dialog_Button_OSD">
+						<param name="texture" value="buttons/player/channels.png"/>
+					</include>
+					<onclick>ActivateWindow(GameViewMode)</onclick>
+				</control>
+			</control>
+			<control type="grouplist">
+				<bottom>-5</bottom>
+				<height>120</height>
+				<onright>301</onright>
+				<onleft>102</onleft>
+				<align>center</align>
+				<itemgap>-10</itemgap>
+				<orientation>horizontal</orientation>
+				<usecontrolcoords>true</usecontrolcoords>
+				<control type="radiobutton" id="201">
+					<description>Stop button</description>
+					<include content="Dialog_Button_OSD">
+						<param name="texture" value="buttons/player/stop.png"/>
+					</include>
+					<onclick>Stop</onclick>
+				</control>
+				<control type="radiobutton" id="202">
+					<description>Pause / Resume button</description>
+					<include content="Dialog_Button_OSD">
+						<param name="texture" value="buttons/player/play.png"/>
+					</include>
+					<onclick>Play</onclick>
+				</control>
+				<control type="radiobutton" id="203">
+					<description>Reset button</description>
+					<include content="Dialog_Button_OSD">
+						<param name="texture" value="buttons/player/reset.png"/>
+					</include>
+					<onclick>PlayerControl(Reset)</onclick>
+				</control>
+			</control>
+			<control type="grouplist">
+				<right>5</right>
+				<bottom>-5</bottom>
+				<height>120</height>
+				<onleft>203</onleft>
+				<onright>101</onright>
+				<align>right</align>
+				<itemgap>-10</itemgap>
+				<orientation>horizontal</orientation>
+				<usecontrolcoords>true</usecontrolcoords>
+				<control type="radiobutton" id="301">
+					<description>Volume button</description>
+					<include content="Dialog_Button_OSD">
+						<param name="texture" value="buttons/player/audio.png"/>
+					</include>
+					<onclick>ActivateWindow(GameVolume)</onclick>
+				</control>
+				<control type="radiobutton" id="302">
+					<description>Input settings button</description>
+					<include content="Dialog_Button_OSD">
+						<param name="texture" value="buttons/player/input.png"/>
+					</include>
+					<onclick>ActivateWindow(GameControllers)</onclick>
+				</control>
+			</control>
+		</control>
+	</controls>
+</window>

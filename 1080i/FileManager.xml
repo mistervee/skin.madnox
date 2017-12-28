@@ -1,137 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol>20</defaultcontrol>
-	<menucontrol>9000</menucontrol>
+	<menucontrol>9050</menucontrol>
 	<controls>
-		<!-- Backdrop -->
-		<include>Background_Nowplaying</include>
-		<include content="Background_Fanart_Default">
-			<param name="imagepath">$VAR[SettingsFanartVar]</param>
+		<!-- Background -->
+		<include content="Background_Default">
+			<param name="imagepath">$VAR[SystemBackgroundVar]</param>
 			<param name="opencondition">!Window.Previous(settings)</param>
 			<param name="closecondition">!Window.Next(settings)</param>
-			<param name="bottomshade">Skin.HasSetting(SettingsHideFloor)</param>
-			<param name="sideshade">!Skin.HasSetting(SettingsHideFloor)</param>
+			<param name="backgroundcolor">SystemBackground.Color.base</param>
 		</include>
 		<!-- Floor -->
 		<control type="group">
 			<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
-			<include content="Animation_Slide_Bottom">
-				<param name="slide">218"</param>
+			<include content="Animation_Slide_Bottom_Window">
+				<param name="slide">220</param>
 				<param name="opencondition">!Window.Previous(settings)</param>
 				<param name="closecondition">!Window.Next(settings)</param>
 			</include>
-			<include>Floor_Background_Default</include>
+			<include content="Animation_Slide_Bottom_Visible">
+				<param name="slide">220</param>
+			</include>
+			<include>Floor_Default</include>
+		</control>
+		<control type="image">
+			<visible>Skin.HasSetting(SettingsHideFloor)</visible>
+			<top>860</top>
+			<width>1920</width>
+			<height>220</height>
+			<include content="Animation_Slide_Bottom_Window">
+				<param name="slide">220</param>
+				<param name="opencondition">!Window.Previous(settings)</param>
+				<param name="closecondition">!Window.Next(settings)</param>
+			</include>
+			<include content="Animation_Slide_Bottom_Visible">
+				<param name="slide">220</param>
+			</include>
+			<texture>panels/floor-gradient.png</texture>
+		</control>
+		<!-- Panel -->
+		<control type="group">
+			<include>Animation_Slide_Left_Window</include>
+			<include content="Panel_Default">
+				<param name="width">875</param>
+				<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
+			</include>
+		</control>
+		<control type="group">
+			<include>Animation_Slide_Right_Window</include>
+			<include content="Panel_Default">
+				<param name="left">965</param>
+				<param name="width">875</param>
+				<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
+			</include>
 		</control>
 		<!-- Content -->
 		<control type="group">
-			<include content="Animation_FurnitureShift">
-				<param name="slidetopbarcondition">Skin.HasSetting(SettingsHideTopBar)</param>
-				<param name="slidefloorcondition">!Skin.HasSetting(SettingsHideTopBar) + Skin.HasSetting(SettingsHideFloor)</param>
-			</include>
 			<!-- Left Panel -->
 			<control type="group">
-				<include>Animation_Slide_Left</include>
-				<include content="Panel_Background_Default">
-					<param name="width">875</param>
-					<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
-				</include>
+				<include>Animation_Slide_Left_Window</include>
 				<include content="FileManager_List">
 					<param name="id">20</param>
 					<param name="left">144</param>
-					<param name="onleft">60</param>
-					<param name="onright">21</param>
+					<param name="onleft">9050</param>
+					<param name="onright">60</param>
 					<param name="scrollbar_id">60</param>
 				</include>
 				<control type="scrollbar" id="60">
-					<left>120</left>
-					<top>140</top>
-					<bottom>130</bottom>
-					<onleft>9000</onleft>
-					<onright>20</onright>
+					<left>874</left>
+					<top>143</top>
+					<bottom>145</bottom>
+					<onleft>20</onleft>
+					<onright>21</onright>
 				</control>
 				<control type="label" id="101">
-					<bottom>35</bottom>
+					<bottom>50</bottom>
 					<left>100</left>
-					<width>630</width>
+					<width>655</width>
 					<height>40</height>
-					<font>Font28_Bold</font>
-					<textcolor>grey2</textcolor>
+					<font>Font34_Reg</font>
+					<textcolor>$VAR[HighlightColorVar]</textcolor>
+					<shadowcolor>shadow</shadowcolor>
 					<haspath>true</haspath>
-				</control>
-				<control type="label">
-					<bottom>35</bottom>
-					<left>730</left>
-					<width>200</width>
-					<height>40</height>
-					<align>right</align>
-					<font>Font28_Bold</font>
-					<label>$INFO[Container(20).CurrentItem,,/]$INFO[Container(20).NumItems]</label>
 				</control>
 			</control>
 			<!-- Right Panel -->
 			<control type="group">
-				<include>Animation_Slide_Right</include>
-				<include content="Panel_Background_Default">
-					<param name="left">965</param>
-					<param name="width">875</param>
-					<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
-				</include>
+				<include>Animation_Slide_Right_Window</include>
 				<include content="FileManager_List">
 					<param name="id">21</param>
 					<param name="left">1029</param>
-					<param name="onleft">20</param>
+					<param name="onleft">60</param>
 					<param name="onright">61</param>
 					<param name="scrollbar_id">61</param>
 				</include>
 				<control type="scrollbar" id="61">
-					<right>120</right>
-					<top>140</top>
-					<bottom>130</bottom>
+					<right>121</right>
+					<top>143</top>
+					<bottom>145</bottom>
 					<onleft>21</onleft>
 				</control>
 				<control type="label" id="102">
-					<bottom>35</bottom>
+					<bottom>50</bottom>
 					<left>985</left>
-					<width>630</width>
+					<width>655</width>
 					<height>40</height>
-					<font>Font28_Bold</font>
-					<textcolor>grey2</textcolor>
+					<font>Font34_Reg</font>
+					<textcolor>$VAR[HighlightColorVar]</textcolor>
+					<shadowcolor>shadow</shadowcolor>
 					<haspath>true</haspath>
-				</control>
-				<control type="label">
-					<bottom>35</bottom>
-					<right>100</right>
-					<width>200</width>
-					<height>40</height>
-					<align>right</align>
-					<font>Font28_Bold</font>
-					<label>$INFO[Container(21).CurrentItem,,/]$INFO[Container(21).NumItems]</label>
 				</control>
 			</control>
 		</control>
 		<!-- Topbar -->
 		<control type="group">
 			<visible>!Skin.HasSetting(SettingsHideTopBar)</visible>
-			<include content="Animation_Slide_Top">
-				<param name="slide">90"</param>
+			<include content="Animation_Slide_Top_Window">
+				<param name="slide">90</param>
 				<param name="opencondition">!Window.Previous(settings)</param>
 				<param name="closecondition">!Window.Next(settings)</param>
 			</include>
+			<include content="Animation_Slide_Top_Visible">
+				<param name="slide">90</param>
+			</include>
 			<include content="TopBar">
-				<param name="breadcrumbs_label">$LOCALIZE[7]</param>
-				<param name="breadcrumbs_icon">harddisk.png</param>
+				<param name="breadcrumbs_label">$LOCALIZE[13000] / $LOCALIZE[7]</param>
+				<param name="breadcrumbs_icon">files.png</param>
 			</include>
 		</control>
 		<!-- Media Menu -->
 		<include>MediaMenu_MouseOverlay</include>
 		<control type="group">
 			<include>MediaMenu_Common</include>
-			<control type="grouplist" id="9000">
-				<usecontrolcoords>true</usecontrolcoords>
-				<onleft condition="!Skin.HasSetting(DisableQuickNav)">ActivateWindow(1113)</onleft>
+			<control type="grouplist" id="9050">
 				<onright>20</onright>
 				<onback>20</onback>
-				<include>MediaMenu_Settings</include>
+				<include>MediaMenu_System</include>
+				<include>MediaMenu_Common_Bottom</include>
 			</control>
 		</control>
 	</controls>

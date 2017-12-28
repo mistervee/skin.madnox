@@ -3,42 +3,52 @@
 	<defaultcontrol />
 	<controls>
 		<control type="group" id="0">
-			<control type="label" id="10">
-				<left>45</left>
-				<top>15</top>
-				<width>1770</width>
-				<height>60</height>
-				<label></label>
-				<font>Font32_Reg</font>
-				<shadowcolor>black</shadowcolor>
+			<visible>Control.IsVisible(10)</visible>
+			<width>1920</width>
+			<height>162</height>
+			<include content="Animation_Slide_Top_Visible">
+				<param name="slide">162</param>
+			</include>
+			<control type="image">
+				<top>142</top>
+				<height>20</height>
+				<texture flipy="true" colordiffuse="$VAR[GlowColorVar]">dialogs/glow-bottom.png</texture>
 			</control>
-			<control type="label" id="11">
-				<left>45</left>
-				<top>95</top>
-				<width>1770</width>
-				<height>60</height>
-				<label></label>
-				<font>Font32_Reg</font>
-				<shadowcolor>black</shadowcolor>
+			<control type="image">
+				<texture flipy="true" colordiffuse="$VAR[PanelColorVar]" border="20">dialogs/osd-back.png</texture>
 			</control>
-			<control type="label" id="12">
-				<left>45</left>
-				<top>175</top>
-				<width>1770</width>
-				<height>60</height>
-				<label></label>
-				<font>Font32_Reg</font>
-				<shadowcolor>black</shadowcolor>
+			<control type="grouplist">
+				<top>10</top>
+				<width>1920</width>
+				<height>600</height>
+				<control type="label" id="10">
+					<width>1920</width>
+					<include>Dialog_Label_ProcessInfo</include>
+					<label></label>
+				</control>
+				<control type="label" id="11">
+					<width>1920</width>
+					<include>Dialog_Label_ProcessInfo</include>
+					<label></label>
+				</control>
+				<control type="label" id="12">
+					<width>1920</width>
+					<include>Dialog_Label_ProcessInfo</include>
+					<label></label>
+				</control>
 			</control>
 		</control>
 		<control type="label" id="1">
-			<left>45</left>
-			<top>255</top>
+			<right>20</right>
+			<top>33</top>
 			<width>915</width>
 			<height>60</height>
+			<align>right</align>
 			<label>$INFO[Player.SeekNumeric(hh:mm:ss)]</label>
 			<font>Font_MainMenu</font>
 			<shadowcolor>black</shadowcolor>
+			<include>Animation_VisibleFade</include>
+			<visible>!String.IsEmpty(Player.SeekNumeric)</visible>
 		</control>
 	</controls>
 </window>

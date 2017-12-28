@@ -1,44 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">15</defaultcontrol>
+	<include>Animation_Dialog_Popup_Window</include>
 	<controls>
-		<include>Dialog_Furniture_BackgroundFade</include>
 		<control type="group">
-			<include content="Dialog_Furniture_Background">
-				<param name="width">854</param>
-				<param name="height">408</param>
-				<param name="labelright">350</param>
+			<visible>!Window.IsVisible(selectdialog) + !Window.IsVisible(virtualkeyboard)</visible>
+			<include>Animation_Dialog_Popup_Visible</include>
+			<include content="Dialog_Background">
+				<param name="width" value="1078" />
+				<param name="height" value="510" />
 				<param name="label">$LOCALIZE[21421]</param>
-				<param name="labelid">2</param>
-				<param name="bottomseparatorvisible">false</param>
 			</include>
 			<control type="grouplist" id="8000">
 				<left>20</left>
-				<top>88</top>
-				<width>814</width>
+				<top>90</top>
+				<width>1038</width>
 				<onright>8001</onright>
 				<control type="button" id="20">
 					<label>$LOCALIZE[1024]</label>
-					<include>Dialog_Button_Narrow</include>
+					<include>Dialog_Button_Wide</include>
 				</control>
 				<control type="label" id="8002">
+					<font>Font28_Bold</font>
+					<textcolor>$VAR[HighlightColorVar]</textcolor>
 					<label>$LOCALIZE[21422]</label>
-					<include>Dialog_Label_Narrow</include>
+					<include>Dialog_Button_Wide</include>
 				</control>
 				<control type="button" id="15">
-					<include>Dialog_Button_Narrow</include>
+					<include>Dialog_Button_Wide</include>
 				</control>
 				<control type="button" id="16">
-					<include>Dialog_Button_Narrow</include>
+					<include>Dialog_Button_Wide</include>
 				</control>
 				<control type="edit" id="17">
-					<hinttext>31047</hinttext>
-					<include>Dialog_Button_Narrow</include>
+					<hinttext>21420</hinttext>
+					<texturenofocus />
+					<include>Dialog_Button_Wide</include>
 				</control>
 			</control>
 			<control type="grouplist" id="8001">
 				<right>60</right>
-				<top>28</top>
+				<top>20</top>
 				<width>400</width>
 				<onleft>8000</onleft>
 				<ondown>8000</ondown>

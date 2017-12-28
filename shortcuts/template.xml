@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+	<!-- Live background -->
+	<other include="LiveBackgroundHome">
+		<condition tag="property" attribute="name|widgetType.LiveBackground" />
+		<property name="id" tag="mainmenuid" />
+
+		<property name="content" tag="property" attribute="name|liveBackground" />
+		<property name="art" tag="property" attribute="name|widgetType.LiveBackground" value="tvshows|movies">poster</property>
+		<property name="art">thumb</property>
+		
+		<property name="postersize" tag="property" attribute="name|liveBackgroundAspect" value="portrait">LiveBackgroundPortrait</property>
+		<property name="postersize" tag="property" attribute="name|liveBackgroundAspect" value="landscape">LiveBackgroundLandscape</property>
+		<property name="postersize">LiveBackgroundSquare</property>
+
+
+		<property name="postertype" tag="property" attribute="name|liveBackgroundAspect" value="landscape|square">landscape</property>
+		<property name="postertype">poster</property>
+
+		<property name="case" tag="property" attribute="name|liveBackgroundCase" value="case">thumbs/case/$SKINSHORTCUTS[postertype]/</property>
+		<property name="case" tag="property" attribute="name|liveBackgroundCase" value="clear">thumbs/clearcase/$SKINSHORTCUTS[postertype]/</property>
+		<property name="case" tag="property" attribute="name|liveBackgroundCase" value="glass">thumbs/glass/portrait.png</property>
+		<property name="case" tag="property" attribute="name|liveBackgroundCase" value="cd">thumbs/case/square/cd.png</property>
+		<property name="case" tag="property" attribute="name|liveBackgroundCase" value="cdclear">thumbs/clearcase/square/cd.png</property>
+		<property name="case" tag="property" attribute="name|liveBackgroundCase" value="polaroid">thumbs/polaroid.png</property>
+		<property name="case"></property>
+
+		<property name="casetype" tag="property" attribute="name|liveBackgroundCase" value="case|clear">Case</property>
+		<property name="casetype" tag="property" attribute="name|liveBackgroundCase" value="glass">Glass</property>
+		<property name="casetype" tag="property" attribute="name|liveBackgroundCase" value="cd|cdclear">CD</property>
+		<property name="casetype" tag="property" attribute="name|liveBackgroundCase" value="polaroid">Polaroid</property>
+
+		<property name="casesize" tag="property" attribute="name|liveBackgroundAspect" value="portrait">LiveBackgroundPortrait$SKINSHORTCUTS[casetype]</property>
+		<property name="casesize" tag="property" attribute="name|liveBackgroundAspect" value="landscape">LiveBackgroundLandscape$SKINSHORTCUTS[casetype]</property>
+		<property name="casesize">LiveBackgroundSquare$SKINSHORTCUTS[casetype]</property>
+
+		<property name="sortby" tag="property" attribute="name|liveBackgroundSortby" />
+		<property name="sort" tag="property" attribute="name|liveBackgroundSort" />
+		<controls>
+			<control type="wraplist" id="7002$SKINSHORTCUTS[id]">
+				<left>-100</left>
+				<top>-100</top>
+				<width>10</width>
+				<height>10</height>
+				<itemlayout height="10" width="10" />
+				<focusedlayout height="10" width="10" />
+				<content sortby="$SKINSHORTCUTS[sortby]" sortorder="$SKINSHORTCUTS[sort]" limit="10">$SKINSHORTCUTS[content]</content>
+				<skinshortcuts>visibility</skinshortcuts>
+			</control>
+			<control type="group">
+				<skinshortcuts>visibility</skinshortcuts>
+				<include content="LiveBackgroundHome">
+					<param name="id">7002$SKINSHORTCUTS[id]</param>
+					<param name="art">$SKINSHORTCUTS[art]</param>
+					<param name="postersize">$SKINSHORTCUTS[postersize]</param>
+					<param name="casesize">$SKINSHORTCUTS[casesize]</param>
+					<param name="case">$SKINSHORTCUTS[case]</param>
+				</include>
+			</control>
+		</controls>
+	</other>
+
+
+
+
+
+	<!-- Property Groups -->
+	<propertyGroup name="widgetCommon">
+		<!-- Retrieve Properties -->
+		<property name="id" tag="mainmenuid" />
+		<property name="widget" tag="property" attribute="name|widget" />
+		<property name="widgettype" tag="property" attribute="name|widgetType" />
+		<property name="content" tag="property" attribute="name|widgetPath" />
+		<property name="target" tag="property" attribute="name|widgetTarget" />
+		<property name="label" tag="property" attribute="name|widgetName" />
+		<property name="sortby" tag="property" attribute="name|widgetSortby" />
+		<property name="sort" tag="property" attribute="name|widgetSort" />
+		<!-- Artwork -->
+		<property name="artwork" tag="property" attribute="name|widgetArt" value="Poster">$VAR[HomeWidgetPosterVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArt" value="Square Poster">$VAR[HomeWidgetPosterVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArt" value="FanArt">$VAR[HomeWidgetFanArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArt" value="Landscape">$VAR[HomeWidgetLandscapeVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArt" value="ClearArt">$VAR[HomeWidgetClearArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArt" value="ClearLogo">$VAR[HomeWidgetClearLogoVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArt" value="Thumb">$VAR[HomeWidgetThumbVar]</property>
+		<!-- Artwork Fallback -->
+		<property name="artworkfb" tag="property" attribute="name|widgetArt" value="ClearLogo">String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo))</property>
+		<property name="artworkfb" tag="property" attribute="name|widgetArt" value="ClearArt">String.IsEmpty(ListItem.Art(clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearart)) + String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo))</property>
+		<property name="artworkfb">false</property>
+		<!-- Artwork Aspect -->
+		<property name="aspect" tag="property" attribute="name|widgetType" value="pvr">keep</property>
+		<property name="aspect" tag="property" attribute="name|widgetArt" value="ClearArt|ClearLogo">keep</property>
+		<property name="aspect" tag="property" attribute="name|widgetArt" value="Poster">stretch</property>
+		<property name="aspect">scale</property>
+		<!-- Artwork Aligny -->
+		<property name="aligny" tag="property" attribute="name|widgetType" value="pvr">center</property>
+		<property name="aligny" tag="property" attribute="name|widgetArt" value="Poster|Square Poster|FanArt">top</property>
+		<property name="aligny">center</property>
+		<!-- Artwork Content -->
+		<property name="artcontent" tag="property" attribute="name|widgetArt" value="Poster">PortraitArt</property>
+		<property name="artcontent" tag="property" attribute="name|widgetArt" value="Square Poster">SquareArt</property>
+		<property name="artcontent" tag="property" attribute="name|widgetArt" value="FanArt|Landscape|ClearArt|ClearLogo|Thumb">LandscapeArt</property>
+		<!-- Artwork Dimensions -->
+		<property name="leftart" tag="property" attribute="name|widgetCase" value="Glass">$SKINSHORTCUTS[leftartworkglass]</property>
+		<property name="topart" tag="property" attribute="name|widgetCase" value="Glass">$SKINSHORTCUTS[topartworkglass]</property>
+		<property name="widthart" tag="property" attribute="name|widgetCase" value="Glass">$SKINSHORTCUTS[widthartworkglass]</property>
+		<property name="heightart" tag="property" attribute="name|widgetCase" value="Glass">$SKINSHORTCUTS[heightartworkglass]</property>
+		<property name="leftart" tag="property" attribute="name|widgetCase" value="Case">$SKINSHORTCUTS[leftartworkcase]</property>
+		<property name="topart" tag="property" attribute="name|widgetCase" value="Case">$SKINSHORTCUTS[topartworkcase]</property>
+		<property name="widthart" tag="property" attribute="name|widgetCase" value="Case">$SKINSHORTCUTS[widthartworkcase]</property>
+		<property name="heightart" tag="property" attribute="name|widgetCase" value="Case">$SKINSHORTCUTS[heightartworkcase]</property>
+		<property name="leftart" tag="property" attribute="name|widgetCase" value="Clear Case">$SKINSHORTCUTS[leftartworkclear]</property>
+		<property name="topart" tag="property" attribute="name|widgetCase" value="Clear Case">$SKINSHORTCUTS[topartworkclear]</property>
+		<property name="widthart" tag="property" attribute="name|widgetCase" value="Clear Case">$SKINSHORTCUTS[widthartworkclear]</property>
+		<property name="heightart" tag="property" attribute="name|widgetCase" value="Clear Case">$SKINSHORTCUTS[heightartworkclear]</property>
+		<property name="leftart" tag="property" attribute="name|widgetCase" value="CD|CD clear">$SKINSHORTCUTS[leftartworkcd]</property>
+		<property name="topart" tag="property" attribute="name|widgetCase" value="CD|CD clear">$SKINSHORTCUTS[topartworkcd]</property>
+		<property name="widthart" tag="property" attribute="name|widgetCase" value="CD|CD clear">$SKINSHORTCUTS[widthartworkcd]</property>
+		<property name="heightart" tag="property" attribute="name|widgetCase" value="CD|CD clear">$SKINSHORTCUTS[heightartworkcd]</property>
+		<property name="leftart" tag="property" attribute="name|widgetCase" value="Polaroid">$SKINSHORTCUTS[leftartworkpolaroid]</property>
+		<property name="topart" tag="property" attribute="name|widgetCase" value="Polaroid">$SKINSHORTCUTS[topartworkpolaroid]</property>
+		<property name="widthart" tag="property" attribute="name|widgetCase" value="Polaroid">$SKINSHORTCUTS[widthartworkpolaroid]</property>
+		<property name="heightart" tag="property" attribute="name|widgetCase" value="Polaroid">$SKINSHORTCUTS[heightartworkpolaroid]</property>
+		<property name="leftart">$SKINSHORTCUTS[leftartwork]</property>
+		<property name="topart">$SKINSHORTCUTS[topartwork]</property>
+		<property name="widthart">$SKINSHORTCUTS[widthartwork]</property>
+		<property name="heightart">$SKINSHORTCUTS[heightartwork]</property>
+		<!-- Glass Case -->
+		<property name="glasscase" tag="property" attribute="name|widgetArt" value="Poster">portrait.png</property>
+		<property name="glasscase" tag="property" attribute="name|widgetArt" value="Square Poster">square.png</property>
+		<property name="glasscase" tag="property" attribute="name|widgetArt" value="FanArt|Landscape|ClearArt|ClearLogo|Thumb">landscape.png</property>
+		<!-- Case -->
+		<property name="case" tag="property" attribute="name|widgetArt" value="Poster">poster/$VAR[HomeWidgetPortraitCaseVar]</property>
+		<property name="case" tag="property" attribute="name|widgetArt" value="Square Poster">square/cd.png</property>
+		<property name="case" tag="property" attribute="name|widgetArt" value="FanArt|Landscape|ClearArt|ClearLogo|Thumb">landscape/$VAR[HomeWidgetPortraitCaseVar]</property>
+		<property name="case" tag="property" attribute="name|widgetArt" value="Banner">banner/$VAR[HomeWidgetPortraitCaseVar]</property>
+		<!-- Case Path -->
+		<property name="casepath" tag="property" attribute="name|widgetCase" value="Glass">homewidgets/glass/$SKINSHORTCUTS[glasscase]</property>
+		<property name="casepath" tag="property" attribute="name|widgetCase" value="Case">homewidgets/case/$SKINSHORTCUTS[case]</property>
+		<property name="casepath" tag="property" attribute="name|widgetCase" value="Clear Case">homewidgets/clearcase/$SKINSHORTCUTS[case]</property>
+	</propertyGroup>
+</template>
