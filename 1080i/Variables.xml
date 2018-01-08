@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <includes>
+
+
+	<variable name="MusicInfoYoutubePath">
+        <value condition="String.IsEqual(ListItem.DBTYPE,artist)">plugin://script.extendedinfo?info=youtubesearchvideos&amp;&amp;id=$ESCINFO[ListItem.Artist] $LOCALIZE[2]</value>
+        <value condition="String.IsEqual(ListItem.DBTYPE,album)">plugin://script.extendedinfo?info=youtubesearchvideos&amp;&amp;id=$ESCINFO[ListItem.Artist] $ESCINFO[ListItem.Label] $LOCALIZE[558]</value>
+        <value condition="String.IsEqual(ListItem.DBTYPE,song)">plugin://script.extendedinfo?info=youtubesearchvideos&amp;&amp;id=$ESCINFO[ListItem.Artist] $ESCINFO[ListItem.Title]</value>
+    </variable>
+    <variable name="VideoInfoYoutubePath">
+        <value condition="String.IsEqual(ListItem.DBTYPE,movie)">plugin://script.extendedinfo?info=youtubesearchvideos&amp;&amp;id=$ESCINFO[ListItem.Title] $LOCALIZE[20338] $LOCALIZE[20410]</value>
+        <value condition="String.IsEqual(ListItem.DBTYPE,tvshow)">plugin://script.extendedinfo?info=youtubesearchvideos&amp;&amp;id=$ESCINFO[ListItem.Title] $LOCALIZE[20364]</value>
+        <value condition="String.IsEqual(ListItem.DBTYPE,episode)">plugin://script.extendedinfo?info=youtubesearchvideos&amp;&amp;id=$ESCINFO[ListItem.TVShowTitle] $LOCALIZE[20364]</value>
+        <value>plugin://script.extendedinfo?info=youtubesearchvideos&amp;&amp;id=$ESCINFO[ListItem.Label]</value>
+    </variable>
+
+
+
 	<!-- Now Playing -->
 	<variable name="NowPlayingThumbVar">
 		<value condition="!String.IsEmpty(Player.Art(poster))">$INFO[Player.Art(poster)]</value>
@@ -304,6 +320,11 @@
 		<value condition="String.Contains(ListItem.MPAA,NL-16)">NL-16.png</value>
 		<value condition="String.Contains(ListItem.MPAA,NL-18)">NL-18.png</value>
 		<value condition="!String.IsEmpty(ListItem.MPAA)">$INFO[ListItem.MPAA,,.png]</value>
+		<value>NR.png</value>
+	</variable>
+
+	<variable name="VideoAspectFlagVar">
+		<value condition="!String.IsEmpty(ListItem.VideoAspect)">$INFO[ListItem.VideoAspect,,.png]</value>
 		<value>NR.png</value>
 	</variable>
 	<variable name="VideoResolutionFlagVar">

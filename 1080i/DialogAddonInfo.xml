@@ -2,37 +2,16 @@
 <window>
 	<defaultcontrol always="true">9000</defaultcontrol>
 	<controls>
-		<!-- Backdrop -->
-		<!-- <include>Background_Nowplaying</include>
-		<include content="Background_Fanart_Default">
-			<param name="imagepath">$VAR[SettingsFanartVar]</param>
-			<param name="opencondition">$EXP[Settings_Animation_OpenCondition]</param>
-			<param name="closecondition">$EXP[Settings_Animation_CloseCondition]</param>
-		</include> -->
-		<!-- Floor -->
-		<!-- <control type="group">
-			<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
-			<include content="Animation_Slide_Bottom">
-				<param name="slide">218</param>
-				<param name="opencondition">$EXP[Settings_Animation_OpenCondition]</param>
-				<param name="closecondition">$EXP[Settings_Animation_CloseCondition]</param>
-			</include>
-			<include>Floor_Background_Default</include>
-		</control> -->
 		<!-- Content -->
 		<control type="group">
-			<include>Animation_Zoom_OpenClose</include>
-			<!-- <include content="Animation_FurnitureShift">
-				<param name="slidetopbarcondition">Skin.HasSetting(SettingsHideTopBar)</param>
-				<param name="slidefloorcondition">!Skin.HasSetting(SettingsHideTopBar) + Skin.HasSetting(SettingsHideFloor)</param>
-			</include> -->
-			<include content="Panel_Background_Settings">
+			<include>Animation_Zoom_Window</include>
+			<include content="Panel_Side">
 				<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
 			</include>
 			<!-- Left menu -->
 			<control type="label">
 				<include>Settings_LeftLabel</include>
-				<label>$LOCALIZE[24003]</label>
+				<label>$LOCALIZE[10146]</label>
 			</control>
 			<control type="grouplist" id="9000">
 				<left>101</left>
@@ -54,22 +33,23 @@
 					<include>Settings_LeftButton</include>
 					<label>$LOCALIZE[24069]</label>
 				</control>
+				<control type="radiobutton" id="13">
+					<include>Settings_LeftButton</include>
+				</control>
+				<control type="button" id="10">
+					<include>Settings_LeftButton</include>
+					<label>$LOCALIZE[39024]</label>
+				</control>
+				<control type="radiobutton" id="7">
+					<include>Settings_LeftButton</include>
+					<label>$LOCALIZE[24021]</label>
+					<selected>!String.StartsWith(Control.GetLabel(7),$LOCALIZE[24022])</selected>
+				</control>
 				<control type="button" id="6">
 					<include>Settings_LeftButton</include>
 					<label>$LOCALIZE[24022]</label>
 				</control>
-				<control type="button" id="7">
-					<include>Settings_LeftButton</include>
-					<label>$LOCALIZE[24021]</label>
-				</control>
-				<control type="radiobutton" id="13">
-					<include>Settings_LeftButton</include>
-					<label>$LOCALIZE[21340]</label>
-				</control>
-				<!--control type="button" id="10">
-					<include>Settings_LeftButton</include>
-					<label>$LOCALIZE[24036]</label>
-				</control-->
+
 			</control>
 			<!-- Right Info -->
 			<control type="label">

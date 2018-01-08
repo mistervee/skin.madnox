@@ -184,28 +184,90 @@
 			</control>
 		</control>
 	</include>
+	<include name="MediaFlags_All">
+		<control type="grouplist">
+			<bottom>10</bottom>
+			<right>10</right>
+			<width>1338</width>
+			<height>90</height>
+			<align>right</align>
+			<itemgap>42</itemgap>
+			<orientation>horizontal</orientation>
+			<usecontrolcoords>true</usecontrolcoords>
+			<control type="image">
+				<texture>$VAR[StudioIconsVar]</texture>
+				<include>MediaFlagImage</include>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]mpaa/$VAR[RatingFlagVar]</texture>
+				<include>MediaFlagImage</include>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videoaspect/$VAR[VideoAspectFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.VideoAspect)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videoresolution/$VAR[VideoResolutionFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videocodec/$VAR[VideoCodecFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.VideoCodec)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]audiochannels/$VAR[AudioChannelsFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.AudioChannels)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]audiocodec/$VAR[AudioCodecFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]cc.png</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.SubtitleLanguage)</visible>
+			</control>
+			<control type="label">
+				<include>MediaFlagLabel</include>
+				<label>$LOCALIZE[342]</label>
+				<visible>ListItem.IsCollection + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Count))</visible>
+			</control>
+			<control type="label">
+				<left>-135</left>
+				<include>MediaFlagBigLabel</include>
+				<label>$INFO[Window(Home).Property(SkinHelper.ListItem.Count)]</label>
+				<visible>ListItem.IsCollection + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Count))</visible>
+			</control>
+		</control>
+	</include>
 	<include name="MediaFlagImage">
+		<top>2</top>
 		<width>125</width>
-		<height>90</height>
+		<height>80</height>
 		<fadetime>TextureFadeTime</fadetime>
 		<colordiffuse>grey</colordiffuse>
 		<aspectratio align="center" aligny="center">keep</aspectratio>
 	</include>
 	<include name="MediaFlagLabel">
+		<top>2</top>
 		<width>125</width>
-		<height>90</height>
+		<height>40</height>
 		<align>center</align>
-		<aligny>top</aligny>
 		<textcolor>grey</textcolor>
-		<font>Font22_Reg_09</font>
+		<font>Font23_Reg</font>
 	</include>
 	<include name="MediaFlagBigLabel">
-		<top>20</top>
+		<top>30</top>
 		<width>125</width>
-		<height>70</height>
+		<height>50</height>
 		<align>center</align>
 		<textcolor>grey</textcolor>
-		<font>Font49_Bold_Caps</font>
+		<font>Font36_Bold_Caps</font>
 	</include>
 	<include name="MediaFlagBigLabelCenter">
 		<width>125</width>

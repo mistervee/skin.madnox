@@ -4,6 +4,26 @@
 	<onload condition="System.HasAddon(script.colorbox) + Skin.HasSetting(Enable.BlurredVideoInfo)">RunScript(script.colorbox,info=blur,id='"$INFO[ListItem.Icon]"',radius=50,prefix=DialogMusicInfo)</onload>
 	<onunload>ClearProperty(DialogVideoInfo.ImageFilter,home)</onunload>
 	<controls>
+		<!-- Background -->
+		<control type="group">
+			<control type ="image">
+				<include>FullscreenDimensions</include>
+				<texture>colors/black.png</texture>
+			</control>
+		</control>
+		<control type="group">
+			<!-- Left -->
+			<include name="Animation_Slide_Left_Window">
+				<param name="slide">700</param>
+			</include>
+			<control type="image">
+				<top>220</top>
+				<left>60</left>
+				<width>640</width>
+				<height>640</height>
+				<texture background="true" fallback="colors/black.png">$VAR[MusicPosterVar]</texture>
+			</control>
+		</control>
 		<control type="group">
 			<animation effect="slide" start="-729,0" end="0,0" time="500" tween="quadratic" condition="!Skin.HasSetting(Enable.BlurredVideoInfo)">WindowOpen</animation>
 			<animation effect="slide" start="-729,0" end="0,0" delay="500" time="500" tween="quadratic" condition="Skin.HasSetting(Enable.BlurredVideoInfo)">WindowOpen</animation>
