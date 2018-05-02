@@ -7,9 +7,6 @@
 		<!-- Background -->
 		<include content="Background_Default">
 			<param name="imagepath">$VAR[SystemBackgroundVar]</param>
-			<param name="opencondition">$EXP[System_Animation_OpenCondition]</param>
-			<param name="closecondition">$EXP[System_Animation_CloseCondition]</param>
-			<param name="backgroundcolor">SystemBackground.Color.base</param>
 		</include>
 		<!-- Floor -->
 		<control type="group">
@@ -87,10 +84,6 @@
 					<item id="5">
 						<description>Colors</description>
 						<label>$LOCALIZE[14078]</label>
-					</item>
-					<item id="8">
-						<description>Scripts</description>
-						<label>$LOCALIZE[247]</label>
 					</item>
 					<item id="9">
 						<description>Credits</description>
@@ -230,8 +223,8 @@
 						<control type="radiobutton" id="201">
 							<label>$LOCALIZE[20189]</label>
 							<include>Settings_RadioButton</include>
-							<onclick>Skin.ToggleSetting(AutoScroll)</onclick>
-							<selected>Skin.HasSetting(AutoScroll)</selected>
+							<onclick>Skin.ToggleSetting(DisableAutoScroll)</onclick>
+							<selected>!Skin.HasSetting(DisableAutoScroll)</selected>
 						</control>
 						<control type="radiobutton" id="202">
 							<label>$LOCALIZE[31026]</label>
@@ -349,13 +342,25 @@
 							<selected>Skin.HasSetting(AnimatedBackground)</selected>
 							<include>Settings_RadioButton</include>
 						</control>
-						<control type="button" id="403">
+						<control type="radiobutton" id="403">
+							<label>Smoke</label>
+							<onclick>Skin.ToggleSetting(BackgroundEffectSmoke)</onclick>
+							<selected>Skin.HasSetting(BackgroundEffectSmoke)</selected>
+							<include>Settings_RadioButton</include>
+						</control>
+						<control type="button" id="404">
+							<label>Effects</label>
+							<onclick>SetProperty(CustomSelect,Effects,home)</onclick>
+							<onclick>ActivateWindow(1110)</onclick>
+							<include>Settings_Button</include>
+						</control>
+						<control type="button" id="405">
 							<label>Overlay</label>
 							<onclick>SetProperty(CustomSelect,Overlay,home)</onclick>
 							<onclick>ActivateWindow(1110)</onclick>
 							<include>Settings_Button</include>
 						</control>
-						<control type="button" id="404">
+						<control type="button" id="406">
 							<label>$LOCALIZE[31103]</label>
 							<onclick>SetProperty(CustomSelect,$LOCALIZE[31103],home)</onclick>
 							<onclick>ActivateWindow(1111)</onclick>
@@ -540,172 +545,6 @@
 							<onclick>SetProperty(CustomSelect,$LOCALIZE[24992] $LOCALIZE[31105],home)</onclick>
 							<onclick>ActivateWindow(1110)</onclick>
 							<include>Settings_Button</include>
-						</control>
-					</control>
-					<!-- Scripts -->
-					<control type="grouplist" id="8008">
-						<left>425</left>
-						<top>200</top>
-						<width>1395</width>
-						<height>737</height>
-						<pagecontrol>60</pagecontrol>
-						<onleft>8000</onleft>
-						<onright>60</onright>
-						<visible>Container(8000).Hasfocus(8)</visible>
-						<pagecontrol>60</pagecontrol>
-						<control type="button" id="401">
-							<label>script.skinshortcuts</label>
-							<label2>[COLOR red]$LOCALIZE[31058][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>InstallAddon(script.skinshortcuts)</onclick>
-							<visible>!System.HasAddon(script.skinshortcuts)</visible>
-						</control>
-						<control type="button" id="402">
-							<label>script.skinshortcuts</label>
-							<label2>[COLOR green]$LOCALIZE[31057][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>Addon.OpenSettings(script.skinshortcuts)</onclick>
-							<visible>System.HasAddon(script.skinshortcuts)</visible>
-						</control>
-						<control type="button" id="403">
-							<label>script.skin.helper.service</label>
-							<label2>[COLOR red]$LOCALIZE[31058][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>InstallAddon(script.skin.helper.service)</onclick>
-							<visible>!System.HasAddon(script.skin.helper.service)</visible>
-						</control>
-						<control type="button" id="404">
-							<label>script.skin.helper.service</label>
-							<label2>[COLOR green]$LOCALIZE[31057][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>Addon.OpenSettings(script.skin.helper.service)</onclick>
-							<visible>System.HasAddon(script.skin.helper.service)</visible>
-						</control>
-						<control type="button" id="405">
-							<label>script.module.metadatautils</label>
-							<label2>[COLOR red]$LOCALIZE[31058][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>InstallAddon(script.module.metadatautils)</onclick>
-							<visible>!System.HasAddon(script.module.metadatautils)</visible>
-						</control>
-						<control type="button" id="406">
-							<label>script.module.metadatautils</label>
-							<label2>[COLOR green]$LOCALIZE[31057][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>Addon.OpenSettings(script.module.metadatautils)</onclick>
-							<visible>System.HasAddon(script.module.metadatautils)</visible>
-						</control>
-						<control type="button" id="407">
-							<label>script.skin.helper.colorpicker</label>
-							<label2>[COLOR red]$LOCALIZE[31058][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>InstallAddon(script.skin.helper.colorpicker)</onclick>
-							<visible>!System.HasAddon(script.skin.helper.colorpicker)</visible>
-						</control>
-						<control type="button" id="408">
-							<label>script.skin.helper.colorpicker</label>
-							<label2>[COLOR green]$LOCALIZE[31057][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>Addon.OpenSettings(script.skin.helper.colorpicker)</onclick>
-							<visible>System.HasAddon(script.skin.helper.colorpicker)</visible>
-						</control>
-						<control type="button" id="409">
-							<label>script.skin.helper.skinbackup</label>
-							<label2>[COLOR red]$LOCALIZE[31058][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>InstallAddon(script.skin.helper.skinbackup)</onclick>
-							<visible>!System.HasAddon(script.skin.helper.skinbackup)</visible>
-						</control>
-						<control type="button" id="410">
-							<label>script.skin.helper.skinbackup</label>
-							<label2>[COLOR green]$LOCALIZE[31057][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>Addon.OpenSettings(script.skin.helper.skinbackup)</onclick>
-							<visible>System.HasAddon(script.skin.helper.skinbackup)</visible>
-						</control>
-						<control type="button" id="411">
-							<label>script.module.autocompletion</label>
-							<label2>[COLOR red]$LOCALIZE[31058][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>InstallAddon(script.module.autocompletion)</onclick>
-							<visible>!System.HasAddon(script.module.autocompletion)</visible>
-						</control>
-						<control type="button" id="412">
-							<label>script.module.autocompletion</label>
-							<label2>[COLOR green]$LOCALIZE[31057][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>Addon.OpenSettings(script.module.autocompletion)</onclick>
-							<visible>System.HasAddon(script.module.autocompletion)</visible>
-						</control>
-						<control type="button" id="413">
-							<label>script.extendedinfo</label>
-							<label2>[COLOR red]$LOCALIZE[31058][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>InstallAddon(script.extendedinfo)</onclick>
-							<visible>!System.HasAddon(script.extendedinfo)</visible>
-						</control>
-						<control type="button" id="414">
-							<label>script.extendedinfo</label>
-							<label2>[COLOR green]$LOCALIZE[31057][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>Addon.OpenSettings(script.extendedinfo)</onclick>
-							<visible>System.HasAddon(script.extendedinfo)</visible>
-						</control>
-						<control type="button" id="415">
-							<label>script.artwork.downloader</label>
-							<label2>[COLOR red]$LOCALIZE[31058][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>InstallAddon(script.artwork.downloader)</onclick>
-							<visible>!System.HasAddon(script.artwork.downloader)</visible>
-						</control>
-						<control type="button" id="416">
-							<label>script.artwork.downloader</label>
-							<label2>[COLOR green]$LOCALIZE[31057][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>Addon.OpenSettings(script.artwork.downloader)</onclick>
-							<visible>System.HasAddon(script.artwork.downloader)</visible>
-						</control>
-						<control type="button" id="417">
-							<label>script.tv.show.next.aired</label>
-							<label2>[COLOR red]$LOCALIZE[31058][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>InstallAddon(script.tv.show.next.aired)</onclick>
-							<visible>!System.HasAddon(script.tv.show.next.aired)</visible>
-						</control>
-						<control type="button" id="418">
-							<label>script.tv.show.next.aired</label>
-							<label2>[COLOR green]$LOCALIZE[31057][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>Addon.OpenSettings(script.tv.show.next.aired)</onclick>
-							<visible>System.HasAddon(script.tv.show.next.aired)</visible>
-						</control>
-						<control type="button" id="419">
-							<label>script.cu.lrclyrics</label>
-							<label2>[COLOR red]$LOCALIZE[31058][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>InstallAddon(script.cu.lrclyrics)</onclick>
-							<visible>!System.HasAddon(script.cu.lrclyrics)</visible>
-						</control>
-						<control type="button" id="420">
-							<label>script.cu.lrclyrics</label>
-							<label2>[COLOR green]$LOCALIZE[31057][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>Addon.OpenSettings(script.cu.lrclyrics)</onclick>
-							<visible>System.HasAddon(script.cu.lrclyrics)</visible>
-						</control>
-						<control type="button" id="409">
-							<label>script.skin.helper.backgrounds</label>
-							<label2>[COLOR red]$LOCALIZE[31058][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>InstallAddon(script.skin.helper.backgrounds)</onclick>
-							<visible>!System.HasAddon(script.skin.helper.backgrounds)</visible>
-						</control>
-						<control type="button" id="410">
-							<label>script.skin.helper.backgrounds</label>
-							<label2>[COLOR green]$LOCALIZE[31057][/COLOR]</label2>
-							<include>Settings_Button</include>
-							<onclick>Addon.OpenSettings(script.skin.helper.backgrounds)</onclick>
-							<visible>System.HasAddon(script.skin.helper.backgrounds)</visible>
 						</control>
 					</control>
 					<control type="grouplist" id="8009">

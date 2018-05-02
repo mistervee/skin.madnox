@@ -7,7 +7,7 @@
 			<top>-2000</top>
 			<width>6000</width>
 			<height>6000</height>
-			<include>OpenClose_Fade</include>
+			<include>Animation_WindowFade</include>
 			<texture colordiffuse="FF000000">colors/white50.png</texture>
 			<visible>!Skin.HasSetting(DisableDialogBackground)</visible>
 		</control>
@@ -27,41 +27,41 @@
 	<include name="Dialog_Button">
 		<width>430</width>
 		<height>70</height>
-		<textoffsetx>50</textoffsetx>
+		<textoffsetx>40</textoffsetx>
 	</include>
 	<include name="Dialog_Button_Wide">
 		<width>1038</width>
 		<height>70</height>
-		<textoffsetx>50</textoffsetx>
+		<textoffsetx>40</textoffsetx>
 	</include>
 	<include name="Dialog_RadioButton_Wide">
 		<width>1038</width>
 		<height>70</height>
 		<textoffsetx>50</textoffsetx>
-		<textwidth>860</textwidth>
-		<radioposx>926</radioposx>
+		<textwidth>680</textwidth>
+		<radioposx>732</radioposx>
 	</include>
 	<include name="Dialog_Button_Settings">
 		<width>1180</width>
 		<height>70</height>
-		<textoffsetx>50</textoffsetx>
+		<textoffsetx>40</textoffsetx>
 	</include>
 	<include name="Dialog_RadioButton_Settings">
 		<width>1180</width>
 		<height>70</height>
 		<textwidth>902</textwidth>
 		<radioposx>1068</radioposx>
-		<textoffsetx>50</textoffsetx>
+		<textoffsetx>40</textoffsetx>
 	</include>
 	<include name="Dialog_Button_ColorPicker">
 		<width>350</width>
 		<height>70</height>
-		<textoffsetx>50</textoffsetx>
+		<textoffsetx>40</textoffsetx>
 	</include>
 	<include name="Dialog_Button_SmartPlaylist">
 		<width>700</width>
 		<height>70</height>
-		<textoffsetx>50</textoffsetx>
+		<textoffsetx>40</textoffsetx>
 	</include>
 	<include name="Dialog_Button_ContextMenu">
 		<width>460</width>
@@ -87,24 +87,29 @@
 		<textwidth>800</textwidth>
 		<radioposx>879</radioposx>
 	</include>
-	<include name="Dialog_Button_TopRight">
+	<include name="Dialog_Label_CustomSelect">
+		<width>990</width>
+		<height>70</height>
+		<textoffsetx>50</textoffsetx>
+		<font>Font26_Bold_Caps</font>
+	</include>
+	<include name="Dialog_Button_Default">
 		<param name="id"></param>
 		<param name="label"></param>
 		<param name="onclick"></param>
-		<param name="onclick2"></param>
+		<param name="width">280</param>
 		<param name="visible">true</param>
 		<definition>
 			<control type="button" id="$PARAM[id]">
-				<width>auto</width>
-				<height>70</height>
-				<align>right</align>
-				<texturefocus colordiffuse="$VAR[HighlightColorVar]">buttons/dialog-topright-focus.png</texturefocus>
-				<texturenofocus />
+				<width>$PARAM[width]</width>
+				<height>80</height>
+				<align>center</align>
+				<textoffsetx>20</textoffsetx>
+				<wrapmultiline>false</wrapmultiline>
+				<texturefocus colordiffuse="$VAR[HighlightColorVar]" border="20">buttons/button-focus.png</texturefocus>
+				<texturenofocus border="20">buttons/button-nofocus.png</texturenofocus>
 				<label>$PARAM[label]</label>
-				<font>Font33_Bold</font>
-				<shadowcolor>shadow</shadowcolor>
 				<onclick>$PARAM[onclick]</onclick>
-				<onclick>$PARAM[onclick2]</onclick>
 				<visible>$PARAM[visible]</visible>
 			</control>
 		</definition>
@@ -121,20 +126,29 @@
 				<textoffsetx>20</textoffsetx>
 				<font>Font28_Reg</font>
 				<align>center</align>
-				<texturefocus colordiffuse="$VAR[HighlightColorVar]" border="20">buttons/button-default.png</texturefocus>
-				<texturenofocus colordiffuse="$VAR[PanelColorVar]" border="20">buttons/button-default.png</texturenofocus>
+				<texturefocus colordiffuse="$VAR[HighlightColorVar]" border="20">buttons/button-focus.png</texturefocus>
+				<texturenofocus colordiffuse="$VAR[PanelColorVar]" border="20">buttons/button-nofocus.png</texturenofocus>
 				<onclick>$PARAM[onclick]</onclick>
 			</control>
 		</definition>
 	</include>
 	<include name="Dialog_Button_Info">
-		<width>228</width>
+		<width>242</width>
 		<height>80</height>
 		<textoffsetx>20</textoffsetx>
 		<font>Font28_Reg</font>
 		<align>center</align>
-		<texturefocus colordiffuse="$VAR[HighlightColorVar]" border="20">buttons/button-default.png</texturefocus>
-		<texturenofocus colordiffuse="$VAR[PanelColorVar]" border="20">buttons/button-default.png</texturenofocus>
+		<texturefocus colordiffuse="$VAR[HighlightColorVar]" border="20">buttons/button-focus.png</texturefocus>
+		<texturenofocus border="20">buttons/button-nofocus.png</texturenofocus>
+	</include>
+	<include name="Dialog_Button_Info_Icon">
+		<width>80</width>
+		<height>80</height>
+		<textoffsetx>20</textoffsetx>
+		<font>Font40_Icon</font>
+		<align>center</align>
+		<texturefocus colordiffuse="$VAR[HighlightColorVar]" border="20">buttons/button-focus.png</texturefocus>
+		<texturenofocus border="20">buttons/button-nofocus.png</texturenofocus>
 	</include>
 	<include name="Dialog_Button_OSD">
 		<param name="texture"></param>
@@ -156,18 +170,18 @@
 	<include name="Dialog_KeyboardButton">
 		<width>80</width>
 		<height>80</height>
-		<texturefocus border="15" colordiffuse="$VAR[HighlightColorVar]">buttons/button-default.png</texturefocus>
-		<texturenofocus border="15" colordiffuse="$VAR[PanelColorVar]">buttons/button-default.png</texturenofocus>
+		<texturefocus colordiffuse="$VAR[HighlightColorVar]" border="20">buttons/button-focus.png</texturefocus>
+		<texturenofocus border="20">buttons/button-nofocus.png</texturenofocus>
 		<align>center</align>
 		<textoffsetx>10</textoffsetx>
 	</include>
 	<include name="Dialog_KeyboardToggleButton">
 		<width>210</width>
 		<height>80</height>
-		<texturefocus border="15" colordiffuse="$VAR[HighlightColorVar]">buttons/button-default.png</texturefocus>
-		<texturenofocus border="15" colordiffuse="$VAR[PanelColorVar]">buttons/button-default.png</texturenofocus>
-		<alttexturefocus border="15" colordiffuse="$VAR[HighlightColorVar]">buttons/button-default.png</alttexturefocus>
-		<alttexturenofocus border="15" colordiffuse="$VAR[PanelColorVar]">buttons/button-default.png</alttexturenofocus>
+		<texturefocus colordiffuse="$VAR[HighlightColorVar]" border="20">buttons/button-focus.png</texturefocus>
+		<texturenofocus border="20">buttons/button-nofocus.png</texturenofocus>
+		<alttexturefocus colordiffuse="$VAR[HighlightColorVar]" border="20">buttons/button-focus.png</alttexturefocus>
+		<alttexturenofocus border="20">buttons/button-nofocus.png</alttexturenofocus>
 		<align>center</align>
 		<textoffsetx>10</textoffsetx>
 	</include>
@@ -176,7 +190,6 @@
 		<param name="width"></param>
 		<param name="height"></param>
 		<param name="id">1</param>
-		<param name="rightlabel">470</param>
 		<param name="label"></param>
 		<definition>
 			<include condition="!String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[10120]) + !String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[10123])">Dialog_BackgroundFade</include>
@@ -186,15 +199,12 @@
 			<height>$PARAM[height]</height>
 			<width>$PARAM[width]</width>
 			<control type="image">
-				<texture colordiffuse="$VAR[GlowColorVar]" border="40">dialogs/dialog-glow.png</texture>
-			</control>
-			<control type="image">
-				<texture colordiffuse="$VAR[PanelColorVar]" border="40">dialogs/dialog-back.png</texture>
+				<texture colordiffuse="$VAR[PanelColorVar]" border="40">panels/dialog-back.png</texture>
 			</control>
 			<control type="label" id="$PARAM[id]">
 				<top>20</top>
-				<left>70</left>
-				<right>$PARAM[rightlabel]</right>
+				<left>60</left>
+				<right>60</right>
 				<height>70</height>
 				<font>Font33_Bold</font>
 				<label>$PARAM[label]</label>
@@ -226,7 +236,7 @@
 					<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
 				</control>
 				<control type="label">
-					<textoffsetx>50</textoffsetx>
+					<textoffsetx>40</textoffsetx>
 					<textcolor>grey</textcolor>
 					<label>$INFO[ListItem.Label]</label>
 				</control>
@@ -237,7 +247,7 @@
 					<animation effect="fade" start="100" end="30" time="40" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 				</control>
 				<control type="label">
-					<textoffsetx>50</textoffsetx>
+					<textoffsetx>40</textoffsetx>
 					<label>$INFO[ListItem.Label]</label>
 				</control>
 			</focusedlayout>
@@ -287,16 +297,16 @@
 					<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
 				</control>
 				<control type="image">
-					<top>10</top>
+					<top>15</top>
 					<left>50</left>
-					<width>106</width>
-					<height>106</height>
+					<width>96</width>
+					<height>96</height>
 					<texture fallback="DefaultFile.png">$INFO[Listitem.Icon]</texture>
 					<aspectratio>keep</aspectratio>
 				</control>
 				<control type="label">
 					<top>30</top>
-					<left>176</left>
+					<left>166</left>
 					<right>50</right>
 					<height>30</height>
 					<textcolor>grey</textcolor>
@@ -304,7 +314,7 @@
 				</control>
 				<control type="label">
 					<bottom>30</bottom>
-					<left>176</left>
+					<left>166</left>
 					<right>50</right>
 					<height>30</height>
 					<font>Font25_Cond</font>
@@ -318,23 +328,23 @@
 					<animation effect="fade" start="100" end="30" time="40" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 				</control>
 				<control type="image">
-					<top>10</top>
+					<top>15</top>
 					<left>50</left>
-					<width>106</width>
-					<height>106</height>
+					<width>96</width>
+					<height>96</height>
 					<texture fallback="DefaultFile.png">$INFO[Listitem.Icon]</texture>
 					<aspectratio>keep</aspectratio>
 				</control>
 				<control type="label">
 					<top>30</top>
-					<left>176</left>
+					<left>166</left>
 					<right>50</right>
 					<height>30</height>
 					<label>$INFO[ListItem.Label]</label>
 				</control>
 				<control type="label">
 					<bottom>30</bottom>
-					<left>176</left>
+					<left>166</left>
 					<right>50</right>
 					<height>30</height>
 					<font>Font25_Cond</font>
@@ -354,46 +364,63 @@
 			<control type="list" id="3">
 				<left>20</left>
 				<top>90</top>
-				<width>1180</width>
+				<width>838</width>
 				<height>630</height>
 				<onleft>60</onleft>
 				<onright>8001</onright>
 				<pagecontrol>60</pagecontrol>
 				<include content="Dialog_List_Default">
-					<param name="width" value="1180" />
+					<param name="width" value="838" />
 					<param name="id" value="3" />
 				</include>
 			</control>
 			<control type="list" id="6">
 				<left>20</left>
 				<top>90</top>
-				<width>1180</width>
+				<width>838</width>
 				<height>630</height>
 				<onleft>60</onleft>
 				<onright>8001</onright>
 				<pagecontrol>60</pagecontrol>
 				<include content="Dialog_List_Image">
-					<param name="width" value="1180" />
+					<param name="width" value="838" />
 					<param name="id" value="6" />
 				</include>
 			</control>
+			<control type="image">
+				<top>90</top>
+				<left>858</left>
+				<bottom>71</bottom>
+				<width>4</width>
+				<texture>panels/line-vertical-dark.png</texture>
+			</control>
 			<control type="grouplist" id="8001">
-				<right>60</right>
-				<top>20</top>
-				<width>400</width>
+				<right>50</right>
+				<top>110</top>
+				<width>280</width>
 				<onleft condition="Control.IsVisible(3)">3</onleft>
 				<onleft condition="Control.IsVisible(6)">6</onleft>
 				<ondown condition="Control.IsVisible(3)">3</ondown>
 				<ondown condition="Control.IsVisible(6)">6</ondown>
-				<align>right</align>
 				<itemgap>10</itemgap>
-				<orientation>horizontal</orientation>
-				<include content="Dialog_Button_TopRight">
+				<include content="Dialog_Button_Default">
 					<param name="id">5</param>
+					<param name="label" value="" />
 				</include>
-				<include content="Dialog_Button_TopRight">
+				<include content="Dialog_Button_Default">
 					<param name="id">7</param>
+					<param name="label" value="$LOCALIZE[222]"/>
 				</include>
+			</control>
+			<control type="image">
+				<right>50</right>
+				<width>280</width>
+				<height>280</height>
+				<bottom>90</bottom>
+				<bordersize>10</bordersize>
+				<texture>$INFO[Container(6).ListItem.Icon]</texture>
+				<bordertexture border="10">thumbs/thumb-frame.png</bordertexture>
+				<aspectratio align="center" aligny="bottom">keep</aspectratio>
 			</control>
 			<control type="scrollbar" id="60">
 				<left>1</left>
@@ -404,22 +431,22 @@
 			</control>
 			<control type="label">
 				<bottom>20</bottom>
-				<right>70</right>
-				<width>460</width>
+				<left>60</left>
+				<right>60</right>
 				<height>50</height>
 				<align>right</align>
-				<font>Font25_Cond</font>
+				<font>Font26_Reg</font>
 				<textcolor>grey</textcolor>
 				<label>$INFO[Container(3).NumItems,, $LOCALIZE[31001]]$INFO[Container(3).CurrentPage, - ]$INFO[Container(3).NumPages,/]</label>
 				<visible>Control.IsVisible(3)</visible>
 			</control>
 			<control type="label">
 				<bottom>20</bottom>
-				<right>70</right>
-				<width>460</width>
+				<left>60</left>
+				<right>60</right>
 				<height>50</height>
 				<align>right</align>
-				<font>Font25_Cond</font>
+				<font>Font26_Reg</font>
 				<textcolor>grey</textcolor>
 				<label>$INFO[Container(6).NumItems,, $LOCALIZE[31001]]$INFO[Container(6).CurrentPage, - ]$INFO[Container(6).NumPages,/]</label>
 				<visible>Control.IsVisible(6)</visible>
@@ -435,20 +462,15 @@
 			<top>840</top>
 			<control type="image">
 				<width>1920</width>
-				<height>20</height>
-				<texture colordiffuse="$VAR[GlowColorVar]">dialogs/glow-bottom.png</texture>
-			</control>
-			<control type="image">
-				<width>1920</width>
 				<height>240</height>
-				<texture colordiffuse="$VAR[PanelColorVar]" border="15">dialogs/osd-back.png</texture>
+				<texture colordiffuse="$VAR[PanelColorVar]" border="15">panels/floor.png</texture>
 			</control>
 			<control type="image">
 				<left>382</left>
 				<top>20</top>
 				<width>4</width>
 				<height>198</height>
-				<texture colordiffuse="$VAR[PanelColorVar]">panels/line-vertical.png</texture>
+				<texture>panels/line-vertical-dark.png</texture>
 			</control>
 			<control type="textbox" id="12">
 				<description>Description Area</description>
@@ -536,13 +558,8 @@
 			<top>840</top>
 			<control type="image">
 				<width>1920</width>
-				<height>20</height>
-				<texture colordiffuse="$VAR[GlowColorVar]">dialogs/glow-bottom.png</texture>
-			</control>
-			<control type="image">
-				<width>1920</width>
 				<height>240</height>
-				<texture colordiffuse="$VAR[PanelColorVar]" border="15">dialogs/osd-back.png</texture>
+				<texture colordiffuse="$VAR[PanelColorVar]" border="15">panels/floor.png</texture>
 			</control>
 			<control type="fixedlist" id="11">
 				<top>20</top>

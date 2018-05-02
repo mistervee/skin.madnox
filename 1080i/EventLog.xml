@@ -7,17 +7,14 @@
 		<!-- Background -->
 		<include content="Background_Default">
 			<param name="imagepath">$VAR[SystemBackgroundVar]</param>
-			<param name="opencondition">!Window.Previous(settings)</param>
-			<param name="closecondition">!Window.Next(settings)</param>
-			<param name="backgroundcolor">SystemBackground.Color.base</param>
 		</include>
 		<!-- Floor -->
 		<control type="group">
 			<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
 			<include content="Animation_Slide_Bottom_Window">
 				<param name="slide">220</param>
-				<param name="opencondition">!Window.Previous(settings)</param>
-				<param name="closecondition">!Window.Next(settings)</param>
+				<param name="opencondition">$EXP[System_Animation_OpenCondition]</param>
+				<param name="closecondition">$EXP[System_Animation_CloseCondition]</param>
 			</include>
 			<include content="Animation_Slide_Bottom_Visible">
 				<param name="slide">220</param>
@@ -45,7 +42,7 @@
 				<pagecontrol>60</pagecontrol>
 				<itemlayout height="113">
 					<control type="image">
-						<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
+						<texture border="30">buttons/list-select-nofocus.png</texture>
 					</control>
 					<control type="image">
 						<left>35</left>
@@ -84,11 +81,11 @@
 				</itemlayout>
 				<focusedlayout height="113">
 					<control type="image">
-						<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+						<texture colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
 						<visible>Control.HasFocus(7000)</visible>
 					</control>
 					<control type="image">
-						<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
+						<texture border="30">buttons/list-select-nofocus.png</texture>
 						<visible>!Control.HasFocus(7000)</visible>
 					</control>
 					<control type="image">
@@ -139,8 +136,8 @@
 			<visible>!Skin.HasSetting(SettingsHideTopBar)</visible>
 			<include content="Animation_Slide_Top_Window">
 				<param name="slide">90</param>
-				<param name="opencondition">!Window.Previous(settings)</param>
-				<param name="closecondition">!Window.Next(settings)</param>
+				<param name="opencondition">$EXP[System_Animation_OpenCondition]</param>
+				<param name="closecondition">$EXP[System_Animation_CloseCondition]</param>
 			</include>
 			<include content="Animation_Slide_Top_Visible">
 				<param name="slide">90</param>

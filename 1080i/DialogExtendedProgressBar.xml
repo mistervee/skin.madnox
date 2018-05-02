@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
-	<onload condition="Library.IsScanningVideo + Skin.HasSetting(UpdateArtworkDownloader)">SetProperty(UpdateArt,1)</onload>
-	<onunload condition="!String.IsEmpty(Window.Property(UpdateArt)) + System.HasAddon(script.artwork.downloader)">RunScript(script.artwork.downloader,silent=true)</onunload>
-	<onunload>ClearProperty(UpdateArt)</onunload>
 	<controls>
 		<control type="group">
 			<animation effect="zoom" end="80" center="auto" time="240" tween="cubic" easing="inout" condition="Skin.HasSetting(SmallerNotifications)">Conditional</animation>
@@ -11,14 +8,12 @@
 			<height>134</height>
 			<width>730</width>
 			<control type="group">
-				<visible>!Window.IsActive(notification) + !Window.IsActive(startup)</visible>
 				<include>Animation_Dialog_Popup_Window</include>
-				<include>Animation_Dialog_Popup_Visible</include>
+				<include content="Animation_Dialog_Popup_Hidden">
+					<param name="condition">Window.IsActive(notification) | Window.IsActive(startup) | Window.IsActive(fullscreenvideo) | Window.IsActive(fullscreengame) | Window.IsActive(visualisation) | Window.IsActive(DialogMusicInfo.xml) | Window.IsActive(DialogVideoInfo.xml)</param>
+				</include>
 				<control type="image">
-					<texture colordiffuse="$VAR[GlowColorVar]" border="20">dialogs/scan-glow.png</texture>
-				</control>
-				<control type="image">
-					<texture colordiffuse="$VAR[PanelColorVar]" border="20">dialogs/scan-back.png</texture>
+					<texture colordiffuse="$VAR[PanelColorVar]" border="20">panels/scan-back.png</texture>
 				</control>
 				<control type="image">
 					<top>27</top>
@@ -26,7 +21,7 @@
 					<width>80</width>
 					<height>80</height>
 					<animation effect="rotate" end="-360" center="auto" time="2000" loop="true" condition="true">Conditional</animation>
-					<texture colordiffuse="$VAR[HighlightColorVar]">dialogs/spinner.png</texture>
+					<texture colordiffuse="$VAR[HighlightColorVar]">panels/spinner.png</texture>
 				</control>
 				<control type="grouplist">
 					<top>10</top>

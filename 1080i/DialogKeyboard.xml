@@ -4,7 +4,7 @@
 	<include>Animation_Dialog_Popup_Window</include>
 	<controls>
 		<control type="group">
-			<animation effect="slide" end="0,-98" delay="0" condition="Control.IsVisible(313) | Control.IsVisible(8010)">Conditional</animation>
+			<animation effect="slide" end="0,-98" time="200" condition="Control.IsVisible(313) | !String.IsEmpty(Container(8010).ListItem.Label)">Conditional</animation>
 			<visible>!Window.IsVisible(numericinput)</visible>
 			<include>Animation_Dialog_Popup_Visible</include>
 			<include>Dialog_BackgroundFade</include>
@@ -14,10 +14,7 @@
 			<width>1170</width>
 			<height>555</height>
 			<control type="image">
-				<texture colordiffuse="$VAR[GlowColorVar]" border="40">dialogs/dialog-glow.png</texture>
-			</control>
-			<control type="image">
-				<texture colordiffuse="$VAR[PanelColorVar]" border="40">dialogs/dialog-back.png</texture>
+				<texture colordiffuse="$VAR[PanelColorVar]" border="40">panels/dialog-back.png</texture>
 			</control>
 			<control type="label" id="311">
 				<top>20</top>
@@ -27,20 +24,30 @@
 				<align>center</align>
 				<font>Font33_Bold</font>
 				<textcolor>$VAR[HighlightColorVar]</textcolor>
-				<shadowcolor>shadow</shadowcolor>
+			</control>
+			<control type="label">
+				<visible>String.IsEmpty(Control.GetLabel(311))</visible>
+				<top>20</top>
+				<left>40</left>
+				<right>40</right>
+				<height>70</height>
+				<align>center</align>
+				<font>Font33_Bold</font>
+				<textcolor>$VAR[HighlightColorVar]</textcolor>
+				<label>$LOCALIZE[10103]</label>
 			</control>
 			<control type="image">
 				<left>20</left>
 				<right>20</right>
 				<height>90</height>
-				<texture colordiffuse="$VAR[PanelColorVar]" border="30">buttons/list-select-nofocus.png</texture>
+				<texture border="30">buttons/list-select-nofocus.png</texture>
 			</control>
 			<control type="image">
 				<bottom>74</bottom>
 				<left>20</left>
 				<right>20</right>
 				<height>74</height>
-				<texture colordiffuse="$VAR[PanelColorVar]" border="30">buttons/list-select-nofocus.png</texture>
+				<texture border="30">buttons/list-select-nofocus.png</texture>
 			</control>
 			<control type="group">
 				<left>30</left>
@@ -444,7 +451,7 @@
 						<width>155</width>
 						<onup>166</onup>
 						<ondown>312</ondown>
-						<label></label>
+						<label></label>
 						<font>Font40_Icon</font>
 						<include>Dialog_KeyboardButton</include>
 					</control>
@@ -453,7 +460,7 @@
 						<width>155</width>
 						<onup>167</onup>
 						<ondown>312</ondown>
-						<label></label>
+						<label></label>
 						<font>Font40_Icon</font>
 						<include>Dialog_KeyboardButton</include>
 					</control>
@@ -487,12 +494,9 @@
 				<visible>Control.IsVisible(313) | [Control.IsVisible(8010) + Integer.IsGreater(Container(8010).NumItems,0)]</visible>
 				<width>1170</width>
 				<height>205</height>
-				<include>Animation_CommonFade</include>
+				<include>Animation_VisibleFade</include>
 				<control type="image">
-					<texture colordiffuse="$VAR[GlowColorVar]" border="40">dialogs/dialog-glow.png</texture>
-				</control>
-				<control type="image">
-					<texture colordiffuse="$VAR[PanelColorVar]" border="40">dialogs/dialog-back.png</texture>
+					<texture colordiffuse="$VAR[PanelColorVar]" border="40">panels/dialog-back.png</texture>
 				</control>
 			</control>
 			<control type="panel" id="8010">
@@ -510,7 +514,7 @@
 						<top>25</top>
 						<width>373</width>
 						<height>80</height>
-						<texture border="15" colordiffuse="$VAR[PanelColorVar]">buttons/button-default.png</texture>
+						<texture border="20">buttons/button-nofocus.png</texture>
 					</control>
 					<control type="label">
 						<left>30</left>
@@ -531,7 +535,7 @@
 							<top>25</top>
 							<width>373</width>
 							<height>80</height>
-							<texture border="15" colordiffuse="$VAR[HighlightColorVar]">buttons/button-default.png</texture>
+							<texture border="20" colordiffuse="$VAR[HighlightColorVar]">buttons/button-focus.png</texture>
 						</control>
 						<control type="label">
 							<left>30</left>
@@ -556,13 +560,13 @@
 				<control type="image">
 					<width>1110</width>
 					<height>80</height>
-					<texture border="15" colordiffuse="$VAR[PanelColorVar]">buttons/button-default.png</texture>
+					<texture border="20">buttons/button-nofocus.png</texture>
 				</control>
 				<control type="image">
 					<top>75</top>
 					<width>1110</width>
 					<height>80</height>
-					<texture border="15" colordiffuse="$VAR[PanelColorVar]">buttons/button-default.png</texture>
+					<texture border="20">buttons/button-nofocus.png</texture>
 				</control>
 				<control type="label" id="314">
 					<top>75</top>

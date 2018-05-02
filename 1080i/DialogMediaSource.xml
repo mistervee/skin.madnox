@@ -7,41 +7,44 @@
 			<visible>!Window.IsVisible(virtualkeyboard) + !Window.IsVisible(filebrowser)</visible>
 			<include>Animation_Dialog_Popup_Visible</include>
 			<include content="Dialog_Background">
-				<param name="width" value="1510" />
+				<param name="width" value="1741" />
 				<param name="height" value="650" />
 				<param name="id" value="2" />
 			</include>
-			<!-- Left menu -->
+			<!-- Left -->
 			<control type="grouplist" id="9000">
 				<left>20</left>
 				<top>90</top>
-				<width>430</width>
-				<height>350</height>
+				<width>400</width>
+				<height>630</height>
 				<onright>10</onright>
 				<control type="button" id="11">
-					<label>$LOCALIZE[1024]</label>
+					<width>340</width>
 					<include>Dialog_Button</include>
+					<label>$LOCALIZE[1024]</label>
 				</control>
 				<control type="button" id="13">
+					<width>340</width>
+				<include>Dialog_Button</include>
 					<label>$LOCALIZE[15019]</label>
-					<include>Dialog_Button</include>
 				</control>
 				<control type="button" id="14">
+					<width>340</width>
+				<include>Dialog_Button</include>
 					<label>$LOCALIZE[1210]</label>
-					<include>Dialog_Button</include>
 				</control>
 			</control>
 			<control type="image">
-				<left>450</left>
+				<left>360</left>
 				<top>90</top>
 				<width>4</width>
-				<height>488</height>
-				<texture colordiffuse="$VAR[PanelColorVar]">panels/line-vertical.png</texture>
+				<height>489</height>
+				<texture>panels/line-vertical-dark.png</texture>
 			</control>
-			<!-- Right menu -->
+			<!-- Right -->
 			<control type="label">
 				<description>path label</description>
-				<right>20</right>
+				<left>361</left>
 				<top>90</top>
 				<font>Font28_Bold</font>
 				<textcolor>$VAR[HighlightColorVar]</textcolor>
@@ -49,14 +52,14 @@
 				<include>Dialog_Button_Wide</include>
 			</control>
 			<control type="list" id="10">
-				<right>20</right>
+				<left>361</left>
 				<top>160</top>
 				<width>1038</width>
 				<height>280</height>
-				<onup>9000</onup>
 				<ondown>12</ondown>
 				<onleft>9000</onleft>
-				<onright>8000</onright>
+				<onright condition="Control.IsVisible(60)">60</onright>
+				<onright condition="!Control.IsVisible(60)">8000</onright>
 				<pagecontrol>60</pagecontrol>
 				<include content="Dialog_List_Default">
 					<param name="id">10</param>
@@ -65,7 +68,7 @@
 			</control>
 			<control type="label">
 				<description>path label</description>
-				<right>20</right>
+				<left>361</left>
 				<top>440</top>
 				<font>Font28_Bold</font>
 				<textcolor>$VAR[HighlightColorVar]</textcolor>
@@ -73,19 +76,28 @@
 				<include>Dialog_Button_Wide</include>
 			</control>
 			<control type="image">
-				<right>20</right>
+				<left>361</left>
 				<top>370</top>
 				<width>1040</width>
 				<height>70</height>
 				<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
 			</control>
 			<control type="edit" id="12">
-				<right>20</right>
+				<left>361</left>
 				<top>510</top>
 				<onup>10</onup>
-				<onright>60</onright>
+				<onleft>9000</onleft>
+				<onright condition="Control.IsVisible(60)">60</onright>
+				<onright condition="!Control.IsVisible(60)">8000</onright>
 				<texturenofocus />
 				<include>Dialog_Button_Wide</include>
+			</control>
+			<control type="image">
+				<left>1399</left>
+				<top>90</top>
+				<width>4</width>
+				<height>489</height>
+				<texture>panels/line-vertical-dark.png</texture>
 			</control>
 			<control type="label">
 				<bottom>20</bottom>
@@ -98,29 +110,27 @@
 				<label>$INFO[Container(10).NumItems,, $LOCALIZE[31001]]$INFO[Container(10).CurrentPage, - ]$INFO[Container(10).NumPages,/]</label>
 			</control>
 			<control type="grouplist" id="8000">
-				<right>60</right>
-				<top>28</top>
-				<width>600</width>
-				<onleft>10</onleft>
-				<onright>60</onright>
-				<ondown>10</ondown>
-				<align>right</align>
+				<right>40</right>
+				<top>110</top>
+				<width>280</width>
+				<onleft condition="Control.IsVisible(60)">60</onleft>
+				<onleft condition="!Control.IsVisible(60)">10</onleft>
 				<itemgap>10</itemgap>
-				<orientation>horizontal</orientation>
-				<include content="Dialog_Button_TopRight">
+				<include content="Dialog_Button_Default">
 					<param name="id">18</param>
 					<param name="label">$LOCALIZE[186]</param>
 				</include>
-				<include content="Dialog_Button_TopRight">
+				<include content="Dialog_Button_Default">
 					<param name="id">19</param>
 					<param name="label">$LOCALIZE[222]</param>
 				</include>
 			</control>
 			<control type="scrollbar" id="60">
-				<right>1</right>
-				<top>148</top>
-				<height>240</height>
-				<onleft>8000</onleft>
+				<right>320</right>
+				<top>160</top>
+				<height>280</height>
+				<onleft>10</onleft>
+				<onright>8000</onright>
 			</control>
 		</control>
 	</controls>

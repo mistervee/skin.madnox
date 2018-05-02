@@ -6,9 +6,6 @@
 		<!-- Background -->
 		<include content="Background_Default">
 			<param name="imagepath">$VAR[SystemBackgroundVar]</param>
-			<param name="opencondition">$EXP[System_Animation_OpenCondition]</param>
-			<param name="closecondition">$EXP[System_Animation_CloseCondition]</param>
-			<param name="backgroundcolor">SystemBackground.Color.base</param>
 		</include>
 		<!-- Floor -->
 		<control type="group">
@@ -45,10 +42,14 @@
 					<control type="image">
 						<width>392</width>
 						<height>225</height>
-						<aspectratio scalediffuse="false">scale</aspectratio>
-						<texture border="10" diffuse="thumbs/landscape-mask.png">$INFO[ListItem.Icon]</texture>
-						<bordertexture border="10" colordiffuse="55FFFFFF">buttons/panel-select-focus.png</bordertexture>
-						<bordersize>4</bordersize>
+						<texture colordiffuse="FF555555" border="5">buttons/panel-select-focus.png</texture>
+					</control>
+					<control type="image">
+						<width>392</width>
+						<height>225</height>
+						<bordersize>5</bordersize>
+						<aspectratio align="center" aligny="center">$PARAM[Aspect]</aspectratio>
+						<texture diffuse="thumbs/settings-diffuse.png">$INFO[ListItem.Icon]</texture>
 					</control>
 					<control type="label">
 						<top>175</top>
@@ -62,14 +63,18 @@
 				</itemlayout>
 				<focusedlayout height="255" width="422">
 					<control type="group">
-						<animation effect="zoom" center="auto" start="100" end="107" time="250" tween="sine">Focus</animation>
+						<animation effect="zoom" center="auto" start="100" end="106.5" time="250" tween="sine">Focus</animation>
 						<control type="image">
 							<width>392</width>
 							<height>225</height>
-							<aspectratio scalediffuse="false">scale</aspectratio>
-							<texture colordiffuse="$VAR[HighlightColorVar]" diffuse="thumbs/landscape-mask.png">$INFO[ListItem.Icon]</texture>
-							<bordertexture border="10" colordiffuse="55FFFFFF">buttons/panel-select-focus.png</bordertexture>
-							<bordersize>4</bordersize>
+							<texture colordiffuse="$VAR[HighlightColorVar]" border="5">buttons/panel-select-focus.png</texture>
+						</control>
+						<control type="image">
+							<width>392</width>
+							<height>225</height>
+							<bordersize>5</bordersize>
+							<aspectratio align="center" aligny="center">$PARAM[Aspect]</aspectratio>
+							<texture diffuse="thumbs/settings-diffuse.png">$INFO[ListItem.Icon]</texture>
 						</control>
 						<control type="label">
 							<top>175</top>
@@ -123,6 +128,7 @@
 						<icon>special://skin/extras/backgrounds/system/livetv.jpg</icon>
 					</item>
 					<item>
+						<visible>System.GetBool(gamesgeneral.enable)</visible>
 						<label>$LOCALIZE[15016]</label>
 						<onclick>ActivateWindow(GameSettings)</onclick>
 						<icon>special://skin/extras/backgrounds/system/games.jpg</icon>

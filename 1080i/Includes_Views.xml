@@ -16,8 +16,8 @@
 				<control type="label">
 					<right>80</right>
 					<align>right</align>
-					<label>$VAR[ListLabel2Var]</label>
 					<textcolor>grey</textcolor>
+					<label>$VAR[ListLabel2Var]</label>
 				</control>
 				<control type="image">
 					<right>25</right>
@@ -99,40 +99,49 @@
 					<bottom>$PARAM[reflect]</bottom>
 					<height>$PARAM[width]</height>
 					<fadetime>TextureFadeTime</fadetime>
-					<bordersize>20</bordersize>
+					<bordersize>10</bordersize>
 					<aspectratio scalediffuse="false">stretch</aspectratio>
-					<texture flipy="true" diffuse="thumbs/square-flipmask.png" fallback="DefaultMusicArtists.png" background="true">$VAR[MusicPosterVar]</texture>
+					<texture flipy="true" fallback="DefaultMusicArtists.png" background="true">$VAR[PosterVar]</texture>
 				</control>
 				<control type="image">
 					<bottom>$PARAM[bottom]</bottom>
 					<height>$PARAM[width]</height>
 					<fadetime>TextureFadeTime</fadetime>
-					<bordersize>20</bordersize>
+					<bordersize>10</bordersize>
 					<aspectratio scalediffuse="false">stretch</aspectratio>
-					<bordertexture border="20">thumbs/square-frame.png</bordertexture>
-					<texture diffuse="thumbs/square-mask.png" fallback="DefaultMusicArtists.png" background="true">$VAR[MusicPosterVar]</texture>
+					<bordertexture border="10">thumbs/thumb-frame.png</bordertexture>
+					<texture fallback="DefaultMusicArtists.png" background="true">$VAR[PosterVar]</texture>
 				</control>
 			</control>
 			<control type="group">
 				<left>$PARAM[left]</left>
 				<width>$PARAM[width]</width>
 				<visible>Container.Content(movies) | Container.Content(sets) | Container.Content(actors) | Container.Content(directors) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
-				<control type="image">
+				<!-- <control type="image">
 					<bottom>$PARAM[reflect]</bottom>
 					<height>$PARAM[height]</height>
 					<fadetime>TextureFadeTime</fadetime>
 					<bordersize>20</bordersize>
 					<aspectratio scalediffuse="false">stretch</aspectratio>
-					<texture flipy="true" diffuse="thumbs/poster-flipmask.png" fallback="DefaultVideo.png" background="true">$VAR[PosterVar]</texture>
-				</control>
+					<texture flipy="true" fallback="DefaultVideo.png" background="true">$VAR[PosterVar]</texture>
+				</control> -->
 				<control type="image">
 					<bottom>$PARAM[bottom]</bottom>
 					<height>$PARAM[height]</height>
 					<fadetime>TextureFadeTime</fadetime>
-					<bordersize>20</bordersize>
+					<bordersize>10</bordersize>
 					<aspectratio scalediffuse="false">stretch</aspectratio>
-					<bordertexture border="20">thumbs/poster-frame.png</bordertexture>
-					<texture diffuse="thumbs/poster-mask.png" fallback="DefaultMusicArtists.png" background="true">$VAR[PosterVar]</texture>
+					<bordertexture border="10">thumbs/thumb-frame.png</bordertexture>
+					<texture fallback="DefaultMusicArtists.png" background="true">$VAR[PosterVar]</texture>
+				</control>
+				<control type="image">
+					<bottom>-400</bottom>
+					<height>$PARAM[width]</height>
+					<fadetime>TextureFadeTime</fadetime>
+					<bordersize>10</bordersize>
+					<aspectratio scalediffuse="false">stretch</aspectratio>
+					<bordertexture border="10" flipy="true" diffuse="thumbs/reflect.png">thumbs/thumb-frame.png</bordertexture>
+					<texture flipy="true" diffuse="thumbs/reflect.png" background="true">$VAR[PosterVar]</texture>
 				</control>
 			</control>
 			<control type="group">
@@ -143,18 +152,77 @@
 					<bottom>$PARAM[bottom]</bottom>
 					<height>$PARAM[height]</height>
 					<fadetime>TextureFadeTime</fadetime>
-					<bordersize>20</bordersize>
+					<bordersize>10</bordersize>
 					<aspectratio aligny="bottom">keep</aspectratio>
-					<bordertexture border="30">thumbs/square-frame.png</bordertexture>
-					<texture diffuse="thumbs/square-mask.png" background="true">$VAR[PosterVar]</texture>
+					<bordertexture border="10">thumbs/thumb-frame.png</bordertexture>
+					<texture background="true">$VAR[PosterVar]</texture>
 				</control>
 				<control type="image">
 					<bottom>$PARAM[reflect]</bottom>
 					<height>$PARAM[height]</height>
 					<fadetime>TextureFadeTime</fadetime>
-					<bordersize>20</bordersize>
+					<bordersize>10</bordersize>
 					<aspectratio aligny="top">keep</aspectratio>
-					<texture flipy="true" diffuse="thumbs/square-flipmask.png" background="true">$VAR[PosterVar]</texture>
+					<texture flipy="true" diffuse="thumbs/reflect.png" background="true">$VAR[PosterVar]</texture>
+				</control>
+			</control>
+			<control type="group">
+				<left>$PARAM[left]</left>
+				<width>$PARAM[width]</width>
+				<visible>Container.Content(genres)</visible>
+				addons://sources/image/
+
+				<control type="list" id="51">
+					<include>HiddenList</include>
+					<content limit="3">$INFO[ListItem.FolderPath]</content>
+				</control>
+
+
+
+
+				<!-- <control type="image">
+					<bottom>$PARAM[bottom]</bottom>
+					<height>$PARAM[height]</height>
+					<fadetime>TextureFadeTime</fadetime>
+					<bordersize>10</bordersize>
+					<aspectratio aligny="bottom">keep</aspectratio>
+					<bordertexture border="10">thumbs/thumb-frame.png</bordertexture>
+					<texture background="true">$INFO[Container(51).ListItem.Art(fanart)]</texture>
+				</control> -->
+				<control type="image">
+					<bottom>$PARAM[bottom]</bottom>
+					<height>$PARAM[height]</height>
+					<fadetime>TextureFadeTime</fadetime>
+					<bordersize>10</bordersize>
+					<aspectratio aligny="bottom">keep</aspectratio>
+					<bordertexture border="10">thumbs/thumb-frame.png</bordertexture>
+					<texture background="true">$INFO[Container(51).ListItem.Art(fanart)]</texture>
+				</control>
+				<control type="image">
+					<bottom>350</bottom>
+					<height>$PARAM[height]</height>
+					<fadetime>TextureFadeTime</fadetime>
+					<bordersize>10</bordersize>
+					<aspectratio aligny="bottom">keep</aspectratio>
+					<bordertexture border="10">thumbs/thumb-frame.png</bordertexture>
+					<texture background="true">$INFO[Container(51).ListItem(1).Art(fanart)]</texture>
+				</control>
+				<control type="image">
+					<bottom>600</bottom>
+					<height>$PARAM[height]</height>
+					<fadetime>TextureFadeTime</fadetime>
+					<bordersize>10</bordersize>
+					<aspectratio aligny="bottom">keep</aspectratio>
+					<bordertexture border="10">thumbs/thumb-frame.png</bordertexture>
+					<texture background="true">$INFO[Container(51).ListItem(2).Art(fanart)]</texture>
+				</control>
+				<control type="image">
+					<bottom>$PARAM[reflect]</bottom>
+					<height>$PARAM[height]</height>
+					<fadetime>TextureFadeTime</fadetime>
+					<bordersize>10</bordersize>
+					<aspectratio aligny="top">keep</aspectratio>
+					<texture flipy="true" diffuse="thumbs/reflect.png" background="true">$INFO[ListItem.Label,resource://resource.images.moviegenreicons.garbokawa/,.jpg]</texture>
 				</control>
 			</control>
 		</definition>

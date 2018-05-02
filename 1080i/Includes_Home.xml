@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<include name="InfoTimeBarContent">
+		<param name="top">0</param>
+		<param name="width">700</param>
+		<definition>
+			<control type="group">
+				<top>$PARAM[top]</top>
+				<control type="label">
+					<left>5</left>
+					<width>$PARAM[width]</width>
+					<include>BreadcrumbsLabel</include>
+					<label>$VAR[InfoLineVar]</label>
+					<include>Animation_VisibleFade</include>
+					<visible>!Skin.HasSetting(InfoBarLeftDisable) + !String.IsEmpty(Container(9000).ListItem.Property(InfoLine))</visible>
+				</control>
+				<control type="grouplist">
+					<include>Animation_VisibleFade</include>
+					<right>5</right>
+					<width>$PARAM[width]</width>
+					<orientation>horizontal</orientation>
+					<align>right</align>
+					<usecontrolcoords>true</usecontrolcoords>
+					<itemgap>0</itemgap>
+					<control type="multiimage">
+						<left>20</left>
+						<width>40</width>
+						<height>40</height>
+						<imagepath>$INFO[Skin.String(WeatherIcons.path)]$INFO[Weather.FanartCode]$INFO[Skin.String(WeatherIcons.ext)]</imagepath>
+						<timeperimage>050</timeperimage>
+						<fadetime>TextureFadeTime</fadetime>
+						<randomize>false</randomize>
+						<loop>true</loop>
+						<include>Animation_VisibleFade</include>
+						<visible>!Skin.HasSetting(InfoBarDisableWeather) + !String.IsEmpty(Window(Weather).Property(Current.Temperature))</visible>
+					</control>
+					<control type="label">
+						<label>$INFO[Window(weather).Property(Current.Temperature), ]$INFO[System.TemperatureUnits]</label>
+						<include>BreadcrumbsLabel</include>
+						<include>Animation_VisibleFade</include>
+						<visible>!Skin.HasSetting(InfoBarDisableWeather) + !String.IsEmpty(Window(Weather).Property(Current.Temperature))</visible>
+					</control>
+					<control type="label">
+						<textcolor>grey</textcolor>
+						<label>$INFO[System.Date,  ]</label>
+						<include>BreadcrumbsLabel</include>
+						<include>Animation_VisibleFade</include>
+						<visible>!Skin.HasSetting(InfoBarDisableDate)</visible>
+					</control>
+					<control type="label">
+						<textcolor>$VAR[HighlightColorVar]</textcolor>
+						<label>$INFO[System.Time,  ]</label>
+						<include>BreadcrumbsLabel</include>
+						<include>Animation_VisibleFade</include>
+						<visible>!Skin.HasSetting(InfoBarDisableTime)</visible>
+					</control>
+				</control>
+			</control>
+		</definition>
+	</include>
+	<include name="InfoTimeBar">
+		<control type="group">
+			<top>759</top>
+			<visible>!Skin.HasSetting(InfoBarTop)</visible>
+			<include>Animation_Slide_Bottom_Window</include>
+			<include>Animation_VisibleFade</include>
+			<animation effect="slide" end="0,-362" time="200" condition="String.IsEqual(Skin.String(WidgetPosition),abovemenu)">Conditional</animation>
+			<animation effect="slide" end="0,-393" time="200" condition="String.IsEqual(Skin.String(WidgetPosition),belowmenu)">Conditional</animation>
+			<animation effect="slide" end="0,41" time="200" condition="String.IsEqual(Skin.String(WidgetPosition),belowmenu) + !system.getbool(lookandfeel.enablerssfeeds)">Conditional</animation>
+			<control type="group">
+				<visible>String.IsEmpty(Skin.String(InfoBarStyle))</visible>
+				<include>Animation_VisibleFade</include>
+				<control type="image">
+					<width>810</width>
+					<height>88</height>
+					<include>Animation_VisibleFade</include>
+					<texture flipx="true" border="1,1,70,1" colordiffuse="$VAR[TopbarColorVar]">home/time-bar.png</texture>
+					<visible>!Skin.HasSetting(InfoBarLeftDisable) + !String.IsEmpty(Container(9000).ListItem.Property(InfoLine))</visible>
+				</control>
+				<control type="image">
+					<right>0</right>
+					<width>810</width>
+					<height>88</height>
+					<include>Animation_VisibleFade</include>
+					<texture border="70,1,1,1" colordiffuse="$VAR[TopbarColorVar]">home/time-bar.png</texture>
+					<visible>!Skin.HasSetting(InfoBarDisableWeather) | !Skin.HasSetting(InfoBarDisableDate) | !Skin.HasSetting(InfoBarDisableTime)</visible>
+				</control>
+				<include content="InfoTimeBarContent">
+					<param name="top">47</param>
+					<param name="width">750</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>!String.IsEmpty(Skin.String(InfoBarStyle))</visible>
+				<include>Animation_VisibleFade</include>
+				<control type="image">
+					<width>1920</width>
+					<height>88</height>
+					<include>Animation_VisibleFade</include>
+					<texture flipy="true" colordiffuse="$VAR[TopbarColorVar]" border="1">$VAR[InfoBarStyleVar]</texture>
+					<visible>!Skin.HasSetting(InfoBarLeftDisable) | !Skin.HasSetting(InfoBarDisableWeather) | !Skin.HasSetting(InfoBarDisableDate) | !Skin.HasSetting(InfoBarDisableTime)</visible>
+				</control>
+				<include content="InfoTimeBarContent">
+					<param name="top">47</param>
+					<param name="width">800</param>
+				</include>
+			</control>
+		</control>
+		<control type="group">
+			<visible>Skin.HasSetting(InfoBarTop)</visible>
+			<include content="Animation_Slide_Top_Window">
+				<param name="slide">88</param>
+			</include>
+			<include>Animation_VisibleFade</include>
+			<control type="group">
+				<visible>String.IsEmpty(Skin.String(InfoBarStyle))</visible>
+				<include>Animation_VisibleFade</include>
+				<control type="image">
+					<width>800</width>
+					<height>88</height>
+					<texture flipx="true" flipy="true" border="1,1,70,1" colordiffuse="$VAR[TopbarColorVar]">home/time-bar.png</texture>
+					<visible>!Skin.HasSetting(InfoBarLeftDisable) + !String.IsEmpty(Container(9000).ListItem.Property(InfoLine))</visible>
+				</control>
+				<control type="image">
+					<right>0</right>
+					<width>800</width>
+					<height>88</height>
+					<include>Animation_VisibleFade</include>
+					<texture border="70,1,1,1" flipy="true" colordiffuse="$VAR[TopbarColorVar]">home/time-bar.png</texture>
+					<visible>!Skin.HasSetting(InfoBarDisableWeather) | !Skin.HasSetting(InfoBarDisableDate) | !Skin.HasSetting(InfoBarDisableTime)</visible>
+				</control>
+				<include content="InfoTimeBarContent">
+					<param name="width">900</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>!String.IsEmpty(Skin.String(InfoBarStyle))</visible>
+				<include>Animation_VisibleFade</include>
+				<control type="image">
+					<width>1920</width>
+					<height>88</height>
+					<include>Animation_VisibleFade</include>
+					<texture colordiffuse="$VAR[TopbarColorVar]" border="1">$VAR[InfoBarStyleVar]</texture>
+					<visible>!Skin.HasSetting(InfoBarLeftDisable) | !Skin.HasSetting(InfoBarDisableWeather) | !Skin.HasSetting(InfoBarDisableDate) | !Skin.HasSetting(InfoBarDisableTime)</visible>
+				</control>
+				<include content="InfoTimeBarContent">
+					<param name="width">900</param>
+				</include>
+			</control>
+		</control>
+	</include>
+	<include name="RSSShortcuts">
+		<control type="group">
+			<top>1040</top>
+			<include content="Animation_Slide_Bottom_Window">
+				<param name="slide">316</param>
+			</include>
+			<control type="group">
+				<visible>system.getbool(lookandfeel.enablerssfeeds)</visible>
+				<animation effect="slide" start="0" end="0,70" time="200" tween="quadratic" easing="out" condition="ControlGroup(9003).HasFocus">Conditional</animation>
+				<control type="image">
+					<top>-47</top>
+					<width>1920</width>
+					<height>88</height>
+					<texture flipy="true" border="1" colordiffuse="$VAR[TopbarColorVar]">$VAR[RSSStyleVar]</texture>
+				</control>
+				<control type="rss">
+					<width>1920</width>
+					<height>40</height>
+					<font>Font28_Reg</font>
+					<urlset>1</urlset>
+					<textcolor>grey</textcolor>
+					<headlinecolor>grey</headlinecolor>
+					<titlecolor>white</titlecolor>
+					<scrollspeed>10</scrollspeed>
+				</control>
+			</control>
+			<control type="grouplist" id="9003">
+				<animation effect="slide" start="0" end="0,70" time="200" tween="quadratic" easing="out" condition="!ControlGroup(9003).HasFocus">Conditional</animation>
+				<visible>!Skin.HasSetting(ShortCutDisablePower) | !Skin.HasSetting(ShortCutDisableSearch) | !Skin.HasSetting(ShortCutDisableFav) | !Skin.HasSetting(ShortCutDisableUpdate) | !Skin.HasSetting(ShortCutDisableDisc) | !Skin.HasSetting(ShortCutDisableEject)</visible>
+				<left>5</left>
+				<bottom>0</bottom>
+				<width>1920</width>
+				<height>71</height>
+				<onup>9001</onup>
+				<align>center</align>
+				<orientation>horizontal</orientation>
+				<control type="button" id="20">
+					<width>70</width>
+					<height>70</height>
+					<align>center</align>
+					<font>Font40_Icon</font>
+					<label></label>
+					<texturefocus border="20" colordiffuse="$VAR[HighlightColorVar]">buttons/button-focus.png</texturefocus>
+					<texturenofocus border="20" colordiffuse="$VAR[PanelColorVar]">buttons/button-nofocus.png</texturenofocus>
+					<onclick>ActivateWindow(ShutdownMenu)</onclick>
+					<visible>!Skin.HasSetting(ShortCutDisablePower)</visible>
+				</control>
+				<control type="button" id="21">
+					<width>70</width>
+					<height>70</height>
+					<align>center</align>
+					<font>Font40_Icon</font>
+					<label></label>
+					<texturefocus border="20" colordiffuse="$VAR[HighlightColorVar]">buttons/button-focus.png</texturefocus>
+					<texturenofocus border="20" colordiffuse="$VAR[PanelColorVar]">buttons/button-nofocus.png</texturenofocus>
+					<onclick>ActivateWindow(1112)</onclick>
+					<visible>!Skin.HasSetting(ShortCutDisableSearch)</visible>
+				</control>
+				<control type="button" id="22">
+					<width>70</width>
+					<height>70</height>
+					<align>center</align>
+					<font>Font40_Icon</font>
+					<label></label>
+					<texturefocus border="20" colordiffuse="$VAR[HighlightColorVar]">buttons/button-focus.png</texturefocus>
+					<texturenofocus border="20" colordiffuse="$VAR[PanelColorVar]">buttons/button-nofocus.png</texturenofocus>
+					<onclick>ActivateWindow(favourites)</onclick>
+					<visible>!Skin.HasSetting(ShortCutDisableFav)</visible>
+				</control>
+				<control type="button" id="23">
+					<width>70</width>
+					<height>70</height>
+					<align>center</align>
+					<font>Font40_Icon</font>
+					<label></label>
+					<texturefocus border="20" colordiffuse="$VAR[HighlightColorVar]">buttons/button-focus.png</texturefocus>
+					<texturenofocus border="20" colordiffuse="$VAR[PanelColorVar]">buttons/button-nofocus.png</texturenofocus>
+					<onclick>UpdateLibrary(video)</onclick>
+					<onclick>UpdateLibrary(music)</onclick>
+					<visible>!Skin.HasSetting(ShortCutDisableUpdate)</visible>
+				</control>
+				<control type="button" id="24">
+					<width>70</width>
+					<height>70</height>
+					<align>center</align>
+					<font>Font40_Icon</font>
+					<label></label>
+					<texturefocus border="20" colordiffuse="$VAR[HighlightColorVar]">buttons/button-focus.png</texturefocus>
+					<texturenofocus border="20" colordiffuse="$VAR[PanelColorVar]">buttons/button-nofocus.png</texturenofocus>
+					<onclick>PlayDVD</onclick>
+					<visible>!Skin.HasSetting(ShortCutDisableDisc) + System.HasMediadvd</visible>
+				</control>
+				<control type="button" id="25">
+					<width>70</width>
+					<height>70</height>
+					<align>center</align>
+					<font>Font40_Icon</font>
+					<label></label>
+					<texturefocus border="20" colordiffuse="$VAR[HighlightColorVar]">buttons/button-focus.png</texturefocus>
+					<texturenofocus border="20" colordiffuse="$VAR[PanelColorVar]">buttons/button-nofocus.png</texturenofocus>
+					<onclick />
+					<visible>!Skin.HasSetting(ShortCutDisableDisc) + !System.HasMediadvd</visible>
+				</control>
+				<control type="button" id="26">
+					<description>Search</description>
+					<width>70</width>
+					<height>70</height>
+					<align>center</align>
+					<font>Font40_Icon</font>
+					<label></label>
+					<texturefocus border="20" colordiffuse="$VAR[HighlightColorVar]">buttons/button-focus.png</texturefocus>
+					<texturenofocus border="20" colordiffuse="$VAR[PanelColorVar]">buttons/button-nofocus.png</texturenofocus>
+					<onclick>EjectTray()</onclick>
+					<visible>!Skin.HasSetting(ShortCutDisableEject)</visible>
+				</control>
+			</control>
+		</control>
+	</include>
+	<include name="MainMenu">
+		<param name="listtype">wraplist</param>
+		<definition>
+			<!-- Sub menu -->
+			<control type="group">
+				<width>1920</width>
+				<top>847</top>
+				<include>Animation_Slide_Bottom_Window</include>
+				<control type="group">
+					<top>100</top>
+					<visible>Skin.HasSetting(SubmenuHide)</visible>
+					<control type="image">
+						<centerleft>50%</centerleft>
+						<width>1830</width>
+						<height>1</height>
+						<texture border="70,0,70,0" colordiffuse="$VAR[TopbarColorVar]">home/submenu-bar.png</texture>
+						<animation effect="zoom" start="0,0,1830,0" end="0,0,1830,88" time="200" tween="quadratic" easing="out" condition="ControlGroup(9002).HasFocus">Conditional</animation>
+						<visible>String.IsEmpty(Skin.String(SubmenuStyle))</visible>
+					</control>
+					<control type="image">
+						<width>1920</width>
+						<height>1</height>
+						<texture colordiffuse="$VAR[TopbarColorVar]" border="1,0,1,0">$VAR[SubmenuStyleVar]</texture>
+						<animation effect="zoom" start="0,0,1920,0" end="0,0,1920,88" time="200" tween="quadratic" easing="out" condition="ControlGroup(9002).HasFocus">Conditional</animation>
+						<visible>!String.IsEmpty(Skin.String(SubmenuStyle))</visible>
+					</control>
+				</control>
+				<control type="group">
+					<top>100</top>
+					<visible>!Skin.HasSetting(SubmenuHide)</visible>
+					<control type="image">
+						<centerleft>50%</centerleft>
+						<width>1808</width>
+						<height>88</height>
+						<include>Animation_VisibleFade</include>
+						<texture border="70,0,70,0" colordiffuse="$VAR[TopbarColorVar]">home/submenu-bar.png</texture>
+						<visible>String.IsEmpty(Skin.String(SubmenuStyle))</visible>
+					</control>
+					<control type="image">
+						<width>1920</width>
+						<height>88</height>
+						<include>Animation_VisibleFade</include>
+						<texture colordiffuse="$VAR[TopbarColorVar]" border="1,0,1,0">$VAR[SubmenuStyleVar]</texture>
+						<visible>!String.IsEmpty(Skin.String(SubmenuStyle))</visible>
+					</control>
+				</control>
+				<control type="group" id="9002">
+					<animation type="Conditional" condition="Skin.HasSetting(SubmenuHide) + ControlGroup(9002).HasFocus" reversible="false">
+						<effect type="fade" start="0" end="100" time="200" tween="quadratic" easing="out" />
+						<effect type="slide" start="0,-40" end="0" time="200" tween="quadratic" easing="out" />
+					</animation>
+					<animation type="Conditional" condition="Skin.HasSetting(SubmenuHide) + !ControlGroup(9002).HasFocus" reversible="false">
+						<effect type="fade" start="100" end="0" time="200" tween="quadratic" easing="out" />
+						<effect type="slide" start="0" end="0,-40" time="450" tween="quadratic" easing="out" />
+					</animation>
+					<control type="fixedlist" id="9001">
+						<centerleft>50%</centerleft>
+						<top>100</top>
+						<width>1670</width>
+						<height>80</height>
+						<onleft>9010</onleft>
+						<onright>9010</onright>
+						<onup>9000</onup>
+						<ondown condition="!Skin.String(WidgetPosition,belowmenu)">9003</ondown>
+						<ondown condition="Skin.String(WidgetPosition,belowmenu)">90010</ondown>
+						<orientation>horizontal</orientation>
+						<focusposition>2</focusposition>
+						<movement>2</movement>
+						<scrolltime tween="cubic" easing="inout">200</scrolltime>
+						<itemlayout width="334" height="41">
+							<control type="label">
+								<align>center</align>
+								<textcolor>grey</textcolor>
+								<font>Font30_Caps</font>
+								<textoffsetx>20</textoffsetx>
+								<label>$INFO[ListItem.Label]</label>
+							</control>
+						</itemlayout>
+						<focusedlayout width="334" height="41">
+							<control type="group">
+								<visible>Control.HasFocus(9001)</visible>
+								<control type="image">
+									<texture border="1" colordiffuse="$VAR[HighlightColorVar]">colors/white33.png</texture>
+									<visible>!String.IsEqual(Skin.String(SubmenuStyle),shadow)</visible>
+								</control>
+								<control type="image">
+									<height>70</height>
+									<texture border="1" colordiffuse="$VAR[HighlightColorVar]">home/shadow.png</texture>
+									<visible>String.IsEqual(Skin.String(SubmenuStyle),shadow)</visible>
+								</control>
+								<control type="label">
+									<align>center</align>
+									<font>Font30_Caps</font>
+									<textoffsetx>20</textoffsetx>
+									<label>$INFO[ListItem.Label]</label>
+								</control>
+							</control>
+							<control type="label">
+								<align>center</align>
+								<textcolor>grey</textcolor>
+								<font>Font30_Caps</font>
+								<label>$INFO[ListItem.Label]</label>
+								<visible>!Control.HasFocus(9001)</visible>
+							</control>
+						</focusedlayout>
+						<content>
+							<include>skinshortcuts-submenu</include>
+						</content>
+					</control>
+				</control>
+				<!-- Main menu -->
+				<control type="image">
+					<top>-20</top>
+					<width>1920</width>
+					<height>140</height>
+					<texture colordiffuse="$VAR[PanelColorVar]" fallback="home/menu-concrete.png">$INFO[Skin.String(MainMenuTexture)]</texture>
+				</control>
+				<control type="image">
+					<top>-20</top>
+					<width>1920</width>
+					<height>140</height>
+					<texture colordiffuse="$VAR[GlowColorVar]">home/horizontal-glow.png</texture>
+				</control>
+				<control type="$PARAM[listtype]" id="9000">
+					<height>100</height>
+					<width>3200</width>
+					<onleft>9000</onleft>
+					<onright>9000</onright>
+					<onup condition="!Skin.String(WidgetPosition,belowmenu) + Control.IsVisible(90010)">90010</onup>
+					<onup condition="!Skin.String(WidgetPosition,belowmenu) + !Control.IsVisible(90010)">9050</onup>
+					<onup condition="Skin.String(WidgetPosition,belowmenu)">9050</onup>
+					<ondown>SetFocus(9001,2)</ondown>
+					<orientation>horizontal</orientation>
+					<focusposition>3</focusposition>
+					<scrolltime tween="quadratic">300</scrolltime>
+					<animation effect="slide" end="-720,0" condition="!Skin.String(MainMenuStyle)">Conditional</animation>
+					<animation effect="slide" end="-1280,0" condition="Skin.String(MainMenuStyle,wide)">Conditional</animation>
+					<animation effect="slide" end="-384,0" condition="Skin.String(MainMenuStyle,iconswide) | Skin.String(MainMenuStyle,bigiconswide)">Conditional</animation>
+					<itemlayout width="480" height="95" condition="!Skin.String(MainMenuStyle)">
+						<control type="label">
+							<align>center</align>
+							<font>Font_MainMenu</font>
+							<textcolor>grey3</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+					</itemlayout>
+					<focusedlayout width="480" height="95" condition="String.IsEmpty(Skin.String(MainMenuStyle))">
+						<control type="label">
+							<align>center</align>
+							<font>Font_MainMenu</font>
+							<textcolor>$VAR[HighlightColorVar]</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+							<animation effect="fade" start="100" end="28" time="200" condition="!Control.HasFocus(9000)">Conditional</animation>
+						</control>
+					</focusedlayout>
+					<itemlayout width="640" height="95" condition="Skin.String(MainMenuStyle,wide)">
+						<control type="label">
+							<align>center</align>
+							<font>Font_MainMenu</font>
+							<textcolor>grey3</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+					</itemlayout>
+					<focusedlayout width="640" height="95" condition="Skin.String(MainMenuStyle,wide)">
+						<control type="label">
+							<align>center</align>
+							<font>Font_MainMenu</font>
+							<textcolor>$VAR[HighlightColorVar]</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+							<animation effect="fade" start="100" end="28" time="200" condition="!Control.HasFocus(9000)">Conditional</animation>
+						</control>
+					</focusedlayout>
+					<itemlayout width="274" height="100" condition="Skin.String(MainMenuStyle,icons)">
+						<control type="image">
+							<top>5</top>
+							<height>60</height>
+							<aspectratio align="center" aligny="center">keep</aspectratio>
+							<texture colordiffuse="grey3">$INFO[ListItem.Property(MenuIcon)]</texture>
+						</control>
+						<control type="label">
+							<top>67</top>
+							<height>30</height>
+							<align>center</align>
+							<font>Font_MainMenu_Icons</font>
+							<textcolor>grey3</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+					</itemlayout>
+					<focusedlayout width="274" height="100" condition="Skin.String(MainMenuStyle,icons)">
+						<control type="group">
+							<animation effect="fade" start="100" end="28" time="200" condition="!Control.HasFocus(9000)">Conditional</animation>
+							<control type="image">
+								<top>5</top>
+								<height>60</height>
+								<aspectratio align="center" aligny="center">keep</aspectratio>
+								<texture colordiffuse="$VAR[HomeIconColorVar]">$INFO[ListItem.Property(MenuIcon)]</texture>
+							</control>
+							<control type="label">
+								<top>67</top>
+								<height>30</height>
+								<align>center</align>
+								<font>Font_MainMenu_Icons</font>
+								<textcolor>$VAR[HighlightColorVar]</textcolor>
+								<label>$INFO[ListItem.Label]</label>
+							</control>
+						</control>
+					</focusedlayout>
+					<itemlayout width="384" height="100" condition="Skin.String(MainMenuStyle,iconswide)">
+						<control type="image">
+							<top>5</top>
+							<height>60</height>
+							<aspectratio align="center" aligny="center">keep</aspectratio>
+							<texture colordiffuse="grey3">$INFO[ListItem.Property(MenuIcon)]</texture>
+						</control>
+						<control type="label">
+							<top>67</top>
+							<height>30</height>
+							<align>center</align>
+							<font>Font_MainMenu_Icons</font>
+							<textcolor>grey3</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+					</itemlayout>
+					<focusedlayout width="384" height="100" condition="Skin.String(MainMenuStyle,iconswide)">
+						<control type="group">
+							<animation effect="fade" start="100" end="28" time="200" condition="!Control.HasFocus(9000)">Conditional</animation>
+							<control type="image">
+								<top>5</top>
+								<height>60</height>
+								<aspectratio align="center" aligny="center">keep</aspectratio>
+								<texture colordiffuse="$VAR[HomeIconColorVar]">$INFO[ListItem.Property(MenuIcon)]</texture>
+							</control>
+							<control type="label">
+								<top>67</top>
+								<height>30</height>
+								<align>center</align>
+								<font>Font_MainMenu_Icons</font>
+								<textcolor>$VAR[HighlightColorVar]</textcolor>
+								<label>$INFO[ListItem.Label]</label>
+							</control>
+						</control>
+					</focusedlayout>
+					<itemlayout width="274" height="100" condition="Skin.String(MainMenuStyle,bigicons)">
+						<control type="image">
+							<top>5</top>
+							<height>90</height>
+							<aspectratio align="center" aligny="center">keep</aspectratio>
+							<texture colordiffuse="grey3">$INFO[ListItem.Property(MenuIcon)]</texture>
+						</control>
+					</itemlayout>
+					<focusedlayout width="274" height="100" condition="Skin.String(MainMenuStyle,bigicons)">
+						<control type="image">
+							<top>5</top>
+							<height>90</height>
+							<aspectratio align="center" aligny="center">keep</aspectratio>
+							<texture colordiffuse="$VAR[HomeIconColorVar]">$INFO[ListItem.Property(MenuIcon)]</texture>
+							<animation effect="fade" start="100" end="28" time="200" condition="!Control.HasFocus(9000)">Conditional</animation>
+						</control>
+					</focusedlayout>
+					<itemlayout width="384" height="100" condition="Skin.String(MainMenuStyle,bigiconswide)">
+						<control type="image">
+							<top>5</top>
+							<height>90</height>
+							<aspectratio align="center" aligny="center">keep</aspectratio>
+							<texture colordiffuse="grey3">$INFO[ListItem.Property(MenuIcon)]</texture>
+						</control>
+					</itemlayout>
+					<focusedlayout width="384" height="100" condition="Skin.String(MainMenuStyle,bigiconswide)">
+						<control type="image">
+							<top>5</top>
+							<height>90</height>
+							<aspectratio align="center" aligny="center">keep</aspectratio>
+							<texture colordiffuse="$VAR[HomeIconColorVar]">$INFO[ListItem.Property(MenuIcon)]</texture>
+							<animation effect="fade" start="100" end="28" time="200" condition="!Control.HasFocus(9000)">Conditional</animation>
+						</control>
+					</focusedlayout>
+					<content>
+						<include>skinshortcuts-mainmenu</include>
+					</content>
+				</control>
+				<control type="image">
+					<left>0</left>
+					<top>0</top>
+					<width>1920</width>
+					<height>100</height>
+					<texture>home/horizontal-gradient.png</texture>
+					<colordiffuse>88000000</colordiffuse>
+				</control>
+			</control>
+		</definition>
+	</include>
+</includes>

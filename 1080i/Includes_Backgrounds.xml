@@ -1,29 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <includes>
 	<include name="Background_Default">
-		<param name="opencondition">true</param>
-		<param name="closecondition">true</param>
 		<param name="imagepath"></param>
 		<param name="posterbackground"></param>
 		<param name="posterbackgroundcontent"></param>
 		<param name="posterbackgroundcase"></param>
-		<param name="overlayvisible"></param>
-		<param name="backgroundcolor"></param>
 		<definition>
 			<!-- Now Playing -->
-			<control type="visualisation">
-				<include>FullscreenDimensions</include>
-				<visible>Player.HasAudio + !Skin.HasSetting(DisableBackgroundMusicNowPlaying)</visible>
-			</control>
 			<control type="videowindow">
 				<include>FullscreenDimensions</include>
 				<visible>Player.HasVideo + !Skin.HasSetting(DisableBackgroundVideoNowPlaying)</visible>
 			</control>
+			<control type="videowindow">
+				<include>HiddenObject</include>
+				<visible>Player.HasVideo + Skin.HasSetting(DisableBackgroundVideoNowPlaying)</visible>
+			</control>
+			<control type="group">
+				<visible>!Skin.String(NowPlayingHomeMusicInfo,viz) + Player.HasAudio + !Skin.HasSetting(DisableBackgroundMusicNowPlaying)</visible>
+				<animation effect="fade" time="400" reversible="false" tween="sine" easing="out">Visible</animation>
+				<animation effect="fade" time="0" reversible="false">Hidden</animation>
+				<control type="visualisation">
+					<include>FullScreenDimensions</include>
+					
+				</control>
+				<control type="group">
+					<animation effect="fade" start="50" time="400" tween="sine" easing="out">WindowOpen</animation>
+					<animation effect="fade" end="50" time="400" tween="sine" easing="out">WindowClose</animation>
+					<control type="multiimage">
+						<include>FullscreenDimensions</include>
+						<aspectratio>scale</aspectratio>
+						<imagepath background="true" colordiffuse="88FFFFFF">$VAR[NowPlayingFanartVar]</imagepath>
+						<randomize>true</randomize>
+						<fadetime>TextureFadeTime</fadetime>
+						<animation type="Conditional" pulse="true" condition="Skin.HasSetting(MusicOSDAnimatedBackground)">
+							<effect type="zoom" start="110" end="120" center="auto" time="12000" tween="sine" easing="inout"/>
+							<effect type="slide" start="-20,-20" end="20,20" time="6000" tween="sine" easing="inout"/>
+						</animation>
+						<visible>Visualisation.Enabled</visible>
+					</control>
+					<control type="multiimage">
+						<include>FullscreenDimensions</include>
+						<aspectratio>scale</aspectratio>
+						<imagepath background="true">$VAR[NowPlayingFanartVar]</imagepath>
+						<randomize>true</randomize>
+						<fadetime>TextureFadeTime</fadetime>
+						<animation type="Conditional" pulse="true" condition="Skin.HasSetting(MusicOSDAnimatedBackground)">
+							<effect type="zoom" start="110" end="120" center="auto" time="12000" tween="sine" easing="inout"/>
+							<effect type="slide" start="-20,-20" end="20,20" time="6000" tween="sine" easing="inout"/>
+						</animation>
+						<visible>!Visualisation.Enabled</visible>
+					</control>
+				</control>
+			</control>
 			<!-- Backgrounds -->
 			<control type="group">
 				<visible>$EXP[Fanart_Visible_MediaPlaying]</visible>
-				<animation effect="fade" time="240" tween="cubic" condition="$PARAM[opencondition]">WindowOpen</animation>
-				<animation effect="fade" time="240" tween="cubic" easing="in" condition="$PARAM[closecondition]">WindowClose</animation>
+				<!-- <animation effect="fade" start="50" time="200" tween="sine" easing="out">WindowOpen</animation>
+					<animation effect="fade" end="50" time="200" tween="sine" easing="out">WindowClose</animation> -->
 				<control type="multiimage">
 					<include>FullscreenDimensions</include>
 					<aspectratio>scale</aspectratio>
@@ -31,97 +64,71 @@
 					<randomize>true</randomize>
 					<fadetime>TextureFadeTime</fadetime>
 					<animation type="Conditional" pulse="true" condition="Skin.HasSetting(AnimatedBackground)">
-						<effect type="zoom" start="110" end="130" center="auto" time="12000"/>
-						<effect type="slide" start="-15,-15" end="15,15" time="6000"/>
+						<effect type="zoom" start="110" end="120" center="auto" time="12000" tween="sine" easing="inout"/>
+						<effect type="slide" start="-20,-20" end="20,20" time="6000" tween="sine" easing="inout"/>
 					</animation>
 				</control>
 				<include condition="Window.IsActive(Home)">skinshortcuts-template-LiveBackgroundHome</include>
-				<!-- Fanart skin -->
-				<!-- <control type="multiimage">
-					<include>FullscreenDimensions</include>
-					<aspectratio>scale</aspectratio>
-					<imagepath background="true">$PARAM[imagepath]</imagepath>
-					<randomize>true</randomize>
-					<fadetime>TextureFadeTime</fadetime>
-					<animation type="Conditional" condition="Skin.HasSetting(AnimatedBackground)">
-						<effect type="zoom" start="110" end="130" center="auto" time="12000"/>
-						<effect type="slide" start="-15,-15" end="15,15" time="6000"/>
-					</animation>
-					<visible>!Window.IsActive(Home)</visible>
-				</control> -->
-				<!-- <control type="wraplist" id="9034">
-					<include>HiddenList</include>
-					<content sortby="random">$INFO[Container(9000).ListItem.Property(backgroundPlaylist)]</content>
-					<autoscroll time="7000" delay="7000" repeat="7000">True</autoscroll>
-					<visible>String.IsEqual(Container(9000).ListItem.Property(background),playlist)</visible>
-				</control> -->
-				<!-- <control id="7001" type="wraplist">
-					<left>-100</left>
-					<top>-100</top>
-					<width>10</width>
-					<height>10</height>
-					<itemlayout height="10" width="10" />
-					<focusedlayout height="10" width="10" />
-					<content limit="20">$INFO[Container(9000).ListItem.Property(widgetPath.Background)]</content>
-					<visible>String.IsEqual(Container(9000).ListItem.Property(submenuVisibility),num-1)</visible>
-				</control> -->
-				<!-- <control type="image">
-					<left>0</left>
-					<top>0</top>
-					<width>1920</width>
-					<height>1080</height>
-					<texture>$INFO[Container(9034).ListItem(0).Art(fanart)]</texture>
-					<fadetime>TextureFadeTime</fadetime>
-					<animation type="Conditional" condition="Skin.HasSetting(AnimatedBackground)">
-						<effect type="zoom" start="110" end="130" center="auto" time="12000"/>
-						<effect type="slide" start="-15,-15" end="15,15" time="6000"/>
-					</animation>
-					<visible>String.IsEqual(Container(9000).ListItem.Property(background),playlist)</visible>
-				</control> -->
-				<!-- <control type="image">
-					<include>FullscreenDimensions</include>
-					<aspectratio>scale</aspectratio>
-					<texture background="true">$INFO[Container(70014).ListItem(0).Art(fanart)]</texture>
-					<fadetime>TextureFadeTime</fadetime>
-					<animation condition="Skin.HasSetting(AnimatedBackground)" type="Conditional">
-						<effect center="auto" end="130" start="110" time="12000" type="zoom" />
-						<effect end="15,15" start="-15,-15" time="6000" type="slide" />
-					</animation>
-			</control> -->
 			</control>
 			<!-- Overlay -->
 			<control type="image">
 				<include>FullscreenDimensions</include>
-				<texture colordiffuse="DDFFFFFF">colors/black.png</texture>
-				<visible>$PARAM[overlayvisible] + String.IsEmpty(Skin.String(BackgroundOverlay)) + String.IsEmpty(Skin.String(GlobalBackground.Color.base)) + String.IsEmpty(Skin.String($PARAM[backgroundcolor]))</visible>
-			</control>
-			<control type="image">
-				<include>FullscreenDimensions</include>
-				<texture colordiffuse="$VAR[BackgroundColorVar]">colors/white.png</texture>
-				<visible>$PARAM[overlayvisible] + String.IsEmpty(Skin.String(BackgroundOverlay)) + [!String.IsEmpty(Skin.String(GlobalBackground.Color.base)) | !String.IsEmpty(Skin.String($PARAM[backgroundcolor]))]</visible>
-			</control>
-			<control type="image">
-				<include>FullscreenDimensions</include>
 				<texture colordiffuse="$VAR[BackgroundColorVar]">$INFO[Skin.String(BackgroundOverlay)]</texture>
-				<visible>!String.IsEmpty(Skin.String(BackgroundOverlay))</visible>
+				<visible>[!Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Skin.String(BackgroundOverlay))] | [Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Skin.String(BackgroundOverlay)) + !Skin.HasSetting(VideoInfoBlurBackground)]</visible>
+			</control>
+			<control type="group">
+				<include>FullscreenDimensions</include>
+				<include>Animation_VisibleFade</include>
+				<visible>Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(musicinformation)</visible>
+				<control type ="image">
+					<include>Animation_VisibleFade</include>
+					<texture background="true">$INFO[Window(Home).Property(DialogInfo.ImageFilter)]</texture>
+					<visible>Skin.HasSetting(VideoInfoBlurBackground) + !String.IsEmpty(Window(home).Property(DialogInfo.ImageFilter))</visible>
+				</control>
+				<control type ="image">
+					<texture colordiffuse="CCFFFFFF">colors/black.png</texture>
+					<visible>Skin.HasSetting(VideoInfoBlurBackground) | String.IsEmpty(Skin.String(BackgroundOverlay))</visible>
+				</control>
+			</control>
+			<!-- Effects -->
+			<control type="multiimage">
+				<left>-100</left>
+				<top>-100</top>
+				<width>2120</width>
+				<height>1280</height>
+				<imagepath background="true">effects/smoke</imagepath>
+				<fadetime>1</fadetime>
+				<pauseatend>1</pauseatend>
+				<fadetime>0</fadetime>
+				<timeperimage>20</timeperimage>
+				<randomize>false</randomize>
+				<loop>true</loop>
+				<visible>Skin.HasSetting(BackgroundEffectSmoke)</visible>
+			</control>
+			<control type="group">
+				<visible>!String.IsEmpty(Skin.String(BackgroundEffect))</visible>
+				<include content="EffectBackgroundXY">
+					<param name="visible">String.IsEqual(Skin.String(BackgroundEffect),snow)</param>
+					<param name="effect">snow</param>
+				</include>
+				<include content="EffectBackgroundXY">
+					<param name="visible">String.IsEqual(Skin.String(BackgroundEffect),leaves)</param>
+					<param name="effect">leaves</param>
+				</include>
+				<include content="EffectBackgroundXY">
+					<param name="visible">String.IsEqual(Skin.String(BackgroundEffect),valentine)</param>
+					<param name="effect">valentine</param>
+				</include>
+				<include content="EffectBackgroundXY">
+					<param name="visible">String.IsEqual(Skin.String(BackgroundEffect),confetti)</param>
+					<param name="effect">confetti</param>
+				</include>
+				<include content="EffectBackgroundX">
+					<param name="visible">String.IsEqual(Skin.String(BackgroundEffect),easter)</param>
+					<param name="effect">easter</param>
+				</include>
 			</control>
 		</definition>
-	</include>
-
-	<include name="HomeBackground">
-		<control type="multiimage">
-			<include>FullscreenDimensions</include>
-			<aspectratio>scale</aspectratio>
-			<imagepath background="true">$PARAM[imagepath]</imagepath>
-			<randomize>true</randomize>
-			<fadetime>TextureFadeTime</fadetime>
-			<animation type="Conditional" condition="Skin.HasSetting(AnimatedBackground)">
-				<effect type="zoom" start="110" end="130" center="auto" time="12000"/>
-				<effect type="slide" start="-15,-15" end="15,15" time="6000"/>
-			</animation>
-			<visible>String.IsEmpty(Container(9000).ListItem.Property(backgroundPlaylist))</visible>
-		</control>
-		<include>skinshortcuts-template-BackgroundPlaylistHome</include>
 	</include>
 	<include name="LiveBackgroundHome">
 		<animation effect="fade" time="240" tween="cubic">VisibleChange</animation>
@@ -683,5 +690,474 @@
 		<left>-50</left>
 		<width>708</width>
 		<height>505</height>
+	</include>
+	<include name="EffectBackgroundXY">
+		<param name="visible">false</param>
+		<param name="effect"></param>
+		<definition>
+			<control type="group">
+				<visible>$PARAM[visible]</visible>
+				<control type="group">
+					<left>100</left>
+					<control type="image">
+						<left>60</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/3.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-50" end="0,1180" time="19000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="8000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>260</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/5.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-600" end="0,1180" time="28000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="14000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>380</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/2.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-960" end="0,1180" time="34000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="17000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>622</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/4.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-100" end="0,1180" time="20000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="8000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>960</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/2.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-500" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>1200</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/3.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-260" end="0,1180" time="18000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="9000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>1426</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/5.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-850" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>1587</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/4.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-1080" end="0,1180" time="35000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="17500" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+				</control>
+				<control type="group">
+					<control type="image">
+						<left>60</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/1.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-450" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>260</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/1.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-200" end="0,1180" time="18000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="9000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>380</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/1.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-500" end="0,1180" time="25000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="13500" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>622</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/1.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-800" end="0,1180" time="32000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="8000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="16000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>960</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/1.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-50" end="0,1180" time="18000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="9000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>1200</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/1.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-960" end="0,1180" time="30000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="15000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>1426</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/1.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-160" end="0,1180" time="20000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>1587</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/1.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-300" end="0,1180" time="20000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+				</control>
+				<control type="group">
+					<control type="image">
+						<left>520</left>
+						<width>55</width>
+						<height>55</height>
+						<texture>effects/$PARAM[effect]/3.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-200" end="0,1180" time="22000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="11000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>730</left>
+						<width>55</width>
+						<height>55</height>
+						<texture>effects/$PARAM[effect]/5.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-300" end="0,1180" time="25000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="12500" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>980</left>
+						<width>55</width>
+						<height>55</height>
+						<texture>effects/$PARAM[effect]/2.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-560" end="0,1180" time="30000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="15000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>1100</left>
+						<width>55</width>
+						<height>55</height>
+						<texture>effects/$PARAM[effect]/4.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-700" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="8000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>1375</left>
+						<width>55</width>
+						<height>55</height>
+						<texture>effects/$PARAM[effect]/2.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-1000" end="0,1180" time="35000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="17500" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>1615</left>
+						<width>55</width>
+						<height>55</height>
+						<texture>effects/$PARAM[effect]/3.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-460" end="0,1180" time="23000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="11500" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>1826</left>
+						<width>55</width>
+						<height>55</height>
+						<texture>effects/$PARAM[effect]/5.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-450" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+						<animation effect="rotatey" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+				</control>
+			</control>
+		</definition>
+	</include>
+	<include name="EffectBackgroundX">
+		<param name="visible">false</param>
+		<param name="effect"></param>
+		<definition>
+			<control type="group">
+				<visible>$PARAM[visible]</visible>
+				<control type="group">
+					<left>100</left>
+					<control type="image">
+						<left>60</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/3.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-50" end="0,1180" time="19000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>260</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/5.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-600" end="0,1180" time="28000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>380</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/2.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-960" end="0,1180" time="34000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>622</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/4.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-100" end="0,1180" time="20000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="8000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>960</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/2.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-500" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>1200</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/3.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-260" end="0,1180" time="18000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>1426</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/5.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-850" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>1587</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/4.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-1080" end="0,1180" time="35000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+				</control>
+				<control type="group">
+					<control type="image">
+						<left>60</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/1.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-450" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>260</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/1.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-200" end="0,1180" time="18000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>380</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/1.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-500" end="0,1180" time="25000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>622</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/1.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-800" end="0,1180" time="32000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="8000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>960</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/1.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-50" end="0,1180" time="18000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>1200</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/1.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-960" end="0,1180" time="30000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>1426</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/1.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-160" end="0,1180" time="20000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>1587</left>
+						<width>35</width>
+						<height>35</height>
+						<texture>effects/$PARAM[effect]/1.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-300" end="0,1180" time="20000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+				</control>
+				<control type="group">
+					<control type="image">
+						<left>520</left>
+						<width>55</width>
+						<height>55</height>
+						<texture>effects/$PARAM[effect]/3.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-200" end="0,1180" time="22000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>730</left>
+						<width>55</width>
+						<height>55</height>
+						<texture>effects/$PARAM[effect]/5.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-300" end="0,1180" time="25000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>980</left>
+						<width>55</width>
+						<height>55</height>
+						<texture>effects/$PARAM[effect]/2.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-560" end="0,1180" time="30000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>1100</left>
+						<width>55</width>
+						<height>55</height>
+						<texture>effects/$PARAM[effect]/4.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-700" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="8000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>1375</left>
+						<width>55</width>
+						<height>55</height>
+						<texture>effects/$PARAM[effect]/2.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-1000" end="0,1180" time="35000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>1615</left>
+						<width>55</width>
+						<height>55</height>
+						<texture>effects/$PARAM[effect]/3.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-460" end="0,1180" time="23000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>1826</left>
+						<width>55</width>
+						<height>55</height>
+						<texture>effects/$PARAM[effect]/5.png</texture>
+						<aspectratio scalediffuse="false">keep</aspectratio>
+						<animation effect="slide" start="0,-450" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+					</control>
+				</control>
+			</control>
+		</definition>
 	</include>
 </includes>

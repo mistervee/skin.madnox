@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window id="1115" type="dialog">
 	<defaultcontrol always="true">100</defaultcontrol>
+	<onunload>ClearProperty(MediaMenuSelect,home)</onunload>
 	<controls>
 		<control type="group">
 			<visible>!Window.IsActive(DialogSelect.xml) + !Window.IsActive(1110) + !Window.IsActive(1111)</visible>
@@ -18,12 +19,16 @@
 			</include>
 			<control type="grouplist" id="100">
 				<width>470</width>
-				<height>1080</height>
+				<height>1020</height>
 				<onleft>9001</onleft>
+				<pagecontrol>60</pagecontrol>
 				<onright>Dialog.Close(1115)</onright>
 				<onback>Dialog.Close(1115)</onback>
 				<include condition="String.IsEqual(Container.Viewmode,$LOCALIZE[535])">MediaMenu_Viewsettings_List50</include>
-				<include condition="$EXP[Area_Visible_Home]">MediaMenu_Viewsettings_Home</include>
+				<include condition="$EXP[Area_Visible_Home] + String.IsEqual(Window(home).Property(MediaMenuSelect),menu)">MediaMenu_ViewsettingsMenu_Home</include>
+				<include condition="$EXP[Area_Visible_Home] + String.IsEqual(Window(home).Property(MediaMenuSelect),info)">MediaMenu_ViewsettingsInfo_Home</include>
+				<include condition="$EXP[Area_Visible_Home] + String.IsEqual(Window(home).Property(MediaMenuSelect),widgets)">MediaMenu_ViewsettingsWidgets_Home</include>
+				<include condition="$EXP[Area_Visible_Home] + String.IsEqual(Window(home).Property(MediaMenuSelect),nowplaying)">MediaMenu_ViewsettingsNowPlaying_Home</include>
 				<include condition="$EXP[Area_Visible_Videos]">MediaMenu_CommonViewsettings_Videos</include>
 				<include condition="$EXP[Area_Visible_TV] | $EXP[Area_Visible_Radio]">MediaMenu_Viewsettings_PVR</include>
 				<include condition="$EXP[Area_Visible_Music]">MediaMenu_CommonViewsettings_Music</include>
@@ -32,6 +37,30 @@
 				<include condition="$EXP[Area_Visible_Addons]">MediaMenu_Viewsettings_Addons</include>
 				<include condition="$EXP[Area_Visible_Weather]">MediaMenu_Viewsettings_Weather</include>
 				<include condition="$EXP[Area_Visible_System]">MediaMenu_Viewsettings_System</include>
+			</control>
+			<control type="group">
+				<visible>Integer.IsGreater(Container(100).NumItems,16)</visible>
+				<top>1020</top>
+				<width>235</width>
+				<height>60</height>
+				<control type="scrollbar" id="60">
+					<include>HiddenObject</include>
+				</control>
+				<control type="button">
+					<width>235</width>
+					<label></label>
+					<align>center</align>
+					<font>Font45_Icon</font>
+					<onclick>PageUp(60)</onclick>
+				</control>
+				<control type="button">
+					<left>235</left>
+					<width>235</width>
+					<label></label>
+					<align>center</align>
+					<font>Font45_Icon</font>
+					<onclick>PageDown(60)</onclick>
+				</control>
 			</control>
 		</control>
 	</controls>

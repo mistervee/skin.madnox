@@ -2,6 +2,19 @@
 <overrides>
 	<!-- Do not share menu as other skins use custom language strings that do not work -->
 	<doNotShareMenu />
+
+
+	<visibleoverride group="mainmenu" condition="Library.HasContent(Movies)">ActivateWindow(Videos,sources://video/,return)</visibleoverride>
+    <visibleoverride group="mainmenu" condition="Library.HasContent(TVShows)">ActivateWindow(Videos,sources://video/,return)</visibleoverride>
+    <visibleoverride group="mainmenu" condition="Library.HasContent(Music)">ActivateWindow(MusicLibrary,sources://music/,return)</visibleoverride>
+    <visibleoverride group="mainmenu" condition="Library.HasContent(MusicVideos)">ActivateWindow(Videos,sources://video/,return)</visibleoverride>
+    <visibleoverride group="mainmenu" condition="!String.IsEmpty(Weather.Plugin)">ReplaceWindow(servicesettings,weather)</visibleoverride>
+	<visibleoverride group="movies" condition="Library.HasContent(Movies)">ActivateWindow(Videos,sources://video/,return)</visibleoverride>
+    <visibleoverride group="tvshows" condition="Library.HasContent(TVShows)">ActivateWindow(Videos,sources://video/,return)</visibleoverride>
+    <visibleoverride group="2" condition="Library.HasContent(Music)">ActivateWindow(MusicLibrary,sources://music/,return)</visibleoverride>
+    <visibleoverride group="musicvideos" condition="Library.HasContent(MusicVideos)">ActivateWindow(Videos,sources://video/,return)</visibleoverride>
+
+
 	<!-- Home background defaults -->
 	<backgrounddefault labelID="pictures">special://skin/extras/backgrounds/pictures.jpg</backgrounddefault>
 	<backgrounddefault labelID="musicvideos">special://skin/extras/backgrounds/musicvideos.jpg</backgrounddefault>
@@ -153,7 +166,7 @@
 	<widget-groupings>
 		<!-- Movies -->
 		<node label="342">
-			<shortcut label="" widget="library" widgetType="movies" widgetTarget="videos" condition="Library.HasContent(movies)">special://skin/extras/playlists/movies/recentlyreleased.xsp</shortcut>
+			<shortcut label="Recently released" widget="library" widgetType="movies" widgetTarget="videos" condition="Library.HasContent(movies)">special://skin/extras/playlists/movies/recentlyreleased.xsp</shortcut>
 			<shortcut label="20382" widget="library" widgetType="movies" widgetTarget="videos" condition="Library.HasContent(movies)">special://skin/extras/playlists/movies/recentlyadded.xsp</shortcut>
 			<shortcut label="575" widget="library" widgetType="movies" widgetTarget="videos" condition="Library.HasContent(movies)">special://skin/extras/playlists/movies/inprogress.xsp</shortcut>
 			<shortcut label="$LOCALIZE[20386]" widget="library" widgetType="movies" widgetTarget="videos" condition="Library.HasContent(movies)">special://skin/extras/playlists/movies/recommended.xsp</shortcut>
@@ -266,12 +279,41 @@
 			</node>
 		</node>
 	</widget-groupings>
+	<!-- Widget style -->
+	<propertySettings property="widgetStyle" buttonID="8001" title="Style" />
+	<property property="widgetStyle" label="Panel">Panel</property>
+	<!-- Widget art -->
+	<propertySettings property="widgetArt" buttonID="8002" requires="widget" templateonly="True" showNone="False" title="Art" />
+	<property property="widgetArt" label="Poster">Poster</property>
+	<property property="widgetArt" label="FanArt">FanArt</property>
+	<property property="widgetArt" label="Landscape" condition="String.IsEqual(Container(211).ListItem.Property(widget),library) | String.IsEqual(Container(211).ListItem.Property(widget),playlist)">Landscape</property>
+	<property property="widgetArt" label="21371" condition="[String.IsEqual(Container(211).ListItem.Property(widget),library) | String.IsEqual(Container(211).ListItem.Property(widget),playlist)] + String.IsEqual(Container(211).ListItem.Property(widgetType),episodes)">Thumb</property>
+	<property property="widgetArt" label="Clear art" condition="String.IsEqual(Container(211).ListItem.Property(widget),library) | String.IsEqual(Container(211).ListItem.Property(widget),playlist)">ClearArt</property>
+	<property property="widgetArt" label="Logo" condition="String.IsEqual(Container(211).ListItem.Property(widget),library) | String.IsEqual(Container(211).ListItem.Property(widget),playlist)">ClearLogo</property>
+	<property property="widgetArt" label="Disc art" condition="[String.IsEqual(Container(211).ListItem.Property(widget),library) | String.IsEqual(Container(211).ListItem.Property(widget),playlist)] + !String.IsEqual(Container(211).ListItem.Property(widgetType),episodes) + !String.IsEqual(Container(211).ListItem.Property(widgetType),tvshows)">DiscArt</property>
+	<property property="widgetArt" label="Character art" condition="String.IsEqual(Container(211).ListItem.Property(widgetType),episodes) + [String.IsEqual(Container(211).ListItem.Property(widget),library) | String.IsEqual(Container(211).ListItem.Property(widget),playlist)] + [String.IsEqual(Container(211).ListItem.Property(widgetType),episodes) | String.IsEqual(Container(211).ListItem.Property(widgetType),tvshows)]">CharacterArt</property>
+	<!-- Widget style -->
+	<propertySettings property="widgetAspect" buttonID="8003" title="Aspect" />
+	<property property="widgetAspect" label="Portrait">Portrait</property>
+	<property property="widgetAspect" label="Square">Square</property>
+	<property property="widgetAspect" label="Landscape">Landscape</property>
+	<!-- Widget case -->
+	<propertySettings property="widgetCase" buttonID="8004" requires="widget" templateonly="True" title="Case" />
+	<property property="widgetCase" icon="thumbs/case/poster/1080p.png" label="Case">Case</property>
+	<property property="widgetCase" icon="thumbs/clearcase/poster/1080p.png" label="Clear case">ClearCase</property>
+	<property property="widgetCase" icon="thumbs/glass/square.png" label="Glass">Glass</property>
+	<property property="widgetCase" icon="thumbs/cdcase/cd.png" label="CD">CD</property>
+	<property property="widgetCase" icon="thumbs/cdcase/cdclear.png" label="CD clear">CDClear</property>
+	<property property="widgetCase" icon="thumbs/polaroid.png" label="Polaroid">Polaroid</property>
+
+
+
 
 
 	<property property="LiveBackground" label="::PLAYLIST::">s:playlist|i:playlist</property>
 
 
-	<property property="[Property]" label="[label]" icon="[icon]" condition="[condition]">[Property Value]</property>
+	
 
 	<!-- Infolines -->
 	<property property="InfoLine">movies</property>

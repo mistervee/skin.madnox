@@ -6,17 +6,14 @@
 		<!-- Background -->
 		<include content="Background_Default">
 			<param name="imagepath">$VAR[SystemBackgroundVar]</param>
-			<param name="opencondition">!Window.Previous(settings)</param>
-			<param name="closecondition">!Window.Next(settings)</param>
-			<param name="backgroundcolor">SystemBackground.Color.base</param>
 		</include>
 		<!-- Floor -->
 		<control type="group">
 			<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
 			<include content="Animation_Slide_Bottom_Window">
 				<param name="slide">220</param>
-				<param name="opencondition">!Window.Previous(settings)</param>
-				<param name="closecondition">!Window.Next(settings)</param>
+				<param name="opencondition">$EXP[System_Animation_OpenCondition]</param>
+				<param name="closecondition">$EXP[System_Animation_CloseCondition]</param>
 			</include>
 			<include content="Animation_Slide_Bottom_Visible">
 				<param name="slide">220</param>
@@ -154,8 +151,8 @@
 			<visible>!Skin.HasSetting(SettingsHideTopBar)</visible>
 			<include content="Animation_Slide_Top_Window">
 				<param name="slide">90"</param>
-				<param name="opencondition">!Window.Previous(settings)</param>
-				<param name="closecondition">!Window.Next(settings)</param>
+				<param name="opencondition">$EXP[System_Animation_OpenCondition]</param>
+				<param name="closecondition">$EXP[System_Animation_CloseCondition]</param>
 			</include>
 			<include content="Animation_Slide_Top_Visible">
 				<param name="slide">90</param>

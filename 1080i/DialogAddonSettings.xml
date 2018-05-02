@@ -4,8 +4,10 @@
 	<include>Animation_Dialog_Popup_Window</include>
 	<controls>
 		<control type="group">
+			<visible>!Window.IsVisible(virtualkeyboard) + !Window.IsVisible(filebrowser) + !Window.IsVisible(okdialog)</visible>
+			<include>Animation_Dialog_Popup_Visible</include>
 			<include content="Dialog_Background">
-				<param name="width" value="1510" />
+				<param name="width" value="1741" />
 				<param name="height" value="790" />
 				<param name="id" value="2" />
 			</include>
@@ -13,56 +15,41 @@
 			<control type="grouplist" id="3">
 				<left>20</left>
 				<top>90</top>
-				<width>430</width>
-				<height>350</height>
-				<onright>60</onright>
+				<width>400</width>
+				<height>630</height>
+				<onright>5</onright>
 			</control>
 			<control type="image">
-				<left>50</left>
-				<bottom>70</bottom>
+				<right>40</right>
 				<width>280</width>
 				<height>280</height>
-				<bordersize>20</bordersize>
-				<aspectratio scalediffuse="false">stretch</aspectratio>
-				<bordertexture border="20">thumbs/square-frame.png</bordertexture>
-				<texture diffuse="thumbs/square-mask.png" fallback="addons.png" background="true">$INFO[System.AddonIcon(Window.Property(Addon.ID))]</texture>
-			</control>
-			<control type="label">
-				<bottom>20</bottom>
-				<left>70</left>
-				<width>460</width>
-				<height>50</height>
-				<font>Font25_Cond</font>
-				<textcolor>grey</textcolor>
-				<label>$INFO[Container(3).CurrentItem,$LOCALIZE[31001] ]$INFO[Container(3).NumItems,/]</label>
-				<visible>Control.IsVisible(3)</visible>
+				<bottom>90</bottom>
+				<bordersize>10</bordersize>
+				<texture>$INFO[System.AddonIcon(Window.Property(Addon.ID))]</texture>
+				<bordertexture border="10">thumbs/thumb-frame.png</bordertexture>
+				<aspectratio align="center" aligny="bottom">keep</aspectratio>
 			</control>
 			<control type="button" id="10">
+				<width>340</width>
 				<include>Dialog_Button</include>
 			</control>
 			<control type="image">
-				<left>450</left>
+				<left>360</left>
 				<top>90</top>
 				<width>4</width>
-				<height>628</height>
-				<texture colordiffuse="$VAR[PanelColorVar]">panels/line-vertical.png</texture>
+				<height>629</height>
+				<texture>panels/line-vertical-dark.png</texture>
 			</control>
 			<!-- Right -->
-			<control type="scrollbar" id="60">
-				<left>431</left>
-				<top>90</top>
-				<height>630</height>
-				<onleft>3</onleft>
-				<onright>5</onright>
-			</control>
 			<control type="grouplist" id="5">
-				<right>20</right>
+				<left>361</left>
 				<top>90</top>
 				<width>1038</width>
 				<height>630</height>
 				<pagecontrol>60</pagecontrol>
-				<onleft>60</onleft>
-				<onright>8000</onright>
+				<onleft>3</onleft>
+				<onright condition="Control.IsVisible(60)">60</onright>
+				<onright condition="!Control.IsVisible(60)">8000</onright>
 			</control>
 			<control type="label">
 				<bottom>20</bottom>
@@ -106,25 +93,37 @@
 			<control type="edit" id="12">
 				<include>Dialog_Button_Wide</include>
 			</control>
-			<!-- Top right -->
-			<control type="grouplist" id="8000">
-				<right>60</right>
-				<top>20</top>
-				<width>400</width>
+			<control type="image">
+				<left>1399</left>
+				<top>90</top>
+				<width>4</width>
+				<height>629</height>
+				<texture>panels/line-vertical-dark.png</texture>
+			</control>
+			<control type="scrollbar" id="60">
+				<left>1380</left>
+				<top>90</top>
+				<height>630</height>
 				<onleft>5</onleft>
-				<ondown>5</ondown>
-				<align>right</align>
+				<onright>8000</onright>
+			</control>
+			<!-- Buttons -->
+			<control type="grouplist" id="8000">
+				<right>40</right>
+				<top>110</top>
+				<width>280</width>
+				<onleft condition="Control.IsVisible(60)">60</onleft>
+				<onleft condition="!Control.IsVisible(60)">5</onleft>
 				<itemgap>10</itemgap>
-				<orientation>horizontal</orientation>
-				<include content="Dialog_Button_TopRight">
+				<include content="Dialog_Button_Default">
 					<param name="id">28</param>
 					<param name="label">$LOCALIZE[186]</param>
 				</include>
-				<include content="Dialog_Button_TopRight">
+				<include content="Dialog_Button_Default">
 					<param name="id">29</param>
 					<param name="label">$LOCALIZE[222]</param>
 				</include>
-				<include content="Dialog_Button_TopRight">
+				<include content="Dialog_Button_Default">
 					<param name="id">30</param>
 					<param name="label">$LOCALIZE[409]</param>
 				</include>

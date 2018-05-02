@@ -10,8 +10,8 @@
 	<include file="Includes_CustomSelect.xml"/>
 	<include file="Includes_Animations.xml"/>
 	<include file="Includes_Backgrounds.xml"/>
-	<include condition="!Skin.HasSetting(HomeVertical)" file="Includes_Home_Horizontal.xml"/>
-	<include condition="Skin.HasSetting(HomeVertical)" file="Includes_Home_Vertical.xml"/>
+	<include file="Includes_VideoLyrics.xml" />
+	<include file="Includes_Home.xml"/>
 	<include file="script-skinshortcuts-includes.xml" />
 	<include file="script-skin_helper_service-includes.xml" />
 	<include file="Includes_MediaFlags.xml"/>
@@ -23,7 +23,7 @@
 	<include file="View_511_LowList.xml"/>
 	<include file="View_507_FanartList.xml"/>
 	<include file="View_700_RightList.xml"/> -->
-	<constant name="TextureFadeTime">400</constant>
+	<constant name="TextureFadeTime">200</constant>
 	<expression name="infodialog_active">Window.IsActive(musicinformation) | Window.IsActive(songinformation) | Window.IsActive(movieinformation) | Window.IsActive(addoninformation) | Window.IsActive(pvrguideinfo) | Window.IsActive(pvrrecordinginfo) | Window.IsActive(pictureinfo) | Window.IsVisible(script-script.extendedinfo-DialogVideoInfo.xml) | Window.IsVisible(script-script.extendedinfo-DialogInfo.xml) | Window.IsVisible(script-script.extendedinfo-VideoList.xml)</expression>
 	<expression name="Fanart_Visible_MediaPlaying">!Player.HasMedia | [Player.HasAudio + Skin.HasSetting(DisableBackgroundMusicNowPlaying)] | [Player.HasVideo + Skin.HasSetting(DisableBackgroundVideoNowPlaying)]</expression>
 	<expression name="Area_Visible_Home">Window.IsVisible(home)</expression>
@@ -36,8 +36,8 @@
 	<expression name="Area_Visible_Addons">Window.IsVisible(1114) | Window.IsVisible(programs) | Window.IsVisible(addonbrowser)</expression>
 	<expression name="Area_Visible_Weather">Window.IsVisible(weather)</expression>
 	<expression name="Area_Visible_System">Window.IsActive(settings) | Window.IsActive(SettingsCategory.xml) | Window.IsActive(profiles) |  Window.IsActive(skinsettings) | Window.IsActive(eventlog) | Window.IsActive(systeminfo) | Window.IsActive(filemanager) | Window.IsActive(script-skinshortcuts.xml)</expression>
-	<expression name="System_Animation_OpenCondition">![Window.Previous(settings) | Window.Previous(SettingsCategory.xml) | Window.Previous(skinsettings) | Window.Previous(profiles) | Window.Previous(systeminfo) | Window.Previous(eventlog) | Window.Previous(filemanager))]</expression>
-	<expression name="System_Animation_CloseCondition">![Window.Next(settings) | Window.Next(SettingsCategory.xml) | Window.Next(skinsettings) | Window.Next(profiles) | Window.Next(systeminfo) | Window.Next(eventlog) | Window.Next(filemanager)]</expression>
+	<expression name="System_Animation_OpenCondition">![Window.Previous(1114) | Window.Previous(settings) | Window.Previous(SettingsCategory.xml) | Window.Previous(skinsettings) | Window.Previous(profiles) | Window.Previous(systeminfo) | Window.Previous(eventlog) | Window.Previous(filemanager))]</expression>
+	<expression name="System_Animation_CloseCondition">![Window.Next(1114) | Window.Next(settings) | Window.Next(SettingsCategory.xml) | Window.Next(skinsettings) | Window.Next(profiles) | Window.Next(systeminfo) | Window.Next(eventlog) | Window.Next(filemanager)]</expression>
 	<expression name="PVR_Animation_OpenCondition">![Window.Previous(MyPVRChannels.xml) | Window.Previous(MyPVRGuide.xml) | Window.Previous(MyPVRRecordings.xml) | Window.Previous(MyPVRSearch.xml) | Window.Previous(MyPVRTimers.xml)]</expression>
 	<expression name="PVR_Animation_CloseCondition">![Window.Next(MyPVRChannels.xml) | Window.Next(MyPVRGuide.xml) | Window.Next(MyPVRRecordings.xml) | Window.Next(MyPVRSearch.xml) | Window.Next(MyPVRTimers.xml)]</expression>
 	<include name="onunload_SkinSettings">
@@ -46,6 +46,7 @@
 		<onunload condition="!Skin.HasSetting(SkinHelper.EnableExtraFanart)">Skin.SetBool(SkinHelper.EnableExtraFanart)</onunload>
 		<onunload condition="!Skin.HasSetting(SkinHelper.EnableExtendedArt)">Skin.SetBool(SkinHelper.EnableExtendedArt)</onunload>
 		<onunload condition="!Skin.HasSetting(SkinHelper.EnableAddonsLookups)">Skin.SetBool(SkinHelper.EnableAddonsLookups)</onunload>
+		<onunload condition="!Skin.HasSetting(SkinHelper.EnablePVRThumbs)">Skin.SetBool(SkinHelper.EnablePVRThumbs)</onunload>
 		<onunload condition="!Skin.HasSetting(SkinHelper.RandomFanartDelay)">Skin.SetString(SkinHelper.RandomFanartDelay,10)</onunload>
 		<onunload condition="!Skin.HasSetting(SmartShortcuts.playlists)">Skin.SetBool(SmartShortcuts.playlists)</onunload>
 	</include>

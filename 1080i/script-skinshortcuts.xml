@@ -2,9 +2,9 @@
 <window>
 	<defaultcontrol always="true">90001</defaultcontrol>
 	<onload>ClearProperty(skinshortcuts-LiveBackground,Home)</onload>
-	<onload>ClearProperty(skinshortcuts-Background,Home)</onload>
+	<onload>ClearProperty(skinshortcuts-Widget,Home)</onload>
 	<onunload>ClearProperty(skinshortcuts-LiveBackground,Home)</onunload>
-	<onunload>ClearProperty(skinshortcuts-Background,Home)</onunload>
+	<onunload>ClearProperty(skinshortcuts-Widget,Home)</onunload>
 	<onunload>ClearProperty(skinshortcuts-management-widget,10000)</onunload>
 	<onunload condition="String.IsEmpty(Window.Property(additionalDialog))">RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;levels=2&amp;group=mainmenu|quicknav)</onunload>
 	<controls>
@@ -112,7 +112,7 @@
 				<onup>308</onup>
 				<ondown>401</ondown>
 				<orientation>horizontal</orientation>
-				<visible>String.IsEmpty(Window(Home).Property(skinshortcuts-LiveBackground)) + String.IsEmpty(Window(Home).Property(skinshortcuts-Background))</visible>
+				<visible>String.IsEmpty(Window(Home).Property(skinshortcuts-LiveBackground)) + String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
 				<control type="button" id="303">
 					<description>Move up</description>
 					<texturefocus />
@@ -166,7 +166,7 @@
 				<onright>60</onright>
 				<onup>90000</onup>
 				<ondown>90000</ondown>
-				<visible>String.IsEmpty(Window(Home).Property(skinshortcuts-LiveBackground)) + String.IsEmpty(Window(Home).Property(skinshortcuts-Background))</visible>
+				<visible>String.IsEmpty(Window(Home).Property(skinshortcuts-LiveBackground)) + String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
 				<control type="button" id="401">
 					<description>Choose shortcut</description>
 					<include>Settings_Button</include>
@@ -223,6 +223,16 @@
 					<label>$ADDON[script.skinshortcuts 32026]</label>
 					<onclick>RunScript(script.skin.helper.service,action=selectimage,header=Choose Icon,skinshortcutsproperty=MenuIcon,resourceaddon=resource.images.skinicons)</onclick>
 					<visible>[String.IsEqual(Window.Property(groupname),mainmenu) + String.Contains(Skin.String(HomeLayout),icons)] | String.IsEqual(Window.Property(groupname),quicknav)</visible>
+				</control>
+				<control type="button" id="800">
+					<description>Widget</description>
+					<include>Settings_Button</include>
+					<label>$ADDON[script.skinshortcuts 32044]</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetType)]</label2>
+					<onfocus condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))">ClearProperty(skinshortcuts-Widget,Home)</onfocus>
+					<onclick>SetProperty(skinshortcuts-Widget,1,Home)</onclick>
+					<onclick>Control.SetFocus(8001)</onclick>
+					<visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
 				</control>
 				<control type="button" id="312">
 					<description>Widget</description>
@@ -290,6 +300,87 @@
 					<label>$LOCALIZE[580]</label>
 					<label2></label2>
 					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.LiveBackground))</visible>
+				</control>
+			</control>
+		</control>
+		<!-- Widget settings -->
+		<control type="group">
+			<visible>!String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
+			<control type="button" id="8100">
+				<width>100%</width>
+				<height>100%</height>
+				<onclick>back</onclick>
+				<texturefocus />
+				<texturenofocus />
+			</control>
+			<control type="grouplist" id="8000">
+				<left>435</left>
+				<top>200</top>
+				<width>1335</width>
+				<height>680</height>
+				<pagecontrol>60</pagecontrol>
+				<onleft>211</onleft>
+				<onright>60</onright>
+				<control type="button" id="8001">
+					<description>Style</description>
+					<label>Style</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetStyle)]</label2>
+					<include>Settings_Button</include>
+				</control>
+				<control type="button" id="312">
+					<description>Type</description>
+					<label>Widget</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetName)]</label2>
+					<include>Settings_Button</include>
+					<onclick>SetProperty(customProperty,widgetArt)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
+				</control>
+				<control type="button" id="8002">
+					<description>Art</description>
+					<label>Art</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetArt)]</label2>
+					<include>Settings_Button</include>
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
+				</control>
+				<control type="button" id="8003">
+					<description>Aspect</description>
+					<label>Aspect</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetAspect)]</label2>
+					<include>Settings_Button</include>
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
+				</control>
+				<control type="button" id="8004">
+					<description>Case</description>
+					<label>Case</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetCase)]</label2>
+					<include>Settings_Button</include>
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
+				</control>
+				<control type="radiobutton" id="8007">
+					<description>Label</description>
+					<label>Label</label>
+					<include>Settings_RadioButton</include>
+					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetLabel))">SetProperty(customProperty,widgetLabel)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel))">SetProperty(customProperty,widgetLabel)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel))">SetProperty(customValue,true)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetLabel))</selected>
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
+				</control>
+				<control type="button" id="8005">
+					<description>Sort by</description>
+					<label>Sort by</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetSortBy)]</label2>
+					<include>Settings_Button</include>
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
+				</control>
+				<control type="button" id="8006">
+					<description>Sort order</description>
+					<label>Sort order</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetSortOrder)]</label2>
+					<include>Settings_Button</include>
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
 				</control>
 			</control>
 		</control>

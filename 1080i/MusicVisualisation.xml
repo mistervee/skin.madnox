@@ -14,8 +14,8 @@
 			<randomize>true</randomize>
 			<fadetime>TextureFadeTime</fadetime>
 			<animation type="Conditional" pulse="true" condition="Skin.HasSetting(MusicOSDAnimatedBackground)">
-				<effect type="zoom" start="110" end="130" center="auto" time="12000"/>
-				<effect type="slide" start="-15,-15" end="15,15" time="6000"/>
+				<effect type="zoom" start="110" end="120" center="auto" time="12000" tween="sine" easing="inout"/>
+				<effect type="slide" start="-20,-20" end="20,20" time="6000" tween="sine" easing="inout"/>
 			</animation>
 			<visible>Visualisation.Enabled</visible>
 		</control>
@@ -26,8 +26,8 @@
 			<randomize>true</randomize>
 			<fadetime>TextureFadeTime</fadetime>
 			<animation type="Conditional" pulse="true" condition="Skin.HasSetting(MusicOSDAnimatedBackground)">
-				<effect type="zoom" start="110" end="130" center="auto" time="12000"/>
-				<effect type="slide" start="-15,-15" end="15,15" time="6000"/>
+				<effect type="zoom" start="110" end="120" center="auto" time="12000" tween="sine" easing="inout"/>
+				<effect type="slide" start="-20,-20" end="20,20" time="6000" tween="sine" easing="inout"/>
 			</animation>
 			<visible>!Visualisation.Enabled</visible>
 		</control>
@@ -55,7 +55,7 @@
 				<top>66</top>
 				<height>4</height>
 				<width>388</width>
-				<texture>panels/nowplaying-separator.png</texture>
+				<texture>panels/separator.png</texture>
 				<visible>!String.IsEmpty(Control.GetLabel(9052)) | !String.IsEmpty(Control.GetLabel(9052))</visible>
 			</control>
 			<control type="label" id="9053">
@@ -65,6 +65,15 @@
 				<textoffsetx>40</textoffsetx>
 				<label>$VAR[NowPlayingInfo2Var]</label>
 				<font>Font34_Reg</font>
+			</control>
+			<control type="image">
+				<!-- <visible>$PARAM[logo]</visible> -->
+				<include>Animation_VisibleFade</include>
+				<top>100</top>
+				<width>550</width>
+				<height>200</height>
+				<texture>$VAR[NowPlayingLogoVar]</texture>
+				<aspectratio align="right">keep</aspectratio>
 			</control>
 			<control type="label">
 				<top>286</top>
@@ -85,7 +94,7 @@
 				<top>328</top>
 				<height>50</height>
 				<textoffsetx>40</textoffsetx>
-				<label>$VAR[NowPlayingInfo3Var]</label>
+				<label>$INFO[MusicPlayer.TrackNumber,,. ]$INFO[Player.Title,, ]$INFO[VideoPlayer.Year,(,)]</label>
 				<font>Font40_Reg</font>
 			</control>
 		</control>
@@ -104,7 +113,7 @@
 				<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" reversible="false" condition="!Player.Paused + !Player.Forwarding + !Player.Rewinding">Conditional</animation>
 				<animation effect="rotate" end="-360" center="auto" time="400" loop="true" reversible="false" condition="Player.Forwarding">Conditional</animation>
 				<animation effect="rotate" end="360" center="auto" time="400" loop="true" reversible="false" condition="Player.Rewinding">Conditional</animation>
-				<texture diffuse="thumbs/disc-diffuse.png" fallback="thumbs/disc/default.png">$INFO[Player.FolderPath]cdart.png</texture>
+				<texture diffuse="thumbs/disc-diffuse.png" fallback="thumbs/disc/default.png">$VAR[NowPlayingDiscArtVar]</texture>
 				<aspectratio align="center" aligny="center">keep</aspectratio>
 				<visible>!Skin.HasSetting(DisableMusicOSDDiscArt) + !Pvr.IsPlayingRadio + !Player.IsInternetStream</visible>
 			</control>
@@ -114,7 +123,7 @@
 				<description>Back image</description>
 				<width>440</width>
 				<height>440</height>
-				<texture border="20">thumbs/square-frame.png</texture>
+				<texture border="20">thumbs/thumb-frame.png</texture>
 			</control>
 			<control type="image">
 				<description>Cover image</description>
@@ -122,7 +131,7 @@
 				<height>400</height>
 				<include>TextureFadeTime</include>
 				<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-				<texture diffuse="thumbs/square-mask.png" fallback="DefaultAlbumCover.png">$VAR[NowPlayingThumbVar]</texture>
+				<texture fallback="DefaultAlbumCover.png">$VAR[NowPlayingThumbVar]</texture>
 			</control>
 		</control>
 	</controls>

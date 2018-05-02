@@ -6,17 +6,14 @@
 		<!-- Background -->
 		<include content="Background_Default">
 			<param name="imagepath">$VAR[SystemBackgroundVar]</param>
-			<param name="opencondition">!Window.Previous(settings)</param>
-			<param name="closecondition">!Window.Next(settings)</param>
-			<param name="backgroundcolor">SystemBackground.Color.base</param>
 		</include>
 		<!-- Floor -->
 		<control type="group">
 			<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
 			<include content="Animation_Slide_Bottom_Window">
 				<param name="slide">220</param>
-				<param name="opencondition">!Window.Previous(settings)</param>
-				<param name="closecondition">!Window.Next(settings)</param>
+				<param name="opencondition">$EXP[System_Animation_OpenCondition]</param>
+				<param name="closecondition">$EXP[System_Animation_CloseCondition]</param>
 			</include>
 			<include content="Animation_Slide_Bottom_Visible">
 				<param name="slide">220</param>
@@ -143,11 +140,11 @@
 			</control>
 			<control type="textbox" id="30">
 				<left>460</left>
-				<top>213</top>
+				<top>218</top>
 				<width>1325</width>
-				<height>602</height>
+				<height>598</height>
 				<textcolor>grey2</textcolor>
-				<font>Font32_Cond</font>
+				<font>Font32_Reg</font>
 				<pagecontrol>60</pagecontrol>
 				<autoscroll delay="5000" repeat="7500" time="5000">!Control.HasFocus(60)</autoscroll>
 			</control>
@@ -178,10 +175,10 @@
 			</control>
 			<control type="scrollbar" id="60">
 				<right>80</right>
-				<top>200</top>
-				<bottom>280</bottom>
+				<top>222</top>
+				<bottom>264</bottom>
 				<onleft>8000</onleft>
-				<visible>ControlGroup(8000).HasFocus(100)</visible>
+				<visible>Control.IsVisible(30)</visible>
 			</control>
 		</control>
 		<!-- Topbar -->
@@ -189,8 +186,8 @@
 			<visible>!Skin.HasSetting(SettingsHideTopBar)</visible>
 			<include content="Animation_Slide_Top_Window">
 				<param name="slide">90</param>
-				<param name="opencondition">!Window.Previous(settings)</param>
-				<param name="closecondition">!Window.Next(settings)</param>
+				<param name="opencondition">$EXP[System_Animation_OpenCondition]</param>
+				<param name="closecondition">$EXP[System_Animation_CloseCondition]</param>
 			</include>
 			<include content="Animation_Slide_Top_Visible">
 				<param name="slide">90</param>

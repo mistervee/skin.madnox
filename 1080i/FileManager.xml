@@ -6,37 +6,19 @@
 		<!-- Background -->
 		<include content="Background_Default">
 			<param name="imagepath">$VAR[SystemBackgroundVar]</param>
-			<param name="opencondition">!Window.Previous(settings)</param>
-			<param name="closecondition">!Window.Next(settings)</param>
-			<param name="backgroundcolor">SystemBackground.Color.base</param>
 		</include>
 		<!-- Floor -->
 		<control type="group">
 			<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
 			<include content="Animation_Slide_Bottom_Window">
 				<param name="slide">220</param>
-				<param name="opencondition">!Window.Previous(settings)</param>
-				<param name="closecondition">!Window.Next(settings)</param>
+				<param name="opencondition">$EXP[System_Animation_OpenCondition]</param>
+				<param name="closecondition">$EXP[System_Animation_CloseCondition]</param>
 			</include>
 			<include content="Animation_Slide_Bottom_Visible">
 				<param name="slide">220</param>
 			</include>
 			<include>Floor_Default</include>
-		</control>
-		<control type="image">
-			<visible>Skin.HasSetting(SettingsHideFloor)</visible>
-			<top>860</top>
-			<width>1920</width>
-			<height>220</height>
-			<include content="Animation_Slide_Bottom_Window">
-				<param name="slide">220</param>
-				<param name="opencondition">!Window.Previous(settings)</param>
-				<param name="closecondition">!Window.Next(settings)</param>
-			</include>
-			<include content="Animation_Slide_Bottom_Visible">
-				<param name="slide">220</param>
-			</include>
-			<texture>panels/floor-gradient.png</texture>
 		</control>
 		<!-- Panel -->
 		<control type="group">
@@ -74,13 +56,12 @@
 					<onright>21</onright>
 				</control>
 				<control type="label" id="101">
-					<bottom>50</bottom>
-					<left>100</left>
-					<width>655</width>
+					<bottom>103</bottom>
+					<left>150</left>
+					<width>615</width>
 					<height>40</height>
-					<font>Font34_Reg</font>
-					<textcolor>$VAR[HighlightColorVar]</textcolor>
-					<shadowcolor>shadow</shadowcolor>
+					<font>Font22_Reg</font>
+					<textcolor>grey3</textcolor>
 					<haspath>true</haspath>
 				</control>
 			</control>
@@ -101,12 +82,12 @@
 					<onleft>21</onleft>
 				</control>
 				<control type="label" id="102">
-					<bottom>50</bottom>
-					<left>985</left>
-					<width>655</width>
+					<bottom>103</bottom>
+					<left>1025</left>
+					<width>615</width>
 					<height>40</height>
-					<font>Font34_Reg</font>
-					<textcolor>$VAR[HighlightColorVar]</textcolor>
+					<font>Font22_Reg</font>
+					<textcolor>grey3</textcolor>
 					<shadowcolor>shadow</shadowcolor>
 					<haspath>true</haspath>
 				</control>
@@ -117,8 +98,8 @@
 			<visible>!Skin.HasSetting(SettingsHideTopBar)</visible>
 			<include content="Animation_Slide_Top_Window">
 				<param name="slide">90</param>
-				<param name="opencondition">!Window.Previous(settings)</param>
-				<param name="closecondition">!Window.Next(settings)</param>
+				<param name="opencondition">$EXP[System_Animation_OpenCondition]</param>
+				<param name="closecondition">$EXP[System_Animation_CloseCondition]</param>
 			</include>
 			<include content="Animation_Slide_Top_Visible">
 				<param name="slide">90</param>

@@ -29,24 +29,39 @@
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31106] $LOCALIZE[31105])">SelectGlobalColors</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[10000] $LOCALIZE[31105])">SelectHomeColors</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[3] $LOCALIZE[31105])">SelectVideoColors</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[14204] $LOCALIZE[31105])">SelectPVRColors</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[3] $LOCALIZE[31105])">SelectMovieColors</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[3] $LOCALIZE[31105])">SelectTVShowColors</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[3] $LOCALIZE[31105])">SelectMusicVideoColors</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[14204] $LOCALIZE[31105])">SelectTVColors</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[14204] $LOCALIZE[31105])">SelectRadioColors</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[2] $LOCALIZE[31105])">SelectMusicColors</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[15016] $LOCALIZE[31105])">SelectGameColors</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[1] $LOCALIZE[31105])">SelectPictureColors</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[24001] $LOCALIZE[31105])">SelectAddonColors</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[8] $LOCALIZE[31105])">SelectWeatherColors</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[13000] $LOCALIZE[31105])">SelectSystemColors</include>
+					<!-- Background effect -->
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),Effects)">SelectBackgroundEffect</include>
 					<!-- Background overlay -->
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),Overlay)">SelectBackgroundOverlay</include>
 					<!-- Backgrounds -->
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[3] $LOCALIZE[31107])">SelectVideoBackground</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[14204] $LOCALIZE[31107])">SelectPVRBackground</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[3] $LOCALIZE[31107])">SelectMoviesBackground</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[3] $LOCALIZE[31107])">SelectTVShowsBackground</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[3] $LOCALIZE[31107])">SelectMusicVideoBackground</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[14204] $LOCALIZE[31107])">SelectTVBackground</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[14204] $LOCALIZE[31107])">SelectRadioBackground</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[2] $LOCALIZE[31107])">SelectMusicBackground</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[15016] $LOCALIZE[31107])">SelectGamesBackground</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[1] $LOCALIZE[31107])">SelectPicturesBackground</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[24001] $LOCALIZE[31107])">SelectAddonBackground</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[8] $LOCALIZE[31107])">SelectWeatherBackground</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[13000] $LOCALIZE[31107])">SelectSystemBackground</include>
+					<!-- Main menu -->
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[33061] $LOCALIZE[31051])">SelectMainMenuTexture</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[33061] $LOCALIZE[736])">SelectMainMenuStyle</include>
+					<!-- Widget -->
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),Opacity)">SelectWidgetOpacity</include>
 				</content>
 			</control>
 			<control type="label">
@@ -58,29 +73,6 @@
 				<font>Font25_Cond</font>
 				<textcolor>grey</textcolor>
 				<label>$INFO[Container(100).NumItems,, $LOCALIZE[31001]]$INFO[Container(100).CurrentPage, - ]$INFO[Container(100).NumPages,/]</label>
-			</control>
-			<!-- Top right menu -->
-			<control type="grouplist" id="8000">
-				<right>60</right>
-				<top>20</top>
-				<width>600</width>
-				<onleft>100</onleft>
-				<ondown>100</ondown>
-				<align>right</align>
-				<itemgap>10</itemgap>
-				<orientation>horizontal</orientation>
-				<include content="Dialog_Button_TopRight">
-					<param name="id">8001</param>
-					<param name="label">$LOCALIZE[31028]</param>
-					<param name="onclick">Dialog.Close(all,true)</param>
-					<param name="onclick2">ActivateWindowAndFocus(skinsettings,8000,4)</param>
-					<param name="visible">String.EndsWith(Window(home).Property(CustomSelect),$LOCALIZE[31105]) + !Window.IsVisible(skinsettings)</param>
-				</include>
-				<include content="Dialog_Button_TopRight">
-					<param name="id">8002</param>
-					<param name="label">$LOCALIZE[15067]</param>
-					<param name="onclick">Action(close)</param>
-				</include>
 			</control>
 			<!-- Scroll bar -->
 			<control type="scrollbar" id="60">

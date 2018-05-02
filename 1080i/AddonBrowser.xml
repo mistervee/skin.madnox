@@ -9,64 +9,68 @@
 			<param name="imagepath">$VAR[AddonBackgroundVar]</param>
 			<param name="backgroundcolor">AddonBackground.Color.base</param>
 		</include>
-		<!-- Views -->
 		<control type="group">
-			<include>View_50_List</include>
+			<visible>!Window.IsActive(addoninformation)</visible>
+			<include>Animation_VisibleFade</include>
+			<!-- Views -->
+			<control type="group">
+				<include>View_50_List</include>
 			<!-- <include>View_507_FanartList</include>
 			<include>View_700_RightList</include> -->
 		</control>
-		<!-- Top bar -->
-		<control type="group">
-			<visible>!Skin.HasSetting(AddonHideTopBar)</visible>
-			<include content="Animation_Slide_Top_Window">
-				<param name="slide">90</param>
-			</include>
-			<include content="Animation_Slide_Top_Visible">
-				<param name="slide">90</param>
-			</include>
-			<include content="TopBar">
-				<param name="breadcrumbs_label">$LOCALIZE[24001]</param>
-				<param name="breadcrumbs_icon">addons.png</param>
-			</include>
-		</control>
-		<!-- Media Menu -->
-		<include>MediaMenu_MouseOverlay</include>
-		<control type="group">
-			<include>MediaMenu_Common</include>
-			<control type="grouplist" id="9050">
-				<onright>50</onright>
-				<onback>50</onback>
-				<include>MediaMenu_Common_Top</include>
-				<!-- Hide foreign -->
-				<control type="radiobutton" id="7">
-					<include>MediaMenu_Icon_Button</include>
-					<label>$LOCALIZE[25001]</label>
-					<visible>Control.IsEnabled(7)</visible>
-				</control>
-				<!-- Hide Incompatible -->
-				<control type="radiobutton" id="8">
-					<include>MediaMenu_Icon_Button</include>
-					<label>$LOCALIZE[24999]</label>
-					<visible>Control.IsEnabled(8)</visible>
-				</control>
-				<!-- Check for repository updates -->
-				<control type="radiobutton" id="9">
-					<include content="MediaMenu_Icon_Button">
-						<param name="iconon" value="icons/mediamenu/refresh.png" />
-						<param name="iconoff" value="icons/mediamenu/refresh.png" />
-					</include>
-					<label>$LOCALIZE[24034]</label>
-				</control>
-				<!-- Addon Settings -->
-				<control type="radiobutton" id="5">
-					<include content="MediaMenu_Icon_Button">
-						<param name="iconon" value="icons/mediamenu/settings.png" />
-						<param name="iconoff" value="icons/mediamenu/settings.png" />
-					</include>
-					<label>$LOCALIZE[10004]</label>
-				</control>
-				<include>MediaMenu_Common_Bottom</include>
+	</control>
+	<!-- Top bar -->
+	<control type="group">
+		<visible>!Skin.HasSetting(AddonHideTopBar)</visible>
+		<include content="Animation_Slide_Top_Window">
+			<param name="slide">90</param>
+		</include>
+		<include content="Animation_Slide_Top_Visible">
+			<param name="slide">90</param>
+		</include>
+		<include content="TopBar">
+			<param name="breadcrumbs_label">$LOCALIZE[24001]</param>
+			<param name="breadcrumbs_icon">addons.png</param>
+		</include>
+	</control>
+	<!-- Media Menu -->
+	<include>MediaMenu_MouseOverlay</include>
+	<control type="group">
+		<include>MediaMenu_Common</include>
+		<control type="grouplist" id="9050">
+			<onright>50</onright>
+			<onback>50</onback>
+			<include>MediaMenu_Common_Top</include>
+			<!-- Hide foreign -->
+			<control type="radiobutton" id="7">
+				<include>MediaMenu_Icon_Button</include>
+				<label>$LOCALIZE[25001]</label>
+				<visible>Control.IsEnabled(7)</visible>
 			</control>
+			<!-- Hide Incompatible -->
+			<control type="radiobutton" id="8">
+				<include>MediaMenu_Icon_Button</include>
+				<label>$LOCALIZE[24999]</label>
+				<visible>Control.IsEnabled(8)</visible>
+			</control>
+			<!-- Check for repository updates -->
+			<control type="radiobutton" id="9">
+				<include content="MediaMenu_Icon_Button">
+					<param name="iconon" value="icons/mediamenu/refresh.png" />
+					<param name="iconoff" value="icons/mediamenu/refresh.png" />
+				</include>
+				<label>$LOCALIZE[24034]</label>
+			</control>
+			<!-- Addon Settings -->
+			<control type="radiobutton" id="5">
+				<include content="MediaMenu_Icon_Button">
+					<param name="iconon" value="icons/mediamenu/settings.png" />
+					<param name="iconoff" value="icons/mediamenu/settings.png" />
+				</include>
+				<label>$LOCALIZE[10004]</label>
+			</control>
+			<include>MediaMenu_Common_Bottom</include>
 		</control>
-	</controls>
+	</control>
+</controls>
 </window>
