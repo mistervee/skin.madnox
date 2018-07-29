@@ -50,7 +50,7 @@
 				<top>90</top>
 				<width>4</width>
 				<height>348</height>
-				<texture colordiffuse="$VAR[PanelColorVar]">panels/line-vertical.png</texture>
+				<texture colordiffuse="$VAR[PanelColorVar]">panels/line-vertical-dark.png</texture>
 			</control>
 			<!-- Slider Focus -->
 			<control type="group">
@@ -58,6 +58,7 @@
 				<top>160</top>
 				<height>70</height>
 				<control type="label">
+					<textcolor>$VAR[DialogFocusTextColorVar]</textcolor>
 					<include>Dialog_Button_ColorPicker</include>
 					<label>$ADDON[script.skin.helper.colorpicker 32049]$INFO[Control.Getlabel(3015), ]</label>
 					<visible>Control.HasFocus(3015)</visible>
@@ -70,7 +71,7 @@
 				</control>
 				<control type="image">
 					<width>350</width>
-					<texture colordiffuse="$VAR[HighlightColorVar]" border="10">buttons/list-select-focus.png</texture>
+					<texture colordiffuse="$VAR[DialogHighlightColorVar]" border="10">buttons/list-select-focus.png</texture>
 					<visible>Control.HasFocus(3015)</visible>
 				</control>
 				<control type="image">
@@ -118,7 +119,7 @@
 				<height>50</height>
 				<align>right</align>
 				<font>Font25_Cond</font>
-				<textcolor>grey</textcolor>
+				<textcolor>$VAR[DialogSubTextColorVar]</textcolor>
 				<label>$INFO[Container(3110).NumItems,, $LOCALIZE[14078]]$INFO[Container(3110).CurrentPage, - $LOCALIZE[31000] (]$INFO[Container(3110).NumPages,/,)]</label>
 			</control>
 			<control type="label">

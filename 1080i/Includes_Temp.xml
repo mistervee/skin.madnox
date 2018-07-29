@@ -1034,6 +1034,7 @@
 		<width>1395</width>
 		<height>67</height>
 		<textoffsetx>35</textoffsetx>
+		<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 	</include>
 	<include name="Settings_RadioButton">
 		<width>1395</width>
@@ -1041,6 +1042,7 @@
 		<textoffsetx>35</textoffsetx>
 		<textwidth>930</textwidth>
 		<radioposx>1289</radioposx>
+		<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 	</include>
 	<include name="Settings_LeftLabel">
 		<top>132</top>
@@ -1049,6 +1051,7 @@
 		<height>67</height>
 		<textoffsetx>25</textoffsetx>
 		<font>Font33_Bold_Caps</font>
+		<textcolor>$VAR[PanelTextColorVar]</textcolor>
 	</include>
 	<include name="Settings_LeftButton">
 		<width>324</width>
@@ -1056,6 +1059,7 @@
 		<textoffsetx>25</textoffsetx>
 		<font>Font36_Reg</font>
 		<texturenofocus />
+		<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 	</include>
 	<include name="Settings_RightLabel">
 		<top>132</top>
@@ -1064,11 +1068,13 @@
 		<height>67</height>
 		<textoffsetx>35</textoffsetx>
 		<font>Font33_Bold_Caps</font>
+		<textcolor>$VAR[PanelTextColorVar]</textcolor>
 	</include>
 	<include name="Settings_Label_SystemInfo">
 		<width>1384</width>
 		<height>55</height>
 		<textoffsetx>35</textoffsetx>
+		<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 	</include>
 	<!--  Floor -->
 	<include name="Floor_Default">
@@ -1144,25 +1150,62 @@
 	<!-- Panels -->
 	<include name="Panel_Default">
 		<param name="left">80</param>
+		<param name="right">80</param>
 		<param name="top">80</param>
-		<param name="width">1760</param>
 		<param name="height">920</param>
+		<param name="lefttexture">100</param>
+		<param name="righttexture">100</param>
+		<param name="toptexture">100</param>
+		<param name="heighttexture">880</param>
+		<param name="diffusetexture">diffuse/rounded20-1720x880.png</param>
 		<param name="reflect">true</param>
 		<param name="reflecttop">970</param>
 		<definition>
 			<control type="image">
 				<left>$PARAM[left]</left>
+				<right>$PARAM[right]</right>
 				<top>$PARAM[top]</top>
-				<width>$PARAM[width]</width>
 				<height>$PARAM[height]</height>
-				<texture colordiffuse="$VAR[PanelColorVar]" border="40">panels/panel-back.png</texture>
+				<texture colordiffuse="$VAR[PanelShadowColorVar]" border="50">$VAR[PanelShadowVar]</texture>
 			</control>
 			<control type="image">
 				<left>$PARAM[left]</left>
-				<top>$PARAM[reflecttop]</top>
-				<width>$PARAM[width]</width>
+				<right>$PARAM[right]</right>
+				<top>$PARAM[top]</top>
 				<height>$PARAM[height]</height>
-				<texture flipy="true" diffuse="panels/reflect.png" colordiffuse="$VAR[PanelColorVar]" border="40">panels/panel-back.png</texture>
+				<texture colordiffuse="$VAR[PanelStyleColorVar]" border="40">$VAR[PanelStyleVar]</texture>
+			</control>
+			<control type="image">
+				<left>$PARAM[lefttexture]</left>
+				<right>$PARAM[righttexture]</right>
+				<top>$PARAM[toptexture]</top>
+				<height>$PARAM[heighttexture]</height>
+				<aspectratio align="right" scalediffuse="false">scale</aspectratio>
+				<texture diffuse="$PARAM[diffusetexture]" colordiffuse="$VAR[PanelTextureColorVar]">$VAR[PanelTextureVar]</texture>
+				<visible>!Skin.HasSetting(PanelSquare.texture)</visible>
+			</control>
+			<control type="image">
+				<left>$PARAM[lefttexture]</left>
+				<right>$PARAM[righttexture]</right>
+				<top>$PARAM[toptexture]</top>
+				<height>$PARAM[heighttexture]</height>
+				<aspectratio align="right" scalediffuse="false">scale</aspectratio>
+				<texture colordiffuse="$VAR[PanelTextureColorVar]">$VAR[PanelTextureVar]</texture>
+				<visible>Skin.HasSetting(PanelSquare.texture)</visible>
+			</control>
+			<control type="image">
+				<left>$PARAM[left]</left>
+				<right>$PARAM[right]</right>
+				<top>$PARAM[top]</top>
+				<height>$PARAM[height]</height>
+				<texture colordiffuse="$VAR[PanelEmbossColorVar]" border="40">$VAR[PanelEmbossVar]</texture>
+			</control>
+			<control type="image">
+				<left>$PARAM[left]</left>
+				<right>$PARAM[right]</right>
+				<top>$PARAM[reflecttop]</top>
+				<height>$PARAM[height]</height>
+				<texture flipy="true" diffuse="panels/reflect.png" colordiffuse="$VAR[PanelStyleColorVar]" border="40">$VAR[PanelStyleVar]</texture>
 				<visible>$PARAM[reflect]</visible>
 			</control>
 		</definition>
@@ -1173,73 +1216,131 @@
 		<param name="top">110</param>
 		<param name="width">1760</param>
 		<param name="height">860</param>
+		<param name="lefttexture">100</param>
+		<param name="widthtexture">398</param>
+		<param name="toptexture">130</param>
+		<param name="heighttexture">820</param>
+		<param name="diffusetexture">diffuse/siderounded20-398x820.png</param>
 		<param name="flipx">false</param>
 		<param name="reflect">true</param>
-		<param name="reflecttop">930</param>
+		<param name="reflecttop">940</param>
 		<definition>
 			<control type="image">
 				<left>$PARAM[left]</left>
 				<top>$PARAM[top]</top>
 				<width>$PARAM[width]</width>
 				<height>$PARAM[height]</height>
-				<texture flipx="$PARAM[flipx]" colordiffuse="$VAR[PanelColorVar]" border="40">panels/panel-sideblade.png</texture>
+				<texture flipx="$PARAM[flipx]" colordiffuse="$VAR[PanelShadowColorVar]" border="40">$VAR[HalfPanelShadowVar]</texture>
+			</control>
+			<control type="image">
+				<left>$PARAM[left]</left>
+				<top>$PARAM[top]</top>
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<texture flipx="$PARAM[flipx]" colordiffuse="$VAR[PanelStyleColorVar]" border="40">$VAR[HalfPanelStyleVar]</texture>
+			</control>
+			<control type="image">
+				<left>$PARAM[lefttexture]</left>
+				<top>$PARAM[toptexture]</top>
+				<width>$PARAM[widthtexture]</width>
+				<height>$PARAM[heighttexture]</height>
+				<aspectratio align="right" scalediffuse="false">scale</aspectratio>
+				<texture flipx="$PARAM[flipx]" diffuse="$PARAM[diffusetexture]" colordiffuse="$VAR[PanelTextureColorVar]">$VAR[PanelTextureVar]</texture>
+				<visible>!Skin.HasSetting(PanelSquare.texture)</visible>
+			</control>
+			<control type="image">
+				<left>$PARAM[lefttexture]</left>
+				<top>$PARAM[toptexture]</top>
+				<width>$PARAM[widthtexture]</width>
+				<height>$PARAM[heighttexture]</height>
+				<aspectratio align="right" scalediffuse="false">scale</aspectratio>
+				<texture flipx="$PARAM[flipx]" colordiffuse="$VAR[PanelTextureColorVar]">$VAR[PanelTextureVar]</texture>
+				<visible>Skin.HasSetting(PanelSquare.texture)</visible>
+			</control>
+			<control type="image">
+				<left>$PARAM[left]</left>
+				<top>$PARAM[top]</top>
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<texture flipx="$PARAM[flipx]" colordiffuse="$VAR[PanelEmbossColorVar]" border="40">$VAR[HalfPanelEmbossVar]</texture>
 			</control>
 			<control type="image">
 				<left>$PARAM[left]</left>
 				<top>$PARAM[reflecttop]</top>
 				<width>$PARAM[width]</width>
 				<height>$PARAM[height]</height>
-				<texture flipx="$PARAM[flipx]" flipy="true" diffuse="panels/reflect.png" colordiffuse="$VAR[PanelColorVar]" border="40">panels/panel-sideblade.png</texture>
+				<texture flipx="$PARAM[flipx]" flipy="true" diffuse="panels/reflect.png" colordiffuse="$VAR[PanelStyleColorVar]" border="40">$VAR[HalfPanelStyleVar]</texture>
 				<visible>$PARAM[reflect]</visible>
 			</control>
 		</definition>
 	</include>
 	<include name="Panel_Side">
 		<param name="left">80</param>
+		<param name="right">80</param>
 		<param name="top">80</param>
-		<param name="width">1760</param>
 		<param name="height">920</param>
+		<param name="lefttexture">100</param>
+		<param name="righttexture">100</param>
+		<param name="toptexture">100</param>
+		<param name="heighttexture">880</param>
+		<param name="diffusetexture">diffuse/rounded20-1720x880.png</param>
 		<param name="reflect">true</param>
 		<param name="reflecttop">970</param>
-		<param name="visible">true</param>
 		<definition>
-			<!-- <control type="image">
-				<include>FullscreenDimensions</include>
-				<texture colordiffuse="$VAR[BackgroundColorVar]">colors/black.png</texture>
-				<visible>![$PARAM[visible]]</visible>
-			</control> -->
-			<control type="group">
-				<visible>$PARAM[visible]</visible>
-				<control type="image">
-					<left>$PARAM[left]</left>
-					<top>$PARAM[top]</top>
-					<width>$PARAM[width]</width>
-					<height>$PARAM[height]</height>
-					<texture colordiffuse="$VAR[GlowColorVar]" border="50">panels/panel-glow.png</texture>
-				</control>
-				<control type="image">
-					<left>$PARAM[left]</left>
-					<top>$PARAM[top]</top>
-					<width>$PARAM[width]</width>
-					<height>$PARAM[height]</height>
-					<texture colordiffuse="$VAR[PanelColorVar]" border="346,40,40,40">panels/panel-settings-back.png</texture>
-				</control>
-				<control type="image">
-					<left>$PARAM[left]</left>
-					<top>$PARAM[reflecttop]</top>
-					<width>$PARAM[width]</width>
-					<height>$PARAM[height]</height>
-					<texture flipy="true" diffuse="panels/reflect.png" colordiffuse="$VAR[PanelColorVar]" border="346,40,40,40">panels/panel-settings-back.png</texture>
-					<visible>$PARAM[reflect]</visible>
-				</control>
-				<control type="image">
-					<left>100</left>
-					<bottom>90</bottom>
-					<width>323</width>
-					<height>172</height>
-					<aspectratio>keep</aspectratio>
-					<texture>icons/logo.png</texture>
-				</control>
+			<control type="image">
+				<left>$PARAM[left]</left>
+				<right>$PARAM[right]</right>
+				<top>$PARAM[top]</top>
+				<height>$PARAM[height]</height>
+				<texture colordiffuse="$VAR[PanelShadowColorVar]" border="40">$VAR[PanelShadowVar]</texture>
+			</control>
+			<control type="image">
+				<left>$PARAM[left]</left>
+				<right>$PARAM[right]</right>
+				<top>$PARAM[top]</top>
+				<height>$PARAM[height]</height>
+				<texture colordiffuse="$VAR[PanelStyleColorVar]" border="346,40,40,40">$VAR[SidePanelStyleVar]</texture>
+			</control>
+			<control type="image">
+				<left>$PARAM[lefttexture]</left>
+				<right>$PARAM[righttexture]</right>
+				<top>$PARAM[toptexture]</top>
+				<height>$PARAM[heighttexture]</height>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<texture diffuse="$PARAM[diffusetexture]" colordiffuse="$VAR[PanelTextureColorVar]">$VAR[PanelTextureVar]</texture>
+				<visible>!Skin.HasSetting(PanelSquare.texture)</visible>
+			</control>
+			<control type="image">
+				<left>$PARAM[lefttexture]</left>
+				<right>$PARAM[righttexture]</right>
+				<top>$PARAM[toptexture]</top>
+				<height>$PARAM[heighttexture]</height>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<texture colordiffuse="$VAR[PanelTextureColorVar]">$VAR[PanelTextureVar]</texture>
+				<visible>Skin.HasSetting(PanelSquare.texture)</visible>
+			</control>
+			<control type="image">
+				<left>$PARAM[left]</left>
+				<right>$PARAM[right]</right>
+				<top>$PARAM[top]</top>
+				<height>$PARAM[height]</height>
+				<texture colordiffuse="$VAR[PanelEmbossColorVar]" border="40">$VAR[PanelEmbossVar]</texture>
+			</control>
+			<control type="image">
+				<left>$PARAM[left]</left>
+				<right>$PARAM[right]</right>
+				<top>$PARAM[reflecttop]</top>
+				<height>$PARAM[height]</height>
+				<texture flipy="true" diffuse="panels/reflect.png" colordiffuse="$VAR[PanelStyleColorVar]" border="346,40,40,40">$VAR[SidePanelStyleVar]</texture>
+				<visible>$PARAM[reflect]</visible>
+			</control>
+			<control type="image">
+				<left>100</left>
+				<bottom>90</bottom>
+				<width>323</width>
+				<height>172</height>
+				<aspectratio>keep</aspectratio>
+				<texture>icons/logo.png</texture>
 			</control>
 		</definition>
 	</include>
@@ -1261,59 +1362,60 @@
 				<pagecontrol>$PARAM[scrollbar_id]</pagecontrol>
 				<itemlayout height="66">
 					<control type="image">
-						<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
+						<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
 					</control>
 					<control type="label">
 						<left>45</left>
 						<right>20</right>
 						<label>$INFO[ListItem.Label]</label>
-						<textcolor>grey</textcolor>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 					</control>
 					<control type="label">
 						<textoffsetx>45</textoffsetx>
 						<right>0</right>
 						<align>right</align>
 						<label>$INFO[ListItem.Label2]</label>
-						<textcolor>grey</textcolor>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 					</control>
 				</itemlayout>
 				<focusedlayout height="66">
 					<control type="group">
 						<visible>Control.HasFocus($PARAM[id])</visible>
 						<control type="image">
-							<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+							<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
 						</control>
 						<control type="label">
 							<left>45</left>
 							<right>20</right>
 							<scroll>true</scroll>
 							<label>$INFO[ListItem.Label]</label>
+							<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
 						</control>
 						<control type="label">
 							<textoffsetx>20</textoffsetx>
 							<right>25</right>
 							<align>right</align>
-							<label>$INFO[ListItem.Label2]</label>
+							<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
 						</control>
 					</control>
 					<control type="group">
 						<visible>!Control.HasFocus($PARAM[id])</visible>
 						<control type="image">
-							<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
+							<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
 						</control>
 						<control type="label">
 							<left>45</left>
 							<right>20</right>
 							<scroll>true</scroll>
 							<label>$INFO[ListItem.Label]</label>
-							<textcolor>grey</textcolor>
+							<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 						</control>
 						<control type="label">
 							<textoffsetx>20</textoffsetx>
 							<right>25</right>
 							<align>right</align>
 							<label>$INFO[ListItem.Label2]</label>
-							<textcolor>grey</textcolor>
+							<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 						</control>
 					</control>
 				</focusedlayout>
@@ -1544,7 +1646,7 @@
 				</control>
 				<control type="group">
 					<visible>!Pvr.IsPlayingRadio + !Player.IsInternetStream</visible>
-						<control type="grouplist">
+					<control type="grouplist">
 						<visible>String.IsEmpty(Skin.String(NowPlayingHomeMusicInfo)) + MusicPlayer.HasNext</visible>
 						<include>HomeNowPlayingAudioNext</include>
 					</control>
