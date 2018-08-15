@@ -10,7 +10,7 @@
 			</include>
 			<include content="MediaMenu_Background">
 				<param name="width">240</param>
-				<param name="glowleft">220</param>
+				<param name="left">220</param>
 			</include>
 			<control type="panel" id="9090">
 				<width>220</width>
@@ -19,13 +19,13 @@
 				<onback>Dialog.Close(1113)</onback>
 				<itemlayout height="120" width="220">
 					<control type="image">
-						<texture border="30">buttons/list-select-nofocus.png</texture>
+						<texture border="30" colordiffuse="$VAR[MediaMenuListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
 					</control>
 					<control type="image">
 						<top>14</top>
 						<height>63</height>
 						<aspectratio align="center" aligny="center">keep</aspectratio>
-						<texture colordiffuse="grey2">$INFO[ListItem.Property(MenuIcon)]</texture>
+						<texture colordiffuse="$VAR[MediaMenuIconColorVar]">$INFO[ListItem.Property(MenuIcon)]</texture>
 					</control>
 					<control type="label">
 						<top>66</top>
@@ -33,19 +33,19 @@
 						<align>center</align>
 						<font>Font28_Reg</font>
 						<textoffsetx>10</textoffsetx>
-						<textcolor>grey2</textcolor>
+						<textcolor>$VAR[MediaMenuTextColorVar]</textcolor>
 						<label>$INFO[ListItem.Label]</label>
 					</control>
 				</itemlayout>
 				<focusedlayout height="120" width="220">
 					<control type="image">
-						<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+						<texture border="10" colordiffuse="$VAR[MediaMenuHighlightColorVar]">buttons/list-select-focus.png</texture>
 					</control>
 					<control type="image">
 						<top>14</top>
 						<height>63</height>
 						<aspectratio align="center" aligny="center">keep</aspectratio>
-						<texture>$INFO[ListItem.Property(MenuIcon)]</texture>
+						<texture colordiffuse="$VAR[MediaMenuFocusIconColorVar]">$INFO[ListItem.Property(MenuIcon)]</texture>
 					</control>
 					<control type="label">
 						<top>66</top>
@@ -53,6 +53,7 @@
 						<align>center</align>
 						<font>Font28_Reg</font>
 						<textoffsetx>10</textoffsetx>
+						<textcolor>$VAR[MediaMenuFocusTextColorVar]</textcolor>
 						<label>$INFO[ListItem.Label]</label>
 					</control>
 				</focusedlayout>

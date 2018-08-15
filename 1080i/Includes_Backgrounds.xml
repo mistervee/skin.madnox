@@ -73,8 +73,13 @@
 			<!-- Overlay -->
 			<control type="image">
 				<include>FullscreenDimensions</include>
-				<texture colordiffuse="$VAR[BackgroundColorVar]">$INFO[Skin.String(BackgroundOverlay)]</texture>
-				<visible>[!Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Skin.String(BackgroundOverlay))] | [Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Skin.String(BackgroundOverlay)) + !Skin.HasSetting(VideoInfoBlurBackground)]</visible>
+				<texture colordiffuse="$VAR[BackgroundTextureColorVar]">$INFO[Skin.String(BackgroundTexture.texture)]</texture>
+				<!-- <visible>[!Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Skin.String(BackgroundTexture.texture))] | [Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Skin.String(BackgroundTexture.texture)) + !Skin.HasSetting(VideoInfoBlurBackground)]</visible> -->
+			</control>
+			<control type="image">
+				<include>FullscreenDimensions</include>
+				<texture colordiffuse="$VAR[BackgroundShadowColorVar]">backgrounds/shadow.png</texture>
+				<visible>Skin.HasSetting(BackgroundShadow)</visible>
 			</control>
 			<control type="group">
 				<include>FullscreenDimensions</include>
@@ -96,35 +101,35 @@
 				<top>-100</top>
 				<width>2120</width>
 				<height>1280</height>
-				<imagepath background="true">effects/smoke</imagepath>
+				<imagepath background="true" colordiffuse="$VAR[BackgroundSmokeColorVar]">effects/smoke</imagepath>
 				<fadetime>1</fadetime>
 				<pauseatend>1</pauseatend>
 				<fadetime>0</fadetime>
 				<timeperimage>20</timeperimage>
 				<randomize>false</randomize>
 				<loop>true</loop>
-				<visible>Skin.HasSetting(BackgroundEffectSmoke)</visible>
+				<visible>Skin.HasSetting(BackgroundSmoke)</visible>
 			</control>
 			<control type="group">
-				<visible>!String.IsEmpty(Skin.String(BackgroundEffect))</visible>
+				<visible>!String.IsEmpty(Skin.String(BackgroundEffect.texture))</visible>
 				<include content="EffectBackgroundXY">
-					<param name="visible">String.IsEqual(Skin.String(BackgroundEffect),snow)</param>
+					<param name="visible">String.IsEqual(Skin.String(BackgroundEffect.texture),snow)</param>
 					<param name="effect">snow</param>
 				</include>
 				<include content="EffectBackgroundXY">
-					<param name="visible">String.IsEqual(Skin.String(BackgroundEffect),leaves)</param>
+					<param name="visible">String.IsEqual(Skin.String(BackgroundEffect.texture),leaves)</param>
 					<param name="effect">leaves</param>
 				</include>
 				<include content="EffectBackgroundXY">
-					<param name="visible">String.IsEqual(Skin.String(BackgroundEffect),valentine)</param>
+					<param name="visible">String.IsEqual(Skin.String(BackgroundEffect.texture),valentine)</param>
 					<param name="effect">valentine</param>
 				</include>
 				<include content="EffectBackgroundXY">
-					<param name="visible">String.IsEqual(Skin.String(BackgroundEffect),confetti)</param>
+					<param name="visible">String.IsEqual(Skin.String(BackgroundEffect.texture),confetti)</param>
 					<param name="effect">confetti</param>
 				</include>
 				<include content="EffectBackgroundX">
-					<param name="visible">String.IsEqual(Skin.String(BackgroundEffect),easter)</param>
+					<param name="visible">String.IsEqual(Skin.String(BackgroundEffect.texture),easter)</param>
 					<param name="effect">easter</param>
 				</include>
 			</control>
@@ -703,7 +708,7 @@
 						<left>60</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/3.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/3.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-50" end="0,1180" time="19000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -713,7 +718,7 @@
 						<left>260</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/5.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/5.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-600" end="0,1180" time="28000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -723,7 +728,7 @@
 						<left>380</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/2.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/2.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-960" end="0,1180" time="34000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -733,7 +738,7 @@
 						<left>622</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/4.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/4.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-100" end="0,1180" time="20000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="8000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -743,7 +748,7 @@
 						<left>960</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/2.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/2.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-500" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -753,7 +758,7 @@
 						<left>1200</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/3.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/3.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-260" end="0,1180" time="18000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -763,7 +768,7 @@
 						<left>1426</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/5.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/5.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-850" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -773,7 +778,7 @@
 						<left>1587</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/4.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/4.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-1080" end="0,1180" time="35000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -785,7 +790,7 @@
 						<left>60</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/1.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/1.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-450" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -795,7 +800,7 @@
 						<left>260</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/1.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/1.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-200" end="0,1180" time="18000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -805,7 +810,7 @@
 						<left>380</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/1.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/1.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-500" end="0,1180" time="25000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -815,7 +820,7 @@
 						<left>622</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/1.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/1.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-800" end="0,1180" time="32000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="8000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -825,7 +830,7 @@
 						<left>960</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/1.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/1.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-50" end="0,1180" time="18000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -835,7 +840,7 @@
 						<left>1200</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/1.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/1.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-960" end="0,1180" time="30000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -845,7 +850,7 @@
 						<left>1426</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/1.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/1.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-160" end="0,1180" time="20000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -855,7 +860,7 @@
 						<left>1587</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/1.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/1.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-300" end="0,1180" time="20000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -867,7 +872,7 @@
 						<left>520</left>
 						<width>55</width>
 						<height>55</height>
-						<texture>effects/$PARAM[effect]/3.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/3.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-200" end="0,1180" time="22000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -877,7 +882,7 @@
 						<left>730</left>
 						<width>55</width>
 						<height>55</height>
-						<texture>effects/$PARAM[effect]/5.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/5.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-300" end="0,1180" time="25000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -887,7 +892,7 @@
 						<left>980</left>
 						<width>55</width>
 						<height>55</height>
-						<texture>effects/$PARAM[effect]/2.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/2.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-560" end="0,1180" time="30000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -897,7 +902,7 @@
 						<left>1100</left>
 						<width>55</width>
 						<height>55</height>
-						<texture>effects/$PARAM[effect]/4.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/4.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-700" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="8000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -907,7 +912,7 @@
 						<left>1375</left>
 						<width>55</width>
 						<height>55</height>
-						<texture>effects/$PARAM[effect]/2.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/2.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-1000" end="0,1180" time="35000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -917,7 +922,7 @@
 						<left>1615</left>
 						<width>55</width>
 						<height>55</height>
-						<texture>effects/$PARAM[effect]/3.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/3.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-460" end="0,1180" time="23000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -927,7 +932,7 @@
 						<left>1826</left>
 						<width>55</width>
 						<height>55</height>
-						<texture>effects/$PARAM[effect]/5.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/5.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-450" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -949,7 +954,7 @@
 						<left>60</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/3.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/3.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-50" end="0,1180" time="19000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -958,7 +963,7 @@
 						<left>260</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/5.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/5.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-600" end="0,1180" time="28000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -967,7 +972,7 @@
 						<left>380</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/2.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/2.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-960" end="0,1180" time="34000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -976,7 +981,7 @@
 						<left>622</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/4.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/4.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-100" end="0,1180" time="20000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="8000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -985,7 +990,7 @@
 						<left>960</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/2.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/2.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-500" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -994,7 +999,7 @@
 						<left>1200</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/3.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/3.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-260" end="0,1180" time="18000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -1003,7 +1008,7 @@
 						<left>1426</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/5.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/5.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-850" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -1012,7 +1017,7 @@
 						<left>1587</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/4.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/4.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-1080" end="0,1180" time="35000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -1023,7 +1028,7 @@
 						<left>60</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/1.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/1.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-450" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -1032,7 +1037,7 @@
 						<left>260</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/1.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/1.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-200" end="0,1180" time="18000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -1041,7 +1046,7 @@
 						<left>380</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/1.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/1.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-500" end="0,1180" time="25000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -1050,7 +1055,7 @@
 						<left>622</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/1.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/1.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-800" end="0,1180" time="32000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="8000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -1059,7 +1064,7 @@
 						<left>960</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/1.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/1.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-50" end="0,1180" time="18000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -1068,7 +1073,7 @@
 						<left>1200</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/1.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/1.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-960" end="0,1180" time="30000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -1077,7 +1082,7 @@
 						<left>1426</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/1.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/1.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-160" end="0,1180" time="20000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -1086,7 +1091,7 @@
 						<left>1587</left>
 						<width>35</width>
 						<height>35</height>
-						<texture>effects/$PARAM[effect]/1.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/1.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-300" end="0,1180" time="20000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -1097,7 +1102,7 @@
 						<left>520</left>
 						<width>55</width>
 						<height>55</height>
-						<texture>effects/$PARAM[effect]/3.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/3.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-200" end="0,1180" time="22000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -1106,7 +1111,7 @@
 						<left>730</left>
 						<width>55</width>
 						<height>55</height>
-						<texture>effects/$PARAM[effect]/5.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/5.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-300" end="0,1180" time="25000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -1115,7 +1120,7 @@
 						<left>980</left>
 						<width>55</width>
 						<height>55</height>
-						<texture>effects/$PARAM[effect]/2.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/2.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-560" end="0,1180" time="30000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -1124,7 +1129,7 @@
 						<left>1100</left>
 						<width>55</width>
 						<height>55</height>
-						<texture>effects/$PARAM[effect]/4.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/4.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-700" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="8000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -1133,7 +1138,7 @@
 						<left>1375</left>
 						<width>55</width>
 						<height>55</height>
-						<texture>effects/$PARAM[effect]/2.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/2.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-1000" end="0,1180" time="35000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -1142,7 +1147,7 @@
 						<left>1615</left>
 						<width>55</width>
 						<height>55</height>
-						<texture>effects/$PARAM[effect]/3.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/3.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-460" end="0,1180" time="23000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
@@ -1151,7 +1156,7 @@
 						<left>1826</left>
 						<width>55</width>
 						<height>55</height>
-						<texture>effects/$PARAM[effect]/5.png</texture>
+						<texture colordiffuse="$VAR[BackgroundEffectColorVar]">effects/$PARAM[effect]/5.png</texture>
 						<aspectratio scalediffuse="false">keep</aspectratio>
 						<animation effect="slide" start="0,-450" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
 						<animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>

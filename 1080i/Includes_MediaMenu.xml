@@ -37,11 +37,24 @@
 	</include>
 	<include name="MediaMenu_Background">
 		<param name="width">420</param>
+		<param name="left">400</param>
 		<definition>
+			<control type="image">
+				<left>$PARAM[left]</left>
+				<width>20</width>
+				<height>1080</height>
+				<texture colordiffuse="$VAR[MediaMenuShadowColorVar]" border="20">panels/mediamenu/shadow.png</texture>
+			</control>
 			<control type="image">
 				<width>$PARAM[width]</width>
 				<height>1080</height>
-				<texture colordiffuse="$VAR[PanelColorVar]" border="20">panels/mediamenu-back.png</texture>
+				<texture colordiffuse="$VAR[MediaMenuStyleColorVar]" border="20">$VAR[MediaMenuStyleVar]</texture>
+			</control>
+			<control type="image">
+				<width>$PARAM[left]</width>
+				<height>1080</height>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<texture colordiffuse="$VAR[MediaMenuTextureColorVar]" border="20">$INFO[Skin.String(MediaMenuTexture.texture)]</texture>
 			</control>
 		</definition>
 	</include>
@@ -54,10 +67,14 @@
 			<radiowidth>50</radiowidth>
 			<radioheight>50</radioheight>
 			<radioposx>20</radioposx>
-			<textureradioonfocus colordiffuse="white">$PARAM[iconon]</textureradioonfocus>
-			<textureradioonnofocus colordiffuse="grey">$PARAM[iconon]</textureradioonnofocus>
-			<textureradioofffocus colordiffuse="white">$PARAM[iconoff]</textureradioofffocus>
-			<textureradiooffnofocus colordiffuse="grey">$PARAM[iconoff]</textureradiooffnofocus>
+			<textcolor>$VAR[MediaMenuTextColorVar]</textcolor>
+			<focusedcolor>$VAR[MediaMenuFocusTextColorVar]</focusedcolor>
+			<texturefocus border="10" colordiffuse="$VAR[MediaMenuHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
+			<texturenofocus border="30" colordiffuse="$VAR[MediaMenuListSeparatorColorVar]">buttons/list-select-nofocus.png</texturenofocus>
+			<textureradioonfocus colordiffuse="$VAR[MediaMenuFocusIconColorVar]">$PARAM[iconon]</textureradioonfocus>
+			<textureradioonnofocus colordiffuse="$VAR[MediaMenuIconColorVar]">$PARAM[iconon]</textureradioonnofocus>
+			<textureradioofffocus colordiffuse="$VAR[MediaMenuFocusIconColorVar]">$PARAM[iconoff]</textureradioofffocus>
+			<textureradiooffnofocus colordiffuse="$VAR[MediaMenuIconColorVar]">$PARAM[iconoff]</textureradiooffnofocus>
 			<textwidth>300</textwidth>
 			<textoffsetx>90</textoffsetx>
 		</definition>
@@ -70,6 +87,10 @@
 		<radioposx>20</radioposx>
 		<textwidth>300</textwidth>
 		<textoffsetx>90</textoffsetx>
+		<textcolor>$VAR[MediaMenuTextColorVar]</textcolor>
+		<focusedcolor>$VAR[MediaMenuFocusTextColorVar]</focusedcolor>
+		<texturefocus border="10" colordiffuse="$VAR[MediaMenuHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
+		<texturenofocus border="30" colordiffuse="$VAR[MediaMenuListSeparatorColorVar]">buttons/list-select-nofocus.png</texturenofocus>
 	</include>
 	<include name="MediaMenu_PVR_Button">
 		<param name="id"></param>
@@ -84,11 +105,11 @@
 				<texturenofocus />
 				<radiowidth>38</radiowidth>
 				<radioheight>38</radioheight>
-				<textureradioonfocus colordiffuse="white">$PARAM[icon]</textureradioonfocus>
-				<textureradioonnofocus colordiffuse="grey">$PARAM[icon]</textureradioonnofocus>
-				<textureradioofffocus colordiffuse="white">$PARAM[icon]</textureradioofffocus>
-				<textureradiooffnofocus colordiffuse="grey">$PARAM[icon]</textureradiooffnofocus>
-				<textureradiooffdisabled colordiffuse="$VAR[HighlightColorVar]">$PARAM[icon]</textureradiooffdisabled>
+				<textureradioonfocus colordiffuse="$VAR[MediaMenuFocusIconColorVar]">$PARAM[icon]</textureradioonfocus>
+				<textureradioonnofocus colordiffuse="$VAR[MediaMenuIconColorVar]">$PARAM[icon]</textureradioonnofocus>
+				<textureradioofffocus colordiffuse="$VAR[MediaMenuFocusIconColorVar]">$PARAM[icon]</textureradioofffocus>
+				<textureradiooffnofocus colordiffuse="$VAR[MediaMenuIconColorVar]">$PARAM[icon]</textureradiooffnofocus>
+				<textureradiooffdisabled colordiffuse="$VAR[MediaMenuHighlightColorVar]">$PARAM[icon]</textureradiooffdisabled>
 				<onclick condition="$EXP[Area_Visible_TV]">ActivateWindow(TV$PARAM[area])</onclick>
 				<onclick condition="$EXP[Area_Visible_Radio]">ActivateWindow(Radio$PARAM[area])</onclick>
 				<enable>!Window.IsActive(TV$PARAM[area]) + !Window.IsActive(Radio$PARAM[area])</enable>
@@ -99,12 +120,16 @@
 		<height>60</height>
 		<textoffsetx>15</textoffsetx>
 		<font>Font26_Bold_Caps</font>
-		<textcolor>$VAR[HighlightColorVar]</textcolor>
+		<textcolor>$VAR[MediaMenuHighlightColorVar]</textcolor>
 	</include>
 	<include name="MediaMenu_Button">
 		<height>60</height>
 		<textoffsetx>15</textoffsetx>
 		<font>Font28_Reg</font>
+		<textcolor>$VAR[MediaMenuTextColorVar]</textcolor>
+		<focusedcolor>$VAR[MediaMenuFocusTextColorVar]</focusedcolor>
+		<texturefocus border="10" colordiffuse="$VAR[MediaMenuHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
+		<texturenofocus border="30" colordiffuse="$VAR[MediaMenuListSeparatorColorVar]">buttons/list-select-nofocus.png</texturenofocus>
 	</include>
 	<include name="MediaMenu_RadioButton">
 		<height>60</height>
@@ -112,12 +137,21 @@
 		<textwidth>365</textwidth>
 		<textoffsetx>15</textoffsetx>
 		<font>Font28_Reg</font>
+		<textcolor>$VAR[MediaMenuTextColorVar]</textcolor>
+		<focusedcolor>$VAR[MediaMenuFocusTextColorVar]</focusedcolor>
+		<textureradioon colordiffuse="$VAR[MediaMenuButtonHighlightColorVar]">buttons/radiobutton-on.png</textureradioon>
+		<texturefocus border="10" colordiffuse="$VAR[MediaMenuHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
+		<texturenofocus border="30" colordiffuse="$VAR[MediaMenuListSeparatorColorVar]">buttons/list-select-nofocus.png</texturenofocus>
 	</include>
 	<include name="MediaMenu_Button_ViewType">
 		<width>230</width>
 		<height>60</height>
 		<textoffsetx>15</textoffsetx>
 		<font>Font28_Reg</font>
+		<textcolor>$VAR[MediaMenuTextColorVar]</textcolor>
+		<focusedcolor>$VAR[MediaMenuFocusTextColorVar]</focusedcolor>
+		<texturefocus border="10" colordiffuse="$VAR[MediaMenuHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
+		<texturenofocus border="30" colordiffuse="$VAR[MediaMenuListSeparatorColorVar]">buttons/list-select-nofocus.png</texturenofocus>
 	</include>
 	<!-- Common -->
 	<include name="MediaMenu_Common_Top">
@@ -264,24 +298,25 @@
 			<include>MediaMenu_Label</include>
 		</control>
 		<control type="button" id="202">
-			<label>$LOCALIZE[736]</label>
-			<label2>$VAR[MainMenuStyleLabelVar]</label2>
-			<onclick>SetProperty(CustomSelect,$LOCALIZE[33061] $LOCALIZE[736],home)</onclick>
+			<label>$LOCALIZE[31059]</label>
+			<label2>$VAR[MainMenuLayoutLabelVar]</label2>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[31041] $LOCALIZE[31144],home)</onclick>
 			<onclick>ActivateWindow(1110)</onclick>
 			<include>MediaMenu_Button</include>
 		</control>
 		<control type="button" id="203">
-			<label>$LOCALIZE[31051]</label>
-			<label2>$VAR[MainMenuTextureLabelVar]</label2>
-			<onclick>SetProperty(CustomSelect,$LOCALIZE[33061] $LOCALIZE[31051],home)</onclick>
+			<label>$LOCALIZE[736]</label>
+			<label2>$VAR[MainMenuStyleLabelVar]</label2>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[31041] $LOCALIZE[31129],home)</onclick>
 			<onclick>ActivateWindow(1110)</onclick>
 			<include>MediaMenu_Button</include>
 		</control>
-		<control type="radiobutton" id="204">
-			<label>$LOCALIZE[31120]</label>
-			<onclick>Skin.ToggleSetting(MainMenuCenter)</onclick>
-			<selected>Skin.HasSetting(MainMenuCenter)</selected>
-			<include>MediaMenu_RadioButton</include>
+		<control type="button" id="204">
+			<label>$LOCALIZE[31051]</label>
+			<label2>$VAR[MainMenuTextureLabelVar]</label2>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[31041] $LOCALIZE[31132],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
+			<include>MediaMenu_Button</include>
 		</control>
 		<control type="radiobutton" id="205">
 			<label>$LOCALIZE[31043]</label>
@@ -298,10 +333,9 @@
 		</control>
 		<control type="button" id="207">
 			<label>$LOCALIZE[736]</label>
-			<label2>$VAR[SubmenuStyleLabelVar]</label2>
-			<onclick condition="String.IsEmpty(Skin.String(SubmenuStyle))">Skin.SetString(SubmenuStyle,wide)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(SubmenuStyle),wide)">Skin.SetString(SubmenuStyle,shadow)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(SubmenuStyle),shadow)">Skin.Reset(SubmenuStyle)</onclick>
+			<label2>$VAR[MainMenuSubmenuBarLabelVar]</label2>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[31142],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
 			<include>MediaMenu_Button</include>
 		</control>
 		<control type="radiobutton" id="208">
@@ -353,7 +387,7 @@
 	</include>
 	<include name="MediaMenu_ViewsettingsInfo_Home">
 		<control type="label" id="201">
-			<label>$LOCALIZE[29915]</label>
+			<label>$LOCALIZE[31141]</label>
 			<include>MediaMenu_Label</include>
 		</control>
 		<control type="radiobutton" id="202">
@@ -389,10 +423,9 @@
 		</control>
 		<control type="button" id="207">
 			<label>$LOCALIZE[736]</label>
-			<label2>$VAR[InfoBarStyleLabelVar]</label2>
-			<onclick condition="String.IsEmpty(Skin.String(InfoBarStyle))">Skin.SetString(InfoBarStyle,wide)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(InfoBarStyle),wide)">Skin.SetString(InfoBarStyle,shadow)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(InfoBarStyle),shadow)">Skin.Reset(InfoBarStyle)</onclick>
+			<label2>$VAR[MainMenuSystemBarLabelVar]</label2>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[31141],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
 			<include>MediaMenu_Button</include>
 			<visible>!Skin.HasSetting(InfoBarLeftDisable) | !Skin.HasSetting(InfoBarDisableWeather) | !Skin.HasSetting(InfoBarDisableDate) | !Skin.HasSetting(InfoBarDisableTime)</visible>
 		</control>
@@ -415,9 +448,9 @@
 		</control>
 		<control type="button" id="211">
 			<label>$LOCALIZE[736]</label>
-			<label2>$VAR[RSSStyleLabelVar]</label2>
-			<onclick condition="String.IsEmpty(Skin.String(RSSStyle))">Skin.SetString(RSSStyle,shadow)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(RSSStyle),shadow)">Skin.Reset(RSSStyle)</onclick>
+			<label2>$VAR[MainMenuRSSBarLabelVar]</label2>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[31143],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
 			<include>MediaMenu_Button</include>
 			<visible>system.getbool(lookandfeel.enablerssfeeds)</visible>
 		</control>
@@ -435,14 +468,7 @@
 			<onclick condition="String.IsEqual(Skin.String(WidgetPosition),abovemenu)">Skin.SetString(WidgetPosition,belowmenu)</onclick>
 			<onclick condition="String.IsEqual(Skin.String(WidgetPosition),belowmenu)">Skin.Reset(WidgetPosition)</onclick>
 			<include>MediaMenu_Button</include>
-		</control>
-		<control type="button" id="202">
-			<label>Opacity</label>
-			<label2>$VAR[MainMenuStyleLabelVar]</label2>
-			<onclick>SetProperty(CustomSelect,Opacity,home)</onclick>
-			<onclick>ActivateWindow(1110)</onclick>
-			<include>MediaMenu_Button</include>
-		</control>
+		</control>`
 	</include>
 	<include name="MediaMenu_ViewsettingsNowPlaying_Home">
 		<control type="label" id="101">
@@ -563,7 +589,122 @@
 			<include>MediaMenu_Button</include>
 		</control>
 	</include>
-
+	<include name="MediaMenu_ViewsettingsColors_Home">
+		<control type="label" id="201">
+			<label>$LOCALIZE[14078]</label>
+			<font>Font28_Bold</font>
+			<textcolor>$VAR[MediaMenuHighlightColorVar]</textcolor>
+			<include>MediaMenu_Button</include>
+		</control>
+		<control type="button" id="202">
+			<label>$LOCALIZE[736]</label>
+			<label2>[COLOR $VAR[MainMenuStyleColorVar]]$VAR[MainMenuStyleColorLabelVar][/COLOR]</label2>
+			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuStyle.color,header=$LOCALIZE[736])</onclick>
+			<include>MediaMenu_Button</include>
+		</control>
+		<control type="button" id="203">
+			<label>$LOCALIZE[31051]</label>
+			<label2>[COLOR $VAR[MainMenuTextureColorVar]]$VAR[MainMenuTextureColorLabelVar][/COLOR]</label2>
+			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuTexture.color,header=$LOCALIZE[31051])</onclick>
+			<include>MediaMenu_Button</include>
+		</control>
+		<control type="button" id="204">
+			<label>$LOCALIZE[31048]</label>
+			<label2>[COLOR $VAR[MainMenuShadowColorVar]]$VAR[MainMenuShadowColorLabelVar][/COLOR]</label2>
+			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuShadow.color,header=$LOCALIZE[31048])</onclick>
+			<include>MediaMenu_Button</include>
+		</control>
+		<control type="button" id="205">
+			<label>$LOCALIZE[31134]</label>
+			<label2>[COLOR $VAR[MainMenuGradientColorVar]]$VAR[MainMenuGradientColorLabelVar][/COLOR]</label2>
+			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuGradient.color,header=$LOCALIZE[31134])</onclick>
+			<include>MediaMenu_Button</include>
+		</control>
+		<control type="button" id="206">
+			<label>$LOCALIZE[31138]</label>
+			<label2>[COLOR $VAR[MainMenuFocusTextColorVar]]$VAR[MainMenuFocusTextColorLabelVar][/COLOR]</label2>
+			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuFocusText.color,header=$LOCALIZE[31138])</onclick>
+			<include>MediaMenu_Button</include>
+		</control>
+		<control type="button" id="207">
+			<label>$LOCALIZE[31157]</label>
+			<label2>[COLOR $VAR[MainMenuNofocusTextColorVar]]$VAR[MainMenuNofocusTextColorLabelVar][/COLOR]</label2>
+			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuNofocusText.color,header=$LOCALIZE[31157])</onclick>
+			<include>MediaMenu_Button</include>
+		</control>
+		<control type="button" id="208">
+			<label>$LOCALIZE[31152]</label>
+			<label2>[COLOR $VAR[MainMenuFocusIconColorVar]]$VAR[MainMenuFocusIconColorLabelVar][/COLOR]</label2>
+			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuFocusIcon.color,header=$LOCALIZE[31152])</onclick>
+			<include>MediaMenu_Button</include>
+		</control>
+		<control type="button" id="209">
+			<label>$LOCALIZE[31158]</label>
+			<label2>[COLOR $VAR[MainMenuNofocusIconColorVar]]$VAR[MainMenuNofocusIconColorLabelVar][/COLOR]</label2>
+			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuNofocusIcon.color,header=$LOCALIZE[31158])</onclick>
+			<include>MediaMenu_Button</include>
+		</control>
+		<control type="button" id="210">
+			<label>$LOCALIZE[31049]</label>
+			<label2>[COLOR $VAR[MainMenuHighlightColorVar]]$VAR[MainMenuHighlightColorLabelVar][/COLOR]</label2>
+			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuHighlight.color,header=$LOCALIZE[31049])</onclick>
+			<include>MediaMenu_Button</include>
+		</control>
+		<control type="button" id="211">
+			<label>$LOCALIZE[31136]</label>
+			<label2>[COLOR $VAR[MainMenuTextColorVar]]$VAR[MainMenuTextColorLabelVar][/COLOR]</label2>
+			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuText.color,header=$LOCALIZE[31136])</onclick>
+			<include>MediaMenu_Button</include>
+		</control>
+		<control type="button" id="212">
+			<label>$LOCALIZE[31137]</label>
+			<label2>[COLOR $VAR[MainMenuSubTextColorVar]]$VAR[MainMenuSubTextColorLabelVar][/COLOR]</label2>
+			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuSubText.color,header=$LOCALIZE[31137])</onclick>
+			<include>MediaMenu_Button</include>
+		</control>
+		<control type="button" id="213">
+			<label>$LOCALIZE[31139]</label>
+			<label2>[COLOR $VAR[MainMenuListSeparatorColorVar]]$VAR[MainMenuListSeparatorColorLabelVar][/COLOR]</label2>
+			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuListSeparator.color,header=$LOCALIZE[31139])</onclick>
+			<include>MediaMenu_Button</include>
+		</control>
+		<control type="button" id="214">
+			<label>$LOCALIZE[31039]</label>
+			<label2>[COLOR $VAR[MainMenuWidgetColorVar]]$VAR[MainMenuWidgetColorLabelVar][/COLOR]</label2>
+			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuWidget.color,header=$LOCALIZE[31039])</onclick>
+			<include>MediaMenu_Button</include>
+		</control>
+		<control type="button" id="215">
+			<label>$LOCALIZE[31141]</label>
+			<label2>[COLOR $VAR[MainMenuSystemBarColorVar]]$VAR[MainMenuSystemBarColorLabelVar][/COLOR]</label2>
+			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuSystemBar.color,header=$LOCALIZE[31141])</onclick>
+			<include>MediaMenu_Button</include>
+		</control>
+		<control type="button" id="216">
+			<label>$LOCALIZE[31142]</label>
+			<label2>[COLOR $VAR[MainMenuSubmenuBarColorVar]]$VAR[MainMenuSubmenuBarColorLabelVar][/COLOR]</label2>
+			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuSubmenuBar.color,header=$LOCALIZE[31142])</onclick>
+			<include>MediaMenu_Button</include>
+		</control>
+		<control type="button" id="217">
+			<label>$LOCALIZE[31143]</label>
+			<label2>[COLOR $VAR[MainMenuRSSBarColorVar]]$VAR[MainMenuRSSBarColorLabelVar][/COLOR]</label2>
+			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuRSSBar.color,header=$LOCALIZE[31143])</onclick>
+			<include>MediaMenu_Button</include>
+		</control>
+		<control type="button" id="218">
+			<label>$LOCALIZE[33068]</label>
+			<label2>[COLOR $VAR[MainMenuBackgroundColorVar]]$VAR[MainMenuBackgroundColorLabelVar][/COLOR]</label2>
+			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuBackground.color,header=$LOCALIZE[33068])</onclick>
+			<include>MediaMenu_Button</include>
+		</control>
+		<control type="button" id="219">
+			<label>$LOCALIZE[31156]</label>
+			<label2>[COLOR $VAR[MainMenuWeatherIconColorVar]]$VAR[MainMenuWeatherIconColorLabelVar][/COLOR]</label2>
+			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuWeatherIcon.color,header=$LOCALIZE[31156])</onclick>
+			<include>MediaMenu_Button</include>
+		</control>
+	</include>
 
 	<!-- Videos common -->
 	<include name="MediaMenu_CommonViewsettings_Videos">
@@ -604,13 +745,13 @@
 		<control type="image">
 			<width>400</width>
 			<height>90</height>
-			<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+			<texture border="10" colordiffuse="$VAR[MediaMenuHighlightColorVar]">buttons/list-select-focus.png</texture>
 			<visible>ControlGroup(6061).HasFocus</visible>
 		</control>
 		<control type="image">
 			<width>400</width>
 			<height>90</height>
-			<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-nofocus.png</texture>
+			<texture border="10" colordiffuse="$VAR[MediaMenuListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
 			<visible>!ControlGroup(6061).HasFocus</visible>
 		</control>
 		<control type="group" id="6061">
@@ -901,12 +1042,6 @@
 		<control type="button" id="105">
 			<label>$LOCALIZE[14302]</label>
 			<onclick>RunScript(script.skin.helper.service,action=setresourceaddon,skinstring=WeatherIcons,addontype=resource.images.weathericons)</onclick>
-			<include>MediaMenu_Button</include>
-		</control>
-		<control type="button" id="106">
-			<label>$LOCALIZE[22032]</label>
-			<onclick>SetProperty(CustomSelect,$LOCALIZE[8] $LOCALIZE[31105],home)</onclick>
-			<onclick>ActivateWindow(1110)</onclick>
 			<include>MediaMenu_Button</include>
 		</control>
 	</include>

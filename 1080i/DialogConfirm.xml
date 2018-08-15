@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
 	<defaultcontrol>9000</defaultcontrol>
-	<include>Animation_Dialog_Popup_Window</include>
+	<include>AnimationDialogPopupWindow</include>
 	<controls>
 		<control type="group">
-			<include>Dialog_BackgroundFade</include>
+			<include>DialogBackgroundFade</include>
 			<centertop>50%</centertop>
 			<centerleft>50%</centerleft>
 			<height>470</height>
 			<width>955</width>
 			<control type="image">
-				<texture colordiffuse="$VAR[PanelColorVar]" border="40">panels/dialog-back.png</texture>
+				<texture colordiffuse="$VAR[DialogShadowColorVar]" border="50">$VAR[DialogShadowVar]</texture>
+			</control>
+			<control type="image">
+				<texture colordiffuse="$VAR[DialogStyleColorVar]" border="40">$VAR[DialogStyleVar]</texture>
+			</control>
+			<control type="image">
+				<top>20</top>
+				<left>20</left>
+				<right>20</right>
+				<bottom>20</bottom>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<texture diffuse="diffuse/rounded10-905x430.png" colordiffuse="$VAR[DialogTextureColorVar]">$INFO[Skin.String(DialogTexture.texture)]</texture>
+				<visible>!Skin.HasSetting(DialogSquare.texture)</visible>
+			</control>
+			<control type="image">
+				<top>20</top>
+				<left>20</left>
+				<right>20</right>
+				<bottom>20</bottom>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<texture colordiffuse="$VAR[DialogTextureColorVar]">$INFO[Skin.String(DialogTexture.texture)]</texture>
+				<visible>Skin.HasSetting(DialogSquare.texture)</visible>
+			</control>
+			<control type="image">
+				<texture colordiffuse="$VAR[DialogEmbossColorVar]" border="40">$VAR[DialogEmbossVar]</texture>
 			</control>
 			<control type="label" id="1">
 				<top>20</top>
@@ -19,13 +43,13 @@
 				<height>70</height>
 				<font>Font33_Bold</font>
 				<align>center</align>
-				<textcolor>$VAR[HighlightColorVar]</textcolor>
+				<textcolor>$VAR[DialogHighlightColorVar]</textcolor>
 			</control>
 			<control type="image">
 				<left>20</left>
 				<right>20</right>
 				<height>90</height>
-				<texture colordiffuse="$VAR[PanelColorVar]" border="30">buttons/list-select-nofocus.png</texture>
+				<texture colordiffuse="$VAR[DialogListSeparatorColorVar]" border="30">buttons/list-select-nofocus.png</texture>
 			</control>
 			<control type="textbox" id="9">
 				<description>dialog line 1/2/3</description>
@@ -35,6 +59,7 @@
 				<height>170</height>
 				<align>center</align>
 				<font>Font30_Reg</font>
+				<textcolor>$VAR[DialogTextColorVar]</textcolor>
 				<autoscroll time="2000" delay="2000" repeat="4000">True</autoscroll>
 			</control>
 			<control type="progress" id="20">
@@ -42,6 +67,7 @@
 				<top>310</top>
 				<width>815</width>
 				<info>System.Progressbar</info>
+				<midtexture colordiffuse="$VAR[DialogHighlightColorVar]" border="8">panels/progress-control/progress-mid.png</midtexture>
 			</control>
 			<control type="grouplist" id="9000">
 				<left>60</left>
@@ -51,13 +77,13 @@
 				<orientation>horizontal</orientation>
 				<align>center</align>
 				<itemgap>20</itemgap>
-				<include content="Dialog_Button_Confirm">
+				<include content="DialogButtonConfirm">
 					<param name="id">11</param>
 				</include>
-				<include content="Dialog_Button_Confirm">
+				<include content="DialogButtonConfirm">
 					<param name="id">10</param>
 				</include>
-				<include content="Dialog_Button_Confirm">
+				<include content="DialogButtonConfirm">
 					<param name="id">12</param>
 				</include>
 			</control>

@@ -6,7 +6,6 @@
 		<!-- Backdrop -->
 		<include content="Background_Default">
 			<param name="imagepath">$VAR[WeatherFanartVar]</param>
-			<param name="backgroundcolor">WeatherBackground.Color.base</param>
 		</include>
 		<!-- Floor -->
 		<control type="group">
@@ -46,9 +45,10 @@
 				</itemlayout>
 				<focusedlayout height="67">
 					<control type="image">
-						<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+						<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
 					</control>
 					<control type="label">
+						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
 						<include>Settings_LeftButton</include>
 						<label>$INFO[ListItem.Label]</label>
 					</control>
@@ -116,7 +116,7 @@
 					<width>647</width>
 					<height>113</height>
 					<aspectratio align="right">keep</aspectratio>
-					<texture colordiffuse="grey">$INFO[Window(weather).Property(WeatherProviderLogo)]</texture>
+					<texture>$INFO[Window(weather).Property(WeatherProviderLogo)]</texture>
 				</control>
 				<control type="multiimage">
 					<left>20</left>
@@ -140,14 +140,17 @@
 					<control type="label">
 						<height>80</height>
 						<font>Font80_Bold</font>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
 						<label>$INFO[Window(weather).Property(Current.Temperature)]$INFO[System.TemperatureUnits]</label>
 					</control>
 					<control type="label">
 						<height>40</height>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 						<label>$INFO[Window(weather).Property(Current.Condition)]</label>
 					</control>
 					<control type="label">
 						<height>40</height>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 						<label>$LOCALIZE[402] $INFO[Window(weather).Property(Current.FeelsLike)]$INFO[System.TemperatureUnits]</label>
 					</control>
 				</control>
@@ -160,12 +163,13 @@
 					<control type="label">
 						<height>40</height>
 						<font>Font28_Bold_Caps</font>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
 						<label>$INFO[Window(weather).Property(Location)]</label>
 					</control>
 					<control type="label">
 						<height>40</height>
-						<textcolor>grey2</textcolor>
 						<font>Font28_Reg</font>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 						<label>$LOCALIZE[12014] $INFO[Window(weather).Property(Updated)]</label>
 					</control>
 				</control>
@@ -180,29 +184,29 @@
 						<height>40</height>
 						<align>right</align>
 						<font>Font36_Reg</font>
-						<textcolor>grey</textcolor>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 						<label>[COLOR white]$LOCALIZE[406][/COLOR] $INFO[Window(weather).Property(Current.Humidity)]</label>
 					</control>
 					<control type="label">
 						<height>40</height>
 						<align>right</align>
 						<font>Font36_Reg</font>
-						<textcolor>grey</textcolor>
-						<label>[COLOR white]$LOCALIZE[404][/COLOR] $INFO[Window(weather).Property(Current.Wind)]</label>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+						<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[404][/COLOR] $INFO[Window(weather).Property(Current.Wind)]</label>
 					</control>
 					<control type="label">
 						<height>40</height>
 						<align>right</align>
 						<font>Font36_Reg</font>
-						<textcolor>grey</textcolor>
-						<label>[COLOR white]$LOCALIZE[33027][/COLOR] [LOWERCASE]$INFO[Window(weather).Property(Today.Sunrise)][/LOWERCASE]</label>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+						<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[33027][/COLOR] [LOWERCASE]$INFO[Window(weather).Property(Today.Sunrise)][/LOWERCASE]</label>
 					</control>
 					<control type="label">
 						<height>40</height>
 						<align>right</align>
 						<font>Font36_Reg</font>
-						<textcolor>grey</textcolor>
-						<label>[COLOR white]$LOCALIZE[33028][/COLOR] [LOWERCASE]$INFO[Window(weather).Property(Today.Sunset)][/LOWERCASE]</label>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+						<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[33028][/COLOR] [LOWERCASE]$INFO[Window(weather).Property(Today.Sunset)][/LOWERCASE]</label>
 					</control>
 				</control>
 				<control type="grouplist" id="8001">

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
-	<defaultcontrol always="true">8000</defaultcontrol>
+	<defaultcontrol always="true">60</defaultcontrol>
 	<include>Animation_Dialog_Popup_Window</include>
 	<controls>
 		<control type="group">
@@ -10,42 +10,28 @@
 				<param name="id" value="1" />
 			</include>
 			<control type="textbox" id="5">
-				<left>70</left>
-				<right>70</right>
+				<left>60</left>
+				<right>60</right>
 				<top>110</top>
 				<bottom>92</bottom>
 				<font>Font36_Reg</font>
 				<pagecontrol>60</pagecontrol>
+				<textcolor>$VAR[DialogTextColorVar]</textcolor>
 			</control>
 			<control type="label">
 				<bottom>20</bottom>
-				<right>70</right>
+				<right>60</right>
 				<width>460</width>
 				<height>50</height>
 				<align>right</align>
 				<font>Font25_Cond</font>
-				<textcolor>grey</textcolor>
+				<textcolor>$VAR[DialogSubTextColorVar]</textcolor>
 				<label>$INFO[Container(5).CurrentPage,$LOCALIZE[31000] ]$INFO[Container(5).NumPages,/]</label>
-			</control>
-			<control type="grouplist" id="8000">
-				<right>60</right>
-				<top>20</top>
-				<width>400</width>
-				<onleft>60</onleft>
-				<ondown>60</ondown>
-				<align>right</align>
-				<itemgap>10</itemgap>
-				<orientation>horizontal</orientation>
-				<include content="Dialog_Button_TopRight">
-					<param name="id">8001</param>
-					<param name="label">$LOCALIZE[15067]</param>
-					<param name="onclick">Action(close)</param>
-				</include>
 			</control>
 			<control type="scrollbar" id="60">
 				<top>90</top>
-				<height>630</height>
-				<onright>8000</onright>
+				<bottom>70</bottom>
+				<include>DialogScrollBar</include>
 			</control>
 		</control>
 	</controls>
