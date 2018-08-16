@@ -4,8 +4,7 @@
 	<include>AnimationDialogPopupWindow</include>
 	<controls>
 		<control type="group">
-			<include>DialogBackgroundFade</include>
-			<include content="Dialog_Background">
+			<include content="DialogBackground">
 				<param name="width" value="1220" />
 				<param name="height" value="790" />
 				<param name="label">$LOCALIZE[1036]</param>
@@ -19,7 +18,6 @@
 				<onright>8000</onright>
 				<pagecontrol>60</pagecontrol>
 				<include content="DialogListDefault">
-					<param name="width" value="858" />
 					<param name="id" value="450" />
 				</include>
 			</control>
@@ -30,12 +28,28 @@
 				<width>4</width>
 				<texture colordiffuse="$VAR[DialogListSeparatorColorVar]">panels/line-vertical.png</texture>
 			</control>
+			<control type="image">
+				<visible>!Integer.IsGreater(Container(450).NumItems,8)</visible>
+				<bottom>70</bottom>
+				<left>20</left>
+				<right>20</right>
+				<height>70</height>
+				<texture border="30" colordiffuse="$VAR[DialogListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+			</control>
+			<control type="image">
+				<visible>Integer.IsGreater(Container(450).NumItems,8)</visible>
+				<bottom>70</bottom>
+				<left>858</left>
+				<right>20</right>
+				<height>70</height>
+				<texture border="30" colordiffuse="$VAR[DialogListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+			</control>
 			<control type="grouplist" id="8000">
 				<right>50</right>
 				<top>100</top>
 				<width>281</width>
 				<onleft>450</onleft>
-				<include content="DialogButtonDefault">
+				<include content="DialogButtonAction">
 					<param name="id">8001</param>
 					<param name="label">$LOCALIZE[15067]</param>
 					<param name="onclick">Action(close)</param>
@@ -52,9 +66,6 @@
 				<aspectratio align="center" aligny="bottom">keep</aspectratio>
 			</control>
 			<control type="scrollbar" id="60">
-				<left>1</left>
-				<top>88</top>
-				<bottom>80</bottom>
 				<onright>450</onright>
 				<include>DialogScrollBar</include>
 			</control>

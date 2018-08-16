@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">5</defaultcontrol>
-	<include>Animation_Dialog_Popup_Window</include>
+	<include>AnimationDialogPopupWindow</include>
 	<controls>
 		<control type="group">
-			<visible>!Window.IsVisible(sliderdialog) + !Window.IsVisible(filebrowser)</visible>
-			<include>Animation_Dialog_Popup_Visible</include>
-			<include content="Dialog_Background">
+			<visible>!Window.IsVisible(DialogSlider.xml) + !Window.IsVisible(filebrowser)</visible>
+			<include>AnimationDialogPopupVisible</include>
+			<include content="DialogBackground">
 				<param name="width" value="1220" />
 				<param name="height" value="790" />
 				<param name="id" value="2" />
@@ -14,83 +14,93 @@
 			<control type="grouplist" id="5">
 				<left>20</left>
 				<top>90</top>
-				<width>838</width>
+				<width>858</width>
 				<height>630</height>
-				<pagecontrol>60</pagecontrol>
-				<onright>8000</onright>
 				<onleft>60</onleft>
+				<onright>8000</onright>
+				<pagecontrol>60</pagecontrol>
 			</control>
 			<control type="button" id="7">
-				<include>Dialog_Button_Wide</include>
+				<include>DialogButton</include>
 			</control>
 			<control type="radiobutton" id="8">
-				<include>Dialog_RadioButton_Wide</include>
+				<include>DialogRadioButton</include>
 			</control>
 			<control type="spincontrolex" id="9">
-				<include>Dialog_Button_Wide</include>
+				<include>DialogButton</include>
 			</control>
 			<control type="edit" id="12">
-				<include>Dialog_Button_Wide</include>
+				<include>DialogButton</include>
 			</control>
 			<control type="sliderex" id="13">
-				<include>Dialog_Button_Wide</include>
+				<include>DialogButton</include>
 			</control>
 			<control type="label" id="14">
-				<font>Font28_Bold</font>
-				<textcolor>$VAR[HighlightColorVar]</textcolor>
-				<include>Dialog_Button_Wide</include>
+				<include>DialogLabel</include>
 			</control>
 			<control type="image">
 				<top>90</top>
-				<left>858</left>
+				<left>878</left>
 				<bottom>71</bottom>
 				<width>4</width>
-				<texture>panels/line-vertical-dark.png</texture>
+				<texture colordiffuse="$VAR[DialogListSeparatorColorVar]">panels/line-vertical.png</texture>
 			</control>
-			<control type="label">
-				<bottom>20</bottom>
-				<right>70</right>
-				<width>460</width>
-				<height>50</height>
-				<align>right</align>
-				<font>Font25_Cond</font>
-				<textcolor>grey</textcolor>
-				<label>$INFO[Container(5).CurrentItem,$LOCALIZE[31001] ]$INFO[Container(5).NumItems,/]</label>
-				<visible>ControlGroup(5).HasFocus</visible>
+			<control type="image">
+				<visible>!Integer.IsGreater(Container(5).NumItems,8)</visible>
+				<bottom>70</bottom>
+				<left>20</left>
+				<right>20</right>
+				<height>70</height>
+				<texture border="30" colordiffuse="$VAR[DialogListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
 			</control>
-			<control type="label">
-				<bottom>20</bottom>
-				<right>70</right>
-				<width>460</width>
-				<height>50</height>
-				<align>right</align>
-				<font>Font25_Cond</font>
-				<textcolor>grey</textcolor>
-				<label>$INFO[Container(5).NumItems,$LOCALIZE[31001] 1/]</label>
-				<visible>!ControlGroup(5).HasFocus</visible>
+			<control type="image">
+				<visible>Integer.IsGreater(Container(5).NumItems,8)</visible>
+				<bottom>70</bottom>
+				<left>858</left>
+				<right>20</right>
+				<height>70</height>
+				<texture border="30" colordiffuse="$VAR[DialogListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
 			</control>
 			<control type="grouplist" id="8000">
 				<right>50</right>
-				<top>110</top>
-				<width>280</width>
+				<top>100</top>
+				<width>281</width>
 				<onleft>5</onleft>
-				<ondown>5</ondown>
-				<itemgap>10</itemgap>
-				<orientation>horizontal</orientation>
-				<include content="Dialog_Button_Default">
+				<include content="DialogButtonAction">
 					<param name="id">28</param>
 				</include>
-				<include content="Dialog_Button_Default">
+				<include content="DialogButtonAction">
 					<param name="id">29</param>
 				</include>
-				<include content="Dialog_Button_Default">
+				<include content="DialogButtonAction">
 					<param name="id">30</param>
 				</include>
 			</control>
 			<control type="scrollbar" id="60">
-				<top>90</top>
-				<height>630</height>
 				<onright>5</onright>
+				<include>DialogScrollBar</include>
+			</control>
+			<control type="label">
+				<visible>ControlGroup(5).HasFocus</visible>
+				<bottom>21</bottom>
+				<right>60</right>
+				<width>460</width>
+				<height>50</height>
+				<align>right</align>
+				<font>Font25_Cond</font>
+				<textcolor>$VAR[DialogSubTextColorVar]</textcolor>
+				<label>$INFO[Container(5).CurrentItem,$LOCALIZE[31001] ]$INFO[Container(5).NumItems,/]</label>
+			</control>
+			<control type="label">
+				<visible>!ControlGroup(5).HasFocus</visible>
+				<bottom>21</bottom>
+				<right>60</right>
+				<width>460</width>
+				<height>50</height>
+				<align>right</align>
+				<font>Font25_Cond</font>
+				<textcolor>$VAR[DialogSubTextColorVar]</textcolor>
+				<label>$INFO[Container(5).NumItems,$LOCALIZE[31001] 1/]</label>
 			</control>
 		</control>
 	</controls>
