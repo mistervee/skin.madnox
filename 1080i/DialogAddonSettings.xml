@@ -1,46 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">3</defaultcontrol>
-	<include>Animation_Dialog_Popup_Window</include>
+	<include>AnimationDialogPopupWindow</include>
 	<controls>
 		<control type="group">
 			<visible>!Window.IsVisible(virtualkeyboard) + !Window.IsVisible(filebrowser) + !Window.IsVisible(okdialog)</visible>
-			<include>Animation_Dialog_Popup_Visible</include>
-			<include content="Dialog_Background">
+			<include>AnimationDialogPopup_Visible</include>
+			<include content="DialogBackground">
 				<param name="width" value="1741" />
 				<param name="height" value="790" />
 				<param name="id" value="2" />
+				<param name="diffusetexture">diffuse/rounded10-1701x750.png</param>
 			</include>
 			<!-- Left -->
 			<control type="grouplist" id="3">
 				<left>20</left>
 				<top>90</top>
-				<width>400</width>
+				<width>340</width>
 				<height>630</height>
 				<onright>5</onright>
 			</control>
-			<control type="image">
-				<right>40</right>
-				<width>280</width>
-				<height>280</height>
-				<bottom>90</bottom>
-				<bordersize>10</bordersize>
-				<texture>$INFO[System.AddonIcon(Window.Property(Addon.ID))]</texture>
-				<bordertexture border="10">thumbs/thumb-frame.png</bordertexture>
-				<aspectratio align="center" aligny="bottom">keep</aspectratio>
-			</control>
 			<control type="button" id="10">
 				<width>340</width>
-				<include>Dialog_Button</include>
+				<include>DialogButton</include>
 			</control>
 			<control type="image">
 				<left>360</left>
-				<top>90</top>
-				<width>4</width>
-				<height>629</height>
-				<texture>panels/line-vertical-dark.png</texture>
+				<include>DialogVerticalSeparator</include>
 			</control>
-			<!-- Right -->
+			<!-- Middle -->
 			<control type="grouplist" id="5">
 				<left>361</left>
 				<top>90</top>
@@ -51,82 +39,75 @@
 				<onright condition="Control.IsVisible(60)">60</onright>
 				<onright condition="!Control.IsVisible(60)">8000</onright>
 			</control>
-			<control type="label">
-				<bottom>20</bottom>
-				<right>70</right>
-				<width>460</width>
-				<height>50</height>
-				<align>right</align>
-				<font>Font25_Cond</font>
-				<textcolor>grey</textcolor>
-				<label>$INFO[Container(5).CurrentItem,$LOCALIZE[31001] ]$INFO[Container(5).NumItems,/]</label>
-				<visible>ControlGroup(5).HasFocus</visible>
-			</control>
-			<control type="label">
-				<bottom>20</bottom>
-				<right>70</right>
-				<width>460</width>
-				<height>50</height>
-				<align>right</align>
-				<font>Font25_Cond</font>
-				<textcolor>grey</textcolor>
-				<label>$INFO[Container(5).NumItems,$LOCALIZE[31001] 1/]</label>
-				<visible>!ControlGroup(5).HasFocus</visible>
-			</control>
 			<control type="label" id="14">
-				<font>Font28_Bold</font>
-				<textcolor>$VAR[HighlightColorVar]</textcolor>
-				<include>Dialog_Button_Wide</include>
+				<width>1038</width>
+				<include>DialogLabel</include>
 			</control>
 			<control type="button" id="7">
-				<include>Dialog_Button_Wide</include>
+				<width>1038</width>
+				<include>DialogButton</include>
 			</control>
 			<control type="radiobutton" id="8">
-				<include>Dialog_RadioButton_Wide</include>
+				<width>1038</width>
+				<include>DialogRadioButtonAddonSettings</include>
 			</control>
 			<control type="spincontrolex" id="9">
-				<include>Dialog_Button_Wide</include>
+				<width>1038</width>
+				<include>DialogButton</include>
 			</control>
 			<control type="sliderex" id="13">
-				<include>Dialog_Button_Wide</include>
+				<width>1038</width>
+				<include>DialogButton</include>
 			</control>
 			<control type="edit" id="12">
-				<include>Dialog_Button_Wide</include>
+				<width>1038</width>
+				<include>DialogButton</include>
 			</control>
 			<control type="image">
 				<left>1399</left>
-				<top>90</top>
-				<width>4</width>
-				<height>629</height>
-				<texture>panels/line-vertical-dark.png</texture>
-			</control>
-			<control type="scrollbar" id="60">
-				<left>1380</left>
-				<top>90</top>
-				<height>630</height>
-				<onleft>5</onleft>
-				<onright>8000</onright>
+				<include>DialogVerticalSeparator</include>
 			</control>
 			<!-- Buttons -->
 			<control type="grouplist" id="8000">
-				<right>40</right>
-				<top>110</top>
-				<width>280</width>
+				<right>50</right>
+				<top>100</top>
+				<width>281</width>
 				<onleft condition="Control.IsVisible(60)">60</onleft>
 				<onleft condition="!Control.IsVisible(60)">5</onleft>
-				<itemgap>10</itemgap>
-				<include content="Dialog_Button_Default">
+				<include content="DialogButtonAction">
 					<param name="id">28</param>
 					<param name="label">$LOCALIZE[186]</param>
 				</include>
-				<include content="Dialog_Button_Default">
+				<include content="DialogButtonAction">
 					<param name="id">29</param>
 					<param name="label">$LOCALIZE[222]</param>
 				</include>
-				<include content="Dialog_Button_Default">
+				<include content="DialogButtonAction">
 					<param name="id">30</param>
 					<param name="label">$LOCALIZE[409]</param>
 				</include>
+			</control>
+			<include content="DialogImage">
+				<param name="texture">$INFO[System.AddonIcon(Window.Property(Addon.ID))]</param>
+			</include>
+			<control type="image">
+				<include>DialogHorizontalSeparator</include>
+			</control>
+			<control type="label">
+				<visible>ControlGroup(5).HasFocus</visible>
+				<include>DialogItemCountLabel</include>
+				<label>$INFO[Container(5).CurrentItem,$LOCALIZE[31001] ]$INFO[Container(5).NumItems,/]</label>
+			</control>
+			<control type="label">
+				<visible>!ControlGroup(5).HasFocus</visible>
+				<include>DialogItemCountLabel</include>
+				<label>$INFO[Container(5).NumItems,$LOCALIZE[31001] 1/]</label>
+			</control>
+			<control type="scrollbar" id="60">
+				<left>1380</left>
+				<onleft>5</onleft>
+				<onright>8000</onright>
+				<include>DialogScrollBar</include>
 			</control>
 		</control>
 	</controls>

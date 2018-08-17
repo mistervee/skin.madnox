@@ -1,110 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
-	<defaultcontrol always="true">3110</defaultcontrol>
-	<include>Animation_Dialog_Popup_Window</include>
+	<defaultcontrol>3110</defaultcontrol>
+	<include>AnimationDialogPopupWindow</include>
 	<controls>
 		<control type="group">
 			<visible>!Window.IsActive(DialogSelect.xml) + !Window.IsActive(virtualkeyboard) + !Window.IsActive(DialogNumeric.xml)</visible>
-			<include>Animation_Dialog_Popup_Visible</include>
-			<include content="Dialog_Background">
-				<param name="width" value="950" />
+			<include>AnimationDialogPopupVisible</include>
+			<include content="DialogBackground">
+				<param name="width" value="917" />
 				<param name="height" value="510" />
+				<param name="id">1</param>
+				<param name="diffusetexture">diffuse/rounded10-877x470.png</param>
 			</include>
+			<control type="button" id="9000">
+				<onleft>3110</onleft>
+				<ondown>3110</ondown>
+				<include>DialogButtonClose</include>
+			</control>
 			<!-- Left -->
 			<control type="grouplist" id="9">
 				<left>20</left>
 				<top>90</top>
 				<width>350</width>
 				<height>420</height>
-				<onright>3110</onright>
+				<onright>60</onright>
 				<!-- Edit manual -->
 				<control type="button" id="3010">
+					<width>350</width>
+					<include>DialogButton</include>
 					<label>$ADDON[script.skin.helper.colorpicker 32050]</label>
-					<include>Dialog_Button_ColorPicker</include>
 				</control>
 				<!-- Opacity slider -->
 				<control type="slider" id="3015">
-					<include>Dialog_Button_ColorPicker</include>
+					<width>350</width>
+					<include>DialogButton</include>
 					<texturesliderbar />
 					<textureslidernib />
 					<textureslidernibfocus />
 				</control>
 				<!-- Choose color palette -->
 				<control type="button" id="3030">
+					<width>350</width>
+					<include>DialogButton</include>
 					<label>$ADDON[script.skin.helper.colorpicker 32141]</label>
-					<include>Dialog_Button_ColorPicker</include>
 				</control>
 				<!-- Save button -->
 				<control type="button" id="3012">
+					<width>350</width>
+					<include>DialogButton</include>
 					<label>$LOCALIZE[732]</label>
-					<include>Dialog_Button_ColorPicker</include>
 				</control>
 				<!-- None (reset) -->
 				<control type="button" id="3011">
+					<width>350</width>
+					<texturenofocus />
+					<include>DialogButton</include>
 					<label>$LOCALIZE[13007]</label>
-					<include>Dialog_Button_ColorPicker</include>
 				</control>
 			</control>
 			<control type="image">
-				<left>370</left>
 				<top>90</top>
+				<left>370</left>
+				<bottom>71</bottom>
 				<width>4</width>
-				<height>348</height>
-				<texture colordiffuse="$VAR[PanelColorVar]">panels/line-vertical-dark.png</texture>
+				<texture colordiffuse="$VAR[DialogListSeparatorColorVar]">panels/line-vertical.png</texture>
+			</control>
+			<control type="image">
+				<bottom>70</bottom>
+				<left>20</left>
+				<right>20</right>
+				<height>70</height>
+				<texture border="30" colordiffuse="$VAR[DialogListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
 			</control>
 			<!-- Slider Focus -->
 			<control type="group">
-				<left>20</left>
 				<top>160</top>
+				<left>20</left>
 				<height>70</height>
+				<control type="image">
+					<visible>Control.HasFocus(3015)</visible>
+					<width>350</width>
+					<texture border="10" colordiffuse="$VAR[DialogHighlightColorVar]">buttons/list-select-focus.png</texture>
+				</control>
+				<control type="image">
+					<visible>!Control.HasFocus(3015)</visible>
+					<width>350</width>
+					<texture border="30" colordiffuse="$VAR[DialogListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+				</control>
 				<control type="label">
+					<visible>Control.HasFocus(3015)</visible>
+					<width>350</width>
+					<height>70</height>
+					<textoffsetx>40</textoffsetx>
 					<textcolor>$VAR[DialogFocusTextColorVar]</textcolor>
-					<include>Dialog_Button_ColorPicker</include>
 					<label>$ADDON[script.skin.helper.colorpicker 32049]$INFO[Control.Getlabel(3015), ]</label>
-					<visible>Control.HasFocus(3015)</visible>
 				</control>
 				<control type="label">
-					<include>Dialog_Button_ColorPicker</include>
+					<visible>!Control.HasFocus(3015)</visible>
+					<width>350</width>
+					<height>70</height>
+					<textoffsetx>40</textoffsetx>
+					<textcolor>$VAR[DialogSubTextColorVar]</textcolor>
 					<label>$ADDON[script.skin.helper.colorpicker 32049]$INFO[Control.Getlabel(3015), ]</label>
-					<textcolor>grey</textcolor>
-					<visible>!Control.HasFocus(3015)</visible>
-				</control>
-				<control type="image">
-					<width>350</width>
-					<texture colordiffuse="$VAR[DialogHighlightColorVar]" border="10">buttons/list-select-focus.png</texture>
-					<visible>Control.HasFocus(3015)</visible>
-				</control>
-				<control type="image">
-					<width>350</width>
-					<texture colordiffuse="$VAR[PanelColorVar]" border="30">buttons/list-select-nofocus.png</texture>
-					<visible>!Control.HasFocus(3015)</visible>
 				</control>
 			</control>
 			<!-- Color picker panel -->
 			<control type="panel" id="3110">
-				<left>385</left>
-				<top>100</top>
+				<left>391</left>
+				<top>110</top>
 				<width>498</width>
-				<height>332</height>
+				<height>312</height>
 				<pagecontrol>60</pagecontrol>
-				<onleft>9</onleft>
-				<onright>60</onright>
-				<onup>8000</onup>
+				<onleft>60</onleft>
+				<onright>9000</onright>
+				<onup>9000</onup>
 				<preloaditems>4</preloaditems>
 				<pagecontrol>60</pagecontrol>
-				<itemlayout height="83" width="83">
+				<itemlayout height="78" width="78">
 					<control type="image">
-						<width>78</width>
-						<height>78</height>
+						<width>76</width>
+						<height>76</height>
 						<texture>$INFO[ListItem.Icon]</texture>
 					</control>
 				</itemlayout>
-				<focusedlayout height="83" width="83">
+				<focusedlayout height="78" width="78">
 					<control type="group">
 						<animation effect="zoom" time="200" tween="sine" easing="inout" start="100" end="130" center="auto">Focus</animation>
 						<control type="image">
-							<width>78</width>
-							<height>78</height>
+							<width>76</width>
+							<height>76</height>
 							<texture border="5">$INFO[ListItem.Icon]</texture>
 							<bordertexture border="5">colors/black.png</bordertexture>
 							<bordersize>5</bordersize>
@@ -113,8 +137,8 @@
 				</focusedlayout>
 			</control>
 			<control type="label">
-				<bottom>20</bottom>
-				<right>70</right>
+				<bottom>21</bottom>
+				<right>60</right>
 				<width>460</width>
 				<height>50</height>
 				<align>right</align>
@@ -123,35 +147,19 @@
 				<label>$INFO[Container(3110).NumItems,, $LOCALIZE[14078]]$INFO[Container(3110).CurrentPage, - $LOCALIZE[31000] (]$INFO[Container(3110).NumPages,/,)]</label>
 			</control>
 			<control type="label">
-				<bottom>20</bottom>
-				<left>66</left>
+				<bottom>21</bottom>
+				<left>60</left>
 				<width>460</width>
 				<height>50</height>
 				<font>Font25_Cond</font>
-				<textcolor>grey</textcolor>
-				<label>[COLOR $INFO[Window.Property(colorstring)]]$INFO[Window.Property(colorstring), ][/COLOR]</label>
-			</control>
-			<control type="grouplist" id="8000">
-				<right>60</right>
-				<top>20</top>
-				<width>400</width>
-				<onleft>3110</onleft>
-				<onright>60</onright>
-				<ondown>3110</ondown>
-				<align>right</align>
-				<itemgap>10</itemgap>
-				<orientation>horizontal</orientation>
-				<include content="Dialog_Button_TopRight">
-					<param name="id">9002</param>
-					<param name="label">$LOCALIZE[222]</param>
-					<param name="onclick">Action(close)</param>
-				</include>
+				<textcolor>$VAR[DialogSubTextColorVar]</textcolor>
+				<label>$VAR[ColorPickerLabelVar]</label>
 			</control>
 			<control type="scrollbar" id="60">
-				<onleft>3110</onleft>
-				<left>352</left>
-				<top>90</top>
-				<bottom>70</bottom>
+				<onleft>9</onleft>
+				<onright>3110</onright>
+				<left>350</left>
+				<include>DialogScrollBar</include>
 			</control>
 		</control>
 	</controls>

@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window id="1110" type="dialog">
 	<defaultcontrol always="true">100</defaultcontrol>
-	<include>Animation_Dialog_Popup_Window</include>
+	<include>AnimationDialogPopupWindow</include>
 	<onunload>ClearProperty(CustomSelect,home)</onunload>
 	<controls>
 		<control type="group">
-			<visible>!Window.IsActive(DialogSelect.xml) + !Window.IsActive(script-skin_helper_service-ColorPicker.xml)</visible>
-			<include>Animation_Dialog_Popup_Visible</include>
-			<include content="Dialog_Background">
+			<visible>!Window.IsActive(DialogSelect.xml)</visible>
+			<include>AnimationDialogPopupVisible</include>
+			<include content="DialogBackground">
 				<param name="width" value="1030" />
 				<param name="height" value="580" />
 				<param name="label">$INFO[Window(home).Property(CustomSelect)]</param>
+				<param name="diffusetexture">diffuse/rounded10-990x540.png</param>
 			</include>
+			<control type="button" id="8000">
+				<onleft>100</onleft>
+				<ondown>100</ondown>
+				<include>DialogButtonClose</include>
+			</control>
 			<control type="list" id="100">
-				<left>20</left>
 				<top>90</top>
+				<left>20</left>
 				<width>990</width>
 				<height>420</height>
-				<pagecontrol>60</pagecontrol>
 				<onleft>60</onleft>
 				<onright>8000</onright>
-				<onup>8000</onup>
-				<include content="Dialog_List2_Default">
+				<pagecontrol>60</pagecontrol>
+				<include content="DialogListDefault">
 					<param name="id">100</param>
 				</include>
 				<content>
-					
 					<!-- Backgrounds -->
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[3] $LOCALIZE[31107])">SelectVideoBackground</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[3] $LOCALIZE[31107])">SelectMoviesBackground</include>
@@ -39,65 +43,42 @@
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[24001] $LOCALIZE[31107])">SelectAddonBackground</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[8] $LOCALIZE[31107])">SelectWeatherBackground</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[13000] $LOCALIZE[31107])">SelectSystemBackground</include>
-
 					<!-- Main menu -->
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31041] $LOCALIZE[31144])">SelectMainMenuLayout</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31041] $LOCALIZE[31129])">SelectMainMenuStyle</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31041] $LOCALIZE[31132])">SelectMainMenuTexture</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31141])">SelectMainMenuSystemBar</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31142])">SelectMainMenuSubmenuBar</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31143])">SelectMainMenuRSSBar</include>
-
-
-					<!-- Widget -->
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),Opacity)">SelectWidgetOpacity</include>
-
-					<!-- Style -->
+					<!-- Panels -->
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31056] $LOCALIZE[31129])">SelectPanelStyle</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31128] $LOCALIZE[31129])">SelectDialogStyle</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31041] $LOCALIZE[31129])">SelectMainMenuStyle</include>
-
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31047] $LOCALIZE[31129])">SelectFloorStyle</include>
-
-
-
-					
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31151] $LOCALIZE[31129])">SelectMediaMenuStyle</include>
-
-
-
-					<!-- Texture -->
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31056] $LOCALIZE[31132])">SelectPanelTexture</include>
+					<!-- Dialogs -->
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31128] $LOCALIZE[31129])">SelectDialogStyle</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31128] $LOCALIZE[31132])">SelectDialogTexture</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31041] $LOCALIZE[31132])">SelectMainMenuTexture</include>
-					
-
+					<!-- Top bar -->
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31042] $LOCALIZE[31132])">SelectTopbarTexture</include>
-
-
+					<!-- Floor -->
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31047] $LOCALIZE[31129])">SelectFloorStyle</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31047] $LOCALIZE[31132])">SelectFloorTexture</include>
+					<!-- Media menu -->
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31151] $LOCALIZE[31129])">SelectMediaMenuStyle</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31151] $LOCALIZE[31132])">SelectMediaMenuTexture</include>
-
-					<!-- Background effect -->
+					<!-- Background -->
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),Effects)">SelectBackgroundEffect</include>
-					<!-- Background overlay -->
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[33068] $LOCALIZE[31132])">SelectBackgroundTexture</include>
 				</content>
 			</control>
+			<control type="image">
+				<include>DialogHorizontalSeparator</include>
+			</control>
 			<control type="label">
-				<bottom>20</bottom>
-				<right>70</right>
-				<width>460</width>
-				<height>50</height>
-				<align>right</align>
-				<font>Font25_Cond</font>
-				<textcolor>$VAR[DialogSubTextColorVar]</textcolor>
+				<include>DialogItemCountLabel</include>
 				<label>$INFO[Container(100).NumItems,, $LOCALIZE[31001]]$INFO[Container(100).CurrentPage, - ]$INFO[Container(100).NumPages,/]</label>
 			</control>
-			<!-- Scroll bar -->
 			<control type="scrollbar" id="60">
-				<left>1</left>
-				<top>88</top>
-				<height>420</height>
 				<onright>100</onright>
+				<include>DialogScrollBar</include>
 			</control>
 		</control>
 	</controls>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
-	<defaultcontrol always="true">450</defaultcontrol>
+	<defaultcontrol>450</defaultcontrol>
 	<include>AnimationDialogPopupWindow</include>
 	<controls>
 		<control type="group">
@@ -22,27 +22,8 @@
 				</include>
 			</control>
 			<control type="image">
-				<top>90</top>
 				<left>878</left>
-				<bottom>71</bottom>
-				<width>4</width>
-				<texture colordiffuse="$VAR[DialogListSeparatorColorVar]">panels/line-vertical.png</texture>
-			</control>
-			<control type="image">
-				<visible>!Integer.IsGreater(Container(450).NumItems,8)</visible>
-				<bottom>70</bottom>
-				<left>20</left>
-				<right>20</right>
-				<height>70</height>
-				<texture border="30" colordiffuse="$VAR[DialogListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
-			</control>
-			<control type="image">
-				<visible>Integer.IsGreater(Container(450).NumItems,8)</visible>
-				<bottom>70</bottom>
-				<left>858</left>
-				<right>20</right>
-				<height>70</height>
-				<texture border="30" colordiffuse="$VAR[DialogListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+				<include>DialogVerticalSeparator</include>
 			</control>
 			<control type="grouplist" id="8000">
 				<right>50</right>
@@ -55,29 +36,19 @@
 					<param name="onclick">Action(close)</param>
 				</include>
 			</control>
+			<include content="DialogImage">
+				<param name="texture">$INFO[Container(450).ListItem.Icon]</param>
+			</include>
 			<control type="image">
-				<right>50</right>
-				<width>281</width>
-				<height>417</height>
-				<bottom>81</bottom>
-				<bordersize>10</bordersize>
-				<texture>$INFO[Container(450).ListItem.Icon]</texture>
-				<bordertexture border="10">thumbs/thumb-frame.png</bordertexture>
-				<aspectratio align="center" aligny="bottom">keep</aspectratio>
+				<include>DialogHorizontalSeparator</include>
+			</control>
+			<control type="label">
+				<include>DialogItemCountLabel</include>
+				<label>$INFO[Container(450).NumItems,, $LOCALIZE[31001]]$INFO[Container(450).CurrentPage, - ]$INFO[Container(450).NumPages,/]</label>
 			</control>
 			<control type="scrollbar" id="60">
 				<onright>450</onright>
 				<include>DialogScrollBar</include>
-			</control>
-			<control type="label">
-				<bottom>21</bottom>
-				<right>60</right>
-				<width>460</width>
-				<height>50</height>
-				<align>right</align>
-				<font>Font25_Cond</font>
-				<textcolor>$VAR[DialogSubTextColorVar]</textcolor>
-				<label>$INFO[Container(450).NumItems,, $LOCALIZE[31001]]$INFO[Container(450).CurrentPage, - ]$INFO[Container(450).NumPages,/]</label>
 			</control>
 		</control>
 	</controls>

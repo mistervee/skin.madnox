@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">10</defaultcontrol>
+	<animation effect="fade" delay="800" time="600">WindowOpen</animation>
+	<animation effect="fade" time="500">WindowClose</animation>
 	<include>onunload_SkinSettings</include>
 	<controls>
 		<control type="button" id="10">
@@ -14,9 +16,9 @@
 			<onclick>ReplaceWindow($INFO[System.StartupWindow])</onclick>
 			<onfocus>ReplaceWindow($INFO[System.StartupWindow])</onfocus>
 			<animation effect="fade" start="100" end="0" time="5000">Focus</animation>
-			<visible>!Skin.HasSetting(EnableStartupPlaylist)</visible>
+			<!-- <visible>!Skin.HasSetting(EnableStartupPlaylist)</visible> -->
 		</control>
-		<control type="button" id="10">
+		<!-- <control type="button" id="10">
 			<include>FullscreenDimensions</include>
 			<texturefocus />
 			<texturenofocus />
@@ -29,12 +31,20 @@
 			<onfocus>ReplaceWindow($INFO[System.StartupWindow])</onfocus>
 			<animation effect="fade" start="100" end="0" time="5000">Focus</animation>
 			<visible>Skin.HasSetting(EnableStartupPlaylist)</visible>
-		</control>
+		</control> -->
 		<control type="image">
 			<width>1920</width>
 			<height>1080</height>
-			<aspectratio scalediffuse="false">keep</aspectratio>
-			<texture>splash.png</texture>
+			<aspectratio>scale</aspectratio>
+			<texture colordiffuse="33ffffff">backgrounds/schimi.jpg</texture>
+		</control>
+		<control type="image">
+			<centerleft>50%</centerleft>
+			<centertop>50%</centertop>
+			<width>800</width>
+			<height>260</height>
+			<aspectratio>keep</aspectratio>
+			<texture>icons/logo.png</texture>
 		</control>
 		<control type="image">
 			<centerleft>50%</centerleft>
@@ -43,7 +53,7 @@
 			<height>100</height>
 			<aspectratio>keep</aspectratio>
 			<animation effect="rotate" end="-360" center="auto" time="2000" loop="true" condition="true">Conditional</animation>
-			<texture colordiffuse="$VAR[HighlightColorVar]">panels/spinner.png</texture>
+			<texture colordiffuse="$VAR[PanelHighlightColorVar]">panels/spinner.png</texture>
 		</control>
 	</controls>
 </window>

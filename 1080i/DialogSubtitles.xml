@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">120</defaultcontrol>
+	<include>AnimationDialogPopupWindow</include>
 	<controls>
 		<control type="group">
+			<visible>!Window.IsVisible(virtualkeyboard) + !Window.IsVisible(numericinput)</visible>
+			<include>AnimationDialogPopupVisible</include>
 			<include content="DialogBackground">
 				<param name="width" value="1683" />
 				<param name="height" value="790" />
@@ -24,25 +27,15 @@
 				<left>20</left>
 				<top>90</top>
 				<width>360</width>
-				<height>490</height>
+				<height>630</height>
 				<onright>120</onright>
 				<include content="DialogListDefault">
 					<param name="id" value="150" />
 				</include>
 			</control>
-			<control type="image" id="110">
-				<left>60</left>
-				<bottom>94</bottom>
-				<width>280</width>
-				<height>96</height>
-				<aspectratio align="left">keep</aspectratio>
-			</control>
 			<control type="image">
-				<top>90</top>
 				<left>380</left>
-				<bottom>71</bottom>
-				<width>4</width>
-				<texture colordiffuse="$VAR[DialogListSeparatorColorVar]">panels/line-vertical.png</texture>
+				<include>DialogVerticalSeparator</include>
 			</control>
 			<!-- Middle -->
 			<control type="list" id="120">
@@ -162,35 +155,8 @@
 				</focusedlayout>
 			</control>
 			<control type="image">
-				<top>90</top>
 				<right>338</right>
-				<bottom>71</bottom>
-				<width>4</width>
-				<texture colordiffuse="$VAR[DialogListSeparatorColorVar]">panels/line-vertical.png</texture>
-			</control>
-			<control type="image">
-				<visible>!Integer.IsGreater(Container(120).NumItems,4)</visible>
-				<bottom>70</bottom>
-				<left>20</left>
-				<right>20</right>
-				<height>70</height>
-				<texture border="30" colordiffuse="$VAR[DialogListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
-			</control>
-			<control type="image">
-				<visible>Integer.IsGreater(Container(120).NumItems,4)</visible>
-				<bottom>70</bottom>
-				<left>20</left>
-				<width>390</width>
-				<height>70</height>
-				<texture border="30" colordiffuse="$VAR[DialogListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
-			</control>
-			<control type="image">
-				<visible>Integer.IsGreater(Container(120).NumItems,4)</visible>
-				<bottom>70</bottom>
-				<right>20</right>
-				<width>361</width>
-				<height>70</height>
-				<texture border="30" colordiffuse="$VAR[DialogListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+				<include>DialogVerticalSeparator</include>
 			</control>
 			<control type="grouplist" id="8000">
 				<right>50</right>
@@ -200,7 +166,6 @@
 				<include content="DialogButtonAction">
 					<param name="id">160</param>
 					<param name="label">$LOCALIZE[137]</param>
-					<param name="onclick">Action(close)</param>
 				</include>
 				<include content="DialogButtonAction">
 					<param name="id">8001</param>
@@ -214,21 +179,11 @@
 					<param name="onclick">Action(close)</param>
 				</include>
 			</control>
-			<control type="scrollbar" id="60">
-				<right>321</right>
-				<onleft>120</onleft>
-				<onright>8000</onright>
-				<include>DialogScrollBar</include>
-			</control>
-			<control type="label" id="140">
-				<visible>!String.Contains(Control.GetLabel(140),searching) + !String.Contains(Control.GetLabel(140),no subtitles found)</visible>
-				<bottom>20</bottom>
-				<right>60</right>
-				<width>460</width>
-				<height>50</height>
-				<align>right</align>
-				<font>Font25_Cond</font>
-				<textcolor>$VAR[DialogSubTextColorVar]</textcolor>
+			<include content="DialogImage">
+				<param name="id">110</param>
+			</include>
+			<control type="image">
+				<include>DialogHorizontalSeparator</include>
 			</control>
 			<control type="label">
 				<visible>String.Contains(Control.GetLabel(140),searching) | String.Contains(Control.GetLabel(140),no subtitles found)</visible>
@@ -240,15 +195,22 @@
 				<label>$INFO[Control.GetLabel(140)]</label>
 				<textcolor>$VAR[DialogTextColorVar]</textcolor>
 			</control>
+			<control type="label" id="140">
+				<visible>!String.Contains(Control.GetLabel(140),searching) + !String.Contains(Control.GetLabel(140),no subtitles found)</visible>
+				<include>DialogItemCountLabel</include>
+			</control>
 			<control type="label">
-				<bottom>21</bottom>
 				<left>60</left>
-				<width>1090</width>
-				<height>50</height>
-				<haspath>true</haspath>
-				<font>Font25_Cond</font>
-				<textcolor>$VAR[DialogSubTextColorVar]</textcolor>
+				<align>left</align>
+				<width>1100</width>
+				<include>DialogItemCountLabel</include>
 				<label>$INFO[Player.Filename]</label>
+			</control>
+			<control type="scrollbar" id="60">
+				<right>321</right>
+				<onleft>120</onleft>
+				<onright>8000</onright>
+				<include>DialogScrollBar</include>
 			</control>
 		</control>
 	</controls>

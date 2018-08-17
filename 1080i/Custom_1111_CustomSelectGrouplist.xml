@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window id="1111" type="dialog">
 	<defaultcontrol always="true">100</defaultcontrol>
-	<include>Animation_Dialog_Popup_Window</include>
+	<include>AnimationDialogPopupWindow</include>
 	<onunload>ClearProperty(CustomSelect,home)</onunload>
 	<controls>
 		<control type="group">
 			<visible>!Window.IsActive(DialogSelect.xml)</visible>
-			<include>Animation_Dialog_Popup_Visible</include>
-			<include content="Dialog_Background">
+			<include>AnimationDialogPopupVisible</include>
+			<include content="DialogBackground">
 				<param name="width" value="1030" />
 				<param name="height" value="580" />
 				<param name="label">$INFO[Window(home).Property(CustomSelect)]</param>
 			</include>
-			<!-- List -->
+			<control type="button" id="8000">
+				<onleft>100</onleft>
+				<ondown>100</ondown>
+				<include>DialogButtonClose</include>
+			</control>
 			<control type="grouplist" id="100">
-				<left>20</left>
 				<top>90</top>
+				<left>20</left>
 				<width>990</width>
 				<height>420</height>
-				<pagecontrol>60</pagecontrol>
 				<onleft>60</onleft>
 				<onright>8000</onright>
-				<onup>8000</onup>
+				<pagecontrol>60</pagecontrol>
 				<!-- Top bar -->
 				<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31042])">TopbarSettings</include>
 				<!-- MusicOSD -->
@@ -33,34 +36,22 @@
 				<!-- Video info -->
 				<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[12003])">VideoInfoSettings</include>
 			</control>
-				<control type="label">
-				<bottom>20</bottom>
-				<right>70</right>
-				<width>460</width>
-				<height>50</height>
-				<align>right</align>
-				<font>Font25_Cond</font>
-				<textcolor>$VAR[DialogSubTextColorVar]</textcolor>
-				<label>$INFO[Container(100).CurrentItem,$LOCALIZE[31001] ]$INFO[Container(100).NumItems,/]</label>
-				<visible>ControlGroup(100).HasFocus</visible>
+			<control type="image">
+				<include>DialogHorizontalSeparator</include>
 			</control>
 			<control type="label">
-				<bottom>20</bottom>
-				<right>70</right>
-				<width>460</width>
-				<height>50</height>
-				<align>right</align>
-				<font>Font25_Cond</font>
-				<textcolor>$VAR[DialogSubTextColorVar]</textcolor>
-				<label>$INFO[Container(100).NumItems,$LOCALIZE[31001] 1/]</label>
-				<visible>!ControlGroup(100).HasFocus</visible>
+				<visible>ControlGroup(100).HasFocus</visible>
+				<include>DialogItemCountLabel</include>
+				<label>$INFO[Container(100).CurrentItem,$LOCALIZE[31001] ]$INFO[Container(100).NumItems,/]</label>
 			</control>
-			<!-- Scroll bar -->
+			<control type="label">
+				<visible>!ControlGroup(100).HasFocus</visible>
+				<include>DialogItemCountLabel</include>
+				<label>$INFO[Container(100).NumItems,$LOCALIZE[31001] 1/]</label>
+			</control>
 			<control type="scrollbar" id="60">
-				<left>1</left>
-				<top>88</top>
-				<height>420</height>
 				<onright>100</onright>
+				<include>DialogScrollBar</include>
 			</control>
 		</control>
 	</controls>
