@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<defaultcontrol always="true">90001</defaultcontrol>
+	<onload>ClearProperty(skinshortcuts-LiveBackground,Home)</onload>
+	<onload>ClearProperty(skinshortcuts-Widget,Home)</onload>
+	<onunload>ClearProperty(skinshortcuts-LiveBackground,Home)</onunload>
+	<onunload>ClearProperty(skinshortcuts-Widget,Home)</onunload>
+	<onunload>ClearProperty(skinshortcuts-management-widget,10000)</onunload>
+	<onunload condition="String.IsEmpty(Window.Property(additionalDialog))">RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;levels=2&amp;group=mainmenu|quicknav)</onunload>
+	<controls>
+		<control type="group">
+			<visible>String.IsEmpty(Window.Property(additionalDialog))</visible>
+			<include condition="Window.IsActive(home)">AnimationDialogPopupWindow</include>
+			<include content="PanelSide">
+				<param name="reflect">false</param>
+				<param name="visible">Window.IsActive(home)</param>
+			</include>
+			<!-- Left Content -->
+			<control type="label">
+				<label>$VAR[SkinShortcutsLeftLabelVar]</label>
+				<include>SettingsLeftLabel</include>
+			</control>
+			<control type="list" id="211">
+				<top>200</top>
+				<left>100</left>
+				<width>324</width>
+				<height>612</height>
+				<onright>90000</onright>
+				<itemlayout height="67">
+					<control type="label">
+						<visible>!String.Contains(Skin.String(MainMenuStyle),icons) + !String.IsEqual(Window.Property(groupname),quicknav)</visible>
+						<left>25</left>
+						<width>273</width>
+						<font>Font36_Reg</font>
+						<label>$INFO[ListItem.Label]</label>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					</control>
+					<control type="label">
+						<visible>String.Contains(Skin.String(MainMenuStyle),icons) | String.IsEqual(Window.Property(groupname),quicknav)</visible>
+						<left>25</left>
+						<width>213</width>
+						<font>Font36_Reg</font>
+						<label>$INFO[ListItem.Label]</label>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					</control>
+					<control type="image">
+						<visible>String.Contains(Skin.String(MainMenuStyle),icons) | String.IsEqual(Window.Property(groupname),quicknav)</visible>
+						<top>9</top>
+						<left>248</left>
+						<width>50</width>
+						<height>50</height>
+						<texture>$INFO[ListItem.Property(MenuIcon)]</texture>
+					</control>
+				</itemlayout>
+				<focusedlayout height="67">
+					<control type="image">
+						<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+						<animation effect="fade" start="100" end="50" time="40" condition="!Control.HasFocus(211)">Conditional</animation>
+					</control>
+					<control type="label">
+						<visible>!String.Contains(Skin.String(MainMenuStyle),icons) | String.IsEqual(Window.Property(groupname),quicknav) + !String.IsEqual(Window.Property(groupname),quicknav)</visible>
+						<left>25</left>
+						<width>273</width>
+						<font>Font36_Reg</font>
+						<label>$INFO[ListItem.Label]</label>
+						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
+					</control>
+					<control type="label">
+						<visible>String.Contains(Skin.String(MainMenuStyle),icons) | String.IsEqual(Window.Property(groupname),quicknav)</visible>
+						<left>25</left>
+						<width>213</width>
+						<font>Font36_Reg</font>
+						<label>$INFO[ListItem.Label]</label>
+						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
+					</control>
+					<control type="image">
+						<visible>String.Contains(Skin.String(MainMenuStyle),icons) | String.IsEqual(Window.Property(groupname),quicknav)</visible>
+						<top>9</top>
+						<left>248</left>
+						<width>50</width>
+						<height>50</height>
+						<texture>$INFO[ListItem.Property(MenuIcon)]</texture>
+					</control>
+				</focusedlayout>
+			</control>
+			<!-- Right Content -->
+			<control type="label">
+				<label>$INFO[Control.GetLabel(211)]</label>
+				<include>SettingsRightLabel</include>
+			</control>
+			<control type="image">
+				<visible>ControlGroup(90000).HasFocus</visible>
+				<top>200</top>
+				<left>425</left>
+				<height>67</height>
+				<width>1395</width>
+				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+			</control>
+			<control type="image">
+				<visible>!ControlGroup(90000).HasFocus</visible>
+				<top>200</top>
+				<left>425</left>
+				<height>67</height>
+				<width>1395</width>
+				<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+			</control>
+			<control type="grouplist" id="90000">
+				<visible>String.IsEmpty(Window(Home).Property(skinshortcuts-LiveBackground)) + String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
+				<top>200</top>
+				<left>434</left>
+				<width>1335</width>
+				<height>67</height>
+				<onleft>211</onleft>
+				<onright>60</onright>
+				<onup>308</onup>
+				<ondown>401</ondown>
+				<orientation>horizontal</orientation>
+				<control type="button" id="303">
+					<description>Move up</description>
+					<texturefocus />
+					<texturenofocus />
+					<width>67</width>
+					<align>center</align>
+					<font>Font40_Icon</font>
+					<label></label>
+				</control>
+				<control type="button" id="304">
+					<description>Move down</description>
+					<texturefocus />
+					<texturenofocus />
+					<width>67</width>
+					<align>center</align>
+					<font>Font40_Icon</font>
+					<label></label>
+				</control>
+				<control type="button" id="301">
+					<description>Add shortcut</description>
+					<texturefocus />
+					<texturenofocus />
+					<width>67</width>
+					<align>center</align>
+					<font>Font40_Icon</font>
+					<label></label>
+				</control>
+				<control type="button" id="302">
+					<description>Delete shortcut</description>
+					<texturefocus />
+					<texturenofocus />
+					<width>67</width>
+					<align>center</align>
+					<font>Font40_Icon</font>
+					<label></label>
+				</control>
+				<control type="label">
+					<width>16</width>
+				</control>
+				<control type="label">
+					<label>$VAR[SkinShortcutLabelVar]</label>
+					<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
+				</control>
+			</control>
+			<control type="grouplist" id="90001">
+				<visible>String.IsEmpty(Window(Home).Property(skinshortcuts-LiveBackground)) + String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
+				<top>267</top>
+				<left>425</left>
+				<width>1395</width>
+				<height>670</height>
+				<onleft>211</onleft>
+				<onright>60</onright>
+				<onup>90000</onup>
+				<ondown>90000</ondown>
+				<pagecontrol>60</pagecontrol>
+				<control type="button" id="401">
+					<description>Choose shortcut</description>
+					<label>$ADDON[script.skinshortcuts 32048]</label>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="305">
+					<description>Change label</description>
+					<label>$ADDON[script.skinshortcuts 32025]</label>
+					<label2>$INFO[Container(211).ListItem.Label]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="307">
+					<description>Change action</description>
+					<label>$ADDON[script.skinshortcuts 32027]</label>
+					<label2>$INFO[Container(211).ListItem.Property(displaypath)]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="405">
+					<description>Edit submenu</description>
+					<label>$ADDON[script.skinshortcuts 32072]</label>
+					<visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="310">
+					<description>Background</description>
+					<label>$ADDON[script.skinshortcuts 32045]</label>
+					<label2>$INFO[Container(211).ListItem.Property(background)]</label2>
+					<visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="800">
+					<visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+					<description>Live background</description>
+					<label>$LOCALIZE[31102]</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetName.LiveBackground)]</label2>
+					<onfocus condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-LiveBackground))">ClearProperty(skinshortcuts-LiveBackground,Home)</onfocus>
+					<onclick>SetProperty(skinshortcuts-LiveBackground,1,Home)</onclick>
+					<onclick>Control.SetFocus(123)</onclick>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="500">
+					<visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+					<description>Choose infoline</description>
+					<label>$LOCALIZE[31050]</label>
+					<label2>$INFO[Window.Property(InfoLine)]</label2>
+					<visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+					<onclick>SetProperty(chooseProperty,InfoLine)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="501">
+					<visible>[String.IsEqual(Window.Property(groupname),mainmenu) + String.Contains(Skin.String(MainMenuStyle),icons)] | String.IsEqual(Window.Property(groupname),quicknav)</visible>
+					<description>Change icon</description>
+					<label>$ADDON[script.skinshortcuts 32026]</label>
+					<onclick>RunScript(script.skin.helper.service,action=selectimage,header=Choose Icon,skinshortcutsproperty=MenuIcon,resourceaddon=resource.images.skinicons)</onclick>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="800">
+					<visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+					<description>Widget</description>
+					<label>$ADDON[script.skinshortcuts 32044]</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetType)]</label2>
+					<onfocus condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))">ClearProperty(skinshortcuts-Widget,Home)</onfocus>
+					<onclick>SetProperty(skinshortcuts-Widget,1,Home)</onclick>
+					<onclick>Control.SetFocus(8001)</onclick>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="312">
+					<visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+					<description>Widget</description>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="308">
+					<description>Restore shortcuts</description>
+					<label>$ADDON[script.skinshortcuts 32028]</label>
+					<include>SettingsButton</include>
+				</control>
+			</control>
+		</control>
+		<!-- Live background settings -->
+		<control type="group">
+			<visible>!String.IsEmpty(Window(Home).Property(skinshortcuts-LiveBackground))</visible>
+			<control type="button" id="6001">
+				<width>100%</width>
+				<height>100%</height>
+				<onclick>back</onclick>
+				<texturefocus />
+				<texturenofocus />
+			</control>
+			<control type="grouplist" id="6000">
+				<top>200</top>
+				<left>435</left>
+				<width>1335</width>
+				<height>680</height>
+				<onleft>211</onleft>
+				<onright>60</onright>
+				<pagecontrol>60</pagecontrol>
+				<control type="button" id="123">
+					<description>Live background</description>
+					<label>$LOCALIZE[31103]</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetName)]</label2>
+					<onclick>SetProperty(widgetID,LiveBackground)</onclick>
+					<onclick>SendClick(312)</onclick>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="1000">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.LiveBackground))</visible>
+					<description>Live background aspect</description>
+					<label>Aspect</label>
+					<label2></label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="1001">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.LiveBackground))</visible>
+					<description>Live background case</description>
+					<label>Case</label>
+					<label2></label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="1002">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.LiveBackground))</visible>
+					<description>Live background sort by</description>
+					<label>$LOCALIZE[581]</label>
+					<label2></label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="1003">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.LiveBackground))</visible>
+					<description>Live background sort</description>
+					<label>$LOCALIZE[580]</label>
+					<label2></label2>
+					<include>SettingsButton</include>
+				</control>
+			</control>
+		</control>
+		<!-- Widget settings -->
+		<control type="group">
+			<visible>!String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
+			<control type="button" id="8100">
+				<width>100%</width>
+				<height>100%</height>
+				<onclick>back</onclick>
+				<texturefocus />
+				<texturenofocus />
+			</control>
+			<control type="grouplist" id="8000">
+				<top>200</top>
+				<left>435</left>
+				<width>1335</width>
+				<height>680</height>
+				<onleft>211</onleft>
+				<onright>60</onright>
+				<pagecontrol>60</pagecontrol>
+				<control type="button" id="8001">
+					<description>Style</description>
+					<label>Style</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetStyle)]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="312">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
+					<description>Type</description>
+					<label>Widget</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetName)]</label2>
+					<onclick>SetProperty(customProperty,widgetArt)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8002">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
+					<description>Art</description>
+					<label>Art</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetArt)]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8003">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
+					<description>Aspect</description>
+					<label>Aspect</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetAspect)]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8004">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
+					<description>Case</description>
+					<label>Case</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetCase)]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="radiobutton" id="8007">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
+					<description>Label</description>
+					<label>Label</label>
+					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetLabel))">SetProperty(customProperty,widgetLabel)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel))">SetProperty(customProperty,widgetLabel)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel))">SetProperty(customValue,true)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetLabel))</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+				<control type="button" id="8005">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
+					<description>Sort by</description>
+					<label>Sort by</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetSortBy)]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8006">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
+					<description>Sort order</description>
+					<label>Sort order</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetSortOrder)]</label2>
+					<include>SettingsButton</include>
+				</control>
+			</control>
+		</control>
+		<!-- 404, for setting custom property -->
+		<control type="button" id="404">
+			<visible>False</visible>
+			<include>HiddenObject</include>
+		</control>
+		<!-- Unused Controls -->
+		<control type="button" id="111">
+			<visible>False</visible>
+			<include>HiddenObject</include>
+		</control>
+		<control type="button" id="306">
+			<visible>False</visible>
+			<include>HiddenObject</include>
+		</control>
+		<control type="button" id="309">
+			<visible>False</visible>
+			<include>HiddenObject</include>
+		</control>
+		<control type="button" id="310">
+			<visible>False</visible>
+			<include>HiddenObject</include>
+		</control>
+	</controls>
+</window>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<defaultcontrol>3</defaultcontrol>
+	<menucontrol>9050</menucontrol>
+	<include condition="Window.IsActive(interfacesettings)">onunload_SkinSettings</include>
+	<controls>
+		<!-- Background -->
+		<include content="BackgroundDefault">
+			<param name="imagepath">$VAR[SystemBackgroundVar]</param>
+		</include>
+		<!-- Floor -->
+		<control type="group">
+			<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+				<param name="opencondition">$EXP[SystemAnimationOpenCondition]</param>
+				<param name="closecondition">$EXP[SystemAnimationCloseCondition]</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">220</param>
+			</include>
+			<include>FloorDefault</include>
+		</control>
+		<!-- Panel -->
+		<control type="group">
+			<include>AnimationZoomWindow</include>
+			<include content="PanelSide">
+				<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
+			</include>
+		</control>
+		<!-- Content -->
+		<control type="group">
+			<include>AnimationZoomWindow</include>
+			<!-- Left menu -->
+			<control type="label" id="2">
+				<include>SettingsLeftLabel</include>
+			</control>
+			<control type="grouplist" id="3">
+				<top>200</top>
+				<left>100</left>
+				<width>324</width>
+				<height>603</height>
+				<onleft>9050</onleft>
+				<onright>5</onright>
+			</control>
+			<control type="button" id="10">
+				<include>SettingsLeftButton</include>
+			</control>
+			<!-- Right menu -->
+			<control type="label">
+				<label>$LOCALIZE[33063]</label>
+				<include>SettingsRightLabel</include>
+			</control>
+			<control type="grouplist" id="5">
+				<top>200</top>
+				<left>425</left>
+				<width>1395</width>
+				<height>615</height>
+				<onleft>3</onleft>
+				<onright>60</onright>
+				<pagecontrol>60</pagecontrol>
+			</control>
+			<control type="textbox" id="6">
+				<description>description area</description>
+				<left>460</left>
+				<bottom>120</bottom>
+				<width>1325</width>
+				<height>130</height>
+				<font>Font28_Reg</font>
+				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+			</control>
+			<control type="label" id="14">
+				<description>Default Label</description>
+				<width>1395</width>
+				<textoffsetx>35</textoffsetx>
+				<height>67</height>
+				<align>left</align>
+				<font>Font28_Bold</font>
+				<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+				<shadowcolor>shadow</shadowcolor>
+			</control>
+			<control type="scrollbar" id="60">
+				<top>200</top>
+				<right>80</right>
+				<bottom>280</bottom>
+				<onleft>5</onleft>
+			</control>
+		</control>
+		<control type="button" id="7">
+			<include>SettingsButton</include>
+		</control>
+		<control type="radiobutton" id="8">
+			<include>SettingsRadioButton</include>
+		</control>
+		<control type="spincontrolex" id="9">
+			<include>SettingsButton</include>
+		</control>
+		<!-- Topbar -->
+		<control type="group">
+			<visible>!Skin.HasSetting(SettingsHideTopBar)</visible>
+			<include content="AnimationSlideTopWindow">
+				<param name="slide">90</param>
+				<param name="opencondition">$EXP[SystemAnimationOpenCondition]</param>
+				<param name="closecondition">$EXP[SystemAnimationCloseCondition]</param>
+			</include>
+			<include content="AnimationSlideTopVisible">
+				<param name="slide">90</param>
+			</include>
+			<include content="TopBar">
+				<param name="label">$LOCALIZE[13000]$INFO[Control.GetLabel(2), / ]</param>
+				<param name="icon">settings.png</param>
+			</include>
+		</control>
+		<!-- Media Menu -->
+		<include>MediaMenuMouseOverlay</include>
+		<control type="group">
+			<include>MediaMenuCommon</include>
+			<control type="grouplist" id="9050">
+				<onright>3</onright>
+				<onback>3</onback>
+				<include>MediaMenuSystem</include>
+				<control type="radiobutton" id="20">
+					<include content="MediaMenuIconButton">
+						<param name="id">9052</param>
+						<param name="iconon">icons/mediamenu/level.png</param>
+						<param name="iconoff">icons/mediamenu/level.png</param>
+					</include>
+					<onclick>SettingsLevelChange</onclick>
+				</control>
+				<include>MediaMenuCommonBottom</include>
+			</control>
+		</control>
+	</controls>
+</window>

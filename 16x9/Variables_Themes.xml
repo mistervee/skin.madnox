@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+	<!-- Panels -->
+	<variable name="PanelStyleVar">
+		<value condition="Skin.String(Panel.texture,auriga) + Skin.HasSetting(PanelSquare.texture)">panels/windows/auriga-square.png</value>
+		<value condition="Skin.String(Panel.texture,auriga)">panels/windows/auriga-rounded.png</value>
+		<value condition="Skin.String(Panel.texture,nox4) + Skin.HasSetting(PanelSquare.texture)">panels/windows/nox4-square.png</value>
+		<value condition="Skin.String(Panel.texture,nox4)">panels/windows/nox4-rounded.png</value>
+		<value condition="Skin.String(Panel.texture,white) + Skin.HasSetting(PanelSquare.texture)">panels/windows/white-square.png</value>
+		<value condition="Skin.String(Panel.texture,white)">panels/windows/white-rounded.png</value>
+		<value condition="Skin.HasSetting(PanelSquare.texture)">panels/windows/default-square.png</value>
+		<value>panels/windows/default-rounded.png</value>
+	</variable>
+	<variable name="HalfPanelStyleVar">
+		<value condition="Skin.String(Panel.texture,auriga) + Skin.HasSetting(PanelSquare.texture)">panels/windows/auriga-half-square.png</value>
+		<value condition="Skin.String(Panel.texture,auriga)">panels/windows/auriga-half-rounded.png</value>
+		<value condition="Skin.String(Panel.texture,nox4) + Skin.HasSetting(PanelSquare.texture)">panels/windows/nox4-half-square.png</value>
+		<value condition="Skin.String(Panel.texture,nox4)">panels/windows/nox4-half-rounded.png</value>
+		<value condition="Skin.String(Panel.texture,white) + Skin.HasSetting(PanelSquare.texture)">panels/windows/white-half-square.png</value>
+		<value condition="Skin.String(Panel.texture,white)">panels/windows/white-half-rounded.png</value>
+		<value condition="Skin.HasSetting(PanelSquare.texture)">panels/windows/default-half-square.png</value>
+		<value>panels/windows/default-half-rounded.png</value>
+	</variable>
+	<variable name="SidePanelStyleVar">
+		<value condition="Skin.String(Panel.texture,auriga) + Skin.HasSetting(PanelSquare.texture)">panels/windows/side-auriga-square.png</value>
+		<value condition="Skin.String(Panel.texture,auriga)">panels/windows/side-auriga-rounded.png</value>
+		<value condition="Skin.String(Panel.texture,nox4) + Skin.HasSetting(PanelSquare.texture)">panels/windows/side-nox4-square.png</value>
+		<value condition="Skin.String(Panel.texture,nox4)">panels/windows/side-nox4-rounded.png</value>
+		<value condition="Skin.String(Panel.texture,white) + Skin.HasSetting(PanelSquare.texture)">panels/windows/side-white-square.png</value>
+		<value condition="Skin.String(Panel.texture,white)">panels/windows/side-white-rounded.png</value>
+		<value condition="Skin.HasSetting(PanelSquare.texture)">panels/windows/side-default-square.png</value>
+		<value>panels/windows/side-default-rounded.png</value>
+	</variable>
+	<variable name="PanelStyleLabelVar">
+		<value condition="Skin.String(Panel.texture,auriga)">Aeon Auriga</value>
+		<value condition="Skin.String(Panel.texture,nox4)">Aeon Nox 4</value>
+		<value condition="Skin.String(Panel.texture,white)">$LOCALIZE[742]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="PanelTextureLabelVar">
+		<value condition="Skin.String(PanelTexture.texture,panels/patterns/brushed.png)">$LOCALIZE[31135]</value>
+		<value condition="Skin.String(PanelTexture.texture,panels/patterns/carbon.png)">$LOCALIZE[31114]</value>
+		<value condition="Skin.String(PanelTexture.texture,panels/patterns/concrete.png)">$LOCALIZE[31150]</value>
+		<value condition="Skin.String(PanelTexture.texture,panels/patterns/gradient.png)">$LOCALIZE[31134]</value>
+		<value condition="Skin.String(PanelTexture.texture,panels/patterns/pixels.png)">$LOCALIZE[31115]</value>
+		<value condition="Skin.String(PanelTexture.texture,panels/patterns/schimi.png)">Schimi</value>
+		<value condition="Skin.String(PanelTexture.texture,panels/patterns/steelplate.png)">$LOCALIZE[31116]</value>
+		<value condition="Skin.String(PanelTexture.texture,panels/patterns/wallpaper.png)">$LOCALIZE[31117]</value>
+		<value condition="Skin.String(PanelTexture.texture,panels/patterns/wood.png)">$LOCALIZE[31118]</value>
+		<value condition="Skin.String(PanelTexture.texture,panels/patterns/wrinkles.png)">$LOCALIZE[31119]</value>
+		<value>$LOCALIZE[231]</value>
+	</variable>
+	<variable name="PanelEmbossVar">
+		<value condition="Skin.HasSetting(PanelEmboss.texture) + Skin.HasSetting(PanelSquare.texture)">panels/windows/emboss-square.png</value>
+		<value condition="Skin.HasSetting(PanelEmboss.texture)">panels/windows/emboss-rounded.png</value>
+	</variable>
+	<variable name="HalfPanelEmbossVar">
+		<value condition="Skin.HasSetting(PanelEmboss.texture) + Skin.HasSetting(PanelSquare.texture)">panels/windows/emboss-half-square.png</value>
+		<value condition="Skin.HasSetting(PanelEmboss.texture)">panels/windows/emboss-half-rounded.png</value>
+	</variable>
+	<variable name="PanelShadowVar">
+		<value condition="Skin.HasSetting(PanelSquare.texture)">panels/windows/shadow-square.png</value>
+		<value>panels/windows/shadow-rounded.png</value>
+	</variable>
+	<variable name="HalfPanelShadowVar">
+		<value condition="Skin.HasSetting(PanelSquare.texture)">panels/windows/shadow-half-square.png</value>
+		<value>panels/windows/shadow-half-rounded.png</value>
+	</variable>
+	<variable name="PanelStyleColorVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelStyle.color.base))">$INFO[Skin.String(PanelStyle.color)]</value>
+		<value>panel</value>
+	</variable>
+	<variable name="PanelStyleColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelStyle.color.base))">$INFO[Skin.String(PanelStyle.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="PanelTextureColorVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelTexture.color.base))">$INFO[Skin.String(PanelTexture.color)]</value>
+		<value>paneltexture</value>
+	</variable>
+	<variable name="PanelTextureColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelTexture.color.base))">$INFO[Skin.String(PanelTexture.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="PanelEmbossColorVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelEmboss.color.base))">$INFO[Skin.String(PanelEmboss.color)]</value>
+		<value>emboss</value>
+	</variable>
+	<variable name="PanelEmbossColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelEmboss.color.base))">$INFO[Skin.String(PanelEmboss.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="PanelShadowColorVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelShadow.color.base))">$INFO[Skin.String(PanelShadow.color)]</value>
+		<value>shadow</value>
+	</variable>
+	<variable name="PanelShadowColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelShadow.color.base))">$INFO[Skin.String(PanelShadow.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="PanelHighlightColorVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelHighlight.color.base))">$INFO[Skin.String(PanelHighlight.Color)]</value>
+		<value>highlight</value>
+	</variable>
+	<variable name="PanelHighlightColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelHighlight.color.base))">$INFO[Skin.String(PanelHighlight.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="PanelTextColorVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelText.color.base))">$INFO[Skin.String(PanelText.color)]</value>
+		<value>text</value>
+	</variable>
+	<variable name="PanelTextColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelText.color.base))">$INFO[Skin.String(PanelText.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="PanelSubTextColorVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelSubText.color.base))">$INFO[Skin.String(PanelSubText.color)]</value>
+		<value>subtext</value>
+	</variable>
+	<variable name="PanelSubTextColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelSubText.color.base))">$INFO[Skin.String(PanelSubText.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="PanelFocusTextColorVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelFocusText.color.base))">$INFO[Skin.String(PanelFocusText.color)]</value>
+		<value>focustext</value>
+	</variable>
+	<variable name="PanelFocusTextColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelFocusText.color.base))">$INFO[Skin.String(PanelFocusText.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="PanelArtworkTextBackgroundColorVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelArtworkTextBackground.color.base))">$INFO[Skin.String(PanelArtworkTextBackground.color)]</value>
+		<value>black</value>
+	</variable>
+	<variable name="PanelArtworkTextBackgroundColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelArtworkTextBackground.color.base))">$INFO[Skin.String(PanelArtworkTextBackground.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="PanelListSeparatorColorVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelListSeparator.color.base))">$INFO[Skin.String(PanelListSeparator.color)]</value>
+		<value>listseparator</value>
+	</variable>
+	<variable name="PanelListSeparatorColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelListSeparator.color.base))">$INFO[Skin.String(PanelListSeparator.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="PanelButtonColorVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelButton.color.base))">$INFO[Skin.String(PanelButton.color)]</value>
+		<value>button</value>
+	</variable>
+	<variable name="PanelButtonColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelButton.color.base))">$INFO[Skin.String(PanelButton.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<!-- Main menu -->
+	<variable name="MainMenuStyleLabelVar">
+		<value condition="Skin.String(MainMenuStyle.texture,panels/mainmenu/auriga.png)">Aeon Auriga</value>
+		<value condition="Skin.String(MainMenuStyle.texture,panels/mainmenu/nox4.png)">Aeon Nox 4</value>
+		<value condition="Skin.String(MainMenuStyle.texture,panels/mainmenu/white.png)">$LOCALIZE[742]</value>
+		<value condition="Skin.String(MainMenuStyle.texture,panels/mainmenu/aurigawhite.png)">Aeon Auriga $LOCALIZE[742]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MainMenuTextureLabelVar">
+		<value condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/brushed.png)">$LOCALIZE[31135]</value>
+		<value condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/carbon.png)">$LOCALIZE[31114]</value>
+		<value condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/concrete.png)">$LOCALIZE[31150]</value>
+		<value condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/pixels.png)">$LOCALIZE[31115]</value>
+		<value condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/schimi.png)">Schimi</value>
+		<value condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/steelplate.png)">$LOCALIZE[31116]</value>
+		<value condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/wallpaper.png)">$LOCALIZE[31117]</value>
+		<value condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/wood.png)">$LOCALIZE[31118]</value>
+		<value condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/wrinkles.png)">$LOCALIZE[31119]</value>
+		<value>$LOCALIZE[231]</value>
+	</variable>
+	<variable name="MainMenuSystemBarVar">
+		<value condition="Skin.String(MainMenuSystemBar.texture,shadow)">panels/mainmenu/shadow-bar.png</value>
+		<value condition="Skin.String(MainMenuSystemBar.texture,wide)">panels/mainmenu/wide-bar.png</value>
+	</variable>
+	<variable name="MainMenuSystemBarLabelVar">
+		<value condition="Skin.String(MainMenuSystemBar.texture,shadow)">$LOCALIZE[31048]</value>
+		<value condition="Skin.String(MainMenuSystemBar.texture,wide)">$LOCALIZE[539]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MainMenuSubmenuBarVar">
+		<value condition="Skin.String(MainMenuSubmenuBar.texture,shadow)">panels/mainmenu/shadow-bar.png</value>
+		<value condition="Skin.String(MainMenuSubmenuBar.texture,wide)">panels/mainmenu/wide-bar.png</value>
+	</variable>
+	<variable name="MainMenuSubmenuBarLabelVar">
+		<value condition="Skin.String(MainMenuSubmenuBar.texture,shadow)">$LOCALIZE[31048]</value>
+		<value condition="Skin.String(MainMenuSubmenuBar.texture,wide)">$LOCALIZE[539]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MainMenuRSSBarVar">
+		<value condition="Skin.String(MainMenuRSSBar.texture,shadow)">panels/mainmenu/shadow-bar.png</value>
+		<value>panels/mainmenu/wide-bar.png</value>
+	</variable>
+	<variable name="MainMenuRSSBarLabelVar">
+		<value condition="Skin.String(MainMenuRSSBar.texture,shadow)">$LOCALIZE[31048]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MainMenuStyleColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuStyle.color.base))">$INFO[Skin.String(MainMenuStyle.color)]</value>
+		<value>mainmenu</value>
+	</variable>
+	<variable name="MainMenuStyleColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuStyle.color.base))">$INFO[Skin.String(MainMenuStyle.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MainMenuTextureColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuTexture.color.base))">$INFO[Skin.String(MainMenuTexture.color)]</value>
+		<value>paneltexture</value>
+	</variable>
+	<variable name="MainMenuTextureColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuTexture.color.base))">$INFO[Skin.String(MainMenuTexture.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MainMenuShadowColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuShadow.color.base))">$INFO[Skin.String(MainMenuShadow.color)]</value>
+		<value>shadow</value>
+	</variable>
+	<variable name="MainMenuShadowColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuShadow.color.base))">$INFO[Skin.String(MainMenuShadow.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MainMenuGradientColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuGradient.color.base))">$INFO[Skin.String(MainMenuGradient.color)]</value>
+		<value>shadow</value>
+	</variable>
+	<variable name="MainMenuGradientColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuGradient.color.base))">$INFO[Skin.String(MainMenuGradient.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MainMenuFocusTextColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuFocusText.color.base))">$INFO[Skin.String(MainMenuFocusText.color)]</value>
+		<value>highlight</value>
+	</variable>
+	<variable name="MainMenuFocusTextColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuFocusText.color.base))">$INFO[Skin.String(MainMenuFocusText.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MainMenuNofocusTextColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuNofocusText.color.base))">$INFO[Skin.String(MainMenuNofocusText.color)]</value>
+		<value>subtext</value>
+	</variable>
+	<variable name="MainMenuNofocusTextColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuNofocusText.color.base))">$INFO[Skin.String(MainMenuNofocusText.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MainMenuFocusIconColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuFocusIcon.color.base))">$INFO[Skin.String(MainMenuFocusIcon.color)]</value>
+		<value>highlight</value>
+	</variable>
+	<variable name="MainMenuFocusIconColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuFocusIcon.color.base))">$INFO[Skin.String(MainMenuFocusIcon.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MainMenuNofocusIconColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuNofocusIcon.color.base))">$INFO[Skin.String(MainMenuNofocusIcon.color)]</value>
+		<value>subtext</value>
+	</variable>
+	<variable name="MainMenuNofocusIconColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuNofocusIcon.color.base))">$INFO[Skin.String(MainMenuNofocusIcon.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MainMenuHighlightColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuHighlight.color.base))">$INFO[Skin.String(MainMenuHighlight.color)]</value>
+		<value>highlight</value>
+	</variable>
+	<variable name="MainMenuHighlightColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuHighlight.color.base))">$INFO[Skin.String(MainMenuHighlight.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MainMenuTextColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuText.color.base))">$INFO[Skin.String(MainMenuText.color)]</value>
+		<value>text</value>
+	</variable>
+	<variable name="MainMenuTextColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuText.color.base))">$INFO[Skin.String(MainMenuText.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MainMenuSubTextColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuSubText.color.base))">$INFO[Skin.String(MainMenuSubText.color)]</value>
+		<value>subtext</value>
+	</variable>
+	<variable name="MainMenuSubTextColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuSubText.color.base))">$INFO[Skin.String(MainMenuSubText.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MainMenuListSeparatorColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuListSeparator.color.base))">$INFO[Skin.String(MainMenuListSeparator.color)]</value>
+		<value>listseparator</value>
+	</variable>
+	<variable name="MainMenuListSeparatorColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuListSeparator.color.base))">$INFO[Skin.String(MainMenuListSeparator.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MainMenuWidgetColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuWidget.color.base))">$INFO[Skin.String(MainMenuWidget.color)]</value>
+		<value>widget</value>
+	</variable>
+	<variable name="MainMenuWidgetColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuWidget.color.base))">$INFO[Skin.String(MainMenuWidget.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MainMenuSystemBarColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuSystemBar.color.base))">$INFO[Skin.String(MainMenuSystemBar.color)]</value>
+		<value>topbar</value>
+	</variable>
+	<variable name="MainMenuSystemBarColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuSystemBar.color.base))">$INFO[Skin.String(MainMenuSystemBar.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MainMenuSubmenuBarColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuSubmenuBar.color.base))">$INFO[Skin.String(MainMenuSubmenuBar.color)]</value>
+		<value>topbar</value>
+	</variable>
+	<variable name="MainMenuSubmenuBarColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuSubmenuBar.color.base))">$INFO[Skin.String(MainMenuSubmenuBar.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MainMenuRSSBarColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuRSSBar.color.base))">$INFO[Skin.String(MainMenuRSSBar.color)]</value>
+		<value>topbar</value>
+	</variable>
+	<variable name="MainMenuRSSBarColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuRSSBar.color.base))">$INFO[Skin.String(MainMenuRSSBar.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MainMenuBackgroundColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuBackground.color.base))">$INFO[Skin.String(MainMenuBackground.color)]</value>
+		<value>gradientbackground</value>
+	</variable>
+	<variable name="MainMenuBackgroundColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuBackground.color.base))">$INFO[Skin.String(MainMenuBackground.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MainMenuWeatherIconColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuWeatherIcon.color.base))">$INFO[Skin.String(MainMenuWeatherIcon.color)]</value>
+		<value>white</value>
+	</variable>
+	<variable name="MainMenuWeatherIconColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuWeatherIcon.color.base))">$INFO[Skin.String(MainMenuWeatherIcon.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<!-- Dialogs -->
+	<variable name="DialogStyleVar">
+		<value condition="Skin.String(Dialog.texture,auriga) + Skin.HasSetting(DialogSquare.texture)">panels/dialog/auriga-square.png</value>
+		<value condition="Skin.String(Dialog.texture,auriga)">panels/dialog/auriga-rounded.png</value>
+		<value condition="Skin.String(Dialog.texture,nox4) + Skin.HasSetting(DialogSquare.texture)">panels/dialog/nox4-square.png</value>
+		<value condition="Skin.String(Dialog.texture,nox4)">panels/dialog/nox4-rounded.png</value>
+		<value condition="Skin.String(Dialog.texture,white) + Skin.HasSetting(DialogSquare.texture)">panels/dialog/white-square.png</value>
+		<value condition="Skin.String(Dialog.texture,white)">panels/dialog/white-rounded.png</value>
+		<value condition="Skin.HasSetting(DialogSquare.texture)">panels/dialog/default-square.png</value>
+		<value>panels/dialog/default-rounded.png</value>
+	</variable>
+	<variable name="DialogStyleScanVar">
+		<value condition="Skin.String(Dialog.texture,auriga) + Skin.HasSetting(DialogSquare.texture)">panels/scan/auriga-square.png</value>
+		<value condition="Skin.String(Dialog.texture,auriga)">panels/scan/auriga-rounded.png</value>
+		<value condition="Skin.String(Dialog.texture,nox4) + Skin.HasSetting(DialogSquare.texture)">panels/scan/nox4-square.png</value>
+		<value condition="Skin.String(Dialog.texture,nox4)">panels/scan/nox4-rounded.png</value>
+		<value condition="Skin.String(Dialog.texture,white) + Skin.HasSetting(DialogSquare.texture)">panels/scan/white-square.png</value>
+		<value condition="Skin.String(Dialog.texture,white)">panels/scan/white-rounded.png</value>
+		<value condition="Skin.HasSetting(DialogSquare.texture)">panels/scan/default-square.png</value>
+		<value>panels/scan/default-rounded.png</value>
+	</variable>
+	<variable name="DialogStyleVolumeVar">
+		<value condition="Skin.String(Dialog.texture,auriga) + Skin.HasSetting(DialogSquare.texture)">panels/volume/auriga-square.png</value>
+		<value condition="Skin.String(Dialog.texture,auriga)">panels/volume/auriga-rounded.png</value>
+		<value condition="Skin.String(Dialog.texture,nox4) + Skin.HasSetting(DialogSquare.texture)">panels/volume/nox4-square.png</value>
+		<value condition="Skin.String(Dialog.texture,nox4)">panels/volume/nox4-rounded.png</value>
+		<value condition="Skin.String(Dialog.texture,white) + Skin.HasSetting(DialogSquare.texture)">panels/volume/white-square.png</value>
+		<value condition="Skin.String(Dialog.texture,white)">panels/volume/white-rounded.png</value>
+		<value condition="Skin.HasSetting(DialogSquare.texture)">panels/volume/default-square.png</value>
+		<value>panels/volume/default-rounded.png</value>
+	</variable>
+	<variable name="DialogStyleLabelVar">
+		<value condition="Skin.String(Dialog.texture,auriga)">Aeon Auriga</value>
+		<value condition="Skin.String(Dialog.texture,nox4)">Aeon Nox 4</value>
+		<value condition="Skin.String(Dialog.texture,white)">$LOCALIZE[742]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="DialogTextureLabelVar">
+		<value condition="Skin.String(DialogTexture.texture,panels/patterns/brushed.png)">$LOCALIZE[31135]</value>
+		<value condition="Skin.String(DialogTexture.texture,panels/patterns/carbon.png)">$LOCALIZE[31114]</value>
+		<value condition="Skin.String(DialogTexture.texture,panels/patterns/concrete.png)">$LOCALIZE[31150]</value>
+		<value condition="Skin.String(DialogTexture.texture,panels/patterns/gradient.png)">$LOCALIZE[31134]</value>
+		<value condition="Skin.String(DialogTexture.texture,panels/patterns/pixels.png)">$LOCALIZE[31115]</value>
+		<value condition="Skin.String(DialogTexture.texture,panels/patterns/schimi.png)">Schimi</value>
+		<value condition="Skin.String(DialogTexture.texture,panels/patterns/steelplate.png)">$LOCALIZE[31116]</value>
+		<value condition="Skin.String(DialogTexture.texture,panels/patterns/wallpaper.png)">$LOCALIZE[31117]</value>
+		<value condition="Skin.String(DialogTexture.texture,panels/patterns/wood.png)">$LOCALIZE[31118]</value>
+		<value condition="Skin.String(DialogTexture.texture,panels/patterns/wrinkles.png)">$LOCALIZE[31119]</value>
+		<value>$LOCALIZE[231]</value>
+	</variable>
+	<variable name="DialogEmbossVar">
+		<value condition="Skin.HasSetting(DialogEmboss.texture) + Skin.HasSetting(DialogSquare.texture)">panels/dialog/emboss-square.png</value>
+		<value condition="Skin.HasSetting(DialogEmboss.texture)">panels/dialog/emboss-rounded.png</value>
+	</variable>
+	<variable name="DialogEmbossScanVar">
+		<value condition="Skin.HasSetting(DialogEmboss.texture) + Skin.HasSetting(DialogSquare.texture)">panels/scan/emboss-square.png</value>
+		<value condition="Skin.HasSetting(DialogEmboss.texture)">panels/scan/emboss-rounded.png</value>
+	</variable>
+	<variable name="DialogEmbossVolumeVar">
+		<value condition="Skin.HasSetting(DialogEmboss.texture) + Skin.HasSetting(DialogSquare.texture)">panels/volume/emboss-square.png</value>
+		<value condition="Skin.HasSetting(DialogEmboss.texture)">panels/volume/emboss-rounded.png</value>
+	</variable>
+	<variable name="DialogShadowVar">
+		<value condition="Skin.HasSetting(DialogSquare.texture)">panels/dialog/shadow-square.png</value>
+		<value>panels/dialog/shadow-rounded.png</value>
+	</variable>
+	<variable name="DialogShadowScanVar">
+		<value condition="Skin.HasSetting(DialogSquare.texture)">panels/scan/shadow-square.png</value>
+		<value>panels/scan/shadow-rounded.png</value>
+	</variable>
+	<variable name="DialogShadowVolumeVar">
+		<value condition="Skin.HasSetting(DialogSquare.texture)">panels/volume/shadow-square.png</value>
+		<value>panels/volume/shadow-rounded.png</value>
+	</variable>
+	<variable name="DialogStyleColorVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogStyle.color.base))">$INFO[Skin.String(DialogStyle.color)]</value>
+		<value>dialog</value>
+	</variable>
+	<variable name="DialogStyleColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogStyle.color.base))">$INFO[Skin.String(DialogStyle.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="DialogTextureColorVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogTexture.color.base))">$INFO[Skin.String(DialogTexture.color)]</value>
+		<value>paneltexture</value>
+	</variable>
+	<variable name="DialogTextureColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogTexture.color.base))">$INFO[Skin.String(DialogTexture.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="DialogEmbossColorVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogEmboss.color.base))">$INFO[Skin.String(DialogEmboss.color)]</value>
+		<value>emboss</value>
+	</variable>
+	<variable name="DialogEmbossColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogEmboss.color.base))">$INFO[Skin.String(DialogEmboss.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="DialogShadowColorVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogShadow.color.base))">$INFO[Skin.String(DialogShadow.color)]</value>
+		<value>shadow</value>
+	</variable>
+	<variable name="DialogShadowColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogShadow.color.base))">$INFO[Skin.String(DialogShadow.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="DialogHighlightColorVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogHighlight.color.base))">$INFO[Skin.String(DialogHighlight.Color)]</value>
+		<value>highlight</value>
+	</variable>
+	<variable name="DialogHighlightColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogHighlight.color.base))">$INFO[Skin.String(DialogHighlight.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="DialogTextColorVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogText.color.base))">$INFO[Skin.String(DialogText.color)]</value>
+		<value>text</value>
+	</variable>
+	<variable name="DialogTextColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogText.color.base))">$INFO[Skin.String(DialogText.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="DialogSubTextColorVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogSubText.color.base))">$INFO[Skin.String(DialogSubText.color)]</value>
+		<value>subtext</value>
+	</variable>
+	<variable name="DialogSubTextColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogSubText.color.base))">$INFO[Skin.String(DialogSubText.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="DialogFocusTextColorVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogFocusText.color.base))">$INFO[Skin.String(DialogFocusText.color)]</value>
+		<value>focustext</value>
+	</variable>
+	<variable name="DialogFocusTextColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogFocusText.color.base))">$INFO[Skin.String(DialogFocusText.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="DialogListSeparatorColorVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogListSeparator.color.base))">$INFO[Skin.String(DialogListSeparator.color)]</value>
+		<value>listseparator</value>
+	</variable>
+	<variable name="DialogListSeparatorColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogListSeparator.color.base))">$INFO[Skin.String(DialogListSeparator.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="DialogButtonColorVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogButton.color.base))">$INFO[Skin.String(DialogButton.color)]</value>
+		<value>button</value>
+	</variable>
+	<variable name="DialogButtonColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogButton.color.base))">$INFO[Skin.String(DialogButton.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<!-- Background -->
+	<variable name="BackgroundTextureLabelVar">
+		<value condition="Skin.String(BackgroundTexture.texture,backgrounds/brushed.jpg)">$LOCALIZE[31135]</value>
+		<value condition="Skin.String(BackgroundTexture.texture,backgrounds/carbon.jpg)">$LOCALIZE[31114]</value>
+		<value condition="Skin.String(BackgroundTexture.texture,backgrounds/concrete.jpg)">$LOCALIZE[31150]</value>
+		<value condition="Skin.String(BackgroundTexture.texture,colors/white.png)">$LOCALIZE[742]</value>
+		<value condition="Skin.String(BackgroundTexture.texture,backgrounds/gradient.jpg)">$LOCALIZE[31134]</value>
+		<value condition="Skin.String(BackgroundTexture.texture,backgrounds/pixels.jpg)">$LOCALIZE[31115]</value>
+		<value condition="Skin.String(BackgroundTexture.texture,backgrounds/schimi.jpg)">Schimi</value>
+		<value condition="Skin.String(BackgroundTexture.texture,backgrounds/steelplate.jpg)">$LOCALIZE[31116]</value>
+		<value condition="Skin.String(BackgroundTexture.texture,backgrounds/wallpaper.jpg)">$LOCALIZE[31117]</value>
+		<value condition="Skin.String(BackgroundTexture.texture,backgrounds/wood.jpg)">$LOCALIZE[31118]</value>
+		<value condition="Skin.String(BackgroundTexture.texture,backgrounds/wrinkles.jpg)">$LOCALIZE[31119]</value>
+		<value>$LOCALIZE[231]</value>
+	</variable>
+	<variable name="BackgroundEffectLabelVar">
+		<value condition="Skin.String(BackgroundEffect.texture,snow)">$LOCALIZE[375]</value>
+		<value condition="Skin.String(BackgroundEffect.texture,leaves)">$LOCALIZE[31146]</value>
+		<value condition="Skin.String(BackgroundEffect.texture,confetti)">$LOCALIZE[31147]</value>
+		<value condition="Skin.String(BackgroundEffect.texture,valentine)">$LOCALIZE[31148]</value>
+		<value condition="Skin.String(BackgroundEffect.texture,easter)">$LOCALIZE[31149]</value>
+		<value>$LOCALIZE[231]</value>
+	</variable>
+	<variable name="BackgroundTextureColorVar">
+		<value condition="!String.IsEmpty(Skin.String(BackgroundTexture.color.base))">$INFO[Skin.String(BackgroundTexture.color)]</value>
+		<value>background</value>
+	</variable>
+	<variable name="BackgroundTextureColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(BackgroundTexture.color.base))">$INFO[Skin.String(BackgroundTexture.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="BackgroundEffectColorVar">
+		<value condition="!String.IsEmpty(Skin.String(BackgroundEffect.color.base))">$INFO[Skin.String(BackgroundEffect.color)]</value>
+		<value>white</value>
+	</variable>
+	<variable name="BackgroundEffectColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(BackgroundEffect.color.base))">$INFO[Skin.String(BackgroundEffect.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="BackgroundShadowColorVar">
+		<value condition="!String.IsEmpty(Skin.String(BackgroundShadow.color.base))">$INFO[Skin.String(BackgroundShadow.color)]</value>
+		<value>gradientbackground</value>
+	</variable>
+	<variable name="BackgroundShadowColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(BackgroundShadow.color.base))">$INFO[Skin.String(BackgroundShadow.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="BackgroundSmokeColorVar">
+		<value condition="!String.IsEmpty(Skin.String(BackgroundSmoke.color.base))">$INFO[Skin.String(BackgroundSmoke.color)]</value>
+		<value>white</value>
+	</variable>
+	<variable name="BackgroundSmokeColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(BackgroundSmoke.color.base))">$INFO[Skin.String(BackgroundSmoke.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<!-- Topbar -->
+	<variable name="TopbarTextureVar">
+		<value condition="Skin.String(TopbarTexture.texture,shadow)">panels/mainmenu/shadow-bar.png</value>
+		<value>panels/mainmenu/wide-bar.png</value>
+	</variable>
+	<variable name="TopbarTextureLabelVar">
+		<value condition="Skin.String(TopbarTexture.texture,shadow)">$LOCALIZE[31048]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="TopbarTextureColorVar">
+		<value condition="!String.IsEmpty(Skin.String(TopbarTexture.color.base))">$INFO[Skin.String(TopbarTexture.color)]</value>
+		<value>topbar</value>
+	</variable>
+	<variable name="TopbarTextureColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(TopbarTexture.color.base))">$INFO[Skin.String(TopbarTexture.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="TopbarShadowColorVar">
+		<value condition="!String.IsEmpty(Skin.String(TopbarShadow.color.base))">$INFO[Skin.String(TopbarShadow.color)]</value>
+		<value>shadow</value>
+	</variable>
+	<variable name="TopbarShadowColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(TopbarShadow.color.base))">$INFO[Skin.String(TopbarShadow.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="TopbarHighlightColorVar">
+		<value condition="!String.IsEmpty(Skin.String(TopbarHighlight.color.base))">$INFO[Skin.String(TopbarHighlight.Color)]</value>
+		<value>highlight</value>
+	</variable>
+	<variable name="TopbarHighlightColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(TopbarHighlight.color.base))">$INFO[Skin.String(TopbarHighlight.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="TopbarTextColorVar">
+		<value condition="!String.IsEmpty(Skin.String(TopbarText.color.base))">$INFO[Skin.String(TopbarText.color)]</value>
+		<value>text</value>
+	</variable>
+	<variable name="TopbarTextColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(TopbarText.color.base))">$INFO[Skin.String(TopbarText.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="TopbarSubTextColorVar">
+		<value condition="!String.IsEmpty(Skin.String(TopbarSubText.color.base))">$INFO[Skin.String(TopbarSubText.color)]</value>
+		<value>subtext</value>
+	</variable>
+	<variable name="TopbarSubTextColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(TopbarSubText.color.base))">$INFO[Skin.String(TopbarSubText.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="TopbarIconColorVar">
+		<value condition="!String.IsEmpty(Skin.String(TopbarIcon.color.base))">$INFO[Skin.String(TopbarIcon.color)]</value>
+		<value>white</value>
+	</variable>
+	<variable name="TopbarIconColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(TopbarIcon.color.base))">$INFO[Skin.String(TopbarIcon.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="TopbarWeatherIconColorVar">
+		<value condition="!String.IsEmpty(Skin.String(TopbarWeatherIcon.color.base))">$INFO[Skin.String(TopbarWeatherIcon.color)]</value>
+		<value>white</value>
+	</variable>
+	<variable name="TopbarWeatherIconColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(TopbarWeatherIcon.color.base))">$INFO[Skin.String(TopbarWeatherIcon.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="TopbarNowPlayingColorVar">
+		<value condition="!String.IsEmpty(Skin.String(TopbarNowPlaying.color.base))">$INFO[Skin.String(TopbarNowPlaying.color)]</value>
+		<value>highlight</value>
+	</variable>
+	<variable name="TopbarNowPlayingColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(TopbarNowPlaying.color.base))">$INFO[Skin.String(TopbarNowPlaying.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<!-- Floor -->
+	<variable name="FloorStyleVar">
+		<value condition="Skin.String(FloorStyle.texture,auriga)">panels/floor/auriga.png</value>
+		<value condition="Skin.String(FloorStyle.texture,nox4)">panels/floor/nox4.png</value>
+		<value condition="Skin.String(FloorStyle.texture,white)">panels/floor/white.png</value>
+		<value>panels/floor/default.png</value>
+	</variable>
+	<variable name="FloorStyleLabelVar">
+		<value condition="Skin.String(FloorStyle.texture,auriga)">Aeon Auriga</value>
+		<value condition="Skin.String(FloorStyle.texture,nox4)">Aeon Nox 4</value>
+		<value condition="Skin.String(FloorStyle.texture,white)">$LOCALIZE[742]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="FloorTextureLabelVar">
+		<value condition="Skin.String(FloorTexture.texture,panels/patterns/brushed.png)">$LOCALIZE[31135]</value>
+		<value condition="Skin.String(FloorTexture.texture,panels/patterns/carbon.png)">$LOCALIZE[31114]</value>
+		<value condition="Skin.String(FloorTexture.texture,panels/patterns/concrete.png)">$LOCALIZE[31150]</value>
+		<value condition="Skin.String(FloorTexture.texture,panels/patterns/gradient.png)">$LOCALIZE[31134]</value>
+		<value condition="Skin.String(FloorTexture.texture,panels/patterns/pixels.png)">$LOCALIZE[31115]</value>
+		<value condition="Skin.String(FloorTexture.texture,panels/patterns/schimi.png)">Schimi</value>
+		<value condition="Skin.String(FloorTexture.texture,panels/patterns/steelplate.png)">$LOCALIZE[31116]</value>
+		<value condition="Skin.String(FloorTexture.texture,panels/patterns/wallpaper.png)">$LOCALIZE[31117]</value>
+		<value condition="Skin.String(FloorTexture.texture,panels/patterns/wood.png)">$LOCALIZE[31118]</value>
+		<value condition="Skin.String(FloorTexture.texture,panels/patterns/wrinkles.png)">$LOCALIZE[31119]</value>
+		<value>$LOCALIZE[231]</value>
+	</variable>
+	<variable name="FloorStyleColorVar">
+		<value condition="!String.IsEmpty(Skin.String(FloorStyle.color.base))">$INFO[Skin.String(FloorStyle.color)]</value>
+		<value>floor</value>
+	</variable>
+	<variable name="FloorStyleColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(FloorStyle.color.base))">$INFO[Skin.String(FloorStyle.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="FloorTextureColorVar">
+		<value condition="!String.IsEmpty(Skin.String(FloorTexture.color.base))">$INFO[Skin.String(FloorTexture.color)]</value>
+		<value>paneltexture</value>
+	</variable>
+	<variable name="FloorTextureColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(FloorTexture.color.base))">$INFO[Skin.String(FloorTexture.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="FloorShadowColorVar">
+		<value condition="!String.IsEmpty(Skin.String(FloorShadow.color.base))">$INFO[Skin.String(FloorShadow.color)]</value>
+		<value>shadow</value>
+	</variable>
+	<variable name="FloorShadowColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(FloorShadow.color.base))">$INFO[Skin.String(FloorShadow.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="FloorHighlightColorVar">
+		<value condition="!String.IsEmpty(Skin.String(FloorHighlight.color.base))">$INFO[Skin.String(FloorHighlight.color)]</value>
+		<value>highlight</value>
+	</variable>
+	<variable name="FloorHighlightColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(FloorHighlight.color.base))">$INFO[Skin.String(FloorHighlight.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<!-- Media menu -->
+	<variable name="MediaMenuStyleVar">
+		<value condition="Skin.String(MediaMenu.texture,auriga)">panels/mediamenu/auriga.png</value>
+		<value condition="Skin.String(MediaMenu.texture,nox4)">panels/mediamenu/nox4.png</value>
+		<value condition="Skin.String(MediaMenu.texture,white)">panels/mediamenu/white.png</value>
+		<value>panels/mediamenu/default.png</value>
+	</variable>
+	<variable name="MediaMenuStyleLabelVar">
+		<value condition="Skin.String(MediaMenu.texture,auriga)">Aeon Auriga</value>
+		<value condition="Skin.String(MediaMenu.texture,nox4)">Aeon Nox 4</value>
+		<value condition="Skin.String(MediaMenu.texture,white)">$LOCALIZE[742]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MediaMenuTextureLabelVar">
+		<value condition="Skin.String(MediaMenuTexture.texture,panels/patterns/brushed.png)">$LOCALIZE[31135]</value>
+		<value condition="Skin.String(MediaMenuTexture.texture,panels/patterns/carbon.png)">$LOCALIZE[31114]</value>
+		<value condition="Skin.String(MediaMenuTexture.texture,panels/patterns/concrete.png)">$LOCALIZE[31150]</value>
+		<value condition="Skin.String(MediaMenuTexture.texture,panels/patterns/gradient.png)">$LOCALIZE[31134]</value>
+		<value condition="Skin.String(MediaMenuTexture.texture,panels/patterns/pixels.png)">$LOCALIZE[31115]</value>
+		<value condition="Skin.String(MediaMenuTexture.texture,panels/patterns/schimi.png)">Schimi</value>
+		<value condition="Skin.String(MediaMenuTexture.texture,panels/patterns/steelplate.png)">$LOCALIZE[31116]</value>
+		<value condition="Skin.String(MediaMenuTexture.texture,panels/patterns/wallpaper.png)">$LOCALIZE[31117]</value>
+		<value condition="Skin.String(MediaMenuTexture.texture,panels/patterns/wood.png)">$LOCALIZE[31118]</value>
+		<value condition="Skin.String(MediaMenuTexture.texture,panels/patterns/wrinkles.png)">$LOCALIZE[31119]</value>
+		<value>$LOCALIZE[231]</value>
+	</variable>
+	<variable name="MediaMenuStyleColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuStyle.color.base))">$INFO[Skin.String(MediaMenuStyle.color)]</value>
+		<value>panel</value>
+	</variable>
+	<variable name="MediaMenuStyleColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuStyle.color.base))">$INFO[Skin.String(MediaMenuStyle.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MediaMenuTextureColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuTexture.color.base))">$INFO[Skin.String(MediaMenuTexture.color)]</value>
+		<value>paneltexture</value>
+	</variable>
+	<variable name="MediaMenuTextureColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuTexture.color.base))">$INFO[Skin.String(MediaMenuTexture.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MediaMenuShadowColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuShadow.color.base))">$INFO[Skin.String(MediaMenuShadow.color)]</value>
+		<value>shadow</value>
+	</variable>
+	<variable name="MediaMenuShadowColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuShadow.color.base))">$INFO[Skin.String(MediaMenuShadow.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MediaMenuHighlightColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuHighlight.color.base))">$INFO[Skin.String(MediaMenuHighlight.Color)]</value>
+		<value>highlight</value>
+	</variable>
+	<variable name="MediaMenuHighlightColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuHighlight.color.base))">$INFO[Skin.String(MediaMenuHighlight.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MediaMenuTextColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuText.color.base))">$INFO[Skin.String(MediaMenuText.color)]</value>
+		<value>subtext</value>
+	</variable>
+	<variable name="MediaMenuTextColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuText.color.base))">$INFO[Skin.String(MediaMenuText.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MediaMenuFocusTextColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuFocusText.color.base))">$INFO[Skin.String(MediaMenuFocusText.color)]</value>
+		<value>focustext</value>
+	</variable>
+	<variable name="MediaMenuFocusTextColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuFocusText.color.base))">$INFO[Skin.String(MediaMenuFocusText.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MediaMenuListSeparatorColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuListSeparator.color.base))">$INFO[Skin.String(MediaMenuListSeparator.color)]</value>
+		<value>listseparator</value>
+	</variable>
+	<variable name="MediaMenuListSeparatorColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuListSeparator.color.base))">$INFO[Skin.String(MediaMenuListSeparator.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MediaMenuButtonColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuButton.color.base))">$INFO[Skin.String(MediaMenuButton.color)]</value>
+		<value>button</value>
+	</variable>
+	<variable name="MediaMenuButtonColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuButton.color.base))">$INFO[Skin.String(MediaMenuButton.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MediaMenuIconColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuIcon.color.base))">$INFO[Skin.String(MediaMenuIcon.color)]</value>
+		<value>subtext</value>
+	</variable>
+	<variable name="MediaMenuIconColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuIcon.color.base))">$INFO[Skin.String(MediaMenuIcon.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="MediaMenuFocusIconColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuFocusIcon.color.base))">$INFO[Skin.String(MediaMenuFocusIcon.color)]</value>
+		<value>focustext</value>
+	</variable>
+	<variable name="MediaMenuFocusIconColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuFocusIcon.color.base))">$INFO[Skin.String(MediaMenuFocusIcon.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+</includes>

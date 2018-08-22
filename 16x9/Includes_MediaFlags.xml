@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+	<include name="MediaFlagsRight">
+		<control type="grouplist">
+			<visible>!ListItem.IsParentFolder + [Container.Content(tvshows) | Container.Content(seasons)]</visible>
+			<bottom>21</bottom>
+			<right>100</right>
+			<width>538</width>
+			<height>90</height>
+			<itemgap>10</itemgap>
+			<orientation>horizontal</orientation>
+			<usecontrolcoords>true</usecontrolcoords>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]mpaa/$VAR[RatingFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.FolderName)</visible>
+			</control>
+			<control type="label">
+				<include>MediaFlagLabel</include>
+				<label>$VAR[NextAiredStausLabelVar]</label>
+			</control>
+			<control type="image">
+				<left>-135</left>
+				<include>MediaFlagImage</include>
+				<texture>$VAR[MediaFlagsPathVar]nextaired/$INFO[Window(Home).Property(NextAired.StatusID)].png</texture>
+				<visible>String.IsEqual(Window(Home).Property(NextAired.Today),False)</visible>
+			</control>
+			<control type="image">
+				<left>-135</left>
+				<include>MediaFlagImage</include>
+				<texture fallback="flags/default/nextaired/-1.png">$VAR[MediaFlagsPathVar]nextaired/today.png</texture>
+				<visible>String.IsEqual(Window(Home).Property(NextAired.Today),True)</visible>
+			</control>
+			<control type="label">
+				<width>265</width>
+				<align>right</align>
+				<include>MediaFlagLabel</include>
+				<label>$LOCALIZE[31063][CR][B]$INFO[Window(Home).Property(NextAired.NextNumber)][CR]$INFO[Window(Home).Property(NextAired.NextDay),, ]$INFO[Window(Home).Property(NextAired.ShortTime)][/B]</label>
+				<visible>!String.IsEmpty(Window(Home).Property(NextAired.NextDay))</visible>
+			</control>
+			<control type="label">
+				<width>265</width>
+				<align>right</align>
+				<include>MediaFlagLabel</include>
+				<label>$LOCALIZE[31064][CR][B]$INFO[Window(Home).Property(NextAired.LatestNumber)][CR]$INFO[Window(Home).Property(NextAired.LatestDay)][/B]</label>
+				<visible>String.IsEmpty(Window(Home).Property(NextAired.NextDay)) + !String.IsEmpty(Window(Home).Property(NextAired.LatestDay))</visible>
+			</control>
+		</control>
+		<control type="grouplist">
+			<visible>!ListItem.IsParentFolder + [Container.Content(episodes) | Container.Content(movies) | Container.Content(musicvideos)]</visible>
+			<bottom>30</bottom>
+			<right>100</right>
+			<width>532</width>
+			<height>80</height>
+			<align>right</align>
+			<itemgap>10</itemgap>
+			<orientation>horizontal</orientation>
+			<usecontrolcoords>true</usecontrolcoords>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videoresolution/$VAR[VideoResolutionFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videocodec/$VAR[VideoCodecFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.VideoCodec)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]audiochannels/$VAR[AudioChannelsFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.AudioChannels)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]audiocodec/$VAR[AudioCodecFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
+			</control>
+			<control type="label">
+				<label>$LOCALIZE[342]</label>
+				<visible>ListItem.IsCollection + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Count))</visible>
+			</control>
+			<control type="label">
+				<left>-135</left>
+				<include>MediaFlagBigLabel</include>
+				<label>$INFO[Window(Home).Property(SkinHelper.ListItem.Count)]</label>
+				<visible>ListItem.IsCollection + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Count))</visible>
+			</control>
+		</control>
+		<control type="grouplist">
+			<visible>!ListItem.IsParentFolder + Container.Content(artists)</visible>
+			<bottom>21</bottom>
+			<right>100</right>
+			<width>532</width>
+			<height>90</height>
+			<align>right</align>
+			<itemgap>10</itemgap>
+			<orientation>horizontal</orientation>
+			<usecontrolcoords>true</usecontrolcoords>
+			<control type="label">
+				<include>MediaFlagLabel</include>
+				<label>$LOCALIZE[521]</label>
+				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.AlbumsCompilationsCount))</visible>
+			</control>
+			<control type="label">
+				<left>-135</left>
+				<include>MediaFlagBigLabel</include>
+				<label>$INFO[Window(Home).Property(SkinHelper.ListItem.AlbumsCompilationsCount)]</label>
+				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.AlbumsCompilationsCount))</visible>
+			</control>
+			<control type="label">
+				<include>MediaFlagLabel</include>
+				<label>$LOCALIZE[132]</label>
+				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.AlbumsArtistCount))</visible>
+			</control>
+			<control type="label">
+				<left>-135</left>
+				<include>MediaFlagBigLabel</include>
+				<label>$INFO[Window(Home).Property(SkinHelper.ListItem.AlbumsArtistCount)]</label>
+				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.AlbumsArtistCount))</visible>
+			</control>
+		</control>
+		<control type="grouplist">
+			<visible>!ListItem.IsParentFolder + Container.Content(albums)</visible>
+			<bottom>21</bottom>
+			<right>100</right>
+			<width>538</width>
+			<height>90</height>
+			<align>right</align>
+			<itemgap>10</itemgap>
+			<orientation>horizontal</orientation>
+			<usecontrolcoords>true</usecontrolcoords>
+			<control type="label">
+				<width>265</width>
+				<include>MediaFlagLabel</include>
+				<label>$LOCALIZE[180]</label>
+				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Duration))</visible>
+			</control>
+			<control type="label">
+				<left>-275</left>
+				<width>265</width>
+				<include>MediaFlagBigLabel</include>
+				<label>$INFO[Window(Home).Property(SkinHelper.ListItem.Duration)]</label>
+				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Duration))</visible>
+			</control>
+			<control type="label">
+				<include>MediaFlagLabel</include>
+				<label>$LOCALIZE[134]</label>
+				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.SongCount))</visible>
+			</control>
+			<control type="label">
+				<left>-135</left>
+				<include>MediaFlagBigLabel</include>
+				<label>$INFO[Window(Home).Property(SkinHelper.ListItem.SongCount)]</label>
+				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.SongCount))</visible>
+			</control>
+		</control>
+		<control type="grouplist">
+			<visible>!ListItem.IsParentFolder + Container.Content(songs)</visible>
+			<bottom>21</bottom>
+			<right>100</right>
+			<width>538</width>
+			<height>90</height>
+			<align>right</align>
+			<itemgap>10</itemgap>
+			<orientation>horizontal</orientation>
+			<usecontrolcoords>true</usecontrolcoords>
+			<control type="image">
+				<width>246</width>
+				<include>MediaFlagImage</include>
+				<texture>$VAR[ViewImageRatingVar]</texture>
+				<visible>Control.IsVisible(50)</visible>
+			</control>
+			<control type="label">
+				<width>150</width>
+				<include>MediaFlagBigLabelCenter</include>
+				<label>$INFO[ListItem.Year]</label>
+				<visible>!String.IsEmpty(ListItem.Year)</visible>
+			</control>
+			<control type="image">
+				<include>MediaFlagImage</include>
+				<texture>$VAR[MediaFlagsPathVar]/audiocodec/mp3.png</texture>
+			</control>
+		</control>
+	</include>
+	<include name="MediaFlags_All">
+		<control type="grouplist">
+			<bottom>10</bottom>
+			<right>10</right>
+			<width>1338</width>
+			<height>90</height>
+			<align>right</align>
+			<itemgap>42</itemgap>
+			<orientation>horizontal</orientation>
+			<usecontrolcoords>true</usecontrolcoords>
+			<control type="image">
+				<texture>$VAR[StudioIconsVar]</texture>
+				<include>MediaFlagImage</include>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]mpaa/$VAR[RatingFlagVar]</texture>
+				<include>MediaFlagImage</include>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videoaspect/$VAR[VideoAspectFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.VideoAspect)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videoresolution/$VAR[VideoResolutionFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videocodec/$VAR[VideoCodecFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.VideoCodec)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]audiochannels/$VAR[AudioChannelsFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.AudioChannels)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]audiocodec/$VAR[AudioCodecFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]cc.png</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.SubtitleLanguage)</visible>
+			</control>
+			<control type="label">
+				<include>MediaFlagLabel</include>
+				<label>$LOCALIZE[342]</label>
+				<visible>ListItem.IsCollection + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Count))</visible>
+			</control>
+			<control type="label">
+				<left>-135</left>
+				<include>MediaFlagBigLabel</include>
+				<label>$INFO[Window(Home).Property(SkinHelper.ListItem.Count)]</label>
+				<visible>ListItem.IsCollection + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Count))</visible>
+			</control>
+		</control>
+	</include>
+	<!-- Language / Subtitle flags -->
+	<include name="LanguageSubtitleFlags">
+		<control type="grouplist">
+			<top>11</top>
+			<itemgap>4</itemgap>
+			<orientation>vertical</orientation>
+			<usecontrolcoords>true</usecontrolcoords>
+			<visible>$PARAM[visible]</visible>
+			<control type="grouplist">
+				<width>380</width>
+				<height>30</height>
+				<itemgap>5</itemgap>
+				<orientation>horizontal</orientation>
+				<control type="label">
+					<width>100</width>
+					<height>26</height>
+					<align>right</align>
+					<textcolor>grey</textcolor>
+					<font>Font23_Reg</font>
+					<label>$LOCALIZE[292]</label>
+				</control>
+				<control type="label">
+					<width>100</width>
+					<height>26</height>
+					<textcolor>white2</textcolor>
+					<font>Font23_Reg</font>
+					<label>$LOCALIZE[1446]</label>
+					<visible>String.IsEmpty(ListItem.Property(AudioLanguage.1)) | String.IsEqual(ListItem.Property(AudioLanguage.1),und)</visible>
+				</control>
+				<control type="image">
+					<include>LanguageSubtitleFlagImage</include>
+					<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[ListItem.Property(AudioLanguage.1)]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+				</control>
+				<control type="image">
+					<include>LanguageSubtitleFlagImage</include>
+					<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[ListItem.Property(AudioLanguage.2)]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+				</control>
+				<control type="image">
+					<include>LanguageSubtitleFlagImage</include>
+					<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[ListItem.Property(AudioLanguage.3)]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+				</control>
+				<control type="image">
+					<include>LanguageSubtitleFlagImage</include>
+					<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[ListItem.Property(AudioLanguage.4)]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+				</control>
+				<control type="image">
+					<include>LanguageSubtitleFlagImage</include>
+					<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[ListItem.Property(AudioLanguage.5)]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+				</control>
+				<control type="image">
+					<include>LanguageSubtitleFlagImage</include>
+					<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[ListItem.Property(AudioLanguage.6)]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+				</control>
+				<control type="image">
+					<include>LanguageSubtitleFlagImage</include>
+					<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[ListItem.Property(AudioLanguage.7)]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+				</control>
+				<control type="image">
+					<include>LanguageSubtitleFlagImage</include>
+					<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[ListItem.Property(AudioLanguage.8)]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+				</control>
+			</control>
+			<control type="grouplist">
+				<width>380</width>
+				<height>30</height>
+				<itemgap>5</itemgap>
+				<orientation>horizontal</orientation>
+				<control type="label">
+					<width>100</width>
+					<height>26</height>
+					<align>right</align>
+					<textcolor>grey</textcolor>
+					<font>Font23_Reg</font>
+					<label>$LOCALIZE[287]</label>
+				</control>
+				<control type="label">
+					<width>100</width>
+					<height>26</height>
+					<textcolor>white2</textcolor>
+					<font>Font23_Reg</font>
+					<label>$LOCALIZE[231]</label>
+					<visible>String.IsEmpty(ListItem.SubtitleLanguage)</visible>
+				</control>
+				<control type="image">
+					<include>LanguageSubtitleFlagImage</include>
+					<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[ListItem.Property(SubtitleLanguage.1)]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.1))</visible>
+				</control>
+				<control type="image">
+					<include>LanguageSubtitleFlagImage</include>
+					<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[ListItem.Property(SubtitleLanguage.2)]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.2))</visible>
+					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.1),ListItem.Property(SubtitleLanguage.2))</visible>
+				</control>
+				<control type="image">
+					<include>LanguageSubtitleFlagImage</include>
+					<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[ListItem.Property(SubtitleLanguage.3)]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.3))</visible>
+					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.1),ListItem.Property(SubtitleLanguage.3))</visible>
+					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.2),ListItem.Property(SubtitleLanguage.3))</visible>
+				</control>
+				<control type="image">
+					<include>LanguageSubtitleFlagImage</include>
+					<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[ListItem.Property(SubtitleLanguage.4)]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.4))</visible>
+					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.1),ListItem.Property(SubtitleLanguage.4))</visible>
+					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.2),ListItem.Property(SubtitleLanguage.4))</visible>
+					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.3),ListItem.Property(SubtitleLanguage.4))</visible>
+				</control>
+				<control type="image">
+					<include>LanguageSubtitleFlagImage</include>
+					<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[ListItem.Property(SubtitleLanguage.5)]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.5))</visible>
+					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.1),ListItem.Property(SubtitleLanguage.5))</visible>
+					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.2),ListItem.Property(SubtitleLanguage.5))</visible>
+					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.3),ListItem.Property(SubtitleLanguage.5))</visible>
+					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.4),ListItem.Property(SubtitleLanguage.5))</visible>
+				</control>
+				<control type="image">
+					<include>LanguageSubtitleFlagImage</include>
+					<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[ListItem.Property(SubtitleLanguage.6)]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.6))</visible>
+					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.1),ListItem.Property(SubtitleLanguage.6))</visible>
+					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.2),ListItem.Property(SubtitleLanguage.6))</visible>
+					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.3),ListItem.Property(SubtitleLanguage.6))</visible>
+					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.4),ListItem.Property(SubtitleLanguage.6))</visible>
+					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.5),ListItem.Property(SubtitleLanguage.6))</visible>
+				</control>
+				<control type="image">
+					<include>LanguageSubtitleFlagImage</include>
+					<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[ListItem.Property(SubtitleLanguage.7)]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.7))</visible>
+				</control>
+				<control type="image">
+					<include>LanguageSubtitleFlagImage</include>
+					<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[ListItem.Property(SubtitleLanguage.8)]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.8))</visible>
+				</control>
+				<control type="image">
+					<include>LanguageSubtitleFlagImage</include>
+					<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[ListItem.Property(SubtitleLanguage.9)]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.9))</visible>
+				</control>
+				<control type="image">
+					<include>LanguageSubtitleFlagImage</include>
+					<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[ListItem.Property(SubtitleLanguage.10)]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.10))</visible>
+				</control>
+				<control type="image">
+					<include>LanguageSubtitleFlagImage</include>
+					<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[ListItem.Property(SubtitleLanguage.11)]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.11))</visible>
+				</control>
+				<control type="image">
+					<include>LanguageSubtitleFlagImage</include>
+					<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[ListItem.Property(SubtitleLanguage.12)]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.12))</visible>
+				</control>
+			</control>
+		</control>
+	</include>
+	<include name="MediaFlagImage">
+		<top>2</top>
+		<width>125.50</width>
+		<height>80</height>
+		<fadetime>TextureFadeTime</fadetime>
+		<include condition="!Skin.HasSetting(ColoredMediaFlags)">MediaFlagWhite</include>
+		<include condition="Skin.HasSetting(ColoredMediaFlags)">MediaFlagColored</include>
+		<aspectratio align="center" aligny="center">scale</aspectratio>
+	</include>
+	<include name="MediaFlagSmallImage">
+		<top>6</top>
+		<width>125</width>
+		<height>30</height>
+		<fadetime>TextureFadeTime</fadetime>
+		<include condition="!Skin.HasSetting(ColoredMediaFlags)">MediaFlagWhite</include>
+		<include condition="Skin.HasSetting(ColoredMediaFlags)">MediaFlagColored</include>
+		<aspectratio align="center" aligny="center">keep</aspectratio>
+	</include>
+	<include name="LanguageSubtitleFlagImage">
+		<width>30</width>
+		<height>30</height>
+		<fadetime>TextureFadeTime</fadetime>
+		<aspectratio align="center" aligny="center">keep</aspectratio>
+	</include>
+	
+
+	<include name="MediaFlagLabel">
+		<top>2</top>
+		<width>125</width>
+		<height>40</height>
+		<align>center</align>
+		<textcolor>grey</textcolor>
+		<font>Font23_Reg</font>
+	</include>
+	<include name="MediaFlagBigLabel">
+		<top>30</top>
+		<width>125</width>
+		<height>50</height>
+		<align>center</align>
+		<textcolor>grey</textcolor>
+		<font>Font36_Bold_Caps</font>
+	</include>
+	<include name="MediaFlagBigLabelCenter">
+		<width>125</width>
+		<height>90</height>
+		<align>center</align>
+		<textcolor>grey</textcolor>
+		<font>Font49_Bold_Caps</font>
+	</include>
+	<include name="MediaFlagWhite">
+		<colordiffuse>grey</colordiffuse>
+	</include>
+	<include name="MediaFlagColored">
+		<colordiffuse></colordiffuse>
+	</include>
+</includes>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window id="1112" type="dialog">
+	<defaultcontrol always="true">100</defaultcontrol>
+	<include>AnimationDialogPopupWindow</include>
+	<controls>
+		<control type="group">
+			<include>DialogBackgroundFade</include>
+			<centerleft>50%</centerleft>
+			<centertop>50%</centertop>
+			<width>500</width>
+			<height>360</height>
+			<include content="DialogContextMenuShadow">
+				<param name="height">360</param>
+			</include>
+			<include content="DialogContextMenuStyle">
+				<param name="height">360</param>
+			</include>
+			<include content="DialogContextMenuTexture">
+				<param name="height">320</param>
+				<param name="diffuse">diffuse/rounded10-460x320.png</param>
+			</include>
+			<include content="DialogContextMenuEmboss">
+				<param name="height">360</param>
+			</include>
+			<control type="image">
+				<top>-10</top>
+				<include>DialogHorizontalSeparator</include>
+			</control>
+			<control type="grouplist" id="100">
+				<top>60</top>
+				<bottom>20</bottom>
+				<left>20</left>
+				<width>460</width>
+				<height>280</height>
+				<control type="button" id="101">
+					<label>$LOCALIZE[14022]</label>
+					<onclick>Dialog.Close(all)</onclick>
+					<onclick condition="System.hasAddon(script.globalsearch)">RunScript(script.globalsearch)</onclick>
+					<onclick condition="!System.hasAddon(script.globalsearch)">InstallAddon(script.globalsearch)</onclick>
+					<include>DialogButtonContextMenu</include>
+				</control>
+				<control type="button" id="102">
+					<label>$LOCALIZE[24001]</label>
+					<onclick>Dialog.Close(all)</onclick>
+					<onclick>ActivateWindow(addonbrowser,addons://search/,return)</onclick>
+					<include>DialogButtonContextMenu</include>
+				</control>
+				<control type="button" id="103">
+					<label>YouTube</label>
+					<onclick>Dialog.Close(all)</onclick>
+					<onclick condition="System.hasAddon(plugin.video.youtube)">ActivateWindow(videos,"plugin://plugin.video.youtube/kodion/search/list/",return)</onclick>
+					<onclick condition="!System.hasAddon(plugin.video.youtube)">InstallAddon(plugin.video.youtube)</onclick>
+					<include>DialogButtonContextMenu</include>
+				</control>
+				<control type="button" id="104">
+					<label>TMDb</label>
+					<onclick>Dialog.Close(all)</onclick>
+					<onclick condition="System.hasAddon(script.extendedinfo)">RunScript(script.extendedinfo,info=moviedbbrowser,search=True)</onclick>
+					<onclick condition="!System.hasAddon(script.extendedinfo)">InstallAddon(script.extendedinfo)</onclick>
+					<include>DialogButtonContextMenu</include>
+				</control>
+			</control>
+		</control>
+	</controls>
+</window>

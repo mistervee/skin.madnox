@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window id="1115" type="dialog">
+	<defaultcontrol always="true">100</defaultcontrol>
+	<onunload>ClearProperty(MediaMenuSelect,home)</onunload>
+	<controls>
+		<control type="group">
+			<visible>!Window.IsActive(DialogSelect.xml) + !Window.IsActive(1110) + !Window.IsActive(1111)</visible>
+			<left>-490</left>
+			<include content="AnimationDialogMediaMenuWindow">
+				<param name="slide">490</param>
+			</include>
+			<include content="AnimationDialogMediaMenuVisible">
+				<param name="slide">490</param>
+			</include>
+			<include content="MediaMenuBackground">
+				<param name="width">490</param>
+				<param name="left">470</param>
+			</include>
+			<control type="grouplist" id="100">
+				<width>470</width>
+				<height>1020</height>
+				<onleft>9001</onleft>
+				<pagecontrol>60</pagecontrol>
+				<onright>Dialog.Close(1115)</onright>
+				<onback>Dialog.Close(1115)</onback>
+				<include condition="String.IsEqual(Container.Viewmode,$LOCALIZE[535])">MediaMenuViewsettingsList50</include>
+				<include condition="$EXP[AreaVisibleHome] + String.IsEqual(Window(home).Property(MediaMenuSelect),menu)">MediaMenuViewsettingsMenuHome</include>
+				<include condition="$EXP[AreaVisibleHome] + String.IsEqual(Window(home).Property(MediaMenuSelect),info)">MediaMenuViewsettingsInfoHome</include>
+				<include condition="$EXP[AreaVisibleHome] + String.IsEqual(Window(home).Property(MediaMenuSelect),widgets)">MediaMenuViewsettingsWidgetsHome</include>
+				<include condition="$EXP[AreaVisibleHome] + String.IsEqual(Window(home).Property(MediaMenuSelect),nowplaying)">MediaMenuViewsettingsNowPlayingHome</include>
+				<include condition="$EXP[AreaVisibleHome] + String.IsEqual(Window(home).Property(MediaMenuSelect),colors)">MediaMenuViewsettingsColorsHome</include>
+				<include condition="$EXP[AreaVisibleVideos]">MediaMenuCommonViewsettingsVideos</include>
+				<include condition="$EXP[AreaVisibleTV] | $EXP[AreaVisibleRadio]">MediaMenuViewsettingsPVR</include>
+				<include condition="$EXP[AreaVisibleMusic]">MediaMenuCommonViewsettingsMusic</include>
+				<include condition="$EXP[AreaVisibleGames]">MediaMenuViewsettingsGames</include>
+				<include condition="$EXP[AreaVisiblePictures]">MediaMenuViewsettingsPictures</include>
+				<include condition="$EXP[AreaVisibleAddons]">MediaMenuViewsettingsAddons</include>
+				<include condition="$EXP[AreaVisibleWeather]">MediaMenuViewsettingsWeather</include>
+				<include condition="$EXP[AreaVisibleSystem]">MediaMenuViewsettingsSystem</include>
+			</control>
+			<control type="group">
+				<visible>Integer.IsGreater(Container(100).NumItems,17)</visible>
+				<top>1020</top>
+				<width>235</width>
+				<height>60</height>
+				<control type="scrollbar" id="60">
+					<include>HiddenObject</include>
+				</control>
+				<control type="button">
+					<width>235</width>
+					<label></label>
+					<align>center</align>
+					<font>Font45_Icon</font>
+					<onclick>PageUp(60)</onclick>
+					<textcolor>$VAR[MediaMenuTextColorVar]</textcolor>
+					<focusedcolor>$VAR[MediaMenuFocusTextColorVar]</focusedcolor>
+					<texturefocus border="10" colordiffuse="$VAR[MediaMenuHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
+					<texturenofocus />
+				</control>
+				<control type="button">
+					<left>235</left>
+					<width>235</width>
+					<label></label>
+					<align>center</align>
+					<font>Font45_Icon</font>
+					<onclick>PageDown(60)</onclick>
+					<textcolor>$VAR[MediaMenuTextColorVar]</textcolor>
+					<focusedcolor>$VAR[MediaMenuFocusTextColorVar]</focusedcolor>
+					<texturefocus border="10" colordiffuse="$VAR[MediaMenuHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
+					<texturenofocus />
+				</control>
+			</control>
+		</control>
+	</controls>
+</window>
