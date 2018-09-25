@@ -2,25 +2,23 @@
 <window>
 	<defaultcontrol always="true">2</defaultcontrol>
 	<controls>
-		<include>Dialog_CloseOnclick</include>
 		<control type="group">
-			<include content="Animation_Slide_Bottom_Window">
+			<include content="AnimationSlideBottomWindow">
 				<param name="slide">240</param>
 			</include>
-			<top>840</top>
-			<control type="image">
-				<width>1920</width>
-				<height>20</height>
-				<texture colordiffuse="$VAR[GlowColorVar]">panels/glow-bottom.png</texture>
-			</control>
-			<control type="image">
-				<width>1920</width>
-				<height>240</height>
-				<texture colordiffuse="$VAR[PanelColorVar]" border="15">panels/osd-back.png</texture>
+			<control type="group">
+				<include content="PanelWide">
+					<param name="top">840</param>
+					<param name="toptexture">860</param>
+					<param name="topshadow">840</param>
+					<param name="height">240</param>
+					<param name="heighttexture">220</param>
+					<param name="flipy">false</param>
+				</include>
 			</control>
 			<!-- Left menu -->
 			<control type="grouplist" id="9000">
-				<top>20</top>
+				<bottom>0</bottom>
 				<width>382</width>
 				<height>220</height>
 				<onright>11</onright>
@@ -42,14 +40,14 @@
 			</control>
 			<control type="image">
 				<left>382</left>
-				<top>20</top>
+				<bottom>0</bottom>
 				<width>4</width>
-				<height>198</height>
-				<texture colordiffuse="$VAR[PanelColorVar]">panels/line-vertical.png</texture>
+				<height>220</height>
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
 			</control>
 			<!-- Video Thumb Preview  -->
 			<control type="fixedlist" id="11">
-				<top>20</top>
+				<bottom>0</bottom>
 				<left>384</left>
 				<width>1536</width>
 				<height>220</height>
@@ -72,33 +70,33 @@
 						<left>5</left>
 						<width>374</width>
 						<height>40</height>
-						<texture colordiffuse="FF000000">colors/white50.png</texture>
+						<texture colordiffuse="$VAR[PanelArtworkTextBackgroundColorVar]">colors/white50.png</texture>
 					</control>
 					<control type="label">
 						<top>175</top>
 						<left>5</left>
-						<height>40</height>
 						<width>234</width>
+						<height>40</height>
 						<font>Font26_Reg_08</font>
-						<textcolor>grey</textcolor>
 						<textoffsetx>10</textoffsetx>
 						<label>$INFO[ListItem.Label]</label>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 					</control>
 					<control type="label">
 						<top>175</top>
 						<left>239</left>
-						<height>40</height>
 						<width>140</width>
+						<height>40</height>
 						<align>right</align>
 						<font>Font26_Reg_08</font>
-						<textcolor>grey</textcolor>
 						<textoffsetx>10</textoffsetx>
 						<label>$INFO[ListItem.Label2]</label>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 					</control>
 				</itemlayout>
 				<focusedlayout width="384" height="220">
 					<control type="image">
-						<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
+						<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
 						<visible>Control.HasFocus(11)</visible>
 					</control>
 					<control type="image">
@@ -114,26 +112,28 @@
 						<left>5</left>
 						<width>374</width>
 						<height>40</height>
-						<texture colordiffuse="FF000000">colors/white50.png</texture>
+						<texture colordiffuse="$VAR[PanelArtworkTextBackgroundColorVar]">colors/white50.png</texture>
 					</control>
 					<control type="label">
 						<top>175</top>
 						<left>5</left>
-						<height>40</height>
 						<width>234</width>
+						<height>40</height>
 						<font>Font26_Reg_08</font>
 						<textoffsetx>10</textoffsetx>
 						<label>$INFO[ListItem.Label]</label>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
 					</control>
 					<control type="label">
 						<top>175</top>
 						<left>239</left>
-						<height>40</height>
 						<width>140</width>
+						<height>40</height>
 						<align>right</align>
 						<font>Font26_Reg_08</font>
 						<textoffsetx>10</textoffsetx>
 						<label>$INFO[ListItem.Label2]</label>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
 					</control>
 				</focusedlayout>
 			</control>

@@ -92,6 +92,8 @@
 		<radioposx>882</radioposx>
 		<textcolor>$VAR[DialogSubTextColorVar]</textcolor>
 		<focusedcolor>$VAR[DialogFocusTextColorVar]</focusedcolor>
+		<texturefocus border="10" colordiffuse="$VAR[DialogHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
+		<texturenofocus border="30" colordiffuse="$VAR[DialogListSeparatorColorVar]">buttons/list-select-nofocus.png</texturenofocus>
 	</include>
 	<include name="DialogRadioButtonAddonSettings">
 		<width>1038</width>
@@ -101,6 +103,8 @@
 		<radioposx>930</radioposx>
 		<textcolor>$VAR[DialogSubTextColorVar]</textcolor>
 		<focusedcolor>$VAR[DialogFocusTextColorVar]</focusedcolor>
+		<texturefocus border="10" colordiffuse="$VAR[DialogHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
+		<texturenofocus border="30" colordiffuse="$VAR[DialogListSeparatorColorVar]">buttons/list-select-nofocus.png</texturenofocus>
 	</include>
 	<include name="DialogRadioButtonSmartPlaylist">
 		<width>700</width>
@@ -111,6 +115,7 @@
 		<textcolor>$VAR[DialogSubTextColorVar]</textcolor>
 		<focusedcolor>$VAR[DialogFocusTextColorVar]</focusedcolor>
 		<texturefocus border="10" colordiffuse="$VAR[DialogHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
+		<texturenofocus border="30" colordiffuse="$VAR[DialogListSeparatorColorVar]">buttons/list-select-nofocus.png</texturenofocus>
 	</include>
 	<include name="DialogKeyboardButton">
 		<width>80</width>
@@ -121,6 +126,10 @@
 		<focusedcolor>$VAR[DialogFocusTextColorVar]</focusedcolor>
 		<texturefocus colordiffuse="$VAR[DialogHighlightColorVar]" border="20">buttons/button.png</texturefocus>
 		<texturenofocus colordiffuse="$VAR[DialogButtonColorVar]" border="20">buttons/button.png</texturenofocus>
+	</include>
+	<include name="DialogLabelProcessInfo">
+		<height>39</height>
+		<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 	</include>
 	<include name="DialogKeyboardToggleButton">
 		<width>210</width>
@@ -740,6 +749,8 @@
 		<align>center</align>
 		<font>Font28_Reg</font>
 		<textoffsetx>20</textoffsetx>
+		<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+		<focusedcolor>$VAR[PanelFocusTextColorVar]</focusedcolor>
 		<texturefocus colordiffuse="$VAR[PanelHighlightColorVar]" border="20">buttons/button.png</texturefocus>
 		<texturenofocus colordiffuse="$VAR[PanelButtonColorVar]" border="20">buttons/button.png</texturenofocus>
 	</include>
@@ -748,7 +759,8 @@
 		<height>80</height>
 		<align>center</align>
 		<font>Font40_Icon</font>
-		<textoffsetx>20</textoffsetx>
+		<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+		<focusedcolor>$VAR[PanelFocusTextColorVar]</focusedcolor>
 		<texturefocus colordiffuse="$VAR[PanelHighlightColorVar]" border="20">buttons/button.png</texturefocus>
 		<texturenofocus colordiffuse="$VAR[PanelButtonColorVar]" border="20">buttons/button.png</texturenofocus>
 	</include>
@@ -826,9 +838,19 @@
 			</include>
 		</control>
 	</include>
-	<include name="DialogInfoMusicVideoButtons">
+	<include name="DialogInfoMusicButtons">
+		<control type="button" id="114">
+			<visible>String.IsEqual(ListItem.DBTYPE,artist)</visible>
+			<label>Albums</label>
+			<include>DialogButtonInfo</include>
+		</control>
+		<control type="button" id="115">
+			<visible>String.IsEqual(ListItem.DBTYPE,artist)</visible>
+			<label>$LOCALIZE[21888]</label>
+			<include>DialogButtonInfo</include>
+		</control>
 		<control type="button" id="111">
-			<visible>System.HasAddon(script.extendedinfo)</visible>
+			<visible>Container.Content(musicvideos) + System.HasAddon(script.extendedinfo)</visible>
 			<label>$LOCALIZE[21888]</label>
 			<include>DialogButtonInfo</include>
 		</control>
@@ -838,13 +860,28 @@
 			<include>DialogButtonInfo</include>
 		</control>
 		<control type="button" id="113">
-			<visible>System.HasAddon(script.extendedinfo)</visible>
+			<visible>Container.Content(musicvideos) + System.HasAddon(script.extendedinfo)</visible>
+			<label>Top tracks</label>
+			<include>DialogButtonInfo</include>
+		</control>
+		<control type="button" id="116">
+			<visible>Container.Content(artists) + System.HasAddon(script.skin.helper.service)</visible>
 			<label>$LOCALIZE[31110]</label>
 			<include>DialogButtonInfo</include>
 		</control>
+		<control type="button" id="117">
+			<visible>Container.Content(albums)</visible>
+			<label>Arist Info</label>
+			<include>DialogButtonInfo</include>
+		</control>
 	</include>
-	<include name="DialogInfoMusicVideos">
+	<include name="DialogInfoMusic">
 		<control type="group" id="9001">
+			<!-- Albums -->
+			<include content="DialogInfoExtenedInfoMusic">
+				<param name="id">114</param>
+				<param name="content">musicdb://artists/$INFO[ListItem.DBID]</param>
+			</include>
 			<!-- Discography -->
 			<include content="DialogInfoExtenedInfoMusic">
 				<param name="id">111</param>
@@ -853,12 +890,16 @@
 			<!-- Youtube -->
 			<include content="DialogInfoExtenedInfoYoutube">
 				<param name="id">112</param>
-				<param name="content">plugin://script.extendedinfo?info=youtubesearchvideos&amp;&amp;id=$ESCINFO[ListItem.Label]</param>
+				<param name="content">$VAR[MusicDialogYoutubeVar]</param>
 			</include>
 			<!-- Most loved tracks -->
 			<include content="DialogInfoExtenedInfoYoutube">
 				<param name="id">113</param>
 				<param name="content">plugin://script.extendedinfo?info=mostlovedtracks&amp;&amp;artistname=$INFO[ListItem.Artist]</param>
+			</include>
+			<!-- Similar -->
+			<include content="DialogInfoSkinHelperSimilarMusic">
+				<param name="id">116</param>
 			</include>
 		</control>
 	</include>
@@ -935,6 +976,163 @@
 						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
 					</control>
 				</focusedlayout>
+			</control>
+		</definition>
+	</include>
+	<include name="DialogInfoActorMusic">
+		<param name="visible"></param>
+		<definition>
+			<control type="panel" id="50">
+				<!-- <visible>$PARAM[visible]</visible> -->
+				<include>AnimationVisibleFade</include>
+				<orientation>horizontal</orientation>
+				<onup condition="System.HasAddon(script.extendedinfo)">RunScript(script.extendedinfo,info=extendedactorinfo,name=$INFO[Container(50).ListItem.Label])</onup>
+				<ondown condition="Control.IsVisible(130)">130</ondown>
+				<ondown condition="!Control.IsVisible(130) + Control.IsVisible(131)">131</ondown>
+				<ondown condition="!Control.IsVisible(130) + !Control.IsVisible(131)">9000</ondown>
+				<top>201</top>
+				<right>25</right>
+				<height>348</height>
+				<ondown>9000</ondown>
+				<pagecontrol>60</pagecontrol>
+				<orientation>horizontal</orientation>
+				<itemlayout height="49">
+					<control type="label">
+						<width>180</width>
+						<font>Font28_Reg</font>
+						<label>$INFO[ListItem.Label2]</label>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					</control>
+					<control type="image">
+						<top>1</top>
+						<left>180</left>
+						<width>4</width>
+						<height>48</height>
+						<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
+					</control>
+					<control type="label">
+						<left>200</left>
+						<font>Font28_Reg</font>
+						<label>$INFO[ListItem.Label]</label>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					</control>
+					<control type="image">
+						<top>49</top>
+						<height>4</height>
+						<texture border="0,0,220,0" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
+					</control>
+				</itemlayout>
+				<focusedlayout height="49">
+					<control type="image">
+						<top>1</top>
+						<left>181</left>
+						<height>48</height>
+						<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+					</control>
+					<control type="label">
+						<width>180</width>
+						<font>Font28_Reg</font>
+						<label>$INFO[ListItem.Label2]</label>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					</control>
+					<control type="image">
+						<top>1</top>
+						<left>180</left>
+						<width>4</width>
+						<height>48</height>
+						<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
+					</control>
+					<control type="label">
+						<left>200</left>
+						<font>Font28_Reg</font>
+						<label>$INFO[ListItem.Label]</label>
+						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
+					</control>
+					<control type="image">
+						<top>49</top>
+						<height>4</height>
+						<texture border="0,0,220,0" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
+					</control>
+				</focusedlayout>
+			</control>
+		</definition>
+	</include>
+	<include name="DialogInfoTracksMusic">
+		<param name="visible"></param>
+		<definition>
+			<control type="panel" id="50">
+				<!-- <visible>$PARAM[visible]</visible> -->
+				<include>AnimationVisibleFade</include>
+				<orientation>horizontal</orientation>
+				<onup condition="System.HasAddon(script.extendedinfo)">RunScript(script.extendedinfo,info=extendedactorinfo,name=$INFO[Container(50).ListItem.Label])</onup>
+				<ondown condition="Control.IsVisible(130)">130</ondown>
+				<ondown condition="!Control.IsVisible(130) + Control.IsVisible(131)">131</ondown>
+				<ondown condition="!Control.IsVisible(130) + !Control.IsVisible(131)">9000</ondown>
+				<top>201</top>
+				<right>25</right>
+				<height>348</height>
+				<ondown>9000</ondown>
+				<pagecontrol>60</pagecontrol>
+				<orientation>horizontal</orientation>
+				<itemlayout height="49">
+					<control type="label">
+						<width>55</width>
+						<font>Font28_Reg</font>
+						<label>$INFO[ListItem.TrackNumber]</label>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					</control>
+					<control type="image">
+						<top>1</top>
+						<left>55</left>
+						<width>4</width>
+						<height>48</height>
+						<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
+					</control>
+					<control type="label">
+						<left>75</left>
+						<font>Font28_Reg</font>
+						<label>$INFO[ListItem.Label]</label>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					</control>
+					<control type="image">
+						<top>49</top>
+						<height>4</height>
+						<texture border="0,0,220,0" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
+					</control>
+				</itemlayout>
+				<focusedlayout height="49">
+					<control type="image">
+						<top>1</top>
+						<left>181</left>
+						<height>48</height>
+						<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+					</control>
+					<control type="label">
+						<width>180</width>
+						<font>Font28_Reg</font>
+						<label>$INFO[ListItem.Label2]</label>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					</control>
+					<control type="image">
+						<top>1</top>
+						<left>180</left>
+						<width>4</width>
+						<height>48</height>
+						<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
+					</control>
+					<control type="label">
+						<left>200</left>
+						<font>Font28_Reg</font>
+						<label>$INFO[ListItem.Label]</label>
+						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
+					</control>
+					<control type="image">
+						<top>49</top>
+						<height>4</height>
+						<texture border="0,0,220,0" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
+					</control>
+				</focusedlayout>
+				<content sortby="year" sortorder="ascending">musicdb://albums/$INFO[ListItem.DBID]</content>
 			</control>
 		</definition>
 	</include>
@@ -1091,6 +1289,94 @@
 						</control>
 					</focusedlayout>
 					<content>$PARAM[content]</content>
+				</control>
+				<control type="label">
+					<visible>!Control.HasFocus(9$PARAM[id])</visible>
+					<top>283</top>
+					<height>49</height>
+					<font>Font28_Reg</font>
+					<label>$INFO[Container(9$PARAM[id]).ListItem.Label]</label>
+					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+				</control>
+				<control type="label">
+					<visible>Control.HasFocus(9$PARAM[id])</visible>
+					<top>283</top>
+					<height>49</height>
+					<font>Font28_Reg</font>
+					<label>$INFO[Container(9$PARAM[id]).ListItem.Label]</label>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				</control>
+				<control type="image">
+					<top>275</top>
+					<height>58</height>
+					<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+				</control>
+			</control>
+		</definition>
+	</include>
+
+	<include name="DialogInfoSkinHelperSimilarMusic">
+		<param name="id"></param>
+		
+		<definition>
+			<control type="group">
+				<visible>Control.HasFocus(9$PARAM[id]) | Control.HasFocus($PARAM[id])</visible>
+				<include>AnimationVisibleFade</include>
+				<control type="panel" id="9$PARAM[id]">
+					<orientation>horizontal</orientation>
+					<ondown>9000</ondown>
+					<itemlayout height="284" width="293">
+						<control type="image">
+							<width>280</width>
+							<texture border="10" colordiffuse="$VAR[PanelSubTextColorVar]">buttons/panel-select-focus.png</texture>
+						</control>
+						<control type="image">
+							<top>10</top>
+							<left>10</left>
+							<width>260</width>
+							<height>264</height>
+							<aspectratio>scale</aspectratio>
+							<texture>$INFO[ListItem.Icon]</texture>
+						</control>
+					</itemlayout>
+					<focusedlayout height="284" width="283">
+						<control type="image">
+							<width>280</width>
+							<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/panel-select-focus.png</texture>
+						</control>
+						<control type="image">
+							<top>10</top>
+							<left>10</left>
+							<width>260</width>
+							<height>264</height>
+							<aspectratio>scale</aspectratio>
+							<texture>$INFO[ListItem.Icon]</texture>
+						</control>
+					</focusedlayout>
+					<content>
+						<item>
+							<label>$INFO[Window(Home).Property(SkinHelper.ListItem.LastFM.similarartists.0.name)]</label>
+							<icon>$INFO[Window(Home).Property(SkinHelper.ListItem.LastFM.similarartists.0.thumb)]</icon>
+						</item>
+						<item>
+							<label>$INFO[Window(Home).Property(SkinHelper.ListItem.LastFM.similarartists.1.name)]</label>
+							<icon>$INFO[Window(Home).Property(SkinHelper.ListItem.LastFM.similarartists.1.thumb)]</icon>
+						</item>
+						<item>
+							<label>$INFO[Window(Home).Property(SkinHelper.ListItem.LastFM.similarartists.2.name)]</label>
+							<icon>$INFO[Window(Home).Property(SkinHelper.ListItem.LastFM.similarartists.2.thumb)]</icon>
+						</item>
+						<item>
+							<label>$INFO[Window(Home).Property(SkinHelper.ListItem.LastFM.similarartists.3.name)]</label>
+							<icon>$INFO[Window(Home).Property(SkinHelper.ListItem.LastFM.similarartists.3.thumb)]</icon>
+						</item>
+						<item>
+							<label>$INFO[Window(Home).Property(SkinHelper.ListItem.LastFM.similarartists.4.name)]</label>
+							<icon>$INFO[Window(Home).Property(SkinHelper.ListItem.LastFM.similarartists.4.thumb)]</icon>
+						</item>
+
+
+					</content>
 				</control>
 				<control type="label">
 					<visible>!Control.HasFocus(9$PARAM[id])</visible>

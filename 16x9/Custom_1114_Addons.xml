@@ -23,6 +23,8 @@
 		<!-- Panel -->
 		<control type="group">
 			<visible>!Window.IsActive(addoninformation)</visible>
+			<animation effect="fade" time="400" tween="sine" easing="out">Visible</animation>
+			<animation effect="fade" time="400" tween="sine" easing="out">Hidden</animation>
 			<!-- Left menu -->
 			<control type="group">
 				<animation type="WindowOpen" reversible="false">
@@ -323,6 +325,7 @@
 							<label>Artwork beef</label>
 							<label2>$VAR[AddonArtworkBeefVar]</label2>
 							<onclick condition="!System.HasAddon(repository.rector.stuff)">Notification(Download beta repo from,github.com/rmrector/repository.rector.stuff)</onclick>
+							<onclick condition="!System.HasAddon(repository.rector.stuff)">ActivateWindow(AddonBrowser,addons://install/)</onclick>
 							<onclick condition="System.HasAddon(repository.rector.stuff) + !System.HasAddon(script.artwork.beef)">InstallAddon(script.artwork.beef)</onclick>
 							<onclick condition="System.HasAddon(repository.rector.stuff) + System.HasAddon(script.artwork.beef)">Addon.OpenSettings(script.artwork.beef)</onclick>
 							<property name="Description">$LOCALIZE[31906]</property>
@@ -499,7 +502,7 @@
 				<onright>50</onright>
 				<onback>50</onback>
 				<include>MediaMenuAddons</include>
-				<include>MediaMenuCommon_Bottom</include>
+				<include>MediaMenuCommonBottom</include>
 			</control>
 		</control>
 	</controls>

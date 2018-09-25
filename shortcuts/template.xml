@@ -114,12 +114,12 @@
 		<property name="containerheight" tag="property" attribute="name|widgetCase" value="CD|CDclear">$SKINSHORTCUTS[cdcontainerheight]</property>
 		<property name="containerwidth" tag="property" attribute="name|widgetCase" value="Polaroid">$SKINSHORTCUTS[polaroidsecontainerwidth]</property>
 		<property name="containerheight" tag="property" attribute="name|widgetCase" value="Polaroid">$SKINSHORTCUTS[polaroidcasecontainerheight]</property>
-		<property name="containerwidth" tag="property" attribute="name|widgetAspect" value="Portrait">248.57</property>
-		<property name="containerwidth" tag="property" attribute="name|widgetAspect" value="Square">348</property>
-		<property name="containerwidth" tag="property" attribute="name|widgetAspect" value="Landscape">580</property>
-		<property name="containerheight" tag="property" attribute="name|widgetAspect" value="Portrait">363</property>
-		<property name="containerheight" tag="property" attribute="name|widgetAspect" value="Square">348</property>
-		<property name="containerheight" tag="property" attribute="name|widgetAspect" value="Landscape">335</property>
+		<property name="containerwidth" tag="property" attribute="name|widgetAspect" value="Portrait">265.71</property>
+		<property name="containerwidth" tag="property" attribute="name|widgetAspect" value="Square">372</property>
+		<property name="containerwidth" tag="property" attribute="name|widgetAspect" value="Landscape">620</property>
+		<property name="containerheight" tag="property" attribute="name|widgetAspect" value="Portrait">388</property>
+		<property name="containerheight" tag="property" attribute="name|widgetAspect" value="Square">372</property>
+		<property name="containerheight" tag="property" attribute="name|widgetAspect" value="Landscape">357</property>
 		<!-- Set artwork dimensions -->
 		<!-- case -->
 		<property name="caseleftartwork" tag="property" attribute="name|widgetAspect" value="Portrait">2.5</property>
@@ -226,10 +226,10 @@
 
 
 		<!-- Set info dimensions -->
-		<property name="infoleft" tag="property" attribute="name|widgetType" value="movies|episodes">228</property>
-		<property name="infoleft">332</property>
-		<property name="infowidth" tag="property" attribute="name|widgetType" value="movies|episodes">208</property>
-		<property name="infowidth">312</property>
+		<property name="infoleft" tag="property" attribute="name|widgetType" value="movies|episodes|tvshows">245</property>
+		<property name="infoleft">347</property>
+		<property name="infowidth" tag="property" attribute="name|widgetType" value="movies|episodes|tvshows">225</property>
+		<property name="infowidth">327</property>
 		<property name="infoaspect" tag="property" attribute="name|widgetType" value="pvr">keep</property>
 		<property name="infoaspect">scale</property>
 
@@ -257,16 +257,18 @@ You could adjust the position of an item as follows:
 			<onfocus condition="String.IsEqual(Skin.String(HomeWidget$SKINSHORTCUTS[id]),3)">SetFocus(8013$SKINSHORTCUTS[id])</onfocus>
 		</control>
 		<!-- Info -->
-		<control type="group">
+		<!-- <control type="group">
 			<visible>Control.HasFocus(8011$SKINSHORTCUTS[id])</visible>
 			<include content="WidgetInfo">
 				<param name="left">$SKINSHORTCUTS[infoleft]</param>
 				<param name="width">$SKINSHORTCUTS[infowidth]</param>
 				<param name="aspect">$SKINSHORTCUTS[infoaspect]</param>
 			</include>
-		</control>
+		</control> -->
+		
 		<control type="group">
-			<top>40</top>
+			<top>60</top>
+			
 			<animation effect="slide" end="0,$PYTHON[(363 - int(containerheight))]" condition="!String.IsEqual(Skin.String(WidgetPosition),top)">Conditional</animation>
 			<control type="image">
 				<top>$PYTHON[(int(containerheight)) - 55]</top>
@@ -305,58 +307,87 @@ You could adjust the position of an item as follows:
 				<label>$INFO[Container.ListItem.Label]</label>
 				<visible>ControlGroup(90010).HasFocus</visible>
 			</control>
-			<control type="panel" id="8011$SKINSHORTCUTS[id]">
-				<visible>String.IsEmpty(Skin.String(HomeWidget$SKINSHORTCUTS[id]))</visible>
-				<animation type="Visible">
-					<effect type="rotatex" end="0" start="180" center="151,0" time="400" tween="sine" easing="inout" />
-					<effect type="fade" end="100" start="0" time="10" delay="200" />
-				</animation>
-				<animation type="Hidden">
-					<effect type="rotatex" start="0" end="180" center="151,0" time="400" tween="sine" easing="inout" />
-					<effect type="fade" start="100" end="0" time="10" delay="200" />
-				</animation>
-				<onup>Skin.SetString(HomeWidget$SKINSHORTCUTS[id],2)</onup>
-				<onup>SetFocus(1111)</onup>
-				<ondown>9000</ondown>
-				<onfocus>SetProperty(SkinHelper.WidgetContainer,8011$SKINSHORTCUTS[id],Home)</onfocus>
-				<left>90</left>
-				<width>1740</width>
-				<height>$SKINSHORTCUTS[containerheight]</height>
-				<orientation>horizontal</orientation>
-				<preloaditems>2</preloaditems>
-				<scrolltime tween="quadratic" easing="out">300</scrolltime>
+		
+				<control type="group">
+					
+					<include content="WidgetInfo">
+						<param name="id">8011$SKINSHORTCUTS[id]1</param>
+						<param name="left">$SKINSHORTCUTS[infoleft]</param>
+						<param name="width">$SKINSHORTCUTS[infowidth]</param>
+						<param name="aspect">$SKINSHORTCUTS[infoaspect]</param>
+					</include>
+				</control>
+				<control type="label">
+					
+					<height>$PYTHON[735 - (int(containerheight))]</height>
+				</control>
+				<control type="panel" id="8011$SKINSHORTCUTS[id]">
+					<visible>String.IsEmpty(Skin.String(HomeWidget$SKINSHORTCUTS[id]))</visible>
+					
+					<animation type="Visible">
+						<effect type="rotatex" end="0" start="180" center="561,0" time="400" tween="sine" easing="inout" />
+						<effect type="fade" end="100" start="0" time="10" delay="200" />
+					</animation>
+					<animation type="Hidden">
+						<effect type="rotatex" start="0" end="180" center="561,0" time="400" tween="sine" easing="inout" />
+						<effect type="fade" start="100" end="0" time="10" delay="200" />
+					</animation>
+					<onup>Skin.SetString(HomeWidget$SKINSHORTCUTS[id],2)</onup>
+					<onup>SetFocus(1111)</onup>
+					<ondown>9000</ondown>
+
+					<left>30</left>
+					<width>1860</width>
+					<height>$SKINSHORTCUTS[containerheight]</height>
+					<orientation>horizontal</orientation>
+					<preloaditems>2</preloaditems>
+					<scrolltime tween="quadratic" easing="out">300</scrolltime>
 
 
 
-				
 
 
 
-				<include content="WidgetContainer">
-					<param name="containerWidth">$SKINSHORTCUTS[containerwidth]</param>
-					<param name="containerHeight">$SKINSHORTCUTS[containerheight]</param>
-					<param name="Art">$SKINSHORTCUTS[artwork]</param>
-					<param name="leftArt">$SKINSHORTCUTS[leftartwork]</param>
-					<param name="rightArt">$SKINSHORTCUTS[rightartwork]</param>
-					<param name="topArt">$SKINSHORTCUTS[topartwork]</param>
-					<param name="bottomArt">$SKINSHORTCUTS[bottomartwork]</param>
-					<param name="Aspect">$SKINSHORTCUTS[aspect]</param>
-					<param name="Case">$SKINSHORTCUTS[casepath]</param>
-					<param name="caseBorder">$SKINSHORTCUTS[casebordersize]</param>
-					<param name="label">$SKINSHORTCUTS[label]</param>
-				</include>
-				<content target="$SKINSHORTCUTS[target]" sortby="$SKINSHORTCUTS[sortby]" sortorder="$SKINSHORTCUTS[sort]">$SKINSHORTCUTS[content]</content>
-			</control>
-			<control type="list" id="8012$SKINSHORTCUTS[id]">
-				<visible allowhiddenfocus="false">String.IsEqual(Skin.String(HomeWidget$SKINSHORTCUTS[id]),2)</visible>
-				<animation type="Visible">
-					<effect type="rotatex" end="0" start="-180" center="151,0" time="400" tween="sine" easing="inout" />
-					<effect type="fade" end="100" start="0" time="10" delay="200" />
-				</animation>
-				<animation type="Hidden">
-					<effect type="rotatex" start="0" end="-180" center="151,0" time="400" tween="sine" easing="inout" />
-					<effect type="fade" start="100" end="0" time="10" delay="200" />
-				</animation>
+
+					<include content="WidgetContainer">
+						<param name="containerWidth">$SKINSHORTCUTS[containerwidth]</param>
+						<param name="containerHeight">$SKINSHORTCUTS[containerheight]</param>
+						<param name="Art">$SKINSHORTCUTS[artwork]</param>
+						<param name="leftArt">$SKINSHORTCUTS[leftartwork]</param>
+						<param name="rightArt">$SKINSHORTCUTS[rightartwork]</param>
+						<param name="topArt">$SKINSHORTCUTS[topartwork]</param>
+						<param name="bottomArt">$SKINSHORTCUTS[bottomartwork]</param>
+						<param name="Aspect">$SKINSHORTCUTS[aspect]</param>
+						<param name="Case">$SKINSHORTCUTS[casepath]</param>
+						<param name="caseBorder">$SKINSHORTCUTS[casebordersize]</param>
+						<param name="label">$SKINSHORTCUTS[label]</param>
+					</include>
+					<content target="$SKINSHORTCUTS[target]" sortby="$SKINSHORTCUTS[sortby]" sortorder="$SKINSHORTCUTS[sort]">$SKINSHORTCUTS[content]</content>
+				</control>
+
+				<control type="group">
+
+					<include content="WidgetInfo">
+						<param name="id">8011$SKINSHORTCUTS[id]2</param>
+						<param name="left">$SKINSHORTCUTS[infoleft]</param>
+						<param name="width">$SKINSHORTCUTS[infowidth]</param>
+						<param name="aspect">$SKINSHORTCUTS[infoaspect]</param>
+					</include>
+				</control>
+				<control type="label">
+
+					<height>$PYTHON[735 - (int(containerheight))]</height>
+				</control>
+				<control type="list" id="8012$SKINSHORTCUTS[id]">
+					<visible allowhiddenfocus="false">String.IsEqual(Skin.String(HomeWidget$SKINSHORTCUTS[id]),2)</visible>
+	<animation type="Visible">
+						<effect type="rotatex" end="0" start="-180" center="561,0" time="400" tween="sine" easing="inout" />
+						<effect type="fade" end="100" start="0" time="10" delay="200" />
+					</animation>
+					<animation type="Hidden">
+						<effect type="rotatex" start="0" end="-180" center="561,0" time="400" tween="sine" easing="inout" />
+						<effect type="fade" start="100" end="0" time="10" delay="200" />
+					</animation>
 				<onup>Skin.SetString(HomeWidget$SKINSHORTCUTS[id],3)</onup>
 				<onup>SetFocus(1111)</onup>
 				<ondown>Skin.Reset(HomeWidget$SKINSHORTCUTS[id])</ondown>
@@ -364,6 +395,8 @@ You could adjust the position of an item as follows:
 				<left>54</left>
 				<width>1812</width>
 				<height>$SKINSHORTCUTS[containerheight]</height>
+				<onup>8013$SKINSHORTCUTS[id]</onup>
+				<ondown>9000</ondown>
 				<orientation>horizontal</orientation>
 				<preloaditems>2</preloaditems>
 				<scrolltime tween="quadratic" easing="out">300</scrolltime>
@@ -381,16 +414,24 @@ You could adjust the position of an item as follows:
 				</include>
 				<content target="$SKINSHORTCUTS[target]" sortby="$SKINSHORTCUTS[sortby]" sortorder="$SKINSHORTCUTS[sort]">$SKINSHORTCUTS[content]</content>
 			</control>
+			<control type="group">
+				<visible>Control.HasFocus(8013$SKINSHORTCUTS[id])</visible>
+				<include content="WidgetInfo">
+					<param name="left">$SKINSHORTCUTS[infoleft]</param>
+					<param name="width">$SKINSHORTCUTS[infowidth]</param>
+					<param name="aspect">$SKINSHORTCUTS[infoaspect]</param>
+				</include>
+			</control>
 			<control type="list" id="8013$SKINSHORTCUTS[id]">
 				<visible allowhiddenfocus="false">String.IsEqual(Skin.String(HomeWidget$SKINSHORTCUTS[id]),3)</visible>
 				<animation type="Visible">
-					<effect type="rotatex" end="0" start="180" center="151,0" time="400" tween="sine" easing="inout" />
-					<effect type="fade" end="100" start="0" time="10" delay="200" />
-				</animation>
-				<animation type="Hidden">
-					<effect type="rotatex" start="0" end="180" center="151,0" time="400" tween="sine" easing="inout" />
-					<effect type="fade" start="100" end="0" time="10" delay="200" />
-				</animation>
+						<effect type="rotatex" end="0" start="180" center="561,0" time="400" tween="sine" easing="inout" />
+						<effect type="fade" end="100" start="0" time="10" delay="200" />
+					</animation>
+					<animation type="Hidden">
+						<effect type="rotatex" start="0" end="180" center="561,0" time="400" tween="sine" easing="inout" />
+						<effect type="fade" start="100" end="0" time="10" delay="200" />
+					</animation>
 				<onup condition="!Skin.String(WidgetPosition,belowmenu)">9050</onup>
 				<onup condition="Skin.String(WidgetPosition,belowmenu)">9001</onup>
 				<ondown>Skin.SetString(HomeWidget$SKINSHORTCUTS[id],2)</ondown>
@@ -400,6 +441,8 @@ You could adjust the position of an item as follows:
 				<height>$SKINSHORTCUTS[containerheight]</height>
 				<orientation>horizontal</orientation>
 				<preloaditems>2</preloaditems>
+				<!-- <onup>9050</onup>
+				<ondown>8012$SKINSHORTCUTS[id]</ondown> -->
 				<scrolltime tween="quadratic" easing="out">300</scrolltime>
 				<include content="WidgetContainer">
 					<param name="containerWidth">$SKINSHORTCUTS[containerwidth]</param>
@@ -415,8 +458,9 @@ You could adjust the position of an item as follows:
 				</include>
 				<content target="$SKINSHORTCUTS[target]" sortby="$SKINSHORTCUTS[sortby]" sortorder="$SKINSHORTCUTS[sort]">$SKINSHORTCUTS[content]</content>
 			</control>
-		</control>
+		
 	</control>
+</control>
 </controls>
 </other>
 

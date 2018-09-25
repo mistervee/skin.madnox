@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<controls>
+		<control type="group">
+			
+			<animation effect="slide" end="0,-106" time="300" condition="Window.IsActive(videoosd)">Conditional</animation>
+			
+			<control type="image">
+				<include>AnimationWindowFade</include>
+				<bottom>100</bottom>
+				<width>1920</width>
+				<height>700</height>
+				<texture colordiffuse="$VAR[PanelArtworkTextBackgroundColorVar]">panels/background-gradient.png</texture>
+			</control>
+
+
+			<control type="group">
+				<include content="AnimationSlideLeftWindow">
+					<param name="slide">240</param>
+				</include>
+				<control type="image">
+					<visible>String.IsEmpty(VideoPlayer.Artist)</visible>
+					<animation effect="slide" end="115,0" time="300" condition="!Player.Paused">Conditional</animation>
+					<animation effect="rotate" end="360" center="auto" time="800" loop="true" condition="Player.Rewinding">Conditional</animation>
+					<animation effect="rotate" end="-360" center="auto" time="800" loop="true" condition="Player.Forwarding">Conditional</animation>
+					<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" condition="!Player.Paused + !Player.Forwarding + !Player.Rewinding">Conditional</animation>
+					<bottom>226</bottom>
+					<left>25</left>
+					<width>275</width>
+					<height>275</height>
+					<aspectratio>keep</aspectratio>
+					<texture background="true" diffuse="diffuse/disc.png" fallback="thumbs/disc/cd.png">$INFO[Player.Art(discart)]</texture>
+				</control>
+				<control type="image">
+					<visible>!String.IsEmpty(VideoPlayer.Artist)</visible>
+					<animation effect="slide" end="152,0" time="300" condition="!Player.Paused">Conditional</animation>
+					<animation effect="rotate" end="360" center="auto" time="800" loop="true" condition="Player.Rewinding">Conditional</animation>
+					<animation effect="rotate" end="-360" center="auto" time="800" loop="true" condition="Player.Forwarding">Conditional</animation>
+					<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" condition="!Player.Paused + !Player.Forwarding + !Player.Rewinding">Conditional</animation>
+					<bottom>146</bottom>
+					<left>80</left>
+					<width>275</width>
+					<height>275</height>
+					<aspectratio>keep</aspectratio>
+					<texture background="true" diffuse="diffuse/disc.png" fallback="thumbs/disc/cd.png">$INFO[Player.Art(discart)]</texture>
+				</control>
+				<control type="image">
+					<visible>String.IsEmpty(VideoPlayer.Artist)</visible>
+					<bottom>121</bottom>
+					<left>15</left>
+					<width>275</width>
+					<height>403</height>
+					<bordersize>10</bordersize>
+					<aspectratio>scale</aspectratio>
+					<bordertexture border="10">thumbs/border/706x1050.png</bordertexture>
+					<texture background="true" diffuse="diffuse/rounded5-686x1030.png">$VAR[VideoPlayerPosterVar]</texture>
+				</control>
+				<control type="image">
+					<visible>!String.IsEmpty(VideoPlayer.Artist)</visible>
+					<bottom>121</bottom>
+					<left>15</left>
+					<width>325</width>
+					<height>325</height>
+					<bordersize>10</bordersize>
+					<aspectratio>scale</aspectratio>
+					<bordertexture border="10">thumbs/border/706x1050.png</bordertexture>
+					<texture background="true" diffuse="diffuse/rounded5-686x1030.png">$VAR[VideoPlayerPosterVar]</texture>
+				</control>
+				<control type="group">
+					
+
+					<bottom>4</bottom>
+					<left>280</left>
+					<right>25</right>
+					<height>430</height>
+					<control type="label" id="9052">
+						<top>16</top>
+						<left>312</left>
+						<height>40</height>
+						<textoffsetx>45</textoffsetx>
+						<label>$VAR[NowPlayingInfo1Var]</label>
+						<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+						<font>Font34_Reg</font>
+					</control>
+					<control type="image">
+						<visible>!String.IsEmpty(Control.GetLabel(9052)) | !String.IsEmpty(Control.GetLabel(9053))</visible>
+						<top>59</top>
+						<left>312</left>
+						<height>4</height>
+						<width>388</width>
+						<texture>panels/separator.png</texture>
+					</control>
+					<control type="label" id="9053">
+						<top>61</top>
+						<left>312</left>
+						<height>40</height>
+						<font>Font28_Reg</font>
+						<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
+						<textoffsetx>45</textoffsetx>
+						<label>$VAR[NowPlayingInfo2Var]</label>
+					</control>
+					<control type="image">
+						<!-- <visible>$PARAM[logo]</visible> -->
+						<include>AnimationVisibleFade</include>
+						<top>112</top>
+						<left>312</left>
+						<width>305</width>
+						<height>100</height>
+						<texture>$VAR[NowPlayingLogoVar]</texture>
+						<aspectratio align="right">keep</aspectratio>
+					</control>
+					<control type="label">
+						<top>220</top>
+						<left>312</left>
+						<height>40</height>
+						<font>Font28_Reg</font>
+						<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
+						<textoffsetx>45</textoffsetx>
+						<label>$VAR[NowPlayingStatusVar]</label>
+					</control>
+					<control type="image">
+						<top>257</top>
+						<left>312</left>
+						<width>18</width>
+						<height>36</height>
+						<texture colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/nowplaying.png</texture>
+					</control>
+					<control type="label">
+						<top>254</top>
+						<left>312</left>
+						<height>40</height>
+						<font>Font34_Reg</font>
+						<textoffsetx>45</textoffsetx>
+						<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+						<label>$INFO[MusicPlayer.TrackNumber,,. ]$INFO[Player.Title,, ]$INFO[VideoPlayer.Year,(,)]</label>
+					</control>
+				</control>
+			</control>
+
+
+		</control>
+
+
+
+			<!-- <include content="PanelFloorDefault">
+				<param name="top">574</param>
+				<param name="toptexture">974</param>
+				<param name="topshadow">954</param>
+				<param name="height">600</param>
+				<param name="heighttexture">206</param>
+				<param name="flipy">false</param>
+			</include> -->
+		<!-- 	<control type="group">
+				<visible>String.IsEmpty(VideoPlayer.Artist)</visible>
+				<left>25</left>
+				<right>25</right>
+				<bottom>17</bottom>
+				<height>40</height>
+				<control type="progress">
+					<bottom>44</bottom>
+					<centerleft>50%</centerleft>
+					<info>Player.ProgressCache</info>
+					<texturebg border="8">panels/progress-control/progress-back.png</texturebg>
+					<midtexture border="8">panels/progress-control/progress-mid-cache.png</midtexture>
+				</control>
+				<control type="progress">
+					<bottom>44</bottom>
+					<centerleft>50%</centerleft>
+					<info>Player.Progress</info>
+					<texturebg border="8">panels/progress-control/progress-back-cache.png</texturebg>
+				</control>
+				<control type="label">
+					<right>350</right>
+					<height>40</height>
+					<align>left</align>
+					<font>Font30_Reg</font>
+					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					<label>$INFO[Player.Time(hh:mm:ss),, / ]$INFO[Player.Duration(hh:mm:ss)][COLOR $VAR[PanelTextColorVar]]$INFO[Player.Chapter,  ($LOCALIZE[21396] ]$INFO[Player.ChapterCount, / ,)][/COLOR]</label>
+				</control>
+				<control type="label">
+					<right>0</right>
+					<width>350</width>
+					<height>40</height>
+					<align>right</align>
+					<font>Font30_Reg</font>
+					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					<label>$INFO[System.Time,, / ]$INFO[Player.FinishTime]</label>
+				</control>
+			</control>
+			<control type="group">
+				<visible>!String.IsEmpty(VideoPlayer.Artist)</visible>
+				<left>25</left>
+				<right>25</right>
+				<bottom>17</bottom>
+				<height>40</height>
+				<control type="progress">
+					<bottom>44</bottom>
+					<centerleft>50%</centerleft>
+					<info>Player.ProgressCache</info>
+					<texturebg border="8">panels/progress-control/progress-back.png</texturebg>
+					<midtexture border="8">panels/progress-control/progress-mid-cache.png</midtexture>
+				</control>
+				<control type="progress">
+					<bottom>44</bottom>
+					<centerleft>50%</centerleft>
+					<info>Player.Progress</info>
+					<texturebg border="8">panels/progress-control/progress-back-cache.png</texturebg>
+				</control>
+				<control type="label">
+					<right>350</right>
+					<height>40</height>
+					<align>left</align>
+					<font>Font30_Reg</font>
+					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					<label>$INFO[Player.Time(hh:mm:ss),, / ]$INFO[Player.Duration(hh:mm:ss)]</label>
+				</control>
+				<control type="label">
+					<right>0</right>
+					<width>350</width>
+					<height>40</height>
+					<align>right</align>
+					<font>Font30_Reg</font>
+					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					<label>$INFO[System.Time,, / ]$INFO[Player.FinishTime]</label>
+				</control>
+			</control> -->
+			
+			<!-- <control type="image">
+				<bottom>106</bottom>
+				<right>25</right>
+				<width>430</width>
+				<height>430</height>
+				<aspectratio align="right" aligny="bottom">keep</aspectratio>
+				<texture background="true">$VAR[VideoPlayerClearArtVar]</texture>
+			</control> -->
+
+
+
+
+
+
+			<control type="group">
+				<visible>false + tring.IsEmpty(VideoPlayer.Artist)</visible>
+				<!-- <animation effect="slide" end="115,0" time="300" condition="!Player.Paused">Conditional</animation> -->
+				<bottom>-9</bottom>
+				<left>280</left>
+				<right>25</right>
+				<height>430</height>
+				<control type="textbox">
+					<visible>false</visible>
+					<height>136</height>
+					<font>Font30_Reg</font>
+					<label>$VAR[VideoPlayerPlotVar]</label>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				</control>
+				<control type="label" id="9052">
+					<top>16</top>
+					<height>40</height>
+					<textoffsetx>45</textoffsetx>
+					<label>$VAR[NowPlayingInfo1Var]</label>
+					<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+					<font>Font34_Reg</font>
+				</control>
+				<control type="image">
+					<visible>!String.IsEmpty(Control.GetLabel(9052)) | !String.IsEmpty(Control.GetLabel(9053))</visible>
+					<top>59</top>
+					<height>4</height>
+					<width>388</width>
+					<texture colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/separator.png</texture>
+				</control>
+				<control type="label" id="9053">
+					<top>61</top>
+					<height>40</height>
+					<font>Font28_Reg</font>
+					<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
+					<textoffsetx>45</textoffsetx>
+					<label>$VAR[NowPlayingInfo2Var]</label>
+				</control>
+				<control type="label">
+					<top>220</top>
+					<height>40</height>
+					<font>Font28_Reg</font>
+					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+					<textoffsetx>45</textoffsetx>
+					<label>$INFO[VideoPlayer.Tagline]</label>
+				</control>
+				<control type="image">
+					<top>257</top>
+					<width>18</width>
+					<height>36</height>
+					<texture colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/nowplaying.png</texture>
+				</control>
+				<control type="label">
+					<top>254</top>
+					<height>40</height>
+					<font>Font34_Reg</font>
+					<textoffsetx>45</textoffsetx>
+					<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+					<label>$INFO[MusicPlayer.TrackNumber,,. ]$INFO[Player.Title,, ]$INFO[VideoPlayer.Year,(,)]</label>
+				</control>
+			</control>
+
+			<control type="group">
+				<visible>false + !String.IsEmpty(VideoPlayer.Artist)</visible>
+				<animation effect="slide" end="152,0" time="300" condition="!Player.Paused">Conditional</animation>
+				<bottom>-11</bottom>
+				<left>424</left>
+				<right>25</right>
+				<height>430</height>
+			<!-- <control type="textbox">
+				<visible>false</visible>
+				<height>136</height>
+				<font>Font30_Reg</font>
+				<label>$VAR[VideoPlayerPlotVar]</label>
+				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+			</control>
+			<control type="label" id="9052">
+				<top>16</top>
+				<height>40</height>
+				<textoffsetx>45</textoffsetx>
+				<label>$VAR[NowPlayingInfo1Var]</label>
+				<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+				<font>Font34_Reg</font>
+			</control>
+			<control type="image">
+				<visible>!String.IsEmpty(Control.GetLabel(9052)) | !String.IsEmpty(Control.GetLabel(9053))</visible>
+				<top>59</top>
+				<height>4</height>
+				<width>388</width>
+				<texture colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/separator.png</texture>
+			</control>
+			<control type="label" id="9053">
+				<top>61</top>
+				<height>40</height>
+				<font>Font28_Reg</font>
+				<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
+				<textoffsetx>45</textoffsetx>
+				<label>$VAR[NowPlayingInfo2Var]</label>
+			</control> -->
+			<control type="label">
+				<top>212</top>
+				<height>40</height>
+				<font>Font28_Reg</font>
+				<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+				<textoffsetx>25</textoffsetx>
+				<label>$INFO[VideoPlayer.Artist]</label>
+			</control>
+			<control type="image">
+				<top>253</top>
+				<height>4</height>
+				<width>388</width>
+				<texture colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/separator.png</texture>
+			</control>
+			<control type="label">
+				<top>254</top>
+				<height>40</height>
+				<font>Font34_Reg</font>
+				<textoffsetx>25</textoffsetx>
+				<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+				<label>$INFO[MusicPlayer.TrackNumber,,. ]$INFO[Player.Title,, ]$INFO[VideoPlayer.Year,(,)]</label>
+			</control>
+		</control>
+		<control type="grouplist">
+			<include>AnimationSlideRightVisible</include>
+			<bottom>131</bottom>
+			<right>0</right>
+			<width>1000</width>
+			<height>300</height>
+			<usecontrolcoords>true</usecontrolcoords>
+			<control type="label">
+				<width>1000</width>
+				<height>46</height>
+				<align>right</align>
+				<font>Font34_Reg</font>
+				<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+				<label>$VAR[NowPlayingHomePlotLabelVar]</label>
+			</control>
+			<control type="image">
+				<top>2</top>
+				<right>0</right>
+				<width>388</width>
+				<height>4</height>
+				<aspectratio align="right" aligny="center">scale</aspectratio>
+				<texture flipx="true" colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/separator.png</texture>
+			</control>
+			<control type="textbox">
+				<top>8</top>
+				<right>0</right>
+				<width>600</width>
+				<height max="262">auto</height>
+				<align>right</align>
+				<font>Font30_Reg_95</font>
+				<include>AutoScrollPlot</include>
+				<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
+				<label>$VAR[NowPlayingHomePlotVar]</label>
+			</control>
+		</control>
+		<control type="group">
+			<include content="AnimationSlideTopWindow">
+				<param name="slide">106</param>
+			</include>
+			<control type="group">
+				<include content="PanelFloorDefault">
+					<param name="top">-94</param>
+					<param name="toptexture">0</param>
+					<param name="topshadow">106</param>
+					<param name="height">600</param>
+					<param name="heighttexture">106</param>
+					<param name="flipy">true</param>
+				</include>
+			</control>
+			<include>MediaFlagsFullscreenInfo</include>
+		</control>
+	</controls>
+</window>

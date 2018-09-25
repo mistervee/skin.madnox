@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<include name="View55LowList">
+		<control type="group">
+			<visible>Control.IsVisible(55)</visible>
+			
+				<include content="PanelWide">
+					<param name="top">610</param>
+					<param name="toptexture">630</param>
+					<param name="topshadow">610</param>
+					<param name="height">470</param>
+					<param name="heighttexture">450</param>
+				</include>
+			
+			<control type="group">
+				<left>0</left>
+				<visible>!Container.Content(genres) + !Container.Content(musicvideos) + !Container.Content(artists) + !Container.Content(albums) + !Container.Content(songs)</visible>
+				<control type="image">
+					<bottom>-5</bottom>
+					<width>450</width>
+					<height>645</height>
+					<fadetime>400</fadetime>
+					<bordersize>10</bordersize>
+					<aspectratio aligny="bottom">scale</aspectratio>
+					<bordertexture border="30">thumbs/poster-frame.png</bordertexture>
+					<texture diffuse="thumbs/poster-mask.png" background="true">$VAR[PosterVar]</texture>
+				</control>
+			</control>
+			<control type="group">
+				<left>0</left>
+				
+				<control type="image">
+					<bottom>0</bottom>
+					<width>450</width>
+					<height>450</height>
+					<fadetime>400</fadetime>
+					<bordersize>10</bordersize>
+					<aspectratio aligny="bottom">scale</aspectratio>
+					<bordertexture border="30">thumbs/poster-frame.png</bordertexture>
+					<texture diffuse="thumbs/poster-mask.png" background="true">$VAR[PosterVar]</texture>
+				</control>
+			</control>
+			<!-- <control type="image">
+				<left>420</left>
+				<top>660</top>
+				<width>4</width>
+				<height>420</height>
+				<texture colordiffuse="$VAR[PanelStyleColorVar]">panels/line-vertical.png</texture>
+			</control> -->
+			<control type="list" id="55">
+				<left>450</left>
+				<bottom>10</bottom>
+				<width>900</width>
+				<height>432</height>
+				<onleft>9000</onleft>
+				<onright>65</onright>
+				<viewtype label="Low list">low list</viewtype>
+				<pagecontrol>65</pagecontrol>
+				<preloaditems>2</preloaditems>
+				<include>ViewContainerList</include>
+			</control>
+			<control type="image">
+				<left>1360</left>
+				<top>660</top>
+				<width>4</width>
+				<height>420</height>
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
+			</control>
+			<control type="scrollbar" id="65">
+				<left>1343</left>
+				<top>680</top>
+				<bottom>10</bottom>
+				<onleft>511</onleft>
+				<onright>61</onright>
+			</control>
+			
+			<control type="group">
+				<bottom>420</bottom>
+				<right>10</right>
+				<width>538</width>
+				<height>370</height>
+				<control type="image">
+					<fadetime>TextureFadeTime</fadetime>
+					<aspectratio aligny="bottom">keep</aspectratio>
+					<texture background="true">$INFO[ListItem.Art(clearlogo)]</texture>
+					<visible>!Container.Content(artists) + !Container.Content(albums) + !Container.Content(songs)</visible>
+				</control>
+				<control type="image">
+					<visible>Container.Content(artists) | Container.Content(albums) | Container.Content(songs)</visible>
+					<aspectratio aligny="top">keep</aspectratio>
+					<fadetime>TextureFadeTime</fadetime>
+					<texture background="true">$VAR[MusicClearLogoVar]</texture>
+					<animation effect="fade" end="15" time="0" condition="true">Conditional</animation>
+				</control>
+				<control type="image">
+					<left>0</left>
+					<top>660</top>
+					<width>538</width>
+					<height>4</height>
+					<texture colordiffuse="$VAR[PanelStyleColorVar]">panels/line-horizontal.png</texture>
+				</control>
+			</control>
+			<control type="image">
+				<bottom>110</bottom>
+				<right>0</right>
+				<width>558</width>
+				<height>4</height>
+				<texture colordiffuse="$VAR[PanelStyleColorVar]">panels/line-horizontal.png</texture>
+			</control>
+			<control type="group">
+				<bottom>120</bottom>
+				<right>10</right>
+				<width>538</width>
+				<height>290</height>
+				<control type="textbox">
+					<label>$VAR[VideoDialogPlotVar]</label>
+					<pagecontrol>61</pagecontrol>
+					<autoscroll time="3000" delay="4000" repeat="5000">!Skin.HasSetting(DisableAutoScroll) + !Control.HasFocus(61)</autoscroll>
+				</control>
+				<control type="scrollbar" id="61">
+					<left>650</left>
+					<onleft>60</onleft>
+				</control>
+			</control>
+		</control>
+		<!-- Left Content -->
+		<control type="group">
+			<visible>Control.IsVisible(55)</visible>
+			<include content="Animation_Slide_Left">
+				<param name="slide">1263</param>
+			</include>
+			<control type="image">
+				<left>858</left>
+				<top>124</top>
+				<width>200</width>
+				<height>840</height>
+				<texture colordiffuse="$VAR[PanelColorVar]" border="40">panels/list-detail-underlay.png</texture>
+				<visible>!String.IsEmpty(Container(507).ListItem(1).Label2) | !String.IsEmpty(Container(507).ListItem(2).Label2) | !String.IsEmpty(Container(507).ListItem(3).Label2) | Container.Content(seasons) | Container.Content(artists) | Container.Content(addons)</visible>
+			</control>
+			<control type="image">
+				<left>162</left>
+				<top>124</top>
+				<width>120</width>
+				<height>840</height>
+				<texture colordiffuse="$VAR[PanelColorVar]" border="40">panels/list-detail-underlay.png</texture>
+				<visible>Container.Content(episodes) | Container.Content(songs)</visible>
+			</control>
+			
+
+		</control>
+	</include>
+</includes>

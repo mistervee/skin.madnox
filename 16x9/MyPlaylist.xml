@@ -7,67 +7,65 @@
 		<!-- Backdrop -->
 		<control type="group">
 			<visible>Window.IsVisible(musicplaylist)</visible>
-			<include content="Background_Default">
+			<include content="BackgroundDefault">
 				<param name="imagepath">$VAR[MusicBackgroundVar]</param>
-				<param name="backgroundcolor">MusicBackground.Color.base</param>
 			</include>
 		</control>
 		<control type="group">
 			<visible>Window.IsVisible(videoplaylist)</visible>
 			<include content="Background_Default">
 				<param name="imagepath">$VAR[VideoBackgroundVar]</param>
-				<param name="backgroundcolor">MusicBackground.Color.base</param>
 			</include>
 		</control>
 		<!-- Floor -->
 		<control type="group">
 			<visible>Control.IsVisible(50)</visible>
-			<include content="Animation_Slide_Bottom_Window">
+			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
 			</include>
-			<include content="Animation_Slide_Bottom_Visible">
+			<include content="AnimationSlideBottomVisible">
 				<param name="slide">220</param>
 			</include>
-			<include>Floor_Right</include>
+			<include>FloorRight</include>
 		</control>
 		<!-- Views -->
 		<control type="group">
-			<include>View_50_List</include>
+			<include>View50List</include>
 		</control>
 		<!-- Media flags -->
 		<control type="group">
 			<visible>Control.IsVisible(50)</visible>
 			<animation effect="slide" end="90,11" time="240" tween="cubic" condition="Control.IsVisible(511)">Conditional</animation>
-			<include content="Animation_Slide_Bottom_Window">
+			<include content="AnimationSlideBottomWindow">
 				<param name="slide">111</param>
 			</include>
-			<include>MediaFlags_Right</include>
+			<include>MediaFlagsRight</include>
 		</control>
 		<!-- Topbar -->
 		<control type="group">
 			<visible>!Skin.HasSetting(VideoHideTopBar)</visible>
-			<include content="Animation_Slide_Top_Window">
+			<include content="AnimationSlideTopWindow">
 				<param name="slide">90</param>
 			</include>
-			<include content="Animation_Slide_Top_Visible">
+			<include content="AnimationSlideTopVisible">
 				<param name="slide">90</param>
 			</include>
 			<include content="TopBar">
-				<param name="breadcrumbs_label">$VAR[BreadcrumbsVideoVar]</param>
-				<param name="breadcrumbs_icon">playlist.png</param>
+				<param name="label">$VAR[BreadcrumbsVideoVar]</param>
+				<param name="icon">playlist.png</param>
 			</include>
 		</control>
 		<!-- Media Menu -->
-		<include>MediaMenu_MouseOverlay</include>
+		<include>MediaMenuMouseOverlay</include>
 		<control type="group">
-			<include>MediaMenu_Common</include>
+			<include>MediaMenuCommon</include>
 			<control type="grouplist" id="9050">
 				<onright>50</onright>
 				<onback>50</onback>
-				<include>MediaMenu_Common_Top</include>
+				<include>MediaMenuCommonTop</include>
 				<!-- Shuffle -->
 				<control type="radiobutton" id="20">
-					<include content="MediaMenu_Icon_Button">
+					<include content="MediaMenuIconButton">
 						<param name="iconon" value="icons/mediamenu/random.png" />
 						<param name="iconoff" value="icons/mediamenu/randomoff.png" />
 					</include>
@@ -76,7 +74,7 @@
 				</control>
 				<!-- Repeat -->
 				<control type="radiobutton" id="26">
-					<include content="MediaMenu_Icon_Button">
+					<include content="MediaMenuIconButton">
 						<param name="iconon" value="icons/mediamenu/repeat.png" />
 						<param name="iconoff" value="icons/mediamenu/repeat.png" />
 					</include>
@@ -84,7 +82,7 @@
 				</control>
 				<!-- Save -->
 				<control type="radiobutton" id="21">
-					<include content="MediaMenu_Icon_Button">
+					<include content="MediaMenuIconButton">
 						<param name="iconon" value="icons/mediamenu/save.png" />
 						<param name="iconoff" value="icons/mediamenu/save.png" />
 					</include>
@@ -93,14 +91,14 @@
 				</control>
 				<!-- Clear -->
 				<control type="radiobutton" id="22">
-					<include content="MediaMenu_Icon_Button">
+					<include content="MediaMenuIconButton">
 						<param name="iconon" value="icons/mediamenu/clear.png" />
 						<param name="iconoff" value="icons/mediamenu/clear.png" />
 					</include>
 					<label>$LOCALIZE[192]</label>
 					<visible>Control.IsEnabled(22)</visible>
 				</control>
-				<include>MediaMenu_Common_Bottom</include>
+				<include>MediaMenuCommonBottom</include>
 			</control>
 		</control>
 	</controls>

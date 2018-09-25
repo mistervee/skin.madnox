@@ -405,9 +405,184 @@
 			</control>
 		</control>
 	</include>
+	<include name="MediaFlagsFullscreenInfo">
+		<control type="grouplist">
+			<top>11</top>
+			<width>1920</width>
+			<height>106</height>1000
+			<align>center</align>
+			<itemgap>60</itemgap>
+			<orientation>horizontal</orientation>
+			<usecontrolcoords>true</usecontrolcoords>
+
+		
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]mpaa/$VAR[VideoPlayerRatingFlagVar]</texture>
+				<include>MediaFlagImage</include>
+			</control>
+			<control type="image">
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
+			</control>
+
+			<control type="image">
+				<texture>$VAR[VideoPlayerStudioIconsVar]</texture>
+				<include>MediaFlagImage</include>
+			</control>
+			<control type="image">
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
+				
+			</control>
+			<!-- <control type="image">
+				<include>MediaFlagSmallImage</include>
+				<texture>$VAR[MediaFlagsPathVar]imdb250.png</texture>
+				<visible>!String.IsEmpty(VideoPlayer.Top250)</visible>
+			</control>
+			<control type="label">
+				<left>-153</left>
+				<include>MediaFlagBigLabel</include>
+				<label>$INFO[VideoPlayer.Top250,#]</label>
+				<visible>!String.IsEmpty(VideoPlayer.Top250)</visible>
+			</control>
+			<control type="image">
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
+				<visible>!String.IsEmpty(VideoPlayer.Top250)</visible>
+			</control>
+			<control type="image">
+				<include>MediaFlagSmallImage</include>
+				<texture>$VAR[MediaFlagsPathVar]rt.png</texture>
+				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.RottenTomatoes.Rating.Percent))</visible>
+			</control>
+			<control type="label">
+				<left>-153</left>
+				<include>MediaFlagBigLabel</include>
+				<label>$INFO[Window(Home).Property(SkinHelper.Player.RottenTomatoes.Rating),,%]</label>
+				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.RottenTomatoes.Rating.Percent))</visible>
+			</control>
+			<control type="image">
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
+				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.RottenTomatoes.Rating.Percent))</visible>
+			</control>
+			<control type="image">
+				<include>MediaFlagSmallImage</include>
+				<texture>$VAR[MediaFlagsPathVar]mc.png</texture>
+				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.MetaCritic.Rating.Percent))</visible>
+			</control>
+			<control type="label">
+				<left>-153</left>
+				<include>MediaFlagBigLabel</include>
+				<label>$INFO[Window(Home).Property(SkinHelper.Player.MetaCritic.Rating),,%]</label>
+				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.MetaCritic.Rating.Percent))</visible>
+			</control>
+			<control type="image">
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
+				
+			</control>
+			<control type="label">
+				<include>MediaFlagLabel</include>
+				<label>$LOCALIZE[563]</label>
+				<visible>!String.IsEmpty(VideoPlayer.Rating) | !String.IsEmpty(VideoPlayer.UserRating)</visible>
+			</control>
+			<control type="label">
+				<left>-153</left>
+				<include>MediaFlagBigLabel</include>
+				<label>$INFO[VideoPlayer.Rating]</label>
+				<visible>!String.IsEmpty(VideoPlayer.Rating) + String.IsEmpty(VideoPlayer.UserRating)</visible>
+			</control>
+			<control type="label">
+				<left>-153</left>
+				<include>MediaFlagBigLabel</include>
+				<label>$INFO[VideoPlayer.UserRating]</label>
+				<visible>!String.IsEmpty(VideoPlayer.UserRating)</visible>
+			</control>
+			<control type="image">
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
+				
+			</control> -->
+			
+			<control type="image">
+				<top>2</top>
+				<width>220</width>
+				<height>80</height>
+				<fadetime>TextureFadeTime</fadetime>
+				<colordiffuse>grey</colordiffuse>
+				<aspectratio align="center" aligny="center">keep</aspectratio>
+				<texture fallback="flags/ratingstars/0.png">$INFO[VideoPlayer.UserRating,flags/ratingstars/,.png]</texture>
+				<visible>String.IsEqual(ListItem.DBType,musicvideo)</visible>
+			</control>
+			<control type="image">
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
+				<visible>String.IsEqual(ListItem.DBType,musicvideo)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videoaspect/$VAR[VideoPlayerAspectFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(VideoPlayer.VideoAspect)</visible>
+			</control>
+			<control type="image">
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
+				
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videoresolution/$VAR[VideoPlayerResolutionFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(VideoPlayer.VideoResolution)</visible>
+			</control>
+			<control type="image">
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
+				
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videocodec/$VAR[VideoPlayerCodecFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(VideoPlayer.VideoCodec)</visible>
+			</control>
+			<control type="image">
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
+				
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]audiochannels/$VAR[VideoPlayerAudioChannelsFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(VideoPlayer.AudioChannels)</visible>
+			</control>
+			<control type="image">
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
+				
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]audiocodec/$VAR[VideoPlayerAudioCodecFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(VideoPlayer.AudioCodec)</visible>
+			</control>
+			<!-- <control type="image">
+				<left>-30</left>
+				<include>LanguageSubtitleFlagImage</include>
+				<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[VideoPlayer.AudioLanguage]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+			</control> -->
+			<control type="image">
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
+				
+			</control>
+			
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]cc.png</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(VideoPlayer.SubtitlesLanguage)</visible>
+			</control>
+			<!-- <control type="image">
+				<left>-30</left>
+				<include>LanguageSubtitleFlagImage</include>
+				<texture>$INFO[Skin.String(LanguageFlagIcons.path)]$INFO[VideoPlayer.SubtitlesLanguage]$INFO[Skin.String(LanguageFlagIcons.ext)]</texture>
+			</control> -->
+			
+
+			
+
+		</control>
+	</include>
 	<include name="MediaFlagImage">
 		<top>2</top>
-		<width>125.50</width>
+		<width>125</width>
 		<height>80</height>
 		<fadetime>TextureFadeTime</fadetime>
 		<include condition="!Skin.HasSetting(ColoredMediaFlags)">MediaFlagWhite</include>

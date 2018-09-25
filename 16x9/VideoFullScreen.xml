@@ -2,38 +2,57 @@
 <window>
 	<defaultcontrol />
 	<controls>
+		<control type="grouplist">
+			<include>AnimationVisibleFade</include>
+			<itemgap>20</itemgap>
+			<align>center</align>
+			<orientation>horizontal</orientation>
+			<include>FullscreenDimensions</include>
+			<control type="label">
+				<width>auto</width>
+				<align>center</align>
+				<font>Font120_Bold_Caps</font>
+				<label>$VAR[SeekLabelVar]</label>
+				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+			</control>
+			<control type="label">
+				<width>auto</width>
+				<align>center</align>
+				<font>Font120_Icon</font>
+				<label>$VAR[SeekIconVar]</label>
+				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+			</control>
+		</control>
 		<control type="group" id="0">
 			<visible>Control.IsVisible(10)</visible>
 			<width>1920</width>
 			<height>162</height>
-			<include content="Animation_Slide_Top_Visible">
+			<include content="AnimationSlideTopVisible">
 				<param name="slide">162</param>
 			</include>
-			<control type="image">
-				<top>142</top>
-				<height>20</height>
-				<texture flipy="true" colordiffuse="$VAR[GlowColorVar]">panels/glow-bottom.png</texture>
-			</control>
-			<control type="image">
-				<texture flipy="true" colordiffuse="$VAR[PanelColorVar]" border="20">panels/osd-back.png</texture>
-			</control>
+			<include content="PanelWide">
+				<param name="top">0</param>
+				<param name="toptexture">0</param>
+				<param name="topshadow">150</param>
+				<param name="height">160</param>
+				<param name="heighttexture">150</param>
+				<param name="flipy">true</param>
+			</include>
 			<control type="grouplist">
-				<top>10</top>
+				<top>16</top>
+				<left>25</left>
 				<width>1920</width>
 				<height>600</height>
 				<control type="label" id="10">
-					<width>1920</width>
-					<include>Dialog_Label_ProcessInfo</include>
+					<include>DialogLabelProcessInfo</include>
 					<label></label>
 				</control>
 				<control type="label" id="11">
-					<width>1920</width>
-					<include>Dialog_Label_ProcessInfo</include>
+					<include>DialogLabelProcessInfo</include>
 					<label></label>
 				</control>
 				<control type="label" id="12">
-					<width>1920</width>
-					<include>Dialog_Label_ProcessInfo</include>
+					<include>DialogLabelProcessInfo</include>
 					<label></label>
 				</control>
 			</control>

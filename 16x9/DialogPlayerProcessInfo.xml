@@ -1,230 +1,222 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
     <controls>
-        <include>Dialog_CloseOnclick</include>
         <control type="group">
             <width>1920</width>
             <height>442</height>
-            <include content="Animation_Slide_Top_Window">
+            <include content="AnimationSlideTopWindow">
                 <param name="slide">322</param>
             </include>
             <!-- Background -->
             <control type="group">
                 <visible>!VideoPlayer.Content(livetv)</visible>
-                <control type="image">
-                    <top>302</top>
-                    <height>20</height>
-                    <texture flipy="true" colordiffuse="$VAR[GlowColorVar]">panels/glow-bottom.png</texture>
-                </control>
-                <control type="image">
-                    <height>322</height>
-                    <texture flipy="true" colordiffuse="$VAR[PanelColorVar]" border="20">panels/osd-back.png</texture>
-                </control>
+                <include content="PanelWide">
+                    <param name="top">0</param>
+                    <param name="toptexture">0</param>
+                    <param name="topshadow">307</param>
+                    <param name="height">327</param>
+                    <param name="heighttexture">307</param>
+                    <param name="flipy">true</param>
+                </include>
             </control>
             <control type="group">
                 <visible>VideoPlayer.Content(livetv)</visible>
-                <control type="image">
-                    <height>20</height>
-                    <top>422</top>
-                    <texture flipy="true" colordiffuse="$VAR[GlowColorVar]">panels/glow-bottom.png</texture>
-                </control>
-                <control type="image">
-                    <texture flipy="true" colordiffuse="$VAR[PanelColorVar]" border="20">panels/osd-back.png</texture>
-                </control>
+                <include content="PanelWide">
+                    <param name="top">0</param>
+                    <param name="toptexture">0</param>
+                    <param name="topshadow">424</param>
+                    <param name="height">453</param>
+                    <param name="heighttexture">424</param>
+                    <param name="flipy">true</param>
+                </include>
             </control>
             <!-- Video -->
             <control type="grouplist">
-                <top>10</top>
-                <width>640</width>
+                <top>17</top>
+                <left>25</left>
+                <width>607</width>
                 <height>600</height>
                 <control type="label">
                     <label>$LOCALIZE[291]</label>
                     <font>Font28_Bold</font>
-                    <textcolor>$VAR[HighlightColorVar]</textcolor>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <label>$LOCALIZE[31076]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
                     <visible>Player.Proces(videohwdecoder)</visible>
+                    <label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[31075]  [/COLOR]$LOCALIZE[13281]</label>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <label>$LOCALIZE[31075]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
                     <visible>!Player.Proces(videohwdecoder)</visible>
+                    <label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[31075]  [/COLOR]$LOCALIZE[13419]</label>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <label>$INFO[Player.Process(videodecoder),$LOCALIZE[31073]: ]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[31073]  [/COLOR]$INFO[Player.Process(videodecoder)]</label>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <label>$INFO[Player.Process(pixformat),$LOCALIZE[31074]: ]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[31074]  [/COLOR]$INFO[Player.Process(pixformat)]</label>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <label>$INFO[Player.Process(deintmethod),$LOCALIZE[16038]: ]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[16038]  [/COLOR]$INFO[Player.Process(deintmethod)]</label>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <label>$INFO[Player.Process(videowidth),$LOCALIZE[38031]: ,x]$INFO[Player.Process(videoheight),, px]$INFO[Player.Process(videodar),$COMMA , AR]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[38031]  [/COLOR]$INFO[Player.Process(videowidth),,x]$INFO[Player.Process(videoheight),, px]$INFO[Player.Process(videodar),$COMMA AR ]</label>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <label>$INFO[Player.Process(videofps),FPS: ]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <label>[COLOR $VAR[PanelTextColorVar]]FPS  [/COLOR]$INFO[Player.Process(videofps)]</label>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
             </control>
             <!-- Audio -->
             <control type="grouplist">
-                <top>290</top>
-                <width>640</width>
+                <top>17</top>
+                <left>656</left>
+                <width>608</width>
                 <height>600</height>
-                <animation effect="slide" end="640,-280" condition="!VideoPlayer.Content(livetv)">Conditional</animation>
+                <animation effect="slide" end="-631,273" condition="VideoPlayer.Content(livetv)">Conditional</animation>
                 <control type="label">
                     <label>$LOCALIZE[292]</label>
                     <font>Font28_Bold</font>
-                    <textcolor>$VAR[HighlightColorVar]</textcolor>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <label>$INFO[Player.Process(audiochannels),$LOCALIZE[14301]: ]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[14301]  [/COLOR]$INFO[Player.Process(audiochannels)]</label>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <label>$INFO[Player.Process(audiodecoder),$LOCALIZE[460]: ]$INFO[Player.Process(audiobitspersample),$COMMA , bits]$INFO[Player.Process(audiosamplerate),$COMMA , Hz]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[460]  [/COLOR]$INFO[Player.Process(audiodecoder)]$INFO[Player.Process(audiobitspersample),$COMMA , bits]$INFO[Player.Process(audiosamplerate),$COMMA , Hz]</label>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
             </control>
             <!-- PVR -->
             <control type="grouplist">
-                <top>10</top>
-                <left>640</left>
-                <width>640</width>
+                <top>17</top>
+                <left>656</left>
+                <width>608</width>
                 <height>600</height>
                 <visible>VideoPlayer.Content(livetv)</visible>
                 <control type="label">
                     <label>$LOCALIZE[19005]</label>
                     <font>Font28_Bold</font>
-                    <textcolor>$VAR[HighlightColorVar]</textcolor>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <label>$INFO[PVR.ActStreamClient,$LOCALIZE[19012]: ]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19012]  [/COLOR]$INFO[PVR.ActStreamClient]</label>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <label>$INFO[PVR.ActStreamDevice,$LOCALIZE[19006]: ]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19006]  [/COLOR]$INFO[PVR.ActStreamDevice]</label>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <label>$INFO[PVR.ActStreamStatus,$LOCALIZE[19007]: ]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19007]  [/COLOR]$INFO[PVR.ActStreamStatus]</label>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <label>$INFO[PVR.ActStreamBER,$LOCALIZE[19010]: ]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19010]  [/COLOR]$INFO[PVR.ActStreamBER]</label>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <label>$INFO[PVR.ActStreamUNC,$LOCALIZE[19011]: ]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19011]  [/COLOR]$INFO[PVR.ActStreamUNC]</label>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <label>$INFO[PVR.ActStreamServiceName,$LOCALIZE[19099]: ]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19099]  [/COLOR]$INFO[PVR.ActStreamServiceName]</label>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <label>$INFO[PVR.ActStreamEncryptionName,$LOCALIZE[19015]: ]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19015]  [/COLOR]$INFO[PVR.ActStreamEncryptionName]</label>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <label>$INFO[PVR.ActStreamProviderName,$LOCALIZE[19101]: ]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19101]  [/COLOR]$INFO[PVR.ActStreamProviderName]</label>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <label>$INFO[PVR.ActStreamMux,$LOCALIZE[19100]: ]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19100]  [/COLOR]$INFO[PVR.ActStreamMux]</label>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
             </control>
             <!--  System -->
             <control type="grouplist">
-                <top>10</top>
-                <left>1280</left>
-                <width>640</width>
+                <top>17</top>
+                <right>25</right>
+                <width>607</width>
                 <height>600</height>
                 <usecontrolcoords>true</usecontrolcoords>
                 <control type="label">
                     <label>$LOCALIZE[13000]</label>
                     <font>Font28_Bold</font>
-                    <textcolor>$VAR[HighlightColorVar]</textcolor>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <label>$INFO[System.CpuUsage,$LOCALIZE[31022] ]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[31022] [/COLOR]$INFO[System.CpuUsage]</label>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <height>5</height>
+                    <height>7</height>
                 </control>
                 <control type="progress">
-                    <left>30</left>
-                    <width>580</width>
                     <info>System.CpuUsage</info>
                 </control>
                 <control type="label">
-                    <height>15</height>
+                    <height>12</height>
                 </control>
                 <control type="label">
-                    <label>$INFO[System.Memory(used.percent),$LOCALIZE[31023] ]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[31023] [/COLOR]$INFO[System.Memory(used.percent)]</label>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <height>5</height>
+                    <height>7</height>
                 </control>
                 <control type="progress">
-                    <left>30</left>
-                    <width>580</width>
                     <info>System.Memory(used)</info>
                 </control>
             </control>
             <!--  Signal -->
             <control type="grouplist">
-                <top>210</top>
-                <left>1280</left>
-                <width>640</width>
+                <visible>VideoPlayer.Content(livetv)</visible>
+                <top>216</top>
+                <right>25</right>
+                <width>607</width>
                 <height>600</height>
                 <usecontrolcoords>true</usecontrolcoords>
-                <visible>VideoPlayer.Content(livetv)</visible>
                 <control type="label">
                     <label>$LOCALIZE[31077]</label>
                     <font>Font28_Bold</font>
-                    <textcolor>$VAR[HighlightColorVar]</textcolor>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
                     <label>$INFO[PVR.ActStreamSignal,$LOCALIZE[19008] ]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <height>5</height>
+                    <height>7</height>
                 </control>
                 <control type="progress">
-                    <left>30</left>
-                    <width>580</width>
-                    <info>PVR.ActStreamProgrSignal</info>
+                   <info>PVR.ActStreamProgrSignal</info>
                 </control>
                 <control type="label">
-                    <height>15</height>
+                    <height>12</height>
                 </control>
                 <control type="label">
                     <label>$INFO[PVR.ActStreamSNR,$LOCALIZE[19009] ]</label>
-                    <include>Dialog_Label_ProcessInfo</include>
+                    <include>DialogLabelProcessInfo</include>
                 </control>
                 <control type="label">
-                    <height>5</height>
+                    <height>7</height>
                 </control>
                 <control type="progress">
-                    <left>30</left>
-                    <width>580</width>
                     <info>PVR.ActStreamProgrSNR</info>
                 </control>
             </control>

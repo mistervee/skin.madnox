@@ -472,6 +472,42 @@
 			<onclick>Skin.SetString(MainMenuStyle,bigiconswide)</onclick>
 		</item>
 	</include>
+	<include name="SelectMainMenuNowPlayingMusicCase">
+		<item>
+			<label>$LOCALIZE[571]</label>
+			<onclick>Skin.Reset(MainMenuNowPlayingMusicCase)</onclick>
+		</item>
+		<item>
+			<label>Glass</label>
+			<onclick>Skin.SetString(MainMenuNowPlayingMusicCase,glass)</onclick>
+		</item>
+		<item>
+			<label>CD</label>
+			<onclick>Skin.SetString(MainMenuNowPlayingMusicCase,cd)</onclick>
+		</item>
+		<item>
+			<label>CD clear</label>
+			<onclick>Skin.SetString(MainMenuNowPlayingMusicCase,cdclear)</onclick>
+		</item>
+	</include>
+	<include name="SelectMainMenuNowPlayingVideoCase">
+		<item>
+			<label>$LOCALIZE[571]</label>
+			<onclick>Skin.Reset(MainMenuNowPlayingVideoCase)</onclick>
+		</item>
+		<item>
+			<label>Glass</label>
+			<onclick>Skin.SetString(MainMenuNowPlayingVideoCase,glass)</onclick>
+		</item>
+		<item>
+			<label>Case</label>
+			<onclick>Skin.SetString(MainMenuNowPlayingVideoCase,case)</onclick>
+		</item>
+		<item>
+			<label>Case clear</label>
+			<onclick>Skin.SetString(MainMenuNowPlayingVideoCase,caseclear)</onclick>
+		</item>
+	</include>
 	<!-- Backgrounds -->
 	<include name="SelectVideoBackground">
 		<item>
@@ -778,6 +814,16 @@
 	</include>
 	<!-- Video OSD -->
 	<include name="VideoOSDSettings">
+		<control type="button" id="109">
+			<width>990</width>
+			<label>Info</label>
+			<label2>$INFO[Skin.String(FullscreenVideoInfo)]</label2>
+			<include>DialogButton</include>
+			<onclick condition="String.IsEmpty(Skin.String(FullscreenVideoInfo))">Skin.SetString(FullscreenVideoInfo,plot)</onclick>
+			<onclick condition="String.IsEqual(Skin.String(FullscreenVideoInfo),plot)">Skin.SetString(FullscreenVideoInfo,cast)</onclick>
+			<onclick condition="String.IsEqual(Skin.String(FullscreenVideoInfo),cast)">Skin.SetString(FullscreenVideoInfo,none)</onclick>
+			<onclick condition="String.IsEqual(Skin.String(FullscreenVideoInfo),none)">Skin.Reset(FullscreenVideoInfo)</onclick>
+		</control>
 	</include>
 	<!-- Live backgrounds -->
 	<include name="LiveBackgroundSettings">
