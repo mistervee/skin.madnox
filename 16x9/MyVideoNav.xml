@@ -5,24 +5,13 @@
 	<menucontrol>9050</menucontrol>
 	<onload condition="System.HasAddon(script.tv.show.next.aired)">RunScript(script.tv.show.next.aired,backend=True)</onload>
 	<controls>
-		
 		<!-- Backdrop -->
 		<include content="BackgroundDefault">
 			<param name="imagepath">$VAR[VideoBackgroundVar]</param>
 		</include>
 		<control type="group">
-			<visible>!$EXP[InfoDialogVisible]</visible>
-			<animation effect="fade" time="400" tween="sine" easing="out">Visible</animation>
-			<animation effect="fade" time="400" tween="sine" easing="out">Hidden</animation>
-			
-
-			<control type="image">
-				<include>FullscreenDimensions</include>
-				<texture colordiffuse="BBFFFFFF">colors/black.png</texture>
-				<visible>Control.IsVisible(56)</visible>
-			</control>
-
-
+			<visible>!Window.IsActive(movieinformation)</visible>
+			<include>AnimationInfoDialog</include>
 			<!-- Floor -->
 			<control type="group">
 				<visible>Control.IsVisible(50) | Control.IsVisible(56) | Control.IsVisible(54) | Control.IsVisible(80)</visible>
@@ -45,8 +34,8 @@
 			</control>
 			<!-- Media flags -->
 			<control type="group">
-				<visible>Control.IsVisible(50) | Control.IsVisible(55) | Control.IsVisible(80)</visible>
-				<animation effect="slide" end="90,11" time="240" tween="cubic" condition="Control.IsVisible(55)">Conditional</animation>
+				<visible>Control.IsVisible(50) | Control.IsVisible(55) | Control.IsVisible(80) | Control.IsVisible(54)</visible>
+				<animation effect="slide" end="90,20" time="240" tween="cubic" condition="Control.IsVisible(55)">Conditional</animation>
 				<include content="AnimationSlideBottomWindow">
 					<param name="slide">111</param>
 				</include>

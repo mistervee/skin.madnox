@@ -26,11 +26,17 @@
 	</variable>
 
 
-	<variable name="MainMenuNowPlayingMusicCaseVar">
-		<value condition="String.IsEqual(Skin.String(MainMenuNowPlayingMusicCase),glass)">thumbs/caseother/glass.png</value>
-		<value condition="String.IsEqual(Skin.String(MainMenuNowPlayingMusicCase),cd)">thumbs/caseother/cd.png</value>
-		<value condition="String.IsEqual(Skin.String(MainMenuNowPlayingMusicCase),cdclear)">thumbs/caseother/cdclear.png</value>
+	<variable name="MainMenuNowPlayingAudioCaseVar">
+		<value condition="String.IsEqual(Skin.String(MainMenuNowPlayingAudioCase),glass)">thumbs/caseother/glass.png</value>
+		<value condition="String.IsEqual(Skin.String(MainMenuNowPlayingAudioCase),cd)">thumbs/caseother/cd.png</value>
+		<value condition="String.IsEqual(Skin.String(MainMenuNowPlayingAudioCase),cdclear)">thumbs/caseother/cdclear.png</value>
 		<value>thumbs/overlay.png</value>
+	</variable>
+	<variable name="MainMenuNowPlayingAudioCaseLabelVar">
+		<value condition="String.IsEqual(Skin.String(MainMenuNowPlayingAudioCase),glass)">$LOCALIZE[31171]</value>
+		<value condition="String.IsEqual(Skin.String(MainMenuNowPlayingAudioCase),cd)">CD</value>
+		<value condition="String.IsEqual(Skin.String(MainMenuNowPlayingAudioCase),cdclear)">$LOCALIZE[31172]</value>
+		<value>$LOCALIZE[571]</value>
 	</variable>
 
 	<variable name="MainMenuNowPlayingVideoCaseVar">
@@ -81,17 +87,17 @@
 	</variable>
 
 	<variable name="NowPlayingHomeMusicInfoLabelVar">
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),tracklist)">$LOCALIZE[31129]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),plot)">$LOCALIZE[21821]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),viz)">$LOCALIZE[250]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),disable)">$LOCALIZE[1223]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),tracks)">$LOCALIZE[182]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),description)">$LOCALIZE[21821]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),info)">$LOCALIZE[29915]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),none)">$LOCALIZE[231]</value>
 		<value>$LOCALIZE[209]</value>
 	</variable>
 	<variable name="NowPlayingHomeAudioInfoLabelVar">
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),tracklist)">$LOCALIZE[31129]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),plot)">$LOCALIZE[21821]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),viz)">$LOCALIZE[250]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),disable)">$LOCALIZE[1223]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),tracks)">$LOCALIZE[182]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),description)">$LOCALIZE[21821]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),info)">$LOCALIZE[29915]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),none)">$LOCALIZE[231]</value>
 		<value>$LOCALIZE[209]</value>
 	</variable>
 
@@ -141,7 +147,9 @@
 	<variable name="NowPlayingFanartVar">
 		<value condition="String.IsEqual(Skin.String(MusicOSDFanart),none)"></value>
 		<value condition="String.IsEqual(Skin.String(MusicOSDFanart),extra) + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.ExtraFanArt))">$INFO[Window(Home).Property(SkinHelper.Player.Art.ExtraFanArt)]</value>
-		<value>$INFO[Player.Art(fanart)]</value>
+		<value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.FanArt))">$INFO[Window(Home).Property(SkinHelper.Player.Art.FanArt)]</value>
+		<value condition="!String.IsEmpty(Player.Art(fanart))">$INFO[Player.Art(fanart)]</value>
+		<value>$VAR[MusicBackgroundVar]</value>
 	</variable>
 	<variable name="NowPlayingStatusVar">
 		<value condition="Player.Playing">$LOCALIZE[31002]</value>
@@ -302,6 +310,15 @@
 	</variable>
 
 
+
+
+	<variable name="PlotVar">
+		<value condition="Skin.HasSetting(VideoDialogPlotOutline) + !String.IsEmpty(ListItem.PlotOutline)">$INFO[ListItem.PlotOutline]</value>
+		<value condition="!String.IsEmpty(ListItem.Plot)">$INFO[ListItem.Plot]</value>
+		<value condition="!String.IsEmpty(ListItem.Property(Album_Description))">$INFO[ListItem.Property(Album_Description)]</value>
+		<value condition="!String.IsEmpty(ListItem.Property(Artist_Description))">$INFO[ListItem.Property(Artist_Description)]</value>
+		<value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Plot))">$INFO[Window(Home).Property(SkinHelper.ListItem.Plot)]</value>
+	</variable>
 
 
 
@@ -487,7 +504,7 @@
 		<value condition="String.IsEqual(Container(9000).ListItem.Property(InfoLine),sets)">[COLOR $VAR[MainMenuSubTextColorVar]]$LOCALIZE[20434]: [/COLOR]$INFO[Window(Home).Property(SkinHelper.TotalMovieSets)]  [COLOR $VAR[MainMenuSubTextColorVar]]$LOCALIZE[20342]: [/COLOR]$INFO[Window(Home).Property(SkinHelper.TotalMoviesInSets)]</value>
 		<value condition="String.IsEqual(Container(9000).ListItem.Property(InfoLine),tv) + Pvr.IsRecordingTV">[COLOR $VAR[MainMenuSubTextColorVar]]$LOCALIZE[19043]: [/COLOR]$INFO[Pvr.TVNowRecordingTitle]</value>
 		<value condition="String.IsEqual(Container(9000).ListItem.Property(InfoLine),tv) + Pvr.HasNonRecordingTVTimer">[COLOR $VAR[MainMenuSubTextColorVar]]$LOCALIZE[209]: [/COLOR]$INFO[Pvr.TVNextRecordingTitle] [COLOR $VAR[MainMenuSubTextColorVar]]$INFO[Pvr.TVNextRecordingDateTime][/COLOR]</value>
-		<value condition="String.IsEqual(Container(9000).ListItem.Property(InfoLine),tv)">[COLOR $VAR[MainMenuSubTextColorVar]]$LOCALIZE[19023]:[/COLOR] $INFO[Window(Home).Property(SkinHelper.TotalTVChannels)]</value>
+		<value condition="String.IsEqual(Container(9000).ListItem.Property(InfoLine),tv)">[COLOR $VAR[MainMenuSubTextColorVar]]$LOCALIZE[19023]:[/COLOR] $INFO[Window(Home).Property(SkinHelper.TotalTVChannels)]  [COLOR $VAR[MainMenuSubTextColorVar]]$LOCALIZE[19017]:[/COLOR] $INFO[PVR.BackendRecordings]</value>
 		<value condition="String.IsEqual(Container(9000).ListItem.Property(InfoLine),radio) + Pvr.IsRecordingRadio">[COLOR $VAR[MainMenuSubTextColorVar]]$LOCALIZE[19043]: [/COLOR]$INFO[Pvr.RadioNowRecordingTitle]</value>
 		<value condition="String.IsEqual(Container(9000).ListItem.Property(InfoLine),radio) + Pvr.HasNonRecordingRadioTimer">[COLOR $VAR[MainMenuSubTextColorVar]]$LOCALIZE[209]: [/COLOR]$INFO[Pvr.RadioNextRecordingTitle] [COLOR $VAR[MainMenuSubTextColorVar]]$INFO[Pvr.RadioNextRecordingDateTime][/COLOR]</value>
 		<value condition="String.IsEqual(Container(9000).ListItem.Property(InfoLine),radio)">[COLOR $VAR[MainMenuSubTextColorVar]]$LOCALIZE[19024]:[/COLOR] $INFO[Window(Home).Property(SkinHelper.TotalRadioChannels)]</value>
@@ -634,6 +651,7 @@
 	</variable>
 	<variable name="DiscArtVar">
 		<value condition="!String.IsEmpty(ListItem.Art(discart))">$INFO[ListItem.Art(discart)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(album.discart))">$INFO[ListItem.Art(album.discart)]</value>
 		<value>none</value>
 	</variable>
 
@@ -940,25 +958,25 @@
 		<value>videos.png</value>
 	</variable>
 	<variable name="BreadcrumbsPVRChannelsVar">
-		<value condition="Window.IsActive(TVChannels)">$LOCALIZE[19020] / $LOCALIZE[19019] / $INFO[Control.GetLabel(29)]</value>
+		<value condition="Window.IsActive(TVChannels)">$LOCALIZE[31173] / $LOCALIZE[19019] / $INFO[Control.GetLabel(29)]</value>
 		<value>$LOCALIZE[19021] / $LOCALIZE[19019] / $INFO[Control.GetLabel(29)]</value>
 	</variable>
 	<variable name="BreadcrumbsPVRGuideVar">
-		<value condition="Window.IsActive(TVGuide)">$LOCALIZE[19020] / $INFO[Control.GetLabel(29)] - $INFO[Control.GetLabel(30)]</value>
+		<value condition="Window.IsActive(TVGuide)">$LOCALIZE[31173] / $INFO[Control.GetLabel(29)] - $INFO[Control.GetLabel(30)]</value>
 		<value>$LOCALIZE[19021] / $INFO[Control.GetLabel(29)] - $INFO[Control.GetLabel(30)]</value>
 	</variable>
 	<variable name="BreadcrumbsPVRRecordingsVar">
-		<value condition="Window.IsActive(TVRecordings)">$LOCALIZE[19020] / $LOCALIZE[19017]$INFO[Control.GetLabel(30), / ]</value>
+		<value condition="Window.IsActive(TVRecordings)">$LOCALIZE[31173] / $LOCALIZE[19017]$INFO[Control.GetLabel(30), / ]</value>
 		<value>$LOCALIZE[19021] / $LOCALIZE[19017]$INFO[Control.GetLabel(30), / ]</value>
 	</variable>
 	<variable name="BreadcrumbsPVRTimersVar">
-		<value condition="Window.IsActive(TVTimers)">$LOCALIZE[19020] / $LOCALIZE[19040]</value>
+		<value condition="Window.IsActive(TVTimers)">$LOCALIZE[31173] / $LOCALIZE[19040]</value>
 		<value condition="Window.IsActive(RadioTimers)">$LOCALIZE[19021] / $LOCALIZE[19040]</value>
 		<value condition="Window.IsActive(TVTimerRules)">$LOCALIZE[19020] / $LOCALIZE[19138]$INFO[Control.GetLabel(29), / ]</value>
 		<value>$LOCALIZE[19021] / $LOCALIZE[19138]$INFO[Control.GetLabel(29), / ]</value>
 	</variable>
 	<variable name="BreadcrumbsPVRSearchVar">
-		<value condition="Window.IsActive(TVSearch)">$LOCALIZE[19020] / $LOCALIZE[137]</value>
+		<value condition="Window.IsActive(TVSearch)">$LOCALIZE[31173] / $LOCALIZE[137]</value>
 		<value>$LOCALIZE[19021] / $LOCALIZE[137]</value>
 	</variable>
 	<!-- Topbar -->

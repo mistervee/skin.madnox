@@ -4,30 +4,30 @@
 	<menucontrol>9050</menucontrol>
 	<controls>
 		<!-- Backdrop -->
-		<include content="Background_Default">
+		<include content="BackgroundDefault">
 			<param name="imagepath">$VAR[WeatherFanartVar]</param>
 		</include>
 		<!-- Floor -->
 		<control type="group">
 			<visible>!Skin.HasSetting(WeatherHideFloor)</visible>
-			<include content="Animation_Slide_Bottom_Window">
+			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
 			</include>
-			<include content="Animation_Slide_Bottom_Visible">
+			<include content="AnimationSlideBottomVisible">
 				<param name="slide">220</param>
 			</include>
-			<include>Floor_Default</include>
+			<include>FloorDefault</include>
 		</control>
 		<!-- Panel -->
 		<control type="group">
-			<include>Animation_Zoom_Window</include>
-			<include content="Panel_Side">
+			<include>AnimationZoomWindow</include>
+			<include content="PanelSide">
 				<param name="reflect">!Skin.HasSetting(WeatherHideFloor)</param>
 			</include>
 		</control>
 		<!-- Content -->
 		<control type="group">
-			<include>Animation_Zoom_Window</include>
+			<include>AnimationZoomWindow</include>
 			<control type="panel" id="8000">
 				<left>100</left>
 				<top>159</top>
@@ -39,7 +39,7 @@
 				<onright condition="Container(8000).HasFocus(5)">8005</onright>
 				<itemlayout height="67">
 					<control type="label">
-						<include>Settings_LeftButton</include>
+						<include>SettingsLeftButton</include>
 						<label>$INFO[ListItem.Label]</label>
 					</control>
 				</itemlayout>
@@ -49,7 +49,7 @@
 					</control>
 					<control type="label">
 						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
-						<include>Settings_LeftButton</include>
+						<include>SettingsLeftButton</include>
 						<label>$INFO[ListItem.Label]</label>
 					</control>
 				</focusedlayout>
@@ -105,7 +105,7 @@
 				<top>159</top>
 				<width>1286</width>
 				<height>775</height>
-				<include>Animation_VisibleFade</include>
+				<include>AnimationVisibleFade</include>
 				<control type="image">
 					<height>439</height>
 					<texture colordiffuse="FF000000" border="10">buttons/panel-select-focus.png</texture>
@@ -211,7 +211,7 @@
 				</control>
 				<control type="grouplist" id="8001">
 					<visible>Container(8000).HasFocus(1)</visible>
-					<include>Animation_VisibleFade</include>
+					<include>AnimationVisibleFade</include>
 					<top>469</top>
 					<width>1286</width>
 					<height>299</height>
@@ -242,7 +242,7 @@
 			</control>
 			<control type="grouplist" id="8002">
 				<visible>Container(8000).HasFocus(2)</visible>
-				<include>Animation_CommonFade</include>
+				<include>AnimationVisibleFade</include>
 				<left>481</left>
 				<top>159</top>
 				<width>1286</width>
@@ -302,7 +302,7 @@
 			</control>
 			<control type="grouplist">
 				<visible>Container(8000).HasFocus(3)</visible>
-				<include>Animation_VisibleFade</include>
+				<include>AnimationVisibleFade</include>
 				<left>481</left>
 				<top>159</top>
 				<width>1286</width>
@@ -322,7 +322,7 @@
 			</control>
 			<control type="grouplist">
 				<visible>Container(8000).HasFocus(4)</visible>
-				<include>Animation_VisibleFade</include>
+				<include>AnimationVisibleFade</include>
 				<left>481</left>
 				<top>159</top>
 				<width>1286</width>
@@ -339,7 +339,7 @@
 			</control>
 			<control type="grouplist" id="8005">
 				<visible>Container(8000).HasFocus(5)</visible>
-				<include>Animation_VisibleFade</include>
+				<include>AnimationVisibleFade</include>
 				<left>481</left>
 				<top>159</top>
 				<width>1286</width>
@@ -459,7 +459,7 @@
 			</control>
 			<control type="group">
 				<visible>Container(8000).HasFocus(6)</visible>
-				<include>Animation_VisibleFade</include>
+				<include>AnimationVisibleFade</include>
 				<left>481</left>
 				<top>159</top>
 				<width>1287</width>
@@ -524,28 +524,28 @@
 		<!-- Topbar -->
 		<control type="group">
 			<visible>!Skin.HasSetting(WeatherHideTopBar)</visible>
-			<include content="Animation_Slide_Top_Window">
+			<include content="AnimationSlideTopWindow">
 				<param name="slide">90</param>
 			</include>
-			<include content="Animation_Slide_Top_Visible">
+			<include content="AnimationSlide_TopVisible">
 				<param name="slide">90</param>
 			</include>
 			<include content="TopBar">
-				<param name="breadcrumbs_label">$LOCALIZE[12600]$INFO[Window(weather).Property(Location), / ]</param>
-				<param name="breadcrumbs_icon">weather.png</param>
+				<param name="label">$LOCALIZE[12600]$INFO[Window(weather).Property(Location), / ]</param>
+				<param name="icon">weather.png</param>
 			</include>
 		</control>
 		<!-- Media Menu -->
-		<include>MediaMenu_MouseOverlay</include>
+		<include>MediaMenuMouseOverlay</include>
 		<control type="group">
-			<include>MediaMenu_Common</include>
+			<include>MediaMenuCommon</include>
 			<control type="grouplist" id="9050">
 				<onright>8000</onright>
 				<onback>8000</onback>
 				<usecontrolcoords>true</usecontrolcoords>
 				<onleft condition="!Skin.HasSetting(DisableQuickNav)">ActivateWindow(1113)</onleft>
 				<control type="radiobutton" id="9061">
-					<include content="MediaMenu_Icon_Button">
+					<include content="MediaMenuIconButton">
 						<param name="iconon" value="icons/mediamenu/viewoptions.png" />
 						<param name="iconoff" value="icons/mediamenu/viewoptions.png" />
 					</include>
@@ -554,27 +554,27 @@
 					<visible>!String.Contains(Skin.String(KioskMode),HideOptions)</visible>
 				</control>
 				<control type="radiobutton" id="3">
-					<include content="MediaMenu_Icon_Button">
+					<include content="MediaMenuIconButton">
 						<param name="iconon" value="icons/mediamenu/pin.png" />
 						<param name="iconoff" value="icons/mediamenu/pin.png" />
 					</include>
 					<onclick>Weather.LocationNext</onclick>
 				</control>
 				<control type="radiobutton" id="2">
-					<include content="MediaMenu_Icon_Button">
+					<include content="MediaMenuIconButton">
 						<param name="iconon" value="icons/mediamenu/refresh.png" />
 						<param name="iconoff" value="icons/mediamenu/refresh.png" />
 					</include>
 				</control>
 				<control type="radiobutton" id="9062">
-					<include content="MediaMenu_Icon_Button">
+					<include content="MediaMenuIconButton">
 						<param name="iconon" value="icons/mediamenu/settings.png" />
 						<param name="iconoff" value="icons/mediamenu/settings.png" />
 					</include>
 					<label>$LOCALIZE[5]</label>
 					<onclick>ActivateWindow(servicesettings,weather)</onclick>
 				</control>
-				<include>MediaMenu_Common_Bottom</include>
+				<include>MediaMenuCommonBottom</include>
 			</control>
 		</control>
 	</controls>

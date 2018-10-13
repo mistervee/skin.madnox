@@ -34,14 +34,13 @@
 			<control type="label">
 				<width>265</width>
 				<align>right</align>
-				<include>MediaFlagLabel</include>
+				<include>MediaFlagLabelFull</include>
 				<label>$LOCALIZE[31063][CR][B]$INFO[Window(Home).Property(NextAired.NextNumber)][CR]$INFO[Window(Home).Property(NextAired.NextDay),, ]$INFO[Window(Home).Property(NextAired.ShortTime)][/B]</label>
 				<visible>!String.IsEmpty(Window(Home).Property(NextAired.NextDay))</visible>
 			</control>
 			<control type="label">
 				<width>265</width>
-				<align>right</align>
-				<include>MediaFlagLabel</include>
+				<include>MediaFlagLabelFull</include>
 				<label>$LOCALIZE[31064][CR][B]$INFO[Window(Home).Property(NextAired.LatestNumber)][CR]$INFO[Window(Home).Property(NextAired.LatestDay)][/B]</label>
 				<visible>String.IsEmpty(Window(Home).Property(NextAired.NextDay)) + !String.IsEmpty(Window(Home).Property(NextAired.LatestDay))</visible>
 			</control>
@@ -99,25 +98,12 @@
 			<usecontrolcoords>true</usecontrolcoords>
 			<control type="label">
 				<include>MediaFlagLabel</include>
-				<label>$LOCALIZE[521]</label>
-				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.AlbumsCompilationsCount))</visible>
-			</control>
-			<control type="label">
-				<left>-135</left>
-				<include>MediaFlagBigLabel</include>
-				<label>$INFO[Window(Home).Property(SkinHelper.ListItem.AlbumsCompilationsCount)]</label>
-				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.AlbumsCompilationsCount))</visible>
-			</control>
-			<control type="label">
-				<include>MediaFlagLabel</include>
 				<label>$LOCALIZE[132]</label>
-				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.AlbumsArtistCount))</visible>
 			</control>
 			<control type="label">
 				<left>-135</left>
 				<include>MediaFlagBigLabel</include>
-				<label>$INFO[Window(Home).Property(SkinHelper.ListItem.AlbumsArtistCount)]</label>
-				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.AlbumsArtistCount))</visible>
+				<label>$INFO[Container(811111).NumItems]</label>
 			</control>
 		</control>
 		<control type="grouplist">
@@ -146,13 +132,11 @@
 			<control type="label">
 				<include>MediaFlagLabel</include>
 				<label>$LOCALIZE[134]</label>
-				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.SongCount))</visible>
 			</control>
 			<control type="label">
 				<left>-135</left>
 				<include>MediaFlagBigLabel</include>
-				<label>$INFO[Window(Home).Property(SkinHelper.ListItem.SongCount)]</label>
-				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.SongCount))</visible>
+				<label>$INFO[Container(811112).NumItems]</label>
 			</control>
 		</control>
 		<control type="grouplist">
@@ -415,7 +399,7 @@
 			<orientation>horizontal</orientation>
 			<usecontrolcoords>true</usecontrolcoords>
 
-		
+
 			<control type="image">
 				<texture>$VAR[MediaFlagsPathVar]mpaa/$VAR[VideoPlayerRatingFlagVar]</texture>
 				<include>MediaFlagImage</include>
@@ -587,7 +571,7 @@
 		<fadetime>TextureFadeTime</fadetime>
 		<include condition="!Skin.HasSetting(ColoredMediaFlags)">MediaFlagWhite</include>
 		<include condition="Skin.HasSetting(ColoredMediaFlags)">MediaFlagColored</include>
-		<aspectratio align="center" aligny="center">scale</aspectratio>
+		<aspectratio align="center" aligny="center">keep</aspectratio>
 	</include>
 	<include name="MediaFlagSmallImage">
 		<top>6</top>
@@ -604,13 +588,19 @@
 		<fadetime>TextureFadeTime</fadetime>
 		<aspectratio align="center" aligny="center">keep</aspectratio>
 	</include>
-	
-
 	<include name="MediaFlagLabel">
 		<top>2</top>
 		<width>125</width>
 		<height>40</height>
 		<align>center</align>
+		<textcolor>grey</textcolor>
+		<font>Font23_Reg</font>
+	</include>
+	<include name="MediaFlagLabelFull">
+		<top>2</top>
+		<width>125</width>
+		<height>90</height>
+		<align>right</align>
 		<textcolor>grey</textcolor>
 		<font>Font23_Reg</font>
 	</include>

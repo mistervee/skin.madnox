@@ -534,7 +534,7 @@
 		</control>
 		<control type="button" id="120">
 			<label>Case</label>
-			<label2>$VAR[MainMenuSubmenuBarLabelVar]</label2>
+			<label2>$VAR[MainMenuNowPlayingAudioCaseLabelVar]</label2>
 			<onclick>SetProperty(CustomSelect,Case,home)</onclick>
 			<onclick>ActivateWindow(1110)</onclick>
 			<include>MediaMenuButton</include>
@@ -559,25 +559,33 @@
 			<include>MediaMenuRadioButton</include>
 			<visible>!Skin.HasSetting(NowplayingHomeDisableAudio)</visible>
 		</control>
+		<control type="radiobutton" id="109">
+			<label>$LOCALIZE[29915] 1</label>
+			<onclick>Skin.ToggleSetting(NowPlayingHomeAudioDisableInfo1)</onclick>
+			<selected>!Skin.HasSetting(NowPlayingHomeAudioDisableInfo1)</selected>
+			<include>MediaMenuRadioButton</include>
+			<visible>!Skin.HasSetting(NowplayingHomeDisableAudio)</visible>
+		</control>
+		<control type="radiobutton" id="109">
+			<label>$LOCALIZE[29915] 2</label>
+			<onclick>Skin.ToggleSetting(NowPlayingHomeAudioDisableInfo2)</onclick>
+			<selected>!Skin.HasSetting(NowPlayingHomeAudioDisableInfo2)</selected>
+			<include>MediaMenuRadioButton</include>
+			<visible>!Skin.HasSetting(NowplayingHomeDisableAudio)</visible>
+		</control>
 		<control type="button" id="110">
-			<label>$LOCALIZE[2]</label>
+			<label>$LOCALIZE[31169]</label>
 			<label2>$VAR[NowPlayingHomeMusicInfoLabelVar]</label2>
-			<onclick condition="String.IsEmpty(Skin.String(NowPlayingHomeMusicInfo))">Skin.SetString(NowPlayingHomeMusicInfo,tracklist)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),tracklist)">Skin.SetString(NowPlayingHomeMusicInfo,plot)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),plot)">Skin.SetString(NowPlayingHomeMusicInfo,viz)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),viz)">Skin.SetString(NowPlayingHomeMusicInfo,disable)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),disable)">Skin.Reset(NowPlayingHomeMusicInfo)</onclick>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[31169],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
 			<include>MediaMenuButton</include>
 			<visible>!Skin.HasSetting(NowplayingHomeDisableAudio)</visible>
 		</control>
 		<control type="button" id="110">
-			<label>$LOCALIZE[292]</label>
+			<label>$LOCALIZE[31170]</label>
 			<label2>$VAR[NowPlayingHomeAudioInfoLabelVar]</label2>
-			<onclick condition="String.IsEmpty(Skin.String(NowPlayingHomeAudioInfo))">Skin.SetString(NowPlayingHomeAudioInfo,tracklist)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),tracklist)">Skin.SetString(NowPlayingHomeAudioInfo,plot)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),plot)">Skin.SetString(NowPlayingHomeAudioInfo,viz)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),viz)">Skin.SetString(NowPlayingHomeAudioInfo,disable)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),disable)">Skin.Reset(NowPlayingHomeAudioInfo)</onclick>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[31170],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
 			<include>MediaMenuButton</include>
 			<visible>!Skin.HasSetting(NowplayingHomeDisableAudio)</visible>
 		</control>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">50</defaultcontrol>
-	<views>50</views>
+	<views>50,54,55,56,80</views>
 	<menucontrol>9050</menucontrol>
 	<controls>
 		<!-- Backdrop -->
@@ -11,45 +11,58 @@
 		<control type="group">
 			<visible>!Window.IsActive(musicinformation) + !Window.IsActive(songinformation)</visible>
 			<include>AnimationVisibleFade</include>
-		<!-- Floor -->
-		<control type="group">
-			<visible>Control.IsVisible(50)</visible>
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">220</param>
-			</include>
-			<include content="AnimationSlideBottomVisible">
-				<param name="slide">220</param>
-			</include>
-			<include>FloorRight</include>
+			<!-- Floor -->
+			<control type="group">
+				<visible>Control.IsVisible(50) | Control.IsVisible(54)</visible>
+				<include content="AnimationSlideBottomWindow">
+					<param name="slide">220</param>
+				</include>
+				<include content="AnimationSlideBottomVisible">
+					<param name="slide">220</param>
+				</include>
+				<include>FloorRight</include>
+			</control>
+			<!-- Views -->
+			<control type="group">
+				<include>View50List</include>
+				<include>View54InfoList</include>
+				<include>View55LowList</include>
+				<include>View56RightList</include>
+				<include>View80Wall</include>
+			</control>
+			<!-- Media flags -->
+			<control type="group">
+				<visible>Control.IsVisible(50) | Control.IsVisible(54) | Control.IsVisible(55)</visible>
+				<animation effect="slide" end="90,20" time="240" tween="cubic" condition="Control.IsVisible(55)">Conditional</animation>
+				<include content="Animation_Slide_Bottom_Window">
+					<param name="slide">111</param>
+				</include>
+				<include>MediaFlagsRight</include>
+			</control>
+			<!-- Hidden - Mediaflag album/song count -->
+			<control type="list" id="811111">
+				<include>HiddenList</include>
+				<content>musicdb://artists/$INFO[ListItem.DBID]</content>
+			</control>
+			<control type="list" id="811112">
+				<include>HiddenList</include>
+				<content>musicdb://albums/$INFO[ListItem.DBID]</content>
+			</control>
+			<!-- Topbar -->
+			<control type="group">
+				<visible>!Skin.HasSetting(MusicHideTopBar)</visible>
+				<include content="AnimationSlideTopWindow">
+					<param name="slide">90</param>
+				</include>
+				<include content="AnimationSlideTopVisible">
+					<param name="slide">90</param>
+				</include>
+				<include content="TopBar">
+					<param name="label">$LOCALIZE[2]</param>
+					<param name="icon">music.png</param>
+				</include>
+			</control>
 		</control>
-		<!-- Views -->
-		<control type="group">
-			<include>View50List</include>
-		</control>
-		<!-- Media flags -->
-		<control type="group">
-			<visible>Control.IsVisible(50)</visible>
-			<animation effect="slide" end="90,11" time="240" tween="cubic" condition="Control.IsVisible(511)">Conditional</animation>
-			<include content="Animation_Slide_Bottom_Window">
-				<param name="slide">111</param>
-			</include>
-			<include>MediaFlags_Right</include>
-		</control>
-		<!-- Topbar -->
-		<control type="group">
-			<visible>!Skin.HasSetting(MusicHideTopBar)</visible>
-			<include content="AnimationSlideTopWindow">
-				<param name="slide">90</param>
-			</include>
-			<include content="AnimationSlideTopVisible">
-				<param name="slide">90</param>
-			</include>
-			<include content="TopBar">
-				<param name="label">$LOCALIZE[2]</param>
-				<param name="icon">music.png</param>
-			</include>
-		</control>
-	</control>
 		<!-- Media Menu -->
 		<include>MediaMenuMouseOverlay</include>
 		<control type="group">

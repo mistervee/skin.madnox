@@ -38,65 +38,181 @@
 			<texture colordiffuse="FF000000">panels/background-gradient.png</texture>
 		</control>
 		<control type="group">
+			<left>15</left>
 			<bottom>15</bottom>
+			<right>15</right>
 			<height>400</height>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">440</param>
 			</include>
-			<control type="group">
-				<visible>String.IsEmpty(Skin.String(MainMenuNowPlayingMusicCase))</visible>
-				<include>AnimationVisibleFade</include>
-				<include content="NowPlayingSquareContent">
-					<param name="left">15</param>
-					<param name="right">-45</param>
-					<param name="width">400</param>
-					<param name="height">400</param>
-					<param name="leftinfo">405</param>
-					<param name="casewidth">400</param>
-					<param name="border">10</param>
-					<param name="discborder">20</param>
-					<param name="slide">140</param>
-					<param name="slidedisc">170</param>
-					<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-					<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-				</include>
-			</control>
-			<control type="group">
-				<visible>String.Contains(Skin.String(MainMenuNowPlayingMusicCase),glass)</visible>
-				<include>AnimationVisibleFade</include>
-				<include content="NowPlayingSquareContent">
-					<param name="left">15</param>
-					<param name="right">-45</param>
-					<param name="width">347</param>
-					<param name="height">347</param>
-					<param name="leftinfo">367</param>
-					<param name="casewidth">347</param>
-					<param name="border">15</param>
-					<param name="discborder">20</param>
-					<param name="slide">114</param>
-					<param name="slidedisc">144</param>
-					<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-					<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-				</include>
-			</control>
-			<control type="group">
-				<visible>String.Contains(Skin.String(MainMenuNowPlayingMusicCase),cd)</visible>
-				<include>AnimationVisibleFade</include>
-				<include content="NowPlayingSquareContent">
-					<param name="left">40</param>
-					<param name="right">-45</param>
-					<param name="width">347</param>
-					<param name="height">347</param>
-					<param name="leftinfo">390</param>
-					<param name="casewidth">370</param>
-					<param name="border">15</param>
-					<param name="discborder">25</param>
-					<param name="slide">109</param>
-					<param name="slidedisc">134</param>
-					<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-					<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-				</include>
-			</control>
+			
+				<control type="group">
+					<visible>String.IsEqual(Skin.String(NowPlayingHomeTrackInfo),disable)</visible>
+					<control type="group">
+						<visible>String.IsEmpty(Skin.String(MainMenuNowPlayingMusicCase))</visible>
+						<include>AnimationVisibleFade</include>
+						<include content="NowPlayingSquareContent">
+							<param name="left">0</param>
+							<param name="right">-45</param>
+							<param name="width">380</param>
+							<param name="height">380</param>
+							<param name="leftinfo">317</param>
+							<param name="casewidth">380</param>
+							<param name="border">10</param>
+							<param name="discborder">20</param>
+							<param name="slide">114</param>
+							<param name="slidedisc">144</param>
+							<param name="case">$VAR[MainMenuNowPlayingMusicCaseVar]</param>
+							<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
+							<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
+						</include>
+					</control>
+					<control type="group">
+						<visible>String.IsEqual(Skin.String(MainMenuNowPlayingMusicCase),glass)</visible>
+						<include>AnimationVisibleFade</include>
+						<include content="NowPlayingSquareContent">
+							<param name="left">0</param>
+							<param name="right">-45</param>
+							<param name="width">347</param>
+							<param name="height">347</param>
+							<param name="leftinfo">337</param>
+							<param name="casewidth">347</param>
+							<param name="border">10</param>
+							<param name="discborder">20</param>
+							<param name="slide">114</param>
+							<param name="slidedisc">144</param>
+							<param name="case">$VAR[MainMenuNowPlayingMusicCaseVar]</param>
+							<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
+							<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
+						</include>
+					</control>
+					<control type="group">
+						<visible>String.Contains(Skin.String(MainMenuNowPlayingMusicCase),cd)</visible>
+						<include>AnimationVisibleFade</include>
+						<include content="NowPlayingSquareContent">
+							<param name="left">25</param>
+							<param name="right">-45</param>
+							<param name="width">347</param>
+							<param name="height">347</param>
+							<param name="leftinfo">360</param>
+							<param name="casewidth">370</param>
+							<param name="border">15</param>
+							<param name="discborder">25</param>
+							<param name="slide">109</param>
+							<param name="slidedisc">134</param>
+							<param name="case">$VAR[MainMenuNowPlayingMusicCaseVar]</param>
+							<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
+							<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
+						</include>
+					</control>
+				</control>
+				<control type="group">
+					<visible>!String.IsEqual(Skin.String(NowPlayingHomeTrackInfo),disable)</visible>
+					<control type="group">
+						<visible>String.IsEmpty(Skin.String(MainMenuNowPlayingMusicCase))</visible>
+						<include>AnimationVisibleFade</include>
+						<include content="NowPlayingSquareContent">
+							<param name="left">0</param>
+							<param name="right">680</param>
+							<param name="width">400</param>
+							<param name="height">400</param>
+							<param name="leftinfo">390</param>
+							<param name="casewidth">400</param>
+							<param name="border">10</param>
+							<param name="discborder">20</param>
+							<param name="slide">127</param>
+							<param name="slidedisc">171</param>
+							<param name="case">$VAR[MainMenuNowPlayingMusicCaseVar]</param>
+							<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
+							<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
+						</include>
+					</control>
+					<control type="group">
+						<visible>String.IsEqual(Skin.String(MainMenuNowPlayingMusicCase),glass)</visible>
+						<include>AnimationVisibleFade</include>
+						<include content="NowPlayingSquareContent">
+							<param name="left">0</param>
+							<param name="right">680</param>
+							<param name="width">347</param>
+							<param name="height">347</param>
+							<param name="leftinfo">337</param>
+							<param name="casewidth">347</param>
+							<param name="border">20</param>
+							<param name="discborder">20</param>
+							<param name="slide">114</param>
+							<param name="slidedisc">144</param>
+							<param name="case">$VAR[MainMenuNowPlayingMusicCaseVar]</param>
+							<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
+							<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
+						</include>
+					</control>
+					<control type="group">
+						<visible>String.Contains(Skin.String(MainMenuNowPlayingMusicCase),cd)</visible>
+						<include>AnimationVisibleFade</include>
+						<include content="NowPlayingSquareContent">
+							<param name="left">25</param>
+							<param name="right">680</param>
+							<param name="width">347</param>
+							<param name="height">347</param>
+							<param name="leftinfo">360</param>
+							<param name="casewidth">370</param>
+							<param name="border">15</param>
+							<param name="discborder">25</param>
+							<param name="slide">109</param>
+							<param name="slidedisc">134</param>
+							<param name="case">$VAR[MainMenuNowPlayingMusicCaseVar]</param>
+							<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
+							<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
+						</include>
+					</control>
+				</control>
+				<control type="group">
+					<visible>!Pvr.IsPlayingRadio + !Player.IsInternetStream</visible>
+					<control type="group">
+						<visible>String.IsEmpty(Skin.String(NowPlayingHomeMusicInfo)) + MusicPlayer.HasNext</visible>
+						<include content="HomeNowPlayingAudioNext">
+							<param name="height">380</param>
+							<param name="thumbwidth">232</param>
+						</include>
+					</control>
+					<control type="grouplist">
+						<visible>String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),tracklist) + MusicPlayer.HasNext</visible>
+						<include>HomeNowPlayingAudioTrackList</include>
+					</control>
+					<control type="grouplist">
+						<visible>String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),plot) + [!String.IsEmpty(MusicPlayer.Property(Artist_Description)) | !String.IsEmpty(MusicPlayer.Property(Artist_Description)) | !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Plot))]</visible>
+						<include>HomeNowPlayingPlot</include>
+					</control>
+					<control type="grouplist">
+						<visible>String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),info)</visible>
+						<include>HomeNowPlayingAudioInfo2</include>
+					</control>
+				</control>
+				<control type="group">
+					<visible>Pvr.IsPlayingRadio | Player.IsInternetStream</visible>
+					<control type="group">
+						<visible>String.IsEmpty(Skin.String(NowPlayingHomeAudioInfo)) + MusicPlayer.HasNext</visible>
+						<include>HomeNowPlayingAudioNext</include>
+					</control>
+					<control type="grouplist">
+						<visible>String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),tracklist) + MusicPlayer.HasNext</visible>
+						<include>HomeNowPlayingAudioTrackList</include>
+					</control>
+					<control type="grouplist">
+						<visible>String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),plot) + [!String.IsEmpty(MusicPlayer.Property(Artist_Description)) | !String.IsEmpty(MusicPlayer.Property(Artist_Description)) | !String.IsEmpty(VideoPlayer.Plot) | !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Plot))]</visible>
+						<include>HomeNowPlayingPlot</include>
+					</control>
+					<control type="grouplist">
+						<visible>String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),info) + String.IsEmpty(Skin.String(WidgetPosition))</visible>
+						<include>HomeNowPlayingAudioInfo</include>
+					</control>
+					<control type="grouplist">
+						<visible>String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),info) + !String.IsEmpty(Skin.String(WidgetPosition))</visible>
+						<include>HomeNowPlayingAudioInfo2</include>
+					</control>
+				</control>
+			
+
 			
 		</control>
 	</controls>
