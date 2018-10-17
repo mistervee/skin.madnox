@@ -5,17 +5,17 @@
 	<menucontrol>9050</menucontrol>
 	<controls>
 		<!-- Background -->
-		<include content="Background_Default">
+		<include content="BackgroundDefault">
 			<param name="imagepath">$VAR[AddonBackgroundVar]</param>
 			<param name="backgroundcolor">AddonBackground.Color.base</param>
 		</include>
 		<!-- Floor -->
 		<control type="group">
 			<visible>Control.IsVisible(50)</visible>
-			<include content="Animation_Slide_Bottom_Window">
+			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
 			</include>
-			<include content="Animation_Slide_Bottom_Visible">
+			<include content="AnimationSlideBottomVisible">
 				<param name="slide">220</param>
 			</include>
 			<include>Floor_Right</include>
@@ -23,31 +23,31 @@
 		<!-- Views -->
 		<control type="group">
 			<visible>!Window.IsActive(addoninformation)</visible>
-			<include>Animation_VisibleFade</include>
+			<include>AnimationVisibleFade</include>
 			<include>View_50_List</include>
 		</control>
 		<!-- Top Bar -->
 		<control type="group">
 			<visible>!Skin.HasSetting(AddonsHideTopBar)</visible>
-			<include content="Animation_Slide_Top_Window">
+			<include content="AnimationSlideTopWindow">
 				<param name="slide">90</param>
 			</include>
-			<include content="Animation_Slide_Bottom_Visible">
+			<include content="AnimationSlideBottomVisible">
 				<param name="slide">220</param>
 			</include>
 			<include content="TopBar">
-				<param name="breadcrumbs_label">$LOCALIZE[10001]</param>
-				<param name="breadcrumbs_icon">addons.png</param>
+				<param name="label">$LOCALIZE[10001]</param>
+				<param name="icon">addons.png</param>
 			</include>
 		</control>
 		<!-- Media Menu -->
-		<include>MediaMenu_MouseOverlay</include>
+		<include>MediaMenuMouseOverlay</include>
 		<control type="group">
-			<include>MediaMenu_Common</include>
+			<include>MediaMenuCommon</include>
 			<control type="grouplist" id="9050">
 				<onright>50</onright>
 				<onback>50</onback>
-				<include>MediaMenu_Common_Top</include>
+				<include>MediaMenuCommonTop</include>
 				<!-- Get more -->
 				<control type="radiobutton" id="9061">
 					<include content="MediaMenu_Icon_Button">
@@ -68,7 +68,7 @@
 					<onclick>Addon.OpenSettings($INFO[Container.PluginName])</onclick>
 					<visible>!String.IsEmpty(Container.PluginName)</visible>
 				</control>
-				<include>MediaMenu_Common_Bottom</include>
+				<include>MediaMenuCommonBottom</include>
 			</control>
 		</control>
 	</controls>
