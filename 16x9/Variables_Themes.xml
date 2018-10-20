@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <includes>
+	<include name="ThemeResetDefault">
+		<onclick>Skin.Reset(Panel.texture)</onclick>
+		<onclick>Skin.Reset(PanelTexture.texture)</onclick>
+		<onclick>Skin.Reset(PanelEmboss.texture)</onclick>
+		<onclick>Skin.Reset(PanelSquare.texture)</onclick>
+	</include>
 	<!-- Panels -->
 	<variable name="PanelStyleVar">
 		<value condition="Skin.String(Panel.texture,auriga) + Skin.HasSetting(PanelSquare.texture)">panels/windows/auriga-square.png</value>
@@ -43,10 +49,14 @@
 		<value condition="Skin.String(Panel.texture,white)">$LOCALIZE[742]</value>
 		<value>$LOCALIZE[13278]</value>
 	</variable>
+	<variable name="PanelTextureVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelTexture.texture))">$INFO[Skin.String(PanelTexture.texture)]</value>
+		<value>panels/patterns/concrete.png</value>
+	</variable>
 	<variable name="PanelTextureLabelVar">
+		<value condition="Skin.String(PanelTexture.texture,none)">$LOCALIZE[231]</value>
 		<value condition="Skin.String(PanelTexture.texture,panels/patterns/brushed.png)">$LOCALIZE[31135]</value>
 		<value condition="Skin.String(PanelTexture.texture,panels/patterns/carbon.png)">$LOCALIZE[31114]</value>
-		<value condition="Skin.String(PanelTexture.texture,panels/patterns/concrete.png)">$LOCALIZE[31150]</value>
 		<value condition="Skin.String(PanelTexture.texture,panels/patterns/gradient.png)">$LOCALIZE[31134]</value>
 		<value condition="Skin.String(PanelTexture.texture,panels/patterns/pixels.png)">$LOCALIZE[31115]</value>
 		<value condition="Skin.String(PanelTexture.texture,panels/patterns/schimi.png)">Schimi</value>
@@ -54,7 +64,7 @@
 		<value condition="Skin.String(PanelTexture.texture,panels/patterns/wallpaper.png)">$LOCALIZE[31117]</value>
 		<value condition="Skin.String(PanelTexture.texture,panels/patterns/wood.png)">$LOCALIZE[31118]</value>
 		<value condition="Skin.String(PanelTexture.texture,panels/patterns/wrinkles.png)">$LOCALIZE[31119]</value>
-		<value>$LOCALIZE[231]</value>
+		<value>$LOCALIZE[31150]</value>
 	</variable>
 	<variable name="PanelEmbossVar">
 		<value condition="Skin.HasSetting(PanelEmboss.texture) + Skin.HasSetting(PanelSquare.texture)">panels/windows/emboss-square.png</value>
@@ -136,6 +146,14 @@
 		<value condition="!String.IsEmpty(Skin.String(PanelFocusText.color.base))">$INFO[Skin.String(PanelFocusText.color)]</value>
 		<value>$LOCALIZE[13278]</value>
 	</variable>
+	<variable name="PanelDisabledTextColorVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelDisabledText.color.base))">$INFO[Skin.String(PanelDisabledText.color)]</value>
+		<value>disabled</value>
+	</variable>
+	<variable name="PanelDisabledTextColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelDisabledText.color.base))">$INFO[Skin.String(PanelDisabledText.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
 	<variable name="PanelArtworkTextBackgroundColorVar">
 		<value condition="!String.IsEmpty(Skin.String(PanelArtworkTextBackground.color.base))">$INFO[Skin.String(PanelArtworkTextBackground.color)]</value>
 		<value>black</value>
@@ -160,6 +178,14 @@
 		<value condition="!String.IsEmpty(Skin.String(PanelButton.color.base))">$INFO[Skin.String(PanelButton.color)]</value>
 		<value>$LOCALIZE[13278]</value>
 	</variable>
+	<variable name="PanelRadioButtonColorVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelRadioButton.color.base))">$INFO[Skin.String(PanelRadioButton.color)]</value>
+		<value>white</value>
+	</variable>
+	<variable name="PanelRadioButtonColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(PanelRadioButton.color.base))">$INFO[Skin.String(PanelRadioButton.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
 	<!-- Main menu -->
 	<variable name="MainMenuStyleLabelVar">
 		<value condition="Skin.String(MainMenuStyle.texture,panels/mainmenu/auriga.png)">Aeon Auriga</value>
@@ -168,17 +194,21 @@
 		<value condition="Skin.String(MainMenuStyle.texture,panels/mainmenu/aurigawhite.png)">Aeon Auriga $LOCALIZE[742]</value>
 		<value>$LOCALIZE[13278]</value>
 	</variable>
+	<variable name="MainMenuTextureVar">
+		<value condition="!String.IsEmpty(Skin.String(MainMenuTexture.texture))">$INFO[Skin.String(MainMenuTexture.texture)]</value>
+		<value>panels/mainmenu/concrete.png</value>
+	</variable>
 	<variable name="MainMenuTextureLabelVar">
+		<value condition="Skin.String(MainMenuTexture.texture,none)">$LOCALIZE[231]</value>
 		<value condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/brushed.png)">$LOCALIZE[31135]</value>
 		<value condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/carbon.png)">$LOCALIZE[31114]</value>
-		<value condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/concrete.png)">$LOCALIZE[31150]</value>
 		<value condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/pixels.png)">$LOCALIZE[31115]</value>
 		<value condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/schimi.png)">Schimi</value>
 		<value condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/steelplate.png)">$LOCALIZE[31116]</value>
 		<value condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/wallpaper.png)">$LOCALIZE[31117]</value>
 		<value condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/wood.png)">$LOCALIZE[31118]</value>
 		<value condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/wrinkles.png)">$LOCALIZE[31119]</value>
-		<value>$LOCALIZE[231]</value>
+		<value>$LOCALIZE[31150]</value>
 	</variable>
 	<variable name="MainMenuSystemBarVar">
 		<value condition="Skin.String(MainMenuSystemBar.texture,shadow)">panels/mainmenu/shadow-bar.png</value>
@@ -387,10 +417,14 @@
 		<value condition="Skin.String(Dialog.texture,white)">$LOCALIZE[742]</value>
 		<value>$LOCALIZE[13278]</value>
 	</variable>
+	<variable name="DialogTextureVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogTexture.texture))">$INFO[Skin.String(DialogTexture.texture)]</value>
+		<value>panels/patterns/concrete.png</value>
+	</variable>
 	<variable name="DialogTextureLabelVar">
+		<value condition="Skin.String(DialogTexture.texture,none)">$LOCALIZE[231]</value>
 		<value condition="Skin.String(DialogTexture.texture,panels/patterns/brushed.png)">$LOCALIZE[31135]</value>
 		<value condition="Skin.String(DialogTexture.texture,panels/patterns/carbon.png)">$LOCALIZE[31114]</value>
-		<value condition="Skin.String(DialogTexture.texture,panels/patterns/concrete.png)">$LOCALIZE[31150]</value>
 		<value condition="Skin.String(DialogTexture.texture,panels/patterns/gradient.png)">$LOCALIZE[31134]</value>
 		<value condition="Skin.String(DialogTexture.texture,panels/patterns/pixels.png)">$LOCALIZE[31115]</value>
 		<value condition="Skin.String(DialogTexture.texture,panels/patterns/schimi.png)">Schimi</value>
@@ -398,7 +432,7 @@
 		<value condition="Skin.String(DialogTexture.texture,panels/patterns/wallpaper.png)">$LOCALIZE[31117]</value>
 		<value condition="Skin.String(DialogTexture.texture,panels/patterns/wood.png)">$LOCALIZE[31118]</value>
 		<value condition="Skin.String(DialogTexture.texture,panels/patterns/wrinkles.png)">$LOCALIZE[31119]</value>
-		<value>$LOCALIZE[231]</value>
+		<value>$LOCALIZE[31150]</value>
 	</variable>
 	<variable name="DialogEmbossVar">
 		<value condition="Skin.HasSetting(DialogEmboss.texture) + Skin.HasSetting(DialogSquare.texture)">panels/dialog/emboss-square.png</value>
@@ -488,6 +522,14 @@
 		<value condition="!String.IsEmpty(Skin.String(DialogFocusText.color.base))">$INFO[Skin.String(DialogFocusText.color)]</value>
 		<value>$LOCALIZE[13278]</value>
 	</variable>
+	<variable name="DialogDisabledTextColorVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogDisabledText.color.base))">$INFO[Skin.String(DialogDisabledText.color)]</value>
+		<value>disabled</value>
+	</variable>
+	<variable name="DialogDisabledTextColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogDisabledText.color.base))">$INFO[Skin.String(DialogDisabledText.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
 	<variable name="DialogListSeparatorColorVar">
 		<value condition="!String.IsEmpty(Skin.String(DialogListSeparator.color.base))">$INFO[Skin.String(DialogListSeparator.color)]</value>
 		<value>listseparator</value>
@@ -502,6 +544,14 @@
 	</variable>
 	<variable name="DialogButtonColorLabelVar">
 		<value condition="!String.IsEmpty(Skin.String(DialogButton.color.base))">$INFO[Skin.String(DialogButton.color)]</value>
+		<value>$LOCALIZE[13278]</value>
+	</variable>
+	<variable name="DialogRadioButtonColorVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogRadioButton.color.base))">$INFO[Skin.String(DialogRadioButton.color)]</value>
+		<value>white</value>
+	</variable>
+	<variable name="DialogRadioButtonColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(DialogRadioButton.color.base))">$INFO[Skin.String(DialogRadioButton.color)]</value>
 		<value>$LOCALIZE[13278]</value>
 	</variable>
 	<!-- Background -->
@@ -578,7 +628,7 @@
 	</variable>
 	<variable name="TopbarShadowColorVar">
 		<value condition="!String.IsEmpty(Skin.String(TopbarShadow.color.base))">$INFO[Skin.String(TopbarShadow.color)]</value>
-		<value>shadow</value>
+		<value>topbarshadow</value>
 	</variable>
 	<variable name="TopbarShadowColorLabelVar">
 		<value condition="!String.IsEmpty(Skin.String(TopbarShadow.color.base))">$INFO[Skin.String(TopbarShadow.color)]</value>
@@ -703,10 +753,14 @@
 		<value condition="Skin.String(MediaMenu.texture,white)">$LOCALIZE[742]</value>
 		<value>$LOCALIZE[13278]</value>
 	</variable>
+	<variable name="MediaMenuTextureVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuTexture.texture))">$INFO[Skin.String(MediaMenuTexture.texture)]</value>
+		<value>panels/patterns/concrete.png</value>
+	</variable>
 	<variable name="MediaMenuTextureLabelVar">
+		<value condition="Skin.String(MediaMenuTexture.texture,none)">$LOCALIZE[231]</value>
 		<value condition="Skin.String(MediaMenuTexture.texture,panels/patterns/brushed.png)">$LOCALIZE[31135]</value>
 		<value condition="Skin.String(MediaMenuTexture.texture,panels/patterns/carbon.png)">$LOCALIZE[31114]</value>
-		<value condition="Skin.String(MediaMenuTexture.texture,panels/patterns/concrete.png)">$LOCALIZE[31150]</value>
 		<value condition="Skin.String(MediaMenuTexture.texture,panels/patterns/gradient.png)">$LOCALIZE[31134]</value>
 		<value condition="Skin.String(MediaMenuTexture.texture,panels/patterns/pixels.png)">$LOCALIZE[31115]</value>
 		<value condition="Skin.String(MediaMenuTexture.texture,panels/patterns/schimi.png)">Schimi</value>
@@ -714,7 +768,7 @@
 		<value condition="Skin.String(MediaMenuTexture.texture,panels/patterns/wallpaper.png)">$LOCALIZE[31117]</value>
 		<value condition="Skin.String(MediaMenuTexture.texture,panels/patterns/wood.png)">$LOCALIZE[31118]</value>
 		<value condition="Skin.String(MediaMenuTexture.texture,panels/patterns/wrinkles.png)">$LOCALIZE[31119]</value>
-		<value>$LOCALIZE[231]</value>
+		<value>$LOCALIZE[31150]</value>
 	</variable>
 	<variable name="MediaMenuStyleColorVar">
 		<value condition="!String.IsEmpty(Skin.String(MediaMenuStyle.color.base))">$INFO[Skin.String(MediaMenuStyle.color)]</value>
@@ -772,12 +826,12 @@
 		<value condition="!String.IsEmpty(Skin.String(MediaMenuListSeparator.color.base))">$INFO[Skin.String(MediaMenuListSeparator.color)]</value>
 		<value>$LOCALIZE[13278]</value>
 	</variable>
-	<variable name="MediaMenuButtonColorVar">
-		<value condition="!String.IsEmpty(Skin.String(MediaMenuButton.color.base))">$INFO[Skin.String(MediaMenuButton.color)]</value>
-		<value>button</value>
+	<variable name="MediaMenuRadioButtonColorVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuRadioButton.color.base))">$INFO[Skin.String(MediaMenuRadioButton.color)]</value>
+		<value>white</value>
 	</variable>
-	<variable name="MediaMenuButtonColorLabelVar">
-		<value condition="!String.IsEmpty(Skin.String(MediaMenuButton.color.base))">$INFO[Skin.String(MediaMenuButton.color)]</value>
+	<variable name="MediaMenuRadioButtonColorLabelVar">
+		<value condition="!String.IsEmpty(Skin.String(MediaMenuRadioButton.color.base))">$INFO[Skin.String(MediaMenuRadioButton.color)]</value>
 		<value>$LOCALIZE[13278]</value>
 	</variable>
 	<variable name="MediaMenuIconColorVar">

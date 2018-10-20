@@ -300,16 +300,16 @@
 				<include>AnimationVisibleFade</include>
 				<control type="image">
 					<description>background image</description>
-					<width>1920</width>
-					<height>88</height>
-					<texture border="1" colordiffuse="$VAR[TopbarTextureColorVar]">$VAR[TopbarTextureVar]</texture>
-				</control>
-				<control type="image">
-					<description>background image</description>
-					<top>42</top>
+					<top>40</top>
 					<width>1920</width>
 					<height>20</height>
 					<texture border="1" colordiffuse="$VAR[TopbarShadowColorVar]">panels/mainmenu/shadows.png</texture>
+				</control>
+				<control type="image">
+					<description>background image</description>
+					<width>1920</width>
+					<height>88</height>
+					<texture border="1" colordiffuse="$VAR[TopbarTextureColorVar]">$VAR[TopbarTextureVar]</texture>
 				</control>
 				<control type="progress">
 					<visible>Player.HasMedia + !Skin.HasSetting(DisableTopbarNowPlayingProgress) + !String.IsEqual(Skin.String(TopbarTexture.texture),shadow)</visible>
@@ -381,15 +381,7 @@
 						<top>2</top>
 						<width>36</width>
 						<height>36</height>
-						<texture colordiffuse="$VAR[TopbarIconColorVar]">icons/default/$PARAM[icon]</texture>
-						<visible>!Skin.HasSetting(TopbarColoredIcon)</visible>
-					</control>
-					<control type="image">
-						<top>2</top>
-						<width>36</width>
-						<height>36</height>
-						<texture colordiffuse="$VAR[TopbarIconColorVar]">icons/colored/$PARAM[icon]</texture>
-						<visible>Skin.HasSetting(TopbarColoredIcon)</visible>
+						<texture colordiffuse="$VAR[TopbarIconColorVar]">$VAR[TopbarIconPathVar]$PARAM[icon]</texture>
 					</control>
 					<control type="label">
 						<width>10</width>
@@ -445,29 +437,15 @@
 						<top>2</top>
 						<width>36</width>
 						<height>36</height>
-						<texture colordiffuse="$VAR[TopbarIconColorVar]">icons/default/play.png</texture>
-						<visible>Player.Playing + !Skin.HasSetting(TopbarColoredIcon)</visible>
+						<texture colordiffuse="$VAR[TopbarIconColorVar]">$VAR[TopbarIconPathVar]play.png</texture>
+						<visible>Player.Playing</visible>
 					</control>
 					<control type="image">
 						<top>2</top>
 						<width>36</width>
 						<height>36</height>
-						<texture colordiffuse="$VAR[TopbarIconColorVar]">icons/colored/play.png</texture>
-						<visible>Player.Playing + Skin.HasSetting(TopbarColoredIcon)</visible>
-					</control>
-					<control type="image">
-						<top>2</top>
-						<width>36</width>
-						<height>36</height>
-						<texture colordiffuse="$VAR[TopbarIconColorVar]">icons/default/pause.png</texture>
-						<visible>Player.Paused + !Skin.HasSetting(TopbarColoredIcon)</visible>
-					</control>
-					<control type="image">
-						<top>2</top>
-						<width>36</width>
-						<height>36</height>
-						<texture colordiffuse="$VAR[TopbarIconColorVar]">icons/colored/pause.png</texture>
-						<visible>Player.Paused + Skin.HasSetting(TopbarColoredIcon)</visible>
+						<texture colordiffuse="$VAR[TopbarIconColorVar]">$VAR[TopbarIconPathVar]pause.png</texture>
+						<visible>Player.Paused</visible>
 					</control>
 					<control type="label">
 						<label>$INFO[Player.Time]</label>
@@ -562,15 +540,7 @@
 						<top>2</top>
 						<width>36</width>
 						<height>36</height>
-						<texture colordiffuse="$VAR[TopbarIconColorVar]">icons/default/list.png</texture>
-						<visible>!Skin.HasSetting(TopbarColoredIcon)</visible>
-					</control>
-					<control type="image">
-						<top>2</top>
-						<width>36</width>
-						<height>36</height>
-						<texture colordiffuse="$VAR[TopbarIconColorVar]">icons/colored/list.png</texture>
-						<visible>Skin.HasSetting(TopbarColoredIcon)</visible>
+						<texture colordiffuse="$VAR[TopbarIconColorVar]">$VAR[TopbarIconPathVar]list.png</texture>
 					</control>
 					<control type="label">
 						<label>$INFO[Container($PARAM[id]).NumItems, , $LOCALIZE[31001]]</label>
@@ -583,15 +553,7 @@
 						<top>2</top>
 						<width>36</width>
 						<height>36</height>
-						<texture colordiffuse="$VAR[TopbarIconColorVar]">icons/default/pages.png</texture>
-						<visible>!Skin.HasSetting(TopbarColoredIcon)</visible>
-					</control>
-					<control type="image">
-						<top>2</top>
-						<width>36</width>
-						<height>36</height>
-						<texture colordiffuse="$VAR[TopbarIconColorVar]">icons/colored/pages.png</texture>
-						<visible>Skin.HasSetting(TopbarColoredIcon)</visible>
+						<texture colordiffuse="$VAR[TopbarIconColorVar]">$VAR[TopbarIconPathVar]pages.png</texture>
 					</control>
 					<control type="label">
 						<label>$INFO[Container($PARAM[id]).CurrentPage, ]$INFO[Container($PARAM[id]).NumPages,/]</label>
@@ -605,8 +567,8 @@
 				<visible>Container.Scrolling + [String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561]) | String.IsEqual(Container.SortMethod,$LOCALIZE[558]) | String.IsEqual(Container.SortMethod,$LOCALIZE[557]) | String.IsEqual(Container.SortMethod,$LOCALIZE[556])]</visible>
 				<animation effect="fade" end="100" time="200">Visible</animation>
 				<animation effect="fade" start="100" end="0" delay="1000" time="200">Hidden</animation>
-				<top>50</top>
-				<right>0</right>
+				<right>5</right>
+				<top>47</top>
 				<width>134</width>
 				<height>134</height>
 				<control type="image">
@@ -621,7 +583,7 @@
 					<right>10</right>
 					<bottom>10</bottom>
 					<aspectratio scalediffuse="false">center</aspectratio>
-					<texture diffuse="diffuse/rounded10-104x104.png" colordiffuse="$VAR[DialogTextureColorVar]">$INFO[Skin.String(DialogTexture.texture)]</texture>
+					<texture diffuse="diffuse/rounded10-104x104.png" colordiffuse="$VAR[DialogTextureColorVar]">$VAR[DialogTextureVar]</texture>
 					<visible>!Skin.HasSetting(DialogSquare.texture)</visible>
 				</control>
 				<control type="image">
@@ -630,14 +592,14 @@
 					<right>10</right>
 					<bottom>10</bottom>
 					<aspectratio scalediffuse="false">center</aspectratio>
-					<texture colordiffuse="$VAR[DialogTextureColorVar]">$INFO[Skin.String(DialogTexture.texture)]</texture>
+					<texture colordiffuse="$VAR[DialogTextureColorVar]">$VAR[DialogTextureVar]</texture>
 					<visible>Skin.HasSetting(DialogSquare.texture)</visible>
 				</control>
 				<control type="image">
 					<texture colordiffuse="$VAR[DialogEmbossColorVar]" border="40">$VAR[DialogEmbossVolumeVar]</texture>
 				</control>
 				<control type="label">
-					<top>12</top>
+					<top>10</top>
 					<left>12</left>
 					<width>110</width>
 					<height>110</height>
@@ -842,7 +804,7 @@
 				<width>1920</width>
 				<height>$PARAM[heighttexture]</height>
 				<aspectratio align="right" scalediffuse="false">scale</aspectratio>
-				<texture flipy="$PARAM[flipy]" colordiffuse="$VAR[PanelTextureColorVar]" border="1">$INFO[Skin.String(PanelTexture.texture)]</texture>
+				<texture flipy="$PARAM[flipy]" colordiffuse="$VAR[PanelTextureColorVar]" border="1">$VAR[PanelTextureVar]</texture>
 			</control>
 		</definition>
 	</include>
@@ -879,7 +841,7 @@
 				<top>$PARAM[toptexture]</top>
 				<height>$PARAM[heighttexture]</height>
 				<aspectratio align="right" scalediffuse="false">scale</aspectratio>
-				<texture diffuse="$PARAM[diffusetexture]" colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
+				<texture diffuse="$PARAM[diffusetexture]" colordiffuse="$VAR[PanelTextureColorVar]">$VAR[PanelTextureVar]</texture>
 				<visible>!Skin.HasSetting(PanelSquare.texture)</visible>
 			</control>
 			<control type="image">
@@ -888,7 +850,7 @@
 				<top>$PARAM[toptexture]</top>
 				<height>$PARAM[heighttexture]</height>
 				<aspectratio align="right" scalediffuse="false">scale</aspectratio>
-				<texture colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
+				<texture colordiffuse="$VAR[PanelTextureColorVar]">$VAR[PanelTextureVar]</texture>
 				<visible>Skin.HasSetting(PanelSquare.texture)</visible>
 			</control>
 			<control type="image">
@@ -943,7 +905,7 @@
 				<width>$PARAM[widthtexture]</width>
 				<height>$PARAM[heighttexture]</height>
 				<aspectratio align="right" scalediffuse="false">scale</aspectratio>
-				<texture flipx="$PARAM[flipx]" diffuse="$PARAM[diffusetexture]" colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
+				<texture flipx="$PARAM[flipx]" diffuse="$PARAM[diffusetexture]" colordiffuse="$VAR[PanelTextureColorVar]">$VAR[PanelTextureVar]</texture>
 				<visible>!Skin.HasSetting(PanelSquare.texture)</visible>
 			</control>
 			<control type="image">
@@ -952,7 +914,7 @@
 				<width>$PARAM[widthtexture]</width>
 				<height>$PARAM[heighttexture]</height>
 				<aspectratio align="right" scalediffuse="false">scale</aspectratio>
-				<texture flipx="$PARAM[flipx]" colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
+				<texture flipx="$PARAM[flipx]" colordiffuse="$VAR[PanelTextureColorVar]">$VAR[PanelTextureVar]</texture>
 				<visible>Skin.HasSetting(PanelSquare.texture)</visible>
 			</control>
 			<control type="image">
@@ -1008,7 +970,7 @@
 					<top>$PARAM[toptexture]</top>
 					<height>$PARAM[heighttexture]</height>
 					<aspectratio scalediffuse="false">scale</aspectratio>
-					<texture diffuse="$PARAM[diffusetexture]" colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
+					<texture diffuse="$PARAM[diffusetexture]" colordiffuse="$VAR[PanelTextureColorVar]">$VAR[PanelTextureVar]</texture>
 					<visible>!Skin.HasSetting(PanelSquare.texture)</visible>
 				</control>
 				<control type="image">
@@ -1017,7 +979,7 @@
 					<top>$PARAM[toptexture]</top>
 					<height>$PARAM[heighttexture]</height>
 					<aspectratio scalediffuse="false">scale</aspectratio>
-					<texture colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
+					<texture colordiffuse="$VAR[PanelTextureColorVar]">$VAR[PanelTextureVar]</texture>
 					<visible>Skin.HasSetting(PanelSquare.texture)</visible>
 				</control>
 				<control type="image">
@@ -1663,7 +1625,7 @@
 				<width>583</width>
 				<height>80</height>
 				<usecontrolcoords>true</usecontrolcoords>
-			<control type="label">
+				<control type="label">
 					<height>32</height>
 					<font>Font28_Reg</font>
 					<textcolor>$VAR[PanelTextColorVar]</textcolor>

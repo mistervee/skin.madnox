@@ -441,7 +441,11 @@
 
 
 	<variable name="IconPathVar">
-		<value condition="Skin.HasSetting(ColoredIcons)">icons/colored/</value>
+		<value condition="Skin.HasSetting(IconsColored)">icons/colored/</value>
+		<value>icons/default/</value>
+	</variable>
+	<variable name="TopbarIconPathVar">
+		<value condition="Skin.HasSetting(TopbarIconColored)">icons/colored/</value>
 		<value>icons/default/</value>
 	</variable>
 
@@ -612,8 +616,8 @@
 	</variable>
 	<variable name="PosterStudioVar">
 		<value condition="String.Contains(ListItem.FolderPath,music) + System.HasAddon(resource.images.recordlabels.white)">$INFO[ListItem.Label,resource://resource.images.recordlabels.white/,.png]</value>
-		<value condition="!Skin.HasSetting(MediaFlagColored) + System.HasAddon(resource.images.studios.white)">$INFO[ListItem.Label,resource://resource.images.studios.white/,.png]</value>
-		<value condition="Skin.HasSetting(MediaFlagColored) + System.HasAddon(resource.images.studios.coloured)">$INFO[ListItem.Label,resource://resource.images.studios.coloured/,.png]</value>
+		<value condition="!Skin.HasSetting(MediaFlagsColored) + System.HasAddon(resource.images.studios.white)">$INFO[ListItem.Label,resource://resource.images.studios.white/,.png]</value>
+		<value condition="Skin.HasSetting(MediaFlagsColored) + System.HasAddon(resource.images.studios.coloured)">$INFO[ListItem.Label,resource://resource.images.studios.coloured/,.png]</value>
 		<value>$INFO[ListItem.Icon]</value>
 	</variable>
 
@@ -721,8 +725,8 @@
 	</variable>
 	<!-- Views -->
 	<variable name="ViewListIconVar">
-		<value condition="String.IsEqual(ListItem.DBTYPE,studio) + !Skin.HasSetting(ColoredMediaFlags)">$INFO[ListItem.Label,resource://resource.images.studios.white/,.png]</value>
-		<value condition="String.IsEqual(ListItem.DBTYPE,studio) + Skin.HasSetting(ColoredMediaFlags)">$INFO[ListItem.Label,resource://resource.images.studios.coloured/,.png]</value>
+		<value condition="String.IsEqual(ListItem.DBTYPE,studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem.Label,resource://resource.images.studios.white/,.png]</value>
+		<value condition="String.IsEqual(ListItem.DBTYPE,studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem.Label,resource://resource.images.studios.coloured/,.png]</value>
 		<value condition="String.IsEqual(ListItem.DBTYPE,country) + Skin.HasSetting(CountryIconsFlags)">$INFO[ListItem.Label,resource://resource.images.moviecountryicons.flags/,.png]</value>
 		<value condition="!String.IsEmpty(ListItem.Thumb)">$INFO[ListItem.Thumb]</value>
 		<value>$INFO[ListItem.Icon]</value>
@@ -759,8 +763,8 @@
 	<variable name="StudioIconsVar">
 		<value condition="String.IsEqual(ListItem.DBTYPE,set)">$VAR[MediaFlagsPathVar]set.png</value>
 		<!-- <value condition="String.IsEqual(ListItem.DBTYPE,musicvideo)">$INFO[ListItem.Studio,resource://resource.images.recordlabels.white/,.png]</value> -->
-		<value condition="!String.IsEmpty(ListItem.Studio) + !Skin.HasSetting(ColoredMediaFlags)">$INFO[ListItem.Studio,resource://resource.images.studios.white/,.png]</value>
-		<value condition="!String.IsEmpty(ListItem.Studio) + Skin.HasSetting(ColoredMediaFlags)">$INFO[ListItem.Studio,resource://resource.images.studios.coloured/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem.Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem.Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem.Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem.Studio,resource://resource.images.studios.coloured/,.png]</value>
 		<value condition="!String.IsEmpty(ListItem.Property(Album_Label))">$INFO[ListItem.Property(Album_Label),resource://resource.images.recordlabels.white/,.png]</value>
 	</variable>
 	<variable name="RatingFlagVar">
@@ -835,13 +839,13 @@
 		<value>NR.png</value>
 	</variable>
 	<variable name="MediaFlagsPathVar">
-		<value condition="Skin.HasSetting(ColoredMediaFlags)">flags/colored/</value>
+		<value condition="Skin.HasSetting(MediaFlagsColored)">flags/colored/</value>
 		<value>flags/default/</value>
 	</variable>
 	<!-- Video Player Media Flags -->
 	<variable name="VideoPlayerStudioIconsVar">
-		<value condition="!String.IsEmpty(VideoPlayer.Studio) + !Skin.HasSetting(ColoredMediaFlags)">$INFO[VideoPlayer.Studio,resource://resource.images.studios.white/,.png]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Studio) + Skin.HasSetting(ColoredMediaFlags)">$INFO[VideoPlayer.Studio,resource://resource.images.studios.coloured/,.png]</value>
+		<value condition="!String.IsEmpty(VideoPlayer.Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[VideoPlayer.Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(VideoPlayer.Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[VideoPlayer.Studio,resource://resource.images.studios.coloured/,.png]</value>
 	</variable>
 	<variable name="VideoPlayerRatingFlagVar">
 		<value condition="String.Contains(ListItem.MPAA,NR)">NR.png</value>

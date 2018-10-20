@@ -160,27 +160,32 @@
 							<visible>Skin.HasSetting(SkinHelper.EnableDayNightThemes)</visible>
 							<include>SettingsButton</include>
 						</control>
-						<control type="label" id="109">
+						<control type="button" id="109">
+							<label>$LOCALIZE[13007]</label>
+							<onclick>RunScript(script.skin.helper.skinbackup,action=reset,filter=color|opacity|texture)</onclick>
+							<include>SettingsButton</include>
+						</control>
+						<control type="label" id="110">
 							<label>$LOCALIZE[166]</label>
 							<include>SettingsLabel</include>
 						</control>
-						<control type="button" id="110">
+						<control type="button" id="111">
 							<label>$LOCALIZE[31093] / $LOCALIZE[31094]</label>
 							<onclick condition="System.HasAddon(script.skin.helper.skinbackup)">RunScript(script.skin.helper.skinbackup)</onclick>
 							<onclick condition="!System.HasAddon(script.skin.helper.skinbackup)">InstallAddon(script.skin.helper.skinbackup)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="111">
+						<control type="button" id="112">
 							<label>$LOCALIZE[13007]</label>
 							<onclick condition="System.HasAddon(script.skin.helper.skinbackup)">RunScript(script.skin.helper.skinbackup,action=reset)</onclick>
 							<onclick condition="!System.HasAddon(script.skin.helper.skinbackup)">InstallAddon(script.skin.helper.skinbackup)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="label" id="112">
+						<control type="label" id="113">
 							<label>$LOCALIZE[16000]</label>
 							<include>SettingsLabel</include>
 						</control>
-						<control type="button" id="113">
+						<control type="button" id="114">
 							<label>$LOCALIZE[31098]</label>
 							<label2>$VAR[KioskModeLabelVar]</label2>
 							<onclick condition="String.IsEmpty(Skin.String(KioskMode))">Skin.SetString(KioskMode,HideOptions)</onclick>
@@ -366,8 +371,8 @@
 						</control>
 						<control type="radiobutton" id="224">
 							<label>$LOCALIZE[31062]</label>
-							<onclick>Skin.ToggleSetting(TopbarColoredIcon)</onclick>
-							<selected>Skin.HasSetting(TopbarColoredIcon)</selected>
+							<onclick>Skin.ToggleSetting(TopbarIconColored)</onclick>
+							<selected>Skin.HasSetting(TopbarIconColored)</selected>
 							<include>SettingsRadioButton</include>
 						</control>
 						<!-- Floor -->
@@ -473,21 +478,33 @@
 							<include>SettingsButton</include>
 						</control>
 						<control type="button" id="310">
+							<label>$LOCALIZE[31174]</label>
+							<label2>[COLOR $VAR[PanelDisabledTextColorVar]]$VAR[PanelDisabledTextColorLabelVar][/COLOR]</label2>
+							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=PanelDisabledText.color,header=$LOCALIZE[31174])</onclick>
+							<include>SettingsButton</include>
+						</control>
+						<control type="button" id="311">
 							<label>$LOCALIZE[31160]</label>
 							<label2>[COLOR $VAR[PanelArtworkTextBackgroundColorVar]]$VAR[PanelArtworkTextBackgroundColorLabelVar][/COLOR]</label2>
 							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=PanelArtworkTextBackground.color,header=$LOCALIZE[31160])</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="311">
+						<control type="button" id="312">
 							<label>$LOCALIZE[31139]</label>
 							<label2>[COLOR $VAR[PanelListSeparatorColorVar]]$VAR[PanelListSeparatorColorLabelVar][/COLOR]</label2>
 							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=PanelListSeparator.color,header=$LOCALIZE[31139])</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="312">
+						<control type="button" id="313">
 							<label>$LOCALIZE[31140]</label>
 							<label2>[COLOR $VAR[PanelButtonColorVar]]$VAR[PanelButtonColorLabelVar][/COLOR]</label2>
 							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=PanelButton.color,header=$LOCALIZE[31140])</onclick>
+							<include>SettingsButton</include>
+						</control>
+						<control type="button" id="314">
+							<label>$LOCALIZE[31175]</label>
+							<label2>[COLOR $VAR[PanelRadioButtonColorVar]]$VAR[PanelRadioButtonColorLabelVar][/COLOR]</label2>
+							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=PanelRadioButton.color,header=$LOCALIZE[31175])</onclick>
 							<include>SettingsButton</include>
 						</control>
 						<!-- Main menu -->
@@ -657,15 +674,27 @@
 							<include>SettingsButton</include>
 						</control>
 						<control type="button" id="344">
+							<label>$LOCALIZE[31174]</label>
+							<label2>[COLOR $VAR[DialogDisabledTextColorVar]]$VAR[DialogDisabledTextColorLabelVar][/COLOR]</label2>
+							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=DialogDisabledText.color,header=$LOCALIZE[31174])</onclick>
+							<include>SettingsButton</include>
+						</control>
+						<control type="button" id="345">
 							<label>$LOCALIZE[31139]</label>
 							<label2>[COLOR $VAR[DialogListSeparatorColorVar]]$VAR[DialogListSeparatorColorLabelVar][/COLOR]</label2>
 							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=DialogListSeparator.color,header=$LOCALIZE[31139])</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="345">
+						<control type="button" id="346">
 							<label>$LOCALIZE[31140]</label>
 							<label2>[COLOR $VAR[DialogButtonColorVar]]$VAR[DialogButtonColorLabelVar][/COLOR]</label2>
 							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=DialogButton.color,header=$LOCALIZE[31140])</onclick>
+							<include>SettingsButton</include>
+						</control>
+						<control type="button" id="347">
+							<label>$LOCALIZE[31175]</label>
+							<label2>[COLOR $VAR[DialogRadioButtonColorVar]]$VAR[DialogRadioButtonColorLabelVar][/COLOR]</label2>
+							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=DialogRadioButton.color,header=$LOCALIZE[31175])</onclick>
 							<include>SettingsButton</include>
 						</control>
 						<!-- Background -->
@@ -827,9 +856,9 @@
 							<include>SettingsButton</include>
 						</control>
 						<control type="button" id="383">
-							<label>$LOCALIZE[31140]</label>
-							<label2>[COLOR $VAR[MediaMenuButtonColorVar]]$VAR[MediaMenuButtonColorLabelVar][/COLOR]</label2>
-							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MediaMenuButton.color,header=$LOCALIZE[31140])</onclick>
+							<label>$LOCALIZE[31175]</label>
+							<label2>[COLOR $VAR[MediaMenuRadioButtonColorVar]]$VAR[MediaMenuRadioButtonColorLabelVar][/COLOR]</label2>
+							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MediaMenuRadioButton.color,header=$LOCALIZE[31175])</onclick>
 							<include>SettingsButton</include>
 						</control>
 						<control type="button" id="384">
@@ -1013,15 +1042,15 @@
 						<pagecontrol>60</pagecontrol>
 						<control type="radiobutton" id="602">
 							<label>$LOCALIZE[31062]</label>
-							<onclick>Skin.ToggleSetting(ColoredIcons)</onclick>
-							<selected>Skin.HasSetting(ColoredIcons)</selected>
+							<onclick>Skin.ToggleSetting(IconsColored)</onclick>
+							<selected>Skin.HasSetting(IconsColored)</selected>
 							<include>SettingsRadioButton</include>
 						</control>
 						<control type="radiobutton" id="603">
 							<label>$LOCALIZE[31052]</label>
 							<onclick condition="!System.HasAddon(resource.images.studios.coloured)">InstallAddon(resource.images.studios.coloured)</onclick>
-							<onclick condition="System.HasAddon(resource.images.studios.coloured)">Skin.ToggleSetting(ColoredMediaFlags)</onclick>
-							<selected>Skin.HasSetting(ColoredMediaFlags)</selected>
+							<onclick condition="System.HasAddon(resource.images.studios.coloured)">Skin.ToggleSetting(MediaFlagsColored)</onclick>
+							<selected>Skin.HasSetting(MediaFlagsColored)</selected>
 							<include>SettingsRadioButton</include>
 						</control>
 						<control type="radiobutton" id="604">
