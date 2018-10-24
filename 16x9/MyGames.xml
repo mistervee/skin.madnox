@@ -5,52 +5,51 @@
 	<views>50</views>
 	<controls>
 		<!-- Background -->
-		<include content="Background_Default">
+		<include content="BackgroundDefault">
 			<param name="imagepath">$VAR[GamesBackgroundVar]</param>
-			<param name="backgroundcolor">GamesBackground.Color.base</param>
 		</include>
 		<!-- Floor -->
 		<control type="group">
 			<visible>Control.IsVisible(50)</visible>
-			<include content="Animation_Slide_Bottom_Window">
+			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
 			</include>
-			<include content="Animation_Slide_Bottom_Visible">
+			<include content="AnimationSlideBottomVisible">
 				<param name="slide">220</param>
 			</include>
-			<include>Floor_Right</include>
+			<include>FloorRight</include>
 		</control>
 		<!-- Views -->
 		<control type="group">
-			<include>View_50_List</include>
+			<include>View50List</include>
 		</control>
 		<!-- Top bar -->
 		<control type="group">
 			<visible>!Skin.HasSetting(GamesHideTopBar)</visible>
-			<include content="Animation_Slide_Top_Window">
+			<include content="AnimationSlideTopWindow">
 				<param name="slide">90</param>
 			</include>
-			<include content="Animation_Slide_Top_Visible">
+			<include content="AnimationSlideTopVisible">
 				<param name="slide">90</param>
 			</include>
 			<include content="TopBar">
-				<param name="breadcrumbs_label">$LOCALIZE[15016]</param>
-				<param name="breadcrumbs_icon">games.png</param>
+				<param name="label">$LOCALIZE[15016]</param>
+				<param name="icon">games.png</param>
 			</include>
 		</control>
 		<!-- Media Menu -->
-		<include>MediaMenu_MouseOverlay</include>
+		<include>MediaMenuMouseOverlay</include>
 		<control type="group">
-			<include>MediaMenu_Common</include>
+			<include>MediaMenuCommon</include>
 			<control type="grouplist" id="9050">
 				<onright>50</onright>
 				<onback>50</onback>
-				<include>MediaMenu_Common_Top</include>
+				<include>MediaMenuCommonTop</include>
 				<!-- Get more -->
 				<control type="radiobutton" id="9061">
-					<include content="MediaMenu_Icon_Button">
-						<param name="iconon" value="icons/mediamenu/add.png" />
-						<param name="iconoff" value="icons/mediamenu/add.png" />
+					<include content="MediaMenuIconButton">
+						<param name="iconon">icons/mediamenu/add.png</param>
+						<param name="iconoff">icons/mediamenu/add.png</param>
 					</include>
 					<label>$LOCALIZE[21452]</label>
 					<onclick>ActivateWindow(addonbrowser,addons://more/game/,return)</onclick>
@@ -58,15 +57,15 @@
 				</control>
 				<!-- Open Settings -->
 				<control type="radiobutton" id="9062">
-					<include content="MediaMenu_Icon_Button">
-						<param name="iconon" value="icons/mediamenu/settings.png" />
-						<param name="iconoff" value="icons/mediamenu/settings.png" />
+					<include content="MediaMenuIconButton">
+						<param name="iconon">icons/mediamenu/settings.png</param>
+						<param name="iconoff">icons/mediamenu/settings.png</param>
 					</include>
 					<label>$LOCALIZE[10140]</label>
 					<onclick>Addon.OpenSettings($INFO[Container.PluginName])</onclick>
 					<visible>!String.IsEmpty(Container.PluginName)</visible>
 				</control>
-				<include>MediaMenu_Common_Bottom</include>
+				<include>MediaMenuCommonBottom</include>
 			</control>
 		</control>
 	</controls>

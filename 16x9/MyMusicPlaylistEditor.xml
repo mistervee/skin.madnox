@@ -1,103 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
-	<defaultcontrol always="true">6</defaultcontrol>
+	<defaultcontrol always="true">50</defaultcontrol>
 	<views>50</views>
-	<menucontrol>9000</menucontrol>
+	<menucontrol>9050</menucontrol>
 	<controls>
-		<include>DefaultBackground</include>
+		<!-- Backdrop -->
+		<include content="BackgroundDefault">
+			<param name="imagepath">$VAR[MusicBackgroundVar]</param>
+		</include>
+		<!-- Floor -->
 		<control type="group">
-			<include>OpenClose_Left</include>
-			<left>302</left>
-			<include content="FileManagerPanel">
-				<param name="list_id" value="50" />
-				<param name="scrollbar_id" value="60" />
-				<param name="onleft_id" value="9000" />
-				<param name="onright_id" value="60" />
-				<param name="right" value="848" />
+			<visible>!Skin.HasSetting(MusicHideFloor)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">220</param>
+			</include>
+			<include>FloorDefault</include>
+		</control>
+		<!-- Panel -->
+		<control type="group">
+			<include>AnimationSlideLeftWindow</include>
+			<include content="PanelDefault">
+				<param name="right">965</param>
+				<param name="righttexture">985</param>
+				<param name="diffusetexture">diffuse/rounded20-835x880.png</param>
+				<param name="reflect">!Skin.HasSetting(MusicHideFloor)</param>
 			</include>
 		</control>
 		<control type="group">
-			<include>OpenClose_Left</include>
-			<include content="ContentPanel">
-				<param name="width" value="360" />
+			<include>AnimationSlideRightWindow</include>
+			<include content="PanelDefault">
+				<param name="left">965</param>
+				<param name="lefttexture">985</param>
+				<param name="diffusetexture">diffuse/rounded20-835x880.png</param>
+				<param name="reflect">!Skin.HasSetting(MusicHideFloor)</param>
 			</include>
-			<control type="grouplist" id="9000">
-				<left>0</left>
-				<top>160</top>
+		</control>
+		<!-- Content -->
+		<control type="group">
+			<!-- Left Panel -->
+			<control type="group">
+				<include>AnimationSlideLeftWindow</include>
+				<include content="FileManagerList">
+					<param name="id">50</param>
+					<param name="left">100</param>
+					<param name="onleft">9050</param>
+					<param name="onright">60</param>
+					<param name="scrollbarid">60</param>
+				</include>
+				<control type="scrollbar" id="60">
+					<top>144</top>
+					<left>915</left>
+					<bottom>144</bottom>
+					<onleft>20</onleft>
+					<onright>100</onright>
+				</control>
+			</control>
+			<!-- Right Panel -->
+			<control type="group">
+				<include>AnimationSlideRightWindow</include>
+				<include content="FileManagerList">
+					<param name="id">100</param>
+					<param name="left">985</param>
+					<param name="onleft">100	</param>
+					<param name="onright">61</param>
+					<param name="scrollbarid">61</param>
+				</include>
+				<control type="scrollbar" id="61">
+					<top>144</top>
+					<right>80</right>
+					<bottom>144</bottom>
+					<onleft>100</onleft>
+				</control>
+			</control>
+		</control>
+		<!-- Topbar -->
+		<control type="group">
+			<visible>!Skin.HasSetting(MusicHideTopBar)</visible>
+			<include content="AnimationSlideTopWindow">
+				<param name="slide">90</param>
+			</include>
+			<include content="AnimationSlideTopVisible">
+				<param name="slide">90</param>
+			</include>
+			<include content="TopBar">
+				<param name="label">$LOCALIZE[10500]</param>
+				<param name="icon">music.png</param>
+			</include>
+		</control>
+		<!-- Media Menu -->
+		<include>MediaMenuMouseOverlay</include>
+		<control type="group">
+			<include>MediaMenuCommon</include>
+			<control type="grouplist" id="9050">
 				<onright>50</onright>
-				<onleft>100</onleft>
-				<itemgap>-20</itemgap>
-				<control type="button" id="6">
-					<description>Button Network</description>
-					<include content="DefaultSettingButton">
-						<param name="height" value="120" />
+				<onback>50</onback>
+				<include>MediaMenuCommonTop</include>
+				<!-- Open playlist -->
+				<control type="radiobutton" id="6">
+					<include content="MediaMenuIconButton">
+						<param name="iconon">icons/mediamenu/open.png</param>
+						<param name="iconoff">icons/mediamenu/open.png</param>
 					</include>
-					<width>300</width>
 					<label>$LOCALIZE[502]</label>
 				</control>
-				<control type="button" id="7">
-					<include content="DefaultSettingButton">
-						<param name="height" value="120" />
+				<!-- Save playlist -->
+				<control type="radiobutton" id="7">
+					<include content="MediaMenuIconButton">
+						<param name="iconon">icons/mediamenu/save.png</param>
+						<param name="iconoff">icons/mediamenu/save.png</param>
 					</include>
-					<width>300</width>
 					<label>$LOCALIZE[190]</label>
 				</control>
-				<control type="button" id="8">
-					<include content="DefaultSettingButton">
-						<param name="height" value="120" />
+				<!-- Clear playlist -->
+				<control type="radiobutton" id="8">
+					<include content="MediaMenuIconButton">
+						<param name="iconon">icons/mediamenu/clear.png</param>
+						<param name="iconoff">icons/mediamenu/clear.png</param>
 					</include>
-					<width>300</width>
 					<label>$LOCALIZE[192]</label>
 				</control>
+				<include>MediaMenuCommonBottom</include>
 			</control>
 		</control>
-		<control type="group">
-			<include>OpenClose_Right</include>
-			<width>845</width>
-			<right>0</right>
-			<include content="ContentPanel">
-				<param name="width" value="1100" />
-				<param name="left" value="-21" />
-			</include>
-			<include content="FileManagerPanel">
-				<param name="list_id" value="100" />
-				<param name="scrollbar_id" value="61" />
-				<param name="onleft_id" value="60" />
-				<param name="onright_id" value="61" />
-				<param name="right" value="-5" />
-			</include>
-			<control type="scrollbar" id="60">
-				<left>0</left>
-				<top>80</top>
-				<width>12</width>
-				<bottom>80</bottom>
-				<onleft>50</onleft>
-				<onright>100</onright>
-				<texturesliderbackground />
-				<animation effect="zoom" end="50,100" time="300" tween="sine" center="0,0" easing="inout" condition="!Control.HasFocus(60)">conditional</animation>
-				<orientation>vertical</orientation>
-			</control>
-			<control type="scrollbar" id="61">
-				<left>834</left>
-				<top>80</top>
-				<width>12</width>
-				<bottom>80</bottom>
-				<onleft>100</onleft>
-				<onright>9000</onright>
-				<texturesliderbackground></texturesliderbackground>
-				<animation effect="zoom" end="50,100" time="300" tween="sine" center="848,0" easing="inout" condition="!Control.HasFocus(61)">conditional</animation>
-				<orientation>vertical</orientation>
-			</control>
-		</control>
-		<include content="TopBar">
-			<param name="breadcrumbs_label" value="$LOCALIZE[10503][COLOR=button_focus][/COLOR]" />
-		</include>
-		<include>BottomBar</include>
-		<include content="BottomBarTwoListInfo">
-			<param name="left_container_id">50</param>
-			<param name="left_scrollbar_id">60</param>
-			<param name="right_container_id">100</param>
-			<param name="right_scrollbar_id">61</param>
-		</include>
 	</controls>
 </window>

@@ -5,20 +5,21 @@
 			<visible>Control.IsVisible(56)</visible>
 			<!-- Right Content -->
 			<control type="group">
-				<include content="AnimationSlideRight">
+				<include content="AnimationSlideRightWindow">
 					<param name="slide">1263</param>
-					<param name="opencondition">true</param>
-					<param name="closecondition">true</param>
+				</include>
+				<include content="AnimationSlideRightVisible">
+					<param name="slide">1263</param>
 				</include>
 				<control type="fixedlist" id="56">
 					<right>0</right>
 					<top>40</top>
 					<width>930</width>
 					<height>913</height>
-					<onleft>9000</onleft>
-					<onright>60</onright>
+					<onleft>9050</onleft>
+					<onright>6056</onright>
+					<pagecontrol>6056</pagecontrol>
 					<viewtype label="700">list</viewtype>
-					<pagecontrol>60</pagecontrol>
 					<scrolltime tween="cubic" easing="inout">400</scrolltime>
 					<focusposition>5</focusposition>
 					<movement>6</movement>
@@ -630,11 +631,11 @@
 						</control>
 					</focusedlayout>
 				</control>
-				<control type="scrollbar" id="60">
+				<control type="scrollbar" id="6056">
 					<right>-19</right>
 					<top>40</top>
 					<bottom>110</bottom>
-					<onleft>50</onleft>
+					<onleft>56</onleft>
 				</control>
 			</control>
 			<!-- Left Content -->
@@ -643,7 +644,7 @@
 				<left>450</left>
 				<width>520</width>
 				<height>210</height>
-				<label>[B]$INFO[ListItem.Tagline,, ][/B][COLOR white]$VAR[ViewPlotVar][/COLOR]</label>
+				<label>[B]$INFO[ListItem.Tagline,, ][/B][COLOR white]$VAR[PlotVar][/COLOR]</label>
 				<pagecontrol>61</pagecontrol>
 				<textcolor>$VAR[HighlightColorVar]</textcolor>
 				<autoscroll time="3000" delay="4000" repeat="5000">!Skin.HasSetting(DisableAutoScroll) + !Control.HasFocus(61)</autoscroll>
@@ -671,14 +672,11 @@
 			<control type="group">
 				<left>10</left>
 				<width>567</width>
-				<include content="AnimationSlideRight">
+				<include content="AnimationSlideRightWindow">
 					<param name="slide">652</param>
-					<param name="opencondition">true</param>
-					<param name="closecondition">true</param>
 				</include>
-				<include content="Animation_FurnitureShift">
-					<param name="slidetopbarcondition">Skin.HasSetting(view50HideTopBar)</param>
-					<param name="slidefloorcondition">!Skin.HasSetting(View50HideTopBar) + Skin.HasSetting(View50HideFloor)</param>
+				<include content="AnimationSlideRightVisible">
+					<param name="slide">652</param>
 				</include>
 				<!-- Music -->
 				<control type="group">
@@ -723,29 +721,6 @@
 						<texture flipy="true" diffuse="thumbs/poster-flipmask.png" fallback="DefaultMusicArtists.png" background="true">$VAR[MusicPosterVar]</texture>
 					</control>
 				</control>
-				<!-- Genre -->
-				<control type="group">
-					<visible>Container.Content(genres)</visible>
-					<control type="image">
-						<bottom>117</bottom>
-						<width>567</width>
-						<height>835</height>
-						<fadetime>TextureFadeTime</fadetime>
-						<bordersize>15</bordersize>
-						<aspectratio aligny="bottom">keep</aspectratio>
-						<bordertexture border="30">thumbs/poster-frame.png</bordertexture>
-						<texture fallback="DefaultGenre.png" diffuse="thumbs/poster-mask.png" background="true">$VAR[GenrePosterVar]</texture>
-					</control>
-					<control type="image">
-						<bottom>-688</bottom>
-						<width>567</width>
-						<height>835</height>
-						<fadetime>TextureFadeTime</fadetime>
-						<bordersize>15</bordersize>
-						<aspectratio aligny="top">keep</aspectratio>
-						<texture fallback="DefaultGenre.png" flipy="true" diffuse="thumbs/poster-flipmask.png" background="true">$VAR[GenrePosterVar]</texture>
-					</control>
-				</control>
 				<!-- Videos -->
 				<control type="group">
 					<visible>!Container.Content(genres) + !Container.Content(musicvideos) + !Container.Content(artists) + !Container.Content(albums) + !Container.Content(songs)</visible>
@@ -772,10 +747,10 @@
 			</control>
 			<!-- Media Flags -->
 			<control type="group">
-				<include content="Animation_Slide_Bottom">
+				<include content="AnimationSlideBottomWindow">
 					<param name="slide">111</param>
 				</include>
-				<include>MediaFlags_All</include>
+				<include>MediaFlagsAll</include>
 			</control>
 		</control>
 	</include>
