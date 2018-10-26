@@ -30,123 +30,196 @@
 		</control>
 		<!-- Content -->
 		<control type="group">
-			<description>Guide Timeline</description>
 			<visible>Control.IsVisible(50)</visible>
 			<include>AnimationZoomWindow</include>
-			<control type="group" id="63">
-				<include content="EpgGrid">
-					<param name="control_id" value="50"/>
-					<param name="control_orientation" value="vertical"/>
-					<param name="control_top" value="55"/>
-					<param name="control_onupdown_id" value="11"/>
-					<param name="viewtype_label" value="19298"/>
-					<param name="progress_texture_border" value="0,60,18,14"/>
-					<param name="progress_texture" value="windows/pvr/epg_progress_vertical.png"/>
-					<param name="has_rulerdate_layout" value="false"/>
-					<param name="ruler_width" value="1400"/>
-					<param name="ruler_label_width" value="365"/>
-					<param name="channel_width" value="350"/>
-					<param name="scrollbar_top" value="47"/>
-				</include>
-				<include content="EpgGrid">
-					<param name="control_id" value="51"/>
-					<param name="control_orientation" value="horizontal"/>
-					<param name="control_top" value="55"/>
-					<param name="control_onupdown_id" value="11"/>
-					<param name="viewtype_label" value="19297"/>
-					<param name="progress_texture_border" value="5,10,5,10"/>
-					<param name="progress_texture" value="windows/pvr/epg_progress_horizontal.png"/>
-					<param name="has_rulerdate_layout" value="true"/>
-					<param name="ruler_width" value="150"/>
-					<param name="ruler_label_width" value="150"/>
-					<param name="channel_width" value="310"/>
-					<param name="scrollbar_top" value="105"/>
-				</include>
-				<include content="EpgGrid">
-					<param name="control_id" value="52"/>
-					<param name="control_orientation" value="vertical"/>
-					<param name="control_top" value="0"/>
-					<param name="control_onupdown_id" value="52"/>
-					<param name="viewtype_label" value="19301"/>
-					<param name="progress_texture_border" value="0,60,18,14"/>
-					<param name="progress_texture" value="windows/pvr/epg_progress_vertical.png"/>
-					<param name="has_rulerdate_layout" value="false"/>
-					<param name="ruler_width" value="1400"/>
-					<param name="ruler_label_width" value="365"/>
-					<param name="channel_width" value="350"/>
-					<param name="scrollbar_top" value="47"/>
-				</include>
-				<include content="EpgGrid">
-					<param name="control_id" value="53"/>
-					<param name="control_orientation" value="horizontal"/>
-					<param name="control_top" value="0"/>
-					<param name="control_onupdown_id" value="53"/>
-					<param name="viewtype_label" value="19300"/>
-					<param name="progress_texture_border" value="5,10,5,10"/>
-					<param name="progress_texture" value="windows/pvr/epg_progress_horizontal.png"/>
-					<param name="has_rulerdate_layout" value="true"/>
-					<param name="ruler_width" value="150"/>
-					<param name="ruler_label_width" value="150"/>
-					<param name="channel_width" value="310"/>
-					<param name="scrollbar_top" value="105"/>
-				</include>
-				
+			<control type="image">
+				<top>110</top>
+				<left>100</left>
+				<right>100</right>
+				<height>90</height>
+				<texture border="30" colordiffuse="$VAR[DialogListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+			</control>
+			<control type="epggrid" id="50">
+				<top>140</top>
+				<left>100</left>
+				<width>1720</width>
+				<height>540</height>
+				<pagecontrol>60</pagecontrol>
+				<scrolltime tween="quadratic" easing="out">300</scrolltime>
+				<timeblocks>20</timeblocks>
+				<rulerunit>6</rulerunit>
+				<onleft>9000</onleft>
+				<onright>60</onright>
+				<viewtype label="">list</viewtype>
+				<progresstexture border="0,15,15,15" colordiffuse="$VAR[PanelHighlightColorVar]">pvr/PVR-EpgProgressIndicator.png</progresstexture>
+				<rulerlayout height="60" width="60">
+					<control type="image">
+						<left>400</left>
+						<width>4</width>
+						<texture colordiffuse="$VAR[DialogListSeparatorColorVar]">panels/line-vertical.png</texture>
+					</control>
+					<control type="label" id="2">
+						<font>Font26_Reg</font>
+						<textoffsetx>25</textoffsetx>
+						<label>$INFO[ListItem.Label]</label>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<selectedcolor>$VAR[PanelTextColorVar]</selectedcolor>
+					</control>
+				</rulerlayout>
+				<channellayout height="60" width="400">
+					<control type="image">
+						<texture border="30" colordiffuse="$VAR[DialogListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+					</control>
+					<control type="label">
+						<textoffsetx>25</textoffsetx>
+						<label>[COLOR $VAR[PanelTextColorVar]]$INFO[ListItem.ChannelNumberLabel,,. ][/COLOR]$INFO[ListItem.ChannelName]</label>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					</control>
+				</channellayout>
+				<focusedchannellayout height="60" width="400">
+					<control type="image">
+						<height>58</height>
+						<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+					</control>
+					<control type="image">
+						<texture border="30" colordiffuse="$VAR[DialogListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+					</control>
+					<control type="label">
+						<textoffsetx>25</textoffsetx>
+						<label>[COLOR $VAR[PanelTextColorVar]]$INFO[ListItem.ChannelNumberLabel,,. ][/COLOR]$INFO[ListItem.ChannelName]</label>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					</control>
+				</focusedchannellayout>
+				<itemlayout width="60" height="60">
+					<control type="image" id="14">
+						<texture border="30" colordiffuse="$VAR[DialogListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+					</control>
+					<control type="image">
+						<width>4</width>
+						<texture colordiffuse="$VAR[DialogListSeparatorColorVar]">panels/line-vertical.png</texture>
+					</control>
+					<control type="image" id="2">
+						<texture border="3" fallback="pvr/epg-genres/0.png">$INFO[ListItem.Property(GenreType),pvr/epg-genres/,.png]</texture>
+					</control>
+					<control type="label" id="1">
+						<visible>ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasRecording</visible>
+						<left>40</left>
+						<textoffsetx>25</textoffsetx>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<control type="label" id="1">
+						<visible>!ListItem.IsRecording + !ListItem.HasTimerSchedule + !ListItem.HasTimer + !ListItem.HasRecording</visible>
+						<textoffsetx>25</textoffsetx>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<control type="label">
+						<texture>$VAR[PVRTimerIconVar]</texture>
+					</control>
+				</itemlayout>
+				<focusedlayout width="60" height="60">
+					<control type="image" id="2">
+						<texture border="3" colordiffuse="66FFFFFF" fallback="pvr/epg-genres/0.png">$INFO[ListItem.Property(GenreType),pvr/epg-genres/,.png]</texture>
+					</control>
+					<control type="image">
+						<width>4</width>
+						<texture colordiffuse="$VAR[DialogListSeparatorColorVar]">panels/line-vertical.png</texture>
+					</control>
+					<control type="image" id="14">
+						<left>2</left>
+						<height>58</height>
+						<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+					</control>
+					<control type="image" id="14">
+						<texture border="30" colordiffuse="$VAR[DialogListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+					</control>
+					<control type="label" id="12345">
+						<width>100</width>
+						<font>Font36_Icon</font>
+						<textoffsetx>25</textoffsetx>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<label>$VAR[PVRTimerIconVar]</label>
+					</control>
+					<control type="label" id="1">
+						<visible>ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasRecording</visible>
+						<left>40</left>
+						<textoffsetx>25</textoffsetx>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<control type="label" id="1">
+						<visible>!ListItem.IsRecording + !ListItem.HasTimerSchedule + !ListItem.HasTimer + !ListItem.HasRecording</visible>
+						<textoffsetx>25</textoffsetx>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<control type="label">
+						<texture>$VAR[PVRTimerIconVar]</texture>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="scrollbar" id="60">
+				<right>0</right>
+				<top>$PARAM[scrollbar_top]</top>
+				<width>12</width>
+				<bottom>340</bottom>
+				<onleft>10</onleft>
+				<onright>10</onright>
+				<orientation>vertical</orientation>
+				<texturesliderbackground colordiffuse="22FFFFFF">colors/white.png</texturesliderbackground>
+				<animation effect="fade" start="100" end="40" time="0" condition="!system.getbool(input.enablemouse)">Conditional</animation>
+				<visible>Control.IsVisible($PARAM[control_id])</visible>
 			</control>
 			<control type="group">
-				<bottom>30</bottom>
-				<height>300</height>
+				<top>685</top>
+				<left>115</left>
+				<height>250</height>
 				<control type="image">
-					<top>10</top>
-					<left>30</left>
-					<width>290</width>
+					<width>250</width>
 					<height>250</height>
+					<texture border="15">thumbs/thumb-frame.png</texture>
+				</control>
+				<control type="image">
+					<width>250</width>
+					<height>250</height>
+					<bordersize>10</bordersize>
 					<aspectratio align="center" aligny="center">keep</aspectratio>
-					<fadetime>400</fadetime>
+					<include>TextureFadeTime</include>
 					<texture>$INFO[ListItem.Icon]</texture>
 				</control>
-				<control type="group">
-					<top>0</top>
-					<left>350</left>
+				<control type="grouplist">
+					<top>1</top>
+					<left>260</left>
+					<width>1420</width>
+					<usecontrolcoords>true</usecontrolcoords>
 					<control type="label">
-						<width>70%</width>
-						<height>30</height>
-						<label>[B]$INFO[ListItem.EpgEventTitle][/B]</label>
+						<height>40</height>
+						<font>Font34_Reg</font>
+						<label>$INFO[ListItem.EpgEventTitle]</label>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
 					</control>
 					<control type="label">
-						<top>0</top>
-						<right>30</right>
-						<width>30%</width>
-						<height>30</height>
-						<align>right</align>
-						<label>[COLOR button_focus]$INFO[ListItem.StartTime,[COLOR grey]$LOCALIZE[555]:[/COLOR] ][/COLOR]$INFO[ListItem.EndTime,[COLOR button_focus] - ,[/COLOR]]</label>
+						<height>36</height>
+						<font>Font28_Reg</font>
+						<label>$INFO[ListItem.Genre]</label>
+						<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 					</control>
 					<control type="label">
-						<top>35</top>
-						<width>60%</width>
-						<height>30</height>
-						<label>[I][COLOR grey]$VAR[SeasonEpisodeLabel][/COLOR]$INFO[ListItem.EpisodeName,[COLOR white],[/COLOR]][/I]</label>
+						<height>35</height>
+						<font>Font28_Reg</font>
+						<label>$INFO[ListItem.StartTime] - $INFO[ListItem.EndTime]</label>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 					</control>
-					<control type="label">
-						<top>35</top>
-						<right>30</right>
-						<width>40%</width>
-						<height>30</height>
-						<align>right</align>
-						<label>$INFO[ListItem.Genre,[COLOR grey]$LOCALIZE[515]:[/COLOR] ]</label>
+					<control type="textbox">
+						<top>5</top>
+						<height>123</height>
+						<label>$INFO[ListItem.Plot]</label>
+						<include>AutoScrollPlot</include>
 					</control>
-				</control>
-				<control type="textbox">
-					<left>350</left>
-					<top>85</top>
-					<right>30</right>
-					<height>170</height>
-					<align>justify</align>
-					<label>$INFO[ListItem.Plot]</label>
-					<autoscroll delay="10000" time="3000" repeat="10000">Skin.HasSetting(AutoScroll)</autoscroll>
 				</control>
 			</control>
 		</control>
-		
 		<!-- Topbar -->
 		<control type="label" id="29">
 			<include>HiddenObject</include>

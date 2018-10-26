@@ -24,6 +24,19 @@
 		<value condition="String.IsEqual(ListItem.Comment,$LOCALIZE[19162])">[COLOR red][/COLOR]</value>
 		<value>$INFO[ListItem.EpisodeName]</value>
 	</variable>
+	<variable name="PVRTimerIconVar">
+		<value condition="ListItem.IsRecording">[COLOR red][/COLOR]</value>
+		<value condition="ListItem.HasTimerSchedule + ListItem.TimerHasError">[COLOR red][/COLOR]</value>
+		<value condition="ListItem.HasTimer + ListItem.TimerHasError">[COLOR red][/COLOR]</value>
+		<value condition="ListItem.HasTimerSchedule + ListItem.TimerHasConflict"></value>
+		<value condition="ListItem.HasTimer + ListItem.TimerHasConflict"></value>
+		<value condition="ListItem.HasRecording">[COLOR red][/COLOR]</value>
+		<value condition="ListItem.HasTimerSchedule + !ListItem.TimerIsActive"></value>
+		<value condition="ListItem.HasTimer + !ListItem.TimerIsActive"></value>
+		<value condition="ListItem.HasTimerSchedule"></value>
+		<value condition="ListItem.HasTimer">[COLOR red][/COLOR]</value>
+		<value></value>
+	</variable>
 
 
 	<variable name="MainMenuNowPlayingAudioCaseVar">
