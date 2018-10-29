@@ -30,7 +30,8 @@
 		</control>
 		<!-- Content -->
 		<control type="group">
-			<visible>Control.IsVisible(50)</visible>
+			<visible>Control.IsVisible(50) + !Window.IsActive(pvrguideinfo)</visible>
+			<include>AnimationInfoDialog</include>
 			<include>AnimationZoomWindow</include>
 			<control type="image">
 				<top>110</top>
@@ -48,7 +49,8 @@
 				<scrolltime tween="quadratic" easing="out">300</scrolltime>
 				<timeblocks>20</timeblocks>
 				<rulerunit>6</rulerunit>
-				<onleft>9000</onleft>
+				<onup>9050</onup>
+				<onleft>9050</onleft>
 				<onright>60</onright>
 				<viewtype label="">list</viewtype>
 				<progresstexture border="0,15,15,15" colordiffuse="$VAR[PanelHighlightColorVar]">pvr/PVR-EpgProgressIndicator.png</progresstexture>
@@ -59,7 +61,7 @@
 						<texture colordiffuse="$VAR[DialogListSeparatorColorVar]">panels/line-vertical.png</texture>
 					</control>
 					<control type="label" id="2">
-						<font>Font26_Reg</font>
+						<font>Font25_Reg</font>
 						<textoffsetx>25</textoffsetx>
 						<label>$INFO[ListItem.Label]</label>
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
@@ -85,6 +87,7 @@
 						<texture border="30" colordiffuse="$VAR[DialogListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
 					</control>
 					<control type="label">
+						<scroll>true</scroll>
 						<textoffsetx>25</textoffsetx>
 						<label>[COLOR $VAR[PanelTextColorVar]]$INFO[ListItem.ChannelNumberLabel,,. ][/COLOR]$INFO[ListItem.ChannelName]</label>
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
@@ -159,18 +162,6 @@
 					</control>
 				</focusedlayout>
 			</control>
-			<control type="scrollbar" id="60">
-				<right>0</right>
-				<top>$PARAM[scrollbar_top]</top>
-				<width>12</width>
-				<bottom>340</bottom>
-				<onleft>10</onleft>
-				<onright>10</onright>
-				<orientation>vertical</orientation>
-				<texturesliderbackground colordiffuse="22FFFFFF">colors/white.png</texturesliderbackground>
-				<animation effect="fade" start="100" end="40" time="0" condition="!system.getbool(input.enablemouse)">Conditional</animation>
-				<visible>Control.IsVisible($PARAM[control_id])</visible>
-			</control>
 			<control type="group">
 				<top>685</top>
 				<left>115</left>
@@ -184,9 +175,9 @@
 					<width>250</width>
 					<height>250</height>
 					<bordersize>10</bordersize>
-					<aspectratio align="center" aligny="center">keep</aspectratio>
 					<include>TextureFadeTime</include>
-					<texture>$INFO[ListItem.Icon]</texture>
+					<aspectratio align="center" aligny="center">keep</aspectratio>
+					<texture fallback="DefaultAddonPVRClient.png">$INFO[ListItem.Icon]</texture>
 				</control>
 				<control type="grouplist">
 					<top>1</top>
@@ -218,6 +209,12 @@
 						<include>AutoScrollPlot</include>
 					</control>
 				</control>
+			</control>
+			<control type="scrollbar" id="60">
+				<right>80</right>
+				<top>200</top>
+				<bottom>400</bottom>
+				<onleft>50</onleft>
 			</control>
 		</control>
 		<!-- Topbar -->
