@@ -552,6 +552,105 @@
 			<onclick>Skin.SetString(NowPlayingHomeAudioInfo,info)</onclick>
 		</item>
 	</include>
+	<!-- Music viz -->
+	<include name="SelectNowPlayingMusicVizCase">
+		<item>
+			<label>$LOCALIZE[571]</label>
+			<onclick>Skin.Reset(NowPlayingMusicVizCase)</onclick>
+		</item>
+		<item>
+			<label>Glass</label>
+			<onclick>Skin.SetString(NowPlayingMusicVizCase,glass)</onclick>
+		</item>
+		<item>
+			<label>CD</label>
+			<onclick>Skin.SetString(NowPlayingMusicVizCase,cd)</onclick>
+		</item>
+		<item>
+			<label>CD clear</label>
+			<onclick>Skin.SetString(NowPlayingMusicVizCase,cdclear)</onclick>
+		</item>
+	</include>
+		<include name="SelectNowPlayingMusicVizMusicInfo">
+		<item>
+			<label>$LOCALIZE[231]</label>
+			<onclick>Skin.SetString(NowPlayingMusicVizMusicInfo,none)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[209]</label>
+			<onclick>Skin.Reset(NowPlayingMusicVizMusicInfo)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[182]</label>
+			<onclick>Skin.SetString(NowPlayingMusicVizMusicInfo,tracks)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[21821]</label>
+			<onclick>Skin.SetString(NowPlayingMusicVizMusicInfo,description)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[29915]</label>
+			<onclick>Skin.SetString(NowPlayingMusicVizMusicInfo,info)</onclick>
+		</item>
+	</include>
+	<include name="SelectNowPlayingMusicVizAudioInfo">
+		<item>
+			<label>$LOCALIZE[231]</label>
+			<onclick>Skin.SetString(NowPlayingMusicVizAudioInfo,none)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[209]</label>
+			<onclick>Skin.Reset(NowPlayingMusicVizAudioInfo)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[182]</label>
+			<onclick>Skin.SetString(NowPlayingMusicVizAudioInfo,tracks)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[21821]</label>
+			<onclick>Skin.SetString(NowPlayingMusicVizAudioInfo,description)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[29915]</label>
+			<onclick>Skin.SetString(NowPlayingMusicVizAudioInfo,info)</onclick>
+		</item>
+	</include>
+	<include name="SelectNowPlayingMusicVizFanArt">
+		<item>
+			<label>$LOCALIZE[231]</label>
+			<onclick>Skin.SetString(NowPlayingMusicVizFanArt,none)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[571]</label>
+			<onclick>Skin.Reset(NowPlayingMusicVizFanArt)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[31035]</label>
+			<onclick>Skin.SetString(NowPlayingMusicVizFanArt,extra)</onclick>
+		</item>
+	</include>
+	<include name="SelectNowPlayingMusicVizFallbackFanArt">
+		<item>
+			<label>$LOCALIZE[571]</label>
+			<onclick>Skin.Reset(NowPlayingMusicVizFallbackBackground)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[31007]</label>
+			<onclick>RunScript(script.skin.helper.service,action=selectimage,skinstring=NowPlayingMusicVizFallbackBackground,resourceaddon=resource.images.skinbackgrounds)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[31008]</label>
+			<onclick>RunScript(script.skin.helper.service,action=setresourceaddon,skinstring=NowPlayingMusicVizFallbackBackground,addontype=resource.images.skinbackgrounds)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[31167]</label>
+			<onclick>RunScript(script.skin.helper.service,action=selectimage,skinstring=NowPlayingMusicVizFallbackBackground,skinhelperbackgrounds=true)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[231]</label>
+			<onclick>Skin.SetString(NowPlayingMusicVizFallbackBackground,none)</onclick>
+		</item>
+	</include>
 	<!-- Backgrounds -->
 	<include name="SelectVideoBackground">
 		<item>
@@ -786,39 +885,35 @@
 	</include>
 	<!-- Music OSD -->
 	<include name="MusicOSDSettings">
-		<control type="button" id="101">
-			<visible>system.getbool(audiooutput.dspaddonsenabled)</visible>
+		<control type="label" id="101">
 			<width>990</width>
-			<label>$LOCALIZE[15047]</label>
-			<include>DialogButton</include>
-			<onclick>ActivateWindow(OSDAudioDSPSettings)</onclick>
+			<label>$LOCALIZE[250]</label>
+			<include>DialogLabel</include>
 		</control>
 		<control type="button" id="102">
-			<visible>system.getbool(audiooutput.dspaddonsenabled)</visible>
-			<width>990</width>
-			<label>$LOCALIZE[15020]</label>
-			<include>DialogButton</include>
-			<onclick>ActivateWindow(AudioDSPManager)</onclick>
-		</control>
-		<control type="button" id="103">
 			<width>990</width>
 			<label>$LOCALIZE[250]</label>
 			<label2>$INFO[Visualisation.Name]</label2>
 			<include>DialogButton</include>
 			<onclick>SendClick(500)</onclick>
 		</control>
-		<control type="button" id="104">
+		<control type="button" id="103">
 			<width>990</width>
 			<label>$LOCALIZE[31065]</label>
 			<include>DialogButton</include>
 			<onclick>Addon.Default.OpenSettings(xbmc.player.musicviz)</onclick>
 		</control>
-		<control type="button" id="105">
+		<control type="button" id="104">
 			<visible>Visualisation.HasPresets</visible>
 			<width>990</width>
 			<label>$LOCALIZE[31066]</label>
 			<include>DialogButton</include>
 			<onclick>ActivateWindow(visualisationpresetlist)</onclick>
+		</control>
+		<control type="label" id="105">
+			<width>990</width>
+			<label>$LOCALIZE[24013]</label>
+			<include>DialogLabel</include>
 		</control>
 		<control type="button" id="106">
 			<width>990</width>
@@ -834,26 +929,77 @@
 			<onclick>Addon.OpenSettings($INFO[Skin.String(LyricScript_Path)])</onclick>
 			<visible>!String.IsEmpty(Skin.String(LyricScript_Path))</visible>
 		</control>
-		<control type="radiobutton" id="108">
-			<label>$LOCALIZE[31108]</label>
-			<include>DialogRadioButtonCustomSelect</include>
-			<onclick>Skin.ToggleSetting(DisableMusicOSDDiscArt)</onclick>
-			<selected>!Skin.HasSetting(DisableMusicOSDDiscArt)</selected>
+		<control type="label" id="108">
+			<width>990</width>
+			<label>$LOCALIZE[31044]</label>
+			<include>DialogLabel</include>
+		</control>
+		<control type="button" id="121">
+			<width>990</width>
+			<label>$LOCALIZE[31084]</label>
+			<label2>$VAR[NowPlayingMusicVizCaseLabelVar]</label2>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[250] $LOCALIZE[31176],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
+			<include>DialogButton</include>
 		</control>
 		<control type="button" id="109">
 			<width>990</width>
 			<label>$LOCALIZE[20445]</label>
-			<label2>$INFO[Skin.String(MusicOSDFanart)]</label2>
+			<label2>$VAR[NowPlayingMusicVizFanArtLabelVar]</label2>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[250] $LOCALIZE[31179],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
 			<include>DialogButton</include>
-			<onclick condition="String.IsEmpty(Skin.String(MusicOSDFanart))">Skin.SetString(MusicOSDFanart,extra)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(MusicOSDFanart),extra)">Skin.SetString(MusicOSDFanart,none)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(MusicOSDFanart),none)">Skin.Reset(MusicOSDFanart)</onclick>
 		</control>
 		<control type="radiobutton" id="110">
 			<label>$LOCALIZE[31038]</label>
 			<include>DialogRadioButtonCustomSelect</include>
 			<onclick>Skin.ToggleSetting(MusicOSDAnimatedBackground)</onclick>
 			<selected>Skin.HasSetting(MusicOSDAnimatedBackground)</selected>
+		</control>
+		<control type="radiobutton" id="123">
+			<label>$LOCALIZE[31108]</label>
+			<onclick>Skin.ToggleSetting(NowPlayingMusicVizDisableDiscArt)</onclick>
+			<selected>!Skin.HasSetting(NowPlayingMusicVizDisableDiscArt)</selected>
+			<include>DialogRadioButtonCustomSelect</include>
+		</control>
+		<control type="radiobutton" id="124">
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(NowPlayingMusicVizDisableLogo)</onclick>
+			<selected>!Skin.HasSetting(NowPlayingMusicVizDisableLogo)</selected>
+			<include>DialogRadioButtonCustomSelect</include>
+		</control>
+		<control type="label" id="135">
+			<width>990</width>
+			<label>$LOCALIZE[29915]</label>
+			<include>DialogLabel</include>
+		</control>
+		<control type="radiobutton" id="125">
+			<label>$LOCALIZE[29915] 1</label>
+			<onclick>Skin.ToggleSetting(NowPlayingMusicVizDisableInfo1)</onclick>
+			<selected>!Skin.HasSetting(NowPlayingMusicVizDisableInfo1)</selected>
+			<include>DialogRadioButtonCustomSelect</include>
+		</control>
+		<control type="radiobutton" id="126">
+			<label>$LOCALIZE[29915] 2</label>
+			<onclick>Skin.ToggleSetting(NowPlayingMusicVizDisableInfo2)</onclick>
+			<selected>!Skin.HasSetting(NowPlayingMusicVizDisableInfo2)</selected>
+			<include>DialogRadioButtonCustomSelect</include>
+		</control>
+		<control type="button" id="127">
+			<width>990</width>
+			<label>$LOCALIZE[31169]</label>
+			<label2>$VAR[NowPlayingMusicVizMusicInfoLabelVar]</label2>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[31177],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
+			<include>DialogButton</include>
+		</control>
+		<control type="button" id="128">
+			<width>990</width>
+			<label>$LOCALIZE[31170]</label>
+			<label2>$VAR[NowPlayingMusicVizAudioInfoLabelVar]</label2>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[31178],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
+			<include>DialogButton</include>
 		</control>
 	</include>
 	<!-- Video OSD -->
