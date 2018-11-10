@@ -253,20 +253,11 @@
 					<content target="$INFO[Container(50).ListItem.Property(AppsTarget)]" sortby="label" sortorder="ascending">$INFO[Container(50).ListItem.Property(AppsContent)]</content>
 					<content>
 						<item>
-							<icon>icons/addons/marcelvedt.png</icon>
-							<label>Marcelveldt beta repository</label>
-							<label2>$VAR[AddonMarcelveldtRepoVar]</label2>
-							<onclick condition="!System.HasAddon(repository.marcelveldt)">Notification(Download beta repo from,github.com/marcelveldt/repository.marcelveldt)</onclick>
-							<onclick condition="!System.HasAddon(repository.marcelveldt)">ActivateWindow(AddonBrowser,addons://install/)</onclick>
-							<visible>Container(50).Row(0)</visible>
-						</item>
-						<item>
 							<icon>icons/addons/skinshortcuts.png</icon>
 							<label>Skin shortcuts</label>
 							<label2>$VAR[AddonSkinShortcutsVar]</label2>
-							<onclick condition="!System.HasAddon(repository.marcelveldt)">Notification(Download beta repo from,github.com/marcelveldt/repository.marcelveldt)</onclick>
-							<onclick condition="System.HasAddon(repository.marcelveldt) + !System.HasAddon(script.skinshortcuts)">InstallAddon(script.skinshortcuts)</onclick>
-							<onclick condition="System.HasAddon(repository.marcelveldt) + System.HasAddon(script.skinshortcuts)">Addon.OpenSettings(script.skinshortcuts)</onclick>
+							<onclick condition="!System.HasAddon(script.skinshortcuts)">InstallAddon(script.skinshortcuts)</onclick>
+							<onclick condition="System.HasAddon(script.skinshortcuts)">Addon.OpenSettings(script.skinshortcuts)</onclick>
 							<property name="Description">$LOCALIZE[31900]</property>
 							<visible>Container(50).Row(0)</visible>
 						</item>
@@ -274,7 +265,6 @@
 							<icon>icons/addons/skinhelper.png</icon>
 							<label>Skin helper service</label>
 							<label2>$VAR[AddonSkinHelperVar]</label2>
-							
 							<onclick condition="!System.HasAddon(script.skin.helper.service)">InstallAddon(script.skin.helper.service)</onclick>
 							<onclick condition="System.HasAddon(script.skin.helper.service)">Addon.OpenSettings(script.skin.helper.service)</onclick>
 							<property name="Description">$LOCALIZE[31901]</property>
@@ -284,7 +274,6 @@
 							<icon>icons/addons/metadata.png</icon>
 							<label>Skin helper metadata utils</label>
 							<label2>$VAR[AddonMetadataVar]</label2>
-							
 							<onclick condition="!System.HasAddon(script.module.metadatautils)">InstallAddon(script.module.metadatautils)</onclick>
 							<onclick condition="System.HasAddon(script.module.metadatautils)">Addon.OpenSettings(script.module.metadatautils)</onclick>
 							<property name="Description">$LOCALIZE[31902]</property>
@@ -303,9 +292,8 @@
 							<icon>icons/addons/skinhelper.png</icon>
 							<label>Skin helper backup</label>
 							<label2>$VAR[AddonBackupVar]</label2>
-							<onclick condition="!System.HasAddon(repository.marcelveldt)">Notification(Download beta repo from,github.com/marcelveldt/repository.marcelveldt)</onclick>
-							<onclick condition="System.HasAddon(repository.marcelveldt) + !System.HasAddon(script.skin.helper.skinbackup)">InstallAddon(script.skin.helper.skinbackup)</onclick>
-							<onclick condition="System.HasAddon(repository.marcelveldt) + System.HasAddon(script.skin.helper.skinbackup)">Addon.OpenSettings(script.skin.helper.skinbackup)</onclick>
+							<onclick condition="!System.HasAddon(script.skin.helper.skinbackup)">InstallAddon(script.skin.helper.skinbackup)</onclick>
+							<onclick condition="System.HasAddon(script.skin.helper.skinbackup)">Addon.OpenSettings(script.skin.helper.skinbackup)</onclick>
 							<property name="Description">$LOCALIZE[31905]</property>
 							<visible>Container(50).Row(0)</visible>
 						</item>
@@ -313,9 +301,8 @@
 							<icon>icons/addons/skinhelper.png</icon>
 							<label>Skin helper color picker</label>
 							<label2>$VAR[AddonColorPickerVar]</label2>
-							<onclick condition="!System.HasAddon(repository.marcelveldt)">Notification(Download beta repo from,github.com/marcelveldt/repository.marcelveldt)</onclick>
-							<onclick condition="System.HasAddon(repository.marcelveldt) + !System.HasAddon(script.skin.helper.colorpicker)">InstallAddon(script.skin.helper.colorpicker)</onclick>
-							<onclick condition="System.HasAddon(repository.marcelveldt) + System.HasAddon(script.skin.helper.colorpicker)">Addon.OpenSettings(script.skin.helper.colorpicker)</onclick>
+							<onclick condition="!System.HasAddon(script.skin.helper.colorpicker)">InstallAddon(script.skin.helper.colorpicker)</onclick>
+							<onclick condition="System.HasAddon(script.skin.helper.colorpicker)">Addon.OpenSettings(script.skin.helper.colorpicker)</onclick>
 							<property name="Description">$LOCALIZE[31904]</property>
 							<visible>Container(50).Row(0)</visible>
 						</item>

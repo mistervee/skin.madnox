@@ -22,30 +22,67 @@
 				<scrolltime tween="quadratic" easing="out">200</scrolltime>
 				<itemlayout height="50">
 					<control type="label">
+						<height>50</height>
+						<align>center</align>
+						<info>ListItem.Label</info>
 					</control>
 				</itemlayout>
 				<focusedlayout height="50">
 					<control type="label">
+						<height>50</height>
+						<align>center</align>
+						<textcolor>blue</textcolor>
+						<label>$INFO[ListItem.Label]</label>
 					</control>
 				</focusedlayout>
 			</control>
-			<control type="label">
-				<description>Scraper label</description>
-				<left>870</left>
-				<top>1020</top>
-				<width>825</width>
-				<height>45</height>
-				<label>$LOCALIZE[31205] - $INFO[Control.GetLabel(200)]</label>
-				<font>font12_title</font>
-				<align>right</align>
-				<textcolor>grey2</textcolor>
-				<visible>false</visible>
-			</control>
 			<control type="label" id="200">
-				<description>Scraper label</description>
-				<visible>false</visible>
+				<include>HiddenObject</include>
 			</control>
 		</control>
+
+		<control type="group">
+			<visible>!String.IsEmpty(Container(110).ListItem.Label)</visible>
+			<control type="group">
+				<visible>String.IsEqual(Container(110).Currentitem,1) | String.EndsWith(Container(110).Currentitem,16) | String.EndsWith(Container(110).Currentitem,31) | String.EndsWith(Container(110).Currentitem,46) | String.EndsWith(Container(110).Currentitem,61) | String.EndsWith(Container(110).Currentitem,76) | String.EndsWith(Container(110).Currentitem,91) | String.EndsWith(Container(110).Currentitem,06)</visible>
+				<top>0</top>
+				<control type="label">
+					<animation type="Visible" reversible="false">
+						<effect type="slide" start="-200,0" end="0,0" tween="back" easing="out" time="300"/>
+						<effect type="zoom" start="25" end="100" tween="back" easing="out" time="500"/>
+					</animation>
+					<height>100</height>
+					<label>[COLOR ff69bbd3]$INFO[Container(110).ListItem.Property(part1),, ][/COLOR][COLOR ffe16b6b]$INFO[Container(110).ListItem.Property(part2),, ][/COLOR][COLOR fff8e950]$INFO[Container(110).ListItem.Property(part3)][/COLOR]</label>
+					<font>Font120_Caps_Lyrics</font>
+					<shadowcolor>black</shadowcolor>
+					<align>center</align>
+				</control>
+				<control type="label">
+					<animation type="Visible" reversible="false">
+						<effect type="slide" delay="300" start="-200,0" end="0,0" tween="back" easing="out" time="900"/>
+						<effect type="zoom" center="450,370" delay="300" start="25" end="100" tween="sine" easing="out" time="900"/>
+					</animation>
+					<top>80</top>
+					<height>600</height>
+					<label>$INFO[Container(110).ListItem.Property(part4)]</label>
+					<font>Font60_lower_Lyrics</font>
+					<shadowcolor>black</shadowcolor>
+					<align>center</align>
+					<textcolor>white</textcolor>
+				</control>
+
+
+			</control>
+
+		</control>
+
+
+
+
+
+
+
+
 		<control type="group">
 			<visible>!String.IsEmpty(Container(110).ListItem.Label)</visible>
 			<control type="group">
