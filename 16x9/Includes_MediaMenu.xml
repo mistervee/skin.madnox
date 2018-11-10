@@ -533,45 +533,46 @@
 			<label>$LOCALIZE[292]</label>
 			<include>MediaMenuLabel</include>
 		</control>
-		<control type="button" id="121">
-			<label>$LOCALIZE[31084]</label>
-			<label2>$VAR[MainMenuNowPlayingAudioCaseLabelVar]</label2>
-			<onclick>SetProperty(CustomSelect,$LOCALIZE[2] $LOCALIZE[31176],home)</onclick>
-			<onclick>ActivateWindow(1110)</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="radiobutton" id="122">
+		<control type="radiobutton" id="121">
 			<label>$LOCALIZE[24022]</label>
 			<onclick>Skin.ToggleSetting(NowplayingHomeDisableAudio)</onclick>
 			<selected>!Skin.HasSetting(NowplayingHomeDisableAudio)</selected>
 			<include>MediaMenuRadioButton</include>
 		</control>
-		<control type="radiobutton" id="123">
+		<control type="radiobutton" id="122">
 			<label>$LOCALIZE[31108]</label>
 			<onclick>Skin.ToggleSetting(NowPlayingHomeAudioDisableDiscArt)</onclick>
 			<selected>!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</selected>
 			<include>MediaMenuRadioButton</include>
 			<visible>!Skin.HasSetting(NowplayingHomeDisableAudio)</visible>
 		</control>
-		<control type="radiobutton" id="124">
+		<control type="radiobutton" id="123">
 			<label>$LOCALIZE[31123]</label>
 			<onclick>Skin.ToggleSetting(NowPlayingHomeAudioDisableLogo)</onclick>
 			<selected>!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</selected>
 			<include>MediaMenuRadioButton</include>
 			<visible>!Skin.HasSetting(NowplayingHomeDisableAudio)</visible>
 		</control>
-		<control type="radiobutton" id="125">
+		<control type="radiobutton" id="124">
 			<label>$LOCALIZE[29915] 1</label>
 			<onclick>Skin.ToggleSetting(NowPlayingHomeAudioDisableInfo1)</onclick>
 			<selected>!Skin.HasSetting(NowPlayingHomeAudioDisableInfo1)</selected>
 			<include>MediaMenuRadioButton</include>
 			<visible>!Skin.HasSetting(NowplayingHomeDisableAudio)</visible>
 		</control>
-		<control type="radiobutton" id="126">
+		<control type="radiobutton" id="125">
 			<label>$LOCALIZE[29915] 2</label>
 			<onclick>Skin.ToggleSetting(NowPlayingHomeAudioDisableInfo2)</onclick>
 			<selected>!Skin.HasSetting(NowPlayingHomeAudioDisableInfo2)</selected>
 			<include>MediaMenuRadioButton</include>
+			<visible>!Skin.HasSetting(NowplayingHomeDisableAudio)</visible>
+		</control>
+		<control type="button" id="126">
+			<label>$LOCALIZE[31084]</label>
+			<label2>$VAR[NowPlayingHomeAudioCaseLabelVar]</label2>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[2] $LOCALIZE[31176],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
+			<include>MediaMenuButton</include>
 			<visible>!Skin.HasSetting(NowplayingHomeDisableAudio)</visible>
 		</control>
 		<control type="button" id="127">
@@ -591,31 +592,38 @@
 			<visible>!Skin.HasSetting(NowplayingHomeDisableAudio)</visible>
 		</control>
 		<control type="label" id="130">
-			<label>Global</label>
+			<label>$LOCALIZE[31106]</label>
 			<include>MediaMenuLabel</include>
 		</control>
 		<control type="radiobutton" id="131">
-			<label>Skin helper</label>
+			<label>$LOCALIZE[31192]</label>
 			<onclick>Skin.ToggleSetting(NowplayingSkinHelperScraper)</onclick>
 			<selected>Skin.HasSetting(NowplayingSkinHelperScraper)</selected>
 			<include>MediaMenuRadioButton</include>
 		</control>
 		<control type="radiobutton" id="132">
-			<label>Video background</label>
-			<onclick>Skin.ToggleSetting(NowplayingVideoBackground)</onclick>
-			<selected>!Skin.HasSetting(NowplayingVideoBackground)</selected>
-			<include>MediaMenuRadioButton</include>
+			<label>$LOCALIZE[31181]</label>
+			<include>MediaMenuButton</include>
 		</control>
 		<control type="radiobutton" id="133">
-			<label>Music background</label>
-			<onclick>Skin.ToggleSetting(NowplayingMusicBackground)</onclick>
-			<selected>!Skin.HasSetting(NowplayingMusicBackground)</selected>
+			<visible>Visualisation.Enabled</visible>
+			<label>$LOCALIZE[250]</label>
+			<onclick>Skin.ToggleSetting(NowplayingDisableVizBackground)</onclick>
+			<selected>!Skin.HasSetting(NowplayingDisableVizBackground)</selected>
 			<include>MediaMenuRadioButton</include>
 		</control>
 		<control type="button" id="134">
-			<label>Disc art fallback</label>
-			<onclick>SetProperty(CustomSelect,$LOCALIZE[31002] $LOCALIZE[342],home)</onclick>
-			<onclick>ActivateWindow(1111)</onclick>
+			<label>$LOCALIZE[31180]</label>
+			<label2>$VAR[NowPlayingMusicBackgroundLabelVar]</label2>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[31030],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="button" id="135">
+			<label>$LOCALIZE[31009]</label>
+			<label2>$VAR[NowPlayingMusicDiscArtLabelVar]</label2>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[31009],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
 			<include>MediaMenuButton</include>
 		</control>
 	</include>

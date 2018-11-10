@@ -1,5 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
 <includes>
+	<!-- Now playing -->
+	<variable name="NowPlayingInfo1Var">
+		<value condition="VideoPlayer.Content(episodes)">$INFO[VideoPlayer.TVShowTitle]</value>
+		<value condition="!String.IsEmpty(MusicPlayer.Artist)">$INFO[MusicPlayer.Artist]</value>
+		<value condition="!String.IsEmpty(MusicPlayer.AlbumArtist)">$INFO[MusicPlayer.AlbumArtist]</value>
+		<value condition="!String.IsEmpty(VideoPlayer.Artist)">$INFO[VideoPlayer.Artist]</value>
+		<value condition="Player.IsInternetStream">$LOCALIZE[33002]</value>
+		<value condition="Pvr.IsPlayingRadio | VideoPlayer.Content(livetv)">$INFO[VideoPlayer.ChannelName]</value>
+	</variable>
+	<variable name="NowPlayingInfo2Var">
+		<value condition="VideoPlayer.Content(episodes)">$INFO[VideoPlayer.Season,$LOCALIZE[20373] , ]$INFO[VideoPlayer.Episode,$LOCALIZE[36906] ]</value>
+		<value condition="!String.IsEmpty(MusicPlayer.Album)">$INFO[MusicPlayer.Album]</value>
+		<value condition="!String.IsEmpty(VideoPlayer.Album)">$INFO[VideoPlayer.Album]</value>
+		<value condition="Player.IsInternetStream + Player.HasAudio + !String.IsEmpty(MusicPlayer.BitRate)">$INFO[MusicPlayer.BitRate,,[LOWERCASE]kbps[/LOWERCASE]]</value>
+		<value condition="Player.IsInternetStream + Player.HasVideo + !String.IsEmpty(Player.Process(VideoHeight))">$INFO[Player.Process(VideoHeight),,[LOWERCASE]p[/LOWERCASE]]</value>
+		<value condition="Pvr.IsPlayingRadio">$LOCALIZE[19021]</value>
+		<value condition="VideoPlayer.Content(livetv)">$LOCALIZE[19020]</value>
+	</variable>
+	<variable name="NowPlayingStatusVar">
+		<value condition="Player.Playing">$LOCALIZE[31002]</value>
+		<value condition="Player.Paused">$LOCALIZE[112]</value>
+		<value condition="Player.Forwarding2x">FF 2x</value>
+		<value condition="Player.Forwarding4x">FF 4x</value>
+		<value condition="Player.Forwarding8x">FF 8x</value>
+		<value condition="Player.Forwarding16x">FF 16x</value>
+		<value condition="Player.Forwarding32x">FF 32x</value>
+		<value condition="Player.Rewinding2x">RR 2x</value>
+		<value condition="Player.Rewinding4x">RR 4x</value>
+		<value condition="Player.Rewinding8x">RR 8x</value>
+		<value condition="Player.Rewinding16x">RR 16x</value>
+		<value condition="Player.Rewinding32x">RR 32x</value>
+	</variable>
+	<variable name="NowPlayingLogoVar">
+		<value condition="!String.IsEmpty(Player.Art(clearlogo))">$INFO[Player.Art(clearlogo)]</value>
+		<value condition="!String.IsEmpty(Player.Art(tvshow.poster))">$INFO[Player.Art(tvshow.clearlogo)]</value>
+		<value condition="!String.IsEmpty(Player.Art(artist.clearlogo))">$INFO[Player.Art(artist.clearlogo)]</value>
+		<value condition="Skin.HasSetting(NowplayingSkinHelperScraper) + [Player.IsInternetStream | Pvr.IsPlayingTv | Pvr.IsPlayingRadio] + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.ClearLogo))">$INFO[Window(Home).Property(SkinHelper.Player.Art.ClearLogo)]</value>
+	</variable>
+	<variable name="NowPlayingThumbVar">
+		<value condition="!String.IsEmpty(Player.Art(poster))">$INFO[Player.Art(poster)]</value>
+		<value condition="!String.IsEmpty(Player.Art(tvshow.poster))">$INFO[Player.Art(tvshow.poster)]</value>
+		<value condition="!String.IsEmpty(Player.Art(thumb))">$INFO[Player.Art(thumb)]</value>
+		<value condition="Player.HasAudio">DefaultAudio.png</value>
+		<value condition="Player.HasVideo">DefaultVideo.png</value>
+	</variable>
+	<variable name="NowPlayingPlotLabelVar">
+		<value condition="Pvr.IsPlayingTv">$INFO[VideoPlayer.StartTime,, - ]$INFO[VideoPlayer.EndTime]</value>
+		<value condition="VideoPlayer.Content(musicvideos) + !String.IsEmpty(VideoPlayer.Genre)">$INFO[VideoPlayer.Genre]</value>
+		<value condition="!String.IsEmpty(VideoPlayer.Tagline)">$INFO[VideoPlayer.Tagline]</value>
+		<value condition="!String.IsEmpty(MusicPlayer.Genre)">$INFO[MusicPlayer.Genre]</value>
+		<value>$LOCALIZE[21821]</value>
+	</variable>
+	<variable name="NowPlayingPlotVar">
+		<value condition="!String.IsEmpty(MusicPlayer.Property(Album_Description))">$INFO[MusicPlayer.Property(Album_Description)]</value>
+		<value condition="!String.IsEmpty(MusicPlayer.Property(Artist_Description))">$INFO[MusicPlayer.Property(Artist_Description)]</value>
+		<value condition="!String.IsEmpty(VideoPlayer.Plot)">$INFO[VideoPlayer.Plot]</value>
+		<value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.Player.Plot))">$INFO[Window(Home).Property(SkinHelper.Player.Plot)]</value>
+		<value>$LOCALIZE[21821]</value>
+	</variable>
+	<variable name="NowPlayingHomeAudioCaseVar">
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioCase),glass)">thumbs/caseother/glass.png</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioCase),cd)">thumbs/caseother/cd.png</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioCase),cdclear)">thumbs/caseother/cdclear.png</value>
+		<value>thumbs/overlay.png</value>
+	</variable>
+	<variable name="NowPlayingHomeAudioCaseLabelVar">
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioCase),glass)">$LOCALIZE[31171]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioCase),cd)">CD</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioCase),cdclear)">$LOCALIZE[31172]</value>
+		<value>$LOCALIZE[571]</value>
+	</variable>
+	<variable name="NowPlayingMusicVizCaseVar">
+		<value condition="String.IsEqual(Skin.String(NowplayingMusicVizCase),glass)">thumbs/caseother/glass.png</value>
+		<value condition="String.IsEqual(Skin.String(NowplayingMusicVizCase),cd)">thumbs/caseother/cd.png</value>
+		<value condition="String.IsEqual(Skin.String(NowplayingMusicVizCase),cdclear)">thumbs/caseother/cdclear.png</value>
+		<value>thumbs/overlay.png</value>
+	</variable>
+	<variable name="NowPlayingMusicVizCaseLabelVar">
+		<value condition="String.IsEqual(Skin.String(NowplayingMusicVizCase),glass)">$LOCALIZE[31171]</value>
+		<value condition="String.IsEqual(Skin.String(NowplayingMusicVizCase),cd)">CD</value>
+		<value condition="String.IsEqual(Skin.String(NowplayingMusicVizCase),cdclear)">$LOCALIZE[31172]</value>
+		<value>$LOCALIZE[571]</value>
+	</variable>
+	<variable name="NowPlayingVideoCaseVar">
+		<value condition="String.IsEqual(Skin.String(MainMenuNowPlayingVideoCase),glass)">thumbs/caseother/glass.png</value>
+		<value condition="String.IsEqual(Skin.String(MainMenuNowPlayingVideoCase),case)">thumbs/case/portrait/$INFO[VideoPlayer.VideoResolution]p.png</value>
+		<value condition="String.IsEqual(Skin.String(MainMenuNowPlayingVideoCase),caseclear)">thumbs/caseclear/portrait/$INFO[VideoPlayer.VideoResolution]p.png</value>
+		<value>thumbs/overlay.png</value>
+	</variable>
+	<variable name="NowPlayingMusicDiscArtVar">
+		<value condition="!String.IsEmpty(Player.Art(discart))">$INFO[Player.Art(discart)]</value>
+		<value condition="!String.IsEmpty(Player.Art(album.discart))">$INFO[Player.Art(album.discart)]</value>
+		<value condition="Skin.HasSetting(NowplayingSkinHelperScraper) + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.DiscArt))">$INFO[Window(Home).Property(SkinHelper.Player.Art.DiscArt)]</value>
+		<value condition="Skin.String(MusicDiscArtFallback,none)"></value>
+		<value condition="Skin.String(MusicDiscArtFallback,vinyl)">thumbs/disc/vinyl.png</value>
+		<value condition="Skin.String(MusicDiscArtFallback,bd)">thumbs/disc/bd.png</value>
+		<value condition="Skin.String(MusicDiscArtFallback,white)">thumbs/disc/white.png</value>
+		<value condition="Skin.String(MusicDiscArtFallback,blue)">thumbs/disc/blue.png</value>
+		<value condition="Skin.String(MusicDiscArtFallback,golden)">thumbs/disc/golden.png</value>
+		<value condition="Skin.String(MusicDiscArtFallback,green)">thumbs/disc/green.png</value>
+		<value condition="Skin.String(MusicDiscArtFallback,grey)">thumbs/disc/grey.png</value>
+		<value condition="Skin.String(MusicDiscArtFallback,orange)">thumbs/disc/orange.png</value>
+		<value condition="Skin.String(MusicDiscArtFallback,purple)">thumbs/disc/purple.png</value>
+		<value condition="Skin.String(MusicDiscArtFallback,red)">thumbs/disc/red.png</value>
+		<value>thumbs/disc/cd.png</value>
+	</variable>
+	<variable name="NowPlayingMusicDiscArtLabelVar">
+		<value condition="Skin.String(MusicDiscArtFallback,none)">$LOCALIZE[231]</value>
+		<value condition="Skin.String(MusicDiscArtFallback,vinyl)">$LOCALIZE[31182]</value>
+		<value condition="Skin.String(MusicDiscArtFallback,bd)">$LOCALIZE[31183]</value>
+		<value condition="Skin.String(MusicDiscArtFallback,white)">$LOCALIZE[31184]</value>
+		<value condition="Skin.String(MusicDiscArtFallback,blue)">$LOCALIZE[31185]</value>
+		<value condition="Skin.String(MusicDiscArtFallback,golden)">$LOCALIZE[31186]</value>
+		<value condition="Skin.String(MusicDiscArtFallback,green)">$LOCALIZE[31187]</value>
+		<value condition="Skin.String(MusicDiscArtFallback,grey)">$LOCALIZE[31188]</value>
+		<value condition="Skin.String(MusicDiscArtFallback,orange)">$LOCALIZE[31189]</value>
+		<value condition="Skin.String(MusicDiscArtFallback,purple)">$LOCALIZE[31190]</value>
+		<value condition="Skin.String(MusicDiscArtFallback,red)">$LOCALIZE[31191]</value>
+		<value>$LOCALIZE[571]</value>
+	</variable>
+	<variable name="NowPlayingMusicVizFanArtVar">
+		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizFanArt),none)"></value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizFanArt),extra) + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.ExtraFanArt))">$INFO[Window(Home).Property(SkinHelper.Player.Art.ExtraFanArt)]</value>
+		<value condition="!String.IsEmpty(Player.Art(fanart))">$INFO[Player.Art(fanart)]</value>
+		<value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.FanArt))">$INFO[Window(Home).Property(SkinHelper.Player.Art.FanArt)]</value>
+		<value condition="String.Contains(Skin.String(MusicBackground),VAR)">$VAR[MusicBackground]</value>
+		<value condition="!String.IsEmpty(Skin.String(MusicBackground))">$INFO[Skin.String(MusicBackground.path)]</value>
+		<value>special://skin/extras/backgrounds/music.jpg</value>
+	</variable>
+	<variable name="NowPlayingMusicVizFanArtLabelVar">
+		<value condition="String.IsEqual(Skin.String(NowplayingMusicVizFanArt),none)">$LOCALIZE[231]</value>
+		<value condition="String.IsEqual(Skin.String(NowplayingMusicVizFanArt),extra)">$LOCALIZE[31035]</value>
+		<value>$LOCALIZE[571]</value>
+	</variable>
+	<variable name="NowPlayingMusicBackgroundVar">
+		<value condition="String.IsEqual(Skin.String(NowPlayingMusicBackground),none)"></value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingMusicBackground),extra) + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.ExtraFanArt))">$INFO[Window(Home).Property(SkinHelper.Player.Art.ExtraFanArt)]</value>
+		<value condition="!String.IsEmpty(Player.Art(fanart))">$INFO[Player.Art(fanart)]</value>
+		<value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.FanArt))">$INFO[Window(Home).Property(SkinHelper.Player.Art.FanArt)]</value>
+		<value condition="String.Contains(Skin.String(MusicBackground),VAR)">$VAR[MusicBackground]</value>
+		<value condition="!String.IsEmpty(Skin.String(MusicBackground))">$INFO[Skin.String(MusicBackground.path)]</value>
+		<value>special://skin/extras/backgrounds/music.jpg</value>
+	</variable>
+	<variable name="NowPlayingMusicBackgroundLabelVar">
+		<value condition="String.IsEqual(Skin.String(NowPlayingMusicBackground),none)">$LOCALIZE[231]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingMusicBackground),extra)">$LOCALIZE[31035]</value>
+		<value>$LOCALIZE[571]</value>
+	</variable>
+	<variable name="NowPlayingHomeMusicInfoLabelVar">
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),tracks)">$LOCALIZE[182]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),description)">$LOCALIZE[21821]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),info)">$LOCALIZE[29915]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),none)">$LOCALIZE[231]</value>
+		<value>$LOCALIZE[209]</value>
+	</variable>
+	<variable name="NowPlayingHomeAudioInfoLabelVar">
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),tracks)">$LOCALIZE[182]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),description)">$LOCALIZE[21821]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),info)">$LOCALIZE[29915]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),none)">$LOCALIZE[231]</value>
+		<value>$LOCALIZE[209]</value>
+	</variable>
+
+
+
+	<variable name="NowPlayingHomeMovieInfoLabelVar">
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMovieInfo),cast)">$LOCALIZE[206]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMovieInfo),preview)">$LOCALIZE[1000]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMovieInfo),disable)">$LOCALIZE[1223]</value>
+		<value>$LOCALIZE[21821]</value>
+	</variable>
+	<variable name="NowPlayingHomeVideoInfoLabelVar">
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeVideoInfo),preview)">$LOCALIZE[1000]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingHomeVideoInfo),disable)">$LOCALIZE[1223]</value>
+		<value>$LOCALIZE[21821]</value>
+	</variable>
+
+	<variable name="NowPlayingMusicVizMusicInfoLabelVar">
+		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizMusicInfo),tracks)">$LOCALIZE[182]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizMusicInfo),description)">$LOCALIZE[21821]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizMusicInfo),info)">$LOCALIZE[29915]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizMusicInfo),none)">$LOCALIZE[231]</value>
+		<value>$LOCALIZE[209]</value>
+	</variable>
+	<variable name="NowPlayingMusicVizAudioInfoLabelVar">
+		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizAudioInfo),tracks)">$LOCALIZE[182]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizAudioInfo),description)">$LOCALIZE[21821]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizAudioInfo),info)">$LOCALIZE[29915]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizAudioInfo),none)">$LOCALIZE[231]</value>
+		<value>$LOCALIZE[209]</value>
+	</variable>
+
+
 
 	<variable name="ColorPickerLabelVar">
 		<value condition="!String.IsEqual(Window.Property(colorstring),None)">$LOCALIZE[737] [COLOR $INFO[Window.Property(colorstring)]]$INFO[Window.Property(colorstring)][/COLOR]</value>
@@ -38,42 +231,7 @@
 		<value></value>
 	</variable>
 
-	<!-- Now playing -->
-	<variable name="MainMenuNowPlayingAudioCaseVar">
-		<value condition="String.IsEqual(Skin.String(MainMenuNowPlayingAudioCase),glass)">thumbs/caseother/glass.png</value>
-		<value condition="String.IsEqual(Skin.String(MainMenuNowPlayingAudioCase),cd)">thumbs/caseother/cd.png</value>
-		<value condition="String.IsEqual(Skin.String(MainMenuNowPlayingAudioCase),cdclear)">thumbs/caseother/cdclear.png</value>
-		<value>thumbs/overlay.png</value>
-	</variable>
-	<variable name="MainMenuNowPlayingAudioCaseLabelVar">
-		<value condition="String.IsEqual(Skin.String(MainMenuNowPlayingAudioCase),glass)">$LOCALIZE[31171]</value>
-		<value condition="String.IsEqual(Skin.String(MainMenuNowPlayingAudioCase),cd)">CD</value>
-		<value condition="String.IsEqual(Skin.String(MainMenuNowPlayingAudioCase),cdclear)">$LOCALIZE[31172]</value>
-		<value>$LOCALIZE[571]</value>
-	</variable>
-	<variable name="NowPlayingMusicVizCaseVar">
-		<value condition="String.IsEqual(Skin.String(NowplayingMusicVizCase),glass)">thumbs/caseother/glass.png</value>
-		<value condition="String.IsEqual(Skin.String(NowplayingMusicVizCase),cd)">thumbs/caseother/cd.png</value>
-		<value condition="String.IsEqual(Skin.String(NowplayingMusicVizCase),cdclear)">thumbs/caseother/cdclear.png</value>
-		<value>thumbs/overlay.png</value>
-	</variable>
-	<variable name="NowPlayingMusicVizCaseLabelVar">
-		<value condition="String.IsEqual(Skin.String(NowplayingMusicVizCase),glass)">$LOCALIZE[31171]</value>
-		<value condition="String.IsEqual(Skin.String(NowplayingMusicVizCase),cd)">CD</value>
-		<value condition="String.IsEqual(Skin.String(NowplayingMusicVizCase),cdclear)">$LOCALIZE[31172]</value>
-		<value>$LOCALIZE[571]</value>
-	</variable>
-	<variable name="NowPlayingMusicVizFanArtLabelVar">
-		<value condition="String.IsEqual(Skin.String(NowplayingMusicVizFanArt),none)">$LOCALIZE[231]</value>
-		<value condition="String.IsEqual(Skin.String(NowplayingMusicVizFanArt),extra)">$LOCALIZE[31035]</value>
-		<value>$LOCALIZE[571]</value>
-	</variable>
-	<variable name="MainMenuNowPlayingVideoCaseVar">
-		<value condition="String.IsEqual(Skin.String(MainMenuNowPlayingVideoCase),glass)">thumbs/caseother/glass.png</value>
-		<value condition="String.IsEqual(Skin.String(MainMenuNowPlayingVideoCase),case)">thumbs/case/portrait/$INFO[VideoPlayer.VideoResolution]p.png</value>
-		<value condition="String.IsEqual(Skin.String(MainMenuNowPlayingVideoCase),caseclear)">thumbs/caseclear/portrait/$INFO[VideoPlayer.VideoResolution]p.png</value>
-		<value>thumbs/overlay.png</value>
-	</variable>
+
 
 
 
@@ -85,8 +243,7 @@
 		<value condition="String.IsEqual(Skin.String(HomeLayout),3icons)">3 $LOCALIZE[536]</value>
 		<value>$LOCALIZE[571]</value>
 	</variable>
-	
-	
+
 
 	<variable name="WidgetPositionLabelVar">
 		<value condition="String.IsEqual(Skin.String(WidgetPosition),top)">Top</value>
@@ -97,135 +254,7 @@
 
 
 
-	<!-- Now Playing -->
-	<variable name="NowPlayingHomeMusicNextLabelVar">
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicNext),tracklist)">$LOCALIZE[31129]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicNext),disable)">$LOCALIZE[1223]</value>
-		<value>$LOCALIZE[554]</value>
-	</variable>
-	<variable name="NowPlayingHomeMovieInfoLabelVar">
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMovieInfo),cast)">$LOCALIZE[206]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMovieInfo),preview)">$LOCALIZE[1000]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMovieInfo),disable)">$LOCALIZE[1223]</value>
-		<value>$LOCALIZE[21821]</value>
-	</variable>
-	<variable name="NowPlayingHomeVideoInfoLabelVar">
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeVideoInfo),preview)">$LOCALIZE[1000]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeVideoInfo),disable)">$LOCALIZE[1223]</value>
-		<value>$LOCALIZE[21821]</value>
-	</variable>
 
-	<variable name="NowPlayingHomeMusicInfoLabelVar">
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),tracks)">$LOCALIZE[182]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),description)">$LOCALIZE[21821]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),info)">$LOCALIZE[29915]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),none)">$LOCALIZE[231]</value>
-		<value>$LOCALIZE[209]</value>
-	</variable>
-	<variable name="NowPlayingHomeAudioInfoLabelVar">
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),tracks)">$LOCALIZE[182]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),description)">$LOCALIZE[21821]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),info)">$LOCALIZE[29915]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),none)">$LOCALIZE[231]</value>
-		<value>$LOCALIZE[209]</value>
-	</variable>
-	<variable name="NowPlayingMusicVizMusicInfoLabelVar">
-		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizMusicInfo),tracks)">$LOCALIZE[182]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizMusicInfo),description)">$LOCALIZE[21821]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizMusicInfo),info)">$LOCALIZE[29915]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizMusicInfo),none)">$LOCALIZE[231]</value>
-		<value>$LOCALIZE[209]</value>
-	</variable>
-	<variable name="NowPlayingMusicVizAudioInfoLabelVar">
-		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizAudioInfo),tracks)">$LOCALIZE[182]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizAudioInfo),description)">$LOCALIZE[21821]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizAudioInfo),info)">$LOCALIZE[29915]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizAudioInfo),none)">$LOCALIZE[231]</value>
-		<value>$LOCALIZE[209]</value>
-	</variable>
-
-	<variable name="NowPlayingHomePlotLabelVar">
-		<value condition="Pvr.IsPlayingTv">$INFO[VideoPlayer.StartTime,, - ]$INFO[VideoPlayer.EndTime]</value>
-		<value condition="VideoPlayer.Content(musicvideos) + !String.IsEmpty(VideoPlayer.Genre)">$INFO[VideoPlayer.Genre]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Tagline)">$INFO[VideoPlayer.Tagline]</value>
-		<value condition="!String.IsEmpty(MusicPlayer.Genre)">$INFO[MusicPlayer.Genre]</value>
-		<value>$LOCALIZE[21821]</value>
-	</variable>
-
-	<variable name="NowPlayingHomePlotVar">
-		<value condition="!String.IsEmpty(MusicPlayer.Property(Album_Description))">$INFO[MusicPlayer.Property(Album_Description)]</value>
-		<value condition="!String.IsEmpty(MusicPlayer.Property(Artist_Description))">$INFO[MusicPlayer.Property(Artist_Description)]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Plot)">$INFO[VideoPlayer.Plot]</value>
-		<value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.Player.Plot))">$INFO[Window(Home).Property(SkinHelper.Player.Plot)]</value>
-		<value>$LOCALIZE[21821]</value>
-	</variable>
-
-
-
-	<variable name="NowPlayingVideoStreamAspectLabelVar">
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeVideoStreamAspect),portrait)">$LOCALIZE[31132]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeVideoStreamAspect),landscape)">$LOCALIZE[31134]</value>
-		<value>$LOCALIZE[31133]</value>
-	</variable>
-	
-	<variable name="NowPlayingThumbVar">
-		<value condition="!String.IsEmpty(Player.Art(poster))">$INFO[Player.Art(poster)]</value>
-		<value condition="!String.IsEmpty(Player.Art(tvshow.poster))">$INFO[Player.Art(tvshow.poster)]</value>
-		<value condition="!String.IsEmpty(Player.Art(thumb))">$INFO[Player.Art(thumb)]</value>
-		<value condition="Player.HasAudio">DefaultAudio.png</value>
-		<value condition="Player.HasVideo">DefaultVideo.png</value>
-	</variable>
-	<variable name="NowPlayingDiscArtVar">
-		<value condition="!String.IsEmpty(Player.Art(discart))">$INFO[Player.Art(discart)]</value>
-		<value condition="!String.IsEmpty(Player.Art(album.discart))">$INFO[Player.Art(album.discart)]</value>
-		<value condition="Player.HasAudio">thumbs/disc/cd.png</value>
-		<value condition="Player.HasVideo">thumbs/disc/bd.png</value>
-	</variable>
-	<variable name="NowPlayingLogoVar">
-		<value condition="!String.IsEmpty(Player.Art(clearlogo))">$INFO[Player.Art(clearlogo)]</value>
-		<value condition="!String.IsEmpty(Player.Art(tvshow.poster))">$INFO[Player.Art(tvshow.clearlogo)]</value>
-		<value condition="!String.IsEmpty(Player.Art(artist.clearlogo))">$INFO[Player.Art(artist.clearlogo)]</value>
-		<value condition="Skin.HasSetting(NowplayingSkinHelperScraper) + [Player.IsInternetStream | Pvr.IsPlayingTv | Pvr.IsPlayingRadio] + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.ClearLogo))">$INFO[Window(Home).Property(SkinHelper.Player.Art.ClearLogo)]</value>
-	</variable>
-	<variable name="NowPlayingMusicVizFanArtVar">
-		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizFanArt),none)"></value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizFanArt),extra) + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.ExtraFanArt))">$INFO[Window(Home).Property(SkinHelper.Player.Art.ExtraFanArt)]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizFanArt),extra) + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.FanArt))">$INFO[Window(Home).Property(SkinHelper.Player.Art.FanArt)]</value>
-		<value condition="!String.IsEmpty(Player.Art(fanart))">$INFO[Player.Art(fanart)]</value>
-		<value>$VAR[MusicBackgroundVar]</value>
-	</variable>
-	<variable name="NowPlayingStatusVar">
-		<value condition="Player.Playing">$LOCALIZE[31002]</value>
-		<value condition="Player.Paused">$LOCALIZE[112]</value>
-		<value condition="Player.Forwarding2x">$LOCALIZE[31125] 2x</value>
-		<value condition="Player.Forwarding4x">$LOCALIZE[31125] 4x</value>
-		<value condition="Player.Forwarding8x">$LOCALIZE[31125] 8x</value>
-		<value condition="Player.Forwarding16x">$LOCALIZE[31125] 16x</value>
-		<value condition="Player.Forwarding32x">$LOCALIZE[31125] 32x</value>
-		<value condition="Player.Rewinding2x">$LOCALIZE[31126] 2x</value>
-		<value condition="Player.Rewinding4x">$LOCALIZE[31126] 4x</value>
-		<value condition="Player.Rewinding8x">$LOCALIZE[31126] 8x</value>
-		<value condition="Player.Rewinding16x">$LOCALIZE[31126] 16x</value>
-		<value condition="Player.Rewinding32x">$LOCALIZE[31126] 32x</value>
-	</variable>
-	<variable name="NowPlayingInfo1Var">
-		<value condition="VideoPlayer.Content(episodes)">$INFO[VideoPlayer.TVShowTitle]</value>
-		<value condition="!String.IsEmpty(MusicPlayer.Artist)">$INFO[MusicPlayer.Artist]</value>
-		<value condition="!String.IsEmpty(MusicPlayer.AlbumArtist)">$INFO[MusicPlayer.AlbumArtist]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Artist)">$INFO[VideoPlayer.Artist]</value>
-		<value condition="Player.IsInternetStream">$LOCALIZE[33002]</value>
-		<value condition="Pvr.IsPlayingRadio | VideoPlayer.Content(livetv)">$INFO[VideoPlayer.ChannelName]</value>
-	</variable>
-	<variable name="NowPlayingInfo2Var">
-		<value condition="VideoPlayer.Content(episodes)">$INFO[VideoPlayer.Season,$LOCALIZE[20373] , ]$INFO[VideoPlayer.Episode,$LOCALIZE[36906] ]</value>
-		<value condition="!String.IsEmpty(MusicPlayer.Album)">$INFO[MusicPlayer.Album]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Album)">$INFO[VideoPlayer.Album]</value>
-		<value condition="Player.IsInternetStream + Player.HasAudio + !String.IsEmpty(MusicPlayer.BitRate)">$INFO[MusicPlayer.BitRate,,[LOWERCASE]kbps[/LOWERCASE]]</value>
-		<value condition="Player.IsInternetStream + Player.HasVideo + !String.IsEmpty(Player.Process(VideoHeight))">$INFO[Player.Process(VideoHeight),,[LOWERCASE]p[/LOWERCASE]]</value>
-		<value condition="Pvr.IsPlayingRadio">$LOCALIZE[19021]</value>
-		<value condition="VideoPlayer.Content(livetv)">$LOCALIZE[19020]</value>
-	</variable>
-	
 	<!-- Addons -->
 	<variable name="AddonCountLabel">
 		<value condition="Integer.IsGreater(Container(9060).NumItems,10)">&gt;9</value>

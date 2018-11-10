@@ -891,71 +891,93 @@
 						<onright>607004</onright>
 						<pagecontrol>607004</pagecontrol>
 						<control type="label" id="401">
+							<label>$LOCALIZE[31002]</label>
+							<include>SettingsLabel</include>
+						</control>
+						<control type="button" id="402">
+							<label>$LOCALIZE[31180]</label>
+							<label2>$VAR[NowPlayingMusicBackgroundLabelVar]</label2>
+							<onclick>SetProperty(CustomSelect,$LOCALIZE[31030],home)</onclick>
+							<onclick>ActivateWindow(1110)</onclick>
+							<include>SettingsRadioButton</include>
+						</control>
+						<control type="radiobutton" id="403">
+							<visible>Visualisation.Enabled</visible>
+							<label>$LOCALIZE[250]</label>
+							<onclick>Skin.ToggleSetting(NowplayingDisableVizBackground)</onclick>
+							<selected>!Skin.HasSetting(NowplayingDisableVizBackground)</selected>
+							<include>SettingsRadioButton</include>
+						</control>
+						<control type="radiobutton" id="404">
+							<label>$LOCALIZE[31181]</label>
+							<include>SettingsRadioButton</include>
+						</control>
+						<control type="label" id="405">
 							<label>$LOCALIZE[31103]</label>
 							<include>SettingsLabel</include>
 						</control>
-						<control type="button" id="404">
+						<control type="button" id="406">
 							<label>$LOCALIZE[31103]</label>
 							<onclick>SetProperty(CustomSelect,$LOCALIZE[31103],home)</onclick>
 							<onclick>ActivateWindow(1111)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="label" id="405">
+						<control type="label" id="410">
 							<label>$LOCALIZE[31036] / $LOCALIZE[33071]</label>
 							<font>Font28_Bold</font>
 							<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="406">
+						<control type="button" id="411">
 							<description>Videos</description>
 							<label>$LOCALIZE[3]</label>
 							<onclick>SetProperty(CustomSelect,$LOCALIZE[3] $LOCALIZE[31107],home)</onclick>
 							<onclick>ActivateWindow(1110)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="407">
+						<control type="button" id="412">
 							<description>PVR and Live TV</description>
 							<label>$LOCALIZE[14204]</label>
 							<onclick>SetProperty(CustomSelect,$LOCALIZE[14204] $LOCALIZE[31107],home)</onclick>
 							<onclick>ActivateWindow(1110)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="408">
+						<control type="button" id="413">
 							<description>Music</description>
 							<label>$LOCALIZE[14216]</label>
 							<onclick>SetProperty(CustomSelect,$LOCALIZE[2] $LOCALIZE[31107],home)</onclick>
 							<onclick>ActivateWindow(1110)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="409">
+						<control type="button" id="414">
 							<description>Games</description>
 							<label>$LOCALIZE[15016]</label>
 							<onclick>SetProperty(CustomSelect,$LOCALIZE[15016] $LOCALIZE[31107],home)</onclick>
 							<onclick>ActivateWindow(1110)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="410">
+						<control type="button" id="415">
 							<description>Pictures</description>
 							<label>$LOCALIZE[14217]</label>
 							<onclick>SetProperty(CustomSelect,$LOCALIZE[14217] $LOCALIZE[31107],home)</onclick>
 							<onclick>ActivateWindow(1110)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="411">
+						<control type="button" id="416">
 							<description>Addons</description>
 							<label>$LOCALIZE[24001]</label>
 							<onclick>SetProperty(CustomSelect,$LOCALIZE[24001] $LOCALIZE[31107],home)</onclick>
 							<onclick>ActivateWindow(1110)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="412">
+						<control type="button" id="417">
 							<description>Weather</description>
 							<label>$LOCALIZE[400]</label>
 							<onclick>SetProperty(CustomSelect,$LOCALIZE[400] $LOCALIZE[31107],home)</onclick>
 							<onclick>ActivateWindow(1110)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="413">
+						<control type="button" id="418">
 							<description>System</description>
 							<label>$LOCALIZE[24992]</label>
 							<onclick>SetProperty(CustomSelect,$LOCALIZE[24992] $LOCALIZE[31107],home)</onclick>
@@ -1023,18 +1045,6 @@
 							<onclick>Skin.ToggleSetting(DisableDialogBackground)</onclick>
 							<selected>!Skin.HasSetting(DisableDialogBackground)</selected>
 						</control>
-						<control type="radiobutton" id="509">
-							<label>$LOCALIZE[31029]</label>
-							<include>SettingsRadioButton</include>
-							<onclick>Skin.ToggleSetting(DisableBackgroundVideoNowPlaying)</onclick>
-							<selected>!Skin.HasSetting(DisableBackgroundVideoNowPlaying)</selected>
-						</control>
-						<control type="radiobutton" id="510">
-							<label>$LOCALIZE[31030]</label>
-							<include>SettingsRadioButton</include>
-							<onclick>Skin.ToggleSetting(DisableBackgroundMusicNowPlaying)</onclick>
-							<selected>!Skin.HasSetting(DisableBackgroundMusicNowPlaying)</selected>
-						</control>
 					</control>
 					<!--  Artwork -->
 					<control type="grouplist" id="7006">
@@ -1088,6 +1098,19 @@
 							<label>$LOCALIZE[31034]</label>
 							<label2>$INFO[Skin.String(WeatherIcons.name)]</label2>
 							<onclick>RunScript(script.skin.helper.service,action=setresourceaddon,skinstring=WeatherIcons,addontype=resource.images.weathericons)</onclick>
+							<include>SettingsButton</include>
+						</control>
+						<control type="radiobutton" id="131">
+							<label>$LOCALIZE[31192]</label>
+							<onclick>Skin.ToggleSetting(NowplayingSkinHelperScraper)</onclick>
+							<selected>Skin.HasSetting(NowplayingSkinHelperScraper)</selected>
+							<include>SettingsRadioButton</include>
+						</control>
+						<control type="button" id="135">
+							<label>$LOCALIZE[31009]</label>
+							<label2>$VAR[NowPlayingMusicDiscArtLabelVar]</label2>
+							<onclick>SetProperty(CustomSelect,$LOCALIZE[31009],home)</onclick>
+							<onclick>ActivateWindow(1110)</onclick>
 							<include>SettingsButton</include>
 						</control>
 					</control>

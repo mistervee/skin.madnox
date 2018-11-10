@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
-	<coordinates>
-		<system>1</system>
-		<left>0</left>
-		<top>0</top>
-	</coordinates>
 	<controls>
+		<control type="label">
+			<top>300</top>
+			<width>1920</width>
+			<height>600</height>
+			<font>Font80_Bold</font>
+			<label>$INFO[Container(110).Currentitem]</label>
+		</control>
 		<control type="group">
 			<control type="list" id="110">
-				<left>45</left>
-				<top>45</top>
-				<width>1830</width>
-				<height>450</height>
+				<top>25</top>
+				<left>25</left>
+				<right>25</right>
+				<bottom>430</bottom>
 				<onleft>111</onleft>
 				<onright>111</onright>
 				<onup>110</onup>
 				<ondown>110</ondown>
 				<pagecontrol>101</pagecontrol>
-				<scrolltime>200</scrolltime>
+				<scrolltime tween="quadratic" easing="out">200</scrolltime>
 				<itemlayout height="50">
+					<control type="label">
+					</control>
 				</itemlayout>
 				<focusedlayout height="50">
+					<control type="label">
+					</control>
 				</focusedlayout>
 			</control>
 			<control type="label">
@@ -44,7 +50,7 @@
 			<visible>!String.IsEmpty(Container(110).ListItem.Label)</visible>
 			<control type="group">
 				<visible>[!String.IsEmpty(Window(Home).Property(culrc.islrc)) + Integer.IsGreater(Container(110).ListItem.Property(duration),299) + !Integer.IsGreater(Container(110).ListItem.Property(duration),1449)] | String.IsEmpty(Container(110).ListItem.Property(part4))</visible>
-				<!--Short LINE 1 & 6-->
+				<!--Short LINEA 1 & 6-->
 				<control type="group">
 					<left>510</left>
 					<top>-20</top>
@@ -57,7 +63,7 @@
 						<top>-1</top>
 						<include>line1</include>
 						<label>$INFO[Container(110).ListItem.Property(part1)] $INFO[Container(110).ListItem.Property(part2)] $INFO[Container(110).ListItem.Property(part3)] $INFO[Container(110).ListItem.Property(part4)]</label>
-						<textcolor>black</textcolor>
+						<textcolor>red</textcolor>
 					</control>
 					<control type="textbox">
 						<visible>!Container(110).OnNext + !Container(110).OnPrevious + String.EndsWith(Container(110).Currentitem,1)</visible>
@@ -110,7 +116,7 @@
 						<label>[COLOR=ff69bbd3]$INFO[Container(110).ListItem.Property(part1)] [/COLOR][COLOR=ffe16b6b]$INFO[Container(110).ListItem.Property(part2)] [/COLOR][COLOR=fff8e950]$INFO[Container(110).ListItem.Property(part3)] [/COLOR][COLOR=fffffaf0]$INFO[Container(110).ListItem.Property(part4)][/COLOR]</label>
 					</control>
 				</control>
-				<!--Short LINE 3 & 8-->
+				<!--Short LINEA 3 & 8-->
 				<control type="group">
 					<left>510</left>
 					<top>-20</top>
@@ -176,7 +182,7 @@
 						<shadowcolor>black</shadowcolor>
 					</control>
 				</control>
-				<!--Short LINE 5 & 0-->
+				<!--Short LINEA 5 & 0-->
 				<control type="group">
 					<left>510</left>
 					<top>-20</top>
@@ -266,7 +272,7 @@
 						<label>[COLOR=ff00bfc0]$INFO[Container(110).ListItem.Property(part1)] [/COLOR][COLOR=ff98ea33]$INFO[Container(110).ListItem.Property(part2)] [/COLOR][COLOR=fffffaf0]$INFO[Container(110).ListItem.Property(part3)][/COLOR][CR][COLOR=ffdaa8ea]$INFO[Container(110).ListItem.Property(part4)][/COLOR]</label>
 					</control>
 				</control>
-				<!--Short LINE 7 & 2-->
+				<!--Short LINEA 7 & 2-->
 				<control type="group">
 					<left>510</left>
 					<top>-20</top>
@@ -332,7 +338,7 @@
 						<label>[COLOR=ff4cb050]$INFO[Container(110).ListItem.Property(part1)] [/COLOR][COLOR=fffec106]$INFO[Container(110).ListItem.Property(part2)] [/COLOR][COLOR=ff2095f4]$INFO[Container(110).ListItem.Property(part3)][/COLOR][CR][COLOR=fffffaf0]$INFO[Container(110).ListItem.Property(part4)][/COLOR]</label>
 					</control>
 				</control>
-				<!--Short LINE 9 & 4-->
+				<!--Short LINEA 9 & 4-->
 				<control type="group">
 					<left>510</left>
 					<top>-20</top>
@@ -401,10 +407,10 @@
 			</control>
 			<control type="group">
 				<visible>!String.IsEmpty(Container(110).ListItem.Property(part4)) + [Integer.IsGreater(Container(110).ListItem.Property(duration),1449) | String.IsEmpty(Window(Home).Property(culrc.islrc))]</visible>
-				<!-- Line 1 -->
+				<!--Line 1-->
 				<control type="grouplist">
 					<left>0</left>
-					<top>199</top>
+					<top>299</top>
 					<width>1920</width>
 					<height>100</height>
 					<itemgap>10</itemgap>
@@ -412,7 +418,7 @@
 					<orientation>horizontal</orientation>
 					<visible>true</visible>
 					<align>center</align>
-					<include>Lyrics1</include>
+					<include content="Lyrics1"></include>
 				</control>
 				<control type="grouplist">
 					<left>4</left>
@@ -424,7 +430,7 @@
 					<orientation>horizontal</orientation>
 					<visible>true</visible>
 					<align>center</align>
-					<include>Lyrics1</include>
+					<include content="Lyrics1"></include>
 				</control>
 				<control type="grouplist">
 					<left>1</left>
@@ -453,8 +459,8 @@
 				<include content="Lyrics1b">
 					<param name="col14">fffffaf0</param>
 				</include>
-				<!-- Line 2 -->
-				<include>Lyrics2</include>
+				<!--Line 2-->
+				<include content="Lyrics2"></include>
 				<include content="Lyrics2">
 					<param name="2_left">4</param>
 					<param name="2_top">254</param>
@@ -467,7 +473,7 @@
 					<param name="2_left">1</param>
 					<param name="2_top">251</param>
 				</include>
-				<!-- Line 3 -->
+				<!--Line 3-->
 				<control type="grouplist">
 					<left>0</left>
 					<top>199</top>
@@ -478,7 +484,7 @@
 					<orientation>horizontal</orientation>
 					<visible>true</visible>
 					<align>center</align>
-					<include>Lyrics3</include>
+					<include content="Lyrics3"></include>
 				</control>
 				<control type="grouplist">
 					<left>4</left>
@@ -490,7 +496,7 @@
 					<orientation>horizontal</orientation>
 					<visible>true</visible>
 					<align>center</align>
-					<include>Lyrics3</include>
+					<include content="Lyrics3"></include>
 				</control>
 				<control type="grouplist">
 					<left>1</left>
@@ -519,8 +525,8 @@
 				<include content="Lyrics3b">
 					<param name="col34">fffffaf0</param>
 				</include>
-				<!-- Line 4 -->
-				<include>Lyrics4</include>
+				<!--Line 4-->
+				<include content="Lyrics4"></include>
 				<include content="Lyrics4">
 					<param name="4_left">114</param>
 					<param name="4_top">34</param>
@@ -533,7 +539,7 @@
 					<param name="4_left">111</param>
 					<param name="4_top">31</param>
 				</include>
-				<!-- Line 5 -->
+				<!--Line 5-->
 				<control type="grouplist">
 					<left>1950</left>
 					<top>99</top>
@@ -544,7 +550,7 @@
 					<orientation>horizontal</orientation>
 					<visible>true</visible>
 					<align>center</align>
-					<include>Lyrics4</include>
+					<include content="Lyrics5"></include>
 				</control>
 				<control type="grouplist">
 					<left>1954</left>
@@ -556,7 +562,7 @@
 					<orientation>horizontal</orientation>
 					<visible>true</visible>
 					<align>center</align>
-					<include>Lyrics4</include>
+					<include content="Lyrics5"></include>
 				</control>
 				<control type="grouplist">
 					<left>1951</left>
@@ -575,7 +581,7 @@
 						<param name="col54">ffdaa8ea</param>
 					</include>
 				</control>
-				<!-- Line 6 -->
+				<!--Line 6-->
 				<control type="grouplist">
 					<left>0</left>
 					<top>-201</top>
@@ -586,7 +592,7 @@
 					<orientation>horizontal</orientation>
 					<visible>true</visible>
 					<align>center</align>
-					<include>Lyrics6</include>
+					<include content="Lyrics6"></include>
 				</control>
 				<control type="grouplist">
 					<left>4</left>
@@ -598,7 +604,7 @@
 					<orientation>horizontal</orientation>
 					<visible>true</visible>
 					<align>center</align>
-					<include>Lyrics4</include>
+					<include content="Lyrics6"></include>
 				</control>
 				<control type="grouplist">
 					<left>1</left>
@@ -627,8 +633,8 @@
 				<include content="Lyrics6b">
 					<param name="col64">fffffaf0</param>
 				</include>
-				<!-- Line 7 -->
-				<include>Lyrics7</include>
+				<!--Line 7-->
+				<include content="Lyrics7"></include>
 				<include content="Lyrics7">
 					<param name="7_left">14</param>
 					<param name="7_top">4</param>
@@ -641,7 +647,7 @@
 					<param name="7_left">11</param>
 					<param name="7_top">1</param>
 				</include>
-				<!-- Line 8 -->
+				<!--Line 8-->
 				<control type="grouplist">
 					<left>0</left>
 					<top>199</top>
@@ -652,7 +658,7 @@
 					<orientation>horizontal</orientation>
 					<visible>true</visible>
 					<align>center</align>
-					<include>Lyrics8</include>
+					<include content="Lyrics8"></include>
 				</control>
 				<control type="grouplist">
 					<left>4</left>
@@ -664,7 +670,7 @@
 					<orientation>horizontal</orientation>
 					<visible>true</visible>
 					<align>center</align>
-					<include>Lyrics8</include>
+					<include content="Lyrics8"></include>
 				</control>
 				<control type="grouplist">
 					<left>1</left>
@@ -684,17 +690,17 @@
 				</control>
 				<include content="Lyrics8b">
 					<param name="8b_left">509</param>
-					<param name="8b_top">269</param>
+					<param name="8b_top">300</param>
 				</include>
 				<include content="Lyrics8b">
 					<param name="8b_left">513</param>
-					<param name="8b_top">273</param>
+					<param name="8b_top">300</param>
 				</include>
 				<include content="Lyrics8b">
 					<param name="col84">fffffaf0</param>
 				</include>
-				<!-- Line 9 -->
-				<include>Lyrics9</include>
+				<!--Line 9-->
+				<include content="Lyrics9"></include>
 				<include content="Lyrics9">
 					<param name="9_left">24</param>
 					<param name="9_top">-16</param>
@@ -707,8 +713,8 @@
 					<param name="9_left">21</param>
 					<param name="9_top">-19</param>
 				</include>
-				<!-- Line 10 -->
-				<include>Lyrics10</include>
+				<!--Line 10-->
+				<include content="Lyrics10"></include>
 				<include content="Lyrics10">
 					<param name="10_left">4</param>
 					<param name="10_top">154</param>
@@ -721,8 +727,8 @@
 					<param name="10_left">1</param>
 					<param name="10_top">151</param>
 				</include>
-				<!-- Line 11 -->
-				<include>Lyrics11</include>
+				<!--Line 11-->
+				<include content="Lyrics11"></include>
 				<include content="Lyrics11">
 					<param name="11_left">4</param>
 					<param name="11_top">254</param>
@@ -735,8 +741,8 @@
 					<param name="11_left">1</param>
 					<param name="11_top">251</param>
 				</include>
-				<!-- Line 12 -->
-				<include>Lyrics12</include>
+				<!--Line 12-->
+				<include content="Lyrics12"></include>
 				<include content="Lyrics12">
 					<param name="12_left">14</param>
 					<param name="12_top">4</param>
@@ -746,7 +752,7 @@
 					<param name="12_left">11</param>
 					<param name="12_top">1</param>
 				</include>
-				<include>Lyrics12b</include>
+				<include content="Lyrics12b"></include>
 				<include content="Lyrics12b">
 					<param name="12b_left">14</param>
 					<param name="12b_top">184</param>
@@ -757,7 +763,7 @@
 					<param name="12b_left">11</param>
 					<param name="12b_top">181</param>
 				</include>
-				<include>Lyrics12c</include>
+				<include content="Lyrics12c"></include>
 				<include content="Lyrics12c">
 					<param name="12c_left">14</param>
 					<param name="12c_top">4</param>
@@ -767,7 +773,7 @@
 					<param name="12c_left">11</param>
 					<param name="12c_top">1</param>
 				</include>
-				<!-- Line 13 -->
+				<!--Line 13-->
 				<control type="grouplist">
 					<left>0</left>
 					<top>199</top>
@@ -778,7 +784,7 @@
 					<orientation>horizontal</orientation>
 					<visible>true</visible>
 					<align>center</align>
-					<include>Lyrics13</include>
+					<include content="Lyrics13"></include>
 				</control>
 				<control type="grouplist">
 					<left>4</left>
@@ -790,7 +796,7 @@
 					<orientation>horizontal</orientation>
 					<visible>true</visible>
 					<align>center</align>
-					<include>Lyrics13</include>
+					<include content="Lyrics13"></include>
 				</control>
 				<control type="grouplist">
 					<left>1</left>
@@ -819,7 +825,7 @@
 				<include content="Lyrics13b">
 					<param name="col134">ffDAA8EA</param>
 				</include>
-				<!-- Line 14 -->
+				<!--Line 14-->
 				<control type="grouplist">
 					<left>0</left>
 					<top>169</top>
@@ -959,8 +965,8 @@
 					<param name="14b_top">341</param>
 					<param name="col144">fff395b5</param>
 				</include>
-				<!-- Line 15 -->
-				<include>Lyrics15</include>
+				<!--Line 15-->
+				<include content="Lyrics15"></include>
 				<include content="Lyrics15">
 					<param name="15_left">174</param>
 					<param name="15_top">4</param>
@@ -1005,7 +1011,7 @@
 						<font>font14</font>
 						<textoffsetx>15</textoffsetx>
 						<textcolor>grey2</textcolor>
-						<selectedcolor>$VAR[ThemeLabelColor]</selectedcolor>
+						<selectedcolor>selected</selectedcolor>
 						<label>$INFO[ListItem.Label]</label>
 					</control>
 					<control type="label">
@@ -1014,7 +1020,7 @@
 						<font>font14</font>
 						<textoffsetx>15</textoffsetx>
 						<textcolor>grey2</textcolor>
-						<selectedcolor>$VAR[ThemeLabelColor]</selectedcolor>
+						<selectedcolor>selected</selectedcolor>
 						<align>right</align>
 						<label>$INFO[ListItem.Label2]</label>
 					</control>
@@ -1024,7 +1030,7 @@
 						<left>1</left>
 						<width>630</width>
 						<height>60</height>
-						<texture colordiffuse="$VAR[HighlightBarColor]" border="5">listselect_fo.png</texture>
+						<texture border="5">listselect_fo.png</texture>
 						<visible>Control.HasFocus(120)</visible>
 						<include>VisibleFadeAnimation</include>
 					</control>
@@ -1034,7 +1040,7 @@
 						<font>font14</font>
 						<textoffsetx>15</textoffsetx>
 						<textcolor>white</textcolor>
-						<selectedcolor>$VAR[ThemeLabelColor]</selectedcolor>
+						<selectedcolor>selected</selectedcolor>
 						<label>$INFO[ListItem.Label]</label>
 						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(120)">Conditional</animation>
 					</control>
@@ -1044,7 +1050,7 @@
 						<font>font14</font>
 						<textoffsetx>15</textoffsetx>
 						<textcolor>grey</textcolor>
-						<selectedcolor>$VAR[ThemeLabelColor]</selectedcolor>
+						<selectedcolor>selected</selectedcolor>
 						<align>right</align>
 						<label>$INFO[ListItem.Label2]</label>
 						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(120)">Conditional</animation>

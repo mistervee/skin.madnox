@@ -1,423 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 	<!-- Home -->
-	<include name="HomeNowPlaying">
-		<control type="image">
-			<visible>String.IsEmpty(Skin.String(WidgetPosition)) | String.IsEqual(Skin.String(WidgetPosition),belowmenu)</visible>
-			<include>AnimationVisibleFade</include>
-			<width>1920</width>
-			<height>700</height>
-			<texture flipy="true" colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/background-gradient.png</texture>
-		</control>
-		<control type="image">
-			<visible>String.IsEqual(Skin.String(WidgetPosition),top)</visible>
-			<include>AnimationVisibleFade</include>
-			<top>157</top>
-			<width>1920</width>
-			<height>700</height>
-			<texture colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/background-gradient.png</texture>
-		</control>
-		<control type="image">
-			<visible>String.IsEqual(Skin.String(WidgetPosition),abovemenu)</visible>
-			<include>AnimationVisibleFade</include>
-			<top>400</top>
-			<width>1920</width>
-			<height>700</height>
-			<texture colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/background-gradient.png</texture>
-		</control>
-		<control type="group">
-			<top>30</top>
-			<left>30</left>
-			<right>30</right>
-			<animation effect="slide" end="0,403" time="200" condition="String.IsEqual(Skin.String(WidgetPosition),top)">Conditional</animation>
-			<animation effect="slide" end="0,637" time="200" condition="String.IsEqual(Skin.String(WidgetPosition),abovemenu)">Conditional</animation>
-			<animation effect="slide" end="0,36" time="200" condition="String.IsEqual(Skin.String(WidgetPosition),abovemenu) + !system.getbool(lookandfeel.enablerssfeeds)">Conditional</animation>
-			<animation effect="slide" end="0,41" time="200" condition="!String.IsEqual(Skin.String(WidgetPosition),abovemenu) + Skin.HasSetting(InfoBarTop) + [!Skin.HasSetting(InfoBarLeftDisable) | !Skin.HasSetting(InfoBarDisableWeather) | !Skin.HasSetting(InfoBarDisableDate) | !Skin.HasSetting(InfoBarDisableTime)]">Conditional</animation>
-			<!-- Video -->
-			<control type="group">
-				<visible>Player.HasVideo</visible>
-				<control type="group">
-					<visible>[VideoPlayer.Content(movies) | VideoPlayer.Content(episodes)] + !Player.IsInternetStream</visible>
-					<control type="group">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeTrackInfo),disable)</visible>
-						<control type="group">
-							<visible>String.IsEmpty(Skin.String(MainMenuNowPlayingVideoCase))</visible>
-							<include>AnimationVisibleFade</include>
-							<include content="NowPlayingPortraitContent">
-								<param name="left">0</param>
-								<param name="right">-45</param>
-								<param name="width">238</param>
-								<param name="height">347</param>
-								<param name="leftinfo">258</param>
-								<param name="casewidth">238</param>
-								<param name="border">10</param>
-								<param name="discborder">0</param>
-								<param name="slide">100</param>
-								<param name="slidedisc">100</param>
-								<param name="case">$VAR[MainMenuNowPlayingVideoCaseVar]</param>
-								<param name="logo">!Skin.HasSetting(NowPlayingHomeVideoDisableLogo)</param>
-								<param name="discart">!Skin.HasSetting(NowPlayingHomeVideoDisableDiscArt)</param>
-							</include>
-						</control>
-						<control type="group">
-							<visible>String.Contains(Skin.String(MainMenuNowPlayingVideoCase),glass)</visible>
-							<include>AnimationVisibleFade</include>
-							<include content="NowPlayingPortraitContent">
-								<param name="left">0</param>
-								<param name="right">-45</param>
-								<param name="width">238</param>
-								<param name="height">347</param>
-								<param name="leftinfo">258</param>
-								<param name="casewidth">238</param>
-								<param name="border">20</param>
-								<param name="discborder">0</param>
-								<param name="slide">100</param>
-								<param name="slidedisc">100</param>
-								<param name="case">$VAR[MainMenuNowPlayingVideoCaseVar]</param>
-								<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-								<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-							</include>
-						</control>
-						<control type="group">
-							<visible>String.Contains(Skin.String(MainMenuNowPlayingVideoCase),case) + !String.Contains(Skin.String(MainMenuNowPlayingVideoCase),caseclear) + !String.Contains(Skin.String(MainMenuNowPlayingVideoCase),glass)</visible>
-							<include>AnimationVisibleFade</include>
-							<include content="NowPlayingPortraitContent">
-								<param name="left">0</param>
-								<param name="right">-45</param>
-								<param name="width">218</param>
-								<param name="height">347</param>
-								<param name="leftinfo">208</param>
-								<param name="casewidth">218</param>
-								<param name="border">10,40,20,20</param>
-								<param name="discborder">0</param>
-								<param name="slide">70</param>
-								<param name="slidedisc">90</param>
-								<param name="case">$VAR[MainMenuNowPlayingVideoCaseVar]</param>
-								<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-								<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-							</include>
-						</control>
-						<control type="group">
-							<visible>String.Contains(Skin.String(MainMenuNowPlayingVideoCase),caseclear)</visible>
-							<include>AnimationVisibleFade</include>
-							<include content="NowPlayingPortraitContent">
-								<param name="left">0</param>
-								<param name="right">-45</param>
-								<param name="width">238</param>
-								<param name="height">347</param>
-								<param name="leftinfo">258</param>
-								<param name="casewidth">238</param>
-								<param name="border">20</param>
-								<param name="discborder">0</param>
-								<param name="slide">100</param>
-								<param name="slidedisc">100</param>
-								<param name="case">$VAR[MainMenuNowPlayingVideoCaseVar]</param>
-								<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-								<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-							</include>
-						</control>
-					</control>
-				</control>
-				<control type="group">
-					<visible>VideoPlayer.Content(musicvideos) + !Player.IsInternetStream</visible>
-					<control type="group">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeTrackInfo),disable)</visible>
-						<control type="group">
-							<visible>String.IsEmpty(Skin.String(MainMenuNowPlayingMusicCase))</visible>
-							<include>AnimationVisibleFade</include>
-							<include content="NowPlayingSquareContent">
-								<param name="left">0</param>
-								<param name="right">-45</param>
-								<param name="width">347</param>
-								<param name="height">347</param>
-								<param name="leftinfo">337</param>
-								<param name="casewidth">347</param>
-								<param name="border">10</param>
-								<param name="discborder">20</param>
-								<param name="slide">114</param>
-								<param name="slidedisc">144</param>
-								<param name="case">$VAR[MainMenuNowPlayingAudioCaseVar]</param>
-								<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-								<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-							</include>
-						</control>
-						<control type="group">
-							<visible>String.IsEqual(Skin.String(MainMenuNowPlayingMusicCase),glass)</visible>
-							<include>AnimationVisibleFade</include>
-							<include content="NowPlayingSquareContent">
-								<param name="left">0</param>
-								<param name="right">-45</param>
-								<param name="width">347</param>
-								<param name="height">347</param>
-								<param name="leftinfo">337</param>
-								<param name="casewidth">347</param>
-								<param name="border">15</param>
-								<param name="discborder">20</param>
-								<param name="slide">114</param>
-								<param name="slidedisc">144</param>
-								<param name="case">$VAR[MainMenuNowPlayingAudioCaseVar]</param>
-								<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-								<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-							</include>
-						</control>
-						<control type="group">
-							<visible>String.Contains(Skin.String(MainMenuNowPlayingMusicCase),cd)</visible>
-							<include>AnimationVisibleFade</include>
-							<include content="NowPlayingSquareContent">
-								<param name="left">25</param>
-								<param name="right">-45</param>
-								<param name="width">347</param>
-								<param name="height">347</param>
-								<param name="leftinfo">360</param>
-								<param name="casewidth">370</param>
-								<param name="border">15</param>
-								<param name="discborder">25</param>
-								<param name="slide">109</param>
-								<param name="slidedisc">134</param>
-								<param name="case">$VAR[MainMenuNowPlayingAudioCaseVar]</param>
-								<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-								<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-							</include>
-						</control>
-					</control>
-					<control type="group">
-						<visible>!String.IsEqual(Skin.String(NowPlayingHomeTrackInfo),disable)</visible>
-						<control type="group">
-							<visible>String.IsEmpty(Skin.String(MainMenuNowPlayingMusicCase))</visible>
-							<include>AnimationVisibleFade</include>
-							<include content="NowPlayingSquareContent">
-								<param name="left">0</param>
-								<param name="right">680</param>
-								<param name="width">347</param>
-								<param name="height">347</param>
-								<param name="leftinfo">337</param>
-								<param name="casewidth">347</param>
-								<param name="border">10</param>
-								<param name="discborder">20</param>
-								<param name="slide">114</param>
-								<param name="slidedisc">144</param>
-								<param name="case">$VAR[MainMenuNowPlayingAudioCaseVar]</param>
-								<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-								<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-							</include>
-						</control>
-						<control type="group">
-							<visible>String.IsEqual(Skin.String(MainMenuNowPlayingMusicCase),glass)</visible>
-							<include>AnimationVisibleFade</include>
-							<include content="NowPlayingSquareContent">
-								<param name="left">0</param>
-								<param name="right">680</param>
-								<param name="width">347</param>
-								<param name="height">347</param>
-								<param name="leftinfo">337</param>
-								<param name="casewidth">347</param>
-								<param name="border">15</param>
-								<param name="discborder">20</param>
-								<param name="slide">114</param>
-								<param name="slidedisc">144</param>
-								<param name="case">$VAR[MainMenuNowPlayingAudioCaseVar]</param>
-								<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-								<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-							</include>
-						</control>
-						<control type="group">
-							<visible>String.Contains(Skin.String(MainMenuNowPlayingMusicCase),cd)</visible>
-							<include>AnimationVisibleFade</include>
-							<include content="NowPlayingSquareContent">
-								<param name="left">25</param>
-								<param name="right">680</param>
-								<param name="width">347</param>
-								<param name="height">347</param>
-								<param name="leftinfo">360</param>
-								<param name="casewidth">370</param>
-								<param name="border">15</param>
-								<param name="discborder">25</param>
-								<param name="slide">109</param>
-								<param name="slidedisc">134</param>
-								<param name="case">$VAR[MainMenuNowPlayingAudioCaseVar]</param>
-								<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-								<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-							</include>
-						</control>
-					</control>
-				</control>
-			</control>
-			<!-- Audio -->
-			<control type="group">
-				<visible>Player.HasAudio</visible>
-				<control type="group">
-					<visible>String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),none)</visible>
-					<control type="group">
-						<visible>String.IsEmpty(Skin.String(MainMenuNowPlayingAudioCase))</visible>
-						<include>AnimationVisibleFade</include>
-						<include content="NowPlayingHomeSquareContent">
-							<param name="left">0</param>
-							<param name="right">52</param>
-							<param name="leftinfo">337</param>
-							<param name="casewidth">347</param>
-							<param name="border">10</param>
-							<param name="discborder">20</param>
-							<param name="slide">114</param>
-							<param name="slidedisc">144</param>
-							<param name="case">$VAR[MainMenuNowPlayingAudioCaseVar]</param>
-							<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-							<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-						</include>
-					</control>
-					<control type="group">
-						<visible>String.IsEqual(Skin.String(MainMenuNowPlayingAudioCase),glass)</visible>
-						<include>AnimationVisibleFade</include>
-						<include content="NowPlayingHomeSquareContent">
-							<param name="left">0</param>
-							<param name="right">52</param>
-							<param name="leftinfo">337</param>
-							<param name="casewidth">347</param>
-							<param name="border">20</param>
-							<param name="discborder">20</param>
-							<param name="slide">114</param>
-							<param name="slidedisc">144</param>
-							<param name="case">$VAR[MainMenuNowPlayingAudioCaseVar]</param>
-							<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-							<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-						</include>
-					</control>
-					<control type="group">
-						<visible>String.Contains(Skin.String(MainMenuNowPlayingAudioCase),cd)</visible>
-						<include>AnimationVisibleFade</include>
-						<include content="NowPlayingHomeSquareContent">
-							<param name="left">25</param>
-							<param name="right">52</param>
-							<param name="leftinfo">360</param>
-							<param name="casewidth">370</param>
-							<param name="border">15</param>
-							<param name="discborder">25</param>
-							<param name="slide">109</param>
-							<param name="slidedisc">134</param>
-							<param name="case">$VAR[MainMenuNowPlayingAudioCaseVar]</param>
-							<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-							<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-						</include>
-					</control>
-				</control>
-				<control type="group">
-					<visible>!String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),none)</visible>
-					<control type="group">
-						<visible>String.IsEmpty(Skin.String(MainMenuNowPlayingAudioCase))</visible>
-						<include>AnimationVisibleFade</include>
-						<include content="NowPlayingHomeSquareContent">
-							<param name="left">0</param>
-							<param name="right">760</param>
-							<param name="leftinfo">337</param>
-							<param name="casewidth">347</param>
-							<param name="border">10</param>
-							<param name="discborder">20</param>
-							<param name="slide">114</param>
-							<param name="slidedisc">144</param>
-							<param name="case">$VAR[MainMenuNowPlayingAudioCaseVar]</param>
-							<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-							<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-						</include>
-					</control>
-					<control type="group">
-						<visible>String.IsEqual(Skin.String(MainMenuNowPlayingAudioCase),glass)</visible>
-						<include>AnimationVisibleFade</include>
-						<include content="NowPlayingHomeSquareContent">
-							<param name="left">0</param>
-							<param name="right">760</param>
-							<param name="leftinfo">337</param>
-							<param name="casewidth">347</param>
-							<param name="border">20</param>
-							<param name="discborder">20</param>
-							<param name="slide">114</param>
-							<param name="slidedisc">144</param>
-							<param name="case">$VAR[MainMenuNowPlayingAudioCaseVar]</param>
-							<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-							<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-						</include>
-					</control>
-					<control type="group">
-						<visible>String.Contains(Skin.String(MainMenuNowPlayingAudioCase),cd)</visible>
-						<include>AnimationVisibleFade</include>
-						<include content="NowPlayingHomeSquareContent">
-							<param name="left">25</param>
-							<param name="right">760</param>
-							<param name="leftinfo">360</param>
-							<param name="casewidth">370</param>
-							<param name="border">15</param>
-							<param name="discborder">25</param>
-							<param name="slide">109</param>
-							<param name="slidedisc">134</param>
-							<param name="case">$VAR[MainMenuNowPlayingAudioCaseVar]</param>
-							<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-							<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-						</include>
-					</control>
-				</control>
-				<control type="group">
-					<visible>!Pvr.IsPlayingRadio + !Player.IsInternetStream</visible>
-					<control type="group">
-						<visible>String.IsEmpty(Skin.String(NowPlayingHomeMusicInfo)) + MusicPlayer.HasNext</visible>
-						<include>HomeNowPlayingAudioNext</include>
-					</control>
-					<control type="group">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),tracks) + MusicPlayer.HasNext</visible>
-						<include>HomeNowPlayingAudioTrackList</include>
-					</control>
-					<control type="group">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),description) + [!String.IsEmpty(MusicPlayer.Property(Artist_Description)) | !String.IsEmpty(MusicPlayer.Property(Artist_Description)) | !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Plot))]</visible>
-						<include>HomeNowPlayingPlot</include>
-					</control>
-					<control type="grouplist">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),info) + String.IsEmpty(Skin.String(WidgetPosition))</visible>
-						<include>HomeNowPlayingAudioInfo</include>
-					</control>
-					<control type="grouplist">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),info) + !String.IsEmpty(Skin.String(WidgetPosition))</visible>
-						<include>HomeNowPlayingAudioInfo2</include>
-					</control>
-				</control>
-				<control type="group">
-					<visible>Pvr.IsPlayingRadio | Player.IsInternetStream</visible>
-					<control type="group">
-						<visible>String.IsEmpty(Skin.String(NowPlayingHomeAudioInfo)) + MusicPlayer.HasNext</visible>
-						<include>HomeNowPlayingAudioNext</include>
-					</control>
-					<control type="group">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),tracks) + MusicPlayer.HasNext</visible>
-						<include>HomeNowPlayingAudioTrackList</include>
-					</control>
-					<control type="group">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),description) + [!String.IsEmpty(MusicPlayer.Property(Artist_Description)) | !String.IsEmpty(MusicPlayer.Property(Artist_Description)) | !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Plot))]</visible>
-						<include>HomeNowPlayingPlot</include>
-					</control>
-					<control type="grouplist">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),info) + String.IsEmpty(Skin.String(WidgetPosition))</visible>
-						<include>HomeNowPlayingAudioInfo</include>
-					</control>
-					<control type="grouplist">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),info) + !String.IsEmpty(Skin.String(WidgetPosition))</visible>
-						<include>HomeNowPlayingAudioInfo2</include>
-					</control>
-				</control>
-			</control>
-		</control>
-	</include>
 	<include name="HomeNowPlayingAudioInfo">
 		<include>AnimationSlideRightVisible</include>
-		<top>10</top>
+		<top>35</top>
 		<right>10</right>
-		<width>600</width>
+		<width>500</width>
 		<height>327</height>
 		<usecontrolcoords>true</usecontrolcoords>
 		<control type="progress">
 			<visible>!String.IsEmpty(MusicPlayer.Duration)</visible>
 			<info>Player.Progress</info>
+			<midtexture colordiffuse="$VAR[MainMenuHighlightColorVar]" border="8">panels/progress-control/progress-mid.png</midtexture>
 		</control>
 		<control type="label">
 			<height>42</height>
 			<align>right</align>
 			<font>Font28_Reg</font>
-			<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+			<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
 			<label>$INFO[MusicPlayer.BitRate]kbps  $INFO[MusicPlayer.BitsPerSample]bit  $INFO[MusicPlayer.SampleRate]KHz</label>
 		</control>
 		<control type="label">
@@ -432,8 +32,6 @@
 			<width>125</width>
 			<height>80</height>
 			<fadetime>TextureFadeTime</fadetime>
-			<include condition="!Skin.HasSetting(MediaFlagsColored)">MediaFlagWhite</include>
-			<include condition="Skin.HasSetting(MediaFlagsColored)">MediaFlagColored</include>
 			<aspectratio align="right" aligny="center">scale</aspectratio>
 			<texture>$VAR[MediaFlagsPathVar]audiocodec/$INFO[MusicPlayer.Codec,,.png]</texture>
 		</control>
@@ -442,8 +40,8 @@
 		<include>AnimationSlideRightVisible</include>
 		<top>10</top>
 		<right>10</right>
-		<width>600</width>
-		<height>327</height>
+		<width>500</width>
+		<height>303</height>
 		<align>right</align>
 		<usecontrolcoords>true</usecontrolcoords>
 		<control type="image">
@@ -451,8 +49,6 @@
 			<width>125</width>
 			<height>80</height>
 			<fadetime>TextureFadeTime</fadetime>
-			<include condition="!Skin.HasSetting(MediaFlagsColored)">MediaFlagWhite</include>
-			<include condition="Skin.HasSetting(MediaFlagsColored)">MediaFlagColored</include>
 			<aspectratio align="right" aligny="center">scale</aspectratio>
 			<texture>$VAR[MediaFlagsPathVar]audiocodec/$INFO[MusicPlayer.Codec,,.png]</texture>
 		</control>
@@ -467,18 +63,19 @@
 			<height>42</height>
 			<align>right</align>
 			<font>Font28_Reg</font>
-			<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+			<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
 			<label>$INFO[MusicPlayer.BitRate]kbps  $INFO[MusicPlayer.BitsPerSample]bit  $INFO[MusicPlayer.SampleRate]KHz</label>
 		</control>
 		<control type="progress">
 			<visible>!String.IsEmpty(MusicPlayer.Duration)</visible>
 			<info>Player.Progress</info>
+			<midtexture colordiffuse="$VAR[MainMenuHighlightColorVar]" border="8">panels/progress-control/progress-mid.png</midtexture>
 		</control>
 	</include>
 	<include name="HomeNowPlayingAudioNext">
 		<include>AnimationSlideRightVisible</include>
 		<right>10</right>
-		<width>600</width>
+		<width>500</width>
 		<height>327</height>
 		<control type="label">
 			<top>26</top>
@@ -532,7 +129,7 @@
 	<include name="HomeNowPlayingAudioTrackList">
 		<include>AnimationSlideRightVisible</include>
 		<right>10</right>
-		<width>600</width>
+		<width>500</width>
 		<control type="label">
 			<top>26</top>
 			<height>40</height>
@@ -597,13 +194,13 @@
 	<include name="HomeNowPlayingPlot">
 		<include>AnimationSlideRightVisible</include>
 		<right>10</right>
-		<width>600</width>
+		<width>500</width>
 		<control type="label">
 			<top>26</top>
 			<height>40</height>
 			<align>right</align>
 			<font>Font34_Reg</font>
-			<label>$VAR[NowPlayingHomePlotLabelVar]</label>
+			<label>$VAR[NowPlayingPlotLabelVar]</label>
 			<textcolor>$VAR[MainMenuHighLightColorVar]</textcolor>
 		</control>
 		<control type="image">
@@ -615,15 +212,15 @@
 			<texture flipx="true" colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/separator.png</texture>
 		</control>
 		<control type="textbox">
-			<top>74</top>
+			<top>83</top>
 			<right>0</right>
-			<width>600</width>
-			<height>244</height>
+			<width>500</width>
+			<height>254</height>
 			<align>right</align>
 			<font>Font30_Reg_97</font>
 			<include>AutoScrollPlot</include>
 			<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
-			<label>$VAR[NowPlayingHomePlotVar]</label>
+			<label>$VAR[NowPlayingPlotVar]</label>
 		</control>
 	</include>
 	<include name="NowPlayingPortraitContent">
@@ -756,7 +353,10 @@
 			<left>$PARAM[leftinfo]</left>
 			<right>$PARAM[right]</right>
 			<height>347</height>
-			<animation effect="slide" end="$PARAM[slide],0" time="300" condition="[!Player.Paused + $PARAM[discart] + !Player.IsInternetStream + !Pvr.IsPlayingTv + !Pvr.IsPlayingRadio] | [!Player.Paused + $PARAM[discart] + Skin.HasSetting(NowplayingSkinHelperScraper) + Player.IsInternetStream + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.DiscArt))]">Conditional</animation>
+			<animation effect="slide" end="$PARAM[slide],0" time="300" condition="!Player.Paused + $PARAM[discart] + !Player.IsInternetStream + !Pvr.IsPlayingTv + !Pvr.IsPlayingRadio + Skin.String(MusicDiscArtFallback,none) + [!String.IsEmpty(Player.Art(discart)) | !String.IsEmpty(Player.Art(album.discart))]">Conditional</animation>
+			<animation effect="slide" end="$PARAM[slide],0" time="300" condition="!Player.Paused + $PARAM[discart] + !Player.IsInternetStream + !Pvr.IsPlayingTv + !Pvr.IsPlayingRadio + !Skin.String(MusicDiscArtFallback,none)">Conditional</animation>
+			<animation effect="slide" end="$PARAM[slide],0" time="300" condition="!Player.Paused + $PARAM[discart] + Player.IsInternetStream + Skin.String(MusicDiscArtFallback,none) + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.DiscArt))">Conditional</animation>
+			<animation effect="slide" end="$PARAM[slide],0" time="300" condition="!Player.Paused + $PARAM[discart] + Player.IsInternetStream + !Skin.String(MusicDiscArtFallback,none)">Conditional</animation>
 			<control type="group">
 				<visible>!Skin.HasSetting(NowPlayingHomeAudioDisableInfo1)</visible>
 				<control type="fadelabel" id="9052">
@@ -823,30 +423,18 @@
 		<control type="group">
 			<left>$PARAM[left]</left>
 			<control type="image">
-				<visible>[$PARAM[discart] + !Player.IsInternetStream + !Pvr.IsPlayingTv + !Pvr.IsPlayingRadio] | [$PARAM[discart] + Skin.HasSetting(NowplayingSkinHelperScraper) + Player.IsInternetStream + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.DiscArt))]</visible>
+				<visible>[$PARAM[discart] + !Player.IsInternetStream + !Pvr.IsPlayingTv + !Pvr.IsPlayingRadio + !Skin.String(MusicDiscArtFallback,none)] | [$PARAM[discart] + Player.IsInternetStream + Skin.String(MusicDiscArtFallback,none) + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.DiscArt))] | [$PARAM[discart] + Player.IsInternetStream + !Skin.String(MusicDiscArtFallback,none)]</visible>
 				<animation effect="slide" end="$PARAM[slidedisc],0" time="300" condition="!Player.Paused + $PARAM[discart]">Conditional</animation>
 				<animation effect="rotate" end="360" center="auto" time="800" loop="true" condition="Player.Rewinding">Conditional</animation>
 				<animation effect="rotate" end="-360" center="auto" time="800" loop="true" condition="Player.Forwarding">Conditional</animation>
 				<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" condition="!Player.Paused + !Player.Forwarding + !Player.Rewinding">Conditional</animation>
+				<include>AnimationVisibleFade</include>
 				<left>$PARAM[discborder]</left>
 				<width>347</width>
 				<height>347</height>
 				<aspectratio>keep</aspectratio>
 				<bordersize>$PARAM[discborder]</bordersize>
-				<texture diffuse="diffuse/disc.png">$VAR[NowPlayingDiscArtVar]</texture>
-			</control>
-			<control type="image">
-				<visible>$PARAM[discart] + Skin.HasSetting(NowplayingSkinHelperScraper) + Player.IsInternetStream + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.DiscArt))</visible>
-				<animation effect="slide" end="$PARAM[slidedisc],0" time="300" condition="!Player.Paused + $PARAM[discart]">Conditional</animation>
-				<animation effect="rotate" end="360" center="auto" time="800" loop="true" condition="Player.Rewinding">Conditional</animation>
-				<animation effect="rotate" end="-360" center="auto" time="800" loop="true" condition="Player.Forwarding">Conditional</animation>
-				<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" condition="!Player.Paused + !Player.Forwarding + !Player.Rewinding">Conditional</animation>
-				<left>$PARAM[discborder]</left>
-				<width>347</width>
-				<height>347</height>
-				<aspectratio>keep</aspectratio>
-				<bordersize>$PARAM[discborder]</bordersize>
-				<texture diffuse="diffuse/disc.png">$INFO[Window(Home).Property(SkinHelper.Player.Art.DiscArt)]</texture>
+				<texture diffuse="diffuse/disc.png">$VAR[NowPlayingMusicDiscArtVar]</texture>
 			</control>
 			<control type="image">
 				<visible>!Player.IsInternetStream + !Pvr.IsPlayingRadio</visible>
@@ -865,7 +453,7 @@
 				<aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
 			</control>
 			<control type="image">
-				<visible>Skin.HasSetting(NowplayingSkinHelperScraper) + Player.IsInternetStream + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.Thumb))</visible>
+				<visible>Skin.HasSetting(NowplayingSkinHelperScraper) + [Player.IsInternetStream | Pvr.IsPlayingRadio] + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.Thumb))</visible>
 				<width>347</width>
 				<height>347</height>
 				<bordersize>$PARAM[border]</bordersize>
@@ -884,8 +472,8 @@
 		<include>AnimationSlideRightVisible</include>
 		<top>10</top>
 		<right>10</right>
-		<width>600</width>
-		<height>355</height>
+		<width>500</width>
+		<height>356</height>
 		<align>right</align>
 		<usecontrolcoords>true</usecontrolcoords>
 		<control type="image">
@@ -893,8 +481,6 @@
 			<width>125</width>
 			<height>80</height>
 			<fadetime>TextureFadeTime</fadetime>
-			<include condition="!Skin.HasSetting(MediaFlagsColored)">MediaFlagWhite</include>
-			<include condition="Skin.HasSetting(MediaFlagsColored)">MediaFlagColored</include>
 			<aspectratio align="right" aligny="center">scale</aspectratio>
 			<texture>$VAR[MediaFlagsPathVar]audiocodec/$INFO[MusicPlayer.Codec,,.png]</texture>
 		</control>
@@ -902,7 +488,7 @@
 			<height>40</height>
 			<align>right</align>
 			<font>Font34_Reg</font>
-			<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+			<textcolor>$VAR[PanelTextColorVar]</textcolor>
 			<label>$INFO[MusicPlayer.Time]$INFO[MusicPlayer.Duration, / ]</label>
 		</control>
 		<control type="label">
@@ -915,12 +501,13 @@
 		<control type="progress">
 			<visible>!String.IsEmpty(MusicPlayer.Duration)</visible>
 			<info>Player.Progress</info>
+			<midtexture colordiffuse="$VAR[PanelHighlightColorVar]" border="8">panels/progress-control/progress-mid.png</midtexture>
 		</control>
 	</include>
 	<include name="NowPlayingMusicVizNext">
 		<include>AnimationSlideRightVisible</include>
 		<right>10</right>
-		<width>600</width>
+		<width>500</width>
 		<height>380</height>
 		<control type="label">
 			<top>26</top>
@@ -928,7 +515,7 @@
 			<align>right</align>
 			<label>$LOCALIZE[209]</label>
 			<font>Font34_Reg</font>
-			<textcolor>$VAR[MainMenuHighLightColorVar]</textcolor>
+			<textcolor>$VAR[PanelHighLightColorVar]</textcolor>
 		</control>
 		<control type="image">
 			<top>72</top>
@@ -936,7 +523,7 @@
 			<width>388</width>
 			<height>4</height>
 			<aspectratio align="right" aligny="center">scale</aspectratio>
-			<texture flipx="true" colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/separator.png</texture>
+			<texture flipx="true" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
 		</control>
 		<control type="image">
 			<top>75</top>
@@ -945,7 +532,7 @@
 			<bordersize>10</bordersize>
 			<width>232</width>
 			<aspectratio align="right" aligny="center">scale</aspectratio>
-			<texture diffuse="diffuse/rounded5-159x159.png">$INFO[MusicPlayer.offset(1).Cover]</texture>
+			<texture diffuse="diffuse/rounded5-212x212.png">$INFO[MusicPlayer.offset(1).Cover]</texture>
 		</control>
 		<control type="image">
 			<top>75</top>
@@ -959,7 +546,7 @@
 			<height>40</height>
 			<align>right</align>
 			<font>Font30_Reg</font>
-			<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
+			<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 			<label>$INFO[MusicPlayer.offset(1).Artist]</label>
 		</control>
 		<control type="label">
@@ -967,21 +554,21 @@
 			<bottom>6</bottom>
 			<align>right</align>
 			<font>Font28_Reg</font>
-			<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
-			<label>[COLOR $VAR[MainMenuHighlightColorVar]]$INFO[MusicPlayer.offset(1).TrackNumber,,. ][/COLOR]$INFO[MusicPlayer.offset(1).Title]</label>
+			<textcolor>$VAR[PanelTextColorVar]</textcolor>
+			<label>[COLOR $VAR[PanelHighlightColorVar]]$INFO[MusicPlayer.offset(1).TrackNumber,,. ][/COLOR]$INFO[MusicPlayer.offset(1).Title]</label>
 		</control>
 	</include>
 	<include name="NowPlayingMusicVizTracks">
 		<include>AnimationSlideRightVisible</include>
 		<right>10</right>
-		<width>600</width>
+		<width>500</width>
 		<control type="label">
 			<top>26</top>
 			<height>40</height>
 			<align>right</align>
 			<font>Font34_Reg</font>
 			<label>$LOCALIZE[209]</label>
-			<textcolor>$VAR[MainMenuHighLightColorVar]</textcolor>
+			<textcolor>$VAR[PanelHighLightColorVar]</textcolor>
 		</control>
 		<control type="image">
 			<top>72</top>
@@ -989,7 +576,7 @@
 			<width>388</width>
 			<height>4</height>
 			<aspectratio align="right" aligny="center">scale</aspectratio>
-			<texture flipx="true" colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/separator.png</texture>
+			<texture flipx="true" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
 		</control>
 		<control type="grouplist">
 			<top>76</top>
@@ -1013,15 +600,15 @@
 			<height>32</height>
 			<align>right</align>
 			<font>Font26_Reg</font>
-			<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
+			<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 			<label>$INFO[MusicPlayer.offset($PARAM[offset]).Artist]</label>
 		</control>
 		<control type="label">
 			<height>30</height>
 			<align>right</align>
 			<font>Font28_Reg</font>
-			<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
-			<label>[COLOR $VAR[MainMenuHighlightColorVar]]$INFO[MusicPlayer.offset($PARAM[offset]).TrackNumber,,. ][/COLOR]$INFO[MusicPlayer.offset($PARAM[offset]).Title]</label>
+			<textcolor>$VAR[PanelTextColorVar]</textcolor>
+			<label>[COLOR $VAR[PanelHighlightColorVar]]$INFO[MusicPlayer.offset($PARAM[offset]).TrackNumber,,. ][/COLOR]$INFO[MusicPlayer.offset($PARAM[offset]).Title]</label>
 		</control>
 		<control type="label">
 			<height>15</height>
@@ -1030,14 +617,14 @@
 	<include name="NowPlayingMusicVizPlot">
 		<include>AnimationSlideRightVisible</include>
 		<right>10</right>
-		<width>600</width>
+		<width>500</width>
 		<control type="label">
 			<top>26</top>
 			<height>40</height>
 			<align>right</align>
 			<font>Font34_Reg</font>
-			<label>$VAR[NowPlayingHomePlotLabelVar]</label>
-			<textcolor>$VAR[MainMenuHighLightColorVar]</textcolor>
+			<label>$VAR[NowPlayingPlotLabelVar]</label>
+			<textcolor>$VAR[PanelHighLightColorVar]</textcolor>
 		</control>
 		<control type="image">
 			<top>72</top>
@@ -1045,18 +632,18 @@
 			<width>388</width>
 			<height>4</height>
 			<aspectratio align="right" aligny="center">scale</aspectratio>
-			<texture flipx="true" colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/separator.png</texture>
+			<texture flipx="true" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
 		</control>
 		<control type="textbox">
 			<top>83</top>
 			<right>0</right>
-			<width>600</width>
+			<width>500</width>
 			<height>286</height>
 			<align>right</align>
 			<font>Font30_Reg_97</font>
 			<include>AutoScrollPlot</include>
-			<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
-			<label>$VAR[NowPlayingHomePlotVar]</label>
+			<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+			<label>$VAR[NowPlayingPlotVar]</label>
 		</control>
 	</include>
 	<include name="NowPlayingMusicVizContent">
@@ -1064,7 +651,10 @@
 			<left>$PARAM[leftinfo]</left>
 			<right>$PARAM[right]</right>
 			<height>400</height>
-			<animation effect="slide" end="$PARAM[slide],0" time="300" condition="[!Player.Paused + !Skin.HasSetting(NowPlayingMusicVizDisableDiscArt) + !Player.IsInternetStream + !Pvr.IsPlayingTv + !Pvr.IsPlayingRadio] | [!Player.Paused + !Skin.HasSetting(NowPlayingMusicVizDisableDiscArt) + Skin.HasSetting(NowplayingSkinHelperScraper) + Player.IsInternetStream + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.DiscArt))]">Conditional</animation>
+			<animation effect="slide" end="$PARAM[slide],0" time="300" condition="!Player.Paused + !Skin.HasSetting(NowPlayingMusicVizDisableDiscArt) + !Player.IsInternetStream + !Pvr.IsPlayingRadio + Skin.String(MusicDiscArtFallback,none) + [!String.IsEmpty(Player.Art(discart)) | !String.IsEmpty(Player.Art(album.discart))]">Conditional</animation>
+			<animation effect="slide" end="$PARAM[slide],0" time="300" condition="!Player.Paused + !Skin.HasSetting(NowPlayingMusicVizDisableDiscArt) + !Player.IsInternetStream + !Pvr.IsPlayingRadio + !Skin.String(MusicDiscArtFallback,none)">Conditional</animation>
+			<animation effect="slide" end="$PARAM[slide],0" time="300" condition="!Player.Paused + !Skin.HasSetting(NowPlayingMusicVizDisableDiscArt) + Player.IsInternetStream + Skin.String(MusicDiscArtFallback,none) + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.DiscArt))">Conditional</animation>
+			<animation effect="slide" end="$PARAM[slide],0" time="300" condition="!Player.Paused + !Skin.HasSetting(NowPlayingMusicVizDisableDiscArt) + Player.IsInternetStream + !Skin.String(MusicDiscArtFallback,none)">Conditional</animation>
 			<control type="group">
 				<visible>!Skin.HasSetting(NowPlayingMusicVizDisableInfo1)</visible>
 				<include>AnimationVisibleFade</include>
@@ -1074,7 +664,7 @@
 					<height>40</height>
 					<font>Font34_Reg</font>
 					<label>$VAR[NowPlayingInfo1Var]</label>
-					<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
 				</control>
 				<control type="image">
 					<visible>!String.IsEmpty(Control.GetLabel(9052)) | !String.IsEmpty(Control.GetLabel(9053))</visible>
@@ -1082,7 +672,7 @@
 					<left>0</left>
 					<width>500</width>
 					<height>4</height>
-					<texture colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/separator.png</texture>
+					<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
 				</control>
 				<control type="fadelabel" id="9053">
 					<top>74</top>
@@ -1090,7 +680,7 @@
 					<height>40</height>
 					<font>Font28_Reg</font>
 					<label>$VAR[NowPlayingInfo2Var]</label>
-					<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
+					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 				</control>
 			</control>
 			<control type="image">
@@ -1112,20 +702,20 @@
 					<height>40</height>
 					<font>Font28_Reg</font>
 					<label>$VAR[NowPlayingStatusVar]</label>
-					<textcolor>$VAR[MainMenuHighlightColorVar]</textcolor>
+					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 				</control>
 				<control type="image">
 					<width>18</width>
 					<height>36</height>
 					<bottom>30</bottom>
-					<texture colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/nowplaying.png</texture>
+					<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/nowplaying.png</texture>
 				</control>
 				<control type="fadelabel">
 					<left>50</left>
 					<height>40</height>
 					<bottom>29</bottom>
 					<font>Font34_Reg</font>
-					<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
 					<label>$INFO[MusicPlayer.TrackNumber,,. ]$INFO[Player.Title,, ]$INFO[VideoPlayer.Year,(,)]</label>
 				</control>
 			</control>
@@ -1133,7 +723,7 @@
 		<control type="group">
 			<left>$PARAM[left]</left>
 			<control type="image">
-				<visible>[!Skin.HasSetting(NowPlayingMusicVizDisableDiscArt) + !Player.IsInternetStream + !Pvr.IsPlayingTv + !Pvr.IsPlayingRadio] | [!Skin.HasSetting(NowPlayingMusicVizDisableDiscArt) + Skin.HasSetting(NowplayingSkinHelperScraper) + Player.IsInternetStream + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.DiscArt))]</visible>
+				<visible>[!Skin.HasSetting(NowPlayingMusicVizDisableDiscArt) + !Player.IsInternetStream + !Pvr.IsPlayingRadio + !Skin.String(MusicDiscArtFallback,none)] | [!Skin.HasSetting(NowPlayingMusicVizDisableDiscArt) + Player.IsInternetStream + Skin.String(MusicDiscArtFallback,none) + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.DiscArt))] | [!Skin.HasSetting(NowPlayingMusicVizDisableDiscArt) + Player.IsInternetStream + !Skin.String(MusicDiscArtFallback,none)]</visible>
 				<animation effect="slide" end="$PARAM[slidedisc],0" time="300" condition="!Player.Paused + !Skin.HasSetting(NowPlayingMusicVizDisableDiscArt)">Conditional</animation>
 				<animation effect="rotate" end="360" center="auto" time="800" loop="true" condition="Player.Rewinding">Conditional</animation>
 				<animation effect="rotate" end="-360" center="auto" time="800" loop="true" condition="Player.Forwarding">Conditional</animation>
@@ -1144,21 +734,7 @@
 				<height>400</height>
 				<aspectratio>keep</aspectratio>
 				<bordersize>$PARAM[discborder]</bordersize>
-				<texture diffuse="diffuse/disc.png">$VAR[NowPlayingDiscArtVar]</texture>
-			</control>
-			<control type="image">
-				<visible>!Skin.HasSetting(NowPlayingMusicVizDisableDiscArt) + Skin.HasSetting(NowplayingSkinHelperScraper) + Player.IsInternetStream + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.DiscArt))</visible>
-				<animation effect="slide" end="$PARAM[slidedisc],0" time="300" condition="!Player.Paused + !Skin.HasSetting(NowPlayingMusicVizDisableDiscArt)">Conditional</animation>
-				<animation effect="rotate" end="360" center="auto" time="800" loop="true" condition="Player.Rewinding">Conditional</animation>
-				<animation effect="rotate" end="-360" center="auto" time="800" loop="true" condition="Player.Forwarding">Conditional</animation>
-				<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" condition="!Player.Paused + !Player.Forwarding + !Player.Rewinding">Conditional</animation>
-				<include>AnimationVisibleFade</include>
-				<left>$PARAM[discborder]</left>
-				<width>400</width>
-				<height>400</height>
-				<aspectratio>keep</aspectratio>
-				<bordersize>$PARAM[discborder]</bordersize>
-				<texture diffuse="diffuse/disc.png">$INFO[Window(Home).Property(SkinHelper.Player.Art.DiscArt)]</texture>
+				<texture diffuse="diffuse/disc.png">$VAR[NowPlayingMusicDiscArtVar]</texture>
 			</control>
 			<control type="image">
 				<visible>!Player.IsInternetStream + !Pvr.IsPlayingRadio</visible>
@@ -1173,7 +749,7 @@
 				<width>400</width>
 				<height>400</height>
 				<bordersize>$PARAM[border]</bordersize>
-				<texture diffuse="diffuse/rounded5-327x327.png">$VAR[NowPlayingThumbVar]</texture>
+				<texture diffuse="diffuse/rounded5-380x380.png">$VAR[NowPlayingThumbVar]</texture>
 				<aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
 			</control>
 			<control type="image">
@@ -1182,7 +758,7 @@
 				<width>400</width>
 				<height>400</height>
 				<bordersize>$PARAM[border]</bordersize>
-				<texture diffuse="diffuse/rounded5-327x327.png">$INFO[Window(Home).Property(SkinHelper.Player.Art.Thumb)]</texture>
+				<texture diffuse="diffuse/rounded5-380x380.png">$INFO[Window(Home).Property(SkinHelper.Player.Art.Thumb)]</texture>
 				<aspectratio align="center" aligny="center" scalediffuse="false">$PARAM[aspect]</aspectratio>
 			</control>
 		</control>

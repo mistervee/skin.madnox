@@ -4,40 +4,48 @@
 	<backgroundcolor>FF000000</backgroundcolor>
 	<controls>
 		<include>AnimationWindowFade</include>
-		<control type="visualisation">
+		<control type="visualisation" id="2">
 			<include>FullScreenDimensions</include>
 		</control>
 		<control type="multiimage">
-			<include>FullScreenDimensions</include>
-			<aspectratio>scale</aspectratio>
-			<imagepath background="true" colordiffuse="AAFFFFFF">$VAR[NowPlayingMusicVizFanArtVar]</imagepath>
-			<randomize>true</randomize>
-			<fadetime>TextureFadeTime</fadetime>
-			<animation type="Conditional" pulse="true" condition="Skin.HasSetting(MusicOSDAnimatedBackground)">
-				<effect type="zoom" start="110" end="120" center="auto" time="12000" tween="sine" easing="inout"/>
-				<effect type="slide" start="-20,-20" end="20,20" time="6000" tween="sine" easing="inout"/>
-			</animation>
 			<visible>Visualisation.Enabled</visible>
-		</control>
-		<control type="multiimage">
-			<include>FullScreenDimensions</include>
-			<aspectratio>scale</aspectratio>
-			<imagepath background="true">$VAR[NowPlayingMusicVizFanArtVar]</imagepath>
-			<randomize>true</randomize>
-			<fadetime>TextureFadeTime</fadetime>
 			<animation type="Conditional" pulse="true" condition="Skin.HasSetting(MusicOSDAnimatedBackground)">
 				<effect type="zoom" start="110" end="120" center="auto" time="12000" tween="sine" easing="inout"/>
 				<effect type="slide" start="-20,-20" end="20,20" time="6000" tween="sine" easing="inout"/>
 			</animation>
+			<include>FullScreenDimensions</include>
+			<randomize>true</randomize>
+			<aspectratio>scale</aspectratio>
+			<fadetime>TextureFadeTime</fadetime>
+			<imagepath background="true" colordiffuse="AAFFFFFF">$VAR[NowPlayingMusicVizFanArtVar]</imagepath>
+		</control>
+		<control type="multiimage">
 			<visible>!Visualisation.Enabled</visible>
+			<animation type="Conditional" pulse="true" condition="Skin.HasSetting(MusicOSDAnimatedBackground)">
+				<effect type="zoom" start="110" end="120" center="auto" time="12000" tween="sine" easing="inout"/>
+				<effect type="slide" start="-20,-20" end="20,20" time="6000" tween="sine" easing="inout"/>
+			</animation>
+			<include>FullScreenDimensions</include>
+			<randomize>true</randomize>
+			<aspectratio>scale</aspectratio>
+			<fadetime>TextureFadeTime</fadetime>
+			<imagepath background="true">$VAR[NowPlayingMusicVizFanArtVar]</imagepath>
 		</control>
 		<control type="image">
+			<visible>Player.ShowInfo</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">440</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">440</param>
+			</include>
 			<top>480</top>
 			<width>1920</width>
 			<height>600</height>
 			<texture colordiffuse="FF000000">panels/background-gradient.png</texture>
 		</control>
 		<control type="group">
+			<visible>Player.ShowInfo</visible>
 			<left>15</left>
 			<bottom>15</bottom>
 			<right>15</right>
@@ -45,8 +53,11 @@
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">440</param>
 			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">440</param>
+			</include>
 			<control type="group">
-				<visible>String.IsEqual(Skin.String(NowPlayingMusicVizMusicInfo),none) | String.IsEqual(Skin.String(NowPlayingMusicVizAudioInfo),none)</visible>
+				<visible>[String.IsEqual(Skin.String(NowPlayingMusicVizMusicInfo),none) + !Player.IsInternetStream + !Pvr.IsPlayingRadio] | [String.IsEqual(Skin.String(NowPlayingMusicVizAudioInfo),none) + [Player.IsInternetStream | Pvr.IsPlayingRadio]]</visible>
 				<control type="group">
 					<visible>String.IsEmpty(Skin.String(NowPlayingMusicVizCase))</visible>
 					<include>AnimationVisibleFade</include>
@@ -91,13 +102,13 @@
 				</control>
 			</control>
 			<control type="group">
-				<visible>!String.IsEqual(Skin.String(NowPlayingMusicVizMusicInfo),none) + !String.IsEqual(Skin.String(NowPlayingMusicVizAudioInfo),none)</visible>
+				<visible>[!String.IsEqual(Skin.String(NowPlayingMusicVizMusicInfo),none) + !Player.IsInternetStream + !Pvr.IsPlayingRadio] | [!String.IsEqual(Skin.String(NowPlayingMusicVizAudioInfo),none) + [Player.IsInternetStream | Pvr.IsPlayingRadio]]</visible>
 				<control type="group">
 					<visible>String.IsEmpty(Skin.String(NowPlayingMusicVizCase))</visible>
 					<include>AnimationVisibleFade</include>
 					<include content="NowPlayingMusicVizContent">
 						<param name="left">0</param>
-						<param name="right">760</param>
+						<param name="right">660</param>
 						<param name="leftinfo">390</param>
 						<param name="casewidth">400</param>
 						<param name="border">10</param>

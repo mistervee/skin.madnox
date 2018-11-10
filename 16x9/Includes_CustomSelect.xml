@@ -475,19 +475,19 @@
 	<include name="SelectMainMenuNowPlayingMusicCase">
 		<item>
 			<label>$LOCALIZE[571]</label>
-			<onclick>Skin.Reset(MainMenuNowPlayingAudioCase)</onclick>
+			<onclick>Skin.Reset(NowPlayingHomeAudioCase)</onclick>
 		</item>
 		<item>
-			<label>Glass</label>
-			<onclick>Skin.SetString(MainMenuNowPlayingAudioCase,glass)</onclick>
+			<label>$LOCALIZE[31171]</label>
+			<onclick>Skin.SetString(NowPlayingHomeAudioCase,glass)</onclick>
 		</item>
 		<item>
 			<label>CD</label>
-			<onclick>Skin.SetString(MainMenuNowPlayingAudioCase,cd)</onclick>
+			<onclick>Skin.SetString(NowPlayingHomeAudioCase,cd)</onclick>
 		</item>
 		<item>
-			<label>CD clear</label>
-			<onclick>Skin.SetString(MainMenuNowPlayingAudioCase,cdclear)</onclick>
+			<label>$LOCALIZE[31172]</label>
+			<onclick>Skin.SetString(NowPlayingHomeAudioCase,cdclear)</onclick>
 		</item>
 	</include>
 	<include name="SelectMainMenuNowPlayingVideoCase">
@@ -550,6 +550,34 @@
 		<item>
 			<label>$LOCALIZE[29915]</label>
 			<onclick>Skin.SetString(NowPlayingHomeAudioInfo,info)</onclick>
+		</item>
+	</include>
+	<include name="SelectNowPlayingVideoBackground">
+		<item>
+			<label>$LOCALIZE[231]</label>
+			<onclick>Skin.SetString(NowPlayingVideoBackground,none)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[571]</label>
+			<onclick>Skin.Reset(NowPlayingVideoBackground)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[31035]</label>
+			<onclick>Skin.SetString(NowPlayingVideoBackground,extra)</onclick>
+		</item>
+	</include>
+	<include name="SelectNowPlayingMusicBackground">
+		<item>
+			<label>$LOCALIZE[231]</label>
+			<onclick>Skin.SetString(NowPlayingMusicBackground,none)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[571]</label>
+			<onclick>Skin.Reset(NowPlayingMusicBackground)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[31035]</label>
+			<onclick>Skin.SetString(NowPlayingMusicBackground,extra)</onclick>
 		</item>
 	</include>
 	<!-- Music viz -->
@@ -1001,6 +1029,25 @@
 			<onclick>ActivateWindow(1110)</onclick>
 			<include>DialogButton</include>
 		</control>
+		<control type="label" id="129">
+			<width>990</width>
+			<label>$LOCALIZE[31106]</label>
+			<include>DialogLabel</include>
+		</control>
+		<control type="radiobutton" id="130">
+			<label>$LOCALIZE[31192]</label>
+			<onclick>Skin.ToggleSetting(NowplayingSkinHelperScraper)</onclick>
+			<selected>Skin.HasSetting(NowplayingSkinHelperScraper)</selected>
+			<include>DialogRadioButtonCustomSelect</include>
+		</control>
+		<control type="button" id="131">
+			<width>990</width>
+			<label>$LOCALIZE[31009]</label>
+			<label2>$VAR[NowPlayingMusicDiscArtLabelVar]</label2>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[31009],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
+			<include>DialogButton</include>
+		</control>
 	</include>
 	<!-- Video OSD -->
 	<include name="VideoOSDSettings">
@@ -1192,5 +1239,56 @@
 			<onclick condition="!System.HasAddon(script.cinemavision)">InstallAddon(script.cinemavision)</onclick>
 			<selected>Skin.HasSetting(VideoInfoCinemaVisionPlay)</selected>
 		</control>
+	</include>
+	<!-- Disc art fallback -->
+	<include name="SelectMusicDiscArtFallback">
+		<item>
+			<label>$LOCALIZE[571]</label>
+			<onclick>Skin.Reset(MusicDiscArtFallback)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[231]</label>
+			<onclick>Skin.SetString(MusicDiscArtFallback,none)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[31182]</label>
+			<onclick>Skin.SetString(MusicDiscArtFallback,vinyl)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[31183]</label>
+			<onclick>Skin.SetString(MusicDiscArtFallback,bd)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[31184]</label>
+			<onclick>Skin.SetString(MusicDiscArtFallback,white)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[31185]</label>
+			<onclick>Skin.SetString(MusicDiscArtFallback,blue)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[31186]</label>
+			<onclick>Skin.SetString(MusicDiscArtFallback,golden)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[31187]</label>
+			<onclick>Skin.SetString(MusicDiscArtFallback,green)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[31188]</label>
+			<onclick>Skin.SetString(MusicDiscArtFallback,grey)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[31189]</label>
+			<onclick>Skin.SetString(MusicDiscArtFallback,orange)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[31190]</label>
+			<onclick>Skin.SetString(MusicDiscArtFallback,purple)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[31191]</label>
+			<onclick>Skin.SetString(MusicDiscArtFallback,red)</onclick>
+		</item>
 	</include>
 </includes>
