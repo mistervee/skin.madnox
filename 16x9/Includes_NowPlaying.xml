@@ -302,7 +302,7 @@
 				<height>$PARAM[width]</height>
 				<aspectratio>keep</aspectratio>
 				<bordersize>10</bordersize>
-				<texture diffuse="thumbs/disc-diffuse.png">$VAR[NowPlayingDiscArtVar]</texture>
+				<texture diffuse="thumbs/disc-diffuse.png">$VAR[NowPlayingVideoDiscArtVar]</texture>
 			</control>
 			<control type="image">
 				<visible>Skin.HasSetting(NowplayingSkinHelperScraper) + [Player.IsInternetStream | Pvr.IsPlayingRadio] + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.DiscArt))</visible>
@@ -500,6 +500,7 @@
 		</control>
 		<control type="progress">
 			<visible>!String.IsEmpty(MusicPlayer.Duration)</visible>
+			<include>AnimationVisibleFade</include>
 			<info>Player.Progress</info>
 			<midtexture colordiffuse="$VAR[PanelHighlightColorVar]" border="8">panels/progress-control/progress-mid.png</midtexture>
 		</control>

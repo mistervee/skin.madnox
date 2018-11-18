@@ -1,49 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
+	<defaultcontrol always="true">110</defaultcontrol>
 	<controls>
-		<control type="label">
-			<top>300</top>
-			<width>1920</width>
-			<height>600</height>
-			<font>Font80_Bold</font>
-			<label>$INFO[Container(110).Currentitem]</label>
-		</control>
+		<!-- Default lyrics -->
 		<control type="group">
+			<animation effect="slide" end="0,202" time="200" condition="[!Player.ShowInfo + String.IsEmpty(Skin.String(NowPlayingMusicVizInfo))] | String.IsEqual(Skin.String(NowPlayingMusicVizInfo),off)">conditional</animation>
+			<include>AnimationVisibleFade</include>
 			<control type="list" id="110">
-				<visible>false</visible>
-				<top>25</top>
-				<left>25</left>
-				<right>25</right>
-				<bottom>430</bottom>
-				<onleft>111</onleft>
-				<onright>111</onright>
+				<top>50</top>
+				<left>50</left>
+				<right>50</right>
+				<bottom>455</bottom>
+				<onleft>PlayerControl(previous)</onleft>
+				<onright>PlayerControl(next)</onright>
 				<onup>110</onup>
 				<ondown>110</ondown>
-				<pagecontrol>101</pagecontrol>
-				<scrolltime tween="quadratic" easing="out">200</scrolltime>
-				<itemlayout height="50">
+				<itemlayout height="82">
 					<control type="label">
-						<height>50</height>
+						<top>5</top>
+						<left>5</left>
 						<align>center</align>
+						<font>Font38_Bold</font>
 						<label>$INFO[ListItem.Label]</label>
+						<textcolor>$VAR[LyricShadowColorVar]</textcolor>
+					</control>
+					<control type="label">
+						<align>center</align>
+						<font>Font38_Bold</font>
+						<label>$INFO[ListItem.Label]</label>
+						<textcolor>$VAR[LyricTextColorVar]</textcolor>
 					</control>
 				</itemlayout>
-				<focusedlayout height="50">
+				<focusedlayout height="82">
 					<control type="label">
-						<height>50</height>
+						<top>5</top>
+						<left>5</left>
 						<align>center</align>
-						<textcolor>blue</textcolor>
+						<font>Font38_Bold</font>
 						<label>$INFO[ListItem.Label]</label>
+						<textcolor>$VAR[LyricShadowColorVar]</textcolor>
+					</control>
+					<control type="label">
+						<align>center</align>
+						<font>Font38_Bold</font>
+						<label>$INFO[ListItem.Label]</label>
+						<textcolor>$VAR[LyricHighlightColorVar]</textcolor>
 					</control>
 				</focusedlayout>
 			</control>
-			<control type="label" id="200">
-				<include>HiddenObject</include>
-			</control>
 		</control>
+		<!-- Animated lyrics -->
 		<control type="group">
-			<visible>!String.IsEmpty(Container(110).ListItem.Label)</visible>
+			<visible>!String.IsEmpty(Container(110).ListItem.Label) + !Skin.HasSetting(DisableMusicVizAnimatedLyrics)</visible>
 			<include>AnimationVisibleFade</include>
+			<animation effect="slide" end="0,202" time="200" condition="[!Player.ShowInfo + String.IsEmpty(Skin.String(NowPlayingMusicVizInfo))] | String.IsEqual(Skin.String(NowPlayingMusicVizInfo),off)">conditional</animation>
 			<!-- Line 1 -->
 			<control type="group">
 				<visible>String.IsEqual(Container(110).Currentitem,1) | String.EndsWith(Container(110).Currentitem,16) | String.EndsWith(Container(110).Currentitem,31) | String.EndsWith(Container(110).Currentitem,46) | String.EndsWith(Container(110).Currentitem,61) | String.EndsWith(Container(110).Currentitem,76) | String.EndsWith(Container(110).Currentitem,91) | String.EndsWith(Container(110).Currentitem,06)</visible>
@@ -1316,6 +1326,9 @@
 			</control>
 		</control>
 		<!-- ** Required ** Do not change <id> or <type> (Lyrics Chooser, if multiple lyrics are available) -->
+		<control type="label" id="200">
+				<include>HiddenObject</include>
+		</control>
 		<control type="group">
 			<visible>Control.IsVisible(120) + !Control.IsVisible(110)</visible>
 			<include>AnimationDialogPopupVisible</include>
@@ -1330,9 +1343,9 @@
 				<left>20</left>
 				<width>990</width>
 				<height>420</height>
-				<onleft>111</onleft>
+				<onleft>121</onleft>
 				<onright>8000</onright>
-				<pagecontrol>111</pagecontrol>
+				<pagecontrol>121</pagecontrol>
 				<include content="DialogList2Default">
 					<param name="id">120</param>
 				</include>
@@ -1341,10 +1354,23 @@
 				<include>DialogItemCountLabel</include>
 				<label>$INFO[Control.GetLabel(200),$LOCALIZE[21870] - ]$INFO[Container(120).CurrentPage, - ]$INFO[Container(120).NumPages,/]</label>
 			</control>
-			<control type="scrollbar" id="111">
+			<control type="scrollbar" id="121">
 				<onright>100</onright>
 				<include>DialogScrollBar</include>
 			</control>
 		</control>
+		<!-- Button to prevent mouse menu popup unless at top of screen -->
+		<control type="label">
+				<description>Scraper label</description>
+				<left>870</left>
+				<top>1020</top>
+				<width>825</width>
+				<height>45</height>
+				<label>$LOCALIZE[31205] - $INFO[Control.GetLabel(200)]</label>
+				<font>font12_title</font>
+				<align>right</align>
+				<textcolor>grey2</textcolor>
+				<visible>false</visible>
+			</control>
 	</controls>
 </window>

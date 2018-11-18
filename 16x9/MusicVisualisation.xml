@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
-	<defaultcontrol></defaultcontrol>
 	<backgroundcolor>FF000000</backgroundcolor>
 	<controls>
+		<!-- Background -->
 		<include>AnimationWindowFade</include>
 		<control type="visualisation" id="2">
 			<include>FullScreenDimensions</include>
@@ -32,7 +32,46 @@
 			<imagepath background="true">$VAR[NowPlayingMusicVizFanArtVar]</imagepath>
 		</control>
 		<control type="image">
-			<visible>Player.ShowInfo</visible>
+			<visible>Skin.HasSetting(DisableMusicVizAnimatedLyrics) + Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>
+			<include>FullScreenDimensions</include>
+			<texture>colors/black50.png</texture>
+		</control>
+		<!-- Background scroll labels -->
+		<control type="fadelabel">
+			<top>380</top>
+			<width>1920</width>
+			<height>300</height>
+			<scroll>true</scroll>
+			<scrollout>true</scrollout>
+			<font>Font600_Bold_Caps</font>
+			<pauseatend>200</pauseatend>
+			<label>$INFO[Player.Title]</label>
+			<label>$INFO[MusicPlayer.Artist]</label>
+			<label>$INFO[MusicPlayer.Album]</label>
+			<textcolor>1FFFFFFF</textcolor>
+			<textoffsetx>20</textoffsetx>
+			<resetonlabelchange>true</resetonlabelchange>
+			<visible>Skin.HasSetting(NowPlayingMusicVizBackgroundInfo)</visible>
+		</control>
+		<control type="fadelabel">
+			<left>980</left>
+			<width>1080</width>
+			<scroll>true</scroll>
+			<scrollout>true</scrollout>
+			<font>Font600_Bold_Caps</font>
+			<pauseatend>200</pauseatend>
+			<label>$INFO[MusicPlayer.Artist]</label>
+			<label>$INFO[MusicPlayer.Album]</label>
+			<label>$INFO[Player.Title]</label>
+			<textcolor>1FFFFFFF</textcolor>
+			<textoffsetx>20</textoffsetx>
+			<resetonlabelchange>true</resetonlabelchange>
+			<visible>Skin.HasSetting(NowPlayingMusicVizBackgroundInfo)</visible>
+			<animation effect="rotate" center="auto" end="90" condition="true">Conditonal</animation>
+		</control>
+		<!-- Music info -->
+		<control type="image">
+			<visible>[Player.ShowInfo + String.IsEmpty(Skin.String(NowPlayingMusicVizInfo))] | String.IsEqual(Skin.String(NowPlayingMusicVizInfo),persistant)</visible>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">440</param>
 			</include>
@@ -45,7 +84,7 @@
 			<texture colordiffuse="FF000000">panels/background-gradient.png</texture>
 		</control>
 		<control type="group">
-			<visible>Player.ShowInfo</visible>
+			<visible>[Player.ShowInfo + String.IsEmpty(Skin.String(NowPlayingMusicVizInfo))] | String.IsEqual(Skin.String(NowPlayingMusicVizInfo),persistant)</visible>
 			<left>15</left>
 			<bottom>15</bottom>
 			<right>15</right>
@@ -184,6 +223,14 @@
 					<include>NowPlayingMusicVizInfo</include>
 				</control>
 			</control>
+		</control>
+		<!-- Button to prevent mouse menu popup unless at top of screen -->
+		<control type="button" id="1000">
+			<top>1</top>
+			<width>1920</width>
+			<height>1080</height>
+			<texturefocus />
+			<texturenofocus />
 		</control>
 	</controls>
 </window>
