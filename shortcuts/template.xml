@@ -1,519 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <template>
-	<!-- Live background -->
-	<other include="LiveBackgroundHome">
-		<condition tag="property" attribute="name|widgetType.LiveBackground" />
-		<property name="id" tag="mainmenuid" />
-
-		<property name="content" tag="property" attribute="name|widgetPath.LiveBackground" />
-		<property name="art" tag="property" attribute="name|widgetType.LiveBackground" value="tvshows|movies">poster</property>
-		<property name="art">thumb</property>
-		
-		<property name="postersize" tag="property" attribute="name|liveBackgroundAspect" value="portrait">LiveBackgroundPortrait</property>
-		<property name="postersize" tag="property" attribute="name|liveBackgroundAspect" value="landscape">LiveBackgroundLandscape</property>
-		<property name="postersize">LiveBackgroundSquare</property>
-
-
-		<property name="postertype" tag="property" attribute="name|liveBackgroundAspect" value="landscape|square">landscape</property>
-		<property name="postertype">poster</property>
-
-		<property name="case" tag="property" attribute="name|liveBackgroundCase" value="case">thumbs/case/$SKINSHORTCUTS[postertype]/</property>
-		<property name="case" tag="property" attribute="name|liveBackgroundCase" value="clear">thumbs/clearcase/$SKINSHORTCUTS[postertype]/</property>
-		<property name="case" tag="property" attribute="name|liveBackgroundCase" value="glass">thumbs/glass/portrait.png</property>
-		<property name="case" tag="property" attribute="name|liveBackgroundCase" value="cd">thumbs/case/square/cd.png</property>
-		<property name="case" tag="property" attribute="name|liveBackgroundCase" value="cdclear">thumbs/clearcase/square/cd.png</property>
-		<property name="case" tag="property" attribute="name|liveBackgroundCase" value="polaroid">thumbs/polaroid.png</property>
-		<property name="case"></property>
-
-		<property name="casetype" tag="property" attribute="name|liveBackgroundCase" value="case|clear">Case</property>
-		<property name="casetype" tag="property" attribute="name|liveBackgroundCase" value="glass">Glass</property>
-		<property name="casetype" tag="property" attribute="name|liveBackgroundCase" value="cd|cdclear">CD</property>
-		<property name="casetype" tag="property" attribute="name|liveBackgroundCase" value="polaroid">Polaroid</property>
-
-		<property name="casesize" tag="property" attribute="name|liveBackgroundAspect" value="portrait">LiveBackgroundPortrait$SKINSHORTCUTS[casetype]</property>
-		<property name="casesize" tag="property" attribute="name|liveBackgroundAspect" value="landscape">LiveBackgroundLandscape$SKINSHORTCUTS[casetype]</property>
-		<property name="casesize">LiveBackgroundSquare$SKINSHORTCUTS[casetype]</property>
-
-		<property name="sortby" tag="property" attribute="name|liveBackgroundSortby" />
-		<property name="sort" tag="property" attribute="name|liveBackgroundSort" />
+	<other include="widget1">
+		<!-- Widget style condition-->
+		<condition tag="property" attribute="name|widgetStyle">panel</condition>
+		<propertyGroup>widgetCommon</propertyGroup>
+		<!-- Container size -->
+		<property name="containerwidth" tag="property" attribute="name|widgetAspect" value="portrait">265.71</property>
+		<property name="containerheight" tag="property" attribute="name|widgetAspect" value="portrait">388</property>
+		<property name="containerwidth" tag="property" attribute="name|widgetAspect" value="square">372</property>
+		<property name="containerheight" tag="property" attribute="name|widgetAspect" value="square">372</property>
+		<property name="containerwidth" tag="property" attribute="name|widgetAspect" value="landscape">620</property>
+		<property name="containerheight" tag="property" attribute="name|widgetAspect" value="landscape">357</property>
+		<!-- Artwork border -->
+		<property name="border" tag="property">10</property>
 		<controls>
-			<control type="wraplist" id="7002$SKINSHORTCUTS[id]">
-				<left>-100</left>
-				<top>-100</top>
-				<width>10</width>
-				<height>10</height>
-				<itemlayout height="10" width="10" />
-				<focusedlayout height="10" width="10" />
-				<content sortby="$SKINSHORTCUTS[sortby]" sortorder="$SKINSHORTCUTS[sort]" limit="10">$SKINSHORTCUTS[content]</content>
-				<skinshortcuts>visibility</skinshortcuts>
-			</control>
 			<control type="group">
 				<skinshortcuts>visibility</skinshortcuts>
-				<include content="LiveBackgroundHome">
-					<param name="id">7002$SKINSHORTCUTS[id]</param>
-					<param name="art">$SKINSHORTCUTS[art]</param>
-					<param name="postersize">$SKINSHORTCUTS[postersize]</param>
-					<param name="casesize">$SKINSHORTCUTS[casesize]</param>
-					<param name="case">$SKINSHORTCUTS[case]</param>
+				<include>AnimationVisibleFade</include>
+				<include content="WidgetInfo">
+					<param name="left">$SKINSHORTCUTS[infoleft]</param>
+					<param name="width">$SKINSHORTCUTS[infowidth]</param>
+					<param name="aspect">$SKINSHORTCUTS[infoaspect]</param>
 				</include>
+				<control type="panel" id="8011$SKINSHORTCUTS[id]">
+					<visible>String.IsEmpty(Skin.String(HomeWidget$SKINSHORTCUTS[id]))</visible>
+					<top>30</top>
+					<animation effect="slide" end="0,$PYTHON[(388 - int(containerheight))]" condition="!String.IsEqual(Skin.String(WidgetPosition),top)">Conditional</animation>
+					<onup>9050</onup>
+					<ondown>9000</ondown>
+					<left>30</left>
+					<right>30</right>
+					<height>$SKINSHORTCUTS[containerheight]</height>
+					<orientation>horizontal</orientation>
+					<preloaditems>2</preloaditems>
+					<include content="WidgetContainer">
+						<param name="containerwidth">$SKINSHORTCUTS[containerwidth]</param>
+						<param name="containerheight">$SKINSHORTCUTS[containerheight]</param>
+						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
+						<param name="aspect">$SKINSHORTCUTS[aspect]</param>
+						<param name="border">$SKINSHORTCUTS[border]</param>
+						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
+						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
+					</include>
+					<content target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
+				</control>
 			</control>
 		</controls>
 	</other>
-
-
-
-
-	<other include="widget1">
-		<!-- Check widget style -->
-		<condition tag="property" attribute="name|widgetStyle">Panel</condition>
-		<propertyGroup>widgetCommon</propertyGroup>
-		<!-- Set Layout dimensions -->
-		<!-- case -->
-		<property name="casecontainerwidth" tag="property" attribute="name|widgetAspect" value="Portrait">230</property>
-		<property name="casecontainerwidth" tag="property" attribute="name|widgetAspect" value="Square">205</property>
-		<property name="casecontainerwidth" tag="property" attribute="name|widgetAspect" value="Landscape">205</property>
-		<property name="casecontainerheight" tag="property" attribute="name|widgetAspect" value="Portrait">300</property>
-		<property name="casecontainerheight" tag="property" attribute="name|widgetAspect" value="Square">300</property>
-		<property name="casecontainerheight" tag="property" attribute="name|widgetAspect" value="Landscape">300</property>
-		<!-- clear case -->
-		<property name="clearcasecontainerwidth" tag="property" attribute="name|widgetAspect" value="Portrait">205</property>
-		<property name="clearcasecontainerwidth" tag="property" attribute="name|widgetAspect" value="Square">205</property>
-		<property name="clearcasecontainerwidth" tag="property" attribute="name|widgetAspect" value="Landscape">205</property>
-		<property name="clearcasecontainerheight" tag="property" attribute="name|widgetAspect" value="Portrait">300</property>
-		<property name="clearcasecontainerheight" tag="property" attribute="name|widgetAspect" value="Square">300</property>
-		<property name="clearcasecontainerheight" tag="property" attribute="name|widgetAspect" value="Landscape">300</property>
-		<!-- glass -->
-		<property name="glasscontainerwidth" tag="property" attribute="name|widgetAspect" value="Portrait">248</property>
-		<property name="glasscontainerwidth" tag="property" attribute="name|widgetAspect" value="Square">205</property>
-		<property name="glasscontainerwidth" tag="property" attribute="name|widgetAspect" value="Landscape">205</property>
-		<property name="glasscontainerheight" tag="property" attribute="name|widgetAspect" value="Portrait">364</property>
-		<property name="glasscontainerheight" tag="property" attribute="name|widgetAspect" value="Square">300</property>
-		<property name="glasscontainerheight" tag="property" attribute="name|widgetAspect" value="Landscape">300</property>
-		<!-- cd -->
-		<property name="cdcontainerwidth" tag="property" attribute="name|widgetAspect" value="Portrait">205</property>
-		<property name="cdcontainerwidth" tag="property" attribute="name|widgetAspect" value="Square">205</property>
-		<property name="cdcontainerwidth" tag="property" attribute="name|widgetAspect" value="Landscape">205</property>
-		<property name="cdcontainerheight" tag="property" attribute="name|widgetAspect" value="Portrait">300</property>
-		<property name="cdcontainerheight" tag="property" attribute="name|widgetAspect" value="Square">300</property>
-		<property name="cdcontainerheight" tag="property" attribute="name|widgetAspect" value="Landscape">300</property>
-		<!-- polaroid -->
-		<property name="polaroidcontainerwidth" tag="property" attribute="name|widgetAspect" value="Portrait">205</property>
-		<property name="polaroidcontainerwidth" tag="property" attribute="name|widgetAspect" value="Square">205</property>
-		<property name="polaroidcontainerwidth" tag="property" attribute="name|widgetAspect" value="Landscape">205</property>
-		<property name="polaroidcontainerheight" tag="property" attribute="name|widgetAspect" value="Portrait">300</property>
-		<property name="polaroidcontainerheight" tag="property" attribute="name|widgetAspect" value="Square">300</property>
-		<property name="polaroidcontainerheight" tag="property" attribute="name|widgetAspect" value="Landscape">300</property>
-		<!-- dimensions -->
-		<property name="containerwidth" tag="property" attribute="name|widgetCase" value="Case">$SKINSHORTCUTS[casecontainerwidth]</property>
-		<property name="containerheight" tag="property" attribute="name|widgetCase" value="Case">$SKINSHORTCUTS[casecontainerheight]</property>
-		<property name="containerwidth" tag="property" attribute="name|widgetCase" value="ClearCase">$SKINSHORTCUTS[clearcasecontainerwidth]</property>
-		<property name="containerheight" tag="property" attribute="name|widgetCase" value="ClearCase">$SKINSHORTCUTS[clearcasecontainerheight]</property>
-		<property name="containerwidth" tag="property" attribute="name|widgetCase" value="Glass">$SKINSHORTCUTS[glasscontainerwidth]</property>
-		<property name="containerheight" tag="property" attribute="name|widgetCase" value="Glass">$SKINSHORTCUTS[glasscontainerheight]</property>
-		<property name="containerwidth" tag="property" attribute="name|widgetCase" value="CD|CDclear">$SKINSHORTCUTS[cdcontainerwidth]</property>
-		<property name="containerheight" tag="property" attribute="name|widgetCase" value="CD|CDclear">$SKINSHORTCUTS[cdcontainerheight]</property>
-		<property name="containerwidth" tag="property" attribute="name|widgetCase" value="Polaroid">$SKINSHORTCUTS[polaroidsecontainerwidth]</property>
-		<property name="containerheight" tag="property" attribute="name|widgetCase" value="Polaroid">$SKINSHORTCUTS[polaroidcasecontainerheight]</property>
-		<property name="containerwidth" tag="property" attribute="name|widgetAspect" value="Portrait">265.71</property>
-		<property name="containerwidth" tag="property" attribute="name|widgetAspect" value="Square">372</property>
-		<property name="containerwidth" tag="property" attribute="name|widgetAspect" value="Landscape">620</property>
-		<property name="containerheight" tag="property" attribute="name|widgetAspect" value="Portrait">388</property>
-		<property name="containerheight" tag="property" attribute="name|widgetAspect" value="Square">372</property>
-		<property name="containerheight" tag="property" attribute="name|widgetAspect" value="Landscape">357</property>
-		<!-- Set artwork dimensions -->
-		<!-- case -->
-		<property name="caseleftartwork" tag="property" attribute="name|widgetAspect" value="Portrait">2.5</property>
-		<property name="caseleftartwork" tag="property" attribute="name|widgetAspect" value="Square">2.5</property>
-		<property name="caseleftartwork" tag="property" attribute="name|widgetAspect" value="Landscape">2.5</property>
-		<property name="caserightartwork" tag="property" attribute="name|widgetAspect" value="Portrait">2.5</property>
-		<property name="caserightartwork" tag="property" attribute="name|widgetAspect" value="Square">2.5</property>
-		<property name="caserightartwork" tag="property" attribute="name|widgetAspect" value="Landscape">2.5</property>
-		<property name="casetopartwork" tag="property" attribute="name|widgetAspect" value="Portrait">2.5</property>
-		<property name="casetopartwork" tag="property" attribute="name|widgetAspect" value="Square">2.5</property>
-		<property name="casetopartwork" tag="property" attribute="name|widgetAspect" value="Landscape">2.5</property>
-		<property name="casebottomartwork" tag="property" attribute="name|widgetAspect" value="Portrait">2.5</property>
-		<property name="casebottomartwork" tag="property" attribute="name|widgetAspect" value="Square">2.5</property>
-		<property name="casebottomartwork" tag="property" attribute="name|widgetAspect" value="Landscape">2.5</property>
-		<!-- clear case -->
-		<property name="clearcaseleftartwork" tag="property" attribute="name|widgetAspect" value="Portrait">2.5</property>
-		<property name="clearcaseleftartwork" tag="property" attribute="name|widgetAspect" value="Square">2.5</property>
-		<property name="clearcaseleftartwork" tag="property" attribute="name|widgetAspect" value="Landscape">2.5</property>
-		<property name="clearcaserightartwork" tag="property" attribute="name|widgetAspect" value="Portrait">2.5</property>
-		<property name="clearcaserightartwork" tag="property" attribute="name|widgetAspect" value="Square">2.5</property>
-		<property name="clearcaserightartwork" tag="property" attribute="name|widgetAspect" value="Landscape">2.5</property>
-		<property name="clearcasetopartwork" tag="property" attribute="name|widgetAspect" value="Portrait">2.5</property>
-		<property name="clearcasetopartwork" tag="property" attribute="name|widgetAspect" value="Square">2.5</property>
-		<property name="clearcasetopartwork" tag="property" attribute="name|widgetAspect" value="Landscape">2.5</property>
-		<property name="clearcasebottomartwork" tag="property" attribute="name|widgetAspect" value="Portrait">2.5</property>
-		<property name="clearcasebottomartwork" tag="property" attribute="name|widgetAspect" value="Square">2.5</property>
-		<property name="clearcasebottomartwork" tag="property" attribute="name|widgetAspect" value="Landscape">2.5</property>
-		<!-- glass -->
-		<property name="glassleftartwork" tag="property" attribute="name|widgetAspect" value="Portrait">2.5</property>
-		<property name="glassleftartwork" tag="property" attribute="name|widgetAspect" value="Square">2.5</property>
-		<property name="glassleftartwork" tag="property" attribute="name|widgetAspect" value="Landscape">2.5</property>
-		<property name="glassrightartwork" tag="property" attribute="name|widgetAspect" value="Portrait">2.5</property>
-		<property name="glassrightartwork" tag="property" attribute="name|widgetAspect" value="Square">2.5</property>
-		<property name="glassrightartwork" tag="property" attribute="name|widgetAspect" value="Landscape">2.5</property>
-		<property name="glasstopartwork" tag="property" attribute="name|widgetAspect" value="Portrait">2.5</property>
-		<property name="glasstopartwork" tag="property" attribute="name|widgetAspect" value="Square">2.5</property>
-		<property name="glasstopartwork" tag="property" attribute="name|widgetAspect" value="Landscape">2.5</property>
-		<property name="glassbottomartwork" tag="property" attribute="name|widgetAspect" value="Portrait">2.5</property>
-		<property name="glassbottomartwork" tag="property" attribute="name|widgetAspect" value="Square">2.5</property>
-		<property name="glassbottomartwork" tag="property" attribute="name|widgetAspect" value="Landscape">2.5</property>
-		<!-- cd -->
-		<property name="cdleftartwork" tag="property" attribute="name|widgetAspect" value="Portrait">2.5</property>
-		<property name="cdleftartwork" tag="property" attribute="name|widgetAspect" value="Square">2.5</property>
-		<property name="cdleftartwork" tag="property" attribute="name|widgetAspect" value="Landscape">2.5</property>
-		<property name="cdrightartwork" tag="property" attribute="name|widgetAspect" value="Portrait">2.5</property>
-		<property name="cdrightartwork" tag="property" attribute="name|widgetAspect" value="Square">2.5</property>
-		<property name="cdrightartwork" tag="property" attribute="name|widgetAspect" value="Landscape">2.5</property>
-		<property name="cdtopartwork" tag="property" attribute="name|widgetAspect" value="Portrait">2.5</property>
-		<property name="cdtopartwork" tag="property" attribute="name|widgetAspect" value="Square">2.5</property>
-		<property name="cdtopartwork" tag="property" attribute="name|widgetAspect" value="Landscape">2.5</property>
-		<property name="cdbottomartwork" tag="property" attribute="name|widgetAspect" value="Portrait">2.5</property>
-		<property name="cdbottomartwork" tag="property" attribute="name|widgetAspect" value="Square">2.5</property>
-		<property name="cdbottomartwork" tag="property" attribute="name|widgetAspect" value="Landscape">2.5</property>
-		<!-- polaroid -->
-		<property name="polaroidleftartwork" tag="property" attribute="name|widgetAspect" value="Portrait">2.5</property>
-		<property name="polaroidleftartwork" tag="property" attribute="name|widgetAspect" value="Square">2.5</property>
-		<property name="polaroidleftartwork" tag="property" attribute="name|widgetAspect" value="Landscape">2.5</property>
-		<property name="polaroidrightartwork" tag="property" attribute="name|widgetAspect" value="Portrait">2.5</property>
-		<property name="polaroidrightartwork" tag="property" attribute="name|widgetAspect" value="Square">2.5</property>
-		<property name="polaroidrightartwork" tag="property" attribute="name|widgetAspect" value="Landscape">2.5</property>
-		<property name="polaroidtopartwork" tag="property" attribute="name|widgetAspect" value="Portrait">2.5</property>
-		<property name="polaroidtopartwork" tag="property" attribute="name|widgetAspect" value="Square">2.5</property>
-		<property name="polaroidtopartwork" tag="property" attribute="name|widgetAspect" value="Landscape">2.5</property>
-		<property name="polaroidbottomartwork" tag="property" attribute="name|widgetAspect" value="Portrait">2.5</property>
-		<property name="polaroidbottomartwork" tag="property" attribute="name|widgetAspect" value="Square">2.5</property>
-		<property name="polaroidbottomartwork" tag="property" attribute="name|widgetAspect" value="Landscape">2.5</property>
-		<!-- dimensions -->
-		<property name="leftartwork" tag="property" attribute="name|widgetCase" value="Case">$SKINSHORTCUTS[caseleftartwork]</property>
-		<property name="rightartwork" tag="property" attribute="name|widgetCase" value="Case">$SKINSHORTCUTS[caserightartwork]</property>
-		<property name="topartwork" tag="property" attribute="name|widgetCase" value="Case">$SKINSHORTCUTS[casetopartwork]</property>
-		<property name="bottomartwork" tag="property" attribute="name|widgetCase" value="Case">$SKINSHORTCUTS[casebottomartwork]</property>
-		<property name="leftartwork" tag="property" attribute="name|widgetCase" value="ClearCase">$SKINSHORTCUTS[clearcaseleftartwork]</property>
-		<property name="rightartwork" tag="property" attribute="name|widgetCase" value="ClearCase">$SKINSHORTCUTS[clearcaserightartwork]</property>
-		<property name="topartwork" tag="property" attribute="name|widgetCase" value="ClearCase">$SKINSHORTCUTS[clearcasetopartwork]</property>
-		<property name="bottomartwork" tag="property" attribute="name|widgetCase" value="ClearCase">$SKINSHORTCUTS[clearcasebottomartwork]</property>
-		<property name="leftartwork" tag="property" attribute="name|widgetCase" value="Glass">$SKINSHORTCUTS[glassleftartwork]</property>
-		<property name="rightartwork" tag="property" attribute="name|widgetCase" value="Glass">$SKINSHORTCUTS[glassrightartwork]</property>
-		<property name="topartwork" tag="property" attribute="name|widgetCase" value="Glass">$SKINSHORTCUTS[glasstopartwork]</property>
-		<property name="bottomartwork" tag="property" attribute="name|widgetCase" value="Glass">$SKINSHORTCUTS[glassbottomartwork]</property>
-		<property name="leftartwork" tag="property" attribute="name|widgetCase" value="CD|CDclear">$SKINSHORTCUTS[cdleftartwork]</property>
-		<property name="rightartwork" tag="property" attribute="name|widgetCase" value="CD|CDclear">$SKINSHORTCUTS[cdrightartwork]</property>
-		<property name="topartwork" tag="property" attribute="name|widgetCase" value="CD|CDclear">$SKINSHORTCUTS[cdtopartwork]</property>
-		<property name="bottomartwork" tag="property" attribute="name|widgetCase" value="CD|CDclear">$SKINSHORTCUTS[cdbottomartwork]</property>
-		<property name="leftartwork" tag="property" attribute="name|widgetCase" value="Polaroid">$SKINSHORTCUTS[polaroidleftartwork]</property>
-		<property name="rightartwork" tag="property" attribute="name|widgetCase" value="Polaroid">$SKINSHORTCUTS[polaroidrightartwork]</property>
-		<property name="topartwork" tag="property" attribute="name|widgetCase" value="Polaroid">$SKINSHORTCUTS[polaroidtopartwork]</property>
-		<property name="bottomartwork" tag="property" attribute="name|widgetCase" value="Polaroid">$SKINSHORTCUTS[polaroidbottomartwork]</property>
-		<property name="leftartwork">0</property>
-		<property name="rightartwork">0</property>
-		<property name="topartwork">0</property>
-		<property name="bottomartwork">0</property>
-		<!-- Top Position Offset-->
-		<property name="top" tag="property" attribute="name|widgetAspect" value="Portrait">401</property>
-		<property name="top" tag="property" attribute="name|widgetAspect" value="Square">410</property>
-		<property name="top" tag="property" attribute="name|widgetAspect" value="Landscape">429</property>
-		<property name="top" tag="property" attribute="name|widgetArt" value="Banner">488</property>
-		
-
-		<!-- Set position - center menu -->
-		<property name="centermenu" tag="property" attribute="name|widgetAspect" value="Portrait">401</property>
-		<property name="centermenu" tag="property" attribute="name|widgetAspect" value="Square">410</property>
-		<property name="centermenu" tag="property" attribute="name|widgetAspect" value="Landscape">429</property>
-		<property name="top" tag="property" attribute="name|widgetArt" value="Banner">488</property>
-
-
-		<!-- Set info dimensions -->
+	<!-- Property groups -->
+	<propertyGroup name="widgetCommon">
+		<!-- Retrieve properties -->
+		<property name="id" tag="mainmenuid" />
+		<property name="path" tag="property" attribute="name|widgetPath" />
+		<property name="target" tag="property" attribute="name|widgetTarget" />
+		<property name="name" tag="property" attribute="name|widgetName" />
+		<!-- Artwork -->
+		<property name="artwork" tag="property" attribute="name|widgetArtwork" value="poster">$VAR[PosterVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork" value="fanart">$VAR[FanArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork" value="landscape">$VAR[LandscapeVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork" value="clearart">$VAR[ClearArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork" value="clearlogo">$VAR[ClearLogoVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork" value="thumb">$VAR[ThumbVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork" value="discart">$VAR[DiscArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork" value="characterart">$VAR[CharacterArtVar]</property>
+		<!-- Artwork aspect -->
+		<property name="artworkaspect" tag="property" attribute="name|widgetType" value="pvr">keep</property>
+		<property name="artworkaspect" tag="property" attribute="name|widgetArtwork" value="clearart|clearLogo|discart|characterart">keep</property>
+		<property name="artworkaspect">scale</property>
+		<!-- Label -->
+		<property name="labelvisible" tag="property" attribute="name|widgetLabel" value="true">true</property>
+		<property name="labelvisible">false</property>
+		<!-- Info dimensions -->
 		<property name="infoleft" tag="property" attribute="name|widgetType" value="movies|episodes|tvshows">245</property>
 		<property name="infoleft">347</property>
 		<property name="infowidth" tag="property" attribute="name|widgetType" value="movies|episodes|tvshows">225</property>
 		<property name="infowidth">327</property>
 		<property name="infoaspect" tag="property" attribute="name|widgetType" value="pvr">keep</property>
 		<property name="infoaspect">scale</property>
-
-		<!-- Label Position -->
-		<property name="label" tag="property" attribute="name|widgetLabel" value="true">true</property>
-		<property name="label">false</property>
-
-
-<!-- 		<property name="id" tag="mainmenuid" />
-
-You could adjust the position of an item as follows:
-
-<top>$PYTHON[int(containerheight) - 313]</top> -->
-
-
-
-<controls>
-	<control type="group">
-		<skinshortcuts>visibility</skinshortcuts>
-		<include>Animation_VisibleFade</include>
-		<control type="button" id="1111">
-			<include>HiddenObject</include>
-			<onfocus condition="String.IsEmpty(Skin.String(HomeWidget$SKINSHORTCUTS[id]))">SetFocus(8011$SKINSHORTCUTS[id])</onfocus>
-			<onfocus condition="String.IsEqual(Skin.String(HomeWidget$SKINSHORTCUTS[id]),2)">SetFocus(8012$SKINSHORTCUTS[id])</onfocus>
-			<onfocus condition="String.IsEqual(Skin.String(HomeWidget$SKINSHORTCUTS[id]),3)">SetFocus(8013$SKINSHORTCUTS[id])</onfocus>
-		</control>
-		<!-- Info -->
-		<!-- <control type="group">
-			<visible>Control.HasFocus(8011$SKINSHORTCUTS[id])</visible>
-			<include content="WidgetInfo">
-				<param name="left">$SKINSHORTCUTS[infoleft]</param>
-				<param name="width">$SKINSHORTCUTS[infowidth]</param>
-				<param name="aspect">$SKINSHORTCUTS[infoaspect]</param>
-			</include>
-		</control> -->
-		
-		<control type="group">
-			<top>60</top>
-			
-			<animation effect="slide" end="0,$PYTHON[(363 - int(containerheight))]" condition="!String.IsEqual(Skin.String(WidgetPosition),top)">Conditional</animation>
-			<control type="image">
-				<top>$PYTHON[(int(containerheight)) - 55]</top>
-				<left>50%</left>
-				<right>60</right>
-				<height>140</height>
-				<texture>panels/text-gradient.png</texture>
-			</control>
-			<control type="label">
-				<top>$PYTHON[(int(containerheight)) - 10]</top>
-				<left>100</left>
-				<right>100</right>
-				<height>50</height>
-				<align>right</align>
-				<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
-				<textoffsetx>5</textoffsetx>
-				<label>$SKINSHORTCUTS[name]</label>
-			</control>
-			<control type="image">
-				<top>$PYTHON[(int(containerheight)) - 40]</top>
-				<left>60</left>
-				<right>50%</right>
-				<height>140</height>
-				<align>right</align>
-				<texture flipx="true">panels/text-gradient.png</texture>
-				<visible>ControlGroup(90010).HasFocus</visible>
-			</control>
-			<control type="label">
-				<top>$PYTHON[(int(containerheight)) - 10]</top>
-				<left>100</left>
-				<right>100</right>
-				<height>50</height>
-				<align>left</align>
-				<textoffsetx>5</textoffsetx>
-				<textcolor>$VAR[MainMenuHighlightColorVar]</textcolor>
-				<label>$INFO[Container.ListItem.Label]</label>
-				<visible>ControlGroup(90010).HasFocus</visible>
-			</control>
-		
-				<control type="group">
-					
-					<include content="WidgetInfo">
-						<param name="id">8011$SKINSHORTCUTS[id]1</param>
-						<param name="left">$SKINSHORTCUTS[infoleft]</param>
-						<param name="width">$SKINSHORTCUTS[infowidth]</param>
-						<param name="aspect">$SKINSHORTCUTS[infoaspect]</param>
-					</include>
-				</control>
-				<control type="label">
-					
-					<height>$PYTHON[735 - (int(containerheight))]</height>
-				</control>
-				<control type="panel" id="8011$SKINSHORTCUTS[id]">
-					<visible>String.IsEmpty(Skin.String(HomeWidget$SKINSHORTCUTS[id]))</visible>
-					
-					<animation type="Visible">
-						<effect type="rotatex" end="0" start="180" center="561,0" time="400" tween="sine" easing="inout" />
-						<effect type="fade" end="100" start="0" time="10" delay="200" />
-					</animation>
-					<animation type="Hidden">
-						<effect type="rotatex" start="0" end="180" center="561,0" time="400" tween="sine" easing="inout" />
-						<effect type="fade" start="100" end="0" time="10" delay="200" />
-					</animation>
-					<onup>Skin.SetString(HomeWidget$SKINSHORTCUTS[id],2)</onup>
-					<onup>SetFocus(1111)</onup>
-					<ondown>9000</ondown>
-
-					<left>30</left>
-					<width>1860</width>
-					<height>$SKINSHORTCUTS[containerheight]</height>
-					<orientation>horizontal</orientation>
-					<preloaditems>2</preloaditems>
-					<scrolltime tween="quadratic" easing="out">300</scrolltime>
-
-
-
-
-
-
-
-					<include content="WidgetContainer">
-						<param name="containerWidth">$SKINSHORTCUTS[containerwidth]</param>
-						<param name="containerHeight">$SKINSHORTCUTS[containerheight]</param>
-						<param name="Art">$SKINSHORTCUTS[artwork]</param>
-						<param name="leftArt">$SKINSHORTCUTS[leftartwork]</param>
-						<param name="rightArt">$SKINSHORTCUTS[rightartwork]</param>
-						<param name="topArt">$SKINSHORTCUTS[topartwork]</param>
-						<param name="bottomArt">$SKINSHORTCUTS[bottomartwork]</param>
-						<param name="Aspect">$SKINSHORTCUTS[aspect]</param>
-						<param name="Case">$SKINSHORTCUTS[casepath]</param>
-						<param name="caseBorder">$SKINSHORTCUTS[casebordersize]</param>
-						<param name="label">$SKINSHORTCUTS[label]</param>
-					</include>
-					<content target="$SKINSHORTCUTS[target]" sortby="$SKINSHORTCUTS[sortby]" sortorder="$SKINSHORTCUTS[sort]">$SKINSHORTCUTS[content]</content>
-				</control>
-
-				<control type="group">
-
-					<include content="WidgetInfo">
-						<param name="id">8011$SKINSHORTCUTS[id]2</param>
-						<param name="left">$SKINSHORTCUTS[infoleft]</param>
-						<param name="width">$SKINSHORTCUTS[infowidth]</param>
-						<param name="aspect">$SKINSHORTCUTS[infoaspect]</param>
-					</include>
-				</control>
-				<control type="label">
-
-					<height>$PYTHON[735 - (int(containerheight))]</height>
-				</control>
-				<control type="list" id="8012$SKINSHORTCUTS[id]">
-					<visible allowhiddenfocus="false">String.IsEqual(Skin.String(HomeWidget$SKINSHORTCUTS[id]),2)</visible>
-	<animation type="Visible">
-						<effect type="rotatex" end="0" start="-180" center="561,0" time="400" tween="sine" easing="inout" />
-						<effect type="fade" end="100" start="0" time="10" delay="200" />
-					</animation>
-					<animation type="Hidden">
-						<effect type="rotatex" start="0" end="-180" center="561,0" time="400" tween="sine" easing="inout" />
-						<effect type="fade" start="100" end="0" time="10" delay="200" />
-					</animation>
-				<onup>Skin.SetString(HomeWidget$SKINSHORTCUTS[id],3)</onup>
-				<onup>SetFocus(1111)</onup>
-				<ondown>Skin.Reset(HomeWidget$SKINSHORTCUTS[id])</ondown>
-				<ondown>SetFocus(1111)</ondown>
-				<left>54</left>
-				<width>1812</width>
-				<height>$SKINSHORTCUTS[containerheight]</height>
-				<onup>8013$SKINSHORTCUTS[id]</onup>
-				<ondown>9000</ondown>
-				<orientation>horizontal</orientation>
-				<preloaditems>2</preloaditems>
-				<scrolltime tween="quadratic" easing="out">300</scrolltime>
-				<include content="WidgetContainer">
-					<param name="containerWidth">$SKINSHORTCUTS[containerwidth]</param>
-					<param name="containerHeight">$SKINSHORTCUTS[containerheight]</param>
-					<param name="Art">$SKINSHORTCUTS[artwork]</param>
-					<param name="leftArt">$SKINSHORTCUTS[leftartwork]</param>
-					<param name="rightArt">$SKINSHORTCUTS[rightartwork]</param>
-					<param name="topArt">$SKINSHORTCUTS[topartwork]</param>
-					<param name="bottomArt">$SKINSHORTCUTS[bottomartwork]</param>
-					<param name="Aspect">$SKINSHORTCUTS[aspect]</param>
-					<param name="Case">$SKINSHORTCUTS[casepath]</param>
-					<param name="caseBorder">$SKINSHORTCUTS[casebordersize]</param>
-				</include>
-				<content target="$SKINSHORTCUTS[target]" sortby="$SKINSHORTCUTS[sortby]" sortorder="$SKINSHORTCUTS[sort]">$SKINSHORTCUTS[content]</content>
-			</control>
-			<control type="group">
-				<visible>Control.HasFocus(8013$SKINSHORTCUTS[id])</visible>
-				<include content="WidgetInfo">
-					<param name="left">$SKINSHORTCUTS[infoleft]</param>
-					<param name="width">$SKINSHORTCUTS[infowidth]</param>
-					<param name="aspect">$SKINSHORTCUTS[infoaspect]</param>
-				</include>
-			</control>
-			<control type="list" id="8013$SKINSHORTCUTS[id]">
-				<visible allowhiddenfocus="false">String.IsEqual(Skin.String(HomeWidget$SKINSHORTCUTS[id]),3)</visible>
-				<animation type="Visible">
-						<effect type="rotatex" end="0" start="180" center="561,0" time="400" tween="sine" easing="inout" />
-						<effect type="fade" end="100" start="0" time="10" delay="200" />
-					</animation>
-					<animation type="Hidden">
-						<effect type="rotatex" start="0" end="180" center="561,0" time="400" tween="sine" easing="inout" />
-						<effect type="fade" start="100" end="0" time="10" delay="200" />
-					</animation>
-				<onup condition="!Skin.String(WidgetPosition,belowmenu)">9050</onup>
-				<onup condition="Skin.String(WidgetPosition,belowmenu)">9001</onup>
-				<ondown>Skin.SetString(HomeWidget$SKINSHORTCUTS[id],2)</ondown>
-				<ondown>SetFocus(1111)</ondown>
-				<left>54</left>
-				<width>1812</width>
-				<height>$SKINSHORTCUTS[containerheight]</height>
-				<orientation>horizontal</orientation>
-				<preloaditems>2</preloaditems>
-				<!-- <onup>9050</onup>
-				<ondown>8012$SKINSHORTCUTS[id]</ondown> -->
-				<scrolltime tween="quadratic" easing="out">300</scrolltime>
-				<include content="WidgetContainer">
-					<param name="containerWidth">$SKINSHORTCUTS[containerwidth]</param>
-					<param name="containerHeight">$SKINSHORTCUTS[containerheight]</param>
-					<param name="Art">$SKINSHORTCUTS[artwork]</param>
-					<param name="leftArt">$SKINSHORTCUTS[leftartwork]</param>
-					<param name="rightArt">$SKINSHORTCUTS[rightartwork]</param>
-					<param name="topArt">$SKINSHORTCUTS[topartwork]</param>
-					<param name="bottomArt">$SKINSHORTCUTS[bottomartwork]</param>
-					<param name="Aspect">$SKINSHORTCUTS[aspect]</param>
-					<param name="Case">$SKINSHORTCUTS[casepath]</param>
-					<param name="caseBorder">$SKINSHORTCUTS[casebordersize]</param>
-				</include>
-				<content target="$SKINSHORTCUTS[target]" sortby="$SKINSHORTCUTS[sortby]" sortorder="$SKINSHORTCUTS[sort]">$SKINSHORTCUTS[content]</content>
-			</control>
-		
-	</control>
-</control>
-</controls>
-</other>
-
-
-
-
-
-
-<!-- Property Groups -->
-<propertyGroup name="widgetCommon">
-	<!-- Retrieve Properties -->
-	<property name="id" tag="mainmenuid" />
-	<property name="content" tag="property" attribute="name|widgetPath" />
-	<property name="target" tag="property" attribute="name|widgetTarget" />
-	<property name="name" tag="property" attribute="name|widgetName" />
-	<property name="sortby" tag="property" attribute="name|widgetSortby" />
-	<property name="sort" tag="property" attribute="name|widgetSort" />
-	<property name="label" tag="property" attribute="name|widgetLabel" />
-	<!-- Artwork -->
-	<property name="artwork" tag="property" attribute="name|widgetArt" value="Poster">$VAR[PosterVar]</property>
-	<property name="artwork" tag="property" attribute="name|widgetArt" value="FanArt">$VAR[FanArtVar]</property>
-	<property name="artwork" tag="property" attribute="name|widgetArt" value="Landscape">$VAR[LandscapeVar]</property>
-	<property name="artwork" tag="property" attribute="name|widgetArt" value="ClearArt">$VAR[ClearArtVar]</property>
-	<property name="artwork" tag="property" attribute="name|widgetArt" value="ClearLogo">$VAR[ClearLogoVar]</property>
-	<property name="artwork" tag="property" attribute="name|widgetArt" value="Thumb">$VAR[ThumbVar]</property>
-	<property name="artwork" tag="property" attribute="name|widgetArt" value="DiscArt">$VAR[DiscArt]</property>
-	<property name="artwork" tag="property" attribute="name|widgetArt" value="CharacterArt">$VAR[CharacterArtVar]</property>
-	<!-- Aspect -->
-	<property name="aspect" tag="property" attribute="name|widgetType" value="pvr">keep</property>
-	<property name="aspect" tag="property" attribute="name|widgetArt" value="ClearArt|ClearLogo|DiscArt|CharacterArt">keep</property>
-	<property name="aspect">scale</property>
-	<!-- Case -->
-	<property name="case" tag="property" attribute="name|widgetAspect" value="Portrait">thumbs/case/portrait/$VAR[CaseVar]</property>
-	<property name="case" tag="property" attribute="name|widgetAspect" value="Square|Landscape">thumbs/case/landscape/$VAR[CaseVar]</property>
-	<!-- Clear case -->
-	<property name="clearcase" tag="property" attribute="name|widgetAspect" value="Portrait">thumbs/clearcase/portrait/$VAR[CaseVar]</property>
-	<property name="clearcase" tag="property" attribute="name|widgetAspect" value="Square|Landscape">thumbs/clearcase/landscape/$VAR[CaseVar]</property>
-	<!-- Case path -->
-	<property name="casepath" tag="property" attribute="name|widgetCase" value="Case">$SKINSHORTCUTS[case]</property>
-	<property name="casepath" tag="property" attribute="name|widgetCase" value="ClearCase">$SKINSHORTCUTS[clearcase]</property>
-	<property name="casepath" tag="property" attribute="name|widgetCase" value="Glass">thumbs/caseother/glass.png</property>
-	<property name="casepath" tag="property" attribute="name|widgetCase" value="CD">thumbs/caseother/cd.png</property>
-	<property name="casepath" tag="property" attribute="name|widgetCase" value="CDclear">thumbs/caseother/cdclear.png</property>
-	<property name="casepath" tag="property" attribute="name|widgetCase" value="Polaroid">thumbs/caseother/polaroid.png</property>
-	<!-- Case border -->
-	<property name="caseborder" tag="property" attribute="name|widgetAspect" value="Portrait">94,78,44,48</property>
-	<property name="caseborder">128,30,12,30</property>
-	<property name="clearcaseborder" tag="property" attribute="name|widgetAspect" value="Portrait">120,70,54,46</property>
-	<property name="clearcaseborder">128,30,12,30</property>
-	<property name="casebordersize" tag="property" attribute="name|widgetCase" value="Case">$SKINSHORTCUTS[caseborder]</property>
-	<property name="casebordersize" tag="property" attribute="name|widgetCase" value="ClearCase">$SKINSHORTCUTS[clearcaseborder]</property>
-	<property name="casebordersize" tag="property" attribute="name|widgetCase" value="Glass">45</property>
-	<property name="casebordersize" tag="property" attribute="name|widgetCase" value="CD|CDclear">48,28,12,28</property>
-	<property name="casebordersize" tag="property" attribute="name|widgetCase" value="Polaroid">62,62,62,205</property>
-</propertyGroup>
+	</propertyGroup>
 </template>

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">90001</defaultcontrol>
-	<onload>ClearProperty(skinshortcuts-LiveBackground,Home)</onload>
 	<onload>ClearProperty(skinshortcuts-Widget,Home)</onload>
-	<onunload>ClearProperty(skinshortcuts-LiveBackground,Home)</onunload>
 	<onunload>ClearProperty(skinshortcuts-Widget,Home)</onunload>
 	<onunload>ClearProperty(skinshortcuts-management-widget,10000)</onunload>
 	<onunload condition="String.IsEmpty(Window.Property(additionalDialog))">RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;levels=2&amp;group=mainmenu|quicknav)</onunload>
@@ -105,7 +103,7 @@
 				<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
 			</control>
 			<control type="grouplist" id="90000">
-				<visible>String.IsEmpty(Window(Home).Property(skinshortcuts-LiveBackground)) + String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
+				<visible>String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
 				<top>200</top>
 				<left>434</left>
 				<width>1335</width>
@@ -160,7 +158,7 @@
 				</control>
 			</control>
 			<control type="grouplist" id="90001">
-				<visible>String.IsEmpty(Window(Home).Property(skinshortcuts-LiveBackground)) + String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
+				<visible>String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
 				<top>267</top>
 				<left>425</left>
 				<width>1395</width>
@@ -200,16 +198,6 @@
 					<visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
 					<include>SettingsButton</include>
 				</control>
-				<control type="button" id="800">
-					<visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
-					<description>Live background</description>
-					<label>$LOCALIZE[31102]</label>
-					<label2>$INFO[Container(211).ListItem.Property(widgetName.LiveBackground)]</label2>
-					<onfocus condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-LiveBackground))">ClearProperty(skinshortcuts-LiveBackground,Home)</onfocus>
-					<onclick>SetProperty(skinshortcuts-LiveBackground,1,Home)</onclick>
-					<onclick>Control.SetFocus(123)</onclick>
-					<include>SettingsButton</include>
-				</control>
 				<control type="button" id="500">
 					<visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
 					<description>Choose infoline</description>
@@ -237,70 +225,9 @@
 					<onclick>Control.SetFocus(8001)</onclick>
 					<include>SettingsButton</include>
 				</control>
-				<control type="button" id="312">
-					<visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
-					<description>Widget</description>
-					<include>SettingsButton</include>
-				</control>
 				<control type="button" id="308">
 					<description>Restore shortcuts</description>
 					<label>$ADDON[script.skinshortcuts 32028]</label>
-					<include>SettingsButton</include>
-				</control>
-			</control>
-		</control>
-		<!-- Live background settings -->
-		<control type="group">
-			<visible>!String.IsEmpty(Window(Home).Property(skinshortcuts-LiveBackground))</visible>
-			<control type="button" id="6001">
-				<width>100%</width>
-				<height>100%</height>
-				<onclick>back</onclick>
-				<texturefocus />
-				<texturenofocus />
-			</control>
-			<control type="grouplist" id="6000">
-				<top>200</top>
-				<left>435</left>
-				<width>1335</width>
-				<height>680</height>
-				<onleft>211</onleft>
-				<onright>60</onright>
-				<pagecontrol>60</pagecontrol>
-				<control type="button" id="123">
-					<description>Live background</description>
-					<label>$LOCALIZE[31103]</label>
-					<label2>$INFO[Container(211).ListItem.Property(widgetName)]</label2>
-					<onclick>SetProperty(widgetID,LiveBackground)</onclick>
-					<onclick>SendClick(312)</onclick>
-					<include>SettingsButton</include>
-				</control>
-				<control type="button" id="1000">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.LiveBackground))</visible>
-					<description>Live background aspect</description>
-					<label>Aspect</label>
-					<label2></label2>
-					<include>SettingsButton</include>
-				</control>
-				<control type="button" id="1001">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.LiveBackground))</visible>
-					<description>Live background case</description>
-					<label>Case</label>
-					<label2></label2>
-					<include>SettingsButton</include>
-				</control>
-				<control type="button" id="1002">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.LiveBackground))</visible>
-					<description>Live background sort by</description>
-					<label>$LOCALIZE[581]</label>
-					<label2></label2>
-					<include>SettingsButton</include>
-				</control>
-				<control type="button" id="1003">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.LiveBackground))</visible>
-					<description>Live background sort</description>
-					<label>$LOCALIZE[580]</label>
-					<label2></label2>
 					<include>SettingsButton</include>
 				</control>
 			</control>
@@ -317,46 +244,33 @@
 			</control>
 			<control type="grouplist" id="8000">
 				<top>200</top>
-				<left>435</left>
-				<width>1335</width>
-				<height>680</height>
+				<left>425</left>
+				<width>1395</width>
+				<height>670</height>
 				<onleft>211</onleft>
 				<onright>60</onright>
 				<pagecontrol>60</pagecontrol>
 				<control type="button" id="8001">
-					<description>Style</description>
 					<label>Style</label>
 					<label2>$INFO[Container(211).ListItem.Property(widgetStyle)]</label2>
 					<include>SettingsButton</include>
 				</control>
 				<control type="button" id="312">
 					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
-					<description>Type</description>
 					<label>Widget</label>
 					<label2>$INFO[Container(211).ListItem.Property(widgetName)]</label2>
-					<onclick>SetProperty(customProperty,widgetArt)</onclick>
-					<onclick>SendClick(404)</onclick>
 					<include>SettingsButton</include>
 				</control>
 				<control type="button" id="8002">
 					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
-					<description>Art</description>
-					<label>Art</label>
-					<label2>$INFO[Container(211).ListItem.Property(widgetArt)]</label2>
+					<label>Artwork</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetArtwork)]</label2>
 					<include>SettingsButton</include>
 				</control>
 				<control type="button" id="8003">
 					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
-					<description>Aspect</description>
 					<label>Aspect</label>
 					<label2>$INFO[Container(211).ListItem.Property(widgetAspect)]</label2>
-					<include>SettingsButton</include>
-				</control>
-				<control type="button" id="8004">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
-					<description>Case</description>
-					<label>Case</label>
-					<label2>$INFO[Container(211).ListItem.Property(widgetCase)]</label2>
 					<include>SettingsButton</include>
 				</control>
 				<control type="radiobutton" id="8007">
@@ -369,20 +283,6 @@
 					<onclick>SendClick(404)</onclick>
 					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetLabel))</selected>
 					<include>SettingsRadioButton</include>
-				</control>
-				<control type="button" id="8005">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
-					<description>Sort by</description>
-					<label>Sort by</label>
-					<label2>$INFO[Container(211).ListItem.Property(widgetSortBy)]</label2>
-					<include>SettingsButton</include>
-				</control>
-				<control type="button" id="8006">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
-					<description>Sort order</description>
-					<label>Sort order</label>
-					<label2>$INFO[Container(211).ListItem.Property(widgetSortOrder)]</label2>
-					<include>SettingsButton</include>
 				</control>
 			</control>
 		</control>

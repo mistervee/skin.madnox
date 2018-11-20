@@ -2,8 +2,7 @@
 <overrides>
 	<!-- Do not share menu as other skins use custom language strings that do not work -->
 	<doNotShareMenu />
-
-
+	<!-- Main menu overides for when libray has no content -->
 	<visibleoverride group="mainmenu" condition="Library.HasContent(Movies)">ActivateWindow(Videos,sources://video/,return)</visibleoverride>
     <visibleoverride group="mainmenu" condition="Library.HasContent(TVShows)">ActivateWindow(Videos,sources://video/,return)</visibleoverride>
     <visibleoverride group="mainmenu" condition="Library.HasContent(Music)">ActivateWindow(MusicLibrary,sources://music/,return)</visibleoverride>
@@ -13,8 +12,6 @@
     <visibleoverride group="tvshows" condition="Library.HasContent(TVShows)">ActivateWindow(Videos,sources://video/,return)</visibleoverride>
     <visibleoverride group="2" condition="Library.HasContent(Music)">ActivateWindow(MusicLibrary,sources://music/,return)</visibleoverride>
     <visibleoverride group="musicvideos" condition="Library.HasContent(MusicVideos)">ActivateWindow(Videos,sources://video/,return)</visibleoverride>
-
-
 	<!-- Home background defaults -->
 	<backgrounddefault labelID="pictures">special://skin/extras/backgrounds/pictures.jpg</backgrounddefault>
 	<backgrounddefault labelID="musicvideos">special://skin/extras/backgrounds/musicvideos.jpg</backgrounddefault>
@@ -67,7 +64,7 @@
 	<propertydefault labelID="system" property="InfoLine">systeminfo</propertydefault>
 	<propertydefault labelID="weather" property="InfoLine">weather</propertydefault>
 	<propertydefault labelID="disc" property="InfoLine">disc</propertydefault>
-	<!-- Backgrounds -->
+	<!-- Background selection-->
 	<backgroundBrowse>True</backgroundBrowse>
 	<background label="smartshortcuts">||BROWSE||plugin://script.skin.helper.service/?action=backgrounds</background>
 	<background label="31055">$INFO[Skin.String(WeatherFanart.path)]$INFO[Weather.fanartcode]$INFO[Skin.String(WeatherFanart.ext)]</background>
@@ -87,81 +84,6 @@
 	<background label="20343" icon="special://skin/extras/backgrounds/tvshows.jpg">special://skin/extras/backgrounds/tvshows.jpg</background>
 	<background label="3" icon="special://skin/extras/backgrounds/videos.jpg">special://skin/extras/backgrounds/videos.jpg</background>
 	<background label="8" icon="special://skin/extras/backgrounds/weather.jpg">special://skin/extras/backgrounds/weather.jpg</background>
-	<!-- Live background -->
-	<propertySettings property="liveBackground" buttonID="1000" />
-	<property property="liveBackground" label="$ADDON[script.skin.helper.widgets 32048]">plugin://script.skin.helper.widgets/?action=random&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</property>
-	<property property="liveBackground" label="$ADDON[script.skin.helper.widgets 32028]">plugin://script.skin.helper.widgets/?action=inprogress&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</property>
-	<property property="liveBackground" label="$ADDON[script.skin.helper.widgets 32038]">plugin://script.skin.helper.widgets/?action=recent&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</property>
-	<property property="liveBackground" label="$ADDON[script.skin.helper.widgets 32066]">plugin://script.skin.helper.widgets/?action=unwatched&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</property>
-
-
-
-	<!-- <shortcut label="$ADDON[script.skin.helper.widgets 32048]" condition="System.HasAddon(script.skin.helper.widgets)" icon="logos/shs-logo.png" widget="library" widgetType="movies" widgetTarget="video">plugin://script.skin.helper.widgets/?action=random&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</shortcut>
-	<shortcut label="$ADDON[script.skin.helper.widgets 32038]" condition="System.HasAddon(script.skin.helper.widgets)" icon="logos/shs-logo.png" widget="library" widgetType="movies" widgetTarget="video">plugin://script.skin.helper.widgets/?action=recent&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</shortcut>
-	<shortcut label="$ADDON[script.skin.helper.widgets 32046]" condition="System.HasAddon(script.skin.helper.widgets)" icon="logos/shs-logo.png" widget="library" widgetType="movies" widgetTarget="video">plugin://script.skin.helper.widgets/?action=recommended&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</shortcut>
-	<shortcut label="$ADDON[script.skin.helper.widgets 32066]" condition="System.HasAddon(script.skin.helper.widgets)" icon="logos/shs-logo.png" widget="library" widgetType="movies" widgetTarget="video">plugin://script.skin.helper.widgets/?action=unwatched&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</shortcut>
-	<shortcut label="$ADDON[script.skin.helper.widgets 32003]" condition="System.HasAddon(script.skin.helper.widgets)" icon="logos/shs-logo.png" widget="library" widgetType="movies" widgetTarget="video">plugin://script.skin.helper.widgets/?action=top250&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</shortcut>
-	<shortcut label="$ADDON[script.skin.helper.widgets 32028]" condition="System.HasAddon(script.skin.helper.widgets)" icon="logos/shs-logo.png" widget="library" widgetType="movies" widgetTarget="video">plugin://script.skin.helper.widgets/?action=inprogress&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</shortcut>
-	<shortcut label="$ADDON[script.skin.helper.widgets 32029]" condition="System.HasAddon(script.skin.helper.widgets)" icon="logos/shs-logo.png" widget="library" widgetType="movies" widgetTarget="video">plugin://script.skin.helper.widgets/?action=inprogressandrecommended&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</shortcut>
-	<shortcut label="$ADDON[script.skin.helper.widgets 32006]" condition="System.HasAddon(script.skin.helper.widgets)" icon="logos/shs-logo.png" widget="library" widgetType="movies" widgetTarget="video">plugin://script.skin.helper.widgets/?action=similar&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</shortcut> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<!-- Live background aspect  -->
-	<propertySettings property="liveBackgroundAspect" buttonID="10110" requires="widgetPath.LiveBackground" title="Aspect" />
-	<property property="liveBackgroundAspect" label="Portait">portrait</property>
-	<property property="liveBackgroundAspect" label="Square">square</property>
-	<property property="liveBackgroundAspect" label="Landscape">landscape</property>
-	<!-- Live background aspect if empty  -->
-	<propertyfallback property="liveBackgroundAspect" attribute="widgetType.LiveBackground" value="movies">portrait</propertyfallback>
-	<propertyfallback property="liveBackgroundAspect" attribute="widgetType.LiveBackground" value="tvshows">portrait</propertyfallback>
-	<propertyfallback property="liveBackgroundAspect" attribute="widgetType.LiveBackground" value="pictures">landscape</propertyfallback>
-	<propertyfallback property="liveBackgroundAspect">square</propertyfallback>
-	<!-- Live background case  -->
-	<propertySettings property="liveBackgroundCase" buttonID="1001" requires="widgetPath.LiveBackground" title="Case" />
-	<property property="liveBackgroundCase" label="Case">case</property>
-	<property property="liveBackgroundCase" label="Clear Case">clear</property>
-	<property property="liveBackgroundCase" label="Glass">glass</property>
-	<property property="liveBackgroundCase" label="CD">cd</property>
-	<property property="liveBackgroundCase" label="CD clear">cdclear</property>
-	<property property="liveBackgroundCase" label="Polaroid">polaroid</property>
-	<!-- Live background sort-by -->
-	<propertySettings property="liveBackgroundSortby" buttonID="1002" requires="widgetPath.LiveBackground" title="$LOCALIZE[581]" />
-	<property property="liveBackgroundSortby" label="369">title</property>
-	<property property="liveBackgroundSortby" label="552">date</property>
-	<property property="liveBackgroundSortby" label="570">dateadded</property>
-	<property property="liveBackgroundSortby" label="590">random</property>
-	<!-- Live background sort-order -->
-	<propertySettings property="liveBackgroundSort" buttonID="1003" requires="widgetPath.LiveBackground" title="$LOCALIZE[580]" />
-	<property property="liveBackgroundSort" label="584">ascending</property>
-	<property property="liveBackgroundSort" label="585">descending</property>
-	<!-- Remove background properties we dont need from main menu -->
-	<propertySettings property="liveBackgroundAspect" templateonly="True" />
-	<propertySettings property="liveBackgroundSortby" templateonly="True" />
-	<propertySettings property="liveBackgroundSort" templateonly="True" />
-	<propertySettings property="widget.LiveBackground" templateonly="True" />
-	<propertySettings property="widgetName.LiveBackground" templateonly="True" />
-	<propertySettings property="widgetType.LiveBackground" templateonly="True" />
-	<propertySettings property="widgetTarget.LiveBackground" templateonly="True" />
-	<propertySettings property="widget.Background" templateonly="True" />
-	<propertySettings property="widgetName.Background" templateonly="True" />
-	<propertySettings property="widgetType.Background" templateonly="True" />
-	<propertySettings property="widgetTarget.Background" templateonly="True" />
-
-
-
-
-
 	<!-- Widget groupings -->
 	<widget-groupings>
 		<!-- Movies -->
@@ -281,40 +203,22 @@
 	</widget-groupings>
 	<!-- Widget style -->
 	<propertySettings property="widgetStyle" buttonID="8001" title="Style" />
-	<property property="widgetStyle" label="Panel">Panel</property>
-	<!-- Widget art -->
-	<propertySettings property="widgetArt" buttonID="8002" requires="widget" templateonly="True" showNone="False" title="Art" />
-	<property property="widgetArt" label="Poster">Poster</property>
-	<property property="widgetArt" label="FanArt">FanArt</property>
-	<property property="widgetArt" label="Landscape" condition="String.IsEqual(Container(211).ListItem.Property(widget),library) | String.IsEqual(Container(211).ListItem.Property(widget),playlist)">Landscape</property>
-	<property property="widgetArt" label="21371" condition="[String.IsEqual(Container(211).ListItem.Property(widget),library) | String.IsEqual(Container(211).ListItem.Property(widget),playlist)] + String.IsEqual(Container(211).ListItem.Property(widgetType),episodes)">Thumb</property>
-	<property property="widgetArt" label="Clear art" condition="String.IsEqual(Container(211).ListItem.Property(widget),library) | String.IsEqual(Container(211).ListItem.Property(widget),playlist)">ClearArt</property>
-	<property property="widgetArt" label="Logo" condition="String.IsEqual(Container(211).ListItem.Property(widget),library) | String.IsEqual(Container(211).ListItem.Property(widget),playlist)">ClearLogo</property>
-	<property property="widgetArt" label="Disc art" condition="[String.IsEqual(Container(211).ListItem.Property(widget),library) | String.IsEqual(Container(211).ListItem.Property(widget),playlist)] + !String.IsEqual(Container(211).ListItem.Property(widgetType),episodes) + !String.IsEqual(Container(211).ListItem.Property(widgetType),tvshows)">DiscArt</property>
-	<property property="widgetArt" label="Character art" condition="String.IsEqual(Container(211).ListItem.Property(widgetType),episodes) + [String.IsEqual(Container(211).ListItem.Property(widget),library) | String.IsEqual(Container(211).ListItem.Property(widget),playlist)] + [String.IsEqual(Container(211).ListItem.Property(widgetType),episodes) | String.IsEqual(Container(211).ListItem.Property(widgetType),tvshows)]">CharacterArt</property>
-	<!-- Widget style -->
-	<propertySettings property="widgetAspect" buttonID="8003" title="Aspect" />
-	<property property="widgetAspect" label="Portrait">Portrait</property>
-	<property property="widgetAspect" label="Square">Square</property>
-	<property property="widgetAspect" label="Landscape">Landscape</property>
-	<!-- Widget case -->
-	<propertySettings property="widgetCase" buttonID="8004" requires="widget" templateonly="True" title="Case" />
-	<property property="widgetCase" icon="thumbs/case/poster/1080p.png" label="Case">Case</property>
-	<property property="widgetCase" icon="thumbs/clearcase/poster/1080p.png" label="Clear case">ClearCase</property>
-	<property property="widgetCase" icon="thumbs/glass/square.png" label="Glass">Glass</property>
-	<property property="widgetCase" icon="thumbs/cdcase/cd.png" label="CD">CD</property>
-	<property property="widgetCase" icon="thumbs/cdcase/cdclear.png" label="CD clear">CDClear</property>
-	<property property="widgetCase" icon="thumbs/polaroid.png" label="Polaroid">Polaroid</property>
-
-
-
-
-
-	<property property="LiveBackground" label="::PLAYLIST::">s:playlist|i:playlist</property>
-
-
-	
-
+	<property property="widgetStyle" label="Panel">panel</property>
+	<!-- Widget artwork -->
+	<propertySettings property="widgetArtwork" buttonID="8002" showNone="false" title="Artwork" />
+	<property property="widgetArtwork" label="Poster">poster</property>
+	<property property="widgetArtwork" label="FanArt">fanart</property>
+	<property property="widgetArtwork" label="Landscape" condition="String.IsEqual(Container(211).ListItem.Property(widget),library) | String.IsEqual(Container(211).ListItem.Property(widget),playlist)">landscape</property>
+	<property property="widgetArtwork" label="21371" condition="[String.IsEqual(Container(211).ListItem.Property(widget),library) | String.IsEqual(Container(211).ListItem.Property(widget),playlist)] + String.IsEqual(Container(211).ListItem.Property(widgetType),episodes)">thumb</property>
+	<property property="widgetArtwork" label="Clear art" condition="String.IsEqual(Container(211).ListItem.Property(widget),library) | String.IsEqual(Container(211).ListItem.Property(widget),playlist)">clearart</property>
+	<property property="widgetArtwork" label="Logo" condition="String.IsEqual(Container(211).ListItem.Property(widget),library) | String.IsEqual(Container(211).ListItem.Property(widget),playlist)">clearlogo</property>
+	<property property="widgetArtwork" label="Disc art" condition="[String.IsEqual(Container(211).ListItem.Property(widget),library) | String.IsEqual(Container(211).ListItem.Property(widget),playlist)] + !String.IsEqual(Container(211).ListItem.Property(widgetType),episodes) + !String.IsEqual(Container(211).ListItem.Property(widgetType),tvshows)">discart</property>
+	<property property="widgetArtwork" label="Character art" condition="String.IsEqual(Container(211).ListItem.Property(widgetType),episodes) + [String.IsEqual(Container(211).ListItem.Property(widget),library) | String.IsEqual(Container(211).ListItem.Property(widget),playlist)] + [String.IsEqual(Container(211).ListItem.Property(widgetType),episodes) | String.IsEqual(Container(211).ListItem.Property(widgetType),tvshows)]">characterart</property>
+	<!-- Widget aspect -->
+	<propertySettings property="widgetAspect" buttonID="8003" showNone="false" title="Aspect" />
+	<property property="widgetAspect" label="Portrait">portrait</property>
+	<property property="widgetAspect" label="Square">square</property>
+	<property property="widgetAspect" label="Landscape">landscape</property>
 	<!-- Infolines -->
 	<property property="InfoLine" label="$LOCALIZE[20342]">movies</property>
 	<property property="InfoLine" label="$LOCALIZE[20343]">tvshows</property>
@@ -341,9 +245,62 @@
 		<action>Action(Close)</action>
 		<action>::ACTION::</action>
 	</override>
-
 	<!-- Live background -->
 	<onback to="800">123</onback>
 	<onback to="800">6001</onback>
-	
+		<!-- Live background -->
+	<!-- <propertySettings property="liveBackground" buttonID="1000" />
+	<property property="liveBackground" label="$ADDON[script.skin.helper.widgets 32048]">plugin://script.skin.helper.widgets/?action=random&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</property>
+	<property property="liveBackground" label="$ADDON[script.skin.helper.widgets 32028]">plugin://script.skin.helper.widgets/?action=inprogress&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</property>
+	<property property="liveBackground" label="$ADDON[script.skin.helper.widgets 32038]">plugin://script.skin.helper.widgets/?action=recent&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</property>
+	<property property="liveBackground" label="$ADDON[script.skin.helper.widgets 32066]">plugin://script.skin.helper.widgets/?action=unwatched&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</property> -->
+	<!-- <shortcut label="$ADDON[script.skin.helper.widgets 32048]" condition="System.HasAddon(script.skin.helper.widgets)" icon="logos/shs-logo.png" widget="library" widgetType="movies" widgetTarget="video">plugin://script.skin.helper.widgets/?action=random&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</shortcut>
+	<shortcut label="$ADDON[script.skin.helper.widgets 32038]" condition="System.HasAddon(script.skin.helper.widgets)" icon="logos/shs-logo.png" widget="library" widgetType="movies" widgetTarget="video">plugin://script.skin.helper.widgets/?action=recent&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</shortcut>
+	<shortcut label="$ADDON[script.skin.helper.widgets 32046]" condition="System.HasAddon(script.skin.helper.widgets)" icon="logos/shs-logo.png" widget="library" widgetType="movies" widgetTarget="video">plugin://script.skin.helper.widgets/?action=recommended&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</shortcut>
+	<shortcut label="$ADDON[script.skin.helper.widgets 32066]" condition="System.HasAddon(script.skin.helper.widgets)" icon="logos/shs-logo.png" widget="library" widgetType="movies" widgetTarget="video">plugin://script.skin.helper.widgets/?action=unwatched&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</shortcut>
+	<shortcut label="$ADDON[script.skin.helper.widgets 32003]" condition="System.HasAddon(script.skin.helper.widgets)" icon="logos/shs-logo.png" widget="library" widgetType="movies" widgetTarget="video">plugin://script.skin.helper.widgets/?action=top250&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</shortcut>
+	<shortcut label="$ADDON[script.skin.helper.widgets 32028]" condition="System.HasAddon(script.skin.helper.widgets)" icon="logos/shs-logo.png" widget="library" widgetType="movies" widgetTarget="video">plugin://script.skin.helper.widgets/?action=inprogress&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</shortcut>
+	<shortcut label="$ADDON[script.skin.helper.widgets 32029]" condition="System.HasAddon(script.skin.helper.widgets)" icon="logos/shs-logo.png" widget="library" widgetType="movies" widgetTarget="video">plugin://script.skin.helper.widgets/?action=inprogressandrecommended&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</shortcut>
+	<shortcut label="$ADDON[script.skin.helper.widgets 32006]" condition="System.HasAddon(script.skin.helper.widgets)" icon="logos/shs-logo.png" widget="library" widgetType="movies" widgetTarget="video">plugin://script.skin.helper.widgets/?action=similar&amp;mediatype=movies&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</shortcut> -->
+	<!-- Live background aspect  -->
+	<!-- <propertySettings property="liveBackgroundAspect" buttonID="10110" requires="widgetPath.LiveBackground" title="Aspect" />
+	<property property="liveBackgroundAspect" label="Portait">portrait</property>
+	<property property="liveBackgroundAspect" label="Square">square</property>
+	<property property="liveBackgroundAspect" label="Landscape">landscape</property> -->
+	<!-- Live background aspect if empty  -->
+	<!-- <propertyfallback property="liveBackgroundAspect" attribute="widgetType.LiveBackground" value="movies">portrait</propertyfallback>
+	<propertyfallback property="liveBackgroundAspect" attribute="widgetType.LiveBackground" value="tvshows">portrait</propertyfallback>
+	<propertyfallback property="liveBackgroundAspect" attribute="widgetType.LiveBackground" value="pictures">landscape</propertyfallback>
+	<propertyfallback property="liveBackgroundAspect">square</propertyfallback> -->
+	<!-- Live background case  -->
+	<!-- <propertySettings property="liveBackgroundCase" buttonID="1001" requires="widgetPath.LiveBackground" title="Case" />
+	<property property="liveBackgroundCase" label="Case">case</property>
+	<property property="liveBackgroundCase" label="Clear Case">clear</property>
+	<property property="liveBackgroundCase" label="Glass">glass</property>
+	<property property="liveBackgroundCase" label="CD">cd</property>
+	<property property="liveBackgroundCase" label="CD clear">cdclear</property>
+	<property property="liveBackgroundCase" label="Polaroid">polaroid</property> -->
+	<!-- Live background sort-by -->
+	<!-- <propertySettings property="liveBackgroundSortby" buttonID="1002" requires="widgetPath.LiveBackground" title="$LOCALIZE[581]" />
+	<property property="liveBackgroundSortby" label="369">title</property>
+	<property property="liveBackgroundSortby" label="552">date</property>
+	<property property="liveBackgroundSortby" label="570">dateadded</property>
+	<property property="liveBackgroundSortby" label="590">random</property> -->
+	<!-- Live background sort-order -->
+	<!-- <propertySettings property="liveBackgroundSort" buttonID="1003" requires="widgetPath.LiveBackground" title="$LOCALIZE[580]" />
+	<property property="liveBackgroundSort" label="584">ascending</property>
+	<property property="liveBackgroundSort" label="585">descending</property> -->
+	<!-- Remove background properties we dont need from main menu -->
+	<!-- <propertySettings property="liveBackgroundAspect" templateonly="True" />
+	<propertySettings property="liveBackgroundSortby" templateonly="True" />
+	<propertySettings property="liveBackgroundSort" templateonly="True" /> -->
+	<!-- <propertySettings property="widget.LiveBackground" templateonly="True" />
+	<propertySettings property="widgetName.LiveBackground" templateonly="True" />
+	<propertySettings property="widgetType.LiveBackground" templateonly="True" />
+	<propertySettings property="widgetTarget.LiveBackground" templateonly="True" />
+	<propertySettings property="widget.Background" templateonly="True" />
+	<propertySettings property="widgetName.Background" templateonly="True" />
+	<propertySettings property="widgetType.Background" templateonly="True" />
+	<propertySettings property="widgetTarget.Background" templateonly="True" />
+ -->
 </overrides>
