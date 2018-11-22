@@ -18,22 +18,23 @@
 				<skinshortcuts>visibility</skinshortcuts>
 				<include>AnimationVisibleFade</include>
 				<include content="WidgetInfo">
+					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
 					<param name="left">$SKINSHORTCUTS[infoleft]</param>
 					<param name="width">$SKINSHORTCUTS[infowidth]</param>
 					<param name="aspect">$SKINSHORTCUTS[infoaspect]</param>
 				</include>
 				<control type="panel" id="8011$SKINSHORTCUTS[id]">
-					<visible>String.IsEmpty(Skin.String(HomeWidget$SKINSHORTCUTS[id]))</visible>
-					<top>30</top>
 					<animation effect="slide" end="0,$PYTHON[(388 - int(containerheight))]" condition="!String.IsEqual(Skin.String(WidgetPosition),top)">Conditional</animation>
-					<onup>9050</onup>
-					<ondown>9000</ondown>
+					<top>30</top>
 					<left>30</left>
 					<right>30</right>
 					<height>$SKINSHORTCUTS[containerheight]</height>
-					<orientation>horizontal</orientation>
+					<onup>9050</onup>
+					<ondown>9000</ondown>
 					<preloaditems>2</preloaditems>
+					<orientation>horizontal</orientation>
 					<include content="WidgetContainer">
+						<param name="id">8011$SKINSHORTCUTS[id]</param>
 						<param name="containerwidth">$SKINSHORTCUTS[containerwidth]</param>
 						<param name="containerheight">$SKINSHORTCUTS[containerheight]</param>
 						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
@@ -70,6 +71,9 @@
 		<!-- Label -->
 		<property name="labelvisible" tag="property" attribute="name|widgetLabel" value="true">true</property>
 		<property name="labelvisible">false</property>
+		<!-- Info -->
+		<property name="infovisible" tag="property" attribute="name|widgetInfo" value="true">true</property>
+		<property name="infovisible">false</property>
 		<!-- Info dimensions -->
 		<property name="infoleft" tag="property" attribute="name|widgetType" value="movies|episodes|tvshows">245</property>
 		<property name="infoleft">347</property>

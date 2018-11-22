@@ -7,7 +7,7 @@
 			<control type="group">
 				<top>$PARAM[top]</top>
 				<control type="label">
-					<visible>!Skin.HasSetting(InfoBarLeftDisable) + !String.IsEmpty(Container(9000).ListItem.Property(InfoLine)) + !ControlGroup(90010).HasFocus</visible>
+					<visible>!Skin.HasSetting(InfoBarLeftDisable) + !String.IsEmpty(Container(9000).ListItem.Property(InfoLine)) + [!ControlGroup(90010).HasFocus | String.IsEmpty(Container(9000).ListItem.Property(widgetName))]</visible>
 					<left>5</left>
 					<width>$PARAM[width]</width>
 					<height>38</height>
@@ -17,7 +17,7 @@
 					<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
 				</control>
 				<control type="label">
-					<visible>!Skin.HasSetting(InfoBarLeftDisable) + !String.IsEmpty(Container(9000).ListItem.Property(widgetType)) + ControlGroup(90010).HasFocus</visible>
+					<visible>!Skin.HasSetting(InfoBarLeftDisable) + !String.IsEmpty(Container(9000).ListItem.Property(widgetType)) + ControlGroup(90010).HasFocus + !String.IsEmpty(Container(9000).ListItem.Property(widgetName))</visible>
 					<left>5</left>
 					<width>$PARAM[width]</width>
 					<height>38</height>
@@ -94,7 +94,7 @@
 					<height>88</height>
 					<include>AnimationVisibleFade</include>
 					<texture flipx="true" border="1,1,70,1" colordiffuse="$VAR[MainMenuSystemBarColorVar]">panels/mainmenu/default-systembar.png</texture>
-					<visible>!Skin.HasSetting(InfoBarLeftDisable) + !String.IsEmpty(Container(9000).ListItem.Property(InfoLine))</visible>
+					<visible>!Skin.HasSetting(InfoBarLeftDisable) + [!String.IsEmpty(Container(9000).ListItem.Property(InfoLine)) | [ControlGroup(90010).HasFocus + !String.IsEmpty(Container(9000).ListItem.Property(widgetName))]]</visible>
 				</control>
 				<control type="image">
 					<right>0</right>
@@ -137,7 +137,7 @@
 					<width>810</width>
 					<height>88</height>
 					<texture flipx="true" flipy="true" border="1,1,70,1" colordiffuse="$VAR[MainMenuSystemBarColorVar]">panels/mainmenu/default-systembar.png</texture>
-					<visible>!Skin.HasSetting(InfoBarLeftDisable) + !String.IsEmpty(Container(9000).ListItem.Property(InfoLine))</visible>
+					<visible>!Skin.HasSetting(InfoBarLeftDisable) + [!String.IsEmpty(Container(9000).ListItem.Property(InfoLine)) | [ControlGroup(90010).HasFocus + !String.IsEmpty(Container(9000).ListItem.Property(widgetName))]]</visible>
 				</control>
 				<control type="image">
 					<right>0</right>
@@ -564,6 +564,7 @@
 	</include>
 	<include name="WidgetContainer">
 		<include>WidgetPosition</include>
+		<onfocus>SetProperty(SkinHelper.WidgetContainer,$PARAM[id],home)</onfocus>
 		<itemlayout width="$PARAM[containerwidth]" height="$PARAM[containerheight]">
 			<control type="image">
 				<bordersize>10</bordersize>
@@ -645,18 +646,16 @@
 	</include>
 	<include name="WidgetInfo">
 		<control type="group">
-			<visible>ControlGroup(90010).HasFocus</visible>
-			<include>AnimationVisibleFade</include>
+			<visible>ControlGroup(90010).HasFocus + $PARAM[infovisible]</visible>
+			<animation effect="fade" end="100" time="200">Visible</animation>
 			<control type="image">
 				<visible>String.IsEmpty(Skin.String(WidgetPosition)) | String.IsEqual(Skin.String(WidgetPosition),belowmenu)</visible>
-				<include>AnimationVisibleFade</include>
 				<width>1920</width>
 				<height>700</height>
 				<texture flipy="true" colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/background-gradient.png</texture>
 			</control>
 			<control type="image">
 				<visible>String.IsEqual(Skin.String(WidgetPosition),top)</visible>
-				<include>AnimationVisibleFade</include>
 				<top>156</top>
 				<width>1920</width>
 				<height>700</height>
@@ -664,7 +663,6 @@
 			</control>
 			<control type="image">
 				<visible>String.IsEqual(Skin.String(WidgetPosition),abovemenu)</visible>
-				<include>AnimationVisibleFade</include>
 				<top>380</top>
 				<width>1920</width>
 				<height>700</height>
@@ -682,14 +680,14 @@
 				<control type="image">
 					<width>$PARAM[width]</width>
 					<height>327</height>
-					<include>TextureFadeTime</include>
-					<texture diffuse="diffuse/rounded5-380x380.png">$VAR[HomeWidgetPosterVar]</texture>
+					<fadetime>TextureFadeTime</fadetime>
+					<texture diffuse="diffuse/rounded5-380x380.png">$VAR[WidgetPosterVar]</texture>
 					<aspectratio align="center" aligny="center" scalediffuse="false">$PARAM[aspect]</aspectratio>
 				</control>
 				<control type="image">
 					<top>-10</top>
 					<left>-10</left>
-					<include>TextureFadeTime</include>
+					<fadetime>TextureFadeTime</fadetime>
 					<width>$PARAM[left]</width>
 					<height>347</height>
 					<texture border="20">thumbs/overlay.png</texture>
@@ -697,36 +695,83 @@
 				<control type="grouplist">
 					<left>$PARAM[left]</left>
 					<itemgap>10</itemgap>
+					<usecontrolcoords>true</usecontrolcoords>
 					<control type="label">
-						<height>28</height>
+						<height>30</height>
 						<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
 						<font>Font42_Bold_Caps</font>
-						<label>$VAR[HomeWidgetTitleVar]</label>
+						<fadetime>TextureFadeTime</fadetime>
+						<label>$VAR[WidgetTitleVar]</label>
 					</control>
 					<control type="label">
-						<height>40</height>
+						<height>38</height>
 						<font>Font36_Reg</font>
 						<textcolor>$VAR[MainMenuHighlightColorVar]</textcolor>
-						<label>$VAR[HomeWidgetSubTitleVar]</label>
+						<label>$VAR[WidgetSubTitleVar]</label>
 					</control>
-					<control type="image">
-						<height>4</height>
-						<width>388</width>
-						<texture colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/separator.png</texture>
-					</control>
-					<control type="label">
-						<top>100</top>
-						<height>27</height>
-						<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
-						<label>$VAR[WidgetInfoVar]</label>
+					<control type="grouplist">
+						<top>-2</top>
+						<height>38</height>
+						<usecontrolcoords>true</usecontrolcoords>
+						<orientation>horizontal</orientation>
+						<control type="image">
+							<visible>!String.IsEmpty(Container.ListItem.Date) | !String.IsEmpty(ListItem.Year) | !String.IsEmpty(ListItem.Property(Artist_YearsActive))</visible>
+							<width>30</width>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[IconPathVar]calendar.png</texture>
+						</control>
+						<control type="image">
+							<visible>!String.IsEmpty(Container.ListItem.AddonCreator)</visible>
+							<width>30</width>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[IconPathVar]person.png</texture>
+						</control>
+						<control type="label">
+							<top>-2</top>
+							<width>auto</width>
+							<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+							<label>$VAR[WidgetInfo1Var]</label>
+						</control>
+						<control type="image">
+							<visible>!String.IsEmpty(Container.ListItem.Duration)</visible>
+							<width>30</width>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[IconPathVar]timer.png</texture>
+						</control>
+						<control type="image">
+							<visible>!String.IsEmpty(Container.ListItem.AddonVersion)</visible>
+							<width>30</width>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[IconPathVar]addons.png</texture>
+						</control>
+						<control type="label">
+							<top>-2</top>
+							<width>auto</width>
+							<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+							<label>$VAR[WidgetInfo2Var]</label>
+						</control>
+						<control type="image">
+							<visible>!String.IsEmpty(Container.ListItem.Rating) | !String.IsEmpty(Container.ListItem.UserRating)</visible>
+							<width>30</width>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[IconPathVar]star.png</texture>
+						</control>
+						<control type="label">
+							<visible>!String.IsEmpty(Container.ListItem.Rating) | !String.IsEmpty(Container.ListItem.UserRating)</visible>
+							<top>-2</top>
+							<width>auto</width>
+							<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+							<label>$VAR[WidgetInfo3Var]</label>
+						</control>
 					</control>
 					<control type="textbox">
-						<height>188</height>
+						<top>4</top>
+						<height>189</height>
 						<align>justify</align>
-						<font>Font34_Reg</font>
+						<font>Font32_Reg_11</font>
 						<include>AutoScrollPlot</include>
 						<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
-						<label>$VAR[HomeWidgetPlotVar]</label>
+						<label>$VAR[WidgetPlotVar]</label>
 					</control>
 				</control>
 			</control>
