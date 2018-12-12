@@ -3,8 +3,6 @@
 	<defaultcontrol always="true">9000</defaultcontrol>
 	<menucontrol>9050</menucontrol>
 	<onload condition="!System.HasAddon(script.skinshortcuts)">InstallAddon(script.skinshortcuts)</onload>
-	<onload condition="!System.HasAddon(script.skin.helper.service)">InstallAddon(script.skin.helper.service)</onload>
-	<onload condition="!System.HasAddon(script.skin.helper.colorpicker)">InstallAddon(script.skin.helper.colorpicker)</onload>
 	<onload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;levels=2&amp;group=mainmenu|quicknav)</onload>
 	<controls>
 		<!-- Backdrop -->
@@ -12,134 +10,112 @@
 			<param name="imagepath">$VAR[HomeFanartVar]</param>
 		</include>
 		<control type="group">
-			<visible>!Window.IsActive(movieinformation) + !Window.IsActive(musicinformation) + !Window.IsActive(songinformation)</visible>
+			<visible>!Window.IsActive(movieinformation) + !Window.IsActive(musicinformation) + !Window.IsActive(songinformation) + !Window.IsActive(addoninformation)</visible>
 			<include>AnimationVisibleFade</include>
 			<!-- Now playing -->
 			<control type="group">
 				<visible>[Player.HasAudio + !Skin.HasSetting(NowplayingHomeDisableAudio)] | [Player.HasVideo + !Skin.HasSetting(NowplayingHomeDisableVideo)]</visible>
-				<visible>!ControlGroup(90010).HasFocus</visible>
 				<include>AnimationVisibleFade</include>
 				<include content="AnimationSlideTopWindow">
-					<param name="opencondition">Skin.String(WidgetPosition,belowmenu) | !Skin.String(WidgetPosition)</param>
-					<param name="closecondition">Skin.String(WidgetPosition,belowmenu) | !Skin.String(WidgetPosition)</param>
+					<param name="opencondition">Skin.HasSetting(WidgetHigh)</param>
+					<param name="closecondition">Skin.HasSetting(WidgetHigh)</param>
 				</include>
 				<include content="AnimationSlideBottomWindow">
-					<param name="opencondition">Skin.String(WidgetPosition,abovemenu) | Skin.String(WidgetPosition,Top)</param>
-					<param name="closecondition">Skin.String(WidgetPosition,abovemenu) | Skin.String(WidgetPosition,Top)</param>
+					<param name="opencondition">!Skin.HasSetting(WidgetHigh)</param>
+					<param name="closecondition">!Skin.HasSetting(WidgetHigh)</param>
 				</include>
 				<include>HomeNowPlaying</include>
 			</control>
 			<!-- Widgets -->
 			<control type="group" id="90010">
-				<include content="AnimationSlideBottomWindow">
-					<param name="opencondition">Skin.String(WidgetPosition,belowmenu) | !Skin.String(WidgetPosition)</param>
-					<param name="closecondition">Skin.String(WidgetPosition,belowmenu) | !Skin.String(WidgetPosition)</param>
-				</include>
 				<include content="AnimationSlideTopWindow">
-					<param name="opencondition">Skin.String(WidgetPosition,abovemenu) | Skin.String(WidgetPosition,Top)</param>
-					<param name="closecondition">Skin.String(WidgetPosition,abovemenu) | Skin.String(WidgetPosition,Top)</param>
+					<param name="opencondition">Skin.HasSetting(WidgetHigh)</param>
+					<param name="closecondition">Skin.HasSetting(WidgetHigh)</param>
 				</include>
-				<animation effect="fade" start="100" end="0" time="0" condition="!String.IsEmpty(Container(9000).ListItem.Property(widgetHide)) + !ControlGroup(90010).HasFocus">Conditional</animation>
-
-			<!-- <animation effect="slide" end="0,362" time="200" condition="String.IsEmpty(Skin.String(WidgetPosition))">Conditional</animation>
-			<animation effect="slide" end="0,41" time="200" condition="!String.IsEqual(Skin.String(WidgetPosition),belowmenu) + Skin.HasSetting(InfoBarTop) + [!Skin.HasSetting(InfoBarLeftDisable) | !Skin.HasSetting(InfoBarDisableWeather) | !Skin.HasSetting(InfoBarDisableDate) | !Skin.HasSetting(InfoBarDisableTime)]">Conditional</animation>
-			<animation effect="slide" end="0,596" time="200" condition="String.IsEqual(Skin.String(WidgetPosition),belowmenu)">Conditional</animation>
-			<animation effect="slide" end="0,41" time="200" condition="String.IsEqual(Skin.String(WidgetPosition),belowmenu) + !system.getbool(lookandfeel.enablerssfeeds)">Conditional</animation> -->
-
-			<!-- The visibility condition causes a quick flash of the widgets between menu items but is required for navigation -->
-			<visible>!String.IsEmpty(Container(9000).ListItem.Property(widgetType))</visible>
-
-			<include>skinshortcuts-template-widget1</include>
-		</control>
-
-		<include>InfoTimeBar</include>
-		<include>RSSShortcuts</include>
-
-		<!-- Menu -->
-		<control type="group">
-			<animation effect="slide" end="0,-41" time="200" condition="!Skin.String(WidgetPosition,belowmenu) + Skin.HasSetting(InfoBarLeftDisable) + Skin.HasSetting(InfoBarDisableWeather) + Skin.HasSetting(InfoBarDisableDate) + Skin.HasSetting(InfoBarDisableTime)">Conditional</animation>
-			<animation effect="slide" end="0,-367" time="200" condition="Skin.String(WidgetPosition,abovemenu)">Conditional</animation>
-			<animation effect="slide" end="0,-408" time="200" condition="Skin.String(WidgetPosition,belowmenu)">Conditional</animation>
-			<animation effect="slide" end="0,41" time="200" condition="Skin.String(WidgetPosition,belowmenu) + !system.getbool(lookandfeel.enablerssfeeds)">Conditional</animation>
+				<include content="AnimationSlideBottomWindow">
+					<param name="opencondition">!Skin.HasSetting(WidgetHigh)</param>
+					<param name="closecondition">!Skin.HasSetting(WidgetHigh)</param>
+				</include>
+				<animation effect="fade" start="100" end="0" time="200" condition="[!Skin.HasSetting(NowplayingHomeDisableAudio) + Player.HasAudio + !ControlGroup(90010).HasFocus] | [Skin.HasSetting(WidgetHide) + !ControlGroup(90010).HasFocus]">Conditional</animation>
+				<!-- The visibility condition causes a quick flash of the widgets between menu items but is required for navigation -->
+				<visible>!String.IsEmpty(Container(9000).ListItem.Property(widgetType))</visible>
+				<include>skinshortcuts-template-widget1</include>
+			</control>
+			<!-- System/RSS/Time bar and Shortcuts -->
+			<include>InfoTimeBar</include>
+			<!-- Menu -->
 			<include condition="!Skin.HasSetting(MainMenuFixedList)">MainMenu</include>
 			<include condition="Skin.HasSetting(MainMenuFixedList)" content="MainMenu">
 				<param name="listtype">fixedlist</param>
 			</include>
+
+			<include>RSSShortcuts</include>
 		</control>
-	</control>
-	<!-- Media Menu -->
-	<include>MediaMenuMouseOverlay</include>
-	<control type="group">
-		<visible>!String.IsEqual(Skin.String(KioskMode),HideOptions) + !String.IsEqual(Skin.String(KioskMode),HideMenu)</visible>
-		<include>MediaMenuCommon</include>
-		<control type="grouplist" id="9050">
-			<usecontrolcoords>true</usecontrolcoords>
-			<onright>9000</onright>
-			<onback>9000</onback>
-			<!-- Menu -->
-			<control type="radiobutton" id="9051">
-				<include content="MediaMenuIconButton">
-					<param name="iconon" value="icons/mediamenu/menu.png" />
-					<param name="iconoff" value="icons/mediamenu/menu.png" />
-				</include>
-				<label>$LOCALIZE[31017]</label>
-				<onclick>RunScript(script.skinshortcuts,type=manage&amp;group=mainmenu)</onclick>
+		<!-- Media Menu -->
+		<include>MediaMenuMouseOverlay</include>
+		<control type="group">
+			<visible>!String.IsEqual(Skin.String(KioskMode),HideOptions) + !String.IsEqual(Skin.String(KioskMode),HideMenu)</visible>
+			<include>MediaMenuCommon</include>
+			<control type="grouplist" id="9050">
+				<usecontrolcoords>true</usecontrolcoords>
+				<onright>9000</onright>
+				<onback>9000</onback>
+				<!-- Menu -->
+				<control type="radiobutton" id="9051">
+					<include content="MediaMenuIconButton">
+						<param name="iconon" value="icons/mediamenu/menu.png" />
+						<param name="iconoff" value="icons/mediamenu/menu.png" />
+					</include>
+					<label>$LOCALIZE[31017]</label>
+					<onclick>RunScript(script.skinshortcuts,type=manage&amp;group=mainmenu)</onclick>
+				</control>
+				<control type="radiobutton" id="9052">
+					<include content="MediaMenuIconButton">
+						<param name="iconon" value="icons/mediamenu/settings.png" />
+						<param name="iconoff" value="icons/mediamenu/settings.png" />
+					</include>
+					<label>$LOCALIZE[33061]</label>
+					<onclick>SetProperty(MediaMenuSelect,menu,home)</onclick>
+					<onclick>ActivateWindow(1115)</onclick>
+				</control>
+				<control type="radiobutton" id="9053">
+					<include content="MediaMenuIconButton">
+						<param name="iconon" value="icons/mediamenu/info.png" />
+						<param name="iconoff" value="icons/mediamenu/info.png" />
+					</include>
+					<label>$LOCALIZE[29915]</label>
+					<onclick>SetProperty(MediaMenuSelect,info,home)</onclick>
+					<onclick>ActivateWindow(1115)</onclick>
+				</control>
+				<control type="radiobutton" id="9054">
+					<include content="MediaMenuIconButton">
+						<param name="iconon" value="icons/mediamenu/widgets.png" />
+						<param name="iconoff" value="icons/mediamenu/widgets.png" />
+					</include>
+					<label>$LOCALIZE[31039]</label>
+					<onclick>SetProperty(MediaMenuSelect,widgets,home)</onclick>
+					<onclick>ActivateWindow(1115)</onclick>
+				</control>
+				<control type="radiobutton" id="9055">
+					<include content="MediaMenuIconButton">
+						<param name="iconon" value="icons/mediamenu/play.png" />
+						<param name="iconoff" value="icons/mediamenu/play.png" />
+					</include>
+					<label>$LOCALIZE[31002]</label>
+					<onclick>SetProperty(MediaMenuSelect,nowplaying,home)</onclick>
+					<onclick>ActivateWindow(1115)</onclick>
+				</control>
+				<control type="radiobutton" id="9056">
+					<include content="MediaMenuIconButton">
+						<param name="iconon" value="icons/mediamenu/colors.png" />
+						<param name="iconoff" value="icons/mediamenu/colors.png" />
+					</include>
+					<label>$LOCALIZE[14078]</label>
+					<onclick>SetProperty(MediaMenuSelect,colors,home)</onclick>
+					<onclick>ActivateWindow(1115)</onclick>
+				</control>
+				<include>MediaMenuCommonBottom</include>
 			</control>
-			<control type="radiobutton" id="9052">
-				<include content="MediaMenuIconButton">
-					<param name="iconon" value="icons/mediamenu/settings.png" />
-					<param name="iconoff" value="icons/mediamenu/settings.png" />
-				</include>
-				<label>$LOCALIZE[33061]</label>
-				<onclick>SetProperty(MediaMenuSelect,menu,home)</onclick>
-				<onclick>ActivateWindow(1115)</onclick>
-			</control>
-			<control type="radiobutton" id="9053">
-				<include content="MediaMenuIconButton">
-					<param name="iconon" value="icons/mediamenu/info.png" />
-					<param name="iconoff" value="icons/mediamenu/info.png" />
-				</include>
-				<label>$LOCALIZE[29915]</label>
-				<onclick>SetProperty(MediaMenuSelect,info,home)</onclick>
-				<onclick>ActivateWindow(1115)</onclick>
-			</control>
-			<control type="radiobutton" id="9054">
-				<include content="MediaMenuIconButton">
-					<param name="iconon" value="icons/mediamenu/widgets.png" />
-					<param name="iconoff" value="icons/mediamenu/widgets.png" />
-				</include>
-				<label>$LOCALIZE[31039]</label>
-				<onclick>SetProperty(MediaMenuSelect,widgets,home)</onclick>
-				<onclick>ActivateWindow(1115)</onclick>
-			</control>
-			<control type="radiobutton" id="9055">
-				<include content="MediaMenuIconButton">
-					<param name="iconon" value="icons/mediamenu/play.png" />
-					<param name="iconoff" value="icons/mediamenu/play.png" />
-				</include>
-				<label>$LOCALIZE[31002]</label>
-				<onclick>SetProperty(MediaMenuSelect,nowplaying,home)</onclick>
-				<onclick>ActivateWindow(1115)</onclick>
-			</control>
-			<control type="radiobutton" id="9056">
-				<include content="MediaMenuIconButton">
-					<param name="iconon" value="icons/mediamenu/colors.png" />
-					<param name="iconoff" value="icons/mediamenu/colors.png" />
-				</include>
-				<label>$LOCALIZE[14078]</label>
-				<onclick>SetProperty(MediaMenuSelect,colors,home)</onclick>
-				<onclick>ActivateWindow(1115)</onclick>
-			</control>
-			<control type="radiobutton" id="9057">
-				<include content="MediaMenuIconButton">
-					<param name="iconon" value="icons/mediamenu/reset.png" />
-					<param name="iconoff" value="icons/mediamenu/reset.png" />
-				</include>
-				<label>$LOCALIZE[31018]</label>
-				<onclick>RunScript(script.skinshortcuts,type=resetall)</onclick>
-			</control>
-			<include>MediaMenuCommonBottom</include>
 		</control>
-	</control>
-</controls>
+	</controls>
 </window>

@@ -23,7 +23,8 @@
 				<left>100</left>
 				<width>324</width>
 				<height>612</height>
-				<onright>90000</onright>
+				<onright condition="String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))">90001</onright>
+				<onright condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))">8000</onright>
 				<itemlayout height="67">
 					<control type="label">
 						<visible>!String.Contains(Skin.String(MainMenuStyle),icons) + !String.IsEqual(Window.Property(groupname),quicknav)</visible>
@@ -105,7 +106,7 @@
 			<control type="grouplist" id="90000">
 				<visible>String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
 				<top>200</top>
-				<left>434</left>
+				<left>445</left>
 				<width>1335</width>
 				<height>67</height>
 				<onleft>211</onleft>
@@ -219,7 +220,7 @@
 					<visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
 					<description>Widget</description>
 					<label>$ADDON[script.skinshortcuts 32044]</label>
-					<label2>$INFO[Container(211).ListItem.Property(widgetType)]</label2>
+					<label2>$INFO[Container(211).ListItem.Property(widgetName)]</label2>
 					<onfocus condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))">ClearProperty(skinshortcuts-Widget,Home)</onfocus>
 					<onclick>SetProperty(skinshortcuts-Widget,1,Home)</onclick>
 					<onclick>Control.SetFocus(8001)</onclick>
@@ -251,31 +252,35 @@
 				<onleft>211</onleft>
 				<onright>60</onright>
 				<pagecontrol>60</pagecontrol>
+				<control type="button" id="312">
+					<label>Widget</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetName)]</label2>
+					<onclick>SetProperty(customProperty,widgetAspect)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<onclick>SetProperty(customProperty,widgetArtwork)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<include>SettingsButton</include>
+				</control>
 				<control type="button" id="8001">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetType))</visible>
 					<label>Style</label>
 					<label2>$VAR[WidgetStyleLabelVar]</label2>
 					<include>SettingsButton</include>
 				</control>
-				<control type="button" id="312">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
-					<label>Widget</label>
-					<label2>$INFO[Container(211).ListItem.Property(widgetName)]</label2>
-					<include>SettingsButton</include>
-				</control>
 				<control type="button" id="8002">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
 					<label>Artwork</label>
 					<label2>$VAR[WidgetArtworkLabelVar]</label2>
 					<include>SettingsButton</include>
 				</control>
 				<control type="button" id="8003">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath))</visible>
 					<label>Aspect</label>
 					<label2>$VAR[WidgetAspectLabelVar]</label2>
 					<include>SettingsButton</include>
 				</control>
 				<control type="radiobutton" id="8010">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath)) + !String.IsEqual(Container(211).ListItem.Property(widget),info)</visible>
 					<description>Label</description>
 					<label>Label</label>
 					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetLabel))">SetProperty(customProperty,widgetLabel)</onclick>
@@ -286,7 +291,7 @@
 					<include>SettingsRadioButton</include>
 				</control>
 				<control type="radiobutton" id="8011">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath)) + !String.IsEqual(Container(211).ListItem.Property(widget),info)</visible>
 					<label>Info</label>
 					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetInfo))">SetProperty(customProperty,widgetInfo)</onclick>
 					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetInfo))">SetProperty(customProperty,widgetInfo)</onclick>

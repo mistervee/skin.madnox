@@ -166,14 +166,12 @@
 	</variable>
 	<variable name="NowPlayingHomeMusicInfoLabelVar">
 		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),tracks)">$LOCALIZE[182]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),description)">$LOCALIZE[21821]</value>
 		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),info)">$LOCALIZE[29915]</value>
 		<value condition="String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),none)">$LOCALIZE[231]</value>
 		<value>$LOCALIZE[209]</value>
 	</variable>
 	<variable name="NowPlayingHomeAudioInfoLabelVar">
 		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),tracks)">$LOCALIZE[182]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),description)">$LOCALIZE[21821]</value>
 		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),info)">$LOCALIZE[29915]</value>
 		<value condition="String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),none)">$LOCALIZE[231]</value>
 		<value>$LOCALIZE[209]</value>
@@ -191,14 +189,12 @@
 	</variable>
 	<variable name="NowPlayingMusicVizMusicInfoLabelVar">
 		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizMusicInfo),tracks)">$LOCALIZE[182]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizMusicInfo),description)">$LOCALIZE[21821]</value>
 		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizMusicInfo),info)">$LOCALIZE[29915]</value>
 		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizMusicInfo),none)">$LOCALIZE[231]</value>
 		<value>$LOCALIZE[209]</value>
 	</variable>
 	<variable name="NowPlayingMusicVizAudioInfoLabelVar">
 		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizAudioInfo),tracks)">$LOCALIZE[182]</value>
-		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizAudioInfo),description)">$LOCALIZE[21821]</value>
 		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizAudioInfo),info)">$LOCALIZE[29915]</value>
 		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizAudioInfo),none)">$LOCALIZE[231]</value>
 		<value>$LOCALIZE[209]</value>
@@ -208,17 +204,20 @@
 		<value condition="String.IsEqual(Skin.String(NowPlayingMusicVizInfo),persistant)">$LOCALIZE[31194]</value>
 		<value>$LOCALIZE[31193]</value>
 	</variable>
-	<!-- Widgets -->
-		<variable name="WidgetPosterVar">
-		<value condition="!String.IsEmpty(Container.ListItem.Art(poster))">$INFO[Container.ListItem.Art(poster)]</value>
-		<value condition="!String.IsEmpty(Container.ListItem.Art(tvshow.poster))">$INFO[Container.ListItem.Art(tvshow.poster)]</value>
-		<value condition="!String.IsEmpty(Container.ListItem.Art(thumb))">$INFO[Container.ListItem.Art(thumb)]</value>
+	<variable name="NowPlayingInfoBarStatusVar">
+		<value condition="Player.Playing">play.png</value>
+		<value condition="Player.Paused">pause.png</value>
+		<value condition="Player.Forwarding">forward.png</value>
+		<value condition="Player.Rewinding">rewind.png</value>
 	</variable>
+	<!-- Widgets -->
 	<variable name="WidgetTitleVar">
+		<value condition="!String.IsEmpty(ListItem.Property(title))">$INFO[ListItem.Property(title)]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Episode) + !String.IsEqual(Container.ListItem.Label,Container.ListItem.TVShowTitle)">$INFO[Container.ListItem.Season,,x]$INFO[Container.ListItem.Episode,,. ]$INFO[Container.ListItem.Title]</value>
 		<value>$INFO[Container.ListItem.Label]</value>
 	</variable>
 	<variable name="WidgetSubTitleVar">
+		<value condition="!String.IsEmpty(ListItem.Property(subtitle))">$INFO[ListItem.Property(subtitle)]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Tagline)">$INFO[Container.ListItem.Tagline]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Episode) + !String.IsEqual(Container.ListItem.Label,Container.ListItem.TVShowTitle)">$INFO[Container.ListItem.TvShowTitle]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Artist) + !String.IsEqual(Container.ListItem.Label,Container.ListItem.Artist)">$INFO[Container.ListItem.Artist]</value>
@@ -228,12 +227,14 @@
 		<value>$INFO[Container.ListItem.Path]</value>
 	</variable>
 	<variable name="WidgetInfo1Var">
+		<value condition="!String.IsEmpty(ListItem.Property(calender))">$INFO[ListItem.Property(calender), ,  ]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.AddonCreator)">$INFO[Container.ListItem.AddonCreator, ,  ]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Date)">$INFO[Container.ListItem.Date., ,  ]</value>
 		<value condition="!String.IsEmpty(ListItem.Property(Artist_YearsActive))">$INFO[Container.ListItem.Property(Artist_YearsActive), ,  ]</value>
 		<value condition="!String.IsEmpty(ListItem.Year)">$INFO[Container.ListItem.Year, ,  ]</value>
 	</variable>
 	<variable name="WidgetInfo2Var">
+		<value condition="!String.IsEmpty(ListItem.Property(duration))">$INFO[ListItem.Property(duration), ,  ]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.AddonVersion)">$INFO[Container.ListItem.AddonVersion, v,  ]</value>
 		<value condition="!Integer.IsGreater(Container.ListItem.Duration(h),0)">$INFO[Container.ListItem.Duration(mm), ,m]$INFO[Container.ListItem.Duration(ss),,s  ]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Duration)">$INFO[Container.ListItem.Duration(hh), ,h]$INFO[Container.ListItem.Duration(mm),,m  ]</value>
@@ -250,26 +251,38 @@
 		<value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Plot))">$INFO[Window(Home).Property(SkinHelper.ListItem.Plot)]</value>
 	</variable>
 	<variable name="WidgetStyleLabelVar">
-		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetStyle),Panel)">$LOCALIZE[31056]</value>
-		<value>$LOCALIZE[231]</value>
+		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetStyle),big)">$LOCALIZE[31210]</value>
+		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetStyle),medium)">$LOCALIZE[601]</value>
+		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetStyle),small)">$LOCALIZE[1438]</value>
 	</variable>
 	<variable name="WidgetArtworkLabelVar">
-		<value condition="String.IsEqual(Container(211).ListItem.Property(WidgetArtwork),poster)">$LOCALIZE[20021]</value>
-		<value condition="String.IsEqual(Container(211).ListItem.Property(WidgetArtwork),fanArt)">$LOCALIZE[20445]</value>
-		<value condition="String.IsEqual(Container(211).ListItem.Property(WidgetArtwork),thumb)">$LOCALIZE[21371]</value>
-		<value condition="String.IsEqual(Container(211).ListItem.Property(WidgetArtwork),landscape)">$LOCALIZE[31201]</value>
-		<value condition="String.IsEqual(Container(211).ListItem.Property(WidgetArtwork),clearart)">$LOCALIZE[31165]</value>
-		<value condition="String.IsEqual(Container(211).ListItem.Property(WidgetArtwork),clearlogo)">$LOCALIZE[31202]</value>
-		<value condition="String.IsEqual(Container(211).ListItem.Property(WidgetArtwork),discart)">$LOCALIZE[31108]</value>
-		<value condition="String.IsEqual(Container(211).ListItem.Property(WidgetArtwork),characterart)">$LOCALIZE[31162]</value>
-		<value>$LOCALIZE[231]</value>
+		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork),poster)">$LOCALIZE[20021]</value>
+		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork),icon)">$LOCALIZE[31061]</value>
+		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork),fanart)">$LOCALIZE[20445]</value>
+		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork),thumb)">$LOCALIZE[21371]</value>
+		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork),landscape)">$LOCALIZE[31201]</value>
+		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork),clearart)">$LOCALIZE[31165]</value>
+		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork),clearlogo)">$LOCALIZE[31202]</value>
+		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork),discart)">$LOCALIZE[31108]</value>
+		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork),characterart)">$LOCALIZE[31162]</value>
 	</variable>
 	<variable name="WidgetAspectLabelVar">
 		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetAspect),portrait)">$LOCALIZE[31203]</value>
 		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetAspect),square)">$LOCALIZE[31130]</value>
 		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetAspect),landscape)">$LOCALIZE[31201]</value>
-		<value>$LOCALIZE[231]</value>
 	</variable>
+	<!-- Main menu -->
+	<variable name="MainMenuPositionLabelVar">
+		<value condition="Skin.String(MainMenuPosition,bottom)">$LOCALIZE[31208]</value>
+		<value condition="Skin.String(MainMenuPosition,high)">$LOCALIZE[393]</value>
+		<value condition="Skin.String(MainMenuPosition,top)">$LOCALIZE[31209]</value>
+		<value>$LOCALIZE[391]</value>
+	</variable>
+
+
+
+
+
 
 	<variable name="ColorPickerLabelVar">
 		<value condition="!String.IsEqual(Window.Property(colorstring),None)">$LOCALIZE[737] [COLOR $INFO[Window.Property(colorstring)]]$INFO[Window.Property(colorstring)][/COLOR]</value>
@@ -283,8 +296,8 @@
 		<value>panels/volume/volume1.png</value>
 	</variable>
 
- 	<!-- PVR -->
- 	<variable name="TimersSubLabel">
+	<!-- PVR -->
+	<variable name="TimersSubLabel">
 		<value condition="[Window.IsActive(tvtimerrules) | Window.IsActive(radiotimerrules)] + !ListItem.HasTimerSchedule">$INFO[ListItem.Timertype]</value>
 		<value>$INFO[ListItem.EpisodeName]</value>
 	</variable>
@@ -616,7 +629,7 @@
 	<variable name="SkinShortcutsLeftLabelVar">
 		<value condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-Background))">$LOCALIZE[33068]</value>
 		<value condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-LiveBackground))">$LOCALIZE[31103]</value>
-		<value condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-Widgets))">$LOCALIZE[31039]</value>
+		<value condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))">$LOCALIZE[31039]</value>
 		<value condition="String.IsEqual(Window.Property(groupname),mainmenu)">$LOCALIZE[33061]</value>
 		<value condition="String.IsEqual(Window.Property(groupname),quicknav)">$LOCALIZE[31040]</value>
 		<value>$LOCALIZE[31101]</value>
@@ -722,15 +735,7 @@
 
 
 
-	<variable name="FanArtVar">
-		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
-		<value>special://skin/extras/backgrounds/videos.jpg</value>
-	</variable>
-
-
-
-
-
+	
 
 	<!-- Fanart -->
 	
@@ -786,9 +791,8 @@
 		<value condition="Skin.HasSetting(MediaFlagsColored) + System.HasAddon(resource.images.studios.coloured)">$INFO[ListItem.Label,resource://resource.images.studios.coloured/,.png]</value>
 		<value>$INFO[ListItem.Icon]</value>
 	</variable>
-
-
 	<variable name="FanArtVar">
+		<value condition="!String.IsEmpty(ListItem.Property(fanart))">$INFO[ListItem.Property(fanart)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
 		<value>none</value>
 	</variable>
@@ -798,12 +802,16 @@
 		<value>none</value>
 	</variable>
 	<variable name="LandscapeVar">
+		<value condition="!String.IsEmpty(ListItem.Property(landscape))">$INFO[ListItem.Property(landscape)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(landscape))">$INFO[ListItem.Art(landscape)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(tvshow.landscape))">$INFO[ListItem.Art(tvshow.landscape)]</value>
+		<value condition="!String.IsEmpty(ListItem.Property(fanart))">$INFO[ListItem.Property(fanart)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
 		<value>none</value>
 	</variable>
 	<variable name="ClearArtVar">
+		<value condition="!String.IsEmpty(ListItem.Property(clearart))">$INFO[ListItem.Property(clearart)]</value>
+		<value condition="!String.IsEmpty(ListItem.Property(clearlogo))">$INFO[ListItem.Property(clearlogo)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(clearart))">$INFO[ListItem.Art(clearart)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(tvshow.clearart))">$INFO[ListItem.Art(tvshow.clearart)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(tvshow.clearlogo))">$INFO[ListItem.Art(tvshow.clearlogo)]</value>
@@ -813,12 +821,14 @@
 		<value>none</value>
 	</variable>
 	<variable name="ClearLogoVar">
+		<value condition="!String.IsEmpty(ListItem.Property(clearlogo))">$INFO[ListItem.Property(clearlogo)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(clearlogo))">$INFO[ListItem.Art(clearlogo)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(tvshow.clearlogo))">$INFO[ListItem.Art(tvshow.clearlogo)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(artist.clearlogo))">$INFO[ListItem.Art(artist.clearlogo)]</value>
 		<value>none</value>
 	</variable>
 	<variable name="CharacterArtVar">
+		<value condition="!String.IsEmpty(ListItem.Property(characterart))">$INFO[ListItem.Property(characterart)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(tvshow.characterart))">$INFO[ListItem.Art(tvshow.characterart)]</value>
 		<value>none</value>
 	</variable>

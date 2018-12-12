@@ -44,7 +44,7 @@
 					<description>background image</description>
 					<width>1920</width>
 					<height>88</height>
-					<texture border="1" colordiffuse="$VAR[TopbarTextureColorVar]">$VAR[TopbarTextureVar]</texture>
+					<texture colordiffuse="$VAR[TopbarTextureColorVar]">$VAR[TopbarTextureVar]</texture>
 				</control>
 				<control type="progress">
 					<visible>Player.HasMedia + !Skin.HasSetting(DisableTopbarNowPlayingProgress) + !String.IsEqual(Skin.String(TopbarTexture.texture),shadow)</visible>
@@ -76,9 +76,9 @@
 					<width>1920</width>
 					<height>87</height>
 					<info>Player.ProgressCache</info>
-					<texturebg>panels/topbar-shadow-empty.png</texturebg>
+					<texturebg>panels/mainmenu/shadow-bar-empty.png</texturebg>
 					<lefttexture />
-					<midtexture colordiffuse="$VAR[TopbarNowPlayingColorVar]">panels/topbar-shadow20.png</midtexture>
+					<midtexture colordiffuse="$VAR[TopbarNowPlayingColorVar]">panels/mainmenu/shadow-bar20.png</midtexture>
 					<righttexture></righttexture>
 					<overlaytexture />
 				</control>
@@ -88,9 +88,9 @@
 					<width>1920</width>
 					<height>87</height>
 					<info>Player.Progress</info>
-					<texturebg>panels/topbar-shadow-empty.png</texturebg>
+					<texturebg>panels/mainmenu/shadow-bar-empty.png</texturebg>
 					<lefttexture />
-					<midtexture colordiffuse="$VAR[TopbarNowPlayingColorVar]">panels/topbar-shadow20.png</midtexture>
+					<midtexture colordiffuse="$VAR[TopbarNowPlayingColorVar]">panels/mainmenu/shadow-bar20.png</midtexture>
 					<righttexture></righttexture>
 					<overlaytexture />
 				</control>
@@ -172,15 +172,7 @@
 						<top>2</top>
 						<width>36</width>
 						<height>36</height>
-						<texture colordiffuse="$VAR[TopbarIconColorVar]">$VAR[TopbarIconPathVar]play.png</texture>
-						<visible>Player.Playing</visible>
-					</control>
-					<control type="image">
-						<top>2</top>
-						<width>36</width>
-						<height>36</height>
-						<texture colordiffuse="$VAR[TopbarIconColorVar]">$VAR[TopbarIconPathVar]pause.png</texture>
-						<visible>Player.Paused</visible>
+						<texture colordiffuse="$VAR[TopbarIconColorVar]">$VAR[TopbarIconPathVar]$VAR[NowPlayingInfoBarStatusVar]</texture>
 					</control>
 					<control type="label">
 						<label>$INFO[Player.Time]</label>
@@ -395,8 +387,8 @@
 	</include>
 	<include name="SettingsRightLabel">
 		<top>132</top>
-		<left>430</left>
-		<width>1384</width>
+		<left>425</left>
+		<width>1395</width>
 		<height>67</height>
 		<textoffsetx>35</textoffsetx>
 		<font>Font33_Bold_Caps</font>
@@ -835,7 +827,7 @@
 				<textoffsetx>10</textoffsetx>
 				<textoffsety>2</textoffsety>
 				<textcolor>$VAR[PanelTextColorVar]</textcolor>
-				<label>$INFO[Window(weather).Property(Daily.$PARAM[item].LongDay),, ]</label>
+				<label>$INFO[Window(weather).Property(Daily.$PARAM[item].LongDay)]</label>
 				<texturefocus colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/panel-select-focus.png</texturefocus>
 				<texturenofocus colordiffuse="FF000000" border="10">buttons/panel-select-focus.png</texturenofocus>
 				<visible>!String.IsEmpty(Window(weather).Property(Daily.$PARAM[item].Outlook))</visible>

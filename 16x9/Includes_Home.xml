@@ -7,7 +7,7 @@
 			<control type="group">
 				<top>$PARAM[top]</top>
 				<control type="label">
-					<visible>!Skin.HasSetting(InfoBarLeftDisable) + !String.IsEmpty(Container(9000).ListItem.Property(InfoLine)) + [!ControlGroup(90010).HasFocus | String.IsEmpty(Container(9000).ListItem.Property(widgetName))]</visible>
+					<visible>![Player.HasMedia + Skin.HasSetting(NowplayingSystemBar)] + !String.IsEmpty(Container(9000).ListItem.Property(InfoLine))</visible>
 					<left>5</left>
 					<width>$PARAM[width]</width>
 					<height>38</height>
@@ -16,15 +16,61 @@
 					<include>AnimationVisibleFade</include>
 					<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
 				</control>
-				<control type="label">
-					<visible>!Skin.HasSetting(InfoBarLeftDisable) + !String.IsEmpty(Container(9000).ListItem.Property(widgetType)) + ControlGroup(90010).HasFocus + !String.IsEmpty(Container(9000).ListItem.Property(widgetName))</visible>
+				<control type="grouplist">
+					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar)</visible>
+					<include>AnimationVisibleFade</include>
 					<left>5</left>
 					<width>$PARAM[width]</width>
-					<height>38</height>
-					<font>Font30_Reg</font>
-					<label>$INFO[Container(9000).ListItem.Property(widgetName)]</label>
-					<include>AnimationVisibleFade</include>
-					<textcolor>$VAR[MainMenuHighlightColorVar]</textcolor>
+					<height>40</height>
+					<orientation>horizontal</orientation>
+					<usecontrolcoords>true</usecontrolcoords>
+					<itemgap>10</itemgap>
+					<control type="image">
+						<top>2</top>
+						<width>36</width>
+						<height>36</height>
+						<texture colordiffuse="$VAR[TopbarIconColorVar]">$VAR[TopbarIconPathVar]$VAR[NowPlayingInfoBarStatusVar]</texture>
+					</control>
+					<control type="label">
+						<label>$INFO[Player.Time]</label>
+						<textcolor>$VAR[TopbarSubTextColorVar]</textcolor>
+						<include>BreadcrumbsLabel</include>
+					</control>
+					<control type="fadelabel">
+						<label>$INFO[Player.Title]</label>
+						<label>$INFO[MusicPlayer.Artist]</label>
+						<include>BreadcrumbsLabel</include>
+						<visible>Player.HasAudio + !String.IsEmpty(Musicplayer.Artist)</visible>
+					</control>
+					<control type="label">
+						<label>$INFO[Player.Title]</label>
+						<scroll>true</scroll>
+						<include>BreadcrumbsLabel</include>
+						<visible>Player.HasAudio + String.IsEmpty(Musicplayer.Artist)</visible>
+					</control>
+					<control type="fadelabel">
+						<label>$INFO[Videoplayer.Season,S]$INFO[Videoplayer.Episode,E, ]$INFO[Videoplayer.Title]</label>
+						<label>$INFO[Videoplayer.TVShowTitle]</label>
+						<include>BreadcrumbsLabel</include>
+						<visible>Player.HasVideo + !String.IsEmpty(Videoplayer.TVShowTitle)</visible>
+					</control>
+					<control type="fadelabel">
+						<label>$INFO[Videoplayer.ChannelName]</label>
+						<label>$INFO[Videoplayer.Title]</label>
+						<include>BreadcrumbsLabel</include>
+						<visible>Player.HasVideo + !String.IsEmpty(VideoPlayer.ChannelName)</visible>
+					</control>
+					<control type="fadelabel">
+						<label>$INFO[Videoplayer.Title]</label>
+						<label>$INFO[VideoPlayer.Artist]</label>
+						<include>BreadcrumbsLabel</include>
+						<visible>Player.HasVideo + !String.IsEmpty(Videoplayer.Artist)</visible>
+					</control>
+					<control type="label">
+						<label>$INFO[Videoplayer.Title]</label>
+						<include>BreadcrumbsLabel</include>
+						<visible>Player.HasVideo + String.IsEmpty(Videoplayer.TVShowTitle) + String.IsEmpty(VideoPlayer.ChannelName) + String.IsEmpty(Videoplayer.Artist)</visible>
+					</control>
 				</control>
 				<control type="grouplist">
 					<include>AnimationVisibleFade</include>
@@ -39,12 +85,11 @@
 						<width>40</width>
 						<height>40</height>
 						<imagepath colordiffuse="$VAR[MainMenuWeatherIconColorVar]">$INFO[Skin.String(WeatherIcons.path)]$INFO[Weather.FanartCode]$INFO[Skin.String(WeatherIcons.ext)]</imagepath>
-						<timeperimage>050</timeperimage>
-						<fadetime>TextureFadeTime</fadetime>
+						<timeperimage>70</timeperimage>
+						<fadetime>1</fadetime>
 						<randomize>false</randomize>
-						<loop>true</loop>
 						<include>AnimationVisibleFade</include>
-						<visible>!Skin.HasSetting(InfoBarDisableWeather) + !String.IsEmpty(Window(Weather).Property(Current.Temperature))</visible>
+						<visible>!String.IsEmpty(Window(Weather).Property(Current.Temperature))</visible>
 					</control>
 					<control type="label">
 						<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
@@ -53,7 +98,7 @@
 						<height>38</height>
 						<width>auto</width>
 						<include>AnimationVisibleFade</include>
-						<visible>!Skin.HasSetting(InfoBarDisableWeather) + !String.IsEmpty(Window(Weather).Property(Current.Temperature))</visible>
+						<visible>!String.IsEmpty(Window(Weather).Property(Current.Temperature))</visible>
 					</control>
 					<control type="label">
 						<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
@@ -62,7 +107,6 @@
 						<height>38</height>
 						<width>auto</width>
 						<include>AnimationVisibleFade</include>
-						<visible>!Skin.HasSetting(InfoBarDisableDate)</visible>
 					</control>
 					<control type="label">
 						<textcolor>$VAR[MainMenuHighlightColorVar]</textcolor>
@@ -71,7 +115,6 @@
 						<height>38</height>
 						<width>auto</width>
 						<include>AnimationVisibleFade</include>
-						<visible>!Skin.HasSetting(InfoBarDisableTime)</visible>
 					</control>
 				</control>
 			</control>
@@ -79,13 +122,21 @@
 	</include>
 	<include name="InfoTimeBar">
 		<control type="group">
-			<top>769</top>
-			<visible>!Skin.HasSetting(InfoBarTop)</visible>
-			<include>AnimationSlideBottomWindow</include>
+			<top>760</top>
+			<visible>!Skin.HasSetting(InfoBarTop) | Skin.String(MainMenuPosition,top)</visible>
 			<include>AnimationVisibleFade</include>
-			<animation effect="slide" end="0,-367" time="200" condition="String.IsEqual(Skin.String(WidgetPosition),abovemenu)">Conditional</animation>
-			<animation effect="slide" end="0,-408" time="200" condition="String.IsEqual(Skin.String(WidgetPosition),belowmenu)">Conditional</animation>
-			<animation effect="slide" end="0,41" time="200" condition="String.IsEqual(Skin.String(WidgetPosition),belowmenu) + !system.getbool(lookandfeel.enablerssfeeds)">Conditional</animation>
+			<include content="AnimationSlideTopWindow">
+				<param name="opencondition">Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)</param>
+				<param name="closecondition">Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)</param>
+			</include>
+			<include content="AnimationSlideBottomWindow">
+				<param name="opencondition">String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)</param>
+				<param name="closecondition">String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)</param>
+			</include>
+			<animation effect="slide" end="0,-716" time="200" condition="Skin.String(MainMenuPosition,high)">Conditional</animation>
+			<animation effect="slide" end="0,-807" time="200" condition="Skin.String(MainMenuPosition,top)">Conditional</animation>
+			<animation effect="slide" end="0,91" time="200" condition="Skin.String(MainMenuPosition,bottom)">Conditional</animation>
+			<animation effect="slide" end="0,-42" time="200" condition="[String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)] + system.getbool(lookandfeel.enablerssfeeds)">Conditional</animation>
 			<control type="group">
 				<visible>String.IsEmpty(Skin.String(MainMenuSystemBar.texture))</visible>
 				<include>AnimationVisibleFade</include>
@@ -94,7 +145,6 @@
 					<height>88</height>
 					<include>AnimationVisibleFade</include>
 					<texture flipx="true" border="1,1,70,1" colordiffuse="$VAR[MainMenuSystemBarColorVar]">panels/mainmenu/default-systembar.png</texture>
-					<visible>!Skin.HasSetting(InfoBarLeftDisable) + [!String.IsEmpty(Container(9000).ListItem.Property(InfoLine)) | [ControlGroup(90010).HasFocus + !String.IsEmpty(Container(9000).ListItem.Property(widgetName))]]</visible>
 				</control>
 				<control type="image">
 					<right>0</right>
@@ -102,7 +152,32 @@
 					<height>88</height>
 					<include>AnimationVisibleFade</include>
 					<texture border="70,1,1,1" colordiffuse="$VAR[MainMenuSystemBarColorVar]">panels/mainmenu/default-systembar.png</texture>
-					<visible>!Skin.HasSetting(InfoBarDisableWeather) | !Skin.HasSetting(InfoBarDisableDate) | !Skin.HasSetting(InfoBarDisableTime)</visible>
+				</control>
+				<control type="progress">
+					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar)</visible>
+					<include>AnimationVisibleFade</include>
+					<top>47</top>
+					<width>740</width>
+					<height>41</height>
+					<info>Player.ProgressCache</info>
+					<texturebg>colors/none.png</texturebg>
+					<lefttexture />
+					<midtexture colordiffuse="$VAR[TopbarNowPlayingColorVar]">colors/white20.png</midtexture>
+					<righttexture></righttexture>
+					<overlaytexture />
+				</control>
+				<control type="progress">
+					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar)</visible>
+					<include>AnimationVisibleFade</include>
+					<top>47</top>
+					<width>740</width>
+					<height>41</height>
+					<info>Player.Progress</info>
+					<texturebg>colors/none.png</texturebg>
+					<lefttexture />
+					<midtexture colordiffuse="$VAR[TopbarNowPlayingColorVar]">colors/white20.png</midtexture>
+					<righttexture></righttexture>
+					<overlaytexture />
 				</control>
 				<include content="InfoTimeBarContent">
 					<param name="top">47</param>
@@ -116,7 +191,56 @@
 					<height>88</height>
 					<include>AnimationVisibleFade</include>
 					<texture flipy="true" colordiffuse="$VAR[MainMenuSystemBarColorVar]" border="1">$VAR[MainMenuSystemBarVar]</texture>
-					<visible>!Skin.HasSetting(InfoBarLeftDisable) | !Skin.HasSetting(InfoBarDisableWeather) | !Skin.HasSetting(InfoBarDisableDate) | !Skin.HasSetting(InfoBarDisableTime)</visible>
+				</control>
+				<control type="progress">
+					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + Skin.String(MainMenuSystemBar.texture,wide)</visible>
+					<include>AnimationVisibleFade</include>
+					<top>47</top>
+					<width>1920</width>
+					<height>41</height>
+					<info>Player.ProgressCache</info>
+					<texturebg>colors/none.png</texturebg>
+					<lefttexture />
+					<midtexture colordiffuse="$VAR[TopbarNowPlayingColorVar]">colors/white20.png</midtexture>
+					<righttexture></righttexture>
+					<overlaytexture />
+				</control>
+				<control type="progress">
+					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + Skin.String(MainMenuSystemBar.texture,wide)</visible>
+					<include>AnimationVisibleFade</include>
+					<top>47</top>
+					<width>1920</width>
+					<height>41</height>
+					<info>Player.Progress</info>
+					<texturebg>colors/none.png</texturebg>
+					<lefttexture />
+					<midtexture colordiffuse="$VAR[TopbarNowPlayingColorVar]">colors/white20.png</midtexture>
+					<righttexture></righttexture>
+					<overlaytexture />
+				</control>
+				<control type="progress">
+					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + Skin.String(MainMenuSystemBar.texture,shadow)</visible>
+					<include>AnimationVisibleFade</include>
+					<width>1920</width>
+					<height>87</height>
+					<info>Player.ProgressCache</info>
+					<texturebg>panels/mainmenu/shadow-bar-empty.png</texturebg>
+					<lefttexture />
+					<midtexture flipy="true" colordiffuse="$VAR[TopbarNowPlayingColorVar]">panels/mainmenu/shadow-bar20.png</midtexture>
+					<righttexture></righttexture>
+					<overlaytexture />
+				</control>
+				<control type="progress">
+					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + Skin.String(MainMenuSystemBar.texture,shadow)</visible>
+					<include>AnimationVisibleFade</include>
+					<width>1920</width>
+					<height>87</height>
+					<info>Player.Progress</info>
+					<texturebg>panels/mainmenu/shadow-bar-empty.png</texturebg>
+					<lefttexture />
+					<midtexture flipy="true" colordiffuse="$VAR[TopbarNowPlayingColorVar]">panels/mainmenu/shadow-bar20.png</midtexture>
+					<righttexture></righttexture>
+					<overlaytexture />
 				</control>
 				<include content="InfoTimeBarContent">
 					<param name="top">47</param>
@@ -125,7 +249,7 @@
 			</control>
 		</control>
 		<control type="group">
-			<visible>Skin.HasSetting(InfoBarTop)</visible>
+			<visible>Skin.HasSetting(InfoBarTop) + !Skin.String(MainMenuPosition,top)</visible>
 			<include content="AnimationSlideTopWindow">
 				<param name="slide">88</param>
 			</include>
@@ -137,7 +261,6 @@
 					<width>810</width>
 					<height>88</height>
 					<texture flipx="true" flipy="true" border="1,1,70,1" colordiffuse="$VAR[MainMenuSystemBarColorVar]">panels/mainmenu/default-systembar.png</texture>
-					<visible>!Skin.HasSetting(InfoBarLeftDisable) + [!String.IsEmpty(Container(9000).ListItem.Property(InfoLine)) | [ControlGroup(90010).HasFocus + !String.IsEmpty(Container(9000).ListItem.Property(widgetName))]]</visible>
 				</control>
 				<control type="image">
 					<right>0</right>
@@ -145,7 +268,30 @@
 					<height>88</height>
 					<include>AnimationVisibleFade</include>
 					<texture border="70,1,1,1" flipy="true" colordiffuse="$VAR[MainMenuSystemBarColorVar]">panels/mainmenu/default-systembar.png</texture>
-					<visible>!Skin.HasSetting(InfoBarDisableWeather) | !Skin.HasSetting(InfoBarDisableDate) | !Skin.HasSetting(InfoBarDisableTime)</visible>
+				</control>
+				<control type="progress">
+					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar)</visible>
+					<include>AnimationVisibleFade</include>
+					<width>740</width>
+					<height>41</height>
+					<info>Player.ProgressCache</info>
+					<texturebg>colors/none.png</texturebg>
+					<lefttexture />
+					<midtexture colordiffuse="$VAR[TopbarNowPlayingColorVar]">colors/white20.png</midtexture>
+					<righttexture></righttexture>
+					<overlaytexture />
+				</control>
+				<control type="progress">
+					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar)</visible>
+					<include>AnimationVisibleFade</include>
+					<width>740</width>
+					<height>41</height>
+					<info>Player.Progress</info>
+					<texturebg>colors/none.png</texturebg>
+					<lefttexture />
+					<midtexture colordiffuse="$VAR[TopbarNowPlayingColorVar]">colors/white20.png</midtexture>
+					<righttexture></righttexture>
+					<overlaytexture />
 				</control>
 				<include>InfoTimeBarContent</include>
 			</control>
@@ -157,7 +303,54 @@
 					<height>88</height>
 					<include>AnimationVisibleFade</include>
 					<texture colordiffuse="$VAR[MainMenuSystemBarColorVar]" border="1">$VAR[MainMenuSystemBarVar]</texture>
-					<visible>!Skin.HasSetting(InfoBarLeftDisable) | !Skin.HasSetting(InfoBarDisableWeather) | !Skin.HasSetting(InfoBarDisableDate) | !Skin.HasSetting(InfoBarDisableTime)</visible>
+				</control>
+				<control type="progress">
+					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + Skin.String(MainMenuSystemBar.texture,wide)</visible>
+					<include>AnimationVisibleFade</include>
+					<width>1920</width>
+					<height>41</height>
+					<info>Player.ProgressCache</info>
+					<texturebg>colors/none.png</texturebg>
+					<lefttexture />
+					<midtexture colordiffuse="$VAR[TopbarNowPlayingColorVar]">colors/white20.png</midtexture>
+					<righttexture></righttexture>
+					<overlaytexture />
+				</control>
+				<control type="progress">
+					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + Skin.String(MainMenuSystemBar.texture,wide)</visible>
+					<include>AnimationVisibleFade</include>
+					<width>1920</width>
+					<height>41</height>
+					<info>Player.Progress</info>
+					<texturebg>colors/none.png</texturebg>
+					<lefttexture />
+					<midtexture colordiffuse="$VAR[TopbarNowPlayingColorVar]">colors/white20.png</midtexture>
+					<righttexture></righttexture>
+					<overlaytexture />
+				</control>
+				<control type="progress">
+					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + Skin.String(MainMenuSystemBar.texture,shadow)</visible>
+					<include>AnimationVisibleFade</include>
+					<width>1920</width>
+					<height>87</height>
+					<info>Player.ProgressCache</info>
+					<texturebg>panels/mainmenu/shadow-bar-empty.png</texturebg>
+					<lefttexture />
+					<midtexture colordiffuse="$VAR[TopbarNowPlayingColorVar]">panels/mainmenu/shadow-bar20.png</midtexture>
+					<righttexture></righttexture>
+					<overlaytexture />
+				</control>
+				<control type="progress">
+					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + Skin.String(MainMenuSystemBar.texture,shadow)</visible>
+					<include>AnimationVisibleFade</include>
+					<width>1920</width>
+					<height>87</height>
+					<info>Player.Progress</info>
+					<texturebg>panels/mainmenu/shadow-bar-empty.png</texturebg>
+					<lefttexture />
+					<midtexture colordiffuse="$VAR[TopbarNowPlayingColorVar]">panels/mainmenu/shadow-bar20.png</midtexture>
+					<righttexture></righttexture>
+					<overlaytexture />
 				</control>
 				<include content="InfoTimeBarContent">
 					<param name="width">900</param>
@@ -169,11 +362,10 @@
 		<control type="group">
 			<top>1040</top>
 			<include content="AnimationSlideBottomWindow">
-				<param name="slide">316</param>
+				<param name="slide">88</param>
 			</include>
 			<control type="group">
 				<visible>system.getbool(lookandfeel.enablerssfeeds)</visible>
-				<animation effect="slide" start="0" end="0,70" time="200" tween="quadratic" easing="out" condition="ControlGroup(9003).HasFocus">Conditional</animation>
 				<control type="image">
 					<top>-48</top>
 					<width>1920</width>
@@ -181,24 +373,35 @@
 					<texture flipy="true" border="1" colordiffuse="$VAR[MainMenuRSSBarColorVar]">$VAR[MainMenuRSSBarVar]</texture>
 				</control>
 				<control type="rss">
-					<top>3</top>
+					<top>0</top>
 					<width>1920</width>
 					<height>38</height>
 					<font>Font28_Reg</font>
 					<urlset>1</urlset>
+					<scrollspeed>10</scrollspeed>
 					<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
 					<headlinecolor>$VAR[MainMenuSubTextColorVar]</headlinecolor>
 					<titlecolor>$VAR[MainMenuTextColorVar]</titlecolor>
 				</control>
 			</control>
-			<control type="grouplist" id="9003">
-				<animation effect="slide" start="0" end="0,70" time="200" tween="quadratic" easing="out" condition="!ControlGroup(9003).HasFocus">Conditional</animation>
+			<control type="image">
+				<animation effect="slide" start="0" end="0,140" time="200" condition="!ControlGroup(9003).HasFocus">Conditional</animation>
 				<visible>!Skin.HasSetting(ShortCutDisablePower) | !Skin.HasSetting(ShortCutDisableSearch) | !Skin.HasSetting(ShortCutDisableFav) | !Skin.HasSetting(ShortCutDisableUpdate) | !Skin.HasSetting(ShortCutDisableDisc) | !Skin.HasSetting(ShortCutDisableEject)</visible>
-				<left>5</left>
 				<bottom>0</bottom>
 				<width>1920</width>
+				<height>140</height>
+				<texture colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/background-gradient.png</texture>
+			</control>
+			<control type="grouplist" id="9003">
+				<animation effect="slide" start="0" end="0,79" time="200" condition="!ControlGroup(9003).HasFocus">Conditional</animation>
+				<visible>!Skin.HasSetting(ShortCutDisablePower) | !Skin.HasSetting(ShortCutDisableSearch) | !Skin.HasSetting(ShortCutDisableFav) | !Skin.HasSetting(ShortCutDisableUpdate) | !Skin.HasSetting(ShortCutDisableDisc) | !Skin.HasSetting(ShortCutDisableEject)</visible>
+				<left>5</left>
+				<bottom>9</bottom>
+				<width>1920</width>
 				<height>71</height>
-				<onup>9001</onup>
+				<onup condition="[Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)] + Control.IsVisible(90010)">90010</onup>
+				<onup condition="[Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)] + !Control.IsVisible(90010)">9001</onup>
+				<onup condition="String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)">9001</onup>
 				<align>center</align>
 				<orientation>horizontal</orientation>
 				<control type="button" id="20">
@@ -208,41 +411,53 @@
 					<include>RSSShortcutsIcon</include>
 				</control>
 				<control type="button" id="21">
+					<visible>Skin.HasSetting(ShortCutEnableVideos)</visible>
+					<label></label>
+					<onclick>ActivateWindow(videos,root)</onclick>
+					<include>RSSShortcutsIcon</include>
+				</control>
+				<control type="button" id="23">
 					<visible>!Skin.HasSetting(ShortCutDisableSearch)</visible>
 					<label></label>
 					<onclick>ActivateWindow(1112)</onclick>
 					<include>RSSShortcutsIcon</include>
 				</control>
-				<control type="button" id="22">
+				<control type="button" id="24">
 					<visible>!Skin.HasSetting(ShortCutDisableFav)</visible>
 					<label></label>
 					<onclick>ActivateWindow(favourites)</onclick>
 					<include>RSSShortcutsIcon</include>
 				</control>
-				<control type="button" id="23">
+				<control type="button" id="25">
 					<visible>!Skin.HasSetting(ShortCutDisableUpdate)</visible>
 					<label></label>
 					<onclick>UpdateLibrary(video)</onclick>
 					<onclick>UpdateLibrary(music)</onclick>
 					<include>RSSShortcutsIcon</include>
 				</control>
-				<control type="button" id="24">
-					<visible>!Skin.HasSetting(ShortCutDisableDisc) + System.HasMediadvd</visible>
+				<control type="button" id="26">
+					<visible>Skin.HasSetting(ShortCutEnableDisc) + System.HasMediadvd</visible>
 					<label></label>
 					<onclick>PlayDVD</onclick>
 					<include>RSSShortcutsIcon</include>
 				</control>
-				<control type="button" id="25">
-					<visible>!Skin.HasSetting(ShortCutDisableDisc) + !System.HasMediadvd</visible>
+				<control type="button" id="27">
+					<visible>Skin.HasSetting(ShortCutEnableDisc) + !System.HasMediadvd</visible>
 					<label></label>
 					<onclick />
 					<include>RSSShortcutsIcon</include>
 				</control>
-				<control type="button" id="26">
-					<visible>!Skin.HasSetting(ShortCutDisableEject)</visible>
+				<control type="button" id="28">
+					<visible>Skin.HasSetting(ShortCutEnableEject)</visible>
 					<description>Search</description>
 					<label></label>
 					<onclick>EjectTray()</onclick>
+					<include>RSSShortcutsIcon</include>
+				</control>
+				<control type="button" id="22">
+					<visible>Skin.HasSetting(ShortCutEnableSystem)</visible>
+					<label></label>
+					<onclick>ActivateWindow(settings)</onclick>
 					<include>RSSShortcutsIcon</include>
 				</control>
 			</control>
@@ -261,33 +476,24 @@
 	<include name="MainMenu">
 		<param name="listtype">wraplist</param>
 		<definition>
-			<!-- Sub menu -->
 			<control type="group">
 				<width>1920</width>
-				<top>857</top>
-				<include>AnimationSlideBottomWindow</include>
+				<top>848</top>
+				<include content="AnimationSlideTopWindow">
+					<param name="opencondition">Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)</param>
+					<param name="closecondition">Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)</param>
+				</include>
+				<include content="AnimationSlideBottomWindow">
+					<param name="opencondition">String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)</param>
+					<param name="closecondition">String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)</param>
+				</include>
+				<animation effect="slide" end="0,-716" time="200" condition="Skin.String(MainMenuPosition,high)">Conditional</animation>
+				<animation effect="slide" end="0,-807" time="200" condition="Skin.String(MainMenuPosition,top)">Conditional</animation>
+				<animation effect="slide" end="0,91" time="200" condition="Skin.String(MainMenuPosition,bottom)">Conditional</animation>
+				<animation effect="slide" end="0,-42" time="200" condition="[String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)] + system.getbool(lookandfeel.enablerssfeeds)">Conditional</animation>
+				<!-- Sub menu -->
 				<control type="group">
 					<top>100</top>
-					<visible>Skin.HasSetting(SubmenuHide)</visible>
-					<control type="image">
-						<centerleft>50%</centerleft>
-						<width>1830</width>
-						<height>1</height>
-						<texture border="70,0,70,0" colordiffuse="$VAR[MainMenuSubmenuBarColorVar]">panels/mainmenu/default-submenubar.png</texture>
-						<animation effect="zoom" start="0,0,1830,0" end="0,0,1830,88" time="200" tween="quadratic" easing="out" condition="ControlGroup(9002).HasFocus">Conditional</animation>
-						<visible>String.IsEmpty(Skin.String(MainMenuSubmenuBar.texture))</visible>
-					</control>
-					<control type="image">
-						<width>1920</width>
-						<height>1</height>
-						<texture colordiffuse="$VAR[MainMenuSubmenuBarColorVar]" border="1,0,1,0">$VAR[MainMenuSubmenuBarVar]</texture>
-						<animation effect="zoom" start="0,0,1920,0" end="0,0,1920,88" time="200" tween="quadratic" easing="out" condition="ControlGroup(9002).HasFocus">Conditional</animation>
-						<visible>!String.IsEmpty(Skin.String(MainMenuSubmenuBar.texture))</visible>
-					</control>
-				</control>
-				<control type="group">
-					<top>100</top>
-					<visible>!Skin.HasSetting(SubmenuHide)</visible>
 					<control type="image">
 						<centerleft>50%</centerleft>
 						<width>1808</width>
@@ -303,26 +509,16 @@
 						<texture colordiffuse="$VAR[MainMenuSubmenuBarColorVar]" border="1,0,1,0">$VAR[MainMenuSubmenuBarVar]</texture>
 						<visible>!String.IsEmpty(Skin.String(MainMenuSubmenuBar.texture))</visible>
 					</control>
-				</control>
-				<control type="group" id="9002">
-					<animation type="Conditional" condition="Skin.HasSetting(SubmenuHide) + ControlGroup(9002).HasFocus" reversible="false">
-						<effect type="fade" start="0" end="100" time="200" tween="quadratic" easing="out" />
-						<effect type="slide" start="0,-40" end="0" time="200" tween="quadratic" easing="out" />
-					</animation>
-					<animation type="Conditional" condition="Skin.HasSetting(SubmenuHide) + !ControlGroup(9002).HasFocus" reversible="false">
-						<effect type="fade" start="100" end="0" time="200" tween="quadratic" easing="out" />
-						<effect type="slide" start="0" end="0,-40" time="450" tween="quadratic" easing="out" />
-					</animation>
 					<control type="fixedlist" id="9001">
 						<centerleft>50%</centerleft>
-						<top>100</top>
 						<width>1670</width>
 						<height>80</height>
 						<onleft>9010</onleft>
 						<onright>9010</onright>
 						<onup>9000</onup>
-						<ondown condition="!Skin.String(WidgetPosition,belowmenu)">9003</ondown>
-						<ondown condition="Skin.String(WidgetPosition,belowmenu)">90010</ondown>
+						<ondown condition="[Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)] + Control.IsVisible(90010)">90010</ondown>
+						<ondown condition="[Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)] + !Control.IsVisible(90010)">9003</ondown>
+						<ondown condition="String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)">9003</ondown>
 						<orientation>horizontal</orientation>
 						<focusposition>2</focusposition>
 						<movement>2</movement>
@@ -345,7 +541,7 @@
 								</control>
 								<control type="image">
 									<height>70</height>
-									<texture border="1" colordiffuse="$VAR[MainMenuHighlightColorVar]">panels/mainmenu/shadow-bar.png</texture>
+									<texture border="1" colordiffuse="$VAR[MainMenuHighlightColorVar]">panels/mainmenu/shadow-bar-focus.png</texture>
 									<visible>String.IsEqual(Skin.String(MainMenuSubmenuBar.texture),shadow)</visible>
 								</control>
 								<control type="label">
@@ -393,9 +589,9 @@
 					<width>3200</width>
 					<onleft>9000</onleft>
 					<onright>9000</onright>
-					<onup condition="!Skin.String(WidgetPosition,belowmenu) + Control.IsVisible(90010)">90010</onup>
-					<onup condition="!Skin.String(WidgetPosition,belowmenu) + !Control.IsVisible(90010)">9050</onup>
-					<onup condition="Skin.String(WidgetPosition,belowmenu)">9050</onup>
+					<onup condition="[String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)] + Control.IsVisible(90010)">90010</onup>
+					<onup condition="[String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)] + !Control.IsVisible(90010)">9050</onup>
+					<onup condition="Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)">9050</onup>
 					<ondown>SetFocus(9001,2)</ondown>
 					<orientation>horizontal</orientation>
 					<focusposition>3</focusposition>
@@ -557,15 +753,18 @@
 	</include>
 	<!-- Widgets -->
 	<include name="WidgetPosition">
-		<animation effect="slide" end="0,367" time="200" condition="String.IsEmpty(Skin.String(WidgetPosition))">Conditional</animation>
-		<animation effect="slide" end="0,41" time="200" condition="!String.IsEqual(Skin.String(WidgetPosition),belowmenu) + Skin.HasSetting(InfoBarTop) + [!Skin.HasSetting(InfoBarLeftDisable) | !Skin.HasSetting(InfoBarDisableWeather) | !Skin.HasSetting(InfoBarDisableDate) | !Skin.HasSetting(InfoBarDisableTime)]">Conditional</animation>
-		<animation effect="slide" end="0,591" time="200" condition="String.IsEqual(Skin.String(WidgetPosition),belowmenu)">Conditional</animation>
-		<animation effect="slide" end="0,41" time="200" condition="String.IsEqual(Skin.String(WidgetPosition),belowmenu) + !system.getbool(lookandfeel.enablerssfeeds)">Conditional</animation>
+		<animation effect="slide" end="0,274" time="200" condition="!Skin.HasSetting(WidgetHigh) + [Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)]">Conditional</animation>
+		<animation effect="slide" end="0,91" time="200" condition="!Skin.HasSetting(WidgetHigh) + Skin.String(MainMenuPosition,bottom)">Conditional</animation>
+		<animation effect="slide" end="0,-42" time="200" condition="!Skin.HasSetting(WidgetHigh) + system.getbool(lookandfeel.enablerssfeeds)">Conditional</animation>
+		<animation effect="slide" end="0,42" time="200" condition="Skin.HasSetting(InfoBarTop) + [String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)]">Conditional</animation>
+		<animation effect="slide" end="0,-358" time="200" condition="Skin.HasSetting(WidgetHigh) + [String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)]">Conditional</animation>
+		<animation effect="slide" end="0,-84" time="200" condition="Skin.HasSetting(WidgetHigh) + Skin.String(MainMenuPosition,high)">Conditional</animation>
+		<animation effect="slide" end="0,-168" time="200" condition="Skin.HasSetting(WidgetHigh) + Skin.String(MainMenuPosition,top)">Conditional</animation>
 	</include>
 	<include name="WidgetContainer">
 		<include>WidgetPosition</include>
 		<onfocus>SetProperty(SkinHelper.WidgetContainer,$PARAM[id],home)</onfocus>
-		<itemlayout width="$PARAM[containerwidth]" height="$PARAM[containerheight]">
+		<itemlayout width="$PARAM[containerwidth]">
 			<control type="image">
 				<bordersize>10</bordersize>
 				<texture colordiffuse="aa000000" border="10">buttons/widget-select-focus.png</texture>
@@ -573,7 +772,7 @@
 			<control type="image">
 				<bordersize>$PARAM[border]</bordersize>
 				<aspectratio align="center" aligny="center" scalediffuse="false">$PARAM[artworkaspect]</aspectratio>
-				<texture diffuse="diffuse/rounded5-380x380.png" fallback="DefaultFile.png" colordiffuse="$VAR[MainMenuWidgetColorVar]">$PARAM[artwork]</texture>
+				<texture diffuse="$PARAM[diffuse]" fallback="DefaultFile.png" colordiffuse="$VAR[MainMenuWidgetColorVar]">$PARAM[artwork]</texture>
 			</control>
 			<control type="image">
 				<left>0</left>
@@ -600,11 +799,7 @@
 				<texture border="20" colordiffuse="$VAR[MainMenuWidgetColorVar]">thumbs/overlay.png</texture>
 			</control>
 		</itemlayout>
-		<focusedlayout width="$PARAM[containerwidth]" height="$PARAM[containerheight]">
-			<control type="image">
-				<bordersize>10</bordersize>
-				<texture colordiffuse="aa000000" border="10">buttons/widget-select-focus.png</texture>
-			</control>
+		<focusedlayout width="$PARAM[containerwidth]">
 			<control type="image">
 				<texture colordiffuse="$VAR[MainMenuHighlightColorVar]" border="10">buttons/widget-select-focus.png</texture>
 			</control>
@@ -613,9 +808,13 @@
 					<effect type="zoom" start="95" end="100" time="300" center="auto" />
 				</animation>
 				<control type="image">
+					<bordersize>10</bordersize>
+					<texture colordiffuse="aa000000" border="10">buttons/widget-select-focus.png</texture>
+				</control>
+				<control type="image">
 					<bordersize>$PARAM[border]</bordersize>
 					<aspectratio align="center" aligny="center" scalediffuse="false">$PARAM[artworkaspect]</aspectratio>
-					<texture diffuse="diffuse/rounded5-380x380.png" fallback="DefaultFile.png">$PARAM[artwork]</texture>
+					<texture diffuse="$PARAM[diffuse]" fallback="DefaultFile.png">$PARAM[artwork]</texture>
 				</control>
 				<control type="image">
 					<left>0</left>
@@ -644,78 +843,295 @@
 			</control>
 		</focusedlayout>
 	</include>
+	<include name="WidgetPosterInfoContainer">
+		<include>WidgetPosition</include>
+		<itemlayout width="$PARAM[containerwidth]">
+			<control type="image">
+				<bordersize>10</bordersize>
+				<texture colordiffuse="ff000000" border="10">buttons/widget-select-focus.png</texture>
+			</control>
+			<control type="label">
+				<top>10</top>
+				<height>50</height>
+				<align>center</align>
+				<font>$PARAM[font1]</font>
+				<textoffsetx>15</textoffsetx>
+				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				<label>$INFO[ListItem.Label]</label>
+			</control>
+			<control type="multiimage">
+				<top>$PARAM[icontop]</top>
+				<bottom>$PARAM[iconbottom]</bottom>
+				<aspectratio align="center" aligny="center">keep</aspectratio>
+				<imagepath>$INFO[ListItem.Icon]</imagepath>
+				<timeperimage>70</timeperimage>
+				<fadetime>1</fadetime>
+				<randomize>false</randomize>
+				<aspectratio aligny="top">keep</aspectratio>
+			</control>
+			<control type="label">
+				<bottom>$PARAM[label2position]</bottom>
+				<height>50</height>
+				<align>center</align>
+				<font>$PARAM[font2]</font>
+				<textoffsetx>15</textoffsetx>
+				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				<label>$INFO[ListItem.Label2]</label>
+			</control>
+			<control type="label">
+				<bottom>$PARAM[label3position]</bottom>
+				<height>50</height>
+				<align>center</align>
+				<font>$PARAM[font3]</font>
+				<textoffsetx>15</textoffsetx>
+				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				<label>$INFO[ListItem.Property(label3)]</label>
+			</control>
+			<control type="image">
+				<texture border="20" colordiffuse="$VAR[MainMenuWidgetColorVar]">thumbs/overlay.png</texture>
+			</control>
+		</itemlayout>
+		<focusedlayout width="$PARAM[containerwidth]">
+			<control type="image">
+				<texture colordiffuse="$VAR[MainMenuHighlightColorVar]" border="10">buttons/widget-select-focus.png</texture>
+			</control>
+			<control type="group">
+				<animation  type="Focus" reversible="false">
+					<effect type="zoom" start="95" end="100" time="300" center="auto" />
+				</animation>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<texture colordiffuse="ff000000" border="10">buttons/widget-select-focus.png</texture>
+				</control>
+				<control type="label">
+					<top>10</top>
+					<height>50</height>
+					<align>center</align>
+					<font>$PARAM[font1]</font>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+				<control type="multiimage">
+					<top>$PARAM[icontop]</top>
+					<bottom>$PARAM[iconbottom]</bottom>
+					<aspectratio align="center" aligny="center">keep</aspectratio>
+					<imagepath>$INFO[ListItem.Icon]</imagepath>
+					<timeperimage>70</timeperimage>
+					<fadetime>1</fadetime>
+					<randomize>false</randomize>
+					<aspectratio aligny="top">keep</aspectratio>
+				</control>
+				<control type="label">
+					<bottom>$PARAM[label2position]</bottom>
+					<height>50</height>
+					<align>center</align>
+					<font>$PARAM[font2]</font>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$INFO[ListItem.Label2]</label>
+				</control>
+				<control type="label">
+					<bottom>$PARAM[label3position]</bottom>
+					<height>50</height>
+					<align>center</align>
+					<font>$PARAM[font3]</font>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$INFO[ListItem.Property(label3)]</label>
+				</control>
+				<control type="image">
+					<texture border="20" colordiffuse="$VAR[MainMenuWidgetColorVar]">thumbs/overlay.png</texture>
+				</control>
+			</control>
+		</focusedlayout>
+	</include>
+	<include name="WidgetFanartInfoContainer">
+		<include>WidgetPosition</include>
+		<itemlayout width="$PARAM[containerwidth]">
+			<control type="multiimage">
+				<top>10</top>
+				<bottom>10</bottom>
+				<left>10</left>
+				<right>10</right>
+				<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+				<imagepath diffuse="$PARAM[diffuse]" colordiffuse="$VAR[MainMenuWidgetColorVar]">$INFO[ListItem.Property(fanart)]</imagepath>
+				<timeperimage>20000</timeperimage>
+				<fadetime>1</fadetime>
+				<randomize>false</randomize>
+			</control>
+			<control type="image">
+				<bordersize>10</bordersize>
+				<texture colordiffuse="ff000000" border="10">buttons/widget-select-focus.png</texture>
+			</control>
+			<control type="label">
+				<bottom>$PARAM[label1position]</bottom>
+				<height>50</height>
+				<align>center</align>
+				<font>$PARAM[font1]</font>
+				<textoffsetx>15</textoffsetx>
+				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				<label>$INFO[ListItem.Label]</label>
+			</control>
+			<control type="label">
+				<bottom>$PARAM[label2position]</bottom>
+				<height>50</height>
+				<align>center</align>
+				<font>$PARAM[font2]</font>
+				<textoffsetx>15</textoffsetx>
+				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				<label>$INFO[ListItem.Label2]</label>
+			</control>
+			<control type="label">
+				<bottom>$PARAM[label3position]</bottom>
+				<height>50</height>
+				<align>center</align>
+				<font>$PARAM[font3]</font>
+				<textoffsetx>15</textoffsetx>
+				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				<label>$INFO[ListItem.Property(label3)]</label>
+			</control>
+			<control type="image">
+				<texture border="20" colordiffuse="$VAR[MainMenuWidgetColorVar]">thumbs/overlay.png</texture>
+			</control>
+		</itemlayout>
+		<focusedlayout width="$PARAM[containerwidth]">
+			<control type="image">
+				<texture colordiffuse="$VAR[MainMenuHighlightColorVar]" border="10">buttons/widget-select-focus.png</texture>
+			</control>
+			<control type="group">
+				<animation  type="Focus" reversible="false">
+					<effect type="zoom" start="95" end="100" time="300" center="auto" />
+				</animation>
+				<control type="multiimage">
+					<top>10</top>
+					<bottom>10</bottom>
+					<left>10</left>
+					<right>10</right>
+					<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+					<imagepath diffuse="$PARAM[diffuse]" colordiffuse="$VAR[MainMenuWidgetColorVar]">$INFO[ListItem.Property(fanart)]</imagepath>
+					<timeperimage>20000</timeperimage>
+					<fadetime>1</fadetime>
+					<randomize>false</randomize>
+				</control>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<texture colordiffuse="ff000000" border="10">buttons/widget-select-focus.png</texture>
+				</control>
+				<control type="label">
+					<bottom>$PARAM[label1position]</bottom>
+					<height>50</height>
+					<align>center</align>
+					<font>$PARAM[font1]</font>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+				<control type="label">
+					<bottom>$PARAM[label2position]</bottom>
+					<height>50</height>
+					<align>center</align>
+					<font>$PARAM[font2]</font>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$INFO[ListItem.Label2]</label>
+				</control>
+				<control type="label">
+					<bottom>$PARAM[label3position]</bottom>
+					<height>50</height>
+					<align>center</align>
+					<font>$PARAM[font3]</font>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$INFO[ListItem.Property(label3)]</label>
+				</control>
+				<control type="image">
+					<texture border="20" colordiffuse="$VAR[MainMenuWidgetColorVar]">thumbs/overlay.png</texture>
+				</control>
+			</control>
+		</focusedlayout>
+	</include>
 	<include name="WidgetInfo">
 		<control type="group">
-			<visible>ControlGroup(90010).HasFocus + $PARAM[infovisible]</visible>
 			<animation effect="fade" end="100" time="200">Visible</animation>
 			<control type="image">
-				<visible>String.IsEmpty(Skin.String(WidgetPosition)) | String.IsEqual(Skin.String(WidgetPosition),belowmenu)</visible>
+				<visible>!Skin.HasSetting(WidgetHigh) + ControlGroup(90010).HasFocus + $PARAM[infovisible]</visible>
+				<animation effect="slide" end="0,$PARAM[infotopposition]" condition="true">Conditional</animation>
+				<animation effect="slide" end="0,91" condition="Skin.String(MainMenuPosition,bottom)">Conditional</animation>
+				<animation effect="slide" end="0,274" condition="Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)">Conditional</animation>
+				<animation effect="slide" end="0,-42" condition="system.getbool(lookandfeel.enablerssfeeds)">Conditional</animation>
+				<animation effect="slide" end="0,42" condition="[String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)] + Skin.HasSetting(InfoBarTop)">Conditional</animation>
+				<include>AnimationVisibleFade</include>
+				<bottom>0</bottom>
 				<width>1920</width>
-				<height>700</height>
-				<texture flipy="true" colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/background-gradient.png</texture>
+				<height>1122</height>
+				<texture colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/widget-gradient.png</texture>
 			</control>
 			<control type="image">
-				<visible>String.IsEqual(Skin.String(WidgetPosition),top)</visible>
-				<top>156</top>
+				<visible>Skin.HasSetting(WidgetHigh) + ControlGroup(90010).HasFocus + $PARAM[infovisible]</visible>
+				<animation effect="slide" end="0,-$PARAM[infotopposition]" condition="true">Conditional</animation>
+				<animation effect="slide" end="0,-91" condition="Skin.String(MainMenuPosition,top)">Conditional</animation>
+				<animation effect="slide" end="0,-274" condition="String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)">Conditional</animation>
+				<animation effect="slide" end="0,42" condition="[String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)] + Skin.HasSetting(InfoBarTop)">Conditional</animation>
+				<include>AnimationVisibleFade</include>
+				<bottom>-49</bottom>
 				<width>1920</width>
-				<height>700</height>
-				<texture colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/background-gradient.png</texture>
-			</control>
-			<control type="image">
-				<visible>String.IsEqual(Skin.String(WidgetPosition),abovemenu)</visible>
-				<top>380</top>
-				<width>1920</width>
-				<height>700</height>
-				<texture colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/background-gradient.png</texture>
+				<height>1122</height>
+				<texture flipy="true" colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/widget-gradient.png</texture>
 			</control>
 			<control type="group">
 				<top>40</top>
 				<left>40</left>
 				<right>40</right>
-				<height>400</height>
-				<animation effect="slide" end="0,408" condition="String.IsEqual(Skin.String(WidgetPosition),top)">Conditional</animation>
-				<animation effect="slide" end="0,632" condition="String.IsEqual(Skin.String(WidgetPosition),abovemenu)">Conditional</animation>
-				<animation effect="slide" end="0,41" condition="String.IsEqual(Skin.String(WidgetPosition),abovemenu) + !system.getbool(lookandfeel.enablerssfeeds)">Conditional</animation>
-				<animation effect="slide" end="0,41" condition="!String.IsEqual(Skin.String(WidgetPosition),abovemenu) + Skin.HasSetting(InfoBarTop) + [!Skin.HasSetting(InfoBarLeftDisable) | !Skin.HasSetting(InfoBarDisableWeather) | !Skin.HasSetting(InfoBarDisableDate) | !Skin.HasSetting(InfoBarDisableTime)]">Conditional</animation>
-				<control type="image">
-					<width>$PARAM[width]</width>
-					<height>327</height>
-					<fadetime>TextureFadeTime</fadetime>
-					<texture diffuse="diffuse/rounded5-380x380.png">$VAR[WidgetPosterVar]</texture>
-					<aspectratio align="center" aligny="center" scalediffuse="false">$PARAM[aspect]</aspectratio>
-				</control>
-				<control type="image">
-					<top>-10</top>
-					<left>-10</left>
-					<fadetime>TextureFadeTime</fadetime>
-					<width>$PARAM[left]</width>
-					<height>347</height>
-					<texture border="20">thumbs/overlay.png</texture>
+				<animation effect="slide" end="0,$PARAM[infotopposition]" condition="!Skin.HasSetting(WidgetHigh)">Conditional</animation>
+				<animation effect="slide" end="0,$PARAM[infobottomposition]" condition="Skin.HasSetting(WidgetHigh)">Conditional</animation>
+				<animation effect="slide" end="0,207" condition="!Skin.HasSetting(WidgetHigh)">Conditional</animation>
+				<animation effect="slide" end="0,91" condition="!Skin.HasSetting(WidgetHigh) + Skin.String(MainMenuPosition,bottom)">Conditional</animation>
+				<animation effect="slide" end="0,274" condition="Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)">Conditional</animation>
+				<animation effect="slide" end="0,-84" condition="Skin.HasSetting(WidgetHigh) + Skin.String(MainMenuPosition,top)">Conditional</animation>
+				<animation effect="slide" end="0,-42" time="200" condition="!Skin.HasSetting(WidgetHigh) + system.getbool(lookandfeel.enablerssfeeds)">Conditional</animation>
+				<animation effect="slide" end="0,42" time="200" condition="[String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)] + Skin.HasSetting(InfoBarTop)">Conditional</animation>
+				<control type="label">
+					<animation effect="slide" end="0,103" condition="!Skin.HasSetting(WidgetHigh)">Conditional</animation>
+					<height>30</height>
+					<align>right</align>
+					<font>Font32_Reg</font>
+					<textcolor>$VAR[MainMenuHighlightColorVar]</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$PARAM[label]</label>
 				</control>
 				<control type="grouplist">
-					<left>$PARAM[left]</left>
+					<visible>ControlGroup(90010).HasFocus + $PARAM[infovisible]</visible>
 					<itemgap>10</itemgap>
 					<usecontrolcoords>true</usecontrolcoords>
 					<control type="label">
-						<height>30</height>
+						<height>32</height>
 						<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
-						<font>Font42_Bold_Caps</font>
+						<shadowcolor>black</shadowcolor>
+						<font>Font36_Reg</font>
 						<fadetime>TextureFadeTime</fadetime>
 						<label>$VAR[WidgetTitleVar]</label>
 					</control>
+					<control type="image">
+						<width>388</width>
+						<height>4</height>
+						<aspectratio>scale</aspectratio>
+						<texture colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/separator.png</texture>
+					</control>
 					<control type="label">
-						<height>38</height>
-						<font>Font36_Reg</font>
+						<height>20</height>
+						<font>Font32_Reg</font>
 						<textcolor>$VAR[MainMenuHighlightColorVar]</textcolor>
+						<shadowcolor>black</shadowcolor>
 						<label>$VAR[WidgetSubTitleVar]</label>
 					</control>
 					<control type="grouplist">
-						<top>-2</top>
+						<top>9</top>
 						<height>38</height>
 						<usecontrolcoords>true</usecontrolcoords>
 						<orientation>horizontal</orientation>
 						<control type="image">
-							<visible>!String.IsEmpty(Container.ListItem.Date) | !String.IsEmpty(ListItem.Year) | !String.IsEmpty(ListItem.Property(Artist_YearsActive))</visible>
+							<visible>!String.IsEmpty(Container.ListItem.Date) | !String.IsEmpty(ListItem.Year) | !String.IsEmpty(ListItem.Property(Artist_YearsActive)) | !String.IsEmpty(ListItem.Property(calender))</visible>
 							<width>30</width>
 							<aspectratio>keep</aspectratio>
 							<texture>$VAR[IconPathVar]calendar.png</texture>
@@ -733,7 +1149,7 @@
 							<label>$VAR[WidgetInfo1Var]</label>
 						</control>
 						<control type="image">
-							<visible>!String.IsEmpty(Container.ListItem.Duration)</visible>
+							<visible>!String.IsEmpty(Container.ListItem.Duration) | !String.IsEmpty(ListItem.Property(duration))</visible>
 							<width>30</width>
 							<aspectratio>keep</aspectratio>
 							<texture>$VAR[IconPathVar]timer.png</texture>
@@ -764,15 +1180,6 @@
 							<label>$VAR[WidgetInfo3Var]</label>
 						</control>
 					</control>
-					<control type="textbox">
-						<top>4</top>
-						<height>189</height>
-						<align>justify</align>
-						<font>Font32_Reg_11</font>
-						<include>AutoScrollPlot</include>
-						<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
-						<label>$VAR[WidgetPlotVar]</label>
-					</control>
 				</control>
 			</control>
 		</control>
@@ -780,36 +1187,41 @@
 	<!-- Now playing -->
 	<include name="HomeNowPlaying">
 		<control type="image">
-			<visible>String.IsEmpty(Skin.String(WidgetPosition)) | String.IsEqual(Skin.String(WidgetPosition),belowmenu)</visible>
+			<visible>!Skin.HasSetting(WidgetHigh) + !ControlGroup(90010).HasFocus</visible>
+			<animation effect="slide" end="0,91" condition="Skin.String(MainMenuPosition,bottom)">Conditional</animation>
+			<animation effect="slide" end="0,274" condition="Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)">Conditional</animation>
+			<animation effect="slide" end="0,-42" condition="system.getbool(lookandfeel.enablerssfeeds)">Conditional</animation>
+			<animation effect="slide" end="0,42" condition="[String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)] + Skin.HasSetting(InfoBarTop)">Conditional</animation>
 			<include>AnimationVisibleFade</include>
+			<bottom>-42</bottom>
 			<width>1920</width>
-			<height>700</height>
-			<texture flipy="true" colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/background-gradient.png</texture>
+			<height>926</height>
+			<texture colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/widget-gradient.png</texture>
 		</control>
 		<control type="image">
-			<visible>String.IsEqual(Skin.String(WidgetPosition),top)</visible>
+			<visible>Skin.HasSetting(WidgetHigh)</visible>
+			<animation effect="slide" end="0,-91" condition="Skin.String(MainMenuPosition,top)">Conditional</animation>
+			<animation effect="slide" end="0,-274" condition="String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)">Conditional</animation>
+			<animation effect="slide" end="0,42" condition="[String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)] + Skin.HasSetting(InfoBarTop)">Conditional</animation>
 			<include>AnimationVisibleFade</include>
-			<top>157</top>
+			<top>0</top>
 			<width>1920</width>
-			<height>700</height>
-			<texture colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/background-gradient.png</texture>
-		</control>
-		<control type="image">
-			<visible>String.IsEqual(Skin.String(WidgetPosition),abovemenu)</visible>
-			<include>AnimationVisibleFade</include>
-			<top>400</top>
-			<width>1920</width>
-			<height>700</height>
-			<texture colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/background-gradient.png</texture>
+			<height>870</height>
+			<texture flipy="true" colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/widget-gradient.png</texture>
 		</control>
 		<control type="group">
-			<top>30</top>
+			<top>429</top>
 			<left>30</left>
 			<right>30</right>
-			<animation effect="slide" end="0,408" time="200" condition="String.IsEqual(Skin.String(WidgetPosition),top)">Conditional</animation>
-			<animation effect="slide" end="0,637" time="200" condition="String.IsEqual(Skin.String(WidgetPosition),abovemenu)">Conditional</animation>
-			<animation effect="slide" end="0,36" time="200" condition="String.IsEqual(Skin.String(WidgetPosition),abovemenu) + !system.getbool(lookandfeel.enablerssfeeds)">Conditional</animation>
-			<animation effect="slide" end="0,41" time="200" condition="!String.IsEqual(Skin.String(WidgetPosition),abovemenu) + Skin.HasSetting(InfoBarTop) + [!Skin.HasSetting(InfoBarLeftDisable) | !Skin.HasSetting(InfoBarDisableWeather) | !Skin.HasSetting(InfoBarDisableDate) | !Skin.HasSetting(InfoBarDisableTime)]">Conditional</animation>
+			<animation effect="slide" end="0,91" time="200" condition="!Skin.HasSetting(WidgetHigh) + Skin.String(MainMenuPosition,bottom)">Conditional</animation>
+			<animation effect="slide" end="0,274" time="200" condition="!Skin.HasSetting(WidgetHigh) + [Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)]">Conditional</animation>
+			<animation effect="slide" end="0,-399" time="200" condition="Skin.HasSetting(WidgetHigh) + [String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)]">Conditional</animation>
+			<animation effect="slide" end="0,-125" time="200" condition="Skin.HasSetting(WidgetHigh) + Skin.String(MainMenuPosition,high)">Conditional</animation>
+			<animation effect="slide" end="0,-216" time="200" condition="Skin.HasSetting(WidgetHigh) + Skin.String(MainMenuPosition,top)">Conditional</animation>
+			<animation effect="slide" end="0,-42" time="200" condition="!Skin.HasSetting(WidgetHigh) + system.getbool(lookandfeel.enablerssfeeds)">Conditional</animation>
+			<animation effect="slide" end="0,42" time="200" condition="[String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)] + Skin.HasSetting(InfoBarTop)">Conditional</animation>
+			<visible>!ControlGroup(90010).HasFocus</visible>
+			<include>AnimationVisibleFade</include>
 			<!-- Video -->
 			<control type="group">
 				<visible>Player.HasVideo</visible>
@@ -1140,16 +1552,12 @@
 						<visible>String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),tracks) + MusicPlayer.HasNext</visible>
 						<include>HomeNowPlayingAudioTrackList</include>
 					</control>
-					<control type="group">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),description) + [!String.IsEmpty(MusicPlayer.Property(Artist_Description)) | !String.IsEmpty(MusicPlayer.Property(Artist_Description)) | !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Plot))]</visible>
-						<include>HomeNowPlayingPlot</include>
-					</control>
 					<control type="grouplist">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),info) + String.IsEmpty(Skin.String(WidgetPosition))</visible>
+						<visible>String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),info) + Skin.HasSetting(WidgetHigh)</visible>
 						<include>HomeNowPlayingAudioInfo</include>
 					</control>
 					<control type="grouplist">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),info) + !String.IsEmpty(Skin.String(WidgetPosition))</visible>
+						<visible>String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),info) + !Skin.HasSetting(WidgetHigh)</visible>
 						<include>HomeNowPlayingAudioInfo2</include>
 					</control>
 				</control>
@@ -1163,16 +1571,12 @@
 						<visible>String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),tracks) + MusicPlayer.HasNext</visible>
 						<include>HomeNowPlayingAudioTrackList</include>
 					</control>
-					<control type="group">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),description) + [!String.IsEmpty(MusicPlayer.Property(Artist_Description)) | !String.IsEmpty(MusicPlayer.Property(Artist_Description)) | !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Plot))]</visible>
-						<include>HomeNowPlayingPlot</include>
-					</control>
 					<control type="grouplist">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),info) + String.IsEmpty(Skin.String(WidgetPosition))</visible>
+						<visible>String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),info) + Skin.HasSetting(WidgetHigh)</visible>
 						<include>HomeNowPlayingAudioInfo</include>
 					</control>
 					<control type="grouplist">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),info) + !String.IsEmpty(Skin.String(WidgetPosition))</visible>
+						<visible>String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),info) + !Skin.HasSetting(WidgetHigh)</visible>
 						<include>HomeNowPlayingAudioInfo2</include>
 					</control>
 				</control>
