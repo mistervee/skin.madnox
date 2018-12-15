@@ -223,12 +223,14 @@
 		<value condition="!String.IsEmpty(Container.ListItem.Artist) + !String.IsEqual(Container.ListItem.Label,Container.ListItem.Artist)">$INFO[Container.ListItem.Artist]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.AlbumArtist) + !String.IsEqual(Container.ListItem.Label,Container.ListItem.AlbumArtist)">$INFO[Container.ListItem.Artist]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.AddonSummary)">$INFO[Container.ListItem.AddonSummary]</value>
+		<value condition="String.Contains(ListItem.Path,pvr)">$INFO[ListItem.Title]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Genre)">$INFO[Container.ListItem.Genre]</value>
 		<value>$INFO[Container.ListItem.Path]</value>
 	</variable>
 	<variable name="WidgetInfo1Var">
 		<value condition="!String.IsEmpty(ListItem.Property(calender))">$INFO[ListItem.Property(calender), ,  ]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.AddonCreator)">$INFO[Container.ListItem.AddonCreator, ,  ]</value>
+		<value condition="String.Contains(ListItem.Path,pvr)">$INFO[ListItem.StartTime, , - ]$INFO[ListItem.EndTime,,  ]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Date)">$INFO[Container.ListItem.Date., ,  ]</value>
 		<value condition="!String.IsEmpty(ListItem.Property(Artist_YearsActive))">$INFO[Container.ListItem.Property(Artist_YearsActive), ,  ]</value>
 		<value condition="!String.IsEmpty(ListItem.Year)">$INFO[Container.ListItem.Year, ,  ]</value>
