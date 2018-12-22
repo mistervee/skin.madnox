@@ -36,7 +36,7 @@
 					<param name="opencondition">!Skin.HasSetting(WidgetHigh)</param>
 					<param name="closecondition">!Skin.HasSetting(WidgetHigh)</param>
 				</include>
-				<animation effect="fade" start="100" end="0" time="200" condition="[!Skin.HasSetting(NowplayingHomeDisableAudio) + Player.HasAudio + !ControlGroup(90010).HasFocus] | [Skin.HasSetting(WidgetHide) + !ControlGroup(90010).HasFocus]">Conditional</animation>
+				<animation effect="fade" start="100" end="0" time="200" condition="[!Skin.HasSetting(NowplayingHomeDisableAudio) + Player.HasAudio + !ControlGroup(90010).HasFocus] | [Player.HasVideo + !Skin.HasSetting(NowplayingHomeDisableVideo) + !ControlGroup(90010).HasFocus] | [Skin.HasSetting(WidgetHide) + !ControlGroup(90010).HasFocus]">Conditional</animation>
 				<!-- The visibility condition causes a quick flash of the widgets between menu items but is required for navigation -->
 				<visible>!String.IsEmpty(Container(9000).ListItem.Property(widgetType))</visible>
 				<include>skinshortcuts-template-widget1</include>

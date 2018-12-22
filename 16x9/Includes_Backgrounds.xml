@@ -6,11 +6,15 @@
 		<param name="posterbackgroundcontent"></param>
 		<param name="posterbackgroundcase"></param>
 		<definition>
+			<!-- Now Playing -->
+			<control type="videowindow">
+				<visible>Player.HasVideo + !Skin.HasSetting(NowplayingDisableVideoBackground)</visible>
+				<include>FullScreenDimensions</include>
+			</control>
 			<control type="visualisation">
 				<visible>Player.HasAudio + Visualisation.Enabled + !Skin.HasSetting(NowplayingDisableVizBackground)</visible>
 				<include>FullScreenDimensions</include>
 			</control>
-			<!-- Now Playing -->
 			<control type="group">
 				<visible>Player.HasAudio + !Skin.String(NowPlayingMusicBackground,none)</visible>
 				<include>AnimationWindowFade</include>
@@ -31,28 +35,9 @@
 					<fadetime>TextureFadeTime</fadetime>
 				</control>
 			</control>
-			<control type="group">
-				<visible>Player.HasVideo + !Skin.String(NowPlayingVideoBackground,none)</visible>
-				<include>AnimationWindowFade</include>
-				<control type="multiimage">
-					<include>FullScreenDimensions</include>
-					<aspectratio>scale</aspectratio>
-					<imagepath background="true">$VAR[NowPlayingVideoBackgroundVar]</imagepath>
-					<randomize>true</randomize>
-					<fadetime>TextureFadeTime</fadetime>
-				</control>
-			</control>
-			<!-- <control type="videowindow">
-				<include>FullScreenDimensions</include>
-				<visible>Player.HasVideo + !Skin.HasSetting(DisableBackgroundVideoNowPlaying)</visible>
-			</control>
-			<control type="videowindow">
-				<include>HiddenObject</include>
-				<visible>Player.HasVideo + Skin.HasSetting(DisableBackgroundVideoNowPlaying)</visible>
-			</control> -->
 			<!-- Backgrounds -->
 			<control type="group">
-				<visible>!Player.HasMedia | [Player.HasAudio + Skin.String(NowPlayingMusicBackground,none)] | [Player.HasVideo + Skin.String(NowPlayingVideoBackground,none)]</visible>
+				<visible>!Player.HasMedia | [Player.HasAudio + Skin.String(NowPlayingMusicBackground,none)] | [Player.HasVideo + Skin.HasSetting(NowplayingDisableVideoBackground)]</visible>
 				<include>AnimationWindowFade</include>
 				<control type="multiimage">
 					<visible>!Visualisation.Enabled</visible>
