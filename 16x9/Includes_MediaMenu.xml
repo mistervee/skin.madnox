@@ -24,7 +24,7 @@
 		</control>
 	</include>
 	<include name="MediaMenuCommon">
-		<visible>!String.IsEqual(Skin.String(KioskMode),HideMenu)</visible>
+		<visible>!String.IsEqual(Skin.String(KioskMode),HideMenu) + !String.IsEqual(Window(home).Property(ViewSelect),true)</visible>
 		<left>-420</left>
 		<animation type="Conditional" condition="[ControlGroup(9050).HasFocus | Control.HasFocus(6130)] + !System.HasActiveModalDialog" reversible="true">
 			<effect type="fade" start="0" end="100" time="300" tween="sine" easing="out" />
@@ -145,7 +145,7 @@
 		<texturenofocus border="30" colordiffuse="$VAR[MediaMenuListSeparatorColorVar]">buttons/list-select-nofocus.png</texturenofocus>
 	</include>
 	<include name="MediaMenuButtonViewType">
-		<width>230</width>
+		<width>280</width>
 		<height>60</height>
 		<textoffsetx>15</textoffsetx>
 		<font>Font28_Reg</font>
@@ -155,7 +155,7 @@
 		<texturenofocus border="30" colordiffuse="$VAR[MediaMenuListSeparatorColorVar]">buttons/list-select-nofocus.png</texturenofocus>
 	</include>
 	<include name="MediaMenuLabelViewType">
-		<width>230</width>
+		<width>280</width>
 		<height>60</height>
 		<textoffsetx>15</textoffsetx>
 		<font>Font26_Bold_Caps</font>
@@ -172,6 +172,8 @@
 			</include>
 			<label>$INFO[Container.Viewmode]</label>
 			<onclick>ActivateWindow(1116)</onclick>
+			<!-- <onclick>RunScript(script.skin.helper.service,action=setview)</onclick>
+			<onclick>SetProperty(SetView,true,home)</onclick> -->
 			<visible>!String.IsEqual(Skin.String(KioskMode),HideOptionsViewType)</visible>
 		</control>
 		<control type="radiobutton" id="9052">
@@ -499,21 +501,18 @@
 			<visible>!Skin.HasSetting(NowplayingHomeDisableVideo)</visible>
 		</control>
 		<control type="button" id="206">
-			<label>$LOCALIZE[342]/$LOCALIZE[20343]</label>
+			<label>$LOCALIZE[31211]</label>
 			<label2>$VAR[NowPlayingHomeMovieInfoLabelVar]</label2>
-			<onclick condition="String.IsEmpty(Skin.String(NowPlayingHomeMovieInfo))">Skin.SetString(NowPlayingHomeMovieInfo,cast)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(NowPlayingHomeMovieInfo),cast)">Skin.SetString(NowPlayingHomeMovieInfo,preview)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(NowPlayingHomeMovieInfo),preview)">Skin.SetString(NowPlayingHomeMovieInfo,disable)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(NowPlayingHomeMovieInfo),disable)">Skin.Reset(NowPlayingHomeMovieInfo)</onclick>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[31211],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
 			<include>MediaMenuButton</include>
 			<visible>!Skin.HasSetting(NowplayingHomeDisableVideo)</visible>
 		</control>
 		<control type="button" id="207">
-			<label>$LOCALIZE[157]</label>
+			<label>$LOCALIZE[12003]</label>
 			<label2>$VAR[NowPlayingHomeVideoInfoLabelVar]</label2>
-			<onclick condition="String.IsEmpty(Skin.String(NowPlayingHomeVideoInfo))">Skin.SetString(NowPlayingHomeVideoInfo,preview)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(NowPlayingHomeVideoInfo),preview)">Skin.SetString(NowPlayingHomeVideoInfo,disable)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(NowPlayingHomeVideoInfo),disable)">Skin.Reset(NowPlayingHomeVideoInfo)</onclick>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[12003],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
 			<include>MediaMenuButton</include>
 			<visible>!Skin.HasSetting(NowplayingHomeDisableVideo)</visible>
 		</control>
@@ -1065,10 +1064,40 @@
 		</control>
 	</include>
 	<!-- Views -->
-	<include name="MediaMenuViewsettingsList50">
+	<include name="ViewPosterList50">
 		<control type="label" id="101">
 			<label>$LOCALIZE[14018]</label>
 			<include>MediaMenuLabel</include>
+		</control>
+		<control type="radiobutton" id="102">
+			<label>$LOCALIZE[31042]</label>
+			<onclick>Skin.ToggleSetting(View50HideTopBar)</onclick>
+			<selected>!Skin.HasSetting(View50HideTopBar)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="103">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View50HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View50HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="ViewBigPosterList500">
+		<control type="label" id="101">
+			<label>$LOCALIZE[14018]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="radiobutton" id="102">
+			<label>$LOCALIZE[31042]</label>
+			<onclick>Skin.ToggleSetting(View500HideTopBar)</onclick>
+			<selected>!Skin.HasSetting(View500HideTopBar)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="103">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View500HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View500HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
 		</control>
 	</include>
 </includes>

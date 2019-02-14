@@ -3,19 +3,19 @@
 	<defaultcontrol always="true">100</defaultcontrol>
 	<controls>
 		<control type="group">
-			<left>-250</left>
+			<left>-300</left>
 			<include content="AnimationDialogMediaMenuWindow">
-				<param name="slide">250</param>
+				<param name="slide">300</param>
 			</include>
 			<include content="AnimationDialogMediaMenuVisible">
-				<param name="slide">250</param>
+				<param name="slide">300</param>
 			</include>
 			<include content="MediaMenuBackground">
-				<param name="width">250</param>
-				<param name="left">230</param>
+				<param name="width">300</param>
+				<param name="left">280</param>
 			</include>
 			<control type="grouplist" id="100">
-				<width>230</width>
+				<width>280</width>
 				<height>1080</height>
 				<onright>Dialog.Close(1116)</onright>
 				<onback>Dialog.Close(1116)</onback>
@@ -26,76 +26,260 @@
 				</control>
 				<control type="button" id="102">
 					<visible>true</visible>
-					<label>$LOCALIZE[535]</label>
+					<label>Poster</label>
 					<onclick>Container.SetViewMode(50)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
-<!-- 				<control type="button" id="103">
+				<control type="button" id="103">
 					<visible>true</visible>
-					<label>Wide list</label>
+					<label>Simple</label>
 					<onclick>Container.SetViewMode(51)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
-				<control type="button" id="103">
-					<visible>true</visible>
-					<label>Big list</label>
-					<onclick>Container.SetViewMode(52)</onclick>
-					<include>MediaMenuButtonViewType</include>
-				</control>
-				<control type="button" id="103">
-					<visible>true</visible>
-					<label>Landscape List</label>
-					<onclick>Container.SetViewMode(53)</onclick>
-					<include>MediaMenuButtonViewType</include>
-				</control> -->
 				<control type="button" id="104">
-					<visible>true</visible>
-					<label>Info list</label>
-					<onclick>Container.SetViewMode(54)</onclick>
+					<visible>Container.Content() | Container.Content(years) | Container.Content(directors) | Container.Content(actors) | Container.Content(studios) | Container.Content(countries) | Container.Content(tags) | Container.Content(genres)| Container.Content(sets)</visible>
+					<label>Twin</label>
+					<onclick>Container.SetViewMode(52)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
 				<control type="button" id="105">
 					<visible>true</visible>
-					<label>Low list</label>
-					<onclick>Container.SetViewMode(55)</onclick>
+					<label>Info 1</label>
+					<onclick>Container.SetViewMode(53)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
 				<control type="button" id="106">
 					<visible>true</visible>
-					<label>Right list</label>
+					<label>Info 2</label>
+					<onclick>Container.SetViewMode(54)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="107">
+					<visible>true</visible>
+					<label>Low</label>
+					<onclick>Container.SetViewMode(55)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="108">
+					<visible>true</visible>
+					<label>3 Panel</label>
 					<onclick>Container.SetViewMode(56)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
-				<control type="label" id="111">
-					<label>Wall</label>
+				<control type="label" id="110">
+					<label>Big $LOCALIZE[535]</label>
 					<include>MediaMenuLabelViewType</include>
+				</control>
+				<control type="button" id="111">
+					<visible>true</visible>
+					<label>Poster</label>
+					<onclick>Container.SetViewMode(500)</onclick>
+					<include>MediaMenuButtonViewType</include>
 				</control>
 				<control type="button" id="112">
 					<visible>true</visible>
-					<label>Wall</label>
-					<onclick>Container.SetViewMode(80)</onclick>
+					<label>Simple</label>
+					<onclick>Container.SetViewMode(501)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
-				<!-- <control type="button" id="113">
+				<control type="button" id="113">
 					<visible>true</visible>
-					<label>Info wall</label>
-					<onclick>Container.SetViewMode(61)</onclick>
+					<label>Twin</label>
+					<onclick>Container.SetViewMode(502)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
-				<control type="label" id="121">
-					<label>Poster</label>
+				<control type="button" id="114">
+					<visible>true</visible>
+					<label>Info 1</label>
+					<onclick>Container.SetViewMode(503)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="115">
+					<visible>true</visible>
+					<label>Info 2</label>
+					<onclick>Container.SetViewMode(504)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="116">
+					<visible>true</visible>
+					<label>Low</label>
+					<onclick>Container.SetViewMode(505)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="117">
+					<visible>true</visible>
+					<label>3 Panel</label>
+					<onclick>Container.SetViewMode(506)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<!-- <control type="label" id="107">
+					<label>Lavish list</label>
 					<include>MediaMenuLabelViewType</include>
 				</control>
-				<control type="button" id="122">
+				<control type="button" id="108">
 					<visible>true</visible>
-					<label>Posters</label>
-					<onclick>Container.SetViewMode(70)</onclick>
+					<label>Landscape</label>
+					<onclick>Container.SetViewMode(55)</onclick>
 					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="109">
+					<visible>true</visible>
+					<label>Poster</label>
+					<onclick>Container.SetViewMode(56)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="110">
+					<visible>true</visible>
+					<label>Fanart</label>
+					<onclick>Container.SetViewMode(57)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="111">
+					<visible>true</visible>
+					<label>Right</label>
+					<onclick>Container.SetViewMode(58)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="112">
+					<visible>true</visible>
+					<label>Low</label>
+					<onclick>Container.SetViewMode(59)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="113">
+					<visible>true</visible>
+					<label>3 panel</label>
+					<onclick>Container.SetViewMode(500)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="label" id="114">
+					<label>Wall</label>
+					<include>MediaMenuLabelViewType</include>
+				</control>
+				<control type="button" id="115">
+					<visible>true</visible>
+					<label>Poster</label>
+					<onclick>Container.SetViewMode(501)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="116">
+					<visible>true</visible>
+					<label>Landscape</label>
+					<onclick>Container.SetViewMode(502)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="117">
+					<visible>true</visible>
+					<label>Banner</label>
+					<onclick>Container.SetViewMode(503)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="label" id="118">
+					<label>Info wall</label>
+					<include>MediaMenuLabelViewType</include>
+				</control>
+				<control type="button" id="119">
+					<visible>true</visible>
+					<label>Poster</label>
+					<onclick>Container.SetViewMode(504)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="120">
+					<visible>true</visible>
+					<label>Landscape</label>
+					<onclick>Container.SetViewMode(505)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="121">
+					<visible>true</visible>
+					<label>Banner</label>
+					<onclick>Container.SetViewMode(506)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="label" id="122">
+					<label>Fullscreen wall</label>
+					<include>MediaMenuLabelViewType</include>
 				</control>
 				<control type="button" id="123">
 					<visible>true</visible>
+					<label>Poster</label>
+					<onclick>Container.SetViewMode(507)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="124">
+					<visible>true</visible>
 					<label>Landscape</label>
-					<onclick>Container.SetViewMode(71)</onclick>
+					<onclick>Container.SetViewMode(508)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="125">
+					<visible>true</visible>
+					<label>Banner</label>
+					<onclick>Container.SetViewMode(509)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control> -->
+				<!-- <control type="label" id="126">
+					<label>Cover flow</label>
+					<include>MediaMenuLabelViewType</include>
+				</control>
+				<control type="button" id="127">
+					<visible>true</visible>
+					<label>Poster</label>
+					<onclick>Container.SetViewMode(510)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="128">
+					<visible>true</visible>
+					<label>Shift</label>
+					<onclick>Container.SetViewMode(511)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="129">
+					<visible>true</visible>
+					<label>Showcase</label>
+					<onclick>Container.SetViewMode(512)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="130">
+					<visible>true</visible>
+					<label>Kodi flix</label>
+					<onclick>Container.SetViewMode(513)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control> -->
+				<!-- <control type="button" id="116">
+					<visible>true</visible>
+					<label>Landscape</label>
+					<onclick>Container.SetViewMode(59)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="116">
+					<visible>true</visible>
+					<label>Logo</label>
+					<onclick>Container.SetViewMode(59)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="116">
+					<visible>true</visible>
+					<label>Banner</label>
+					<onclick>Container.SetViewMode(59)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="116">
+					<visible>true</visible>
+					<label>Fanart</label>
+					<onclick>Container.SetViewMode(59)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="116">
+					<visible>true</visible>
+					<label>Gallery</label>
+					<onclick>Container.SetViewMode(59)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="116">
+					<visible>true</visible>
+					<label>Panel</label>
+					<onclick>Container.SetViewMode(59)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control> -->
 			</control>

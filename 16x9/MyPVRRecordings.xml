@@ -2,7 +2,7 @@
 <window>
 	<defaultcontrol>50</defaultcontrol>
 	<menucontrol>9050</menucontrol>
-	<views>50</views>
+	<views>50,51,52,53,54,55,56,500,501,502,503,504,505,506</views>
 	<controls>
 		<!-- Backdrop -->
 		<include content="BackgroundDefault">
@@ -22,10 +22,34 @@
 			<include>FloorRight</include>
 		</control>
 		<control type="group">
-			<visible>Control.IsVisible(50) + !Window.IsActive(pvrguideinfo)</visible>
+			<visible>!Window.IsActive(pvrguideinfo)</visible>
 			<include>AnimationInfoDialog</include>
-			<include>View50List</include>
+			<include>View50PosterList</include>
+			<include>View51SimpleList</include>
+			<include>View52TwinList</include>
+			<include>View53InfoList1</include>
+			<include>View54InfoList2</include>
+			<include>View55LowList</include>
+			<include>View563Panel</include>
+			<include>View500BigPosterList</include>
+			<include>View501BigSimpleList</include>
+			<include>View502BigTwinList</include>
+			<include>View503BigInfoList1</include>
+			<include>View504BigInfoList2</include>
+			<include>View505BigLowList</include>
+			<include>View506Big3Panel</include>
 		</control>
+		<control type="group">
+				<visible>Control.IsVisible(50) | Control.IsVisible(500) | Control.IsVisible(55) | Control.IsVisible(505)</visible>
+				<animation effect="slide" end="90,20" time="240" tween="cubic" condition="Control.IsVisible(55)">Conditional</animation>
+				<include content="AnimationSlideBottomWindow">
+					<param name="slide">200</param>
+				</include>
+				<include content="AnimationSlideBottomVisible">
+					<param name="slide">200</param>
+				</include>
+				<include>MediaFlagsDefault</include>
+			</control>
 		<!-- Topbar -->
 		<control type="group">
 			<visible>!Skin.HasSetting(PVRHideTopBar)</visible>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">50</defaultcontrol>
-	<views>50,54,55,56,80</views>
+	<views>50,51,52,53,54,55,56,500,501,502,503,504,505,506</views>
 	<menucontrol>9050</menucontrol>
 	<onload condition="System.HasAddon(script.tv.show.next.aired)">RunScript(script.tv.show.next.aired,backend=True)</onload>
 	<controls>
@@ -14,8 +14,41 @@
 			<include>AnimationInfoDialog</include>
 			<!-- Floor -->
 			<control type="group">
-				<visible>Control.IsVisible(50) | Control.IsVisible(56) | Control.IsVisible(54) | Control.IsVisible(80)</visible>
-				<animation effect="slide" end="0,90" time="240" tween="cubic" condition="Control.IsVisible(56)">Conditional</animation>
+				<visible>[!Skin.HasSetting(View52HideFloor) + Control.IsVisible(52)] | [!Skin.HasSetting(View502HideFloor) + Control.IsVisible(502)]</visible>
+				<include content="AnimationSlideBottomWindow">
+					<param name="slide">220</param>
+				</include>
+				<include content="AnimationSlideBottomVisible">
+					<param name="slide">220</param>
+				</include>
+				<include>FloorDefault</include>
+			</control>
+			<control type="group">
+				<visible>Control.IsVisible(512)</visible>
+				<include content="AnimationSlideBottomWindow">
+					<param name="slide">220</param>
+				</include>
+				<include content="AnimationSlideBottomVisible">
+					<param name="slide">220</param>
+				</include>
+				<include>FloorMiddle</include>
+			</control>
+			<control type="group">
+				<visible>[!Skin.HasSetting(View51HideFloor) + Control.IsVisible(51)] | [!Skin.HasSetting(View501HideFloor) + Control.IsVisible(501)]</visible>
+				<top>50</top>
+				<include content="AnimationSlideBottomWindow">
+					<param name="slide">220</param>
+				</include>
+				<include content="AnimationSlideBottomVisible">
+					<param name="slide">220</param>
+				</include>
+				<include>FloorLeft</include>
+			</control>
+			<control type="group">
+				<visible>[!Skin.HasSetting(View50HideFloor) + Control.IsVisible(50)] | [!Skin.HasSetting(View500HideFloor) + Control.IsVisible(500)] | [!Skin.HasSetting(View53HideFloor) + Control.IsVisible(53)] | [!Skin.HasSetting(View503HideFloor) + Control.IsVisible(503)] | [!Skin.HasSetting(View54HideFloor) + Control.IsVisible(54)] | [!Skin.HasSetting(View504HideFloor) + Control.IsVisible(504)] | [!Skin.HasSetting(View56HideFloor) + Control.IsVisible(56)]</visible>
+				<top>50</top>
+				<!-- <animation effect="slide" end="0,100" time="200" condition="Control.IsVisible(58)">Conditional</animation>
+				<animation effect="slide" end="0,-100" time="200" condition="Control.IsVisible(510)">Conditional</animation> -->
 				<include content="AnimationSlideBottomWindow">
 					<param name="slide">220</param>
 				</include>
@@ -26,24 +59,111 @@
 			</control>
 			<!-- Views -->
 			<control type="group">
-				<include>View50List</include>
-				<include>View54InfoList</include>
+				<include>View50PosterList</include>
+				<include>View51SimpleList</include>
+				<include>View52TwinList</include>
+				<include>View53InfoList1</include>
+				<include>View54InfoList2</include>
 				<include>View55LowList</include>
-				<include>View56RightList</include>
-				<include>View80Wall</include>
+				<include>View563Panel</include>
+				<include>View500BigPosterList</include>
+				<include>View501BigSimpleList</include>
+				<include>View502BigTwinList</include>
+				<include>View503BigInfoList1</include>
+				<include>View504BigInfoList2</include>
+				<include>View505BigLowList</include>
+				<include>View506Big3Panel</include>
 			</control>
 			<!-- Media flags -->
 			<control type="group">
-				<visible>Control.IsVisible(50) | Control.IsVisible(54) | Control.IsVisible(55)</visible>
+				<visible>Control.IsVisible(50) | Control.IsVisible(500) | Control.IsVisible(55) | Control.IsVisible(505)</visible>
 				<animation effect="slide" end="90,20" time="240" tween="cubic" condition="Control.IsVisible(55)">Conditional</animation>
+				<include content="AnimationSlideBottomWindow">
+					<param name="slide">200</param>
+				</include>
+				<include content="AnimationSlideBottomVisible">
+					<param name="slide">200</param>
+				</include>
+				<include>MediaFlagsVideo</include>
+			</control>
+			<control type="group">
+				<visible>Control.IsVisible(53) | Control.IsVisible(503)</visible>
+				<include content="AnimationSlideBottomWindow">
+					<param name="slide">200</param>
+				</include>
+				<include content="AnimationSlideBottomVisible">
+					<param name="slide">200</param>
+				</include>
+				<include content="MediaFlagsVideo">
+					<param name="right">125</param>
+					<param name="codecs">MediaFlags5</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>Control.IsVisible(54) | Control.IsVisible(504)</visible>
+				<include content="AnimationSlideBottomWindow">
+					<param name="slide">200</param>
+				</include>
+				<include content="AnimationSlideBottomVisible">
+					<param name="slide">200</param>
+				</include>
+				<include content="MediaFlagsVideo">
+					<param name="right">125</param>
+					<param name="codecs">MediaFlags6</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>Control.IsVisible(56) | Control.IsVisible(504)</visible>
+				<animation effect="slide" end="0,10" time="240" tween="cubic" condition="Control.IsVisible(56)">Conditional</animation>
+				<include content="AnimationSlideBottomWindow">
+					<param name="slide">200</param>
+				</include>
+				<include content="AnimationSlideBottomVisible">
+					<param name="slide">200</param>
+				</include>
+				<include content="MediaFlagsVideo">
+					<param name="codecs">MediaFlags7</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>Control.IsVisible(51)</visible>
+				<include content="AnimationSlideBottomWindow">
+					<param name="slide">200</param>
+				</include>
+				<include content="AnimationSlideBottomVisible">
+					<param name="slide">200</param>
+				</include>
+				<include content="MediaFlagsVideo">
+					<param name="align">left</param>
+					<param name="bottom">10</param>
+					<param name="codecs">MediaFlags8</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>Control.IsVisible(501)</visible>
+				<include content="AnimationSlideBottomWindow">
+					<param name="slide">200</param>
+				</include>
+				<include content="AnimationSlideBottomVisible">
+					<param name="slide">200</param>
+				</include>
+				<include content="MediaFlagsVideo">
+					<param name="align">left</param>
+					<param name="bottom">10</param>
+					<param name="codecs">MediaFlags7</param>
+				</include>
+			</control>
+			<!-- <control type="group">
+				<visible>Control.IsVisible(57) | Control.IsVisible(58) | Control.IsVisible(55)</visible>
+				<animation effect="slide" end="-90" time="240" tween="cubic" condition="Control.IsVisible(55)">Conditional</animation>
 				<include content="AnimationSlideBottomWindow">
 					<param name="slide">111</param>
 				</include>
-				<include>MediaFlagsRight</include>
-			</control>
+				<include>MediaFlagsAll</include>
+			</control> -->
 			<!-- Topbar -->
 			<control type="group">
-				<visible>!Skin.HasSetting(VideoHideTopBar)</visible>
+				<visible>!Skin.HasSetting(View50HideTopBar) | !Skin.HasSetting(View500HideTopBar) | !Skin.HasSetting(View51HideTopBar) | !Skin.HasSetting(View501HideTopBar) | !Skin.HasSetting(View52HideTopBar) | !Skin.HasSetting(View502HideTopBar)</visible>
 				<include content="AnimationSlideTopWindow">
 					<param name="slide">90</param>
 				</include>

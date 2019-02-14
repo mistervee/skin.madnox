@@ -1,57 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
 <includes>
-	<include name="MediaFlagsRight">
+	<include name="MediaFlagsVideo">
+		<param name="bottom">30</param>
+		<param name="left">100</param>
+		<param name="right">100</param>
+		<param name="align">right</param>
+		<param name="codecs">MediaFlags4</param>
+		<definition>
+			<control type="group">
+				<bottom>$PARAM[bottom]</bottom>
+				<left>$PARAM[left]</left>
+				<right>$PARAM[right]</right>
+				<height>80</height>
+				<control type="grouplist">
+					<visible>!ListItem.IsParentFolder + [Container.Content(tvshows) | Container.Content(seasons)]</visible>
+					<align>$PARAM[align]</align>
+					<itemgap>10</itemgap>
+					<orientation>horizontal</orientation>
+					<usecontrolcoords>true</usecontrolcoords>
+					<control type="label">
+						<top>-2</top>
+						<width>251</width>
+						<align>right</align>
+						<include>MediaFlagLabelFull</include>
+						<label>$VAR[TVShowAirDateLabelVar]</label>
+					</control>
+					<control type="label">
+						<width>135.5</width>
+						<include>MediaFlagLabel</include>
+						<label>$VAR[NextAiredStausLabelVar]</label>
+					</control>
+					<control type="image">
+						<left>-145.5</left>
+						<width>135.5</width>
+						<include>MediaFlagImage</include>
+						<texture>$VAR[MediaFlagsPathVar]nextaired/$INFO[Window(Home).Property(NextAired.StatusID)].png</texture>
+					</control>
+					<control type="image">
+						<texture>$VAR[MediaFlagsPathVar]mpaa/$VAR[RatingFlagVar]</texture>
+						<include>MediaFlagImage</include>
+						<visible>!String.IsEmpty(ListItem.FolderName)</visible>
+					</control>
+				</control>
+				<include content="$PARAM[codecs]">
+					<param name="align">$PARAM[align]</param>
+				</include>
+			</control>
+		</definition>
+	</include>
+	<include name="MediaFlagsAudio">
+		<param name="left">100</param>
+		<param name="right">100</param>
+		<param name="align">right</param>
+		<definition>
+			<control type="group">
+				<bottom>30</bottom>
+				<left>$PARAM[left]</left>
+				<right>$PARAM[right]</right>
+				<height>80</height>
+				<control type="grouplist">
+					<visible>!ListItem.IsParentFolder + Container.Content(artists)</visible>
+					<align>$PARAM[align]</align>
+					<itemgap>10</itemgap>
+					<orientation>horizontal</orientation>
+					<usecontrolcoords>true</usecontrolcoords>
+					<control type="label">
+						<include>MediaFlagLabel</include>
+						<label>$LOCALIZE[132]</label>
+					</control>
+					<control type="label">
+						<left>-135</left>
+						<include>MediaFlagBigLabel</include>
+						<label>$INFO[Container(811111).NumItems]</label>
+					</control>
+				</control>
+				<control type="grouplist">
+					<visible>!ListItem.IsParentFolder + Container.Content(albums)</visible>
+					<align>$PARAM[align]</align>
+					<itemgap>10</itemgap>
+					<orientation>horizontal</orientation>
+					<usecontrolcoords>true</usecontrolcoords>
+					<control type="label">
+						<width>265</width>
+						<include>MediaFlagLabel</include>
+						<label>$LOCALIZE[180]</label>
+						<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Duration))</visible>
+					</control>
+					<control type="label">
+						<left>-275</left>
+						<width>265</width>
+						<include>MediaFlagBigLabel</include>
+						<label>$INFO[Window(Home).Property(SkinHelper.ListItem.Duration)]</label>
+						<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Duration))</visible>
+					</control>
+					<control type="label">
+						<include>MediaFlagLabel</include>
+						<label>$LOCALIZE[134]</label>
+					</control>
+					<control type="label">
+						<left>-135</left>
+						<include>MediaFlagBigLabel</include>
+						<label>$INFO[Container(811112).NumItems]</label>
+					</control>
+				</control>
+				<control type="grouplist">
+					<visible>!ListItem.IsParentFolder + Container.Content(songs)</visible>
+					<align>$PARAM[align]</align>
+					<itemgap>10</itemgap>
+					<orientation>horizontal</orientation>
+					<usecontrolcoords>true</usecontrolcoords>
+					<control type="image">
+						<width>246</width>
+						<include>MediaFlagImage</include>
+						<texture>$VAR[ViewImageRatingVar]</texture>
+						<visible>Control.IsVisible(50)</visible>
+					</control>
+					<control type="image">
+						<include>MediaFlagImage</include>
+						<texture>$VAR[MediaFlagsPathVar]/audiocodec/mp3.png</texture>
+					</control>
+				</control>
+			</control>
+		</definition>
+	</include>
+	<include name="MediaFlagsPVR">
 		<control type="grouplist">
-			<visible>!ListItem.IsParentFolder + [Container.Content(tvshows) | Container.Content(seasons)]</visible>
-			<bottom>21</bottom>
+			<bottom>30</bottom>
+			<left>100</left>
 			<right>100</right>
-			<width>538</width>
-			<height>90</height>
+			<height>80</height>
+			<align>right</align>
 			<itemgap>10</itemgap>
 			<orientation>horizontal</orientation>
 			<usecontrolcoords>true</usecontrolcoords>
-			<control type="image">
-				<texture>$VAR[MediaFlagsPathVar]mpaa/$VAR[RatingFlagVar]</texture>
-				<include>MediaFlagImage</include>
-				<visible>!String.IsEmpty(ListItem.FolderName)</visible>
-			</control>
 			<control type="label">
-				<include>MediaFlagLabel</include>
-				<label>$VAR[NextAiredStausLabelVar]</label>
-			</control>
-			<control type="image">
-				<left>-135</left>
-				<include>MediaFlagImage</include>
-				<texture>$VAR[MediaFlagsPathVar]nextaired/$INFO[Window(Home).Property(NextAired.StatusID)].png</texture>
-				<visible>String.IsEqual(Window(Home).Property(NextAired.Today),False)</visible>
-			</control>
-			<control type="image">
-				<left>-135</left>
-				<include>MediaFlagImage</include>
-				<texture fallback="flags/default/nextaired/-1.png">$VAR[MediaFlagsPathVar]nextaired/today.png</texture>
-				<visible>String.IsEqual(Window(Home).Property(NextAired.Today),True)</visible>
-			</control>
-			<control type="label">
-				<width>265</width>
+				<visible>!String.IsEmpty(PVR.TVNextRecordingTitle) + String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
+				<top>-2</top>
+				<width>532</width>
 				<align>right</align>
 				<include>MediaFlagLabelFull</include>
-				<label>$LOCALIZE[31063][CR][B]$INFO[Window(Home).Property(NextAired.NextNumber)][CR]$INFO[Window(Home).Property(NextAired.NextDay),, ]$INFO[Window(Home).Property(NextAired.ShortTime)][/B]</label>
-				<visible>!String.IsEmpty(Window(Home).Property(NextAired.NextDay))</visible>
+				<label>$LOCALIZE[19157]$INFO[PVR.TVNextRecordingDateTime, - ,][B][CR]$INFO[PVR.TVNextRecordingTitle][/B]</label>
 			</control>
 			<control type="label">
-				<width>265</width>
+				<visible>!String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
+				<top>-2</top>
+				<width>532</width>
+				<align>right</align>
 				<include>MediaFlagLabelFull</include>
-				<label>$LOCALIZE[31064][CR][B]$INFO[Window(Home).Property(NextAired.LatestNumber)][CR]$INFO[Window(Home).Property(NextAired.LatestDay)][/B]</label>
-				<visible>String.IsEmpty(Window(Home).Property(NextAired.NextDay)) + !String.IsEmpty(Window(Home).Property(NextAired.LatestDay))</visible>
+				<label>$LOCALIZE[19162]$INFO[PVR.TVNowRecordingDateTime, - ,][B][CR]$INFO[PVR.TVNowRecordingTitle, ][/B]</label>
 			</control>
 		</control>
+	</include>
+	<include name="MediaFlagsAddons">
 		<control type="grouplist">
-			<visible>!ListItem.IsParentFolder + [Container.Content(episodes) | Container.Content(movies) | Container.Content(musicvideos)]</visible>
 			<bottom>30</bottom>
+			<left>100</left>
 			<right>100</right>
-			<width>532</width>
 			<height>80</height>
 			<align>right</align>
+			<itemgap>10</itemgap>
+			<orientation>horizontal</orientation>
+			<usecontrolcoords>true</usecontrolcoords>
+			<control type="label">
+				<visible>!String.IsEmpty(PVR.TVNextRecordingTitle) + String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
+				<top>-2</top>
+				<width>532</width>
+				<align>right</align>
+				<include>MediaFlagLabelFull</include>
+				<label>$LOCALIZE[19157]$INFO[PVR.TVNextRecordingDateTime, - ,][B][CR]$INFO[PVR.TVNextRecordingTitle][/B]</label>
+			</control>
+			<control type="label">
+				<visible>!String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
+				<top>-2</top>
+				<width>532</width>
+				<align>right</align>
+				<include>MediaFlagLabelFull</include>
+				<label>$LOCALIZE[19162]$INFO[PVR.TVNowRecordingDateTime, - ,][B][CR]$INFO[PVR.TVNowRecordingTitle, ][/B]</label>
+			</control>
+		</control>
+	</include>
+
+
+	<include name="MediaFlags4">
+		<control type="grouplist">
+			<visible>!ListItem.IsParentFolder + [Container.Content(episodes) | Container.Content(movies) | Container.Content(musicvideos) | Container.Content(sets)]</visible>
+			<align>$PARAM[align]</align>
 			<itemgap>10</itemgap>
 			<orientation>horizontal</orientation>
 			<usecontrolcoords>true</usecontrolcoords>
@@ -77,104 +210,234 @@
 			</control>
 			<control type="label">
 				<label>$LOCALIZE[342]</label>
-				<visible>ListItem.IsCollection + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Count))</visible>
+				<include>MediaFlagLabel</include>
+				<visible>ListItem.IsCollection</visible>
 			</control>
 			<control type="label">
-				<left>-135</left>
+				<left>-135.5</left>
 				<include>MediaFlagBigLabel</include>
 				<label>$INFO[Window(Home).Property(SkinHelper.ListItem.Count)]</label>
-				<visible>ListItem.IsCollection + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Count))</visible>
+				<visible>ListItem.IsCollection</visible>
 			</control>
 		</control>
+	</include>
+	<include name="MediaFlags5">
 		<control type="grouplist">
-			<visible>!ListItem.IsParentFolder + Container.Content(artists)</visible>
-			<bottom>21</bottom>
-			<right>100</right>
-			<width>532</width>
-			<height>90</height>
-			<align>right</align>
-			<itemgap>10</itemgap>
-			<orientation>horizontal</orientation>
-			<usecontrolcoords>true</usecontrolcoords>
-			<control type="label">
-				<include>MediaFlagLabel</include>
-				<label>$LOCALIZE[132]</label>
-			</control>
-			<control type="label">
-				<left>-135</left>
-				<include>MediaFlagBigLabel</include>
-				<label>$INFO[Container(811111).NumItems]</label>
-			</control>
-		</control>
-		<control type="grouplist">
-			<visible>!ListItem.IsParentFolder + Container.Content(albums)</visible>
-			<bottom>21</bottom>
-			<right>100</right>
-			<width>538</width>
-			<height>90</height>
-			<align>right</align>
-			<itemgap>10</itemgap>
-			<orientation>horizontal</orientation>
-			<usecontrolcoords>true</usecontrolcoords>
-			<control type="label">
-				<width>265</width>
-				<include>MediaFlagLabel</include>
-				<label>$LOCALIZE[180]</label>
-				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Duration))</visible>
-			</control>
-			<control type="label">
-				<left>-275</left>
-				<width>265</width>
-				<include>MediaFlagBigLabel</include>
-				<label>$INFO[Window(Home).Property(SkinHelper.ListItem.Duration)]</label>
-				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Duration))</visible>
-			</control>
-			<control type="label">
-				<include>MediaFlagLabel</include>
-				<label>$LOCALIZE[134]</label>
-			</control>
-			<control type="label">
-				<left>-135</left>
-				<include>MediaFlagBigLabel</include>
-				<label>$INFO[Container(811112).NumItems]</label>
-			</control>
-		</control>
-		<control type="grouplist">
-			<visible>!ListItem.IsParentFolder + Container.Content(songs)</visible>
-			<bottom>21</bottom>
-			<right>100</right>
-			<width>538</width>
-			<height>90</height>
-			<align>right</align>
+			<visible>!ListItem.IsParentFolder + [Container.Content(episodes) | Container.Content(movies) | Container.Content(musicvideos)]</visible>
+			<align>$PARAM[align]</align>
 			<itemgap>10</itemgap>
 			<orientation>horizontal</orientation>
 			<usecontrolcoords>true</usecontrolcoords>
 			<control type="image">
-				<width>246</width>
+				<texture>$VAR[MediaFlagsPathVar]videoaspect/$VAR[VideoAspectFlagVar]</texture>
 				<include>MediaFlagImage</include>
-				<texture>$VAR[ViewImageRatingVar]</texture>
-				<visible>Control.IsVisible(50)</visible>
-			</control>
-			<control type="label">
-				<width>150</width>
-				<include>MediaFlagBigLabelCenter</include>
-				<label>$INFO[ListItem.Year]</label>
-				<visible>!String.IsEmpty(ListItem.Year)</visible>
+				<visible>!String.IsEmpty(ListItem.VideoAspect)</visible>
 			</control>
 			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videoresolution/$VAR[VideoResolutionFlagVar]</texture>
 				<include>MediaFlagImage</include>
-				<texture>$VAR[MediaFlagsPathVar]/audiocodec/mp3.png</texture>
+				<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videocodec/$VAR[VideoCodecFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.VideoCodec)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]audiochannels/$VAR[AudioChannelsFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.AudioChannels)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]audiocodec/$VAR[AudioCodecFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
+			</control>
+			<control type="label">
+				<label>$LOCALIZE[342]</label>
+				<include>MediaFlagLabel</include>
+				<visible>ListItem.IsCollection</visible>
+			</control>
+			<control type="label">
+				<left>-135.5</left>
+				<include>MediaFlagBigLabel</include>
+				<label>$INFO[Window(Home).Property(SkinHelper.ListItem.Count)]</label>
+				<visible>ListItem.IsCollection</visible>
+			</control>
+		</control>
+	</include>
+	<include name="MediaFlags6">
+		<control type="grouplist">
+			<visible>!ListItem.IsParentFolder + [Container.Content(episodes) | Container.Content(movies) | Container.Content(musicvideos)]</visible>
+			<align>$PARAM[align]</align>
+			<itemgap>10</itemgap>
+			<orientation>horizontal</orientation>
+			<usecontrolcoords>true</usecontrolcoords>
+			<control type="image" id="1234">
+				<texture>$VAR[MediaFlagsPathVar]mpaa/$VAR[RatingFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!ListItem.IsCollection</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videoaspect/$VAR[VideoAspectFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.VideoAspect)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videoresolution/$VAR[VideoResolutionFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videocodec/$VAR[VideoCodecFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.VideoCodec)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]audiochannels/$VAR[AudioChannelsFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.AudioChannels)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]audiocodec/$VAR[AudioCodecFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
+			</control>
+			<control type="label">
+				<label>$LOCALIZE[342]</label>
+				<include>MediaFlagLabel</include>
+				<visible>ListItem.IsCollection</visible>
+			</control>
+			<control type="label">
+				<left>-135.5</left>
+				<include>MediaFlagBigLabel</include>
+				<label>$INFO[Window(Home).Property(SkinHelper.ListItem.Count)]</label>
+				<visible>ListItem.IsCollection</visible>
+			</control>
+		</control>
+	</include>
+	<include name="MediaFlags7">
+		<control type="grouplist">
+			<visible>!ListItem.IsParentFolder + [Container.Content(episodes) | Container.Content(movies) | Container.Content(musicvideos)]</visible>
+			<align>$PARAM[align]</align>
+			<itemgap>10</itemgap>
+			<orientation>horizontal</orientation>
+			<usecontrolcoords>true</usecontrolcoords>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]mpaa/$VAR[RatingFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!ListItem.IsCollection</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videoaspect/$VAR[VideoAspectFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.VideoAspect)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videoresolution/$VAR[VideoResolutionFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videocodec/$VAR[VideoCodecFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.VideoCodec)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]audiochannels/$VAR[AudioChannelsFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.AudioChannels)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]audiocodec/$VAR[AudioCodecFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]cc.png</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.SubtitleLanguage)</visible>
+			</control>
+			<control type="label">
+				<label>$LOCALIZE[342]</label>
+				<include>MediaFlagLabel</include>
+				<visible>ListItem.IsCollection</visible>
+			</control>
+			<control type="label">
+				<left>-135.5</left>
+				<include>MediaFlagBigLabel</include>
+				<label>$INFO[Window(Home).Property(SkinHelper.ListItem.Count)]</label>
+				<visible>ListItem.IsCollection</visible>
+			</control>
+		</control>
+	</include>
+	<include name="MediaFlags8">
+		<control type="grouplist">
+			<visible>!ListItem.IsParentFolder + [Container.Content(episodes) | Container.Content(movies) | Container.Content(musicvideos)]</visible>
+			<align>$PARAM[align]</align>
+			<itemgap>10</itemgap>
+			<orientation>horizontal</orientation>
+			<usecontrolcoords>true</usecontrolcoords>
+			<control type="image">
+				<texture>$VAR[StudioIconsVar]</texture>
+				<include>MediaFlagImage</include>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]mpaa/$VAR[RatingFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!ListItem.IsCollection</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videoaspect/$VAR[VideoAspectFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.VideoAspect)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videoresolution/$VAR[VideoResolutionFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]videocodec/$VAR[VideoCodecFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.VideoCodec)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]audiochannels/$VAR[AudioChannelsFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.AudioChannels)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]audiocodec/$VAR[AudioCodecFlagVar]</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
+			</control>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]cc.png</texture>
+				<include>MediaFlagImage</include>
+				<visible>!String.IsEmpty(ListItem.SubtitleLanguage)</visible>
+			</control>
+			<control type="label">
+				<label>$LOCALIZE[342]</label>
+				<include>MediaFlagLabel</include>
+				<visible>ListItem.IsCollection</visible>
+			</control>
+			<control type="label">
+				<left>-135.5</left>
+				<include>MediaFlagBigLabel</include>
+				<label>$INFO[Window(Home).Property(SkinHelper.ListItem.Count)]</label>
+				<visible>ListItem.IsCollection</visible>
 			</control>
 		</control>
 	</include>
 	<include name="MediaFlagsAll">
 		<control type="grouplist">
 			<bottom>10</bottom>
-			<right>10</right>
+			<left>100</left>
 			<width>1338</width>
-			<height>90</height>
-			<align>right</align>
-			<itemgap>42</itemgap>
+			<height>80</height>
+			<align>left</align>
+			<itemgap>25</itemgap>
 			<orientation>horizontal</orientation>
 			<usecontrolcoords>true</usecontrolcoords>
 			<control type="image">
@@ -565,13 +828,12 @@
 		</control>
 	</include>
 	<include name="MediaFlagImage">
-		<top>2</top>
-		<width>125</width>
+		<width>125.5</width>
 		<height>80</height>
 		<fadetime>TextureFadeTime</fadetime>
 		<include condition="!Skin.HasSetting(MediaFlagsColored)">MediaFlagWhite</include>
 		<include condition="Skin.HasSetting(MediaFlagsColored)">MediaFlagColored</include>
-		<aspectratio align="center" aligny="center">keep</aspectratio>
+		<aspectratio>keep</aspectratio>
 	</include>
 	<include name="MediaFlagSmallImage">
 		<top>6</top>
@@ -589,24 +851,23 @@
 		<aspectratio align="center" aligny="center">keep</aspectratio>
 	</include>
 	<include name="MediaFlagLabel">
-		<top>2</top>
-		<width>125</width>
+		<width>125.5</width>
 		<height>40</height>
 		<align>center</align>
 		<textcolor>grey</textcolor>
-		<font>Font23_Reg</font>
+		<font>Font22_Reg</font>
 	</include>
 	<include name="MediaFlagLabelFull">
 		<top>2</top>
 		<width>125</width>
-		<height>90</height>
+		<height>80</height>
 		<align>right</align>
 		<textcolor>grey</textcolor>
-		<font>Font23_Reg</font>
+		<font>Font22_Reg_110</font>
 	</include>
 	<include name="MediaFlagBigLabel">
 		<top>30</top>
-		<width>125</width>
+		<width>125.5</width>
 		<height>50</height>
 		<align>center</align>
 		<textcolor>grey</textcolor>

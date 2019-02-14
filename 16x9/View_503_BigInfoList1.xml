@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 	<!-- Video FanartList -->
-	<include name="View54InfoList">
+	<include name="View503BigInfoList1">
 		<control type="group">
-			<visible>Control.IsVisible(54)</visible>
+			<visible>Control.IsVisible(503)</visible>
 			<!-- Right info -->
 			<control type="group">
 				<animation type="WindowOpen" reversible="false">
@@ -17,6 +17,8 @@
 				<include content="PanelSideBlade">
 					<param name="left">1060</param>
 					<param name="width">780</param>
+					<param name="lefttexture">1060</param>
+					<param name="widthtexture">760</param>
 					<param name="diffusetexture">diffuse/siderounded20-398x820.png</param>
 					<param name="reflect">!Skin.HasSetting(AddonsHideFloor)</param>
 				</include>
@@ -27,37 +29,46 @@
 					<height>796</height>
 					<control type="image">
 						<height>420</height>
-						<texture border="20">thumbs/border/552x552.png</texture>
+						<bordersize>10</bordersize>
+						<aspectratio align="center" aligny="center">scale</aspectratio>
+						<texture diffuse="diffuse/rounded5-532x800.png">$VAR[FanartVar]</texture>
 					</control>
 					<control type="image">
-						<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Fanart))</visible>
 						<height>420</height>
-						<bordersize>10</bordersize>
-						<fadetime>TextureFadeTime</fadetime>
-						<texture diffuse="diffuse/rounded5-532x532.png" background="true">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Fanart)]</texture>
-						<aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
+						<texture border="20">thumbs/overlay.png</texture>
 					</control>
 				</control>
-			</control>
-			<control type="image">
-				<left>1083</left>
-				<top>604</top>
-				<width>710</width>
-				<height>297</height>
-				<aspectratio aligny="top">keep</aspectratio>
-				<texture background="true">$INFO[Container.ListItem.Art(clearlogo)]</texture>
-				<animation effect="fade" end="15" time="0" condition="true">Conditional</animation>
+				<control type="image">
+					<left>1083</left>
+					<top>604</top>
+					<width>710</width>
+					<height>297</height>
+					<aspectratio aligny="top">keep</aspectratio>
+					<texture background="true">$VAR[ClearLogoVar]</texture>
+					<animation effect="fade" end="15" time="0" condition="true">Conditional</animation>
+				</control>
+				<control type="textbox">
+					<left>1083</left>
+					<top>604</top>
+					<label>$VAR[MusicDialogPlotVar]</label>
+					<width>710</width>
+					<height>297</height>
+					<pagecontrol>61</pagecontrol>
+					<autoscroll time="3000" delay="4000" repeat="5000">!Control.HasFocus(60)</autoscroll>
+					<visible>Container.Content(artists) | Container.Content(albums)</visible>
+				</control>
 			</control>
 			<!-- Left Content -->
 			<control type="group">
-				<include content="AnimationSlideRightWindow">
-					<param name="slide">1263</param>
+				<include content="AnimationSlideLeftWindow">
+					<param name="slide">1080</param>
 				</include>
-				<include content="AnimationSlideRightVisible">
-					<param name="slide">1263</param>
+				<include content="AnimationSlideLeftVisible">
+					<param name="slide">1080</param>
 				</include>
 				<include content="PanelDefault">
 					<param name="right">840</param>
+					<param name="righttexture">860</param>
 					<param name="reflect">!Skin.HasSetting(View507HideFloor)</param>
 				</include>
 				<control type="image">
@@ -77,7 +88,7 @@
 					<visible>Container.Content(episodes) | Container.Content(songs)</visible>
 				</control>
 				<control type="group">
-					<control type="list" id="54">
+					<control type="list" id="503">
 						<left>100</left>
 						<top>144</top>
 						<width>960</width>
@@ -87,7 +98,7 @@
 						<pagecontrol>6054</pagecontrol>
 						<viewtype label="Fanart List">list</viewtype>
 						<preloaditems>2</preloaditems>
-						<include>ViewContainerList</include>
+						<include>ViewContainerBigList</include>
 					</control>
 					<control type="scrollbar" id="6054">
 						<left>1040</left>
@@ -102,7 +113,7 @@
 				<left>1083</left>
 				<top>604</top>
 				<include content="AnimationSlideRightWindow">
-				<param name="slide">652</param>
+					<param name="slide">652</param>
 				</include>
 				<include content="AnimationSlideRightVisible">
 					<param name="slide">652</param>
@@ -136,14 +147,7 @@
 					<autoscroll time="3000" delay="4000" repeat="5000">!Control.HasFocus(60)</autoscroll>
 					<visible>![Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
 				</control>
-				<control type="textbox" id="70">
-					<label>$VAR[VideoDialogPlotVar]</label>
-					<width>710</width>
-					<height>297</height>
-					<pagecontrol>61</pagecontrol>
-					<autoscroll time="3000" delay="4000" repeat="5000">!Control.HasFocus(60)</autoscroll>
-					<visible>Container.Content(artists) | Container.Content(albums)</visible>
-				</control>
+				
 				<!-- <control type="group">
 					<top>10</top>
 					<left>60</left>

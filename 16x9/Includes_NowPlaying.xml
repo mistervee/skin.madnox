@@ -8,6 +8,7 @@
 		<width>500</width>
 		<height>327</height>
 		<usecontrolcoords>true</usecontrolcoords>
+		<animation effect="slide" end="0,-11" time="200" condition="String.IsEmpty(MusicPlayer.Duration)">Conditional</animation>
 		<control type="progress">
 			<visible>!String.IsEmpty(MusicPlayer.Duration)</visible>
 			<info>Player.Progress</info>
@@ -44,6 +45,7 @@
 		<height>303</height>
 		<align>right</align>
 		<usecontrolcoords>true</usecontrolcoords>
+		<animation effect="slide" end="0,9" time="200" condition="String.IsEmpty(MusicPlayer.Duration)">Conditional</animation>
 		<control type="image">
 			<right>0</right>
 			<width>125</width>
@@ -68,6 +70,123 @@
 		</control>
 		<control type="progress">
 			<visible>!String.IsEmpty(MusicPlayer.Duration)</visible>
+			<info>Player.Progress</info>
+			<midtexture colordiffuse="$VAR[MainMenuHighlightColorVar]" border="8">panels/progress-control/progress-mid.png</midtexture>
+		</control>
+	</include>
+	<include name="HomeNowPlayingVideoInfo">
+		<include>AnimationSlideRightVisible</include>
+		<top>35</top>
+		<right>10</right>
+		<width>500</width>
+		<height>327</height>
+		<usecontrolcoords>true</usecontrolcoords>
+		<control type="progress">
+			<visible>VideoPlayer.HasEpg</visible>
+			<info>PVR.EpgEventProgress</info>
+			<midtexture colordiffuse="$VAR[MainMenuHighlightColorVar]" border="8">panels/progress-control/progress-mid.png</midtexture>
+		</control>
+		<control type="progress">
+			<visible>!VideoPlayer.HasEpg</visible>
+			<info>Player.Progress</info>
+			<midtexture colordiffuse="$VAR[MainMenuHighlightColorVar]" border="8">panels/progress-control/progress-mid.png</midtexture>
+		</control>
+		<control type="label">
+			<visible>!String.IsEmpty(VideoPlayer.Genre) + !VideoPlayer.HasEpg</visible>
+			<height>42</height>
+			<align>right</align>
+			<font>Font28_Reg</font>
+			<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
+			<label>$INFO[VideoPlayer.Genre]</label>
+		</control>
+		<control type="label">
+			<visible>VideoPlayer.HasEpg</visible>
+			<height>42</height>
+			<align>right</align>
+			<font>Font28_Reg</font>
+			<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
+			<label>$INFO[PVR.EpgEventFinishTime,$LOCALIZE[19127] ]</label>
+		</control>
+		<control type="label">
+			<visible>VideoPlayer.HasEpg</visible>
+			<height>40</height>
+			<align>right</align>
+			<font>Font34_Reg</font>
+			<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+			<label>$INFO[PVR.EpgEventElapsedTime(hh:mm:ss),, / ]$INFO[PVR.EpgEventDuration(hh:mm:ss)]</label>
+		</control>
+		<control type="label">
+			<visible>!VideoPlayer.HasEpg</visible>
+			<height>40</height>
+			<align>right</align>
+			<font>Font34_Reg</font>
+			<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+			<label>$INFO[Player.Time(hh:mm:ss),, / ]$INFO[Player.Duration(hh:mm:ss)]</label>
+		</control>
+		<control type="image">
+			<right>0</right>
+			<width>125</width>
+			<height>80</height>
+			<fadetime>TextureFadeTime</fadetime>
+			<aspectratio align="right" aligny="center">scale</aspectratio>
+			<texture>$VAR[MediaFlagsPathVar]videoresolution/$INFO[VideoPlayer.VideoResolution,,.png]</texture>
+		</control>
+	</include>
+	<include name="HomeNowPlayingVideoInfo2">
+		<include>AnimationSlideRightVisible</include>
+		<top>10</top>
+		<right>10</right>
+		<width>500</width>
+		<height>303</height>
+		<align>right</align>
+		<usecontrolcoords>true</usecontrolcoords>
+		<control type="image">
+			<right>0</right>
+			<width>125</width>
+			<height>80</height>
+			<fadetime>TextureFadeTime</fadetime>
+			<aspectratio align="right" aligny="center">scale</aspectratio>
+			<texture>$VAR[MediaFlagsPathVar]videoresolution/$INFO[VideoPlayer.VideoResolution,,.png]</texture>
+		</control>
+		<control type="label">
+			<visible>VideoPlayer.HasEpg</visible>
+			<height>40</height>
+			<align>right</align>
+			<font>Font34_Reg</font>
+			<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+			<label>$INFO[PVR.EpgEventElapsedTime(hh:mm:ss),, / ]$INFO[PVR.EpgEventDuration(hh:mm:ss)]</label>
+		</control>
+		<control type="label">
+			<visible>!VideoPlayer.HasEpg</visible>
+			<height>40</height>
+			<align>right</align>
+			<font>Font34_Reg</font>
+			<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+			<label>$INFO[Player.Time(hh:mm:ss),, / ]$INFO[Player.Duration(hh:mm:ss)]</label>
+		</control>
+		<control type="label">
+			<visible>!String.IsEmpty(VideoPlayer.Genre) + !VideoPlayer.HasEpg</visible>
+			<height>42</height>
+			<align>right</align>
+			<font>Font28_Reg</font>
+			<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
+			<label>$INFO[VideoPlayer.Genre]</label>
+		</control>
+		<control type="label">
+			<visible>VideoPlayer.HasEpg</visible>
+			<height>42</height>
+			<align>right</align>
+			<font>Font28_Reg</font>
+			<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
+			<label>$INFO[PVR.EpgEventFinishTime,$LOCALIZE[19127] ]</label>
+		</control>
+		<control type="progress">
+			<visible>VideoPlayer.HasEpg</visible>
+			<info>PVR.EpgEventProgress</info>
+			<midtexture colordiffuse="$VAR[MainMenuHighlightColorVar]" border="8">panels/progress-control/progress-mid.png</midtexture>
+		</control>
+		<control type="progress">
+			<visible>!VideoPlayer.HasEpg</visible>
 			<info>Player.Progress</info>
 			<midtexture colordiffuse="$VAR[MainMenuHighlightColorVar]" border="8">panels/progress-control/progress-mid.png</midtexture>
 		</control>
@@ -165,22 +284,23 @@
 	</include>
 	<include name="HomeNowPlayingVideoCast">
 		<include>AnimationSlideRightVisible</include>
+		<top>-15</top>
 		<right>10</right>
 		<width>500</width>
 		<control type="list" id="30">
 			<include>HiddenList</include>
-			<content>plugin://script.skin.helper.service/?action=getcast&amp;tvshow=$INFO[VideoPlayer.TVShowTitle]</content>
+			<content>$VAR[NowPlayingCastVar]</content>
 		</control>
 		<control type="label">
-			<top>26</top>
+			<top>0</top>
 			<height>40</height>
 			<align>right</align>
 			<font>Font34_Reg</font>
-			<label>$LOCALIZE[209]</label>
+			<label>$LOCALIZE[206]</label>
 			<textcolor>$VAR[MainMenuHighLightColorVar]</textcolor>
 		</control>
 		<control type="image">
-			<top>72</top>
+			<top>46</top>
 			<right>0</right>
 			<width>388</width>
 			<height>4</height>
@@ -188,8 +308,8 @@
 			<texture flipx="true" colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/separator.png</texture>
 		</control>
 		<control type="grouplist">
-			<top>76</top>
-			<height>246</height>
+			<top>50</top>
+			<height>317</height>
 			<include content="HomeNowPlayingCastList">
 				<param name="offset">1</param>
 			</include>
@@ -213,6 +333,71 @@
 			</include>
 		</control>
 	</include>
+	<include name="HomeNowPlayingPlot">
+		<include>AnimationSlideRightVisible</include>
+		<top>-15</top>
+		<right>10</right>
+		<width>500</width>
+		<control type="label">
+			<top>0</top>
+			<height>40</height>
+			<align>right</align>
+			<font>Font34_Reg</font>
+			<label>$VAR[NowPlayingHomePlotLabelVar]</label>
+			<textcolor>$VAR[MainMenuHighLightColorVar]</textcolor>
+		</control>
+		<control type="image">
+			<top>46</top>
+			<right>0</right>
+			<width>388</width>
+			<height>4</height>
+			<aspectratio align="right" aligny="center">scale</aspectratio>
+			<texture flipx="true" colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/separator.png</texture>
+		</control>
+		<control type="textbox">
+			<top>59</top>
+			<right>0</right>
+			<width>600</width>
+			<height>268</height>
+			<align>right</align>
+			<font>Font30_Reg_105</font>
+			<include>AutoScrollPlot</include>
+			<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
+			<label>$VAR[NowPlayingHomePlotVar]</label>
+		</control>
+	</include>
+	<include name="HomeNowPlayingPlotSquare">
+		<include>AnimationSlideRightVisible</include>
+		<right>10</right>
+		<width>500</width>
+		<control type="label">
+			<top>26</top>
+			<height>40</height>
+			<align>right</align>
+			<font>Font34_Reg</font>
+			<label>$VAR[NowPlayingHomePlotLabelVar]</label>
+			<textcolor>$VAR[MainMenuHighLightColorVar]</textcolor>
+		</control>
+		<control type="image">
+			<top>72</top>
+			<right>0</right>
+			<width>388</width>
+			<height>4</height>
+			<aspectratio align="right" aligny="center">scale</aspectratio>
+			<texture flipx="true" colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/separator.png</texture>
+		</control>
+		<control type="textbox">
+			<top>85</top>
+			<right>0</right>
+			<width>600</width>
+			<height>227</height>
+			<align>right</align>
+			<font>Font30_Reg_107</font>
+			<include>AutoScrollPlot</include>
+			<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
+			<label>$VAR[NowPlayingHomePlotVar]</label>
+		</control>
+	</include>
 	<include name="HomeNowPlayingTrackList">
 		<control type="label">
 			<height>38</height>
@@ -232,9 +417,31 @@
 			<height>18</height>
 		</control>
 	</include>
+	<include name="HomeNowPlayingVideoPreview">
+		<control type="group">
+			<top>56</top>
+			<width>500</width>
+			<right>10</right>
+			<animation effect="slide" end="0,-46" time="200" condition="Skin.HasSetting(WidgetHigh)">Conditional</animation>
+			<control type="image">
+				<height>281</height>
+				<texture>colors/black.png</texture>
+			</control>
+			<control type="videowindow">
+				<height>281</height>
+			</control>
+			<control type="image">
+				<top>-10</top>
+				<right>-10</right>
+				<width>520</width>
+				<height>301</height>
+				<texture border="20">thumbs/overlay2.png</texture>
+			</control>
+		</control>
+	</include>
 	<include name="HomeNowPlayingCastList">
 		<control type="label">
-			<height>40</height>
+			<height>41</height>
 			<align>right</align>
 			<font>Font28_Reg</font>
 			<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
@@ -252,6 +459,7 @@
 					<animation effect="slide" end="97,0" time="300" condition="!Player.Paused + $PARAM[discart] + VideoPlayer.Content(movies) + !Skin.String(MusicDiscArtFallback,none)">Conditional</animation>
 					<animation effect="slide" end="97,0" time="300" condition="!Player.Paused + $PARAM[discart] + VideoPlayer.Content(movies) + Skin.String(MusicDiscArtFallback,none) + !String.IsEmpty(Player.Art(discart))">Conditional</animation>
 					<control type="fadelabel" id="9052">
+						<visible>!VideoPlayer.Content(movies)</visible>
 						<top>26</top>
 						<left>50</left>
 						<height>40</height>
@@ -260,7 +468,7 @@
 						<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
 					</control>
 					<control type="image">
-						<visible>!String.IsEmpty(Control.GetLabel(9052)) | !String.IsEmpty(Control.GetLabel(9053))</visible>
+						<visible>!VideoPlayer.Content(movies)</visible>
 						<top>72</top>
 						<left>0</left>
 						<width>500</width>
@@ -268,6 +476,7 @@
 						<texture colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/separator.png</texture>
 					</control>
 					<control type="fadelabel" id="9053">
+						<visible>!VideoPlayer.Content(movies)</visible>
 						<top>74</top>
 						<left>50</left>
 						<height>40</height>
@@ -309,46 +518,35 @@
 					<label>$INFO[MusicPlayer.TrackNumber,,. ]$INFO[Player.Title,, ]$INFO[VideoPlayer.Year,(,)]</label>
 				</control>
 			</control>
-			<control type="group">
-				<control type="image">
-					<visible>[$PARAM[discart] + VideoPlayer.Content(movies) + !Skin.String(MusicDiscArtFallback,none)] | [$PARAM[discart] + VideoPlayer.Content(movies) + Skin.String(MusicDiscArtFallback,none) + !String.IsEmpty(Player.Art(discart))]</visible>
-					<animation effect="slide" end="112,0" time="300" condition="!Player.Paused + $PARAM[discart]">Conditional</animation>
-					<animation effect="rotate" end="360" center="auto" time="800" loop="true" condition="Player.Rewinding">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="800" loop="true" condition="Player.Forwarding">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" condition="!Player.Paused + !Player.Forwarding + !Player.Rewinding">Conditional</animation>
-					<include>AnimationVisibleFade</include>
-					<top>10</top>
-					<left>10</left>
-					<width>266</width>
-					<height>266</height>
-					<aspectratio>keep</aspectratio>
-					<bordersize>10</bordersize>
-					<texture diffuse="diffuse/disc.png">$VAR[NowPlayingMusicDiscArtVar]</texture>
-				</control>
-				<control type="image">
-					<visible>!Player.IsInternetStream + !Pvr.IsPlayingRadio</visible>
-					<width>266</width>
-					<height>388</height>
-					<bordersize>10</bordersize>
-					<texture diffuse="diffuse/rounded5-327x327.png">$VAR[NowPlayingThumbVar]</texture>
-					<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-				</control>
-				<control type="image">
-					<visible>Player.IsInternetStream | Pvr.IsPlayingRadio</visible>
-					<width>266</width>
-					<height>388</height>
-					<bordersize>10</bordersize>
-					<texture diffuse="diffuse/rounded5-327x327.png">$VAR[NowPlayingThumbVar]</texture>
-					<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-				</control>
-				<control type="image">
-					<visible>Skin.HasSetting(NowplayingSkinHelperScraper) + [Player.IsInternetStream | Pvr.IsPlayingTV] + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.Poster))</visible>
-					<width>266</width>
-					<height>388</height>
-					<bordersize>10</bordersize>
-					<texture diffuse="diffuse/rounded5-327x327.png">$INFO[Window(Home).Property(SkinHelper.Player.Art.Poster)]</texture>
-					<aspectratio align="center" aligny="center" scalediffuse="false">$PARAM[aspect]</aspectratio>
-				</control>
+			<control type="image">
+				<visible>[$PARAM[discart] + !Skin.String(VideoDiscArtFallback,none)] | [$PARAM[discart] + Skin.String(VideoDiscArtFallback,none) + !String.IsEmpty(Player.Art(discart))]</visible>
+				<animation effect="slide" end="112,0" time="300" condition="!Player.Paused + $PARAM[discart]">Conditional</animation>
+				<animation effect="rotate" end="360" center="auto" time="800" loop="true" condition="Player.Rewinding">Conditional</animation>
+				<animation effect="rotate" end="-360" center="auto" time="800" loop="true" condition="Player.Forwarding">Conditional</animation>
+				<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" condition="!Player.Paused + !Player.Forwarding + !Player.Rewinding">Conditional</animation>
+				<include>AnimationVisibleFade</include>
+				<top>10</top>
+				<left>10</left>
+				<width>266</width>
+				<height>266</height>
+				<aspectratio>keep</aspectratio>
+				<bordersize>10</bordersize>
+				<texture diffuse="diffuse/disc.png">$VAR[NowPlayingVideoDiscArtVar]</texture>
+			</control>
+			<control type="image">
+				<width>266</width>
+				<height>388</height>
+				<bordersize>10</bordersize>
+				<texture diffuse="diffuse/rounded5-327x327.png">$VAR[NowPlayingThumbVar]</texture>
+				<aspectratio align="center" aligny="center" scalediffuse="false">$PARAM[aspect]</aspectratio>
+			</control>
+			<control type="image">
+				<visible>Skin.HasSetting(NowplayingSkinHelperScraper) + [Player.IsInternetStream | Pvr.IsPlayingTV] + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.Poster))</visible>
+				<width>266</width>
+				<height>388</height>
+				<bordersize>10</bordersize>
+				<texture diffuse="diffuse/rounded5-327x327.png">$INFO[Window(Home).Property(SkinHelper.Player.Art.Poster)]</texture>
+				<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
 			</control>
 			<control type="image">
 				<width>266</width>

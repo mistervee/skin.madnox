@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<include name="View55LowList">
+		<control type="group">
+			<visible>Control.IsVisible(55)</visible>
+			<include>AnimationSlideBottomWindow</include>
+			<include>AnimationSlideBottomVisible</include>
+			<!-- Panel -->
+			<include content="PanelWide">
+				<param name="top">615</param>
+				<param name="toptexture">635</param>
+				<param name="topshadow">615</param>
+				<param name="height">465</param>
+				<param name="heighttexture">445</param>
+			</include>
+			<!-- List -->
+			<control type="fixedlist" id="55">
+				<left>508</left>
+				<bottom>10</bottom>
+				<width>859</width>
+				<height>435</height>
+				<onleft>9050</onleft>
+				<onright>6055</onright>
+				<pagecontrol>6055</pagecontrol>
+				<viewtype label="Low list">low list</viewtype>
+				<preloaditems>2</preloaditems>
+				<focusposition>2</focusposition>
+				<movement>1</movement>
+				<include>ViewContainerList</include>
+			</control>
+			<control type="image">
+				<right>550</right>
+				<top>635</top>
+				<width>4</width>
+				<height>445</height>
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
+			</control>
+			<control type="image">
+				<bottom>98</bottom>
+				<right>0</right>
+				<width>553</width>
+				<height>4</height>
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-horizontal.png</texture>
+			</control>
+			<!-- Art -->
+			<control type="group">
+				<visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+				<left>0</left>
+				<bottom>0</bottom>
+				<width>518</width>
+				<height>767</height>
+				<control type="image">
+					<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" reversible="false" condition="Player.HasVideo + String.IsEqual(ListItem.Title,Player.Title)">Conditional</animation>
+					<left>20</left>
+					<bottom>518</bottom>
+					<width>478</width>
+					<height>478</height>
+					<fadetime>TextureFadeTime</fadetime>
+					<texture diffuse="diffuse/disc.png" background="true">$VAR[DiscArtVar]</texture>
+				</control>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<fadetime>TextureFadeTime</fadetime>
+					<aspectratio align="center" aligny="center">scale</aspectratio>
+					<texture diffuse="diffuse/rounded5-532x800.png">$VAR[PosterVar]</texture>
+				</control>
+				<control type="image">
+					<texture border="20">thumbs/overlay.png</texture>
+				</control>
+			</control>
+			<control type="group">
+				<visible>![Container.Content(movies) | Container.Content(tvshows) | Container.Content(seaons) | Container.Content(episodes)]</visible>
+				<left>0</left>
+				<bottom>0</bottom>
+				<width>518</width>
+				<height>518</height>
+				<control type="image">
+					<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" delay="500" reversible="false" condition="Player.HasAudio + [String.IsEqual(ListItem.Album,MusicPlayer.Album) | String.IsEqual(ListItem.Title,Player.Title)]">Conditional</animation>
+					<left>20</left>
+					<bottom>260</bottom>
+					<width>478</width>
+					<height>478</height>
+					<fadetime>TextureFadeTime</fadetime>
+					<texture diffuse="diffuse/disc.png" background="true">$VAR[DiscArtVar]</texture>
+				</control>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<fadetime>TextureFadeTime</fadetime>
+					<aspectratio align="center" aligny="center">scale</aspectratio>
+					<texture diffuse="diffuse/rounded5-532x800.png">$VAR[PosterVar]</texture>
+				</control>
+				<control type="image">
+					<texture border="20">thumbs/overlay.png</texture>
+				</control>
+			</control>
+			
+			<control type="scrollbar" id="6055">
+				<left>1347</left>
+				<top>680</top>
+				<bottom>10</bottom>
+				<onleft>55</onleft>
+			</control>
+			
+				
+				<control type="image">
+					<bottom>445</bottom>
+				<right>10</right>
+				<width>532</width>
+				<height>200</height>
+					
+					<aspectratio aligny="top">keep</aspectratio>
+					<fadetime>TextureFadeTime</fadetime>
+					<texture background="true">$VAR[ClearLogoVar]</texture>
+				</control>
+			
+			
+			<control type="grouplist">
+				<top>650</top>
+				<right>20</right>
+				<width>510</width>
+				<height>796</height>
+				<include>ListInfo</include>
+				<control type="textbox">
+					<top>1</top>
+					<height>220</height>
+					<font>Font30_Reg_103</font>
+					<label>$VAR[ViewPlotVar]</label>
+					<pagecontrol>60531</pagecontrol>
+					<include>AutoScrollPlot</include>
+				</control>
+			</control>
+			<control type="scrollbar" id="60531">
+				<right>80</right>
+				<top>763</top>
+				<bottom>189</bottom>
+				<onleft>6053</onleft>
+			</control>
+		</control>
+	</include>
+</includes>

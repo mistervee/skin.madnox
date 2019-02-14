@@ -9,7 +9,6 @@
 			<visible>!Window.IsActive(videobookmarks) + !Window.IsActive(dialogsettings.xml) + !Window.IsActive(dialogselect.xml) + !Window.IsActive(subtitlesearch) + !Window.IsActive(pvrosdChannels) + !Window.IsActive(pvrchannelguide) + !Window.IsActive(teletext) + !Window.IsActive(1111)</visible>
 			<include>AnimationSlideBottomVisible</include>
 			<include>AnimationSlideBottomWindow</include>
-			
 			<control type="image">
 				<visible>Player.ShowInfo + Window.IsActive(fullscreenvideo)</visible>
 				<animation effect="slide" end="0,-84" time="300" condition="Window.IsActive(videoosd)">Conditional</animation>
@@ -145,557 +144,103 @@
 			</control>
 		</control>
 		<!-- Info -->
-
 		<control type="group">
 			<visible>Player.ShowInfo + Window.IsActive(fullscreenvideo)</visible>
+			<left>15</left>
+			<top>571</top>
 			<animation effect="slide" end="0,-84" time="300" condition="Window.IsActive(videoosd)">Conditional</animation>
-			<bottom>101</bottom>
-			<height>420</height>
-			<control type="group">
-				<visible>VideoPlayer.Content(movies) + !Player.IsInternetStream</visible>
-				<control type="group">
-					<!-- <visible>String.IsEqual(Skin.String(NowPlayingHomeTrackInfo),disable)</visible> -->
-					<control type="group">
-						<visible>String.IsEmpty(Skin.String(MainMenuNowPlayingVideoCase))</visible>
-						<include>AnimationVisibleFade</include>
-						<include content="NowPlayingPortraitContent">
-							<param name="left">15</param>
-							<param name="right">-45</param>
-							<param name="width">273</param>
-							<param name="height">400</param>
-							<param name="leftinfo">278</param>
-							<param name="casewidth">347</param>
-							<param name="border">10</param>
-							<param name="discborder">0</param>
-							<param name="slide">100</param>
-							<param name="slidedisc">120</param>
-							<param name="logo">!Skin.HasSetting(NowPlayingHomeVideoDisableLogo)</param>
-							<param name="discart">!Skin.HasSetting(NowPlayingHomeVideoDisableDiscArt)</param>
-						</include>
-					</control>
-					<control type="group">
-						<visible>String.Contains(Skin.String(MainMenuNowPlayingVideoCase),glass)</visible>
-						<include>AnimationVisibleFade</include>
-						<include content="NowPlayingPortraitContent">
-							<param name="left">30</param>
-							<param name="right">-45</param>
-							<param name="width">238</param>
-							<param name="height">347</param>
-							<param name="leftinfo">258</param>
-							<param name="casewidth">347</param>
-							<param name="border">20</param>
-							<param name="discborder">0</param>
-							<param name="slide">100</param>
-							<param name="slidedisc">100</param>
-							<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-							<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-						</include>
-					</control>
-					<control type="group">
-						<visible>String.Contains(Skin.String(MainMenuNowPlayingVideoCase),case) + !String.Contains(Skin.String(MainMenuNowPlayingVideoCase),caseclear) + !String.Contains(Skin.String(MainMenuNowPlayingVideoCase),glass)</visible>
-						<include>AnimationVisibleFade</include>
-						<include content="NowPlayingPortraitContent">
-							<param name="left">30</param>
-							<param name="right">-45</param>
-							<param name="width">238</param>
-							<param name="height">347</param>
-							<param name="leftinfo">258</param>
-							<param name="casewidth">238</param>
-							<param name="border">10,40,20,20</param>
-							<param name="discborder">0</param>
-							<param name="slide">100</param>
-							<param name="slidedisc">100</param>
-							<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-							<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-						</include>
-					</control>
-					<control type="group">
-						<visible>String.Contains(Skin.String(MainMenuNowPlayingVideoCase),caseclear)</visible>
-						<include>AnimationVisibleFade</include>
-						<include content="NowPlayingPortraitContent">
-							<param name="left">30</param>
-							<param name="right">-45</param>
-							<param name="width">238</param>
-							<param name="height">347</param>
-							<param name="leftinfo">258</param>
-							<param name="casewidth">238</param>
-							<param name="border">20</param>
-							<param name="discborder">0</param>
-							<param name="slide">100</param>
-							<param name="slidedisc">100</param>
-							<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-							<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-						</include>
-					</control>
-				</control>
-
-			</control>
-
-		</control>
-		<control type="group">
-			<visible>asddasPlayer.ShowInfo + Window.IsActive(fullscreenvideo)</visible>
-			<animation effect="slide" end="0,-84" time="300" condition="Window.IsActive(videoosd)">Conditional</animation>	
-			<control type="image">
-				<include>AnimationWindowFade</include>
-				<bottom>106</bottom>
+			<!-- <control type="image">
+				<include>AnimationVisibleFade</include>
+				<bottom>-42</bottom>
 				<width>1920</width>
-				<height>700</height>
-				<texture colordiffuse="$VAR[PanelArtworkTextBackgroundColorVar]">panels/background-gradient.png</texture>
-			</control>
-			<control type="image">
-				<visible>String.IsEmpty(VideoPlayer.Artist)</visible>
-				<animation effect="slide" end="115,0" time="300" condition="!Player.Paused">Conditional</animation>
-				<animation effect="rotate" end="360" center="auto" time="800" loop="true" condition="Player.Rewinding">Conditional</animation>
-				<animation effect="rotate" end="-360" center="auto" time="800" loop="true" condition="Player.Forwarding">Conditional</animation>
-				<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" condition="!Player.Paused + !Player.Forwarding + !Player.Rewinding">Conditional</animation>
-				<bottom>226</bottom>
-				<left>25</left>
-				<width>275</width>
-				<height>275</height>
-				<aspectratio>keep</aspectratio>
-				<texture background="true" diffuse="diffuse/disc.png" fallback="thumbs/disc/cd.png">$INFO[Player.Art(discart)]</texture>
-			</control>
-			<control type="image">
-				<visible>!String.IsEmpty(VideoPlayer.Artist)</visible>
-				<animation effect="slide" end="114,0" time="300" condition="!Player.Paused">Conditional</animation>
-				<animation effect="rotate" end="360" center="auto" time="800" loop="true" condition="Player.Rewinding">Conditional</animation>
-				<animation effect="rotate" end="-360" center="auto" time="800" loop="true" condition="Player.Forwarding">Conditional</animation>
-				<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" condition="!Player.Paused + !Player.Forwarding + !Player.Rewinding">Conditional</animation>
-				<bottom>140</bottom>
-				<left>78</left>
-				<width>287</width>
-				<height>287</height>
-				<aspectratio>keep</aspectratio>
-				<texture background="true" diffuse="diffuse/disc.png" fallback="thumbs/disc/cd.png">$INFO[Player.Art(discart)]</texture>
-			</control>
-			<control type="image">
-				<visible>String.IsEmpty(VideoPlayer.Artist)</visible>
-				<bottom>121</bottom>
-				<left>15</left>
-				<width>275</width>
-				<height>403</height>
-				<bordersize>10</bordersize>
-				<aspectratio>scale</aspectratio>
-				<bordertexture border="10">thumbs/border/706x1050.png</bordertexture>
-				<texture background="true" diffuse="diffuse/rounded5-686x1030.png">$VAR[VideoPlayerPosterVar]</texture>
-			</control>
-			<control type="image">
-				<visible>!String.IsEmpty(VideoPlayer.Artist)</visible>
-				<bottom>121</bottom>
-				<left>15</left>
-				<width>325</width>
-				<height>325</height>
-				<bordersize>10</bordersize>
-				<aspectratio>scale</aspectratio>
-				<bordertexture border="10">thumbs/border/706x1050.png</bordertexture>
-				<texture background="true" diffuse="diffuse/rounded5-686x1030.png">$VAR[VideoPlayerPosterVar]</texture>
+				<height>926</height>
+				<texture colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/widget-gradient.png</texture>
+			</control> -->
+			<control type="group">
+				<visible>VideoPlayer.Content(movies)</visible>
+				<include content="NowPlayingHomePortraitContent">
+					<param name="right">52</param>
+					<param name="case">$VAR[NowPlayingVideoCaseVar]</param>
+					<param name="logo">!Skin.HasSetting(NowPlayingHomeVideoDisableLogo)</param>
+					<param name="discart">!Skin.HasSetting(NowPlayingHomeVideoDisableDiscArt)</param>
+				</include>
 			</control>
 			<control type="group">
-				<!-- <animation effect="slide" end="114,0" time="300" condition="!Player.Paused">Conditional</animation> -->
-				<bottom>6</bottom>
-				<left>330</left>
-				<right>25</right>
-				<height>430</height>
-				<control type="label" id="9052">
-					<top>16</top>
-					<height>40</height>
-					<textoffsetx>45</textoffsetx>
-					<label>$VAR[NowPlayingInfo1Var]</label>
-					<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
-					<font>Font34_Reg</font>
-				</control>
-				<control type="image">
-					<visible>!String.IsEmpty(Control.GetLabel(9052)) | !String.IsEmpty(Control.GetLabel(9053))</visible>
-					<top>59</top>
-					<height>4</height>
-					<width>388</width>
-					<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
-				</control>
-				<control type="label" id="9053">
-					<top>61</top>
-					<height>40</height>
-					<font>Font28_Reg</font>
-					<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
-					<textoffsetx>45</textoffsetx>
-					<label>$VAR[NowPlayingInfo2Var]</label>
-				</control>
-				<control type="image">
-					<!-- <visible>$PARAM[logo]</visible> -->
-					<include>AnimationVisibleFade</include>
-					<top>112</top>
-					<width>305</width>
-					<height>102</height>
-					<texture>$VAR[NowPlayingLogoVar]</texture>
-					<aspectratio align="right">keep</aspectratio>
-				</control>
-				<control type="label">
-					<top>213</top>
-					<height>40</height>
-					<font>Font28_Reg</font>
-					<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
-					<textoffsetx>45</textoffsetx>
-					<label>$VAR[NowPlayingStatusVar]</label>
-				</control>
-				<control type="image">
-					<top>250</top>
-					<width>18</width>
-					<height>36</height>
-					<texture colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/nowplaying.png</texture>
-				</control>
-				<control type="label">
-					<top>247</top>
-					<height>40</height>
-					<font>Font34_Reg</font>
-					<textoffsetx>45</textoffsetx>
-					<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
-					<label>$INFO[MusicPlayer.TrackNumber,,. ]$INFO[Player.Title,, ]$INFO[VideoPlayer.Year,(,)]</label>
-				</control>
-			</control>
-
-			<control type="grouplist">
-				<visible>String.IsEmpty(Skin.String(FuSSSSSSllscreenVideoInfo))</visible>
-				<include>AnimationSlideRightVisible</include>
-				<right>25</right>
-				<bottom>131</bottom>
-				<width>1000</width>
-				<height>800</height>
-				<align>right</align>
-				<usecontrolcoords>true</usecontrolcoords>
-				<control type="label">
-					<width>1000</width>
-					<height>46</height>
-					<align>right</align>
-					<font>Font34_Reg</font>
-					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
-					<label>$VAR[NowPlayingPlotLabelVar]</label>
-				</control>
-				<control type="image">
-					<top>2</top>
-					<right>0</right>
-					<width>388</width>
-					<height>4</height>
-					<aspectratio align="right" aligny="center">scale</aspectratio>
-					<texture flipx="true" colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/separator.png</texture>
-				</control>
-				<control type="label">
-					<width>1000</width>
-					<height>46</height>
-					<align>right</align>
-					<font>Font30_Reg_95</font>
-					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-					<label>$INFO[VideoPlayer.Genre][COLOR $VAR[PanelTextColorVar]]  $LOCALIZE[515][/COLOR]</label>
-				</control>
-				<control type="label">
-					<width>1000</width>
-					<height>46</height>
-					<align>right</align>
-					<font>Font30_Reg_95</font>
-					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-					<label>$INFO[VideoPlayer.Director][COLOR $VAR[PanelTextColorVar]]  $LOCALIZE[20339][/COLOR]</label>
-				</control>
-				<control type="label">
-					<width>1000</width>
-					<height>46</height>
-					<align>right</align>
-					<font>Font30_Reg_95</font>
-					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-					<label>$INFO[VideoPlayer.Writer][COLOR $VAR[PanelTextColorVar]]  $LOCALIZE[20417][/COLOR]</label>
-				</control>
-				<control type="grouplist">
-					<left>200</left>
-					<height>46</height>
-					<itemgap>20</itemgap>
-					<align>right</align>
-					<orientation>horizontal</orientation>
-					<control type="image">
-						<width>85</width>
-						<texture>flags/imdb.png</texture>
-					</control>
-					<control type="label">
-						<width>auto</width>
-						<label>$INFO[VideoPlayer.Top250,#]</label>
-					</control>
-					<control type="image">
-						<width>50</width>
-						<texture>$INFO[Window(Home).Property(SkinHelper.Player.RottenTomatoes.Image),flags/rottentomatoes/,.png]</texture>
-						<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.RottenTomatoes.Rating.Percent))</visible>
-					</control>
-					<control type="label">
-						<width>auto</width>
-						<label>$INFO[Window(Home).Property(SkinHelper.Player.RottenTomatoes.Rating),,%]</label>
-						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-						<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.RottenTomatoes.Rating.Percent))</visible>
-					</control>
-					<control type="image">
-						<width>46</width>
-						<texture>flags/metacritic.png</texture>
-						<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.MetaCritic.Rating))</visible>
-					</control>
-					<control type="label">
-						<width>auto</width>
-						<label>$INFO[Window(Home).Property(SkinHelper.Player.MetaCritic.Rating),,%]</label>
-						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-						<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.MetaCritic.Rating))</visible>
-					</control>
-					<control type="label">
-						<width>auto</width>
-						<font>Font30_Reg_95</font>
-						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-						<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[563]  [/COLOR]$INFO[VideoPlayer.RatingAndVotes]</label>
-					</control>
-				</control>
-			</control>
-			<control type="grouplist">
-				<visible>String.IsEqual(Skin.String(sssssssssssssFullscreenVideoInfo),plot)</visible>
-				<include>AnimationSlideRightVisible</include>
-				<right>25</right>
-				<bottom>131</bottom>
-				<width>1000</width>
-				<height>800</height>
-				<align>right</align>
-				<usecontrolcoords>true</usecontrolcoords>
-				<control type="label">
-					<width>1000</width>
-					<height>46</height>
-					<align>right</align>
-					<font>Font34_Reg</font>
-					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
-					<label>$VAR[NowPlayingPlotLabelVar]</label>
-				</control>
-				<control type="image">
-					<top>2</top>
-					<right>0</right>
-					<width>388</width>
-					<height>4</height>
-					<aspectratio align="right" aligny="center">scale</aspectratio>
-					<texture flipx="true" colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/separator.png</texture>
-				</control>
-				<control type="textbox">
-					<top>8</top>
-					<right>0</right>
-					<width>600</width>
-					<height>262</height>
-					<align>right</align>
-					<font>Font30_Reg_95</font>
-					<include>AutoScrollPlot</include>
-					<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
-					<label>$VAR[NowPlayingPlotVar]</label>
-				</control>
-				<!-- <control type="label">
-					<width>1000</width>
-					<height>46</height>
-					<align>right</align>
-					<font>Font34_Reg</font>
-					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
-					<label>Cast</label>
-				</control>
-				<control type="image">
-					<top>2</top>
-					<right>0</right>
-					<width>388</width>
-					<height>4</height>
-					<aspectratio align="right" aligny="center">scale</aspectratio>
-					<texture flipx="true" colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/separator.png</texture>
-				</control>
-				<include content="HomeNowPlayingVideoCast">
-							<param name="number">0</param>
-						</include>
-						<include content="HomeNowPlayingVideoCast">
-							<param name="number">1</param>
-						</include>
-						<include content="HomeNowPlayingVideoCast">
-							<param name="number">2</param>
-						</include>
-						<include content="HomeNowPlayingVideoCast">
-							<param name="number">3</param>
-						</include>
-						<include content="HomeNowPlayingVideoCast">
-							<param name="number">4</param>
-						</include>
-						<include content="HomeNowPlayingVideoCast">
-							<param name="number">5</param>
-						</include>
-						<include content="HomeNowPlayingVideoCast">
-							<param name="number">6</param>
-						</include> -->
-				<!-- <control type="label">
-					<width>1000</width>
-					<height>46</height>
-					<align>right</align>
-					<font>Font34_Reg</font>
-					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
-					<label>$VAR[NowPlayingPlotLabelVar]</label>
-				</control> -->
-				<control type="label">
-					<width>1000</width>
-					<height>46</height>
-					<align>right</align>
-					<font>Font34_Reg</font>
-					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
-					<label>Info</label>
-				</control>
-				<control type="label">
-					<width>1000</width>
-					<height>46</height>
-					<align>right</align>
-					<font>Font30_Reg_95</font>
-					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-					<label>$INFO[VideoPlayer.Genre][COLOR $VAR[PanelTextColorVar]]  $LOCALIZE[515][/COLOR]</label>
-				</control>
-				<control type="label">
-					<width>1000</width>
-					<height>46</height>
-					<align>right</align>
-					<font>Font30_Reg_95</font>
-					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-					<label>$INFO[VideoPlayer.Director][COLOR $VAR[PanelTextColorVar]]  $LOCALIZE[20339][/COLOR]</label>
-				</control>
-				<control type="label">
-					<width>1000</width>
-					<height>46</height>
-					<align>right</align>
-					<font>Font30_Reg_95</font>
-					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-					<label>$INFO[VideoPlayer.Writer][COLOR $VAR[PanelTextColorVar]]  $LOCALIZE[20417][/COLOR]</label>
-				</control>
-
-
-
-
-				<control type="grouplist">
-					<left>200</left>
-					<height>46</height>
-					<itemgap>20</itemgap>
-					<align>right</align>
-					<orientation>horizontal</orientation>
-					
-					<control type="image">
-						<width>50</width>
-						<texture>$INFO[Window(Home).Property(SkinHelper.Player.RottenTomatoes.Image),flags/rottentomatoes/,.png]</texture>
-						<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.RottenTomatoes.Rating.Percent))</visible>
-					</control>
-					<control type="label">
-						<width>auto</width>
-						<label>$INFO[Window(Home).Property(SkinHelper.Player.RottenTomatoes.Rating),,%]</label>
-						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-						<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.RottenTomatoes.Rating.Percent))</visible>
-					</control>
-					<control type="image">
-						<width>46</width>
-						<texture>flags/metacritic.png</texture>
-						<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.MetaCritic.Rating))</visible>
-					</control>
-					<control type="label">
-						<width>auto</width>
-						<label>$INFO[Window(Home).Property(SkinHelper.Player.MetaCritic.Rating),,%]</label>
-						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-						<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.MetaCritic.Rating))</visible>
-					</control>
-					<control type="label">
-						<width>auto</width>
-						<font>Font30_Reg_95</font>
-						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-						<label>$INFO[VideoPlayer.Rating][COLOR $VAR[PanelTextColorVar]]  $LOCALIZE[563][/COLOR]</label>
-					</control>
-
-				</control>
-
-
-
-
-
-				
-				<!-- <control type="image">
-					<top>2</top>
-					<right>0</right>
-					<width>388</width>
-					<height>4</height>
-					<aspectratio align="right" aligny="center">scale</aspectratio>
-					<texture flipx="true" colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/separator.png</texture>
-				</control>
-				<control type="textbox">
-					<top>8</top>
-					<right>0</right>
-					<width>600</width>
-					<height>262</height>
-					<align>right</align>
-					<font>Font30_Reg_95</font>
-					<include>AutoScrollPlot</include>
-					<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
-					<label>$VAR[NowPlayingHomePlotVar]</label>
-				</control> -->
-				
-			</control>
-			<control type="grouplist">
-				<visible>String.IsEqual(Skin.String(FusssssssssssssssllscreenVideoInfo),cast)</visible>
-				<include>AnimationSlideRightVisible</include>
-				<right>25</right>
-				<bottom>131</bottom>
-				<width>1000</width>
-				<height>800</height>
-				<align>right</align>
-				<usecontrolcoords>true</usecontrolcoords>
-				<control type="label">
-					<width>1000</width>
-					<height>46</height>
-					<align>right</align>
-					<font>Font34_Reg</font>
-					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
-					<label>$VAR[NowPlayingPlotLabelVar]</label>
-				</control>
-				<control type="image">
-					<top>2</top>
-					<right>0</right>
-					<width>388</width>
-					<height>4</height>
-					<aspectratio align="right" aligny="center">scale</aspectratio>
-					<texture flipx="true" colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/separator.png</texture>
-				</control>
-				<include content="HomeNowPlayingVideoCast">
-					<param name="number">0</param>
-				</include>
-				<include content="HomeNowPlayingVideoCast">
-					<param name="number">1</param>
-				</include>
-				<include content="HomeNowPlayingVideoCast">
-					<param name="number">2</param>
-				</include>
-				<include content="HomeNowPlayingVideoCast">
-					<param name="number">3</param>
-				</include>
-				<include content="HomeNowPlayingVideoCast">
-					<param name="number">4</param>
-				</include>
-				<include content="HomeNowPlayingVideoCast">
-					<param name="number">5</param>
-				</include>
-				<include content="HomeNowPlayingVideoCast">
-					<param name="number">6</param>
+				<visible>VideoPlayer.Content(episodes)</visible>
+				<include content="NowPlayingHomePortraitContent">
+					<param name="right">52</param>
+					<param name="case">$VAR[NowPlayingVideoCaseVar]</param>
+					<param name="logo">!Skin.HasSetting(NowPlayingHomeVideoDisableLogo)</param>
+					<param name="discart">false</param>
 				</include>
 			</control>
-			<control type="list" id="30">
-				<!-- <visible>String.IsEqual(Skin.String(NowPlayingHomeMovieInfo),cast)</visible> -->
-				<include>HiddenList</include>
-				<content>plugin://script.skin.helper.service/?action=getcast&amp;tvshow=$INFO[VideoPlayer.DBID]</content>
-			</control>
-
 			<control type="group">
-				<include content="AnimationSlideTopWindow">
-					<param name="slide">106</param>
+				<visible>VideoPlayer.Content(musicvideos)</visible>
+				<include>AnimationVisibleFade</include>
+				<include content="NowPlayingHomeSquareContent">
+					<param name="right">52</param>
+					<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
+					<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
 				</include>
+			</control>
+			<control type="group">
+				<visible>[Pvr.IsPlayingTV | [!VideoPlayer.Content(movies) + !VideoPlayer.Content(episodes) + !VideoPlayer.Content(musicvideos)]] + String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.Poster))</visible>
+				<include>AnimationVisibleFade</include>
+				<include content="NowPlayingHomeSquareContent">
+					<param name="aspect">keep</param>
+					<param name="right">52</param>
+					<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
+					<param name="discart">false</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>[Pvr.IsPlayingTV | [!VideoPlayer.Content(movies) + !VideoPlayer.Content(episodes) + !VideoPlayer.Content(musicvideos)]] + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.Poster))</visible>
+				<animation effect="slide" end="0,-41" time="200" condition="!Skin.HasSetting(WidgetHigh)">Conditional</animation>
+				<include>AnimationVisibleFade</include>
+				<include content="NowPlayingHomePortraitContent">
+					<param name="right">52</param>
+					<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
+					<param name="discart">false</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>[VideoPlayer.Content(movies) | VideoPlayer.Content(episodes)] + !Player.IsInternetStream</visible>
 				<control type="group">
-					<include content="PanelWide">
-						<param name="top">0</param>
-						<param name="toptexture">0</param>
-						<param name="topshadow">106</param>
-						<param name="height">116</param>
-						<param name="heighttexture">106</param>
-						<param name="flipy">true</param>
-					</include>
+					<visible>String.IsEqual(Skin.String(NowPlayingHomeMovieInfo),cast)</visible>
+					<include>HomeNowPlayingVideoCast</include>
 				</control>
-				<include>MediaFlagsFullscreenInfo</include>
+				<control type="group">
+					<visible>String.IsEqual(Skin.String(NowPlayingHomeMovieInfo),description)</visible>
+					<include>HomeNowPlayingPlot</include>
+				</control>
+				<control type="grouplist">
+					<visible>String.IsEqual(Skin.String(NowPlayingHomeMovieInfo),info) + Skin.HasSetting(WidgetHigh)</visible>
+					<include>HomeNowPlayingVideoInfo</include>
+				</control>
+				<control type="grouplist">
+					<visible>String.IsEqual(Skin.String(NowPlayingHomeMovieInfo),info) + !Skin.HasSetting(WidgetHigh)</visible>
+					<include>HomeNowPlayingVideoInfo2</include>
+				</control>
 			</control>
-			
+			<control type="group">
+				<visible>[!VideoPlayer.Content(movies) + !VideoPlayer.Content(episodes)] | Player.IsInternetStream</visible>
+				<control type="group">
+					<visible>String.IsEqual(Skin.String(NowPlayingHomeVideoInfo),description) + !VideoPlayer.Content(musicvideos) + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.Poster))</visible>
+					<include>HomeNowPlayingPlot</include>
+				</control>
+				<control type="group">
+					<visible>String.IsEqual(Skin.String(NowPlayingHomeVideoInfo),description) + [VideoPlayer.Content(musicvideos) | String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.Poster))]</visible>
+					<include>HomeNowPlayingPlotSquare</include>
+				</control>
+				<control type="grouplist">
+					<visible>String.IsEqual(Skin.String(NowPlayingHomeVideoInfo),info) + Skin.HasSetting(WidgetHigh)</visible>
+					<include>HomeNowPlayingVideoInfo</include>
+				</control>
+				<control type="grouplist">
+					<visible>String.IsEqual(Skin.String(NowPlayingHomeVideoInfo),info) + !Skin.HasSetting(WidgetHigh)</visible>
+					<include>HomeNowPlayingVideoInfo2</include>
+				</control>
+			</control>
 		</control>
 	</controls>
 </window>

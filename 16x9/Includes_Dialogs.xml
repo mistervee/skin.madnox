@@ -399,8 +399,9 @@
 	<!-- Default lists -->
 	<include name="DialogListDefault">
 		<param name="id"></param>
+		<param name="width"></param>
 		<definition>
-			<itemlayout height="70">
+			<itemlayout width="$PARAM[width]" height="70">
 				<control type="image">
 					<texture border="30" colordiffuse="$VAR[DialogListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
 				</control>
@@ -410,7 +411,7 @@
 					<label>$INFO[ListItem.Label]</label>
 				</control>
 			</itemlayout>
-			<focusedlayout height="70">
+			<focusedlayout width="$PARAM[width]" height="70">
 				<control type="image">
 					<texture border="10" colordiffuse="$VAR[DialogHighlightColorVar]">buttons/list-select-focus.png</texture>
 					<animation effect="fade" start="100" end="30" time="40" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
@@ -535,8 +536,13 @@
 	<!-- Dialog select layouts -->
 	<include name="DialogSelect">
 		<control type="group">
-			<include content="DialogBackground">
+			<include condition="!String.IsEqual(Window(home).Property(SetView),true)" content="DialogBackground">
 				<param name="width" value="1220" />
+				<param name="height" value="790" />
+				<param name="id" value="1" />
+			</include>
+			<include condition="String.IsEqual(Window(home).Property(SetView),true)" content="DialogBackground">
+				<param name="width" value="1730" />
 				<param name="height" value="790" />
 				<param name="id" value="1" />
 			</include>
@@ -560,12 +566,16 @@
 				<onleft>60</onleft>
 				<onright>8000</onright>
 				<pagecontrol>60</pagecontrol>
-				<include content="DialogListImage">
+				<include condition="!String.IsEqual(Window(home).Property(SetView),true)" content="DialogListImage">
 					<param name="id" value="6" />
+				</include>
+				<include condition="String.IsEqual(Window(home).Property(SetView),true)" content="DialogListDefault">
+					<param name="id" value="6" />
+					<param name="width" value="320" />
 				</include>
 			</control>
 			<control type="image">
-				<left>878</left>
+				<right>338</right>
 				<include>DialogVerticalSeparator</include>
 			</control>
 			<control type="grouplist" id="8000">
@@ -584,10 +594,29 @@
 					<param name="id">7</param>
 					<param name="label" value="$LOCALIZE[222]"/>
 				</include>
+				
 			</control>
-			<include content="DialogImage">
+			<include content="DialogImage" condition="!String.IsEqual(Window(home).Property(SetView),true)">
 				<param name="texture">$INFO[Container(6).ListItem.Icon]</param>
 			</include>
+			<control type="image">
+				<visible>String.IsEqual(Window(home).Property(SetView),true)</visible>
+				<right>350</right>
+				<width>1030</width>
+				<height>610</height>
+				<bottom>81</bottom>
+				<bordersize>10</bordersize>
+				<texture diffuse="diffuse/rounded5-600x337.png">$INFO[Container(6).ListItem.Icon]</texture>
+			</control>
+			<control type="image">
+				<visible>String.IsEqual(Window(home).Property(SetView),true)</visible>
+				<right>350</right>
+				<width>1030</width>
+				<height>610</height>
+				<bottom>81</bottom>
+				<texture border="20">thumbs/overlay.png</texture>
+				
+			</control>
 			<control type="image">
 				<include>DialogHorizontalSeparator</include>
 			</control>
@@ -597,7 +626,15 @@
 				<label>$INFO[Container(3).NumItems,, $LOCALIZE[31001]]$INFO[Container(3).CurrentPage, - ]$INFO[Container(3).NumPages,/]</label>
 			</control>
 			<control type="label">
+				<visible>!String.IsEqual(Window(home).Property(SetView),true)</visible>
 				<visible>Control.IsVisible(6)</visible>
+				<include>DialogItemCountLabel</include>
+				<label>$INFO[Container(6).NumItems,, $LOCALIZE[31001]]$INFO[Container(6).CurrentPage, - ]$INFO[Container(6).NumPages,/]</label>
+			</control>
+			<control type="label">
+				<visible>Control.IsVisible(6) + String.IsEqual(Window(home).Property(SetView),true)</visible>
+				<left>60</left>
+				<align>left</align>
 				<include>DialogItemCountLabel</include>
 				<label>$INFO[Container(6).NumItems,, $LOCALIZE[31001]]$INFO[Container(6).CurrentPage, - ]$INFO[Container(6).NumPages,/]</label>
 			</control>

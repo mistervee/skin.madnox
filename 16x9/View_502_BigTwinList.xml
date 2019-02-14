@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+	<include name="View502BigTwinList">
+		<!-- Left Content -->
+		<control type="group">
+			<visible>Control.IsVisible(502)</visible>
+			<include>AnimationSlideLeftWindow</include>
+			<include>AnimationSlideLeftVisible</include>
+			<include content="PanelDefault">
+				<param name="right">965</param>
+				<param name="righttexture">985</param>
+				<param name="diffusetexture">diffuse/rounded20-835x880.png</param>
+				<param name="reflect">!Skin.HasSetting(View502HideFloor)</param>
+			</include>
+			<control type="panel" id="502">
+				<left>100</left>
+				<top>144</top>
+				<width>835</width>
+				<height>792</height>
+				<onleft>9050</onleft>
+				<onright>60502</onright>
+				<pagecontrol>60502</pagecontrol>
+				<viewtype label="$LOCALIZE[31218]">list</viewtype>
+				<include>ViewContainerBigList</include>
+			</control>
+			<control type="scrollbar" id="60502">
+				<top>144</top>
+				<left>915</left>
+				<bottom>144</bottom>
+				<onleft>502</onleft>
+				<onright>5200</onright>
+			</control>
+		</control>
+		<!-- Right Content -->
+		<control type="group">
+			<visible>Control.IsVisible(502)</visible>
+			<include>AnimationSlideRightWindow</include>
+			<include>AnimationSlideRightVisible</include>
+			<include content="PanelDefault">
+				<param name="left">965</param>
+				<param name="lefttexture">985</param>
+				<param name="diffusetexture">diffuse/rounded20-835x880.png</param>
+				<param name="reflect">!Skin.HasSetting(View502HideFloor)</param>
+			</include>
+			<control type="panel" id="5200">
+				<left>985</left>
+				<top>144</top>
+				<width>835</width>
+				<height>792</height>
+				<onleft>6052</onleft>
+				<onright>6050200</onright>
+				<pagecontrol>6050200</pagecontrol>
+				<include>ViewContainerBigList</include>
+				<content target="videos" sortby="" sortorder="">$INFO[Container(502).ListItem.FolderPath]</content>
+			</control>
+			<control type="scrollbar" id="6050200">
+				<top>144</top>
+				<right>80</right>
+				<bottom>144</bottom>
+				<onleft>5200</onleft>
+			</control>
+		</control>
+	</include>
+</includes>
