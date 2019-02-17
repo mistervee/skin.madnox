@@ -23,25 +23,26 @@
 				<pagecontrol>60</pagecontrol>
 				<onright>Dialog.Close(1115)</onright>
 				<onback>Dialog.Close(1115)</onback>
-				<include condition="String.IsEqual(Container.Viewmode,$LOCALIZE[31213])">ViewPosterList50</include>
+				<!-- <include condition="String.IsEqual(Container.Viewmode,$LOCALIZE[31213])">ViewPosterList50</include>
 				<include condition="String.IsEqual(Container.Viewmode,$LOCALIZE[31214])">ViewBigPosterList500</include>
 				<include condition="String.IsEqual(Container.Viewmode,$LOCALIZE[31215])">ViewSimpleList51</include>
 				<include condition="String.IsEqual(Container.Viewmode,$LOCALIZE[31216])">ViewBigSimpleList501</include>
 				<include condition="String.IsEqual(Container.Viewmode,$LOCALIZE[31217])">ViewTwinList52</include>
-				<include condition="String.IsEqual(Container.Viewmode,$LOCALIZE[31218])">ViewBigTwinList502</include>
+				<include condition="String.IsEqual(Container.Viewmode,$LOCALIZE[31218])">ViewBigTwinList502</include> -->
 				<include condition="$EXP[AreaVisibleHome] + String.IsEqual(Window(home).Property(MediaMenuSelect),menu)">MediaMenuViewsettingsMenuHome</include>
 				<include condition="$EXP[AreaVisibleHome] + String.IsEqual(Window(home).Property(MediaMenuSelect),info)">MediaMenuViewsettingsInfoHome</include>
 				<include condition="$EXP[AreaVisibleHome] + String.IsEqual(Window(home).Property(MediaMenuSelect),widgets)">MediaMenuViewsettingsWidgetsHome</include>
 				<include condition="$EXP[AreaVisibleHome] + String.IsEqual(Window(home).Property(MediaMenuSelect),nowplaying)">MediaMenuViewsettingsNowPlayingHome</include>
 				<include condition="$EXP[AreaVisibleHome] + String.IsEqual(Window(home).Property(MediaMenuSelect),colors)">MediaMenuViewsettingsColorsHome</include>
 				<include condition="$EXP[AreaVisibleVideos]">MediaMenuCommonViewsettingsVideos</include>
-				<include condition="$EXP[AreaVisibleTV] | $EXP[AreaVisibleRadio]">MediaMenuViewsettingsPVR</include>
+				<include condition="$EXP[AreaVisiblePVR]">MediaMenuViewsettingsPVR</include>
 				<include condition="$EXP[AreaVisibleMusic]">MediaMenuCommonViewsettingsMusic</include>
 				<include condition="$EXP[AreaVisibleGames]">MediaMenuViewsettingsGames</include>
 				<include condition="$EXP[AreaVisiblePictures]">MediaMenuViewsettingsPictures</include>
 				<include condition="$EXP[AreaVisibleAddons]">MediaMenuViewsettingsAddons</include>
 				<include condition="$EXP[AreaVisibleWeather]">MediaMenuViewsettingsWeather</include>
 				<include condition="$EXP[AreaVisibleSystem]">MediaMenuViewsettingsSystem</include>
+				<include condition="$EXP[AreaVisibleVideos] | $EXP[AreaVisiblePVR] | $EXP[AreaVisibleMusic] | $EXP[AreaVisibleGames] | $EXP[AreaVisiblePictures] | $EXP[AreaVisibleAddons]">MediaMenuViewsettingsViewsGlobal</include>
 			</control>
 			<control type="group">
 				<visible>Integer.IsGreater(Container(100).NumItems,17)</visible>

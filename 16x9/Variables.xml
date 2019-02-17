@@ -71,6 +71,7 @@
 	</variable>
 	<variable name="ListViewIcon1Var">
 		<value condition="!String.IsEmpty(ListItem.AddonCreator)">$VAR[IconPathVar]person.png</value>
+		<value condition="Container.Content(albums)">$VAR[IconPathVar]disc.png</value>
 		<value>$VAR[IconPathVar]calendar.png</value>
 	</variable>
 	<variable name="ListViewInfo1Var">
@@ -80,10 +81,8 @@
 		<value condition="!String.IsEmpty(ListItem.Premiered)">$INFO[ListItem.Premiered, ,  ]</value>
 		<value condition="!String.IsEmpty(ListItem.Date)">$INFO[ListItem.Date., ,  ]</value>
 		<value condition="Container.Content(albums)">$INFO[ListItem.Property(Album_Type), [CAPITALIZE],[/CAPITALIZE]  ]</value>
-		<value condition="String.IsEqual(ListItem.DBTYPE,set)">$INFO[Window(Home).Property(SkinHelper.ListItem.Years), ,  ]</value>
-		<value condition="!String.IsEmpty(ListItem.Year)">$INFO[ListItem.Year, ,  ]</value>
+		<value condition="!String.IsEmpty(ListItem.Year) + !String.IsEqual(ListItem.DBTYPE,set)">$INFO[ListItem.Year, ,  ]</value>
 		<value condition="!String.IsEmpty(ListItem.AddonCreator)">$INFO[ListItem.AddonCreator, ,  ]</value>
-		<value condition="!String.IsEmpty(ListItem.Property(Artist_Formed))">$INFO[ListItem.Property(Artist_Formed), ,  ]</value>
 		<value condition="!String.IsEmpty(ListItem.Property(Artist_YearsActive))">$INFO[ListItem.Property(Artist_YearsActive), ,  ]</value>
 	</variable>
 	<variable name="ListViewIcon2Var">
@@ -95,8 +94,8 @@
 		<value condition="!String.IsEmpty(ListItem.Duration) + !Integer.IsGreater(ListItem.Duration(h),0)">$INFO[ListItem.Duration(mm), ,m]$INFO[ListItem.Duration(ss),,s  ]</value>
 		<value condition="!String.IsEmpty(ListItem.Duration)">$INFO[ListItem.Duration(hh), ,h]$INFO[ListItem.Duration(mm),,m  ]</value>
 		<value condition="!String.IsEmpty(ListItem.AddonVersion)">$INFO[ListItem.AddonVersion, v,  ]</value>
-		<value condition="String.IsEqual(ListItem.DBTYPE,set) + Integer.IsGreater(Window(Home).Property(SkinHelper.ListItem.Duration.Hours),9)">$INFO[Window(Home).Property(SkinHelper.ListItem.Duration.Hours), ,h]$INFO[Window(Home).Property(SkinHelper.ListItem.Duration.Minutes),,m]</value>
-		<value condition="String.IsEqual(ListItem.DBTYPE,set)">$INFO[Window(Home).Property(SkinHelper.ListItem.Duration.Hours), 0,h]$INFO[Window(Home).Property(SkinHelper.ListItem.Duration.Minutes),,m]</value>
+		<value condition="String.IsEqual(ListItem.DBTYPE,set) + Integer.IsGreater(Window(Home).Property(SkinHelper.ListItem.Duration.Hours),9)">$INFO[Window(Home).Property(SkinHelper.ListItem.Duration.Hours), ,h]$INFO[Window(Home).Property(SkinHelper.ListItem.Duration.Minutes),,m  ]</value>
+		<value condition="String.IsEqual(ListItem.DBTYPE,set)">$INFO[Window(Home).Property(SkinHelper.ListItem.Duration.Hours), 0,h]$INFO[Window(Home).Property(SkinHelper.ListItem.Duration.Minutes),,m  ]</value>
 	</variable>
 	<variable name="ListViewIcon3Var">
 		<value condition="!String.IsEmpty(ListItem.UserRating)">$VAR[IconPathVar]star.png</value>
@@ -114,7 +113,19 @@
 		<value condition="!String.IsEmpty(ListItem.AddonDescription)">$INFO[ListItem.AddonDescription]</value>
 		<value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Plot)) + !ListItem.IsParentFolder">$INFO[Window(Home).Property(SkinHelper.ListItem.Plot)]</value>
 	</variable>
-
+	<variable name="3PanelViewIcon1Var">
+		<value condition="!String.IsEmpty(ListItem.AddonCreator)">$VAR[IconPathVar]person.png</value>
+		<value condition="Container.Content(albums)">$VAR[IconPathVar]disc.png</value>
+		<value>$VAR[IconPathVar]calendar.png</value>
+	</variable>
+	<variable name="3PanelViewInfo1Var">
+		<value condition="Container.Content(musicvideos) + !String.IsEmpty(ListItem.Duration) + !Integer.IsGreater(ListItem.Duration(h),0)">$INFO[ListItem.Duration(mm), ,m]$INFO[ListItem.Duration(ss),,s  ]</value>
+		<value condition="Container.Content(musicvideos) + !String.IsEmpty(ListItem.Duration)">$INFO[ListItem.Duration(hh), ,h]$INFO[ListItem.Duration(mm),,m  ]</value>
+		<value condition="Container.Content(albums)">$INFO[ListItem.Property(Album_Type), [CAPITALIZE],[/CAPITALIZE]  ]</value>
+		<value condition="!String.IsEmpty(ListItem.Year) + !String.IsEqual(ListItem.DBTYPE,set)">$INFO[ListItem.Year, ,  ]</value>
+		<value condition="!String.IsEmpty(ListItem.AddonCreator)">$INFO[ListItem.AddonCreator, ,  ]</value>
+		<value condition="!String.IsEmpty(ListItem.Property(Artist_YearsActive))">$INFO[ListItem.Property(Artist_YearsActive), ,  ]</value>
+	</variable>
 
 
 	<!-- Now playing -->
@@ -945,8 +956,6 @@
 		<value condition="!String.IsEmpty(ListItem.Art(tvshow.landscape))">$INFO[ListItem.Art(tvshow.landscape)]</value>
 		<value condition="!String.IsEmpty(ListItem.Property(fanart))">$INFO[ListItem.Property(fanart)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
-		<value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Landscape)) + !ListItem.IsParentFolder">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Landscape)]</value>
-		<value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Fanart)) + !ListItem.IsParentFolder">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Fanart)]</value>
 		<value>$INFO[ListItem.Icon]</value>
 	</variable>
 	<variable name="ClearArtVar">

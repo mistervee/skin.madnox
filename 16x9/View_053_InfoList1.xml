@@ -4,96 +4,13 @@
 		<!-- Right info -->
 		<control type="group">
 			<visible>Control.IsVisible(53)</visible>
-			<animation type="WindowOpen" reversible="false">
-				<effect type="fade" start="0" end="100" delay="200" time="300"/>
-				<effect type="slide" start="-670" delay="200" end="0" time="400" tween="cubic" easing="out" />
-			</animation>
-			<animation type="WindowClose" reversible="false">
-				<effect type="fade" start="100" end="0" time="300"/>
-				<effect type="slide" start="0" end="-1840" time="300" tween="cubic" easing="out" />
-			</animation>
-			<animation type="Visible" reversible="false">
-				<effect type="fade" start="0" end="100" delay="200" time="300"/>
-				<effect type="slide" start="-670" delay="200" end="0" time="400" tween="cubic" easing="out" />
-			</animation>
-			<animation type="Hidden" reversible="false">
-				<effect type="fade" start="100" end="0" time="300"/>
-				<effect type="slide" start="0" end="-1840" time="300" tween="cubic" easing="out" />
-			</animation>
-			<include content="PanelSideBlade">
-				<param name="left">1092</param>
-				<param name="width">748</param>
-				<param name="lefttexture">1092</param>
-				<param name="widthtexture">728</param>
-				<param name="diffusetexture">diffuse/siderounded20-398x820.png</param>
-				<param name="reflect">!Skin.HasSetting(AddonsHideFloor)</param>
-			</include>
-			<control type="group">
-				<top>184</top>
-				<right>115</right>
-				<width>698</width>
-				<height>401</height>
-				<control type="group">
-					<visible>!Player.HasVideo + [Window.IsActive(MyPVRChannels.xml) | Window.IsActive(MyPVRRecordings.xml) | Window.IsActive(MyPVRTimers.xml) | Window.IsActive(MyPVRSearch.xml)]</visible>
-					<control type="image">
-						<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Landscape))</visible>
-						<include>AnimationVisibleFadeIn</include>
-						<bordersize>10</bordersize>
-						<fadetime>TextureFadeTime</fadetime>
-						<aspectratio align="center" aligny="center">keep</aspectratio>
-						<texture diffuse="diffuse/rounded5-532x800.png">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Landscape)]</texture>
-					</control>
-					<control type="image">
-						<visible>String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Landscape)) + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Fanart))</visible>
-						<include>AnimationVisibleFadeIn</include>
-						<bordersize>10</bordersize>
-						<fadetime>TextureFadeTime</fadetime>
-						<aspectratio align="center" aligny="center">keep</aspectratio>
-						<texture diffuse="diffuse/rounded5-532x800.png">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Fanart)]</texture>
-					</control>
-					<control type="image">
-						<visible>String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Landscape)) + String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Fanart))</visible>
-						<include>AnimationVisibleFadeIn</include>
-						<bordersize>10</bordersize>
-						<fadetime>TextureFadeTime</fadetime>
-						<aspectratio align="center" aligny="center">keep</aspectratio>
-						<texture diffuse="diffuse/rounded5-532x800.png">$INFO[ListItem.Icon]</texture>
-					</control>
-				</control>
-				<control type="image">
-					<visible>!Player.HasVideo + ![Window.IsActive(MyPVRChannels.xml) | Window.IsActive(MyPVRRecordings.xml) | Window.IsActive(MyPVRTimers.xml) | Window.IsActive(MyPVRSearch.xml)]</visible>
-					<include>AnimationVisibleFadeIn</include>
-					<bordersize>10</bordersize>
-					<fadetime>TextureFadeTime</fadetime>
-					<aspectratio align="center" aligny="center">scale</aspectratio>
-					<texture diffuse="diffuse/rounded5-532x800.png">$VAR[LandscapeVar]</texture>
-				</control>
-				<control type="videowindow">
-					<top>10</top>
-					<right>10</right>
-					<width>678</width>
-					<height>381</height>
-					<visible>Player.HasVideo</visible>
-				</control>
-				<control type="image">
-					<texture border="20">thumbs/overlay.png</texture>
-				</control>
-			</control>
-			<control type="image">
-				<top>600</top>
-				<right>125</right>
-				<width>678</width>
-				<height>285</height>
-				<aspectratio>keep</aspectratio>
-				<texture background="true">$VAR[ClearLogoVar]</texture>
-				<animation effect="fade" end="15" time="0" condition="true">Conditional</animation>
-			</control>
+			<include>ViewInfo1ListArt</include>
 			<control type="grouplist">
 				<top>595</top>
 				<right>125</right>
 				<width>678</width>
 				<height>800</height>
-				<include>ListInfo</include>
+				<include>ViewListInfo</include>
 				<control type="textbox">
 					<top>1</top>
 					<height>202</height>
@@ -122,24 +39,24 @@
 			<include content="PanelDefault">
 				<param name="right">808</param>
 				<param name="righttexture">828</param>
-				<param name="reflect">!Skin.HasSetting(View53HideFloor)</param>
+				<param name="reflect">!Skin.HasSetting(ViewsHideFloor)</param>
 			</include>
 			<control type="list" id="53">
 				<left>100</left>
-				<top>144</top>
+				<top>141</top>
 				<width>992</width>
-				<height>792</height>
+				<height>798</height>
 				<onleft>9050</onleft>
 				<onright>6053</onright>
 				<pagecontrol>6053</pagecontrol>
-				<viewtype label="Fanart List">list</viewtype>
+				<viewtype label="$LOCALIZE[31219]">list</viewtype>
 				<preloaditems>2</preloaditems>
 				<include>ViewContainerList</include>
 			</control>
 			<control type="scrollbar" id="6053">
 				<left>1072</left>
-				<top>144</top>
-				<bottom>144</bottom>
+				<top>140</top>
+				<bottom>140</bottom>
 				<onleft>53</onleft>
 				<onright>60531</onright>
 			</control>

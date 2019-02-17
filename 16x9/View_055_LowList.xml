@@ -22,7 +22,7 @@
 				<onleft>9050</onleft>
 				<onright>6055</onright>
 				<pagecontrol>6055</pagecontrol>
-				<viewtype label="Low list">low list</viewtype>
+				<viewtype label="$LOCALIZE[31223]">list</viewtype>
 				<preloaditems>2</preloaditems>
 				<focusposition>2</focusposition>
 				<movement>1</movement>
@@ -42,98 +42,45 @@
 				<height>4</height>
 				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-horizontal.png</texture>
 			</control>
-			<!-- Art -->
-			<control type="group">
-				<visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
-				<left>0</left>
-				<bottom>0</bottom>
-				<width>518</width>
-				<height>767</height>
-				<control type="image">
-					<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" reversible="false" condition="Player.HasVideo + String.IsEqual(ListItem.Title,Player.Title)">Conditional</animation>
-					<left>20</left>
-					<bottom>518</bottom>
-					<width>478</width>
-					<height>478</height>
-					<fadetime>TextureFadeTime</fadetime>
-					<texture diffuse="diffuse/disc.png" background="true">$VAR[DiscArtVar]</texture>
-				</control>
-				<control type="image">
-					<bordersize>10</bordersize>
-					<fadetime>TextureFadeTime</fadetime>
-					<aspectratio align="center" aligny="center">scale</aspectratio>
-					<texture diffuse="diffuse/rounded5-532x800.png">$VAR[PosterVar]</texture>
-				</control>
-				<control type="image">
-					<texture border="20">thumbs/overlay.png</texture>
-				</control>
-			</control>
-			<control type="group">
-				<visible>![Container.Content(movies) | Container.Content(tvshows) | Container.Content(seaons) | Container.Content(episodes)]</visible>
-				<left>0</left>
-				<bottom>0</bottom>
-				<width>518</width>
-				<height>518</height>
-				<control type="image">
-					<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" delay="500" reversible="false" condition="Player.HasAudio + [String.IsEqual(ListItem.Album,MusicPlayer.Album) | String.IsEqual(ListItem.Title,Player.Title)]">Conditional</animation>
-					<left>20</left>
-					<bottom>260</bottom>
-					<width>478</width>
-					<height>478</height>
-					<fadetime>TextureFadeTime</fadetime>
-					<texture diffuse="diffuse/disc.png" background="true">$VAR[DiscArtVar]</texture>
-				</control>
-				<control type="image">
-					<bordersize>10</bordersize>
-					<fadetime>TextureFadeTime</fadetime>
-					<aspectratio align="center" aligny="center">scale</aspectratio>
-					<texture diffuse="diffuse/rounded5-532x800.png">$VAR[PosterVar]</texture>
-				</control>
-				<control type="image">
-					<texture border="20">thumbs/overlay.png</texture>
-				</control>
-			</control>
-			
 			<control type="scrollbar" id="6055">
 				<left>1347</left>
 				<top>680</top>
 				<bottom>10</bottom>
 				<onleft>55</onleft>
+				<onright>60551</onright>
 			</control>
-			
-				
-				<control type="image">
-					<bottom>445</bottom>
+			<!-- Art -->
+			<include>ViewLowListArt</include>
+			<control type="image">
+				<bottom>455</bottom>
 				<right>10</right>
 				<width>532</width>
 				<height>200</height>
-					
-					<aspectratio aligny="top">keep</aspectratio>
-					<fadetime>TextureFadeTime</fadetime>
-					<texture background="true">$VAR[ClearLogoVar]</texture>
-				</control>
-			
-			
+				<aspectratio>keep</aspectratio>
+				<fadetime>TextureFadeTime</fadetime>
+				<texture background="true">$VAR[ClearLogoVar]</texture>
+			</control>
+			<!-- Info -->
 			<control type="grouplist">
 				<top>650</top>
 				<right>20</right>
 				<width>510</width>
 				<height>796</height>
-				<include>ListInfo</include>
+				<include>ViewListInfo</include>
 				<control type="textbox">
 					<top>1</top>
 					<height>220</height>
 					<font>Font30_Reg_103</font>
 					<label>$VAR[ViewPlotVar]</label>
-					<pagecontrol>60531</pagecontrol>
+					<pagecontrol>60551</pagecontrol>
 					<include>AutoScrollPlot</include>
 				</control>
 			</control>
-			<control type="scrollbar" id="60531">
-				<right>80</right>
-				<top>763</top>
-				<bottom>189</bottom>
-				<onleft>6053</onleft>
+			<control type="scrollbar" id="60551">
+				<right>-20</right>
+				<top>738</top>
+				<bottom>122</bottom>
+				<onleft>6055</onleft>
 			</control>
 		</control>
 	</include>
