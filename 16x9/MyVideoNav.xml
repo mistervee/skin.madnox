@@ -13,51 +13,11 @@
 			<visible>!Window.IsActive(movieinformation)</visible>
 			<include>AnimationInfoDialog</include>
 			<!-- Floor -->
-			<control type="group">
-				<visible>!Skin.HasSetting(ViewsHideFloor) + [Control.IsVisible(52) | Control.IsVisible(502)]</visible>
-				<include content="AnimationSlideBottomWindow">
-					<param name="slide">220</param>
-				</include>
-				<include content="AnimationSlideBottomVisible">
-					<param name="slide">220</param>
-				</include>
-				<include>FloorDefault</include>
-			</control>
-			<control type="group">
-				<visible>!Skin.HasSetting(ViewsHideFloor) + [Control.IsVisible(51) | Control.IsVisible(501)]</visible>
-				<top>50</top>
-				<include content="AnimationSlideBottomWindow">
-					<param name="slide">220</param>
-				</include>
-				<include content="AnimationSlideBottomVisible">
-					<param name="slide">220</param>
-				</include>
-				<include>FloorLeft</include>
-			</control>
-			<control type="group">
-				<visible>!Skin.HasSetting(ViewsHideFloor) + [Control.IsVisible(50) | Control.IsVisible(500) | Control.IsVisible(53) | Control.IsVisible(503) | Control.IsVisible(54) | Control.IsVisible(504) | Control.IsVisible(56) | Control.IsVisible(506) | Control.IsVisible(57) | Control.IsVisible(507)]</visible>
-				<top>50</top>
-				<include content="AnimationSlideBottomWindow">
-					<param name="slide">220</param>
-				</include>
-				<include content="AnimationSlideBottomVisible">
-					<param name="slide">220</param>
-				</include>
-				<include>FloorRight</include>
-			</control>
-			<control type="group">
-				<visible>Skin.HasSetting(ViewsHideFloor)</visible>
-				<top>50</top>
-				<include content="AnimationSlideBottomWindow">
-					<param name="slide">220</param>
-				</include>
-				<include content="AnimationSlideBottomVisible">
-					<param name="slide">220</param>
-				</include>
-				<include>FloorShadow</include>
-			</control>
+			<include>ViewsFloor</include>
 			<!-- Views -->
 			<control type="group">
+				<visible>!Window.IsActive(addoninformation)</visible>
+				<include>AnimationInfoDialog</include>
 				<include>View50PosterList</include>
 				<include>View51SimpleList</include>
 				<include>View52TwinList</include>
@@ -76,84 +36,7 @@
 				<include>View507Big3PanelSquare</include>
 			</control>
 			<!-- Media flags -->
-			<control type="group">
-				<visible>Control.IsVisible(50) | Control.IsVisible(500) | Control.IsVisible(55) | Control.IsVisible(505)</visible>
-				<animation effect="slide" end="90,20" time="240" tween="cubic" condition="Control.IsVisible(55) | Control.IsVisible(505)">Conditional</animation>
-				<include content="AnimationSlideBottomWindow">
-					<param name="slide">200</param>
-				</include>
-				<include content="AnimationSlideBottomVisible">
-					<param name="slide">200</param>
-				</include>
-				<include>MediaFlagsVideo</include>
-			</control>
-			<control type="group">
-				<visible>Control.IsVisible(53) | Control.IsVisible(503)</visible>
-				<include content="AnimationSlideBottomWindow">
-					<param name="slide">200</param>
-				</include>
-				<include content="AnimationSlideBottomVisible">
-					<param name="slide">200</param>
-				</include>
-				<include content="MediaFlagsVideo">
-					<param name="right">125</param>
-					<param name="codecs">MediaFlags5</param>
-				</include>
-			</control>
-			<control type="group">
-				<visible>Control.IsVisible(54) | Control.IsVisible(504)</visible>
-				<include content="AnimationSlideBottomWindow">
-					<param name="slide">200</param>
-				</include>
-				<include content="AnimationSlideBottomVisible">
-					<param name="slide">200</param>
-				</include>
-				<include content="MediaFlagsVideo">
-					<param name="right">125</param>
-					<param name="codecs">MediaFlags6</param>
-				</include>
-			</control>
-			<control type="group">
-				<visible>Control.IsVisible(56) | Control.IsVisible(506) | Control.IsVisible(57) | Control.IsVisible(507)</visible>
-				<animation effect="slide" end="0,10" time="240" tween="cubic" condition="Control.IsVisible(56)">Conditional</animation>
-				<include content="AnimationSlideBottomWindow">
-					<param name="slide">200</param>
-				</include>
-				<include content="AnimationSlideBottomVisible">
-					<param name="slide">200</param>
-				</include>
-				<include content="MediaFlagsVideo">
-					<param name="codecs">MediaFlags7</param>
-				</include>
-			</control>
-			<control type="group">
-				<visible>Control.IsVisible(51)</visible>
-				<include content="AnimationSlideBottomWindow">
-					<param name="slide">200</param>
-				</include>
-				<include content="AnimationSlideBottomVisible">
-					<param name="slide">200</param>
-				</include>
-				<include content="MediaFlagsVideo">
-					<param name="align">left</param>
-					<param name="bottom">10</param>
-					<param name="codecs">MediaFlags8</param>
-				</include>
-			</control>
-			<control type="group">
-				<visible>Control.IsVisible(501)</visible>
-				<include content="AnimationSlideBottomWindow">
-					<param name="slide">200</param>
-				</include>
-				<include content="AnimationSlideBottomVisible">
-					<param name="slide">200</param>
-				</include>
-				<include content="MediaFlagsVideo">
-					<param name="align">left</param>
-					<param name="bottom">10</param>
-					<param name="codecs">MediaFlags7</param>
-				</include>
-			</control>
+			<include>ViewsMediaFlagsVideos</include>
 			<!-- Topbar -->
 			<control type="group">
 				<visible>!Skin.HasSetting(ViewsHideTopBar)</visible>

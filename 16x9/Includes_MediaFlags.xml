@@ -49,12 +49,13 @@
 		</definition>
 	</include>
 	<include name="MediaFlagsAudio">
+		<param name="bottom">30</param>
 		<param name="left">100</param>
 		<param name="right">100</param>
 		<param name="align">right</param>
 		<definition>
 			<control type="group">
-				<bottom>30</bottom>
+				<bottom>$PARAM[bottom]</bottom>
 				<left>$PARAM[left]</left>
 				<right>$PARAM[right]</right>
 				<height>80</height>
@@ -81,19 +82,6 @@
 					<orientation>horizontal</orientation>
 					<usecontrolcoords>true</usecontrolcoords>
 					<control type="label">
-						<width>265</width>
-						<include>MediaFlagLabel</include>
-						<label>$LOCALIZE[180]</label>
-						<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Duration))</visible>
-					</control>
-					<control type="label">
-						<left>-275</left>
-						<width>265</width>
-						<include>MediaFlagBigLabel</include>
-						<label>$INFO[Window(Home).Property(SkinHelper.ListItem.Duration)]</label>
-						<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Duration))</visible>
-					</control>
-					<control type="label">
 						<include>MediaFlagLabel</include>
 						<label>$LOCALIZE[134]</label>
 					</control>
@@ -110,73 +98,155 @@
 					<orientation>horizontal</orientation>
 					<usecontrolcoords>true</usecontrolcoords>
 					<control type="image">
-						<width>246</width>
 						<include>MediaFlagImage</include>
-						<texture>$VAR[ViewImageRatingVar]</texture>
-						<visible>Control.IsVisible(50)</visible>
-					</control>
-					<control type="image">
-						<include>MediaFlagImage</include>
-						<texture>$VAR[MediaFlagsPathVar]/audiocodec/mp3.png</texture>
+						<texture>$VAR[MediaFlagsPathVar]/audiocodec/$INFO[ListItem.FileExtension].png</texture>
 					</control>
 				</control>
 			</control>
 		</definition>
 	</include>
-	<include name="MediaFlagsPVR">
-		<control type="grouplist">
-			<bottom>30</bottom>
-			<left>100</left>
-			<right>100</right>
-			<height>80</height>
-			<align>right</align>
-			<itemgap>10</itemgap>
-			<orientation>horizontal</orientation>
-			<usecontrolcoords>true</usecontrolcoords>
-			<control type="label">
-				<visible>!String.IsEmpty(PVR.TVNextRecordingTitle) + String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
-				<top>-2</top>
-				<width>532</width>
+	<include name="ViewsMediaFlagsPVR">
+		<control type="group">
+			<animation effect="slide" end="0,20" time="240" tween="cubic" condition="Control.IsVisible(51) | Control.IsVisible(501) | Control.IsVisible(52) | Control.IsVisible(502) | Window.IsActive(MyPVRGuide.xml)">Conditional</animation>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">200</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">200</param>
+			</include>
+			<control type="grouplist">
+				<bottom>30</bottom>
+				<left>100</left>
+				<right>100</right>
+				<height>80</height>
 				<align>right</align>
-				<include>MediaFlagLabelFull</include>
-				<label>$LOCALIZE[19157]$INFO[PVR.TVNextRecordingDateTime, - ,][B][CR]$INFO[PVR.TVNextRecordingTitle][/B]</label>
-			</control>
-			<control type="label">
-				<visible>!String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
-				<top>-2</top>
-				<width>532</width>
-				<align>right</align>
-				<include>MediaFlagLabelFull</include>
-				<label>$LOCALIZE[19162]$INFO[PVR.TVNowRecordingDateTime, - ,][B][CR]$INFO[PVR.TVNowRecordingTitle, ][/B]</label>
+				<itemgap>10</itemgap>
+				<orientation>horizontal</orientation>
+				<usecontrolcoords>true</usecontrolcoords>
+				<control type="label">
+					<visible>!String.IsEmpty(PVR.TVNextRecordingTitle) + String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
+					<top>-2</top>
+					<width>532</width>
+					<align>right</align>
+					<include>MediaFlagLabelFull</include>
+					<label>$LOCALIZE[19157]$INFO[PVR.TVNextRecordingDateTime, - ,][B][CR]$INFO[PVR.TVNextRecordingTitle][/B]</label>
+				</control>
+				<control type="label">
+					<visible>!String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
+					<top>-2</top>
+					<width>532</width>
+					<align>right</align>
+					<include>MediaFlagLabelFull</include>
+					<label>$LOCALIZE[19162]$INFO[PVR.TVNowRecordingDateTime, - ,][B][CR]$INFO[PVR.TVNowRecordingTitle, ][/B]</label>
+				</control>
 			</control>
 		</control>
 	</include>
-	<include name="MediaFlagsAddons">
-		<control type="grouplist">
-			<bottom>30</bottom>
-			<left>100</left>
-			<right>100</right>
-			<height>80</height>
-			<align>right</align>
-			<itemgap>10</itemgap>
-			<orientation>horizontal</orientation>
-			<usecontrolcoords>true</usecontrolcoords>
-			<control type="label">
-				<visible>!String.IsEmpty(PVR.TVNextRecordingTitle) + String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
-				<top>-2</top>
-				<width>532</width>
-				<align>right</align>
-				<include>MediaFlagLabelFull</include>
-				<label>$LOCALIZE[19157]$INFO[PVR.TVNextRecordingDateTime, - ,][B][CR]$INFO[PVR.TVNextRecordingTitle][/B]</label>
-			</control>
-			<control type="label">
-				<visible>!String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
-				<top>-2</top>
-				<width>532</width>
-				<align>right</align>
-				<include>MediaFlagLabelFull</include>
-				<label>$LOCALIZE[19162]$INFO[PVR.TVNowRecordingDateTime, - ,][B][CR]$INFO[PVR.TVNowRecordingTitle, ][/B]</label>
-			</control>
+	<include name="ViewsMediaFlagsVideos">
+		<control type="group">
+			<visible>Control.IsVisible(50) | Control.IsVisible(500) | Control.IsVisible(55) | Control.IsVisible(505)</visible>
+			<animation effect="slide" end="90,20" time="240" tween="cubic" condition="Control.IsVisible(55) | Control.IsVisible(505)">Conditional</animation>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">200</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">200</param>
+			</include>
+			<include>MediaFlagsVideo</include>
+		</control>
+		<control type="group">
+			<visible>Control.IsVisible(53) | Control.IsVisible(503)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">200</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">200</param>
+			</include>
+			<include content="MediaFlagsVideo">
+				<param name="right">125</param>
+				<param name="codecs">MediaFlags5</param>
+			</include>
+		</control>
+		<control type="group">
+			<visible>Control.IsVisible(54) | Control.IsVisible(504)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">200</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">200</param>
+			</include>
+			<include content="MediaFlagsVideo">
+				<param name="right">125</param>
+				<param name="codecs">MediaFlags6</param>
+			</include>
+		</control>
+		<control type="group">
+			<visible>Control.IsVisible(56) | Control.IsVisible(506) | Control.IsVisible(57) | Control.IsVisible(507)</visible>
+			<animation effect="slide" end="0,10" time="240" tween="cubic" condition="Control.IsVisible(56)">Conditional</animation>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">200</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">200</param>
+			</include>
+			<include content="MediaFlagsVideo">
+				<param name="codecs">MediaFlags7</param>
+			</include>
+		</control>
+		<control type="group">
+			<visible>Control.IsVisible(51)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">200</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">200</param>
+			</include>
+			<include content="MediaFlagsVideo">
+				<param name="align">left</param>
+				<param name="bottom">10</param>
+				<param name="codecs">MediaFlags8</param>
+			</include>
+		</control>
+		<control type="group">
+			<visible>Control.IsVisible(501)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">200</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">200</param>
+			</include>
+			<include content="MediaFlagsVideo">
+				<param name="align">left</param>
+				<param name="bottom">10</param>
+				<param name="codecs">MediaFlags7</param>
+			</include>
+		</control>
+	</include>
+	<include name="ViewsMediaFlagsAudio">
+		<control type="group">
+			<visible>![Control.IsVisible(51) | Control.IsVisible(501)]</visible>
+			<animation effect="slide" end="90,20" time="240" tween="cubic" condition="Control.IsVisible(55) | Control.IsVisible(505)">Conditional</animation>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">200</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">200</param>
+			</include>
+			<include>MediaFlagsAudio</include>
+		</control>
+		<control type="group">
+			<visible>Control.IsVisible(51) | Control.IsVisible(501)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">200</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">200</param>
+			</include>
+			<include content="MediaFlagsAudio">
+				<param name="align">left</param>
+				<param name="bottom">10</param>
+				<param name="codecs">MediaFlagsAudio</param>
+			</include>
 		</control>
 	</include>
 

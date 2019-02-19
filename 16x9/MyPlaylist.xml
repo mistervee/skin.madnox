@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">50</defaultcontrol>
-	<views>50</views>
+	<views>50,51,53,54,55,56,57,500,501,503,504,505,506,507</views>
 	<menucontrol>9050</menucontrol>
 	<controls>
 		<!-- Backdrop -->
@@ -17,43 +17,50 @@
 				<param name="imagepath">$VAR[VideoBackgroundVar]</param>
 			</include>
 		</control>
-		<!-- Floor -->
 		<control type="group">
-			<visible>Control.IsVisible(50)</visible>
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">220</param>
-			</include>
-			<include content="AnimationSlideBottomVisible">
-				<param name="slide">220</param>
-			</include>
-			<include>FloorRight</include>
-		</control>
-		<!-- Views -->
-		<control type="group">
+			<visible>!Window.IsActive(movieinformation) + !Window.IsActive(songinformation)</visible>
+			<include>AnimationInfoDialog</include>
+			<!-- Floor -->
+			<include>ViewsFloor</include>
+			<!-- Views -->
 			<include>View50PosterList</include>
-		</control>
-		<!-- Media flags -->
-		<control type="group">
-			<visible>Control.IsVisible(50)</visible>
-			<animation effect="slide" end="90,11" time="240" tween="cubic" condition="Control.IsVisible(511)">Conditional</animation>
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">111</param>
-			</include>
-			<include>MediaFlagsRight</include>
-		</control>
-		<!-- Topbar -->
-		<control type="group">
-			<visible>!Skin.HasSetting(VideoHideTopBar)</visible>
-			<include content="AnimationSlideTopWindow">
-				<param name="slide">90</param>
-			</include>
-			<include content="AnimationSlideTopVisible">
-				<param name="slide">90</param>
-			</include>
-			<include content="TopBar">
-				<param name="label">$VAR[BreadcrumbsVideoVar]</param>
-				<param name="icon">playlist.png</param>
-			</include>
+			<include>View51SimpleList</include>
+			<include>View53InfoList1</include>
+			<include>View54InfoList2</include>
+			<include>View55LowList</include>
+			<include>View563Panel</include>
+			<include>View573PanelSquare</include>
+			<include>View500BigPosterList</include>
+			<include>View501BigSimpleList</include>
+			<include>View503BigInfoList1</include>
+			<include>View504BigInfoList2</include>
+			<include>View505BigLowList</include>
+			<include>View506Big3Panel</include>
+			<include>View507Big3PanelSquare</include>
+			<!-- Media flags audio -->
+			<control type="group">
+				<visible>Window.IsVisible(musicplaylist)</visible>
+				<include>ViewsMediaFlagsAudio</include>
+			</control>
+			<!-- Media flags video -->
+			<control type="group">
+				<visible>Window.IsVisible(videoplaylist)</visible>
+				<include>ViewsMediaFlagsVideos</include>
+			</control>
+			<!-- Topbar -->
+			<control type="group">
+				<visible>!Skin.HasSetting(VideoHideTopBar)</visible>
+				<include content="AnimationSlideTopWindow">
+					<param name="slide">90</param>
+				</include>
+				<include content="AnimationSlideTopVisible">
+					<param name="slide">90</param>
+				</include>
+				<include content="TopBar">
+					<param name="label">$VAR[BreadcrumbsVideoVar]</param>
+					<param name="icon">playlist.png</param>
+				</include>
+			</control>
 		</control>
 		<!-- Media Menu -->
 		<include>MediaMenuMouseOverlay</include>

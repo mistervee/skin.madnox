@@ -50,6 +50,18 @@
 		<value condition="Container.Content(episodes) + Integer.IsLess(ListItem.Episode,10)">$INFO[ListItem.Episode,0]</value>
 		<value>$INFO[ListItem.Episode]</value>
 	</variable>
+	<variable name="TwinListTargetVar">
+		<value condition="Window.IsActive(music)">music</value>
+		<value condition="Window.IsActive(video)">video</value>
+	</variable>
+	<variable name="TwinListLabel2Var">
+		<value condition="!String.IsEmpty(ListItem.Appearances)">$LOCALIZE[38026] $INFO[ListItem.Appearances]</value>
+		<value condition="!String.IsEmpty(ListItem.Premiered) + String.Contains(ListItem.FolderPath,episodes)">$INFO[ListItem.Premiered]</value>
+		<value condition="!String.IsEmpty(ListItem.Artist) + !String.Contains(ListItem.FolderPath,artists)">$INFO[ListItem.Artist]</value>
+		<value condition="!String.IsEmpty(ListItem.Year) + !String.Contains(ListItem.FolderPath,year)">$INFO[ListItem.Year]</value>
+		<value condition="!String.IsEmpty(ListItem.AddonVersion)">$INFO[ListItem.AddonVersion,v]</value>
+		<value>$INFO[ListItem.Label2]</value>
+	</variable>
 	<variable name="TVShowAirDateLabelVar">
 		<value condition="!String.IsEmpty(Window(Home).Property(NextAired.NextDay))">$INFO[Window(Home).Property(NextAired.NextNumber),, ]$LOCALIZE[31063][B][CR]$INFO[Window(Home).Property(NextAired.NextDay),, ]$INFO[Window(Home).Property(NextAired.ShortTime)][/B]</value>
 		<value condition="String.IsEmpty(Window(Home).Property(NextAired.NextDay)) + !String.IsEmpty(Window(Home).Property(NextAired.LatestDay))">$INFO[Window(Home).Property(NextAired.LatestNumber),, ]$LOCALIZE[31064][B][CR]$INFO[Window(Home).Property(NextAired.LatestDay)][/B]</value>

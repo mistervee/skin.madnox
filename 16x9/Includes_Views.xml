@@ -965,24 +965,75 @@
 			<top>184</top>
 			<left>972</left>
 			<height>305</height>
-			<control type="image">
-				<width>305</width>
-				<bordersize>10</bordersize>
-				<fadetime>TextureFadeTime</fadetime>
-				<aspectratio align="center" aligny="center">scale</aspectratio>
-				<texture diffuse="diffuse/rounded5-532x800.png">$VAR[PosterVar]</texture>
+			<control type="group">
+				<visible>Window.IsActive(MyPVRChannels.xml) | Window.IsActive(MyPVRRecordings.xml) | Window.IsActive(MyPVRTimers.xml) | Window.IsActive(MyPVRSearch.xml)</visible>
+				<control type="image">
+					<width>305</width>
+					<bordersize>10</bordersize>
+					<fadetime>TextureFadeTime</fadetime>
+					<aspectratio align="center" aligny="center">keep</aspectratio>
+					<texture diffuse="diffuse/rounded5-532x800.png">$INFO[ListItem.Icon]</texture>
+				</control>
+				<control type="group">
+					<visible>!Player.HasVideo</visible>
+					<control type="image">
+						<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Landscape))</visible>
+						<left>305</left>
+						<width>528</width>
+						<bordersize>10</bordersize>
+						<fadetime>TextureFadeTime</fadetime>
+						<aspectratio align="center" aligny="center">keep</aspectratio>
+						<texture diffuse="diffuse/rounded5-532x800.png">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Landscape)]</texture>
+					</control>
+					<control type="image">
+						<visible>String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Landscape)) + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Fanart))</visible>
+						<left>305</left>
+						<width>528</width>
+						<bordersize>10</bordersize>
+						<fadetime>TextureFadeTime</fadetime>
+						<aspectratio align="center" aligny="center">keep</aspectratio>
+						<texture diffuse="diffuse/rounded5-532x800.png">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Fanart)]</texture>
+					</control>
+					<control type="image">
+						<visible>String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Landscape)) + String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Fanart))</visible>
+						<left>305</left>
+						<width>528</width>
+						<bordersize>10</bordersize>
+						<fadetime>TextureFadeTime</fadetime>
+						<aspectratio align="center" aligny="center">keep</aspectratio>
+						<texture diffuse="diffuse/rounded5-532x800.png">special://skin/extras/backgrounds/tv.jpg</texture>
+					</control>
+				</control>
+			</control>
+			<control type="group">
+				<visible>![Window.IsActive(MyPVRChannels.xml) | Window.IsActive(MyPVRRecordings.xml) | Window.IsActive(MyPVRTimers.xml) | Window.IsActive(MyPVRSearch.xml)]</visible>
+				<control type="image">
+					<width>305</width>
+					<bordersize>10</bordersize>
+					<fadetime>TextureFadeTime</fadetime>
+					<aspectratio align="center" aligny="center">scale</aspectratio>
+					<texture diffuse="diffuse/rounded5-532x800.png">$VAR[PosterVar]</texture>
+				</control>
+				<control type="image">
+					<visible>!Player.HasVideo</visible>
+					<left>305</left>
+					<width>528</width>
+					<bordersize>10</bordersize>
+					<fadetime>TextureFadeTime</fadetime>
+					<aspectratio align="center" aligny="center">scale</aspectratio>
+					<texture diffuse="diffuse/rounded5-532x800.png">$VAR[ThumbVar]</texture>
+				</control>
+			</control>
+			<control type="videowindow">
+				<visible>Player.HasVideo</visible>
+				<top>10</top>
+				<left>315</left>
+				<width>508</width>
+				<height>285</height>
 			</control>
 			<control type="image">
 				<width>305</width>
 				<texture border="20">thumbs/overlay.png</texture>
-			</control>
-			<control type="image">
-				<left>305</left>
-				<width>528</width>
-				<bordersize>10</bordersize>
-				<fadetime>TextureFadeTime</fadetime>
-				<aspectratio align="center" aligny="center">scale</aspectratio>
-				<texture diffuse="diffuse/rounded5-532x800.png">$VAR[ThumbVar]</texture>
 			</control>
 			<control type="image">
 				<left>305</left>
@@ -1204,6 +1255,54 @@
 			</control>
 		</control>
 	</include>
+	<include name="ViewsFloor">
+		<control type="group">
+			<visible>!Skin.HasSetting(ViewsHideFloor) + [Control.IsVisible(52) | Control.IsVisible(502)]</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">220</param>
+			</include>
+			<include>FloorDefault</include>
+		</control>
+		<control type="group">
+			<visible>!Skin.HasSetting(ViewsHideFloor) + [Control.IsVisible(51) | Control.IsVisible(501)]</visible>
+			<top>50</top>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">220</param>
+			</include>
+			<include>FloorLeft</include>
+		</control>
+		<control type="group">
+			<visible>!Skin.HasSetting(ViewsHideFloor) + [Control.IsVisible(50) | Control.IsVisible(500) | Control.IsVisible(53) | Control.IsVisible(503) | Control.IsVisible(54) | Control.IsVisible(504) | Control.IsVisible(56) | Control.IsVisible(506) | Control.IsVisible(57) | Control.IsVisible(507)]</visible>
+			<top>50</top>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">220</param>
+			</include>
+			<include>FloorRight</include>
+		</control>
+		<control type="group">
+			<visible>Skin.HasSetting(ViewsHideFloor)</visible>
+			<top>50</top>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">220</param>
+			</include>
+			<include>FloorShadow</include>
+		</control>
+	</include>
+
+
+
 	<include name="ShowCaseItem">
 		<param name="item"></param>
 		<param name="reflecttop"></param>

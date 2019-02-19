@@ -1,60 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
-	<defaultcontrol>50</defaultcontrol>
+	<defaultcontrol always="true">50</defaultcontrol>
+	<views>50,51,53,54,500,501,503,504</views>
 	<menucontrol>9050</menucontrol>
-	<views>50,51,52,53,54,55,56,500,501,502,503,504,505,506</views>
 	<controls>
 		<!-- Backdrop -->
 		<include content="BackgroundDefault">
 			<param name="imagepath">$VAR[PVRBackgroundVar]</param>
 		</include>
 		<!-- Floor -->
-		<control type="group">
-			<visible>Control.IsVisible(50)</visible>
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">220</param>
-				<param name="opencondition">$EXP[PVRAnimationOpenCondition]</param>
-				<param name="closecondition">$EXP[PVRAnimationCloseCondition]</param>
-			</include>
-			<include content="AnimationSlideBottomVisible">
-				<param name="slide">220</param>
-			</include>
-			<include>FloorRight</include>
-		</control>
+		<include>ViewsFloor</include>
+		<!-- Views -->
 		<control type="group">
 			<visible>!Window.IsActive(pvrguideinfo)</visible>
 			<include>AnimationInfoDialog</include>
 			<include>View50PosterList</include>
 			<include>View51SimpleList</include>
-			<include>View52TwinList</include>
 			<include>View53InfoList1</include>
 			<include>View54InfoList2</include>
-			<include>View55LowList</include>
-			<include>View563Panel</include>
 			<include>View500BigPosterList</include>
 			<include>View501BigSimpleList</include>
-			<include>View502BigTwinList</include>
 			<include>View503BigInfoList1</include>
 			<include>View504BigInfoList2</include>
-			<include>View505BigLowList</include>
-			<include>View506Big3Panel</include>
-		</control>
-		<control type="group">
-			<animation effect="slide" end="0,20" time="240" tween="cubic" condition="Control.IsVisible(51) | Control.IsVisible(501)">Conditional</animation>
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">200</param>
-			</include>
-			<include content="AnimationSlideBottomVisible">
-				<param name="slide">200</param>
-			</include>
-			<include>MediaFlagsPVR</include>
+			<!-- Media flags -->
+			<include>ViewsMediaFlagsPVR</include>
 		</control>
 		<!-- Topbar -->
 		<control type="label" id="29">
 			<include>HiddenObject</include>
 		</control>
 		<control type="group">
-			<visible>!Skin.HasSetting(PVRHideTopBar)</visible>
+			<visible>!Skin.HasSetting(ViewsTopBar)</visible>
 			<include content="AnimationSlideTopWindow">
 				<param name="slide">90</param>
 				<param name="opencondition">$EXP[PVRAnimationOpenCondition]</param>

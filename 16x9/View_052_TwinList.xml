@@ -50,8 +50,42 @@
 				<onleft>6052</onleft>
 				<onright>605200</onright>
 				<pagecontrol>605200</pagecontrol>
-				<include>ViewContainerList</include>
-				<content target="videos" sortby="" sortorder="">$INFO[Container(52).ListItem.FolderPath]</content>
+				<itemlayout height="72.5">
+					<control type="image">
+						<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+					</control>
+					<control type="label">
+						<left>25</left>
+						<right>20</right>
+						<label>$INFO[ListItem.Label]</label>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					</control>
+					<control type="label">
+						<right>25</right>
+						<align>right</align>
+						<label>$VAR[TwinListLabel2Var]</label>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					</control>
+				</itemlayout>
+				<focusedlayout height="72.5">
+					<control type="image">
+						<texture border="30" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+					</control>
+					<control type="label">
+						<left>25</left>
+						<right>20</right>
+						<scroll>true</scroll>
+						<label>$INFO[ListItem.Label]</label>
+						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
+					</control>
+					<control type="label">
+						<right>25</right>
+						<align>right</align>
+						<label>$VAR[TwinListLabel2Var]</label>
+						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
+					</control>
+				</focusedlayout>
+				<content target="$VAR[TwinListTargetVar]" sortby="" sortorder="">$INFO[Container(52).ListItem.FolderPath]</content>
 			</control>
 			<control type="scrollbar" id="605200">
 				<top>140</top>

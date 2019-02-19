@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
-	<defaultcontrol>50</defaultcontrol>
+	<defaultcontrol always="true">50</defaultcontrol>
+	<views>50,51,52,53,54,57,500,501,502,503,504,507</views>
 	<menucontrol>9050</menucontrol>
-	<views>50</views>
 	<controls>
 		<!-- Background -->
 		<include content="BackgroundDefault">
 			<param name="imagepath">$VAR[GamesBackgroundVar]</param>
 		</include>
 		<!-- Floor -->
-		<control type="group">
-			<visible>Control.IsVisible(50)</visible>
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">220</param>
-			</include>
-			<include content="AnimationSlideBottomVisible">
-				<param name="slide">220</param>
-			</include>
-			<include>FloorRight</include>
-		</control>
+		<include>ViewsFloor</include>
 		<!-- Views -->
 		<control type="group">
+			<visible>!Window.IsActive(addoninformation)</visible>
+			<include>AnimationInfoDialog</include>
 			<include>View50PosterList</include>
+			<include>View51SimpleList</include>
+			<include>View52TwinList</include>
+			<include>View53InfoList1</include>
+			<include>View54InfoList2</include>
+			<include>View573PanelSquare</include>
+			<include>View500BigPosterList</include>
+			<include>View501BigSimpleList</include>
+			<include>View502BigTwinList</include>
+			<include>View503BigInfoList1</include>
+			<include>View504BigInfoList2</include>
+			<include>View507Big3PanelSquare</include>
 		</control>
-		<!-- Top bar -->
+		<!-- Topbar -->
 		<control type="group">
-			<visible>!Skin.HasSetting(GamesHideTopBar)</visible>
+			<visible>!Skin.HasSetting(ViewsHideTopBar)</visible>
 			<include content="AnimationSlideTopWindow">
 				<param name="slide">90</param>
 			</include>
