@@ -1267,6 +1267,16 @@
 			<include>FloorDefault</include>
 		</control>
 		<control type="group">
+			<visible>!Skin.HasSetting(ViewsHideFloor) + [Control.IsVisible(511) | Control.IsVisible(512) | Control.IsVisible(513) | Control.IsVisible(514)]</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">220</param>
+			</include>
+			<include>FloorMiddle</include>
+		</control>
+		<control type="group">
 			<visible>!Skin.HasSetting(ViewsHideFloor) + [Control.IsVisible(51) | Control.IsVisible(501)]</visible>
 			<top>50</top>
 			<include content="AnimationSlideBottomWindow">
@@ -1294,15 +1304,103 @@
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
 			</include>
-			<include content="AnimationSlideBottomVisible">
+			<include content="AnimationSlideBottomVisible">s
 				<param name="slide">220</param>
 			</include>
 			<include>FloorShadow</include>
 		</control>
 	</include>
-
-
-
+	<include name="ViewsBottomInfo">
+		<control type="group">
+			<visible>Control.IsVisible(515) | Control.IsVisible(516) | Control.IsVisible(517) | Control.IsVisible(518)</visible>
+			<top>50</top>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">s
+				<param name="slide">220</param>
+			</include>
+			<include>FloorShadow</include>
+		</control>
+		<control type="group">
+			<visible>Control.IsVisible(511) | Control.IsVisible(512) | Control.IsVisible(513) | Control.IsVisible(514) | Control.IsVisible(515) | Control.IsVisible(516) | Control.IsVisible(517) | Control.IsVisible(518)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">s
+				<param name="slide">220</param>
+			</include>
+			<bottom>0</bottom>
+			<left>642</left>
+			<right>642</right>
+			<height>136</height>
+			<align>center</align>
+			<itemgap>10</itemgap>
+			<usecontrolcoords>true</usecontrolcoords>
+			<control type="label">
+				<top>17</top>
+				<height>30</height>
+				<align>center</align>
+				<font>Font30_Reg</font>
+				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				<label>$VAR[ViewTitleVar]</label>
+			</control>
+			<control type="label">
+				<top>54</top>
+				<height>30</height>
+				<align>center</align>
+				<font>Font30_Reg</font>
+				<textcolor>$VAR[MainMenuHighlightColorVar]</textcolor>
+				<label>$VAR[ListViewTitleVar]</label>
+			</control>
+			<control type="grouplist">
+				<top>88</top>
+				<height>37</height>
+				<align>center</align>
+				<usecontrolcoords>true</usecontrolcoords>
+				<orientation>horizontal</orientation>
+				<control type="image">
+					<visible>!String.IsEmpty(Control.GetLabel(5301))</visible>
+					<width>28</width>
+					<aspectratio>keep</aspectratio>
+					<texture>$VAR[ListViewIcon1Var]</texture>
+				</control>
+				<control type="label" id="5301">
+					<top>-2</top>
+					<width>auto</width>
+					<font>Font28_Reg</font>
+					<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+					<label>$VAR[ListViewInfo1Var]</label>
+				</control>
+				<control type="image">
+					<visible>!String.IsEmpty(Control.GetLabel(5302))</visible>
+					<width>28</width>
+					<aspectratio>keep</aspectratio>
+					<texture>$VAR[ListViewIcon2Var]</texture>
+				</control>
+				<control type="label" id="5302">
+					<top>-2</top>
+					<width>auto</width>
+					<font>Font28_Reg</font>
+					<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+					<label>$VAR[ListViewInfo2Var]</label>
+				</control>
+				<control type="image">
+					<visible>!String.IsEmpty(Control.GetLabel(5303))</visible>
+					<width>28</width>
+					<aspectratio>keep</aspectratio>
+					<texture>$VAR[ListViewIcon3Var]</texture>
+				</control>
+				<control type="label" id="5303">
+					<top>-2</top>
+					<width>auto</width>
+					<font>Font28_Reg</font>
+					<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+					<label>$VAR[ListViewInfo3Var]</label>
+				</control>
+			</control>
+		</control>
+	</include>
 	<include name="ShowCaseItem">
 		<param name="item"></param>
 		<param name="reflecttop"></param>

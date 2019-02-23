@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+	<include name="View513LandscapeWall">
+		<control type="group">
+			<visible>Control.IsVisible(513)</visible>
+			<include>AnimationZoomWindow</include>
+			<include>AnimationZoomVisible</include>
+			<include content="PanelDefault">
+				<param name="height">884</param>
+				<param name="heighttexture">844</param>
+				<param name="reflecttop">926</param>
+				<param name="reflect">!Skin.HasSetting(ViewsHideFloor)</param>
+			</include>
+			<control type="panel" id="513">
+				<top>150</top>
+				<left>110</left>
+				<width>1720</width>
+				<height>744</height>
+				<onleft>9050</onleft>
+				<onright>60513</onright>
+				<pagecontrol>60513</pagecontrol>
+				<itemlayout height="248" width="425">
+					<control type="image">
+						<bordersize>10</bordersize>
+						<aspectratio align="center" aligny="center">scale</aspectratio>
+						<texture diffuse="diffuse/rounded5-532x800.png">$VAR[LandscapeVar]</texture>
+					</control>
+					<control type="image">
+						<texture border="20">thumbs/overlay.png</texture>
+					</control>
+				</itemlayout>
+				<focusedlayout height="248" width="425">
+					<control type="image">
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/widget-select-focus.png</texture>
+					</control>
+					<control type="group">
+						<animation  type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+						</animation>
+						<control type="image">
+							<bordersize>10</bordersize>
+							<aspectratio align="center" aligny="center">scale</aspectratio>
+							<texture diffuse="diffuse/rounded5-532x800.png">$VAR[LandscapeVar]</texture>
+						</control>
+						<control type="image">
+							<texture border="20">thumbs/overlay.png</texture>
+						</control>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="scrollbar" id="60513">
+				<right>80</right>
+				<top>140</top>
+				<bottom>176</bottom>
+				<onleft>513</onleft>
+			</control>
+		</control>
+	</include>
+</includes>

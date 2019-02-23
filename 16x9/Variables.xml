@@ -69,7 +69,7 @@
 	<variable name="ViewTitleVar">
 		<value condition="!String.IsEmpty(ListItem.Property(title))">$INFO[ListItem.Property(title)]</value>
 		<value condition="!String.IsEmpty(ListItem.Episode) + !String.IsEqual(ListItem.Label,ListItem.TVShowTitle)">$INFO[Container.ListItem.Season,,x]$INFO[Container.ListItem.Episode,,. ]$INFO[Container.ListItem.Title]</value>
-		<value>$INFO[Container.ListItem.Label]</value>
+		<value>$INFO[ListItem.Label]</value>
 	</variable>
 	<variable name="ListViewTitleVar">
 		<value condition="!String.IsEmpty(ListItem.Tagline)">$INFO[ListItem.Tagline]</value>
@@ -137,6 +137,11 @@
 		<value condition="!String.IsEmpty(ListItem.Year) + !String.IsEqual(ListItem.DBTYPE,set)">$INFO[ListItem.Year, ,  ]</value>
 		<value condition="!String.IsEmpty(ListItem.AddonCreator)">$INFO[ListItem.AddonCreator, ,  ]</value>
 		<value condition="!String.IsEmpty(ListItem.Property(Artist_YearsActive))">$INFO[ListItem.Property(Artist_YearsActive), ,  ]</value>
+	</variable>
+	<variable name="FolderPathItemCountVar">
+		<value condition="ListItem.IsCollection">$LOCALIZE[342]</value>
+		<value condition="Container.Content(artists)">$LOCALIZE[132]</value>
+		<value condition="Container.Content(albums)">$LOCALIZE[134]</value>
 	</variable>
 
 
