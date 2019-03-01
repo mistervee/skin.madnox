@@ -85,7 +85,7 @@
 		</focusedlayout>
 	</include>
 	<include name="ViewContainerBigList">
-		<itemlayout height="114" condition="Container.Content(movies) | Container.Content(tvshows)">
+		<itemlayout height="100" condition="Container.Content(movies) | Container.Content(tvshows)">
 			<control type="image">
 				<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
 			</control>
@@ -94,34 +94,34 @@
 				<animation effect="fade" end="70" condition="true">conditional</animation>
 				<top>10</top>
 				<left>20</left>
-				<width>120</width>
-				<height>94</height>
+				<width>125</width>
+				<height>80</height>
 				<aspectratio>keep</aspectratio>
 				<texture>DefaultFolderBack.png</texture>
 			</control>
 			<control type="image">
 				<visible>!ListItem.IsParentFolder + !Skin.HasSetting(MediaFlagsColored)</visible>
 				<animation effect="fade" end="70" condition="true">conditional</animation>
-				<top>10</top>
+				<top>15</top>
 				<left>20</left>
-				<width>120</width>
-				<height>94</height>
+				<width>125</width>
+				<height>70</height>
 				<aspectratio>keep</aspectratio>
 				<texture background="true" colordiffuse="" fallback="flags/default/studio-fallback.png">$VAR[StudioIconsVar]</texture>
 			</control>
 			<control type="image">
 				<visible>!ListItem.IsParentFolder + Skin.HasSetting(MediaFlagsColored)</visible>
 				<animation effect="fade" end="70" condition="true">conditional</animation>
-				<top>10</top>
+				<top>15</top>
 				<left>20</left>
-				<width>120</width>
-				<height>94</height>
+				<width>125</width>
+				<height>70</height>
 				<aspectratio>keep</aspectratio>
 				<texture background="true" fallback="flags/colored/studio-fallback.png">$VAR[StudioIconsVar]</texture>
 			</control>
 			<control type="label">
 				<animation effect="slide" end="0,21" condition="String.IsEmpty(ListItem.Genre)">Conditional</animation>
-				<top>15</top>
+				<top>10</top>
 				<left>160</left>
 				<height>40</height>
 				<label fallback="..">$INFO[ListItem.Label]</label>
@@ -130,9 +130,9 @@
 			</control>
 			<control type="label">
 				<animation effect="fade" end="70" condition="true">conditional</animation>
-				<top>64</top>
+				<bottom>10</bottom>
 				<left>160</left>
-				<height>30</height>
+				<height>40</height>
 				<font>Font28_Reg</font>
 				<label>$INFO[ListItem.Genre]</label>
 				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
@@ -150,40 +150,40 @@
 				<texture colordiffuse="$VAR[PanelHighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
 			</control>
 		</itemlayout>
-		<focusedlayout height="114" condition="Container.Content(movies) | Container.Content(tvshows)">
+		<focusedlayout height="100" condition="Container.Content(movies) | Container.Content(tvshows)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
 			</control>
 			<control type="image">
 				<visible>ListItem.IsParentFolder</visible>
-				<left>20</left>
 				<top>10</top>
-				<width>120</width>
-				<height>94</height>
+				<left>20</left>
+				<width>125</width>
+				<height>80</height>
 				<aspectratio>keep</aspectratio>
 				<texture>DefaultFolderBack.png</texture>
 			</control>
 			<control type="image">
 				<visible>!ListItem.IsParentFolder + !Skin.HasSetting(MediaFlagsColored)</visible>
-				<top>10</top>
+				<top>15</top>
 				<left>20</left>
-				<width>120</width>
-				<height>94</height>
+				<width>125</width>
+				<height>70</height>
 				<aspectratio>keep</aspectratio>
 				<texture background="true" colordiffuse="" fallback="flags/default/studio-fallback.png">$VAR[StudioIconsVar]</texture>
 			</control>
 			<control type="image">
 				<visible>!ListItem.IsParentFolder + Skin.HasSetting(MediaFlagsColored)</visible>
-				<top>10</top>
+				<top>15</top>
 				<left>20</left>
-				<width>120</width>
-				<height>94</height>
+				<width>125</width>
+				<height>70</height>
 				<aspectratio>keep</aspectratio>
 				<texture background="true" fallback="flags/colored/studio-fallback.png">$VAR[StudioIconsVar]</texture>
 			</control>
 			<control type="label">
 				<animation effect="slide" end="0,21" condition="String.IsEmpty(ListItem.Genre)">Conditional</animation>
-				<top>15</top>
+				<top>10</top>
 				<left>160</left>
 				<height>40</height>
 				<label fallback="..">$INFO[ListItem.Label]</label>
@@ -192,9 +192,9 @@
 			</control>
 			<control type="label">
 				<animation effect="fade" end="70" condition="true">conditional</animation>
-				<top>64</top>
+				<bottom>10</bottom>
 				<left>160</left>
-				<height>30</height>
+				<height>40</height>
 				<font>Font28_Reg</font>
 				<label>$INFO[ListItem.Genre]</label>
 				<textcolor>$VAR[PanelTextColorVar]</textcolor>
@@ -631,13 +631,16 @@
 	<include name="ViewListInfo">
 		<itemgap>10</itemgap>
 		<usecontrolcoords>true</usecontrolcoords>
-		<control type="label">
+		<control type="fadelabel">
 			<height>30</height>
-			<font>Font30_Reg</font>
+			<scroll>true</scroll>
+			<font>Font28_Reg</font>
 			<textcolor>$VAR[MainMenuHighlightColorVar]</textcolor>
 			<label>$VAR[ListViewTitleVar]</label>
 		</control>
 		<control type="grouplist">
+			<visible>!String.IsEmpty(Control.GetLabel(5301)) | !String.IsEmpty(Control.GetLabel(5302)) | !String.IsEmpty(Control.GetLabel(5303))</visible>
+			<top>-4</top>
 			<height>37</height>
 			<usecontrolcoords>true</usecontrolcoords>
 			<orientation>horizontal</orientation>
@@ -650,10 +653,84 @@
 			<control type="label" id="5301">
 				<top>-2</top>
 				<width>auto</width>
+				<font>Font26_Reg</font>
+				<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+				<label>$VAR[ListViewInfo1Var]</label>
+			</control>
+			<control type="image">
+				<visible>!String.IsEmpty(Control.GetLabel(5302))</visible>
+				<width>28</width>
+				<aspectratio>keep</aspectratio>
+				<texture>$VAR[ListViewIcon2Var]</texture>
+			</control>
+			<control type="label" id="5302">
+				<top>-2</top>
+				<width>auto</width>
+				<font>Font26_Reg</font>
+				<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+				<label>$VAR[ListViewInfo2Var]</label>
+			</control>
+			<control type="image">
+				<visible>!String.IsEmpty(Control.GetLabel(5303))</visible>
+				<width>28</width>
+				<aspectratio>keep</aspectratio>
+				<texture>$VAR[ListViewIcon3Var]</texture>
+			</control>
+			<control type="label" id="5303">
+				<top>-2</top>
+				<width>auto</width>
+				<font>Font26_Reg</font>
+				<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+				<label>$VAR[ListViewInfo3Var]</label>
+			</control>
+			<control type="image">
+				<visible>!String.IsEmpty(ListItem.Top250)</visible>
+				<width>52</width>
+				<aspectratio>keep</aspectratio>
+				<texture>$VAR[IconPathVar]imdb.png</texture>
+			</control>
+			<control type="label">
+				<top>-2</top>
+				<width>auto</width>
+				<font>Font28_Reg</font>
+				<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+				<label>$INFO[ListItem.Top250, #,]</label>
+			</control>
+		</control>
+	</include>
+	<include name="View3PanelListInfo">
+		<itemgap>10</itemgap>
+		<usecontrolcoords>true</usecontrolcoords>
+		<control type="fadelabel">
+			<height>30</height>
+			<scroll>true</scroll>
+			<font>Font30_Reg</font>
+			<textcolor>$VAR[MainMenuHighlightColorVar]</textcolor>
+			<label>$VAR[ListViewTitleVar]</label>
+		</control>
+		<control type="grouplist">
+			<visible>!String.IsEmpty(Control.GetLabel(5301))</visible>
+			<height>37</height>
+			<usecontrolcoords>true</usecontrolcoords>
+			<orientation>horizontal</orientation>
+			<control type="image">
+				<width>28</width>
+				<aspectratio>keep</aspectratio>
+				<texture>$VAR[ListViewIcon1Var]</texture>
+			</control>
+			<control type="label" id="5301">
+				<top>-2</top>
+				<width>auto</width>
 				<font>Font28_Reg</font>
 				<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
 				<label>$VAR[ListViewInfo1Var]</label>
 			</control>
+		</control>
+		<control type="grouplist">
+			<visible>!String.IsEmpty(Control.GetLabel(5302)) | !String.IsEmpty(Control.GetLabel(5303))</visible>
+			<height>37</height>
+			<usecontrolcoords>true</usecontrolcoords>
+			<orientation>horizontal</orientation>
 			<control type="image">
 				<visible>!String.IsEmpty(Control.GetLabel(5302))</visible>
 				<width>28</width>
@@ -1142,8 +1219,9 @@
 				<height>796</height>
 				<itemgap>10</itemgap>
 				<usecontrolcoords>true</usecontrolcoords>
-				<control type="label">
+				<control type="fadelabel">
 					<height>30</height>
+					<scroll>true</scroll>
 					<font>Font30_Reg</font>
 					<textcolor>$VAR[MainMenuHighlightColorVar]</textcolor>
 					<label>$VAR[ListViewTitleVar]</label>

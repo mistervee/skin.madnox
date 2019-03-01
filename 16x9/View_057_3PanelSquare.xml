@@ -38,50 +38,23 @@
 				<right>120</right>
 				<width>409</width>
 				<height>796</height>
-				<itemgap>10</itemgap>
-				<usecontrolcoords>true</usecontrolcoords>
-				<control type="label">
-					<height>30</height>
-					<font>Font30_Reg</font>
-					<textcolor>$VAR[MainMenuHighlightColorVar]</textcolor>
-					<label>$VAR[ListViewTitleVar]</label>
-				</control>
-				<control type="grouplist">
-					<height>37</height>
-					<usecontrolcoords>true</usecontrolcoords>
-					<orientation>horizontal</orientation>
-					<control type="image">
-						<visible>!String.IsEmpty(Control.GetLabel(5301))</visible>
-						<width>28</width>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[3PanelViewIcon1Var]</texture>
-					</control>
-					<control type="label" id="5301">
-						<top>-2</top>
-						<width>auto</width>
-						<font>Font28_Reg</font>
-						<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
-						<label>$VAR[3PanelViewInfo1Var]</label>
-					</control>
-					<control type="image">
-						<visible>!String.IsEmpty(Control.GetLabel(5303))</visible>
-						<width>28</width>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ListViewIcon3Var]</texture>
-					</control>
-					<control type="label" id="5303">
-						<top>-2</top>
-						<width>auto</width>
-						<font>Font28_Reg</font>
-						<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
-						<label>$VAR[ListViewInfo3Var]</label>
-					</control>
-				</control>
+				<include>View3PanelListInfo</include>
 				<control type="textbox">
+					<visible>String.IsEmpty(Control.GetLabel(5301)) | [String.IsEmpty(Control.GetLabel(5302)) + String.IsEmpty(Control.GetLabel(53031))]</visible>
 					<top>1</top>
 					<height>276</height>
 					<align>left</align>
 					<font>Font30_Reg_97</font>
+					<label>$VAR[ViewPlotVar]</label>
+					<pagecontrol>60571</pagecontrol>
+					<include>AutoScrollPlot</include>
+				</control>
+				<control type="textbox">
+					<visible>!String.IsEmpty(Control.GetLabel(5301)) + [!String.IsEmpty(Control.GetLabel(5302)) | !String.IsEmpty(Control.GetLabel(53031))]</visible>
+					<top>1</top>
+					<height>230</height>
+					<align>left</align>
+					<font>Font30_Reg_107</font>
 					<label>$VAR[ViewPlotVar]</label>
 					<pagecontrol>60571</pagecontrol>
 					<include>AutoScrollPlot</include>

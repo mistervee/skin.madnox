@@ -16,7 +16,8 @@
 			</include>
 			<control type="grouplist" id="100">
 				<width>280</width>
-				<height>1080</height>
+				<height>1020</height>
+				<pagecontrol>60</pagecontrol>
 				<onright>Dialog.Close(1116)</onright>
 				<onback>Dialog.Close(1116)</onback>
 				<!-- List -->
@@ -319,6 +320,37 @@
 					<onclick>Container.SetViewMode(59)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control> -->
+			</control>
+			<control type="group">
+				<visible>Container(100).HasNext | Container(100).HasPrevious</visible>
+				<top>1020</top>
+				<height>60</height>
+				<control type="scrollbar" id="60">
+					<include>HiddenObject</include>
+				</control>
+				<control type="button">
+					<width>140</width>
+					<label></label>
+					<align>center</align>
+					<font>Font45_Icon</font>
+					<onclick>PageUp(60)</onclick>
+					<textcolor>$VAR[MediaMenuTextColorVar]</textcolor>
+					<focusedcolor>$VAR[MediaMenuFocusTextColorVar]</focusedcolor>
+					<texturefocus border="10" colordiffuse="$VAR[MediaMenuHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
+					<texturenofocus />
+				</control>
+				<control type="button">
+					<left>140</left>
+					<width>140</width>
+					<label></label>
+					<align>center</align>
+					<font>Font45_Icon</font>
+					<onclick>PageDown(60)</onclick>
+					<textcolor>$VAR[MediaMenuTextColorVar]</textcolor>
+					<focusedcolor>$VAR[MediaMenuFocusTextColorVar]</focusedcolor>
+					<texturefocus border="10" colordiffuse="$VAR[MediaMenuHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
+					<texturenofocus />
+				</control>
 			</control>
 		</control>
 	</controls>
