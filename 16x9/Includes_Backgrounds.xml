@@ -6,6 +6,12 @@
 		<param name="posterbackgroundcontent"></param>
 		<param name="posterbackgroundcase"></param>
 		<definition>
+			<control type="wraplist" id="9034">
+				<visible>Window.IsVisible(Home) + String.StartsWith(Container(9000).ListItem.Property(background),s:playlist)</visible>
+				<include>HiddenList</include>
+				<content sortby="random">$INFO[Container(9000).ListItem.Property(backgroundPlaylist)]</content>
+				<autoscroll time="7000" delay="7000" repeat="7000">True</autoscroll>
+			</control>
 			<!-- Now Playing -->
 			<control type="videowindow">
 				<visible>Player.HasVideo + !Skin.HasSetting(NowplayingDisableVideoBackground)</visible>
@@ -55,7 +61,7 @@
 					<randomize>true</randomize>
 					<fadetime>TextureFadeTime</fadetime>
 				</control>
-				<include condition="Window.IsActive(Home)">skinshortcuts-template-LiveBackgroundHome</include>
+				<!-- <include condition="Window.IsActive(Home)">skinshortcuts-template-LiveBackgroundHome</include> -->
 			</control>
 			<!-- Overlay -->
 			<control type="image">

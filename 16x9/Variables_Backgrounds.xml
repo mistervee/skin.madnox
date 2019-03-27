@@ -2,66 +2,41 @@
 <includes>
 	<variable name="HomeFanartVar">
 		<value condition="ControlGroup(90010).HasFocus + !String.IsEmpty(Container(9000).ListItem.Property(WidgetType)) + !String.IsEmpty(Container.ListItem.Art(fanart))">$INFO[Container.ListItem.Art(fanart)]</value>
+		<value condition="!String.IsEmpty(Container(9000).ListItem.Property(backgroundPlaylist))">$INFO[Container(9034).ListItem.Art(fanart)]</value>
 		<value condition="!String.IsEmpty(Container(9000).ListItem.Property(background))">$INFO[Container(9000).ListItem.Property(background)]</value>
 		<value>special://skin/extras/backgrounds/movies.jpg</value>
 	</variable>
 	<variable name="VideoBackgroundVar">
-		<value condition="String.IsEqual(Skin.String(VideoBackground),None)"></value>
-		<value condition="Skin.HasSetting(VideoExtraFanart) + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.ExtraFanArt))">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.ExtraFanArt)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
-		<value condition="String.Contains(Skin.String(VideoBackground),VAR)">$VAR[VideoBackground]</value>
-		<value condition="!String.IsEmpty(Skin.String(VideoBackground))">$INFO[Skin.String(VideoBackground.path)]</value>
 		<value>special://skin/extras/backgrounds/videos.jpg</value>
 	</variable>
 	<variable name="PVRBackgroundVar">
-		<value condition="String.IsEqual(Skin.String(PVRBackground),None)"></value>
 		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
-		<value condition="String.Contains(Skin.String(PVRBackground),VAR)">$VAR[PVRBackground]</value>
-		<value condition="!String.IsEmpty(Skin.String(PVRBackground))">$INFO[Skin.String(PVRBackground.path)]</value>
 		<value>special://skin/extras/backgrounds/tv.jpg</value>
 	</variable>
 	<variable name="MusicBackgroundVar">
-		<value condition="String.IsEqual(Skin.String(MusicBackground),None)"></value>
-		<value condition="Skin.HasSetting(MusicExtraFanart) + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.ExtraFanArt))">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.ExtraFanArt)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
-		<value condition="String.Contains(Skin.String(MusicBackground),VAR)">$VAR[MusicBackground]</value>
-		<value condition="!String.IsEmpty(Skin.String(MusicBackground))">$INFO[Skin.String(MusicBackground.path)]</value>
 		<value>special://skin/extras/backgrounds/music.jpg</value>
 	</variable>
 	<variable name="GamesBackgroundVar">
-		<value condition="String.IsEqual(Skin.String(GamesBackground),None)"></value>
 		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
-		<value condition="String.Contains(Skin.String(GamesBackground),VAR)">$VAR[GamesBackground]</value>
-		<value condition="!String.IsEmpty(Skin.String(GamesBackground))">$INFO[Skin.String(GamesBackground.path)]</value>
 		<value>special://skin/extras/backgrounds/games.jpg</value>
 	</variable>
 	<variable name="PicturesBackgroundVar">
-		<value condition="String.IsEqual(Skin.String(PicturesBackground),None)"></value>
 		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
-		<value condition="String.Contains(Skin.String(PicturesBackground),VAR)">$VAR[PicturesBackground]</value>
-		<value condition="!String.IsEmpty(Skin.String(PicturesBackground))">$INFO[Skin.String(PicturesBackground.path)]</value>
 		<value>special://skin/extras/backgrounds/pictures.jpg</value>
 	</variable>
 	<variable name="WeatherBackgroundVar">
-		<value condition="String.IsEqual(Skin.String(WeatherBackground),None)"></value>
-		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
-		<value condition="String.Contains(Skin.String(WeatherBackground),VAR)">$VAR[WeatherBackground]</value>
-		<value condition="!String.IsEmpty(Skin.String(WeatherBackground))">$INFO[Skin.String(WeatherBackground.path)]</value>
+		<value condition="!String.IsEmpty(Skin.String(WeatherFanart.path))">$INFO[Skin.String(WeatherFanart.path)]$INFO[Weather.fanartcode]$INFO[Skin.String(WeatherFanart.ext)]</value>
 		<value>special://skin/extras/backgrounds/weather.jpg</value>
 	</variable>
 	<variable name="SystemBackgroundVar">
-		<value condition="String.IsEqual(Skin.String(SystemBackground),None)"></value>
-		<value condition="String.Contains(Skin.String(SystemBackground),VAR)">$VAR[SystemBackground]</value>
-		<value condition="!String.IsEmpty(Skin.String(SystemBackground))">$INFO[Skin.String(SystemBackground.path)]</value>
 		<value>special://skin/extras/backgrounds/system.jpg</value>
 	</variable>
 	<!-- Addon -->
 	<variable name="AddonBackgroundVar">
-		<value condition="String.IsEqual(Skin.String(AddonBackground),None)"></value>
 		<value condition="Window.IsActive(1114) + !String.IsEmpty(Container(51).ListItem.Art(fanart)) + Control.HasFocus(51)">$INFO[Container(51).ListItem.Art(fanart)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
-		<value condition="String.Contains(Skin.String(AddonBackground),VAR)">$VAR[AddonBackground]</value>
-		<value condition="!String.IsEmpty(Skin.String(AddonBackground))">$INFO[Skin.String(AddonBackground.path)]</value>
 		<value>special://skin/extras/backgrounds/addons.jpg</value>
 	</variable>
 	<!-- Poster Vars-->

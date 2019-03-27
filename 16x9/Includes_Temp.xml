@@ -44,7 +44,7 @@
 					<description>background image</description>
 					<width>1920</width>
 					<height>88</height>
-					<texture colordiffuse="$VAR[TopbarTextureColorVar]">$VAR[TopbarTextureVar]</texture>
+					<texture border="1" colordiffuse="$VAR[TopbarTextureColorVar]">$VAR[TopbarTextureVar]</texture>
 				</control>
 				<control type="progress">
 					<visible>Player.HasMedia + !Skin.HasSetting(DisableTopbarNowPlayingProgress) + !String.IsEqual(Skin.String(TopbarTexture.texture),shadow)</visible>
@@ -554,8 +554,16 @@
 		<param name="heighttexture">880</param>
 		<param name="diffusetexture">diffuse/rounded20-1720x880.png</param>
 		<param name="reflect">true</param>
-		<param name="reflecttop">970</param>
+		<param name="reflecttop">965</param>
 		<definition>
+			<control type="image">
+				<left>$PARAM[left]</left>
+				<right>$PARAM[right]</right>
+				<top>$PARAM[reflecttop]</top>
+				<height>$PARAM[height]</height>
+				<texture flipy="true" diffuse="panels/windows/reflect.png" colordiffuse="$VAR[PanelStyleColorVar]" border="40">$VAR[PanelStyleVar]</texture>
+				<visible>$PARAM[reflect]</visible>
+			</control>
 			<control type="image">
 				<left>$PARAM[left]</left>
 				<right>$PARAM[right]</right>
@@ -595,14 +603,6 @@
 				<height>$PARAM[height]</height>
 				<texture colordiffuse="$VAR[PanelEmbossColorVar]" border="40">$VAR[PanelEmbossVar]</texture>
 			</control>
-			<control type="image">
-				<left>$PARAM[left]</left>
-				<right>$PARAM[right]</right>
-				<top>$PARAM[reflecttop]</top>
-				<height>$PARAM[height]</height>
-				<texture flipy="true" diffuse="panels/windows/reflect.png" colordiffuse="$VAR[PanelStyleColorVar]" border="40">$VAR[PanelStyleVar]</texture>
-				<visible>$PARAM[reflect]</visible>
-			</control>
 		</definition>
 	</include>
 	<!-- Panels -->
@@ -622,17 +622,25 @@
 		<definition>
 			<control type="image">
 				<left>$PARAM[left]</left>
-				<top>$PARAM[top]</top>
+				<top>$PARAM[reflecttop]</top>
 				<width>$PARAM[width]</width>
 				<height>$PARAM[height]</height>
-				<texture flipx="$PARAM[flipx]" colordiffuse="$VAR[PanelShadowColorVar]" border="40">$VAR[HalfPanelShadowVar]</texture>
+				<texture flipx="$PARAM[flipx]" flipy="true" diffuse="panels/windows/reflect.png" colordiffuse="$VAR[PanelStyleColorVar]" border="40">$VAR[HalfPanelStyleVar]</texture>
+				<visible>$PARAM[reflect]</visible>
 			</control>
 			<control type="image">
 				<left>$PARAM[left]</left>
 				<top>$PARAM[top]</top>
 				<width>$PARAM[width]</width>
 				<height>$PARAM[height]</height>
-				<texture flipx="$PARAM[flipx]" colordiffuse="$VAR[PanelStyleColorVar]" border="40">$VAR[HalfPanelStyleVar]</texture>
+				<texture flipx="$PARAM[flipx]" colordiffuse="$VAR[PanelShadowColorVar]" border="50">$VAR[HalfPanelShadowVar]</texture>
+			</control>
+			<control type="image">
+				<left>$PARAM[left]</left>
+				<top>$PARAM[top]</top>
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<texture flipx="$PARAM[flipx]" colordiffuse="$VAR[PanelStyleColorVar]" border="60">$VAR[HalfPanelStyleVar]</texture>
 			</control>
 			<control type="image">
 				<left>$PARAM[lefttexture]</left>
@@ -658,14 +666,6 @@
 				<width>$PARAM[width]</width>
 				<height>$PARAM[height]</height>
 				<texture flipx="$PARAM[flipx]" colordiffuse="$VAR[PanelEmbossColorVar]" border="40">$VAR[HalfPanelEmbossVar]</texture>
-			</control>
-			<control type="image">
-				<left>$PARAM[left]</left>
-				<top>$PARAM[reflecttop]</top>
-				<width>$PARAM[width]</width>
-				<height>$PARAM[height]</height>
-				<texture flipx="$PARAM[flipx]" flipy="true" diffuse="panels/windows/reflect.png" colordiffuse="$VAR[PanelStyleColorVar]" border="40">$VAR[HalfPanelStyleVar]</texture>
-				<visible>$PARAM[reflect]</visible>
 			</control>
 		</definition>
 	</include>

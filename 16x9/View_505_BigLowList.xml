@@ -7,18 +7,18 @@
 			<include>AnimationSlideBottomVisible</include>
 			<!-- Panel -->
 			<include content="PanelWide">
-				<param name="top">594</param>
-				<param name="toptexture">614</param>
-				<param name="topshadow">594</param>
-				<param name="height">486</param>
-				<param name="heighttexture">466</param>
+				<param name="top">550</param>
+				<param name="toptexture">570</param>
+				<param name="topshadow">550</param>
+				<param name="height">530</param>
+				<param name="heighttexture">510</param>
 			</include>
 			<!-- List -->
 			<control type="fixedlist" id="505">
-				<left>508</left>
+				<left>520</left>
 				<bottom>10</bottom>
-				<width>859</width>
-				<height>456</height>
+				<width>847</width>
+				<height>500</height>
 				<onleft>9050</onleft>
 				<onright>60505</onright>
 				<pagecontrol>60505</pagecontrol>
@@ -36,9 +36,9 @@
 				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
 			</control>
 			<control type="image">
-				<bottom>98</bottom>
+				<bottom>108</bottom>
 				<right>0</right>
-				<width>553</width>
+				<width>552</width>
 				<height>4</height>
 				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-horizontal.png</texture>
 			</control>
@@ -52,7 +52,7 @@
 			<!-- Art -->
 			<include>ViewLowListArt</include>
 			<control type="image">
-				<bottom>476</bottom>
+				<bottom>520</bottom>
 				<right>10</right>
 				<width>532</width>
 				<height>200</height>
@@ -62,17 +62,27 @@
 			</control>
 			<!-- Info -->
 			<control type="grouplist">
-				<top>629</top>
+				<top>585</top>
 				<right>20</right>
 				<width>510</width>
 				<height>796</height>
 				<include>ViewListInfo</include>
 				<control type="textbox">
+					<visible>!Container.Content(artists)</visible>
 					<top>1</top>
-					<height>241</height>
-					<font>Font30_Reg_95</font>
+					<height>279</height>
+					<font>Font28_Reg_105</font>
 					<label>$VAR[ViewPlotVar]</label>
-					<pagecontrol>605051</pagecontrol>
+					<pagecontrol>60551</pagecontrol>
+					<include>AutoScrollPlot</include>
+				</control>
+				<control type="textbox">
+					<visible>Container.Content(artists)</visible>
+					<top>1</top>
+					<height>359</height>
+					<font>Font28_Reg_105</font>
+					<label>$VAR[ViewPlotVar]</label>
+					<pagecontrol>60551</pagecontrol>
 					<include>AutoScrollPlot</include>
 				</control>
 			</control>

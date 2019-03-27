@@ -14,13 +14,12 @@
 	<include file="Includes_Home.xml"/>
 	<include file="Includes_NowPlaying.xml"/>
 	<include file="script-skinshortcuts-includes.xml" />
-	<include file="script-skin_helper_service-includes.xml" />
 	<include file="Includes_MediaFlags.xml"/>
 	<include file="Includes_MediaMenu.xml"/>
 	<include file="Includes_Views.xml"/>
 	<include file="View_050_PosterList.xml"/>
 	<include file="View_051_SimpleList.xml"/>
-	<include file="View_052_TwinList.xml"/>
+	<!-- <include file="View_052_TwinList.xml"/> -->
 	<include file="View_053_InfoList1.xml"/>
 	<include file="View_054_InfoList2.xml"/>
 	<include file="View_055_LowList.xml"/>
@@ -28,7 +27,7 @@
 	<include file="View_057_3PanelSquare.xml"/>
 	<include file="View_500_BigPosterList.xml"/>
 	<include file="View_501_BigSimpleList.xml"/>
-	<include file="View_502_BigTwinList.xml"/>
+	<!-- <include file="View_502_BigTwinList.xml"/> -->
 	<include file="View_503_BigInfoList1.xml"/>
 	<include file="View_504_BigInfoList2.xml"/>
 	<include file="View_505_BigLowList.xml"/>
@@ -65,12 +64,6 @@
 	<expression name="PVRAnimationCloseCondition">![Window.Next(MyPVRChannels.xml) | Window.Next(MyPVRGuide.xml) | Window.Next(MyPVRRecordings.xml) | Window.Next(MyPVRSearch.xml) | Window.Next(MyPVRTimers.xml)]</expression>
 	<include name="onunload_SkinSettings">
 		<onunload condition="Window.IsActive(startup) + System.HasAddon(script.tv.show.next.aired)">RunScript(script.tv.show.next.aired,silent=True)</onunload>
-		<onunload condition="!Skin.HasSetting(SkinHelper.EnableMusicArt)">Skin.SetBool(SkinHelper.EnableMusicArt)</onunload>
-		<onunload condition="!Skin.HasSetting(SkinHelper.EnableExtraFanart)">Skin.SetBool(SkinHelper.EnableExtraFanart)</onunload>
-		<onunload condition="!Skin.HasSetting(SkinHelper.EnableExtendedArt)">Skin.SetBool(SkinHelper.EnableExtendedArt)</onunload>
-		<onunload condition="!Skin.HasSetting(SkinHelper.EnableAddonsLookups)">Skin.SetBool(SkinHelper.EnableAddonsLookups)</onunload>
-		<onunload condition="!Skin.HasSetting(SkinHelper.EnablePVRThumbs)">Skin.SetBool(SkinHelper.EnablePVRThumbs)</onunload>
-		<onunload condition="!Skin.HasSetting(SkinHelper.RandomFanartDelay)">Skin.SetString(SkinHelper.RandomFanartDelay,10)</onunload>
 		<onunload condition="!Skin.HasSetting(SmartShortcuts.playlists)">Skin.SetBool(SmartShortcuts.playlists)</onunload>
 	</include>
 </includes>

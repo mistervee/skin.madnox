@@ -6,14 +6,14 @@
 			<visible>Control.IsVisible(54)</visible>
 			<include>ViewInfo2ListArt</include>
 			<control type="grouplist">
-				<animation effect="slide" end="0,-40" condition="![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]">Conditional</animation>
+				<animation effect="slide" end="0,-40" condition="![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Window.IsActive(MyPVRRecordings.xml)]">Conditional</animation>
 				<top>538</top>
 				<right>125</right>
 				<width>813</width>
 				<height>800</height>
 				<include>ViewListInfo</include>
 				<control type="textbox">
-					<visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+					<visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Window.IsActive(MyPVRRecordings.xml)</visible>
 					<top>1</top>
 					<height>263</height>
 					<font>Font28_Reg_098</font>
@@ -22,12 +22,20 @@
 					<include>AutoScrollPlot</include>
 				</control>
 				<control type="textbox">
-					<visible>![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
+					<visible>![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Window.IsActive(MyPVRRecordings.xml) | Container.Content(artists)]</visible>
 					<top>1</top>
 					<height>303</height>
 					<font>Font28_Reg</font>
 					<label>$VAR[ViewPlotVar]</label>
 					<pagecontrol>60541</pagecontrol>
+					<include>AutoScrollPlot</include>
+				</control>
+				<control type="textbox">
+					<visible>Container.Content(artists)</visible>
+					<height>347</height>
+					<font>Font28_Reg_112</font>
+					<label>$VAR[ViewPlotVar]</label>
+					<pagecontrol>60531</pagecontrol>
 					<include>AutoScrollPlot</include>
 				</control>
 			</control>

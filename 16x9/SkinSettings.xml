@@ -429,6 +429,12 @@
 							<label>$LOCALIZE[31056]</label>
 							<include>SettingsLabel</include>
 						</control>
+						<control type="button" id="390">
+							<label>Media flag</label>
+							<label2>[COLOR $VAR[PanelMediaFlagColorVar]]$VAR[PanelMediaFlagLabelVar][/COLOR]</label2>
+							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=PanelMediaFlag.color,header=Media Flag)</onclick>
+							<include>SettingsButton</include>
+						</control>
 						<control type="button" id="302">
 							<label>$LOCALIZE[736]</label>
 							<label2>[COLOR $VAR[PanelStyleColorVar]]$VAR[PanelStyleColorLabelVar][/COLOR]</label2>
@@ -910,6 +916,8 @@
 						</control>
 						<control type="radiobutton" id="404">
 							<label>$LOCALIZE[31181]</label>
+							<onclick>Skin.ToggleSetting(NowplayingDisableVideoBackground)</onclick>
+							<selected>!Skin.HasSetting(NowplayingDisableVideoBackground)</selected>
 							<include>SettingsRadioButton</include>
 						</control>
 						<control type="label" id="405">

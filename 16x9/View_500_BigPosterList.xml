@@ -5,10 +5,10 @@
 		<control type="group">
 			<visible>Control.IsVisible(500)</visible>
 			<include content="AnimationSlideLeftWindow">
-				<param name="slide">1243</param>
+				<param name="slide">1338</param>
 			</include>
-			<include content="AnimationZoomVisible">
-				<param name="slide">1243</param>
+			<include content="AnimationSlideLeftVisible">
+				<param name="slide">1338</param>
 			</include>
 			<include content="PanelDefault">
 				<param name="right">662</param>
@@ -18,20 +18,22 @@
 			</include>
 			<control type="panel" id="500">
 				<left>100</left>
-				<top>141</top>
+				<top>140</top>
 				<width>1138</width>
-				<height>798</height>
+				<height>800</height>
 				<onleft>9050</onleft>
 				<onright>60500</onright>
 				<pagecontrol>60500</pagecontrol>
 				<viewtype label="$LOCALIZE[31214]">biglist</viewtype>
-				<include>ViewContainerBigList</include>
+				<include condition="!Window.IsVisible(MyPlaylist.xml) + !$EXP[AreaVisiblePVR]">ViewContainerBigList2</include>
+				<include condition="$EXP[AreaVisiblePVR]">ViewContainerPVRBigList2</include>
+				<include condition="Window.IsVisible(MyPlaylist.xml)">ViewContainerPlaylistBigList2</include>
 			</control>
 			<control type="scrollbar" id="60500">
 				<left>1218</left>
 				<top>140</top>
 				<bottom>140</bottom>
-				<onleft>50</onleft>
+				<onleft>500</onleft>
 			</control>
 		</control>
 		<!-- Right Content -->
