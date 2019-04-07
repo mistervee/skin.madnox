@@ -6,42 +6,44 @@
 			<visible>Control.IsVisible(54)</visible>
 			<include>ViewInfo2ListArt</include>
 			<control type="grouplist">
-				<animation effect="slide" end="0,-40" condition="![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Window.IsActive(MyPVRRecordings.xml)]">Conditional</animation>
-				<top>538</top>
+				<animation effect="slide" end="0,-39" condition="![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]">Conditional</animation>
+				<top>536</top>
 				<right>125</right>
 				<width>813</width>
-				<height>800</height>
+				<height>400</height>
 				<include>ViewListInfo</include>
 				<control type="textbox">
-					<visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Window.IsActive(MyPVRRecordings.xml)</visible>
-					<top>1</top>
-					<height>263</height>
-					<font>Font28_Reg_098</font>
-					<label>$VAR[ViewPlotVar]</label>
-					<pagecontrol>60541</pagecontrol>
-					<include>AutoScrollPlot</include>
-				</control>
-				<control type="textbox">
-					<visible>![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Window.IsActive(MyPVRRecordings.xml) | Container.Content(artists)]</visible>
-					<top>1</top>
-					<height>303</height>
+					<visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+					<top>2</top>
+					<height>266</height>
 					<font>Font28_Reg</font>
 					<label>$VAR[ViewPlotVar]</label>
 					<pagecontrol>60541</pagecontrol>
 					<include>AutoScrollPlot</include>
+					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 				</control>
 				<control type="textbox">
-					<visible>Container.Content(artists)</visible>
-					<height>347</height>
-					<font>Font28_Reg_112</font>
+					<visible>![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
+					<top>2</top>
+					<height>305</height>
+					<font>Font28_Reg</font>
 					<label>$VAR[ViewPlotVar]</label>
-					<pagecontrol>60531</pagecontrol>
+					<pagecontrol>60542</pagecontrol>
 					<include>AutoScrollPlot</include>
+					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 				</control>
 			</control>
 			<control type="scrollbar" id="60541">
+				<visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
 				<right>80</right>
-				<top>602</top>
+				<top>619</top>
+				<bottom>195</bottom>
+				<onleft>6054</onleft>
+			</control>
+			<control type="scrollbar" id="60542">
+				<visible>![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
+				<right>80</right>
+				<top>580</top>
 				<bottom>195</bottom>
 				<onleft>6054</onleft>
 			</control>
@@ -58,7 +60,7 @@
 			<include content="PanelDefault">
 				<param name="right">943</param>
 				<param name="righttexture">963</param>
-				<param name="diffusetexture">diffuse/rounded20-835x880.png</param>
+				<param name="diffusetexture">diffuse/rounded20-837x880.png</param>
 				<param name="reflect">!Skin.HasSetting(View507HideFloor)</param>
 			</include>
 			<control type="group">
@@ -79,7 +81,8 @@
 					<top>140</top>
 					<bottom>140</bottom>
 					<onleft>54</onleft>
-					<onright>60541</onright>
+					<onright condition="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)">60541</onright>
+					<onright condition="![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]">60542</onright>
 				</control>
 			</control>
 		</control>

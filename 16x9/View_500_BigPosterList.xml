@@ -13,7 +13,7 @@
 			<include content="PanelDefault">
 				<param name="right">662</param>
 				<param name="righttexture">682</param>
-				<param name="diffusetexture">diffuse/rounded20-1124x880.png</param>
+				<param name="diffusetexture">diffuse/rounded20-1138x880.png</param>
 				<param name="reflect">!Skin.HasSetting(ViewsHideFloor)</param>
 			</include>
 			<control type="panel" id="500">
@@ -27,7 +27,7 @@
 				<viewtype label="$LOCALIZE[31214]">biglist</viewtype>
 				<include condition="!Window.IsVisible(MyPlaylist.xml) + !$EXP[AreaVisiblePVR]">ViewContainerBigList2</include>
 				<include condition="$EXP[AreaVisiblePVR]">ViewContainerPVRBigList2</include>
-				<include condition="Window.IsVisible(MyPlaylist.xml)">ViewContainerPlaylistBigList2</include>
+				<include condition="Window.IsVisible(MyPlaylist.xml)">ViewContainerPlaylistBigList</include>
 			</control>
 			<control type="scrollbar" id="60500">
 				<left>1218</left>
@@ -39,7 +39,8 @@
 		<!-- Right Content -->
 		<control type="group">
 			<visible>Control.IsVisible(500)</visible>
-			<include>ViewPosterListArt</include>
+			<include condition="!$EXP[AreaVisiblePVR]">ViewPosterListArt</include>
+			<include condition="$EXP[AreaVisiblePVR]">ViewPosterListPVRArt</include>
 		</control>
 	</include>
 </includes>

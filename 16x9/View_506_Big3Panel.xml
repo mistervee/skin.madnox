@@ -40,28 +40,55 @@
 				<height>635</height>
 				<include>View3PanelListInfo</include>
 				<control type="textbox">
-					<visible>!Container.Content(seasons)</visible>
-					<height>589</height>
+					<visible>![String.IsEqual(ListItem.DBTYPE,set) | Container.Content(seasons)]</visible>
+					<top>-2</top>
+					<height>478</height>
 					<align>left</align>
-					<font>Font28_Reg</font>
+					<font>Font28_Reg_105</font>
 					<label>$VAR[ViewPlotVar]</label>
 					<pagecontrol>605061</pagecontrol>
 					<include>AutoScrollPlot</include>
 				</control>
 				<control type="textbox">
-					<visible>Container.Content(seasons)</visible>
-					<height>589</height>
+					<visible>String.IsEqual(ListItem.DBTYPE,set)</visible>
+					<top>-2</top>
+					<height>517</height>
 					<align>left</align>
-					<font>Font28_Reg_112</font>
+					<font>Font28_Reg_105</font>
 					<label>$VAR[ViewPlotVar]</label>
-					<pagecontrol>605061</pagecontrol>
+					<pagecontrol>605062</pagecontrol>
+					<include>AutoScrollPlot</include>
+				</control>
+				<control type="textbox">
+					<visible>Container.Content(seasons)</visible>
+					<top>-2</top>
+					<height>555</height>
+					<align>left</align>
+					<font>Font28_Reg_105</font>
+					<label>$VAR[ViewPlotVar]</label>
+					<pagecontrol>605063</pagecontrol>
 					<include>AutoScrollPlot</include>
 				</control>
 			</control>
-			<control type="scrollbar" id="605061">
+			<control type="scrollbar" id="60561">
+				<visible>![String.IsEqual(ListItem.DBTYPE,set) | Container.Content(seasons)]</visible>
 				<right>80</right>
-				<top>395</top>
-				<bottom>218</bottom>
+				<top>377</top>
+				<bottom>188</bottom>
+				<onleft>60506</onleft>
+			</control>
+			<control type="scrollbar" id="60562">
+				<visible>String.IsEqual(ListItem.DBTYPE,set)</visible>
+				<right>80</right>
+				<top>338</top>
+				<bottom>188</bottom>
+				<onleft>60506</onleft>
+			</control>
+			<control type="scrollbar" id="60563">
+				<visible>Container.Content(seasons)</visible>
+				<right>80</right>
+				<top>300</top>
+				<bottom>188</bottom>
 				<onleft>60506</onleft>
 			</control>
 		</control>
@@ -80,7 +107,7 @@
 			<include content="PanelDefault">
 				<param name="right">1068</param>
 				<param name="righttexture">1088</param>
-				<param name="diffusetexture">diffuse/rounded20-1124x880.png</param>
+				<param name="diffusetexture">diffuse/rounded20-732x880.png</param>
 				<param name="reflect">!Skin.HasSetting(ViewsHideFloor)</param>
 			</include>
 			<control type="panel" id="506">
@@ -99,7 +126,9 @@
 				<top>140</top>
 				<bottom>140</bottom>
 				<onleft>506</onleft>
-				<onright>605061</onright>
+				<onright condition="![String.IsEqual(ListItem.DBTYPE,set) | Container.Content(seasons)]">60561</onright>
+				<onright condition="String.IsEqual(ListItem.DBTYPE,set)">60562</onright>
+				<onright condition="Container.Content(seasons)">60563</onright>
 			</control>
 		</control>
 	</include>

@@ -133,54 +133,7 @@
 						<control type="label" id="104">
 							<label>$LOCALIZE[21895] $LOCALIZE[1397] $LOCALIZE[14078]</label>
 							<include>SettingsLabel</include>
-						</control>
-						<control type="button" id="105">
-							<label>$LOCALIZE[31093] / $LOCALIZE[31094]</label>
-							<onclick condition="System.HasAddon(script.skin.helper.skinbackup)">RunScript(script.skin.helper.skinbackup,action=colorthemes)</onclick>
-							<onclick condition="!System.HasAddon(script.skin.helper.skinbackup)">InstallAddon(script.skin.helper.skinbackup)</onclick>
-							<include>SettingsButton</include>
-						</control>
-						<control type="radiobutton" id="106">
-							<label>$LOCALIZE[31031]</label>
-							<onclick>Skin.ToggleSetting(SkinHelper.EnableDayNightThemes)</onclick>
-							<selected>Skin.HasSetting(SkinHelper.EnableDayNightThemes)</selected>
-							<include>SettingsRadioButton</include>
-						</control>
-						<control type="button" id="107">
-							<label>$LOCALIZE[31032]</label>
-							<label2>$INFO[Skin.String(SkinHelper.ColorTheme.Day)]</label2>
-							<onclick>RunScript(script.skin.helper.skinbackup,action=ColorThemes,daynight=day)</onclick>
-							<visible>Skin.HasSetting(SkinHelper.EnableDayNightThemes)</visible>
-							<include>SettingsButton</include>
-						</control>
-						<control type="button" id="108">
-							<label>$LOCALIZE[31033]</label>
-							<label2>$INFO[Skin.String(SkinHelper.ColorTheme.Night)]</label2>
-							<onclick>RunScript(script.skin.helper.skinbackup,action=ColorThemes,daynight=night)</onclick>
-							<visible>Skin.HasSetting(SkinHelper.EnableDayNightThemes)</visible>
-							<include>SettingsButton</include>
-						</control>
-						<control type="button" id="109">
-							<label>$LOCALIZE[13007]</label>
-							<onclick>RunScript(script.skin.helper.skinbackup,action=reset,filter=color|opacity|texture)</onclick>
-							<include>SettingsButton</include>
-						</control>
-						<control type="label" id="110">
-							<label>$LOCALIZE[166]</label>
-							<include>SettingsLabel</include>
-						</control>
-						<control type="button" id="111">
-							<label>$LOCALIZE[31093] / $LOCALIZE[31094]</label>
-							<onclick condition="System.HasAddon(script.skin.helper.skinbackup)">RunScript(script.skin.helper.skinbackup)</onclick>
-							<onclick condition="!System.HasAddon(script.skin.helper.skinbackup)">InstallAddon(script.skin.helper.skinbackup)</onclick>
-							<include>SettingsButton</include>
-						</control>
-						<control type="button" id="112">
-							<label>$LOCALIZE[13007]</label>
-							<onclick condition="System.HasAddon(script.skin.helper.skinbackup)">RunScript(script.skin.helper.skinbackup,action=reset)</onclick>
-							<onclick condition="!System.HasAddon(script.skin.helper.skinbackup)">InstallAddon(script.skin.helper.skinbackup)</onclick>
-							<include>SettingsButton</include>
-						</control>
+						</control>						
 						<control type="label" id="113">
 							<label>$LOCALIZE[16000]</label>
 							<include>SettingsLabel</include>
@@ -1083,42 +1036,26 @@
 							<selected>Skin.HasSetting(MediaFlagsColored)</selected>
 							<include>SettingsRadioButton</include>
 						</control>
-						<control type="radiobutton" id="604">
-							<label>$LOCALIZE[31053]</label>
-							<onclick condition="!System.HasAddon(resource.images.moviecountryicons.flags)">InstallAddon(resource.images.moviecountryicons.flags)</onclick>
-							<onclick condition="System.HasAddon(resource.images.moviecountryicons.flags)">Skin.ToggleSetting(CountryIconsFlags)</onclick>
-							<selected>Skin.HasSetting(CountryIconsFlags)</selected>
+						<control type="radiobutton" id="608">
+							<label>$LOCALIZE[31229]</label>
+							<onclick condition="!System.HasAddon(resource.images.languageflags.rounded)">InstallAddon(resource.images.languageflags.round)</onclick>
+							<onclick condition="System.HasAddon(resource.images.languageflags.rounded)">Skin.ToggleSetting(ShowLanguageFlags)</onclick>
+							<selected>Skin.HasSetting(ShowLanguageFlags)</selected>
 							<include>SettingsRadioButton</include>
-						</control>
-						<control type="radiobutton" id="605">
-							<label>$LOCALIZE[31037]</label>
-							<onclick>Skin.ToggleSetting(AnimatedPoster)</onclick>
-							<selected>Skin.HasSetting(AnimatedPoster)</selected>
-							<include>SettingsRadioButton</include>
-						</control>
-						<control type="radiobutton" id="606">
-							<label>$LOCALIZE[31038]</label>
-							<onclick>Skin.ToggleSetting(AnimatedFanart)</onclick>
-							<selected>Skin.HasSetting(AnimatedFanart)</selected>
-							<include>SettingsRadioButton</include>
-						</control>
-						<control type="button" id="608">
-							<label>$LOCALIZE[31060]</label>
-							<label2>$INFO[Skin.String(LanguageFlagIcons.name)]</label2>
-							<onclick>RunScript(script.skin.helper.service,action=setresourceaddon,skinstring=LanguageFlagIcons,addontype=resource.images.languageflags)</onclick>
-							<include>SettingsButton</include>
 						</control>
 						<control type="button" id="609">
 							<label>$LOCALIZE[31034]</label>
 							<label2>$INFO[Skin.String(WeatherIcons.name)]</label2>
-							<onclick>RunScript(script.skin.helper.service,action=setresourceaddon,skinstring=WeatherIcons,addontype=resource.images.weathericons)</onclick>
+							<onclick condition="!System.HasAddon(script.image.resource.select)">InstallAddon(script.image.resource.select)</onclick>
+							<onclick condition="System.HasAddon(script.image.resource.select)">RunScript(script.image.resource.select,property=WeatherIcons&amp;type=resource.images.weathericons)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="radiobutton" id="131">
-							<label>$LOCALIZE[31192]</label>
-							<onclick>Skin.ToggleSetting(NowplayingSkinHelperScraper)</onclick>
-							<selected>Skin.HasSetting(NowplayingSkinHelperScraper)</selected>
-							<include>SettingsRadioButton</include>
+						<control type="button" id="609">
+							<label>$LOCALIZE[31004]</label>
+							<label2>$INFO[Skin.String(WeatherFanart.name)]</label2>
+							<onclick condition="!System.HasAddon(script.image.resource.select)">InstallAddon(script.image.resource.select)</onclick>
+							<onclick condition="System.HasAddon(script.image.resource.select)">RunScript(script.image.resource.select,property=WeatherFanart&amp;type=resource.images.weatherfanart)</onclick>
+							<include>SettingsButton</include>
 						</control>
 						<control type="button" id="135">
 							<label>$LOCALIZE[31009]</label>

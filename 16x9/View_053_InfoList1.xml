@@ -6,24 +6,14 @@
 			<visible>Control.IsVisible(53)</visible>
 			<include>ViewInfo1ListArt</include>
 			<control type="grouplist">
-				<top>595</top>
+				<top>593</top>
 				<right>125</right>
 				<width>678</width>
-				<height>800</height>
+				<height>300</height>
 				<include>ViewListInfo</include>
 				<control type="textbox">
-					<visible>!Container.Content(artists)</visible>
-					<top>1</top>
-					<height>206</height>
-					<font>Font28_Reg_105</font>
-					<label>$VAR[ViewPlotVar]</label>
-					<pagecontrol>60531</pagecontrol>
-					<include>AutoScrollPlot</include>
-				</control>
-				<control type="textbox">
-					<visible>Container.Content(artists)</visible>
-					<top>1</top>
-					<height>249</height>
+					<top>2</top>
+					<height>209</height>
 					<font>Font28_Reg_106</font>
 					<label>$VAR[ViewPlotVar]</label>
 					<pagecontrol>60531</pagecontrol>
@@ -32,7 +22,7 @@
 			</control>
 			<control type="scrollbar" id="60531">
 				<right>80</right>
-				<top>679</top>
+				<top>676</top>
 				<bottom>195</bottom>
 				<onleft>6053</onleft>
 			</control>
@@ -49,6 +39,7 @@
 			<include content="PanelDefault">
 				<param name="right">808</param>
 				<param name="righttexture">828</param>
+				<param name="diffusetexture">diffuse/rounded20-992x880.png</param>
 				<param name="reflect">!Skin.HasSetting(ViewsHideFloor)</param>
 			</include>
 			<control type="list" id="53">
@@ -61,7 +52,8 @@
 				<pagecontrol>6053</pagecontrol>
 				<viewtype label="$LOCALIZE[31219]">list</viewtype>
 				<preloaditems>2</preloaditems>
-				<include>ViewContainerList</include>
+				<include condition="!$EXP[AreaVisiblePVR]">ViewContainerList</include>
+				<include condition="$EXP[AreaVisiblePVR]">ViewContainerPVRList</include>
 			</control>
 			<control type="scrollbar" id="6053">
 				<left>1072</left>

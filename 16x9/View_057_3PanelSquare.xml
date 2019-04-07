@@ -28,41 +28,67 @@
 				<param name="toptexture">450</param>
 				<param name="heighttexture">470</param>
 				<param name="lefttexture">1361</param>
-				<param name="widthtexture">462</param>
+				<param name="widthtexture">459</param>
 				<param name="reflecttop">905</param>
-				<param name="diffusetexture">diffuse/siderounded20-398x820.png</param>
+				<param name="diffusetexture">diffuse/siderounded20-459x470.png</param>
 				<param name="reflect">!Skin.HasSetting(ViewsHideFloor)</param>
 			</include>
 			<control type="grouplist">
-				<top>505</top>
+				<top>510</top>
 				<right>125</right>
 				<width>409</width>
-				<height>350</height>
+				<height>345</height>
 				<include>View3PanelListInfo</include>
 				<control type="textbox">
-					<visible>!Container.Content(artists)</visible>
-					<top>1</top>
-					<height>264</height>
+					<visible>!Container.Content(artists) + !String.IsEmpty(Control.GetLabel(5303))</visible>
+					<top>-2</top>
+					<height>188</height>
 					<align>left</align>
-					<font>Font28_Reg_112</font>
+					<font>Font28_Reg_098</font>
 					<label>$VAR[ViewPlotVar]</label>
 					<pagecontrol>60571</pagecontrol>
 					<include>AutoScrollPlot</include>
 				</control>
-					<control type="textbox">
+				<control type="textbox">
+					<visible>!Container.Content(artists) + String.IsEmpty(Control.GetLabel(5303))</visible>
+					<top>-2</top>
+					<height>226</height>
+					<align>left</align>
+					<font>Font28_Reg_098</font>
+					<label>$VAR[ViewPlotVar]</label>
+					<pagecontrol>60572</pagecontrol>
+					<include>AutoScrollPlot</include>
+				</control>
+				<control type="textbox">
 					<visible>Container.Content(artists)</visible>
-					<top>6</top>
-					<height>304</height>
+					<top>-2</top>
+					<height>265</height>
+					<align>left</align>
 					<font>Font28_Reg</font>
 					<label>$VAR[ViewPlotVar]</label>
-					<pagecontrol>60531</pagecontrol>
+					<pagecontrol>60573</pagecontrol>
 					<include>AutoScrollPlot</include>
 				</control>
 			</control>
 			<control type="scrollbar" id="60571">
+				<visible>!Container.Content(artists) + !String.IsEmpty(Control.GetLabel(5303))</visible>
 				<right>80</right>
-				<top>588</top>
-				<bottom>216</bottom>
+				<top>667</top>
+				<bottom>225</bottom>
+				<onleft>6057</onleft>
+			</control>
+			<control type="scrollbar" id="60572">
+				<visible>!Container.Content(artists) + String.IsEmpty(Control.GetLabel(5303))</visible>
+				<right>80</right>
+				<top>629</top>
+				<bottom>225</bottom>
+				<onleft>6057</onleft>
+			</control>
+			<control type="scrollbar" id="60573">
+				<visible>Container.Content(artists)</visible>
+				<right>80</right>
+				<top>590</top>
+				<bottom>225</bottom>
 				<onleft>6057</onleft>
 			</control>
 		</control>
@@ -90,27 +116,40 @@
 				<width>550</width>
 				<height>550</height>
 				<control type="image">
-					<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" reversible="false" condition="Player.HasAudio + [String.IsEqual(ListItem.Album,MusicPlayer.Album) | String.IsEqual(ListItem.Title,Player.Title)]">Conditional</animation>
+					<visible>String.IsEqual(ListItem.DBTYPE,album) | String.IsEqual(ListItem.DBTYPE,song) | String.IsEqual(ListItem.DBTYPE,musicvideo)</visible>
+					<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" condition="Player.Playing + [String.IsEqual(ListItem.Album,MusicPlayer.Album) | String.IsEqual(ListItem.Title,Player.Title)]">Conditional</animation>
 					<left>20</left>
-					<bottom>275</bottom>
+					<bottom>285</bottom>
 					<width>510</width>
 					<height>510</height>
 					<fadetime>TextureFadeTime</fadetime>
 					<texture diffuse="diffuse/disc.png" background="true">$VAR[DiscArtVar]</texture>
 				</control>
-				<control type="image">
-					<top>530</top>
+				<control type="group">
+					<visible>!Skin.HasSetting(ViewsHideFloor)</visible>
+					<top>535</top>
 					<height>550</height>
+					<control type="image">
+						<bordersize>10</bordersize>
+						<aspectratio scalediffuse="false">scale</aspectratio>
+						<texture diffuse="thumbs/reflect.png" flipy="true" background="true" colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+					</control>
+					<control type="image">
+						<bordersize>10</bordersize>
+						<fadetime>TextureFadeTime</fadetime>
+						<aspectratio scalediffuse="false">scale</aspectratio>
+						<texture background="true" flipy="true" diffuse="thumbs/reflect.png" fallback="DefaultFile.png">$VAR[PosterVar]</texture>
+					</control>
+				</control>
+				<control type="image">
 					<bordersize>10</bordersize>
-					<fadetime>TextureFadeTime</fadetime>
-					<aspectratio scalediffuse="true" aligny="top">keep</aspectratio>
-					<texture background="true" flipy="true" diffuse="thumbs/reflect.png" fallback="">$VAR[PosterVar]</texture>
+					<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
 				</control>
 				<control type="image">
 					<bordersize>10</bordersize>
 					<fadetime>TextureFadeTime</fadetime>
 					<aspectratio align="center" aligny="center">scale</aspectratio>
-					<texture diffuse="diffuse/rounded5-532x800.png">$VAR[PosterVar]</texture>
+					<texture diffuse="diffuse/rounded5-530x530.png">$VAR[PosterVar]</texture>
 				</control>
 				<control type="image">
 					<texture border="20">thumbs/overlay.png</texture>
@@ -141,7 +180,7 @@
 				<param name="righttexture">1088</param>
 				<param name="height">630</param>
 				<param name="heighttexture">590</param>
-				<param name="diffusetexture">diffuse/rounded20-1124x880.png</param>
+				<param name="diffusetexture">diffuse/rounded20-732x590.png</param>
 				<param name="reflect">!Skin.HasSetting(ViewsHideFloor)</param>
 			</include>
 			<control type="panel" id="57">
@@ -160,7 +199,9 @@
 				<top>430</top>
 				<bottom>140</bottom>
 				<onleft>57</onleft>
-				<onright>60571</onright>
+				<onright condition="!Container.Content(artists) + !String.IsEmpty(Control.GetLabel(5303))">60571</onright>
+				<onright condition="!Container.Content(artists) + String.IsEmpty(Control.GetLabel(5303))">60572</onright>
+				<onright condition="Container.Content(artists)">60573</onright>
 			</control>
 		</control>
 	</include>

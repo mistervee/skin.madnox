@@ -13,7 +13,7 @@
 			<include content="PanelDefault">
 				<param name="right">662</param>
 				<param name="righttexture">682</param>
-				<param name="diffusetexture">diffuse/rounded20-1124x880.png</param>
+				<param name="diffusetexture">diffuse/rounded20-1138x880.png</param>
 				<param name="reflect">!Skin.HasSetting(ViewsHideFloor)</param>
 			</include>
 			<control type="panel" id="50">
@@ -25,7 +25,7 @@
 				<onright>6050</onright>
 				<pagecontrol>6050</pagecontrol>
 				<viewtype label="$LOCALIZE[31213]">list</viewtype>
-				<include condition="!$EXP[AreaVisiblePVR]">ViewContainerList</include>
+				<include condition="!$EXP[AreaVisiblePVR]">ViewContainerList2</include>
 				<include condition="$EXP[AreaVisiblePVR]">ViewContainerPVRList</include>
 			</control>
 			<control type="scrollbar" id="6050">
@@ -38,7 +38,8 @@
 		<!-- Right Content -->
 		<control type="group">
 			<visible>Control.IsVisible(50)</visible>
-			<include>ViewPosterListArt</include>
+			<include condition="!$EXP[AreaVisiblePVR]">ViewPosterListArt</include>
+			<include condition="$EXP[AreaVisiblePVR]">ViewPosterListPVRArt</include>
 		</control>
 	</include>
 </includes>

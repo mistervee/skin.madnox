@@ -3,8 +3,26 @@
 	<include name="View505BigLowList">
 		<control type="group">
 			<visible>Control.IsVisible(505)</visible>
-			<include>AnimationSlideBottomWindow</include>
-			<include>AnimationSlideBottomVisible</include>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">1000</param>
+				<param name="opencondition">Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</param>
+				<param name="closecondition">Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">1000</param>
+				<param name="opencondition">Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</param>
+				<param name="closecondition">Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</param>
+			</include>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">765</param>
+				<param name="opencondition">![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</param>
+				<param name="closecondition">![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">765</param>
+				<param name="opencondition">![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</param>
+				<param name="closecondition">![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</param>
+			</include>
 			<!-- Panel -->
 			<include content="PanelWide">
 				<param name="top">550</param>
@@ -30,9 +48,9 @@
 			</control>
 			<control type="image">
 				<right>550</right>
-				<top>614</top>
+				<top>570</top>
 				<width>4</width>
-				<height>466</height>
+				<height>510</height>
 				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
 			</control>
 			<control type="image">
@@ -68,19 +86,9 @@
 				<height>796</height>
 				<include>ViewListInfo</include>
 				<control type="textbox">
-					<visible>!Container.Content(artists)</visible>
-					<top>1</top>
-					<height>279</height>
-					<font>Font28_Reg_105</font>
-					<label>$VAR[ViewPlotVar]</label>
-					<pagecontrol>60551</pagecontrol>
-					<include>AutoScrollPlot</include>
-				</control>
-				<control type="textbox">
-					<visible>Container.Content(artists)</visible>
-					<top>1</top>
-					<height>359</height>
-					<font>Font28_Reg_105</font>
+					<top>-3</top>
+					<height>285</height>
+					<font>Font28_Reg_106</font>
 					<label>$VAR[ViewPlotVar]</label>
 					<pagecontrol>60551</pagecontrol>
 					<include>AutoScrollPlot</include>

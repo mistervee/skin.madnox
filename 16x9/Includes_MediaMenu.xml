@@ -745,6 +745,12 @@
 			<onclick>ActivateWindow(1110)</onclick>
 			<include>MediaMenuButton</include>
 		</control>
+		<control type="radiobutton" id="207">
+			<visible>Container.Content(countries) + !System.HasAddon(resource.images.moviecountryicons.flags)</visible>
+			<label>$LOCALIZE[31053]</label>
+			<onclick>InstallAddon(resource.images.moviecountryicons.flags)</onclick>
+			<include>MediaMenuButton</include>
+		</control>
 	</include>
 	<!-- PVR -->
 	<include name="MediaMenuPVR">
@@ -1082,6 +1088,20 @@
 			<label>$LOCALIZE[31047]</label>
 			<onclick>Skin.ToggleSetting(ViewsHideFloor)</onclick>
 			<selected>!Skin.HasSetting(ViewsHideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="304">
+			<label>$LOCALIZE[31228]</label>
+			<onclick>Skin.ToggleSetting(ShowVideoPreviewWindow)</onclick>
+			<selected>Skin.HasSetting(ShowVideoPreviewWindow)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="305">
+			<visible>Container.Content(movies) | Container.Content(episodes) | Container.Content(musicvideos)</visible>
+			<label>$LOCALIZE[31060]</label>
+			<onclick condition="!System.HasAddon(resource.images.languageflags.rounded)">InstallAddon(resource.images.languageflags.rounded)</onclick>
+			<onclick condition="System.HasAddon(resource.images.languageflags.rounded)">Skin.ToggleSetting(ShowLanguageFlags)</onclick>
+			<selected>Skin.HasSetting(ShowLanguageFlags)</selected>
 			<include>MediaMenuRadioButton</include>
 		</control>
 	</include>
