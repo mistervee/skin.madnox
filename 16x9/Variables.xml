@@ -7,6 +7,10 @@
 		<value condition="Window.IsActive(MyPlaylist.xml) + !String.IsEmpty(ListItem.Artist)">$INFO[ListItem.Artist,, - ]$INFO[ListItem.Title]</value>
 		<value>$INFO[ListItem.Label]</value>
 	</variable>
+	<variable name="ListTitlePlaylistVar">
+		<value condition="Window.IsActive(videoplaylist) + !String.IsEmpty(ListItem.Episode)">$INFO[ListItem.Season,,x]$INFO[ListItem.Episode,,. ]$INFO[ListItem.Title]</value>
+		<value>$INFO[ListItem.Label]</value>
+	</variable>
 	<variable name="ListLabel2Var">
 		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[567]) + !String.IsEmpty(ListItem.Label2)">$LOCALIZE[567]$INFO[ListItem.Label2, ]</value>
 		<value condition="!String.IsEmpty(ListItem.Appearances)">$LOCALIZE[38026] $INFO[ListItem.Appearances]</value>
@@ -142,8 +146,9 @@
 	</variable>
 	<variable name="ListViewInfo1Var">
 		<value condition="Container.Content(episodes) + String.Contains(Container.Viewmode,$LOCALIZE[31210]) + !String.Contains(ListItem.FolderPath,recent)"></value>
+		<value condition="Window.IsActive(MyPVRChannels.xml)"></value>
 		<value condition="Window.IsActive(MyPVRRecordings.xml) + String.EndsWith(ListItem.Path,active/)">$INFO[ListItem.Date, , ]$INFO[ListItem.StartTime, ,]$INFO[ListItem.EndTime, - ,  ]</value>
-		<value condition="Window.IsActive(MyPVRRecordings.xml) | Window.IsActive(MyPVRSearch.xml) | Window.IsActive(MyPVRChannels.xml)">$INFO[ListItem.Date, ,]$INFO[ListItem.EndTime, - ,  ]</value>
+		<value condition="Window.IsActive(MyPVRRecordings.xml) | Window.IsActive(MyPVRSearch.xml)">$INFO[ListItem.Date, ,]$INFO[ListItem.EndTime, - ,  ]</value>
 		<value condition="!String.IsEmpty(ListItem.Date) + Window.IsActive(MyPVRTimers.xml)">$INFO[ListItem.Date., ,  ]</value>
 		<value condition="!String.IsEmpty(ListItem.Premiered) + !Container.Content(movies)">$INFO[ListItem.Premiered, ,  ]</value>
 		<value condition="!String.IsEmpty(ListItem.Date)">$INFO[ListItem.Date, ,  ]</value>
@@ -164,10 +169,12 @@
 		<value condition="!String.IsEmpty(ListItem.AddonVersion)">$INFO[ListItem.AddonVersion, v,  ]</value>
 	</variable>
 	<variable name="ListViewIcon3Var">
+		<value condition="Window.IsActive(MyPVRChannels.xml)">$VAR[IconPathVar]next.png</value>
 		<value condition="!String.IsEmpty(ListItem.UserRating)">$VAR[IconPathVar]star.png</value>
 		<value condition="!String.IsEmpty(ListItem.Rating)">$VAR[IconPathVar]star.png</value>
 	</variable>
 	<variable name="ListViewInfo3Var">
+		<value condition="Window.IsActive(MyPVRChannels.xml)">$INFO[ListItem.NextTitle, ]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.UserRating)">$INFO[Container.ListItem.UserRating, ,.0  ]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Rating)">$INFO[Container.ListItem.Rating, ,  ]</value>
 	</variable>
