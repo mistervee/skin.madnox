@@ -91,7 +91,6 @@
 					<height>309</height>
 					<aspectratio>keep</aspectratio>
 					<texture background="true">$VAR[MusicDialogPlotArtVar]</texture>
-					
 				</control>
 				<!-- Flags top -->
 				<control type="image">
@@ -339,11 +338,11 @@
 						<include>DialogButtonInfo</include>
 						<label>$LOCALIZE[38018]</label>
 					</control>
-					<control type="button" id="116">
+					<!-- <control type="button" id="116">
 						<visible>Container.Content(artists) + System.HasAddon(script.skin.helper.service)</visible>
 						<label>$LOCALIZE[31110]</label>
 						<include>DialogButtonInfo</include>
-					</control>
+					</control> -->
 				</control>
 			</control>
 			<!-- Tool tips -->
@@ -369,11 +368,11 @@
 				<include content="DialogInfoExtenedInfoYoutube">
 					<param name="id">113</param>
 					<param name="content">$VAR[MusicDialogYoutubeVar]</param>
-				</include>
+				</include>z
 				<!-- Similar -->
-				<include content="DialogInfoSkinHelperSimilarMusic">
+				<!-- <include content="DialogInfoSkinHelperSimilarMusic">
 					<param name="id">116</param>
-				</include>
+				</include> -->
 			</control>
 			<!-- Discography / TrackList / Contributers -->
 			<control type="group">
@@ -506,7 +505,7 @@
 				</control>
 				<!-- Tracks -->
 				<control type="panel" id="1111150">
-					<!-- <visible>Control.HasFocus(8)</visible> -->
+					<visible>!Container.Content(artists) + ![Control.HasFocus(101) | Control.HasFocus(113)]</visible>
 					<orientation>horizontal</orientation>
 					<ondown>9000</ondown>
 					<orientation>horizontal</orientation>
