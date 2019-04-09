@@ -3967,6 +3967,130 @@
 			</control>
 		</control>
 	</include>
+	<include name="ViewShowCaseListInfo">
+		<itemgap>10</itemgap>
+		<usecontrolcoords>true</usecontrolcoords>
+		<control type="grouplist">
+			<visible>!String.IsEmpty(ListItem.Director)</visible>
+			<top>-5</top>
+			<height>37</height>
+			<usecontrolcoords>true</usecontrolcoords>
+			<orientation>horizontal</orientation>
+			<control type="image">
+				<top>9</top>
+				<width>22</width>
+				<height>22</height>
+				<aspectratio>keep</aspectratio>
+				<texture>$VAR[IconPathVar]movies.png</texture>
+			</control>
+			<control type="label" id="5301">
+				<width>auto</width>
+				<font>Font26_Reg</font>
+				<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+				<label>$INFO[ListItem.Director, ]</label>
+			</control>
+		</control>
+		<control type="grouplist">
+			<visible>!String.IsEmpty(ListItem.Writer)</visible>
+			<top>-5</top>
+			<height>37</height>
+			<usecontrolcoords>true</usecontrolcoords>
+			<orientation>horizontal</orientation>
+			<control type="image">
+				<top>9</top>
+				<width>22</width>
+				<height>22</height>
+				<aspectratio>keep</aspectratio>
+				<texture>$VAR[IconPathVar]writer.png</texture>
+			</control>
+			<control type="label" id="5301">
+				<width>auto</width>
+				<font>Font26_Reg</font>
+				<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+				<label>$INFO[ListItem.Writer, ]</label>
+			</control>
+		</control>
+		<control type="grouplist">
+			<visible>!String.IsEmpty(Control.GetLabel(5301))</visible>
+			<top>-5</top>
+			<height>37</height>
+			<usecontrolcoords>true</usecontrolcoords>
+			<orientation>horizontal</orientation>
+			<control type="image">
+				<top>9</top>
+				<width>22</width>
+				<height>22</height>
+				<aspectratio>keep</aspectratio>
+				<texture>$VAR[ListViewIcon1Var]</texture>
+			</control>
+			<control type="label" id="5301">
+				<width>auto</width>
+				<font>Font26_Reg</font>
+				<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+				<label>$VAR[ListViewInfo1Var]</label>
+			</control>
+		</control>
+		<control type="grouplist">
+			<visible>!String.IsEmpty(Control.GetLabel(5302))</visible>
+			<top>-8</top>
+			<height>37</height>
+			<usecontrolcoords>true</usecontrolcoords>
+			<orientation>horizontal</orientation>
+			<control type="image">
+				<top>9</top>
+				<width>22</width>
+				<height>22</height>
+				<aspectratio>keep</aspectratio>
+				<texture>$VAR[ListViewIcon2Var]</texture>
+			</control>
+			<control type="label" id="5302">
+				<width>auto</width>
+				<font>Font26_Reg</font>
+				<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+				<label>$VAR[ListViewInfo2Var]</label>
+			</control>
+		</control>
+		<control type="grouplist">
+			<visible>!String.IsEmpty(Control.GetLabel(5303))</visible>
+			<top>-9</top>
+			<height>37</height>
+			<usecontrolcoords>true</usecontrolcoords>
+			<orientation>horizontal</orientation>
+			<control type="image">
+				<top>9</top>
+				<width>22</width>
+				<height>22</height>
+				<aspectratio>keep</aspectratio>
+				<texture>$VAR[ListViewIcon3Var]</texture>
+			</control>
+			<control type="label" id="5303">
+				<width>auto</width>
+				<font>Font26_Reg</font>
+				<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+				<label>$VAR[ListViewInfo3Var]</label>
+			</control>
+		</control>
+		<control type="grouplist">
+			<visible>!String.IsEmpty(ListItem.Top250)</visible>
+			<top>-9</top>
+			<height>37</height>
+			<usecontrolcoords>true</usecontrolcoords>
+			<orientation>horizontal</orientation>
+			<control type="image">
+				<top>3</top>
+				<width>50</width>
+				<height>35</height>
+				<aspectratio>keep</aspectratio>
+				<texture>$VAR[IconPathVar]imdb.png</texture>
+			</control>
+			<control type="label">
+				<width>auto</width>
+				<font>Font26_Reg</font>
+				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				<label>$INFO[ListItem.Top250, #,]</label>
+			</control>
+		</control>
+	</include>
 	<include name="ViewPosterListArt">
 		<include content="AnimationSlideRightWindow">
 			<param name="slide">652</param>
@@ -4188,7 +4312,7 @@
 					<bordersize>10</bordersize>
 					<fadetime>TextureFadeTime</fadetime>
 					<aspectratio scalediffuse="false">keep</aspectratio>
-					<texture background="true" flipy="true" diffuse="thumbs/reflect.png" fallback="DefaultGenre.png">$INFO[ListItem.Label,resource://resource.images.moviegenreicons.neonglow/,.jpg]</texture>
+					<texture background="true" flipy="true" diffuse="thumbs/reflect.png" fallback="DefaultGenre.png">$INFO[ListItem.Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</texture>
 				</control>
 			</control>
 			<control type="image">
@@ -4207,7 +4331,7 @@
 				<bordersize>10</bordersize>
 				<fadetime>TextureFadeTime</fadetime>
 				<aspectratio scalediffuse="false">keep</aspectratio>
-				<texture background="true" diffuse="diffuse/rounded5-532x800.png" fallback="DefaultGenre.png">$INFO[ListItem.Label,resource://resource.images.moviegenreicons.neonglow/,.jpg]</texture>
+				<texture background="true" diffuse="diffuse/rounded5-532x800.png" fallback="DefaultGenre.png">$INFO[ListItem.Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</texture>
 			</control>
 			<control type="image">
 				<texture background="true" border="20">thumbs/overlay.png</texture>
@@ -4354,14 +4478,14 @@
 				<visible>![!Window.IsActive(MyPVRChannels.xml) + !Window.IsActive(MyPVRRecordings.xml) + !Window.IsActive(MyPVRTimers.xml) + !Window.IsActive(MyPVRSearch.xml)] + ![Player.HasVideo + Skin.HasSetting(ShowVideoPreviewWindow)]</visible>
 				<bordersize>10</bordersize>
 				<fadetime>TextureFadeTime</fadetime>
-				<aspectratio align="center" aligny="center">keep</aspectratio>
+				<aspectratio align="center" aligny="center" >keep</aspectratio>
 				<texture background="true" diffuse="diffuse/rounded5-678x381.png">$INFO[ListItem.Icon]</texture>
 			</control>
 			<control type="image">
 				<visible>[!Window.IsActive(MyPVRChannels.xml) + !Window.IsActive(MyPVRRecordings.xml) + !Window.IsActive(MyPVRTimers.xml) + !Window.IsActive(MyPVRSearch.xml)] + ![Player.HasVideo + Skin.HasSetting(ShowVideoPreviewWindow)]</visible>
 				<bordersize>10</bordersize>
 				<fadetime>TextureFadeTime</fadetime>
-				<aspectratio align="center" aligny="center">scale</aspectratio>
+				<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
 				<texture background="true" diffuse="diffuse/rounded5-678x381.png">$VAR[LandscapeVar]</texture>
 			</control>
 			<control type="group">
@@ -4428,7 +4552,7 @@
 				<width>236</width>
 				<bordersize>10</bordersize>
 				<fadetime>TextureFadeTime</fadetime>
-				<aspectratio align="center" aligny="center">scale</aspectratio>
+				<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
 				<texture background="true" diffuse="diffuse/rounded5-216x324.png">$VAR[PosterVar]</texture>
 			</control>
 			<control type="image">
@@ -4447,7 +4571,7 @@
 				<width>597</width>
 				<bordersize>10</bordersize>
 				<fadetime>TextureFadeTime</fadetime>
-				<aspectratio align="center" aligny="center">scale</aspectratio>
+				<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
 				<texture background="true" diffuse="diffuse/rounded5-577x324.png">$VAR[ThumbVar]</texture>
 			</control>
 			<control type="group">
@@ -4490,7 +4614,7 @@
 				<width>305</width>
 				<bordersize>10</bordersize>
 				<fadetime>TextureFadeTime</fadetime>
-				<aspectratio align="center" aligny="center">scale</aspectratio>
+				<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
 				<texture background="true" diffuse="diffuse/rounded5-285x285.png">$VAR[PosterVar]</texture>
 			</control>
 			<control type="image">
@@ -4509,7 +4633,7 @@
 				<width>528</width>
 				<bordersize>10</bordersize>
 				<fadetime>TextureFadeTime</fadetime>
-				<aspectratio align="center" aligny="center">scale</aspectratio>
+				<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
 				<texture background="true" diffuse="diffuse/rounded5-508x285.png">$VAR[ThumbVar]</texture>
 			</control>
 			<control type="group">
@@ -4581,7 +4705,7 @@
 			<control type="image">
 				<bordersize>10</bordersize>
 				<fadetime>TextureFadeTime</fadetime>
-				<aspectratio align="center" aligny="center">scale</aspectratio>
+				<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
 				<texture diffuse="diffuse/rounded5-510x747.png">$VAR[PosterVar]</texture>
 			</control>
 			<control type="image">
@@ -4610,7 +4734,7 @@
 			<control type="image">
 				<bordersize>10</bordersize>
 				<fadetime>TextureFadeTime</fadetime>
-				<aspectratio align="center" aligny="center">scale</aspectratio>
+				<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
 				<texture diffuse="diffuse/rounded5-510x510.png">$VAR[PosterVar]</texture>
 			</control>
 			<control type="image">
@@ -4751,7 +4875,7 @@
 			<top>120</top>
 			<left>821</left>
 			<bottom>120</bottom>
-			<width>567</width>
+			<width>567</width>0
 			<control type="group">
 				<visible>!Skin.HasSetting(ViewsHideFloor)</visible>
 				<top>825</top>
@@ -4775,7 +4899,7 @@
 			<control type="image">
 				<bordersize>10</bordersize>
 				<fadetime>TextureFadeTime</fadetime>
-				<aspectratio align="center" aligny="center">scale</aspectratio>
+				<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
 				<texture diffuse="diffuse/rounded5-547x820.png">$VAR[PosterVar]</texture>
 			</control>
 			<control type="image">
@@ -4858,7 +4982,7 @@
 			<include>FloorShadow</include>
 		</control>
 		<control type="group">
-			<visible>Control.IsVisible(511) | Control.IsVisible(512) | Control.IsVisible(513) | Control.IsVisible(514) | Control.IsVisible(515) | Control.IsVisible(516) | Control.IsVisible(517) | Control.IsVisible(518)</visible>
+			<visible>Control.IsVisible(511) | Control.IsVisible(512) | Control.IsVisible(513) | Control.IsVisible(514) | Control.IsVisible(515) | Control.IsVisible(516) | Control.IsVisible(517) | Control.IsVisible(518) |  Control.IsVisible(553)</visible>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
 			</include>

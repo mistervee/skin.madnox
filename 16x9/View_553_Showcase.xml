@@ -3,6 +3,116 @@
 	<include name="View553Showcase">
 		<control type="group">
 			<visible>Control.IsVisible(553)</visible>
+			<include>AnimationZoomWindow</include>
+			<include>AnimationZoomVisible</include>
+			<include content="PanelDefault">
+				<param name="height">800</param>
+				<param name="heighttexture">760</param>
+				<param name="reflect">false</param>
+			</include>
+			<control type="group">
+				<top>155</top>
+				<left>115</left>
+				<width>657</width>
+				<height>378</height>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+				</control>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<fadetime>TextureFadeTime</fadetime>
+					<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+					<texture background="true" diffuse="diffuse/rounded5-678x381.png">$VAR[FanartVar]</texture>
+				</control>
+				<control type="group">
+					<visible>Player.HasVideo + Skin.HasSetting(ShowVideoPreviewWindow)</visible>
+					<top>10</top>
+					<right>10</right>
+					<width>678</width>
+					<height>381</height>
+					<control type="image">
+						<texture diffuse="diffuse/rounded5-678x381.png">colors/black.png</texture>
+					</control>
+					<control type="videowindow" />
+				</control>
+				<control type="image">
+					<texture border="20">thumbs/overlay.png</texture>
+				</control>
+				<control type="image">
+					<top>416</top>
+					<right>10</right>
+					<width>678</width>
+					<height>285</height>
+					<aspectratio>keep</aspectratio>
+					<texture background="true">$VAR[ClearLogoVar]</texture>
+					<animation effect="fade" end="10" time="0" condition="true">Conditional</animation>
+				</control>
+			</control>
+			<control type="grouplist">
+				<top>160</top>
+				<right>125</right>
+				<width>464</width>
+				<height>300</height>
+				<include>ViewShowCaseListInfo</include>
+				<!-- <control type="textbox">
+					<top>2</top>
+					<height>209</height>
+					<font>Font28_Reg_106</font>
+					<label>$VAR[ViewPlotVar]</label>
+					<pagecontrol>605031</pagecontrol>
+					<include>AutoScrollPlot</include>
+				</control> -->
+			</control>
+			<control type="label">
+					<top>155</top>
+					<left>814</left>
+					<width>465</width>
+					<height>40</height>
+					<font>Font28_Reg</font>
+					<label>$INFO[ListItem.Tagline]</label>
+					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+				</control>
+			<control type="textbox">
+					<top>202</top>
+					<left>814</left>
+					<width>465</width>
+					<height>321</height>
+					<font>Font28_Reg_106</font>
+					<label>$VAR[ViewPlotVar]</label>
+					<pagecontrol>605031</pagecontrol>
+					<include>AutoScrollPlot</include>
+				</control>
+			<control type="scrollbar" id="605031">
+				<right>80</right>
+				<top>676</top>
+				<bottom>195</bottom>
+				<onleft>60503</onleft>
+			</control>
+			<control type="image">
+				<top>140</top>
+				<left>787</left>
+				<height>408</height>
+				<width>4</width>
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
+			</control>
+			<control type="image">
+				<top>140</top>
+				<right>612</right>
+				<height>408</height>
+				<width>4</width>
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
+			</control>
+			<control type="image">
+				<top>546</top>
+				<left>100</left>
+				<right>100</right>
+				<height>4</height>
+				<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+			</control>
+		</control>
+		<control type="group">
+			<visible>Control.IsVisible(553)</visible>
 			<top>565</top>
 			<left>32</left>
 			<width>1920</width>
@@ -12,7 +122,7 @@
 				<visible>Container(553).OnNext</visible>
 				<animation effect="slide" end="-140,0" time="200" reversible="false">Hidden</animation>
 				<control type="group">
-					 <visible>Container.OnNext</visible>
+					<visible>Container.OnNext</visible>
 					<animation effect="fade" start="100" end="0" time="70" reversible="false">Hidden</animation>
 					<animation effect="rotatey" center="-140" end="-55" condition="true">Conditional</animation>
 					<include content="ShowCaseItemPortrait">
@@ -133,7 +243,7 @@
 				<visible>Container(553).OnPrevious</visible>
 				<animation effect="slide" end="140,0" time="200" reversible="false">Hidden</animation>
 				<control type="group">
-					 <visible>Container.OnPrevious</visible>
+					<visible>Container.OnPrevious</visible>
 					<animation effect="fade" start="100" end="0" time="70" reversible="false">Hidden</animation>
 					<animation effect="rotatey" center="1990" end="55" condition="true">Conditional</animation>
 					<include content="ShowCaseItemPortrait">
@@ -177,7 +287,7 @@
 					</include>
 				</control>
 				<control type="group">
-					 <visible>!Container.OnPrevious</visible>
+					<visible>!Container.OnPrevious</visible>
 					<animation effect="fade" end="100" delay="100" time="200" reversible="false">Visible</animation>
 					<animation effect="rotatey" center="-280" end="-55" condition="true">Conditional</animation>
 					<include content="ShowCaseItemPortrait">
