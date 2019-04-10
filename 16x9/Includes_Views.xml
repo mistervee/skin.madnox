@@ -3968,126 +3968,415 @@
 		</control>
 	</include>
 	<include name="ViewShowCaseListInfo">
-		<itemgap>10</itemgap>
-		<usecontrolcoords>true</usecontrolcoords>
-		<control type="grouplist">
-			<visible>!String.IsEmpty(ListItem.Director)</visible>
-			<top>-5</top>
-			<height>37</height>
-			<usecontrolcoords>true</usecontrolcoords>
-			<orientation>horizontal</orientation>
-			<control type="image">
-				<top>9</top>
-				<width>22</width>
-				<height>22</height>
-				<aspectratio>keep</aspectratio>
-				<texture>$VAR[IconPathVar]movies.png</texture>
+		<param name="left">518</param>
+		<param name="width">878</param>
+		<definition>
+			<control type="grouplist">
+				<top>160</top>
+				<left>$PARAM[left]</left>
+				<width>$PARAM[width]</width>
+				<height>500</height>
+				<itemgap>10</itemgap>
+				<usecontrolcoords>true</usecontrolcoords>
+				<control type="label">
+					<height>30</height>
+					<scroll>true</scroll>
+					<font>Font28_Reg</font>
+					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+					<label>$VAR[ListViewTitleVar]</label>
+				</control>
+				<control type="grouplist">
+					<visible>!String.IsEmpty(Control.GetLabel(5301)) | !String.IsEmpty(Control.GetLabel(5302)) | !String.IsEmpty(Control.GetLabel(5303))</visible>
+					<height>37</height>
+					<usecontrolcoords>true</usecontrolcoords>
+					<orientation>horizontal</orientation>
+					<control type="image">
+						<visible>!String.IsEmpty(Control.GetLabel(5301))</visible>
+						<top>9</top>
+						<width>22</width>
+						<height>22</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$VAR[ListViewIcon1Var]</texture>
+					</control>
+					<control type="label" id="5301">
+						<width>auto</width>
+						<font>Font26_Reg</font>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<label>$VAR[ListViewInfo1Var]</label>
+					</control>
+					<control type="image">
+						<visible>!String.IsEmpty(Control.GetLabel(5302))</visible>
+						<top>9</top>
+						<width>22</width>
+						<height>22</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$VAR[ListViewIcon2Var]</texture>
+					</control>
+					<control type="label" id="5302">
+						<width>auto</width>
+						<font>Font26_Reg</font>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<label>$VAR[ListViewInfo2Var]</label>
+					</control>
+					<control type="image">
+						<visible>!String.IsEmpty(Control.GetLabel(5303))</visible>
+						<top>9</top>
+						<width>22</width>
+						<height>22</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$VAR[ListViewIcon3Var]</texture>
+					</control>
+					<control type="label" id="5303">
+						<width>auto</width>
+						<font>Font26_Reg</font>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<label>$VAR[ListViewInfo3Var]</label>
+					</control>
+					<control type="image">
+						<visible>!String.IsEmpty(ListItem.Top250)</visible>
+						<top>3</top>
+						<width>50</width>
+						<height>35</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$VAR[IconPathVar]imdb.png</texture>
+					</control>
+					<control type="label">
+						<visible>!String.IsEmpty(ListItem.Top250)</visible>
+						<width>auto</width>
+						<font>Font26_Reg</font>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<label>$INFO[ListItem.Top250, #,]</label>
+					</control>
+				</control>
+				<control type="grouplist">
+					<visible>!String.IsEmpty(ListItem.Director)</visible>
+					<top>-9</top>
+					<height>37</height>
+					<usecontrolcoords>true</usecontrolcoords>
+					<orientation>horizontal</orientation>
+					<control type="image">
+						<top>9</top>
+						<width>22</width>
+						<height>22</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$VAR[IconPathVar]movies.png</texture>
+					</control>
+					<control type="label" id="5301">
+						<width>auto</width>
+						<font>Font26_Reg</font>
+						<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+						<label>$INFO[ListItem.Director, ]</label>
+					</control>
+				</control>
+				<control type="grouplist">
+					<visible>!String.IsEmpty(ListItem.Writer)</visible>
+					<top>-9</top>
+					<height>37</height>
+					<usecontrolcoords>true</usecontrolcoords>
+					<orientation>horizontal</orientation>
+					<control type="image">
+						<top>9</top>
+						<width>22</width>
+						<height>22</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$VAR[IconPathVar]writer.png</texture>
+					</control>
+					<control type="label" id="5301">
+						<width>auto</width>
+						<font>Font26_Reg</font>
+						<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+						<label>$INFO[ListItem.Writer, ]</label>
+					</control>
+				</control>
+				<control type="textbox">
+					<top>-3</top>
+					<height>228</height>
+					<font>Font28_Reg</font>
+					<label>$VAR[ViewPlotVar]</label>
+					<pagecontrol>605531</pagecontrol>
+					<include>AutoScrollPlot</include>
+				</control>
 			</control>
-			<control type="label" id="5301">
-				<width>auto</width>
-				<font>Font26_Reg</font>
-				<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
-				<label>$INFO[ListItem.Director, ]</label>
+		</definition>
+	</include>
+	<include name="ViewShowCaseInfoPanel">
+		<include content="AnimationSlideBottomWindow">
+			<param name="slide">1000</param>
+		</include>
+		<include content="AnimationSlideBottomVisible">
+			<param name="slide">1000</param>
+		</include>
+		<include content="PanelDefault">
+			<param name="left">100</param>
+			<param name="right">100</param>
+			<param name="height">860</param>
+			<param name="lefttexture">120</param>
+			<param name="righttexture">120</param>
+			<param name="heighttexture">820</param>
+			<param name="reflect">false</param>
+		</include>
+		<control type="group">
+			<visible>String.IsEmpty(Skin.String(ShowcaseInfo))</visible>
+			<control type="group">
+				<top>155</top>
+				<right>135</right>
+				<width>702</width>
+				<height>403</height>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+				</control>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<fadetime>TextureFadeTime</fadetime>
+					<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+					<texture background="true" diffuse="diffuse/rounded5-678x381.png">$INFO[ListItem.Art(fanart1)]</texture>
+				</control>
+				<control type="image">
+					<texture border="20">thumbs/overlay.png</texture>
+				</control>
+			</control>
+			<include content="ViewShowCaseListInfo">
+				<param name="left">145</param>
+				<param name="width">896</param>
+			</include>
+			<control type="image">
+				<top>140</top>
+				<right>850</right>
+				<height>433</height>
+				<width>4</width>
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
+			</control>
+			<control type="image">
+				<top>571</top>
+				<left>120</left>
+				<right>120</right>
+				<height>4</height>
+				<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+			</control>
+			<control type="scrollbar" id="605531">
+				<right>475</right>
+				<top>320</top>
+				<bottom>532</bottom>
+				<onleft>60503</onleft>
 			</control>
 		</control>
-		<control type="grouplist">
-			<visible>!String.IsEmpty(ListItem.Writer)</visible>
-			<top>-5</top>
-			<height>37</height>
-			<usecontrolcoords>true</usecontrolcoords>
-			<orientation>horizontal</orientation>
-			<control type="image">
-				<top>9</top>
-				<width>22</width>
-				<height>22</height>
-				<aspectratio>keep</aspectratio>
-				<texture>$VAR[IconPathVar]writer.png</texture>
+		<control type="group">
+			<visible>Skin.String(ShowcaseInfo,2thumbs)</visible>
+			<control type="group">
+				<top>155</top>
+				<right>135</right>
+				<width>343</width>
+				<height>202</height>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+				</control>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<fadetime>TextureFadeTime</fadetime>
+					<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+					<texture background="true" diffuse="diffuse/rounded5-678x381.png">$INFO[ListItem.Art(fanart1)]</texture>
+				</control>
+				<control type="image">
+					<texture border="20">thumbs/overlay.png</texture>
+				</control>
 			</control>
-			<control type="label" id="5301">
-				<width>auto</width>
-				<font>Font26_Reg</font>
-				<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
-				<label>$INFO[ListItem.Writer, ]</label>
+			<control type="group">
+				<top>357</top>
+				<right>135</right>
+				<width>343</width>
+				<height>202</height>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+				</control>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<fadetime>TextureFadeTime</fadetime>
+					<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+					<texture background="true" diffuse="diffuse/rounded5-678x381.png">$INFO[ListItem.Art(fanart2)]</texture>
+				</control>
+				<control type="image">
+					<texture border="20">thumbs/overlay.png</texture>
+				</control>
+			</control>
+			<include content="ViewShowCaseListInfo">
+				<param name="left">145</param>
+				<param name="width">1253</param>
+			</include>
+			<control type="image">
+				<top>140</top>
+				<right>493</right>
+				<height>433</height>
+				<width>4</width>
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
+			</control>
+			<control type="image">
+				<top>571</top>
+				<left>120</left>
+				<right>120</right>
+				<height>4</height>
+				<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+			</control>
+			<control type="scrollbar" id="605531">
+				<right>475</right>
+				<top>320</top>
+				<bottom>532</bottom>
+				<onleft>60503</onleft>
 			</control>
 		</control>
-		<control type="grouplist">
-			<visible>!String.IsEmpty(Control.GetLabel(5301))</visible>
-			<top>-5</top>
-			<height>37</height>
-			<usecontrolcoords>true</usecontrolcoords>
-			<orientation>horizontal</orientation>
-			<control type="image">
-				<top>9</top>
-				<width>22</width>
-				<height>22</height>
-				<aspectratio>keep</aspectratio>
-				<texture>$VAR[ListViewIcon1Var]</texture>
+		<control type="group">
+			<visible>Skin.String(ShowcaseInfo,4thumbs)</visible>
+			<control type="group">
+				<top>155</top>
+				<left>135</left>
+				<width>343</width>
+				<height>202</height>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+				</control>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<fadetime>TextureFadeTime</fadetime>
+					<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+					<texture background="true" diffuse="diffuse/rounded5-678x381.png">$INFO[ListItem.Art(fanart1)]</texture>
+				</control>
+				<control type="image">
+					<texture border="20">thumbs/overlay.png</texture>
+				</control>
 			</control>
-			<control type="label" id="5301">
-				<width>auto</width>
-				<font>Font26_Reg</font>
-				<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
-				<label>$VAR[ListViewInfo1Var]</label>
+			<control type="group">
+				<top>357</top>
+				<left>135</left>
+				<width>343</width>
+				<height>202</height>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+				</control>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<fadetime>TextureFadeTime</fadetime>
+					<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+					<texture background="true" diffuse="diffuse/rounded5-678x381.png">$INFO[ListItem.Art(fanart2)]</texture>
+				</control>
+				<control type="image">
+					<texture border="20">thumbs/overlay.png</texture>
+				</control>
+			</control>
+			<control type="group">
+				<top>155</top>
+				<right>135</right>
+				<width>343</width>
+				<height>202</height>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+				</control>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<fadetime>TextureFadeTime</fadetime>
+					<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+					<texture background="true" diffuse="diffuse/rounded5-678x381.png">$INFO[ListItem.Art(fanart3)]</texture>
+				</control>
+				<control type="image">
+					<texture border="20">thumbs/overlay.png</texture>
+				</control>
+			</control>
+			<control type="group">
+				<top>357</top>
+				<right>135</right>
+				<width>343</width>
+				<height>202</height>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+				</control>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<fadetime>TextureFadeTime</fadetime>
+					<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+					<texture background="true" diffuse="diffuse/rounded5-678x381.png">$INFO[ListItem.Art(fanart4)]</texture>
+				</control>
+				<control type="image">
+					<texture border="20">thumbs/overlay.png</texture>
+				</control>
+			</control>
+			<include>ViewShowCaseListInfo</include>
+			<control type="image">
+				<top>140</top>
+				<left>493</left>
+				<height>433</height>
+				<width>4</width>
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
+			</control>
+			<control type="image">
+				<top>140</top>
+				<right>493</right>
+				<height>433</height>
+				<width>4</width>
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
+			</control>
+			<control type="image">
+				<top>571</top>
+				<left>120</left>
+				<right>120</right>
+				<height>4</height>
+				<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+			</control>
+			<control type="scrollbar" id="605531">
+				<right>475</right>
+				<top>320</top>
+				<bottom>532</bottom>
+				<onleft>60503</onleft>
 			</control>
 		</control>
-		<control type="grouplist">
-			<visible>!String.IsEmpty(Control.GetLabel(5302))</visible>
-			<top>-8</top>
-			<height>37</height>
-			<usecontrolcoords>true</usecontrolcoords>
-			<orientation>horizontal</orientation>
+		<control type="group">
+			<visible>Skin.String(ShowcaseInfo,poster)</visible>
+			<control type="group">
+				<top>155</top>
+				<right>135</right>
+				<width>275</width>
+				<height>403</height>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+				</control>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<fadetime>TextureFadeTime</fadetime>
+					<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+					<texture background="true" diffuse="diffuse/rounded5-678x381.png">$VAR[PosterVar]</texture>
+				</control>
+				<control type="image">
+					<texture border="20">thumbs/overlay.png</texture>
+				</control>
+			</control>
+			<include content="ViewShowCaseListInfo">
+				<param name="left">145</param>
+				<param name="width">1323</param>
+			</include>
 			<control type="image">
-				<top>9</top>
-				<width>22</width>
-				<height>22</height>
-				<aspectratio>keep</aspectratio>
-				<texture>$VAR[ListViewIcon2Var]</texture>
+				<top>140</top>
+				<right>423</right>
+				<height>433</height>
+				<width>4</width>
+				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
 			</control>
-			<control type="label" id="5302">
-				<width>auto</width>
-				<font>Font26_Reg</font>
-				<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
-				<label>$VAR[ListViewInfo2Var]</label>
-			</control>
-		</control>
-		<control type="grouplist">
-			<visible>!String.IsEmpty(Control.GetLabel(5303))</visible>
-			<top>-9</top>
-			<height>37</height>
-			<usecontrolcoords>true</usecontrolcoords>
-			<orientation>horizontal</orientation>
 			<control type="image">
-				<top>9</top>
-				<width>22</width>
-				<height>22</height>
-				<aspectratio>keep</aspectratio>
-				<texture>$VAR[ListViewIcon3Var]</texture>
+				<top>571</top>
+				<left>120</left>
+				<right>120</right>
+				<height>4</height>
+				<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
 			</control>
-			<control type="label" id="5303">
-				<width>auto</width>
-				<font>Font26_Reg</font>
-				<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
-				<label>$VAR[ListViewInfo3Var]</label>
-			</control>
-		</control>
-		<control type="grouplist">
-			<visible>!String.IsEmpty(ListItem.Top250)</visible>
-			<top>-9</top>
-			<height>37</height>
-			<usecontrolcoords>true</usecontrolcoords>
-			<orientation>horizontal</orientation>
-			<control type="image">
-				<top>3</top>
-				<width>50</width>
-				<height>35</height>
-				<aspectratio>keep</aspectratio>
-				<texture>$VAR[IconPathVar]imdb.png</texture>
-			</control>
-			<control type="label">
-				<width>auto</width>
-				<font>Font26_Reg</font>
-				<textcolor>$VAR[PanelTextColorVar]</textcolor>
-				<label>$INFO[ListItem.Top250, #,]</label>
+			<control type="scrollbar" id="605531">
+				<right>475</right>
+				<top>320</top>
+				<bottom>532</bottom>
+				<onleft>60503</onleft>
 			</control>
 		</control>
 	</include>
@@ -4982,7 +5271,7 @@
 			<include>FloorShadow</include>
 		</control>
 		<control type="group">
-			<visible>Control.IsVisible(511) | Control.IsVisible(512) | Control.IsVisible(513) | Control.IsVisible(514) | Control.IsVisible(515) | Control.IsVisible(516) | Control.IsVisible(517) | Control.IsVisible(518) |  Control.IsVisible(553)</visible>
+			<visible>Control.IsVisible(511) | Control.IsVisible(512) | Control.IsVisible(513) | Control.IsVisible(514) | Control.IsVisible(515) | Control.IsVisible(516) | Control.IsVisible(517) | Control.IsVisible(518)</visible>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
 			</include>
@@ -5059,6 +5348,39 @@
 				</control>
 			</control>
 		</control>
+		<control type="group">
+			<visible>Control.IsVisible(553)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">s
+				<param name="slide">220</param>
+			</include>
+			<bottom>0</bottom>
+			<left>642</left>
+			<right>642</right>
+			<height>116</height>
+			<align>center</align>
+			<itemgap>10</itemgap>
+			<usecontrolcoords>true</usecontrolcoords>
+			<control type="label">
+				<animation effect="slide" end="0,19" condition="String.IsEmpty(ListItem.Genre)">conditional</animation>
+				<top>17</top>
+				<height>30</height>
+				<align>center</align>
+				<font>Font30_Reg</font>
+				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				<label>$VAR[ViewTitleVar]</label>
+			</control>
+			<control type="label">
+				<top>54</top>
+				<height>30</height>
+				<align>center</align>
+				<font>Font30_Reg</font>
+				<textcolor>$VAR[MainMenuHighlightColorVar]</textcolor>
+				<label>$INFO[ListItem.Genre]</label>
+			</control>
+		</control>
 	</include>
 	<include name="ShowCaseItem">
 		<param name="item"></param>
@@ -5086,7 +5408,7 @@
 		<param name="left"></param>
 		<param name="item"></param>
 		<definition>
-			<visible>!String.IsEmpty(Container.ListItemNoWrap($PARAM[item]).FolderPath)</visible>
+			<visible>!String.IsEmpty(Container.ListItem($PARAM[item]).FolderPath)</visible>
 			<left>$PARAM[left]</left>
 			<width>270</width>
 			<height>396</height>

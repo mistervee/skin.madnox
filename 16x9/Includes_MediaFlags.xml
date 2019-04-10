@@ -711,22 +711,20 @@
 				<orientation>horizontal</orientation>
 				<usecontrolcoords>true</usecontrolcoords>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]audiocodec/$VAR[AudioCodecFlagVar]</texture>
+					<texture>$VAR[MediaFlagsPathVar]videoresolution/$VAR[VideoResolutionFlagVar]</texture>
 					<include>MediaFlagImage</include>
-					<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
+					<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]audiochannels/$VAR[AudioChannelsFlagVar]</texture>
+					<texture>$VAR[MediaFlagsPathVar]videocodec/$VAR[VideoCodecFlagVar]</texture>
 					<include>MediaFlagImage</include>
-					<visible>!String.IsEmpty(ListItem.AudioChannels)</visible>
+					<visible>!String.IsEmpty(ListItem.VideoCodec)</visible>
 				</control>
-				<include>LanguageFlags</include>
-				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]cc.png</texture>
+				<!-- <control type="image">
+					<texture>$VAR[MediaFlagsPathVar]videoaspect/$VAR[VideoAspectFlagVar]</texture>
 					<include>MediaFlagImage</include>
-					<visible>!String.IsEmpty(ListItem.SubtitleLanguage)</visible>
-				</control>
-				<include>SubtitleFlags</include>
+					<visible>!String.IsEmpty(ListItem.VideoAspect)</visible>
+				</control> -->
 				<control type="image">
 					<bordersize>0,10,0,10</bordersize>
 					<texture>$VAR[StudioIconsVar]</texture>
@@ -793,21 +791,33 @@
 					<include>MediaFlagImage</include>
 					<visible>![ListItem.IsCollection | Container.Content(artists) | Container.Content(albums)]</visible>
 				</control>
+
+
+
+
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]videoaspect/$VAR[VideoAspectFlagVar]</texture>
+					<texture>$VAR[MediaFlagsPathVar]audiocodec/$VAR[AudioCodecFlagVar]</texture>
 					<include>MediaFlagImage</include>
-					<visible>!String.IsEmpty(ListItem.VideoAspect)</visible>
+					<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]videoresolution/$VAR[VideoResolutionFlagVar]</texture>
+					<texture>$VAR[MediaFlagsPathVar]audiochannels/$VAR[AudioChannelsFlagVar]</texture>
 					<include>MediaFlagImage</include>
-					<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
+					<visible>!String.IsEmpty(ListItem.AudioChannels)</visible>
 				</control>
-				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]videocodec/$VAR[VideoCodecFlagVar]</texture>
+				<include>LanguageFlags</include>
+				<!-- <control type="image">
+					<texture>$VAR[MediaFlagsPathVar]cc.png</texture>
 					<include>MediaFlagImage</include>
-					<visible>!String.IsEmpty(ListItem.VideoCodec)</visible>
+					<visible>!String.IsEmpty(ListItem.SubtitleLanguage)</visible>
 				</control>
+				<include>SubtitleFlags</include> -->
+
+				
+
+
+
+
 				<control type="label">
 					<visible>ListItem.IsCollection | Container.Content(artists) | Container.Content(albums)</visible>
 					<label>$VAR[FolderPathItemCountVar]</label>
@@ -842,7 +852,7 @@
 				<height>25</height>
 				<include>LanguageSubtitleFlagImage</include>
 				<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(AudioLanguage.2)].png</texture>
-				<visible>!String.IsEmpty(ListItem.Property(AudioLanguage.1))</visible>
+				<visible>!String.IsEmpty(ListItem.Property(AudioLanguage.2))</visible>
 			</control>
 		</control>
 	</include>
