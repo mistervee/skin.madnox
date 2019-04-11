@@ -204,6 +204,32 @@
 		<value condition="Container.Content(artists)">$LOCALIZE[132]</value>
 		<value condition="Container.Content(albums)">$LOCALIZE[134]</value>
 	</variable>
+	<!-- View settings labels -->
+	<variable name="ShowcaseInfoLabelVar">
+		<value condition="Skin.String(ShowcaseInfo,2thumbs)">$LOCALIZE[31231]</value>
+		<value condition="Skin.String(ShowcaseInfo,4thumbs)">$LOCALIZE[31232]</value>
+		<value condition="Skin.String(ShowcaseInfo,poster)">$LOCALIZE[20021]</value>
+		<value>$LOCALIZE[571]</value>
+	</variable>
+
+
+	<!-- Overlays -->
+	<variable name="ListOverlayIconVar">
+		<value condition="ListItem.IsPlaying">overlays/list/OverlayPlay.png</value>
+		<value condition="ListItem.IsResumable">overlays/list/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem.Property(WatchedEpisodes),ListItem.Property(TotalEpisodes))">overlays/list/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem.Property(WatchedEpisodes),ListItem.Property(TotalEpisodes))">overlays/list/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem.Overlay)">overlays/list/$INFO[ListItem.Overlay]</value>
+		<value condition="Container.Content(songs)">flags/discnumber/$INFO[ListItem.DiscNumber,,.png]</value>
+	</variable>
+	<variable name="PosterOverlayIconVar">
+		<value condition="ListItem.IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem.IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem.Property(WatchedEpisodes),ListItem.Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem.Property(WatchedEpisodes),ListItem.Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem.Overlay)">overlays/poster/$INFO[ListItem.Overlay]</value>
+		<value condition="Container.Content(songs)">flags/discnumber/$INFO[ListItem.DiscNumber,,.png]</value>
+	</variable>
 
 
 	<!-- Now playing -->

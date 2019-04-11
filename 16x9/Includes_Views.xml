@@ -5208,7 +5208,7 @@
 			<include>FloorMiddle</include>
 		</control>
 		<control type="group">
-			<visible>!Skin.HasSetting(ViewsHideFloor) + [Control.IsVisible(50) | Control.IsVisible(500) | Control.IsVisible(51) | Control.IsVisible(501) | Control.IsVisible(53) | Control.IsVisible(503) | Control.IsVisible(54) | Control.IsVisible(504) | Control.IsVisible(56) | Control.IsVisible(506) | Control.IsVisible(57) | Control.IsVisible(507)]</visible>
+			<visible>!Skin.HasSetting(ViewsHideFloor) + [Control.IsVisible(50) | Control.IsVisible(500) | Control.IsVisible(51) | Control.IsVisible(501) | Control.IsVisible(53) | Control.IsVisible(503) | Control.IsVisible(54) | Control.IsVisible(504) | Control.IsVisible(56) | Control.IsVisible(506) | Control.IsVisible(57) | Control.IsVisible(507) | Control.IsVisible(551)]</visible>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
 			</include>
@@ -5238,7 +5238,7 @@
 			<include>FloorLeftHigh</include>
 		</control>
 		<control type="group">
-			<visible>!Skin.HasSetting(ViewsHideFloor) + [Control.IsVisible(551) | Control.IsVisible(552)]</visible>
+			<visible>!Skin.HasSetting(ViewsHideFloor) + [Control.IsVisible(552)]</visible>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
 			</include>
@@ -5349,6 +5349,35 @@
 			</control>
 		</control>
 		<control type="group">
+			<visible>Control.IsVisible(551)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">s
+				<param name="slide">220</param>
+			</include>
+			<bottom>0</bottom>
+			<left>100</left>
+			<right>642</right>
+			<height>100</height>
+			<itemgap>10</itemgap>
+			<usecontrolcoords>true</usecontrolcoords>
+			<control type="label">
+				<animation effect="slide" end="0,19" condition="String.IsEmpty(ListItem.Genre)">conditional</animation>
+				<height>40</height>
+				<font>Font32_Reg</font>
+				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				<label>$VAR[ViewTitleVar]</label>
+			</control>
+			<control type="label">
+				<top>48</top>
+				<height>30</height>
+				<font>Font30_Reg</font>
+				<textcolor>$VAR[MainMenuHighlightColorVar]</textcolor>
+				<label>$INFO[ListItem.Genre]</label>
+			</control>
+		</control>
+		<control type="group">
 			<visible>Control.IsVisible(553)</visible>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
@@ -5392,7 +5421,7 @@
 				<top>$PARAM[reflecttop]</top>
 				<bordersize>10</bordersize>
 				<aspectratio scalediffuse="true" aligny="top">keep</aspectratio>
-				<texture background="true" flipy="true" diffuse="thumbs/reflect/rounded5-532x532.png" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+				<texture background="true" flipy="true" diffuse="thumbs/reflect.png" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
 			</control>
 			<control type="image">
 				<bordersize>10</bordersize>
@@ -5412,17 +5441,30 @@
 			<left>$PARAM[left]</left>
 			<width>270</width>
 			<height>396</height>
-			<!-- <control type="image">
-				<top>375</top>
+			<control type="image">
+				<visible>!Skin.HasSetting(ViewsHideFloor)</visible>
+				<top>381</top>
 				<height>395</height>
 				<bordersize>10</bordersize>
-				<aspectratio scalediffuse="true" aligny="top">keep</aspectratio>
-				<texture background="true" flipy="true" diffuse="thumbs/reflect/rounded5-532x532.png" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
-			</control> -->
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<texture background="true" flipy="true" diffuse="thumbs/reflect.png" fallback="DefaultFile.png">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+			</control>
+			<control type="image">
+				<bordersize>10</bordersize>
+				<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+			</control>
 			<control type="image">
 				<bordersize>10</bordersize>
 				<aspectratio scalediffuse="false">scale</aspectratio>
 				<texture background="true" diffuse="$PARAM[diffuse]" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+			</control>
+			<control type="image">
+				<top>10</top>
+				<right>10</right>
+				<width>70</width>
+				<height>70</height>
+				<aspectratio>keep</aspectratio>
+				<texture>$VAR[ShowcaseOverlay$PARAM[item]Var]</texture>
 			</control>
 			<control type="image">
 				<texture background="true" border="20">thumbs/overlay.png</texture>
@@ -5430,56 +5472,56 @@
 		</definition>
 	</include>
 	<variable name="ShowcaseItem-7Var">
-		<value condition="Container.Content(genres)">$INFO[ListItem(-7).Label,special://skin/extras/genre/video/posters/default/,.jpg]</value>
+		<value condition="Container.Content(genres)">$INFO[ListItem(-7).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
 		<value condition="Container.Content(years)">$INFO[ListItem(-7).Label,special://skin/extras/genre/video/posters/color/,.jpg]</value>
 		<value condition="Container.Content(episodes)">$INFO[ListItem(-7).Art(tvshow.poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(-7).Art(poster))">$INFO[ListItem(-7).Art(poster)]</value>
 		<value>$INFO[ListItem(-7).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem-6Var">
-		<value condition="Container.Content(genres)">$INFO[ListItem(-6).Label,special://skin/extras/genre/video/posters/default/,.jpg]</value>
+		<value condition="Container.Content(genres)">$INFO[ListItem(-6).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
 		<value condition="Container.Content(years)">$INFO[ListItem(-6).Label,special://skin/extras/genre/video/posters/color/,.jpg]</value>
 		<value condition="Container.Content(episodes)">$INFO[ListItem(-6).Art(tvshow.poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(-6).Art(poster))">$INFO[ListItem(-6).Art(poster)]</value>
 		<value>$INFO[ListItem(-6).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem-5Var">
-		<value condition="Container.Content(genres)">$INFO[ListItem(-5).Label,special://skin/extras/genre/video/posters/default/,.jpg]</value>
+		<value condition="Container.Content(genres)">$INFO[ListItem(-5).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
 		<value condition="Container.Content(years)">$INFO[ListItem(-5).Label,special://skin/extras/genre/video/posters/color/,.jpg]</value>
 		<value condition="Container.Content(episodes)">$INFO[ListItem(-5).Art(tvshow.poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(-5).Art(poster))">$INFO[ListItem(-5).Art(poster)]</value>
 		<value>$INFO[ListItem(-5).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem-4Var">
-		<value condition="Container.Content(genres)">$INFO[ListItem(-4).Label,special://skin/extras/genre/video/posters/default/,.jpg]</value>
+		<value condition="Container.Content(genres)">$INFO[ListItem(-4).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
 		<value condition="Container.Content(years)">$INFO[ListItem(-4).Label,special://skin/extras/genre/video/posters/color/,.jpg]</value>
 		<value condition="Container.Content(episodes)">$INFO[ListItem(-4).Art(tvshow.poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(-4).Art(poster))">$INFO[ListItem(-4).Art(poster)]</value>
 		<value>$INFO[ListItem(-4).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem-3Var">
-		<value condition="Container.Content(genres)">$INFO[ListItem(-3).Label,special://skin/extras/genre/video/posters/default/,.jpg]</value>
+		<value condition="Container.Content(genres)">$INFO[ListItem(-3).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
 		<value condition="Container.Content(years)">$INFO[ListItem(-3).Label,special://skin/extras/genre/video/posters/color/,.jpg]</value>
 		<value condition="Container.Content(episodes)">$INFO[ListItem(-3).Art(tvshow.poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(-3).Art(poster))">$INFO[ListItem(-3).Art(poster)]</value>
 		<value>$INFO[ListItem(-3).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem-2Var">
-		<value condition="Container.Content(genres)">$INFO[ListItem(-2).Label,special://skin/extras/genre/video/posters/default/,.jpg]</value>
+		<value condition="Container.Content(genres)">$INFO[ListItem(-2).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
 		<value condition="Container.Content(years)">$INFO[ListItem(-2).Label,special://skin/extras/genre/video/posters/color/,.jpg]</value>
 		<value condition="Container.Content(episodes)">$INFO[ListItem(-2).Art(tvshow.poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(-2).Art(poster))">$INFO[ListItem(-2).Art(poster)]</value>
 		<value>$INFO[ListItem(-2).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem-1Var">
-		<value condition="Container.Content(genres)">$INFO[ListItem(-1).Label,special://skin/extras/genre/video/posters/default/,.jpg]</value>
+		<value condition="Container.Content(genres)">$INFO[ListItem(-1).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
 		<value condition="Container.Content(years)">$INFO[ListItem(-1).Label,special://skin/extras/genre/video/posters/color/,.jpg]</value>
 		<value condition="Container.Content(episodes)">$INFO[ListItem(-1).Art(tvshow.poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(-1).Art(poster))">$INFO[ListItem(-1).Art(poster)]</value>
 		<value>$INFO[ListItem(-1).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem0Var">
-		<value condition="Container.Content(genres)">$INFO[ListItem.Label,special://skin/extras/genre/video/posters/default/,.jpg]</value>
+		<value condition="Container.Content(genres)">$INFO[ListItem.Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
 		<value condition="Container.Content(years)">$INFO[ListItem.Label,special://skin/extras/genre/video/posters/color/,.jpg]</value>
 		<value condition="Container.Content(episodes)">$INFO[ListItem.Art(tvshow.poster)]</value>
 		<value condition="!String.IsEmpty(Window(home).Property(SkinHelper.ListItem.Art.AnimatedPoster)) + Skin.HasSetting(SkinHelperAnimations) + [Control.Isvisible(50) | Control.Isvisible(501) | Control.Isvisible(510) | Control.Isvisible(511) | Control.Isvisible(700)| Control.Isvisible(514) | Control.Isvisible(516)]">$INFO[Window(home).Property(SkinHelper.ListItem.Art.AnimatedPoster)]</value>
@@ -5487,66 +5529,172 @@
 		<value>$INFO[ListItem.Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem1Var">
-		<value condition="Container.Content(genres)">$INFO[ListItem(1).Label,special://skin/extras/genre/video/posters/default/,.jpg]</value>
+		<value condition="Container.Content(genres)">$INFO[ListItem(1).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
 		<value condition="Container.Content(years)">$INFO[ListItem(1).Label,special://skin/extras/genre/video/posters/color/,.jpg]</value>
 		<value condition="Container.Content(episodes)">$INFO[ListItem(1).Art(tvshow.poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(1).Art(poster))">$INFO[ListItem(1).Art(poster)]</value>
 		<value>$INFO[ListItem(1).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem2Var">
-		<value condition="Container.Content(genres)">$INFO[ListItem(2).Label,special://skin/extras/genre/video/posters/default/,.jpg]</value>
+		<value condition="Container.Content(genres)">$INFO[ListItem(2).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
 		<value condition="Container.Content(years)">$INFO[ListItem(2).Label,special://skin/extras/genre/video/posters/color/,.jpg]</value>
 		<value condition="Container.Content(episodes)">$INFO[ListItem(2).Art(tvshow.poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(2).Art(poster))">$INFO[ListItem(2).Art(poster)]</value>
 		<value>$INFO[ListItem(2).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem3Var">
-		<value condition="Container.Content(genres)">$INFO[ListItem(3).Label,special://skin/extras/genre/video/posters/default/,.jpg]</value>
+		<value condition="Container.Content(genres)">$INFO[ListItem(3).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
 		<value condition="Container.Content(years)">$INFO[ListItem(3).Label,special://skin/extras/genre/video/posters/color/,.jpg]</value>
 		<value condition="Container.Content(episodes)">$INFO[ListItem(3).Art(tvshow.poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(3).Art(poster))">$INFO[ListItem(3).Art(poster)]</value>
 		<value>$INFO[ListItem(3).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem4Var">
-		<value condition="Container.Content(genres)">$INFO[ListItem(4).Label,special://skin/extras/genre/video/posters/default/,.jpg]</value>
+		<value condition="Container.Content(genres)">$INFO[ListItem(4).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
 		<value condition="Container.Content(years)">$INFO[ListItem(4).Label,special://skin/extras/genre/video/posters/color/,.jpg]</value>
 		<value condition="Container.Content(episodes)">$INFO[ListItem(4).Art(tvshow.poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(4).Art(poster))">$INFO[ListItem(4).Art(poster)]</value>
 		<value>$INFO[ListItem(4).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem5Var">
-		<value condition="Container.Content(genres)">$INFO[ListItem(5).Label,special://skin/extras/genre/video/posters/default/,.jpg]</value>
+		<value condition="Container.Content(genres)">$INFO[ListItem(5).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
 		<value condition="Container.Content(years)">$INFO[ListItem(5).Label,special://skin/extras/genre/video/posters/color/,.jpg]</value>
 		<value condition="Container.Content(episodes)">$INFO[ListItem(5).Art(tvshow.poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(5).Art(poster))">$INFO[ListItem(5).Art(poster)]</value>
 		<value>$INFO[ListItem(5).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem6Var">
-		<value condition="Container.Content(genres)">$INFO[ListItem(6).Label,special://skin/extras/genre/video/posters/default/,.jpg]</value>
+		<value condition="Container.Content(genres)">$INFO[ListItem(6).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
 		<value condition="Container.Content(years)">$INFO[ListItem(6).Label,special://skin/extras/genre/video/posters/color/,.jpg]</value>
 		<value condition="Container.Content(episodes)">$INFO[ListItem(6).Art(tvshow.poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(6).Art(poster))">$INFO[ListItem(6).Art(poster)]</value>
 		<value>$INFO[ListItem(6).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem7Var">
-		<value condition="Container.Content(genres)">$INFO[ListItem(7).Label,special://skin/extras/genre/video/posters/default/,.jpg]</value>
+		<value condition="Container.Content(genres)">$INFO[ListItem(7).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
 		<value condition="Container.Content(years)">$INFO[ListItem(7).Label,special://skin/extras/genre/video/posters/color/,.jpg]</value>
 		<value condition="Container.Content(episodes)">$INFO[ListItem(7).Art(tvshow.poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(7).Art(poster))">$INFO[ListItem(7).Art(poster)]</value>
 		<value>$INFO[ListItem(7).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem8Var">
-		<value condition="Container.Content(genres)">$INFO[ListItem(8).Label,special://skin/extras/genre/video/posters/default/,.jpg]</value>
+		<value condition="Container.Content(genres)">$INFO[ListItem(8).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
 		<value condition="Container.Content(years)">$INFO[ListItem(8).Label,special://skin/extras/genre/video/posters/color/,.jpg]</value>
 		<value condition="Container.Content(episodes)">$INFO[ListItem(8).Art(tvshow.poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(8).Art(poster))">$INFO[ListItem(8).Art(poster)]</value>
 		<value>$INFO[ListItem(8).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem9Var">
-		<value condition="Container.Content(genres)">$INFO[ListItem(9).Label,special://skin/extras/genre/video/posters/default/,.jpg]</value>
+		<value condition="Container.Content(genres)">$INFO[ListItem(9).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
 		<value condition="Container.Content(years)">$INFO[ListItem(9).Label,special://skin/extras/genre/video/posters/color/,.jpg]</value>
 		<value condition="Container.Content(episodes)">$INFO[ListItem(9).Art(tvshow.poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(9).Art(poster))">$INFO[ListItem(9).Art(poster)]</value>
 		<value>$INFO[ListItem(9).Icon]</value>
+	</variable>
+
+	<variable name="ShowcaseOverlay-7Var">
+		<value condition="ListItem(-7).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(-7).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(-7).Property(WatchedEpisodes),ListItem(-7).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(-7).Property(WatchedEpisodes),ListItem(-7).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(-7).Overlay)">overlays/poster/$INFO[ListItem(-7).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay-6Var">
+		<value condition="ListItem(-6).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(-6).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(-6).Property(WatchedEpisodes),ListItem(-6).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(-6).Property(WatchedEpisodes),ListItem(-6).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(-6).Overlay)">overlays/poster/$INFO[ListItem(-6).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay-5Var">
+		<value condition="ListItem(-5).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(-5).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(-5).Property(WatchedEpisodes),ListItem(-5).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(-5).Property(WatchedEpisodes),ListItem(-5).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(-5).Overlay)">overlays/poster/$INFO[ListItem(-5).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay-4Var">
+		<value condition="ListItem(-4).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(-4).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(-4).Property(WatchedEpisodes),ListItem(-4).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(-4).Property(WatchedEpisodes),ListItem(-4).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(-4).Overlay)">overlays/poster/$INFO[ListItem(-4).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay-3Var">
+		<value condition="ListItem(-3).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(-3).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(-3).Property(WatchedEpisodes),ListItem(-3).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(-3).Property(WatchedEpisodes),ListItem(-3).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(-3).Overlay)">overlays/poster/$INFO[ListItem(-3).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay-2Var">
+		<value condition="ListItem(-2).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(-2).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(-2).Property(WatchedEpisodes),ListItem(-2).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(-2).Property(WatchedEpisodes),ListItem(-2).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(-2).Overlay)">overlays/poster/$INFO[ListItem(-2).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay-1Var">
+		<value condition="ListItem(-1).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(-1).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(-1).Property(WatchedEpisodes),ListItem(-1).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(-1).Property(WatchedEpisodes),ListItem(-1).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(-1).Overlay)">overlays/poster/$INFO[ListItem(-1).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay0Var">
+		<value condition="ListItem(0).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(0).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(0).Property(WatchedEpisodes),ListItem(0).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(0).Property(WatchedEpisodes),ListItem(0).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(0).Overlay)">overlays/poster/$INFO[ListItem(0).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay1Var">
+		<value condition="ListItem(1).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(1).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(1).Property(WatchedEpisodes),ListItem(1).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(1).Property(WatchedEpisodes),ListItem(1).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(1).Overlay)">overlays/poster/$INFO[ListItem(1).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay2Var">
+		<value condition="ListItem(2).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(2).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(2).Property(WatchedEpisodes),ListItem(2).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(2).Property(WatchedEpisodes),ListItem(2).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(2).Overlay)">overlays/poster/$INFO[ListItem(2).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay3Var">
+		<value condition="ListItem(3).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(3).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(3).Property(WatchedEpisodes),ListItem(3).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(3).Property(WatchedEpisodes),ListItem(3).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(3).Overlay)">overlays/poster/$INFO[ListItem(3).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay4Var">
+		<value condition="ListItem(4).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(4).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(4).Property(WatchedEpisodes),ListItem(4).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(4).Property(WatchedEpisodes),ListItem(4).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(4).Overlay)">overlays/poster/$INFO[ListItem(4).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay5Var">
+		<value condition="ListItem(5).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(5).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(5).Property(WatchedEpisodes),ListItem(5).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(5).Property(WatchedEpisodes),ListItem(5).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(5).Overlay)">overlays/poster/$INFO[ListItem(5).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay6Var">
+		<value condition="ListItem(6).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(6).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(6).Property(WatchedEpisodes),ListItem(6).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(6).Property(WatchedEpisodes),ListItem(6).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(6).Overlay)">overlays/poster/$INFO[ListItem(6).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay7Var">
+		<value condition="ListItem(7).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(7).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(7).Property(WatchedEpisodes),ListItem(7).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(7).Property(WatchedEpisodes),ListItem(7).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(7).Overlay)">overlays/poster/$INFO[ListItem(7).Overlay]</value>
 	</variable>
 </includes>
