@@ -156,6 +156,20 @@
 				<param name="codecs">MediaFlags6</param>
 			</include>
 		</control>
+		<control type="group">
+			<visible>Control.IsVisible(555)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">200</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">200</param>
+			</include>
+			<include content="MediaFlagsVideo">
+				<param name="left">50</param>
+				<!-- <param name="bottom">18</param> -->
+				<param name="codecs">MediaFlags8</param>
+			</include>
+		</control>
 	</include>
 	<include name="ViewsMediaFlagsAudio">
 		<control type="group">
@@ -259,17 +273,19 @@
 	</include>
 	<include name="MediaFlagsVideo">
 		<param name="bottom">25</param>
+		<param name="left">125</param>
 		<param name="right">125</param>
+		<param name="align">right</param>
 		<param name="codecs">MediaFlags4</param>
 		<definition>
 			<control type="group">
 				<bottom>$PARAM[bottom]</bottom>
-				<left>125</left>
+				<left>$PARAM[left]</left>
 				<right>$PARAM[right]</right>
 				<height>80</height>
 				<control type="grouplist">
 					<visible>!ListItem.IsParentFolder + [Container.Content(tvshows) | Container.Content(seasons)]</visible>
-					<align>right</align>
+					<align>$PARAM[align]</align>
 					<itemgap>10</itemgap>
 					<orientation>horizontal</orientation>
 					<usecontrolcoords>true</usecontrolcoords>
@@ -619,7 +635,7 @@
 	<include name="MediaFlags8">
 		<control type="grouplist">
 			<visible>!ListItem.IsParentFolder + [Container.Content(episodes) | Container.Content(movies) | Container.Content(musicvideos)]</visible>
-			<align>right</align>
+			<align>$PARAM[align]</align>
 			<itemgap>10</itemgap>
 			<orientation>horizontal</orientation>
 			<usecontrolcoords>true</usecontrolcoords>

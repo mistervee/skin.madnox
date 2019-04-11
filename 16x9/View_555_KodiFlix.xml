@@ -6,36 +6,91 @@
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">910</param>
 			</include>
+			<control type="label">
+				<top>110</top>
+				<left>50</left>
+				<height>30</height>
+				<scroll>true</scroll>
+				<font>Font38_Reg</font>
+				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				<label>$INFO[ListItem.Label]</label>
+			</control>
+			<include content="ViewShowCaseListInfo">
+				<param name="left">50</param>
+				<param name="wifth">910</param>
+			</include>
 			<control type="fixedlist" id="555">
-				<top>540</top>
+				<top>576</top>
 				<left>40</left>
 				<width>1840</width>
 				<height>764</height>
-				<onleft>9050</onleft>
-				<onright>6080</onright>
+				<onup>9050</onup>
 				<focusposition>0</focusposition>
 				<orientation>horizontal</orientation>
 				<pagecontrol>6080</pagecontrol>
 				<itemlayout width="262.9" height="384">
-					<control type="image">
-						<bordersize>10</bordersize>
-						<aspectratio align="center" aligny="center">$PARAM[Aspect]</aspectratio>
-						<texture diffuse="diffuse/rounded5-532x800.png">$VAR[PosterVar]</texture>
+					<control type="group">
+						<visible>!Skin.HasSetting(ViewsHideFloor)</visible>
+						<top>370</top>
+						<height>470</height>
+						<control type="image">
+							<bordersize>10</bordersize>
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<texture diffuse="thumbs/reflect.png" flipy="true" background="true" colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+						</control>
+						<control type="image">
+							<bordersize>10</bordersize>
+							<fadetime>TextureFadeTime</fadetime>
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<texture background="true" flipy="true" diffuse="thumbs/reflect.png" fallback="DefaultFile.png">$VAR[PosterVar]</texture>
+						</control>
 					</control>
 					<control type="image">
-						<texture border="20">thumbs/frame-rounded5.png</texture>
+						<bordersize>10</bordersize>
+						<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+					</control>
+					<control type="image">
+						<bordersize>10</bordersize>
+						<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+						<texture background="true" diffuse="diffuse/rounded5-216x324.png">$VAR[PosterVar]</texture>
+					</control>
+					<control type="image">
+						<texture border="20">thumbs/overlay.png</texture>
+					</control>
+					<control type="image">
+						<bordersize>10</bordersize>
+						<texture colordiffuse="DD000000" border="10">buttons/thumb-select-focus.png</texture>
 					</control>
 				</itemlayout>
 				<focusedlayout width="262.9" height="384">
+					<control type="group">
+						<visible>!Skin.HasSetting(ViewsHideFloor)</visible>
+						<top>370</top>
+						<height>470</height>
+						<control type="image">
+							<bordersize>10</bordersize>
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<texture diffuse="thumbs/reflect.png" flipy="true" background="true" colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+						</control>
+						<control type="image">
+							<bordersize>10</bordersize>
+							<fadetime>TextureFadeTime</fadetime>
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<texture background="true" flipy="true" diffuse="thumbs/reflect.png" fallback="DefaultFile.png">$VAR[PosterVar]</texture>
+						</control>
+					</control>
 					<control type="image">
 						<bordersize>10</bordersize>
-						<aspectratio align="center" aligny="center">$PARAM[Aspect]</aspectratio>
-						<texture diffuse="diffuse/rounded5-532x800.png">$VAR[PosterVar]</texture>
+						<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
 					</control>
 					<control type="image">
-						<texture diffuse="thumbs/frame-rounded5.png" border="20">thumbs/frame-rounded5.png</texture>
+						<bordersize>10</bordersize>
+						<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+						<texture background="true" diffuse="diffuse/rounded5-216x324.png">$VAR[PosterVar]</texture>
 					</control>
-					
+					<control type="image">
+						<texture border="20">thumbs/overlay.png</texture>
+					</control>
 				</focusedlayout>
 			</control>
 			<!-- <control type="scrollbar" id="6057">
