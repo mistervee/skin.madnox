@@ -910,7 +910,7 @@
 			<include>MediaMenuLabel</include>
 		</control>
 		<control type="radiobutton" id="202">
-			<label>Extra fanart</label>
+			<label>$LOCALIZE[31035]</label>
 			<onclick>Skin.ToggleSetting(MusicExtraFanart)</onclick>
 			<selected>!Skin.HasSetting(MusicExtraFanart)</selected>
 			<include>MediaMenuRadioButton</include>
@@ -920,7 +920,7 @@
 			<onclick>SetProperty(CustomSelect,$LOCALIZE[2] $LOCALIZE[31107],home)</onclick>
 			<onclick>ActivateWindow(1110)</onclick>
 			<include>MediaMenuButton</include>
-		</control>
+		</control>		
 	</include>
 	<!-- Games -->
 	<include name="MediaMenuViewsettingsGames">
@@ -1072,25 +1072,6 @@
 			<label>$LOCALIZE[31106]</label>
 			<include>MediaMenuLabel</include>
 		</control>
-		<control type="radiobutton" id="302">
-			<label>$LOCALIZE[31042]</label>
-			<onclick>Skin.ToggleSetting(ViewsHideTopBar)</onclick>
-			<selected>!Skin.HasSetting(ViewsHideTopBar)</selected>
-			<include>MediaMenuRadioButton</include>
-		</control>
-		<control type="radiobutton" id="303">
-			<label>$LOCALIZE[31047]</label>
-			<onclick>Skin.ToggleSetting(ViewsHideFloor)</onclick>
-			<selected>!Skin.HasSetting(ViewsHideFloor)</selected>
-			<include>MediaMenuRadioButton</include>
-		</control>
-		<control type="radiobutton" id="304">
-			<visible>String.IsEqual(Container.Viewmode,$LOCALIZE[31219]) | String.IsEqual(Container.Viewmode,$LOCALIZE[31220]) | String.IsEqual(Container.Viewmode,$LOCALIZE[31221]) | String.IsEqual(Container.Viewmode,$LOCALIZE[31222])</visible>
-			<label>$LOCALIZE[31228]</label>
-			<onclick>Skin.ToggleSetting(ShowVideoPreviewWindow)</onclick>
-			<selected>Skin.HasSetting(ShowVideoPreviewWindow)</selected>
-			<include>MediaMenuRadioButton</include>
-		</control>
 		<control type="radiobutton" id="305">
 			<visible>Container.Content(movies) | Container.Content(episodes) | Container.Content(musicvideos)</visible>
 			<label>$LOCALIZE[31060]</label>
@@ -1099,31 +1080,1004 @@
 			<selected>Skin.HasSetting(ShowLanguageFlags)</selected>
 			<include>MediaMenuRadioButton</include>
 		</control>
+		<control type="radiobutton" id="302">
+			<label>$LOCALIZE[31042]</label>
+			<onclick>Skin.ToggleSetting(ViewsHideTopBar)</onclick>
+			<selected>!Skin.HasSetting(ViewsHideTopBar)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="button" id="204">
+			<visible>Container.Content(genres) + String.Contains(ListItem.FolderPath,music) + !System.HasAddon(resource.images.musicgenreicons.text)</visible>
+			<label>Install genre icons</label>
+			<onclick>InstallAddon(resource.images.musicgenreicons.text)</onclick>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="button" id="204">
+			<visible>Container.Content(genres) + !String.Contains(ListItem.FolderPath,music) + !System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)</visible>
+			<label>Install genre icons</label>
+			<onclick>InstallAddon(resource.images.moviegenreicons.filmstrip-hd.colour)</onclick>
+			<include>MediaMenuButton</include>
+		</control>
 	</include>
 	<!-- Views -->
-	<include name="ViewPosterList50">
+	<include name="View50SettingsCoverList">
 		<control type="label" id="101">
-			<label>$LOCALIZE[14018]</label>
+			<label>$LOCALIZE[21483]</label>
 			<include>MediaMenuLabel</include>
 		</control>
-	</include>
-	<include name="ViewBigPosterList500">
-		<control type="label" id="101">
-			<label>$LOCALIZE[14018]</label>
-			<include>MediaMenuLabel</include>
+		<control type="radiobutton" id="102">
+			<label>$LOCALIZE[31212]</label>
+			<onclick>Skin.ToggleSetting(View50BigList)</onclick>
+			<selected>Skin.HasSetting(View50BigList)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="103">
+			<visible>Container.Content(movies) | Container.Content(episodes) | String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,episode) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)</visible>
+			<label>$LOCALIZE[31237]</label>
+			<onclick>Skin.ToggleSetting(View50VideoCase)</onclick>
+			<selected>Skin.HasSetting(View50VideoCase)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="104">
+			<visible>Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos) | String.IsEqual(ListItem.DBTYPE,song) | String.IsEqual(ListItem.DBTYPE,musicvideo)</visible>
+			<label>$LOCALIZE[31236]</label>
+			<onclick>Skin.ToggleSetting(View50AlbumCase)</onclick>
+			<selected>Skin.HasSetting(View50AlbumCase)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="105">
+			<visible>Container.Content(artists)</visible>
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View50HideLogo)</onclick>
+			<selected>!Skin.HasSetting(View50HideLogo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="106">
+			<visible>Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos) | String.IsEqual(ListItem.DBTYPE,song) | String.IsEqual(ListItem.DBTYPE,musicvideo)</visible>
+			<label>$LOCALIZE[31108]</label>
+			<onclick>Skin.ToggleSetting(View50HideDiscArt)</onclick>
+			<selected>!Skin.HasSetting(View50HideDiscArt)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31214]</label>
+			<onclick>Skin.ToggleSetting(View50HideReflect)</onclick>
+			<selected>!Skin.HasSetting(View50HideReflect)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="108">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View50HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View50HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
 		</control>
 	</include>
-	<include name="ViewShowcase553">
+	<include name="View51SettingsSimpleList">
 		<control type="label" id="101">
-			<label>$LOCALIZE[14018]</label>
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="radiobutton" id="102">
+			<label>$LOCALIZE[31212]</label>
+			<onclick>Skin.ToggleSetting(View51BigList)</onclick>
+			<selected>Skin.HasSetting(View51BigList)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="103">
+			<label>$LOCALIZE[31214]</label>
+			<onclick>Skin.ToggleSetting(View51HideReflect)</onclick>
+			<selected>!Skin.HasSetting(View51HideReflect)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="104">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View51HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View51HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View53SettingsInfoList1">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="radiobutton" id="102">
+			<label>$LOCALIZE[31212]</label>
+			<onclick>Skin.ToggleSetting(View53BigList)</onclick>
+			<selected>Skin.HasSetting(View53BigList)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="104">
+			<visible>Container.Content(movies) | Container.Content(episodes) | String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,episode) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos) | String.IsEqual(ListItem.DBTYPE,song) | String.IsEqual(ListItem.DBTYPE,musicvideo)</visible>
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View53HideLogo)</onclick>
+			<selected>!Skin.HasSetting(View53HideLogo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="105">
+			<label>$LOCALIZE[31214]</label>
+			<onclick>Skin.ToggleSetting(View53HideReflect)</onclick>
+			<selected>!Skin.HasSetting(View53HideReflect)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="106">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View53HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View53HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31228]</label>
+			<onclick>Skin.ToggleSetting(View53VideoPreviewWindow)</onclick>
+			<selected>Skin.HasSetting(View53VideoPreviewWindow)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View54SettingsInfoList2">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="radiobutton" id="102">
+			<label>$LOCALIZE[31212]</label>
+			<onclick>Skin.ToggleSetting(View54BigList)</onclick>
+			<selected>Skin.HasSetting(View54BigList)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="103">
+			<visible>Container.Content(movies) | Container.Content(episodes) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)</visible>
+			<label>$LOCALIZE[31237]</label>
+			<onclick>Skin.ToggleSetting(View54VideoCase)</onclick>
+			<selected>Skin.HasSetting(View54VideoCase)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="104">
+			<visible>Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos)</visible>
+			<label>$LOCALIZE[31236]</label>
+			<onclick>Skin.ToggleSetting(View54AlbumCase)</onclick>
+			<selected>Skin.HasSetting(View54AlbumCase)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="105">
+			<visible>Container.Content(movies) | Container.Content(episodes) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos)</visible>
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View54HideLogo)</onclick>
+			<selected>!Skin.HasSetting(View54HideLogo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="106">
+			<label>$LOCALIZE[31214]</label>
+			<onclick>Skin.ToggleSetting(View54HideReflect)</onclick>
+			<selected>!Skin.HasSetting(View54HideReflect)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View54HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View54HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="108">
+			<label>$LOCALIZE[31228]</label>
+			<onclick>Skin.ToggleSetting(View54VideoPreviewWindow)</onclick>
+			<selected>Skin.HasSetting(View54VideoPreviewWindow)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View55SettingsLowList">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="radiobutton" id="102">
+			<label>$LOCALIZE[31212]</label>
+			<onclick>Skin.ToggleSetting(View55BigList)</onclick>
+			<selected>Skin.HasSetting(View55BigList)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="103">
+			<visible>Container.Content(movies) | Container.Content(episodes) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)</visible>
+			<label>$LOCALIZE[31237]</label>
+			<onclick>Skin.ToggleSetting(View55VideoCase)</onclick>
+			<selected>Skin.HasSetting(View55VideoCase)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<visible>Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos)</visible>
+			<label>$LOCALIZE[31236]</label>
+			<onclick>Skin.ToggleSetting(View55AlbumCase)</onclick>
+			<selected>Skin.HasSetting(View55AlbumCase)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="104">
+			<visible>Container.Content(movies) | Container.Content(episodes) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos)</visible>
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View55HideLogo)</onclick>
+			<selected>!Skin.HasSetting(View55HideLogo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="105">
+			<visible>Container.Content(movies) | Container.Content(episodes) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos)</visible>
+			<label>$LOCALIZE[31108]</label>
+			<onclick>Skin.ToggleSetting(View55HideDiscArt)</onclick>
+			<selected>!Skin.HasSetting(View55HideDiscArt)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View56Settings3Panel">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="radiobutton" id="101">
+			<label>$LOCALIZE[31212]</label>
+			<onclick>Skin.ToggleSetting(View56BigList)</onclick>
+			<selected>Skin.HasSetting(View56BigList)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="102">
+			<visible>Container.Content(movies) | Container.Content(episodes) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)</visible>
+			<label>$LOCALIZE[31237]</label>
+			<onclick>Skin.ToggleSetting(View56VideoCase)</onclick>
+			<selected>Skin.HasSetting(View56VideoCase)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="103">
+			<label>$LOCALIZE[31214]</label>
+			<onclick>Skin.ToggleSetting(View56HideReflect)</onclick>
+			<selected>!Skin.HasSetting(View56HideReflect)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="104">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View56HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View56HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View57Settings3PanelSquare">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="radiobutton" id="102">
+			<label>$LOCALIZE[31212]</label>
+			<onclick>Skin.ToggleSetting(View57BigList)</onclick>
+			<selected>Skin.HasSetting(View57BigList)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="103">
+			<visible>Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos)</visible>
+			<label>$LOCALIZE[31236]</label>
+			<onclick>Skin.ToggleSetting(View57AlbumCase)</onclick>
+			<selected>Skin.HasSetting(View57AlbumCase)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="104">
+			<visible>Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos)</visible>
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View57HideLogo)</onclick>
+			<selected>!Skin.HasSetting(View57HideLogo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="105">
+			<visible>Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos)</visible>
+			<label>$LOCALIZE[31108]</label>
+			<onclick>Skin.ToggleSetting(View57HideDiscArt)</onclick>
+			<selected>!Skin.HasSetting(View57HideDiscArt)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="106">
+			<label>$LOCALIZE[31214]</label>
+			<onclick>Skin.ToggleSetting(View57HideReflect)</onclick>
+			<selected>!Skin.HasSetting(View57HideReflect)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View57HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View57HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View500SettingsPortrait">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
 			<include>MediaMenuLabel</include>
 		</control>
 		<control type="button" id="102">
 			<label>$LOCALIZE[29915]</label>
-			<label2>$VAR[ShowcaseInfoLabelVar]</label2>
-			<onclick>SetProperty(CustomSelect,$LOCALIZE[31230] $LOCALIZE[29915],home)</onclick>
-			<onclick>ActivateWindow(1110)</onclick>
+			<label2>$VAR[View500InfoLabelVar]</label2>
+			<onclick condition="String.IsEmpty(View500Info)">Skin.SetString(View500Info,2thumbs)</onclick>
+			<onclick condition="Skin.String(View500Info,2thumbs)">Skin.SetString(View500Info,4thumbs)</onclick>
+			<onclick condition="Skin.String(View500Info,4thumbs)">Skin.SetString(View500Info,poster)</onclick>
+			<onclick condition="Skin.String(View500Info,poster)">Skin.SetString(View500Info,none)</onclick>
+			<onclick condition="Skin.String(View500Info,none)">Skin.Reset(View500Info)</onclick>
 			<include>MediaMenuButton</include>
+		</control>
+		<control type="radiobutton" id="103">
+			<visible>!Skin.String(View500Info,none)</visible>
+			<label>$LOCALIZE[31240]</label>
+			<onclick>Skin.ToggleSetting(View500ManualInfo)</onclick>
+			<selected>Skin.HasSetting(View500ManualInfo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="104">
+			<visible>!Skin.String(View500Info,none)</visible>
+			<label>$LOCALIZE[31056]</label>
+			<onclick>Skin.ToggleSetting(View500HidePanel)</onclick>
+			<selected>!Skin.HasSetting(View500HidePanel)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="105">
+			<visible>Container.Content(movies) | Container.Content(episodes) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)</visible>
+			<label>$LOCALIZE[31237]</label>
+			<onclick>Skin.ToggleSetting(View500VideoCase)</onclick>
+			<selected>Skin.HasSetting(View500VideoCase)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="106">
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View500Logo)</onclick>
+			<selected>Skin.HasSetting(View500Logo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31214]</label>
+			<onclick>Skin.ToggleSetting(View500HideReflect)</onclick>
+			<selected>!Skin.HasSetting(View500HideReflect)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="108">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View500HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View500HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View501SettingsSquare">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="button" id="102">
+			<label>$LOCALIZE[29915]</label>
+			<label2>$VAR[View501InfoLabelVar]</label2>
+			<onclick condition="String.IsEmpty(View501Info)">Skin.SetString(View501Info,2thumbs)</onclick>
+			<onclick condition="Skin.String(View501Info,2thumbs)">Skin.SetString(View501Info,4thumbs)</onclick>
+			<onclick condition="Skin.String(View501Info,4thumbs)">Skin.SetString(View501Info,poster)</onclick>
+			<onclick condition="Skin.String(View501Info,poster)">Skin.SetString(View501Info,none)</onclick>
+			<onclick condition="Skin.String(View501Info,none)">Skin.Reset(View501Info)</onclick>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="radiobutton" id="103">
+			<visible>!Skin.String(View501Info,none)</visible>
+			<label>$LOCALIZE[31240]</label>
+			<onclick>Skin.ToggleSetting(View501ManualInfo)</onclick>
+			<selected>Skin.HasSetting(View501ManualInfo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="104">
+			<visible>!Skin.String(View501Info,none)</visible>
+			<label>$LOCALIZE[31056]</label>
+			<onclick>Skin.ToggleSetting(View501HidePanel)</onclick>
+			<selected>!Skin.HasSetting(View501HidePanel)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="105">
+			<visible>Container.Content(albums) | Container.Content(musicvideos)</visible>
+			<label>$LOCALIZE[31236]</label>
+			<onclick>Skin.ToggleSetting(View501AlbumCase)</onclick>
+			<selected>Skin.HasSetting(View501AlbumCase)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="106">
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View501Logo)</onclick>
+			<selected>Skin.HasSetting(View501Logo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31214]</label>
+			<onclick>Skin.ToggleSetting(View501HideReflect)</onclick>
+			<selected>!Skin.HasSetting(View501HideReflect)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="108">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View501HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View501HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View502SettingsBanner">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="button" id="102">
+			<label>$LOCALIZE[29915]</label>
+			<label2>$VAR[View502InfoLabelVar]</label2>
+			<onclick condition="String.IsEmpty(View502Info)">Skin.SetString(View502Info,2thumbs)</onclick>
+			<onclick condition="Skin.String(View502Info,2thumbs)">Skin.SetString(View502Info,4thumbs)</onclick>
+			<onclick condition="Skin.String(View502Info,4thumbs)">Skin.SetString(View502Info,poster)</onclick>
+			<onclick condition="Skin.String(View502Info,poster)">Skin.SetString(View502Info,none)</onclick>
+			<onclick condition="Skin.String(View502Info,none)">Skin.Reset(View502Info)</onclick>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="radiobutton" id="103">
+			<visible>!Skin.String(View502Info,none)</visible>
+			<label>$LOCALIZE[31240]</label>
+			<onclick>Skin.ToggleSetting(View502ManualInfo)</onclick>
+			<selected>Skin.HasSetting(View502ManualInfo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="104">
+			<visible>!Skin.String(View502Info,none)</visible>
+			<label>$LOCALIZE[31056]</label>
+			<onclick>Skin.ToggleSetting(View502HidePanel)</onclick>
+			<selected>!Skin.HasSetting(View502HidePanel)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="106">
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View502Logo)</onclick>
+			<selected>Skin.HasSetting(View502Logo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31214]</label>
+			<onclick>Skin.ToggleSetting(View502HideReflect)</onclick>
+			<selected>!Skin.HasSetting(View502HideReflect)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="108">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View502HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View502HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View503SettingsLandscape">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="button" id="102">
+			<label>$LOCALIZE[29915]</label>
+			<label2>$VAR[View503InfoLabelVar]</label2>
+			<onclick condition="String.IsEmpty(View503Info)">Skin.SetString(View503Info,2thumbs)</onclick>
+			<onclick condition="Skin.String(View503Info,2thumbs)">Skin.SetString(View503Info,4thumbs)</onclick>
+			<onclick condition="Skin.String(View503Info,4thumbs)">Skin.SetString(View503Info,poster)</onclick>
+			<onclick condition="Skin.String(View503Info,poster)">Skin.SetString(View503Info,none)</onclick>
+			<onclick condition="Skin.String(View503Info,none)">Skin.Reset(View503Info)</onclick>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="radiobutton" id="103">
+			<visible>!Skin.String(View503Info,none)</visible>
+			<label>$LOCALIZE[31240]</label>
+			<onclick>Skin.ToggleSetting(View503ManualInfo)</onclick>
+			<selected>Skin.HasSetting(View503ManualInfo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="104">
+			<visible>!Skin.String(View503Info,none)</visible>
+			<label>$LOCALIZE[31056]</label>
+			<onclick>Skin.ToggleSetting(View503HidePanel)</onclick>
+			<selected>!Skin.HasSetting(View503HidePanel)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="button" id="105">
+			<label>$LOCALIZE[31044]</label>
+			<label2>$VAR[View503ArtworkLabelVar]</label2>
+			<onclick condition="String.IsEmpty(View503Art)">Skin.SetString(View503Art,clearlogo)</onclick>
+			<onclick condition="Skin.String(View503Art,clearlogo)">Skin.SetString(View503Art,clearart)</onclick>
+			<onclick condition="Skin.String(View503Art,clearart)">Skin.SetString(View503Art,fanart)</onclick>
+			<onclick condition="Skin.String(View503Art,fanart)">Skin.Reset(View503Art)</onclick>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="radiobutton" id="106">
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View503Logo)</onclick>
+			<selected>Skin.HasSetting(View503Logo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31214]</label>
+			<onclick>Skin.ToggleSetting(View503HideReflect)</onclick>
+			<selected>!Skin.HasSetting(View503HideReflect)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="108">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View503HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View503HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View504SettingsFocus">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="radiobutton" id="102">
+			<visible>Container.Content(movies) | Container.Content(episodes) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)</visible>
+			<label>$LOCALIZE[31237]</label>
+			<onclick>Skin.ToggleSetting(View504VideoCase)</onclick>
+			<selected>Skin.HasSetting(View504VideoCase)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="103">
+			<visible>Container.Content(movies)</visible>
+			<label>$LOCALIZE[31108]</label>
+			<onclick>Skin.ToggleSetting(View504DiscArt)</onclick>
+			<selected>Skin.HasSetting(View504DiscArt)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="106">
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View504Logo)</onclick>
+			<selected>Skin.HasSetting(View504Logo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31214]</label>
+			<onclick>Skin.ToggleSetting(View504HideReflect)</onclick>
+			<selected>!Skin.HasSetting(View504HideReflect)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="108">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View504HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View504HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View506SettingsCascade">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="radiobutton" id="105">
+			<visible>Container.Content(movies) | Container.Content(episodes) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)</visible>
+			<label>$LOCALIZE[31237]</label>
+			<onclick>Skin.ToggleSetting(View506VideoCase)</onclick>
+			<selected>Skin.HasSetting(View506VideoCase)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31214]</label>
+			<onclick>Skin.ToggleSetting(View506HideReflect)</onclick>
+			<selected>!Skin.HasSetting(View506HideReflect)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="108">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View506HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View506HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View508SettingsShowcase">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="button" id="102">
+			<label>$LOCALIZE[29915]</label>
+			<label2>$VAR[View508InfoLabelVar]</label2>
+			<onclick condition="String.IsEmpty(View508Info)">Skin.SetString(View508Info,2thumbs)</onclick>
+			<onclick condition="Skin.String(View508Info,2thumbs)">Skin.SetString(View508Info,4thumbs)</onclick>
+			<onclick condition="Skin.String(View508Info,4thumbs)">Skin.SetString(View508Info,poster)</onclick>
+			<onclick condition="Skin.String(View508Info,poster)">Skin.SetString(View508Info,none)</onclick>
+			<onclick condition="Skin.String(View508Info,none)">Skin.Reset(View508Info)</onclick>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="radiobutton" id="103">
+			<visible>!Skin.String(View508Info,none)</visible>
+			<label>$LOCALIZE[31240]</label>
+			<onclick>Skin.ToggleSetting(View508ManualInfo)</onclick>
+			<selected>Skin.HasSetting(View508ManualInfo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="104">
+			<visible>!Skin.String(View508Info,none)</visible>
+			<label>$LOCALIZE[31056]</label>
+			<onclick>Skin.ToggleSetting(View508HidePanel)</onclick>
+			<selected>!Skin.HasSetting(View508HidePanel)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="105">
+			<visible>Container.Content(movies) | Container.Content(episodes) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)</visible>
+			<label>$LOCALIZE[31237]</label>
+			<onclick>Skin.ToggleSetting(View508VideoCase)</onclick>
+			<selected>Skin.HasSetting(View508VideoCase)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="106">
+			<visible>Skin.HasSetting(View508VideoCase) + Container.Content(movies)</visible>
+			<label>$LOCALIZE[31244]</label>
+			<onclick>Skin.ToggleSetting(View508OpenCase)</onclick>
+			<selected>Skin.HasSetting(View508OpenCase)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View508Logo)</onclick>
+			<selected>Skin.HasSetting(View508Logo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="108">
+			<label>$LOCALIZE[31214]</label>
+			<onclick>Skin.ToggleSetting(View508HideReflect)</onclick>
+			<selected>!Skin.HasSetting(View508HideReflect)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="109">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View508HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View508HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View510SettingsKodiFlix">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="radiobutton" id="105">
+			<visible>Container.Content(movies) | Container.Content(episodes) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)</visible>
+			<label>$LOCALIZE[31237]</label>
+			<onclick>Skin.ToggleSetting(View510VideoCase)</onclick>
+			<selected>Skin.HasSetting(View510VideoCase)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="106">
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View510Logo)</onclick>
+			<selected>Skin.HasSetting(View510Logo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31214]</label>
+			<onclick>Skin.ToggleSetting(View510HideReflect)</onclick>
+			<selected>!Skin.HasSetting(View510HideReflect)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="108">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View510HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View510HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View520SettingsPortraitIcon">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="radiobutton" id="102">
+			<label>$LOCALIZE[31235]</label>
+			<onclick>Skin.ToggleSetting(View520SmallIcons)</onclick>
+			<selected>Skin.HasSetting(View520SmallIcons)</selected>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="radiobutton" id="105">
+			<visible>Container.Content(movies) | Container.Content(episodes) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)</visible>
+			<label>$LOCALIZE[31237]</label>
+			<onclick>Skin.ToggleSetting(View520VideoCase)</onclick>
+			<selected>Skin.HasSetting(View520VideoCase)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View520Logo)</onclick>
+			<selected>Skin.HasSetting(View520Logo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="108">
+			<label>$LOCALIZE[31214]</label>
+			<onclick>Skin.ToggleSetting(View520HideReflect)</onclick>
+			<selected>!Skin.HasSetting(View520HideReflect)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="109">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View520HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View520HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View522SettingsBannerIcon">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="radiobutton" id="102">
+			<label>$LOCALIZE[31235]</label>
+			<onclick>Skin.ToggleSetting(View522SmallIcons)</onclick>
+			<selected>Skin.HasSetting(View522SmallIcons)</selected>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View522Logo)</onclick>
+			<selected>Skin.HasSetting(View522Logo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="108">
+			<label>$LOCALIZE[31214]</label>
+			<onclick>Skin.ToggleSetting(View522HideReflect)</onclick>
+			<selected>!Skin.HasSetting(View522HideReflect)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="109">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View522HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View522HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View523SettingsLandscapeIcon">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="button" id="101">
+			<label>$LOCALIZE[31044]</label>
+			<label2>$VAR[View523ArtworkLabelVar]</label2>
+			<onclick condition="String.IsEmpty(View523Art)">Skin.SetString(View523Art,clearlogo)</onclick>
+			<onclick condition="Skin.String(View523Art,clearlogo)">Skin.SetString(View523Art,clearart)</onclick>
+			<onclick condition="Skin.String(View523Art,clearart)">Skin.Reset(View523Art)</onclick>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="radiobutton" id="102">
+			<label>$LOCALIZE[31235]</label>
+			<onclick>Skin.ToggleSetting(View523SmallIcons)</onclick>
+			<selected>Skin.HasSetting(View523SmallIcons)</selected>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View523Logo)</onclick>
+			<selected>Skin.HasSetting(View523Logo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="108">
+			<label>$LOCALIZE[31214]</label>
+			<onclick>Skin.ToggleSetting(View523HideReflect)</onclick>
+			<selected>!Skin.HasSetting(View523HideReflect)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="109">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View523HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View523HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View530SettingsPortraitIconInfo">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="radiobutton" id="102">
+			<label>$LOCALIZE[31235]</label>
+			<onclick>Skin.ToggleSetting(View530SmallIcons)</onclick>
+			<selected>Skin.HasSetting(View530SmallIcons)</selected>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="radiobutton" id="105">
+			<visible>Container.Content(movies) | Container.Content(episodes) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)</visible>
+			<label>$LOCALIZE[31237]</label>
+			<onclick>Skin.ToggleSetting(View530VideoCase)</onclick>
+			<selected>Skin.HasSetting(View530VideoCase)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View530HideLogo)</onclick>
+			<selected>!Skin.HasSetting(View530HideLogo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="108">
+			<label>$LOCALIZE[31214]</label>
+			<onclick>Skin.ToggleSetting(View530HideReflect)</onclick>
+			<selected>!Skin.HasSetting(View530HideReflect)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="109">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View530HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View530HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="110">
+			<label>$LOCALIZE[31228]</label>
+			<onclick>Skin.ToggleSetting(View530VideoPreviewWindow)</onclick>
+			<selected>Skin.HasSetting(View530VideoPreviewWindow)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View532SettingsBannerIconInfo">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="radiobutton" id="102">
+			<label>$LOCALIZE[538]</label>
+			<onclick>Skin.ToggleSetting(View532BigIcons)</onclick>
+			<selected>Skin.HasSetting(View532BigIcons)</selected>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="radiobutton" id="105">
+			<visible>Skin.HasSetting(View532BigIcons) + [Container.Content(movies) | Container.Content(episodes) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)]</visible>
+			<label>$LOCALIZE[31237]</label>
+			<onclick>Skin.ToggleSetting(View532VideoCase)</onclick>
+			<selected>Skin.HasSetting(View532VideoCase)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View532HideLogo)</onclick>
+			<selected>!Skin.HasSetting(View532HideLogo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="108">
+			<label>$LOCALIZE[31214]</label>
+			<onclick>Skin.ToggleSetting(View532HideReflect)</onclick>
+			<selected>!Skin.HasSetting(View532HideReflect)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="109">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View532HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View532HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="110">
+			<label>$LOCALIZE[31228]</label>
+			<onclick>Skin.ToggleSetting(View532VideoPreviewWindow)</onclick>
+			<selected>Skin.HasSetting(View532VideoPreviewWindow)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View533SettingsLandscapeIconInfo">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="button" id="101">
+			<label>$LOCALIZE[31044]</label>
+			<label2>$VAR[View533ArtworkLabelVar]</label2>
+			<onclick condition="String.IsEmpty(View533Art)">Skin.SetString(View533Art,clearlogo)</onclick>
+			<onclick condition="Skin.String(View533Art,clearlogo)">Skin.SetString(View533Art,clearart)</onclick>
+			<onclick condition="Skin.String(View533Art,clearart)">Skin.Reset(View533Art)</onclick>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="radiobutton" id="102">
+			<label>$LOCALIZE[31235]</label>
+			<onclick>Skin.ToggleSetting(View533SmallIcons)</onclick>
+			<selected>Skin.HasSetting(View533SmallIcons)</selected>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View533HideLogo)</onclick>
+			<selected>!Skin.HasSetting(View533HideLogo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="108">
+			<label>$LOCALIZE[31214]</label>
+			<onclick>Skin.ToggleSetting(View533HideReflect)</onclick>
+			<selected>!Skin.HasSetting(View533HideReflect)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="109">
+			<label>$LOCALIZE[31047]</label>
+			<onclick>Skin.ToggleSetting(View533HideFloor)</onclick>
+			<selected>!Skin.HasSetting(View533HideFloor)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="110">
+			<label>$LOCALIZE[31228]</label>
+			<onclick>Skin.ToggleSetting(View533VideoPreviewWindow)</onclick>
+			<selected>Skin.HasSetting(View533VideoPreviewWindow)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View540SettingsPortraitWall">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="radiobutton" id="102">
+			<label>$LOCALIZE[31235]</label>
+			<onclick>Skin.ToggleSetting(View540SmallIcons)</onclick>
+			<selected>Skin.HasSetting(View540SmallIcons)</selected>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="radiobutton" id="105">
+			<visible>Container.Content(movies) | Container.Content(episodes) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)</visible>
+			<label>$LOCALIZE[31237]</label>
+			<onclick>Skin.ToggleSetting(View540VideoCase)</onclick>
+			<selected>Skin.HasSetting(View540VideoCase)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View540Logo)</onclick>
+			<selected>Skin.HasSetting(View540Logo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View541SettingsSquareWall">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="radiobutton" id="102">
+			<label>$LOCALIZE[31235]</label>
+			<onclick>Skin.ToggleSetting(View541SmallIcons)</onclick>
+			<selected>Skin.HasSetting(View541SmallIcons)</selected>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="radiobutton" id="105">
+			<visible>Container.Content(albums) | Container.Content(musicvideos)</visible>
+			<label>$LOCALIZE[31236]</label>
+			<onclick>Skin.ToggleSetting(View541AlbumCase)</onclick>
+			<selected>Skin.HasSetting(View541AlbumCase)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View541Logo)</onclick>
+			<selected>Skin.HasSetting(View541Logo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View542SettingsBannerWall">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="radiobutton" id="102">
+			<label>$LOCALIZE[31235]</label>
+			<onclick>Skin.ToggleSetting(View542SmallIcons)</onclick>
+			<selected>Skin.HasSetting(View542SmallIcons)</selected>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View542Logo)</onclick>
+			<selected>Skin.HasSetting(View542Logo)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+	</include>
+	<include name="View543SettingsLandscapeWall">
+		<control type="label" id="101">
+			<label>$LOCALIZE[21483]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="button" id="101">
+			<label>$LOCALIZE[31044]</label>
+			<label2>$VAR[View543ArtworkLabelVar]</label2>
+			<onclick condition="String.IsEmpty(View543Art)">Skin.SetString(View543Art,clearlogo)</onclick>
+			<onclick condition="Skin.String(View543Art,clearlogo)">Skin.SetString(View543Art,clearart)</onclick>
+			<onclick condition="Skin.String(View543Art,clearart)">Skin.Reset(View543Art)</onclick>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="radiobutton" id="102">
+			<label>$LOCALIZE[31235]</label>
+			<onclick>Skin.ToggleSetting(View543SmallIcons)</onclick>
+			<selected>Skin.HasSetting(View543SmallIcons)</selected>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="radiobutton" id="107">
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(View543Logo)</onclick>
+			<selected>Skin.HasSetting(View543Logo)</selected>
+			<include>MediaMenuRadioButton</include>
 		</control>
 	</include>
 </includes>

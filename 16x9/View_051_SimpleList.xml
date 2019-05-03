@@ -1,24 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <includes>
 	<include name="View51SimpleList">
+		<!-- Floor -->
+		<control type="group">
+			<visible>Control.IsVisible(51)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<control type="group">
+				<visible>!Skin.HasSetting(View51HideFloor)</visible>
+				<include>FloorDefault</include>
+				<include>FloorHighlightRight</include>
+			</control>
+			<include content="FloorShadow">
+				<param name="visible">Skin.HasSetting(View51HideFloor)</param>
+			</include>
+		</control>
+		<!-- List -->
 		<control type="group">
 			<visible>Control.IsVisible(51)</visible>
 			<include>AnimationZoomWindow</include>
 			<include>AnimationZoomVisible</include>
 			<include content="PanelDefault">
-				<param name="reflect">!Skin.HasSetting(ViewsHideFloor)</param>
+				<param name="reflect">!Skin.HasSetting(View51HideReflect)</param>
 			</include>
-			<control type="panel" id="51">
-				<left>100</left>
+			<control type="list" id="51">
 				<top>141</top>
+				<left>100</left>
 				<width>1720</width>
-				<height>798</height>
+				<height>800</height>
 				<onleft>9050</onleft>
 				<onright>6051</onright>
 				<pagecontrol>6051</pagecontrol>
 				<viewtype label="$LOCALIZE[31215]">list</viewtype>
-				<include condition="!$EXP[AreaVisiblePVR]">ViewContainerList2</include>
-				<include condition="$EXP[AreaVisiblePVR]">ViewContainerPVRList</include>
+				<include condition="!Window.IsVisible(MyPlaylist.xml) + !$EXP[AreaVisiblePVR]" content="ViewContainerList2">
+					<param name="biglistvisible">Skin.HasSetting(View51BigList)</param>
+				</include>
+				<include condition="$EXP[AreaVisiblePVR]" content="ViewContainerPVRList2">
+					<param name="biglistvisible">Skin.HasSetting(View51BigList)</param>
+				</include>
+				<include condition="Window.IsVisible(MyPlaylist.xml)" content="ViewContainerPlaylistList">
+					<param name="biglistvisible">Skin.HasSetting(View51BigList)</param>
+				</include>
 			</control>
 			<control type="scrollbar" id="6051">
 				<top>140</top>
@@ -26,6 +49,25 @@
 				<bottom>140</bottom>
 				<onleft>51</onleft>
 			</control>
+		</control>
+		<!-- Media flags -->
+		<control type="group">
+			<visible>Control.IsVisible(51)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsTVShows">
+				<param name="bottom">10</param>
+			</include>
+			<include condition="Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(videoplaylist)" content="MediaFlagsVideos8">
+				<param name="bottom">10</param>
+			</include>
+			<include condition="Window.IsVisible(MyMusicNav.xml) | Window.IsVisible(musicplaylist)" content="MediaFlagsAudio">
+				<param name="bottom">10</param>
+			</include>
+			<include condition="$EXP[AreaVisiblePVR]" content="MediaFlagsPVR">
+				<param name="bottom">10</param>
+			</include>
 		</control>
 	</include>
 </includes>

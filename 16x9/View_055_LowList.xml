@@ -3,38 +3,58 @@
 	<include name="View55LowList">
 		<control type="group">
 			<visible>Control.IsVisible(55)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">1000</param>
+				<param name="opencondition">Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</param>
+				<param name="closecondition">Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">1000</param>
+				<param name="opencondition">Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</param>
+				<param name="closecondition">Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</param>
+			</include>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">765</param>
+				<param name="opencondition">![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</param>
+				<param name="closecondition">![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">765</param>
+				<param name="opencondition">![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</param>
+				<param name="closecondition">![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</param>
+			</include>
 			<!-- Panel -->
 			<include content="PanelWide">
-				<param name="top">615</param>
-				<param name="toptexture">635</param>
-				<param name="topshadow">615</param>
-				<param name="height">465</param>
-				<param name="heighttexture">445</param>
+				<param name="top">550</param>
+				<param name="toptexture">570</param>
+				<param name="topshadow">550</param>
+				<param name="height">530</param>
+				<param name="heighttexture">510</param>
 			</include>
 			<!-- List -->
-			<control type="fixedlist" id="55">
-				<left>520</left>
+			<control type="list" id="55">
+				<left>545</left>
 				<bottom>10</bottom>
-				<width>827</width>
-				<height>435</height>
+				<width>802</width>
+				<height>500</height>
 				<onleft>9050</onleft>
 				<onright>6055</onright>
 				<pagecontrol>6055</pagecontrol>
 				<viewtype label="$LOCALIZE[31223]">list</viewtype>
-				<preloaditems>2</preloaditems>
-				<focusposition>2</focusposition>
-				<movement>1</movement>
-				<include>ViewContainerList</include>
+				<include content="ViewContainerList">
+					<param name="listheight">71.4</param>
+					<param name="biglistvisible">Skin.HasSetting(View55BigList)</param>
+				</include>
 			</control>
 			<control type="image">
 				<right>570</right>
-				<top>635</top>
+				<top>570</top>
 				<width>4</width>
-				<height>445</height>
+				<height>510</height>
 				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
 			</control>
 			<control type="image">
-				<bottom>98</bottom>
+				<bottom>108</bottom>
 				<right>0</right>
 				<width>572</width>
 				<height>4</height>
@@ -48,9 +68,87 @@
 				<onright>60551</onright>
 			</control>
 			<!-- Art -->
-			<include>ViewLowListArt</include>
+			<control type="group">
+				<visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+				<bottom>0</bottom>
+				<width>555</width>
+				<height>822</height>
+				<control type="image">
+					<visible>!Skin.HasSetting(View55HideDiscArt)</visible>
+					<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" condition="Player.Playing + String.IsEqual(ListItem.Title,Player.Title)">Conditional</animation>
+					<left>40</left>
+					<bottom>555</bottom>
+					<width>475</width>
+					<height>475</height>
+					<fadetime>TextureFadeTime</fadetime>
+					<texture diffuse="diffuse/disc.png" background="true">$VAR[DiscArtVar]</texture>
+				</control>
+				<control type="group">
+					<visible>!Skin.HasSetting(View55VideoCase)</visible>
+					<include content="ViewArtwork">
+						<param name="diffuse">diffuse/rounded5-510x747.png</param>
+					</include>
+				</control>
+				<control type="group">
+					<visible>Skin.HasSetting(View55VideoCase)</visible>
+					<include content="ViewArtworkVideoCase">
+						<param name="bordersize">19,63,19,23</param>
+					</include>
+				</control>
+			</control>
+			<control type="group">
+				<visible>Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos)</visible>
+				<bottom>0</bottom>
+				<width>555</width>
+				<height>555</height>
+				<control type="group">
+					<visible>!Skin.HasSetting(View55AlbumCase)</visible>
+					<control type="image">
+						<visible>!Skin.HasSetting(View55HideDiscArt)</visible>
+						<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" condition="Player.Playing + [String.IsEqual(ListItem.Album,MusicPlayer.Album) | String.IsEqual(ListItem.Title,Player.Title)]">Conditional</animation>
+						<left>20</left>
+						<bottom>277</bottom>
+						<width>515</width>
+						<height>515</height>
+						<fadetime>TextureFadeTime</fadetime>
+						<texture diffuse="diffuse/disc.png" background="true">$VAR[DiscArtVar]</texture>
+					</control>
+					<include content="ViewArtwork">
+						<param name="diffuse">diffuse/rounded5-535x535.png</param>
+					</include>
+				</control>
+				<control type="group">
+					<visible>Skin.HasSetting(View55AlbumCase)</visible>
+					<bottom>0</bottom>
+					<height>520</height>
+					<control type="image">
+						<visible>!Skin.HasSetting(View55HideDiscArt)</visible>
+						<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" condition="Player.Playing + [String.IsEqual(ListItem.Album,MusicPlayer.Album) | String.IsEqual(ListItem.Title,Player.Title)]">Conditional</animation>
+						<left>73</left>
+						<bottom>277</bottom>
+						<width>447</width>
+						<height>447</height>
+						<fadetime>TextureFadeTime</fadetime>
+						<texture diffuse="diffuse/disc.png" background="true">$VAR[DiscArtVar]</texture>
+					</control>
+					<include content="ViewArtworkAudioCase">
+						<param name="diffuse">diffuse/rounded5-535x535.png</param>
+						<param name="bordersize">52,15,15,15</param>
+					</include>
+				</control>
+			</control>
+			<control type="group">
+				<visible>![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos)]</visible>
+				<bottom>0</bottom>
+				<width>555</width>
+				<height>555</height>
+				<include content="ViewArtwork">
+					<param name="diffuse">diffuse/rounded5-535x535.png</param>
+				</include>
+			</control>
 			<control type="image">
-				<bottom>455</bottom>
+				<visible>!Skin.HasSetting(View55HideLogo)</visible>
+				<bottom>520</bottom>
 				<right>10</right>
 				<width>552</width>
 				<height>214</height>
@@ -60,15 +158,15 @@
 			</control>
 			<!-- Info -->
 			<control type="grouplist">
-				<top>650</top>
+				<top>585</top>
 				<right>20</right>
 				<width>530</width>
 				<height>796</height>
 				<include>ViewListInfo</include>
 				<control type="textbox">
 					<top>-3</top>
-					<height>230</height>
-					<font>Font28_Reg</font>
+					<height>285</height>
+					<font>Font28_Reg_106</font>
 					<label>$VAR[ViewPlotVar]</label>
 					<pagecontrol>60551</pagecontrol>
 					<include>AutoScrollPlot</include>
@@ -80,6 +178,29 @@
 				<bottom>122</bottom>
 				<onleft>6055</onleft>
 			</control>
+		</control>
+		<!-- Media flags -->
+		<control type="group">
+			<visible>Control.IsVisible(55)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsTVShows">
+				<param name="right">20</param>
+				<param name="bottom">15</param>
+			</include>
+			<include condition="Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(videoplaylist)" content="MediaFlagsVideos4">
+				<param name="right">20</param>
+				<param name="bottom">15</param>
+			</include>
+			<include condition="Window.IsVisible(MyMusicNav.xml) | Window.IsVisible(musicplaylist)" content="MediaFlagsAudio">
+				<param name="right">20</param>
+				<param name="bottom">15</param>
+			</include>
+			<include condition="$EXP[AreaVisiblePVR]" content="MediaFlagsPVR">
+				<param name="right">20</param>
+				<param name="bottom">15</param>
+			</include>
 		</control>
 	</include>
 </includes>

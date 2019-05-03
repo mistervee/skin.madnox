@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+	<include name="View504Focus">
+		<!-- Floor -->
+		<control type="group">
+			<visible>Control.IsVisible(504)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<control type="group">
+				<visible>!Skin.HasSetting(View504HideFloor)</visible>
+				<include>FloorDefault</include>
+				<include>FloorHighlightRight</include>
+			</control>
+			<include content="FloorShadow">
+				<param name="visible">Skin.HasSetting(View504HideFloor)</param>
+			</include>
+		</control>
+		<!-- Panel -->
+		<control type="group">
+			<visible>Control.IsVisible(504)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">820</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">820</param>
+			</include>
+			<control type="fixedlist" id="504">
+				<top>290</top>
+				<left>-203</left>
+				<width>2340</width>
+				<height>1000</height>
+				<onup>9050</onup>
+				<pagecontrol>6080</pagecontrol>
+				<focusposition>1</focusposition>
+				<orientation>horizontal</orientation>
+				<viewtype label="$LOCALIZE[31245]">icon</viewtype>
+				<itemlayout width="320" height="630">
+					<control type="group">
+						<top>160</top>
+						<height>470</height>
+						<control type="group">
+							<visible>!Skin.HasSetting(View504VideoCase)</visible>
+							<control type="group">
+								<visible>!Skin.HasSetting(View504HideReflect)</visible>
+								<top>455</top>
+								<height>470</height>
+								<include>ViewArtworkReflect</include>
+							</control>
+							<include content="ViewArtwork">
+								<param name="diffuse">diffuse/rounded5-532x395.png</param>
+							</include>
+						</control>
+						<control type="group">
+							<visible>Skin.HasSetting(View504VideoCase)</visible>
+							<control type="group">
+								<visible>!Skin.HasSetting(View504HideReflect)</visible>
+								<top>455</top>
+								<height>470</height>
+								<include>ViewArtworkVideoCaseReflect</include>
+							</control>
+							<include content="ViewArtworkVideoCase">
+								<param name="logoheight">53</param>
+								<param name="bordersize">16,41,16,18</param>
+								<param name="diffuse">diffuse/rounded5-532x395.png</param>
+							</include>
+						</control>
+					</control>
+				</itemlayout>
+				<focusedlayout width="320" height="630">
+					<control type="group">
+						<top>160</top>
+						<height>470</height>
+						<animation effect="zoom" start="100" end="117.7" center="auto" time="160">focus</animation>
+						<animation effect="zoom" start="117.7" end="100" center="auto" time="160">unfocus</animation>
+						<control type="image">
+							<visible>Skin.HasSetting(View504DiscArt)</visible>
+							<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" condition="Player.Playing + String.IsEqual(ListItem.Title,Player.Title)">Conditional</animation>
+							<animation effect="fade" start="0" end="100" time="160">focus</animation>
+							<animation effect="fade" start="100" end="0" time="160">unfocus</animation>
+							<top>-150</top>
+							<height>320</height>
+							<bordersize>20</bordersize>
+							<aspectratio>keep</aspectratio>
+							<texture background="true">$VAR[DiscArtVar]</texture>
+						</control>
+						<control type="group">
+							<visible>!Skin.HasSetting(View504VideoCase)</visible>
+							<control type="group">
+								<visible>!Skin.HasSetting(View504HideReflect)</visible>
+								<top>455</top>
+								<height>470</height>
+								<include>ViewArtworkReflect</include>
+							</control>
+							<include content="ViewArtwork">
+								<param name="diffuse">diffuse/rounded5-532x395.png</param>
+							</include>
+						</control>
+						<control type="group">
+							<visible>Skin.HasSetting(View504VideoCase)</visible>
+							<control type="group">
+								<visible>!Skin.HasSetting(View504HideReflect)</visible>
+								<top>455</top>
+								<height>470</height>
+								<include content="ViewArtworkVideoCaseReflect">
+									<param name="bordersize">16,18,16,41</param>
+								</include>
+							</control>
+							<include content="ViewArtworkVideoCase">
+								<param name="logoheight">53</param>
+								<param name="bordersize">16,41,16,18</param>
+								<param name="diffuse">diffuse/rounded5-532x395.png</param>
+							</include>
+						</control>
+					</control>
+				</focusedlayout>
+			</control>
+			<!-- <control type="scrollbar" id="6057">
+				<right>80</right>
+				<top>144</top>
+				<bottom>144</bottom>
+				<onleft>80</onleft>
+			</control> -->
+		</control>
+		<!-- Bottom info/Media flags -->
+		<control type="group">
+			<visible>Control.IsVisible(504)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include content="ViewCoverFlowBottomInfo">
+				<param name="left">100</param>
+				<param name="right">1000</param>
+				<param name="align">left</param>
+				<param name="logowidth">354</param>
+				<param name="logovisible">View504Logo</param>
+			</include>
+			<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsVideos6">
+				<param name="right">100</param>
+				<param name="bottom">25</param>
+			</include>
+		</control>
+	</include>
+</includes>

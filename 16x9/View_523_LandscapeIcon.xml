@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+	<include name="View523LandscapeIcon">
+		<!-- Floor -->
+		<control type="group">
+			<visible>Control.IsVisible(523)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<control type="group">
+				<visible>!Skin.HasSetting(View523HideFloor)</visible>
+				<include>FloorDefault</include>
+				<include>FloorHighlightMiddle</include>
+			</control>
+			<include content="FloorShadow">
+				<param name="visible">Skin.HasSetting(View523HideFloor)</param>
+			</include>
+		</control>
+		<!-- Panel -->
+		<control type="group">
+			<visible>Control.IsVisible(523)</visible>
+			<include>AnimationZoomWindow</include>
+			<include>AnimationZoomVisible</include>
+			<include content="PanelDefault">
+				<param name="height">890</param>
+				<param name="heighttexture">850</param>
+				<param name="reflecttop">935</param>
+				<param name="reflect">!Skin.HasSetting(View523HideReflect)</param>
+			</include>
+			<control type="panel" id="523">
+				<top>150</top>
+				<left>110</left>
+				<width>1700</width>
+				<height>750</height>
+				<onleft>9050</onleft>
+				<onright>60513</onright>
+				<pagecontrol>60513</pagecontrol>
+				<viewtype label="$LOCALIZE[31250]">bigicon</viewtype>
+				<itemlayout height="250" width="425" condition="!Skin.HasSetting(View523SmallIcons) + String.IsEmpty(Skin.String(View523Art))">
+					<include content="ViewArtwork">
+						<param name="art">$VAR[LandscapeVar]</param>
+					</include>
+				</itemlayout>
+				<focusedlayout height="250" width="425" condition="!Skin.HasSetting(View523SmallIcons) + String.IsEmpty(Skin.String(View523Art))">
+					<control type="image">
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
+					</control>
+					<control type="group">
+						<animation  type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+						</animation>
+						<include content="ViewArtwork">
+							<param name="art">$VAR[LandscapeVar]</param>
+						</include>
+					</control>
+				</focusedlayout>
+				<itemlayout height="250" width="425" condition="!Skin.HasSetting(View523SmallIcons) + Skin.String(View523Art,clearlogo)">
+					<include content="ViewArtwork">
+						<param name="aspect">keep</param>
+						<param name="art">$VAR[ClearLogoVar]</param>
+					</include>
+				</itemlayout>
+				<focusedlayout height="250" width="425" condition="!Skin.HasSetting(View523SmallIcons) + Skin.String(View523Art,clearlogo)">
+					<control type="image">
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
+					</control>
+					<control type="group">
+						<animation  type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+						</animation>
+						<include content="ViewArtwork">
+							<param name="aspect">keep</param>
+							<param name="art">$VAR[ClearLogoVar]</param>
+						</include>
+					</control>
+				</focusedlayout>
+				<itemlayout height="250" width="425" condition="!Skin.HasSetting(View523SmallIcons) + Skin.String(View523Art,clearart)">
+					<include content="ViewArtwork">
+						<param name="aspect">keep</param>
+						<param name="art">$VAR[ClearArtVar]</param>
+					</include>
+				</itemlayout>
+				<focusedlayout height="250" width="425" condition="!Skin.HasSetting(View523SmallIcons) + Skin.String(View523Art,clearart)">
+					<control type="image">
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
+					</control>
+					<control type="group">
+						<animation  type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+						</animation>
+						<include content="ViewArtwork">
+							<param name="aspect">keep</param>
+							<param name="art">$VAR[ClearArtVar]</param>
+						</include>
+					</control>
+				</focusedlayout>
+				<itemlayout height="187.5" width="340" condition="Skin.HasSetting(View523SmallIcons)">
+					<include content="ViewArtwork">
+						<param name="aspect">stretch</param>
+						<param name="art">$VAR[LandscapeVar]</param>
+					</include>
+				</itemlayout>
+				<focusedlayout height="187.5" width="340" condition="Skin.HasSetting(View523SmallIcons)">
+					<control type="image">
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
+					</control>
+					<control type="group">
+						<animation  type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+						</animation>
+						<include content="ViewArtwork">
+							<param name="aspect">stretch</param>
+							<param name="art">$VAR[LandscapeVar]</param>
+						</include>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="scrollbar" id="60513">
+				<right>80</right>
+				<top>140</top>
+				<bottom>176</bottom>
+				<onleft>513</onleft>
+			</control>
+		</control>
+		<!-- Bottom info/Media flags -->
+		<control type="group">
+			<visible>Control.IsVisible(523)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include content="ViewCoverFlowBottomInfo">
+				<param name="logovisible">View523Logo</param>
+			</include>
+			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsPanelVideos</include>
+		</control>
+	</include>
+</includes>

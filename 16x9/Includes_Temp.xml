@@ -424,34 +424,7 @@
 			<texture colordiffuse="$VAR[FloorTextureColorVar]" border="1">$INFO[Skin.String(FloorTexture.texture)]</texture>
 		</control>
 	</include>
-	<include name="FloorLeft">
-		<control type="image">
-			<top>860</top>
-			<width>1920</width>
-			<height>20</height>
-			<texture colordiffuse="$VAR[FloorShadowColorVar]" border="1">panels/floor/shadow.png</texture>
-		</control>
-		<control type="image">
-			<top>480</top>
-			<width>1920</width>
-			<height>600</height>
-			<texture colordiffuse="$VAR[FloorStyleColorVar]" border="1">$VAR[FloorStyleVar]</texture>
-		</control>
-		<control type="image">
-			<top>880</top>
-			<width>1920</width>
-			<height>200</height>
-			<aspectratio align="right" scalediffuse="false">scale</aspectratio>
-			<texture colordiffuse="$VAR[FloorTextureColorVar]" border="1">$INFO[Skin.String(FloorTexture.texture)]</texture>
-		</control>
-		<control type="image">
-			<top>880</top>
-			<width>1920</width>
-			<height>200</height>
-			<texture flipx="true" colordiffuse="$VAR[FloorHighlightColorVar]">panels/floor/highlight-right.png</texture>
-		</control>
-	</include>
-	<include name="FloorLeftHigh">
+	<include name="FloorHigh">
 		<control type="image">
 			<top>785</top>
 			<width>1920</width>
@@ -471,33 +444,16 @@
 			<aspectratio align="right" scalediffuse="false">scale</aspectratio>
 			<texture colordiffuse="$VAR[FloorTextureColorVar]" border="1">$INFO[Skin.String(FloorTexture.texture)]</texture>
 		</control>
-		<control type="image">
-			<top>805</top>
-			<width>1920</width>
-			<height>275</height>
-			<texture flipx="true" colordiffuse="$VAR[FloorHighlightColorVar]">panels/floor/highlight-right.png</texture>
-		</control>
 	</include>
-	<include name="FloorRight">
-		<control type="image">
-			<top>860</top>
-			<width>1920</width>
-			<height>20</height>
-			<texture colordiffuse="$VAR[FloorShadowColorVar]" border="1">panels/floor/shadow.png</texture>
-		</control>
-		<control type="image">
-			<top>480</top>
-			<width>1920</width>
-			<height>600</height>
-			<texture colordiffuse="$VAR[FloorStyleColorVar]" border="1">$VAR[FloorStyleVar]</texture>
-		</control>
+	<include name="FloorHighlightLeft">
 		<control type="image">
 			<top>880</top>
 			<width>1920</width>
 			<height>200</height>
-			<aspectratio align="right" scalediffuse="false">scale</aspectratio>
-			<texture colordiffuse="$VAR[FloorTextureColorVar]" border="1">$INFO[Skin.String(FloorTexture.texture)]</texture>
+			<texture flipx="true" colordiffuse="$VAR[FloorHighlightColorVar]">panels/floor/highlight-right.png</texture>
 		</control>
+	</include>
+	<include name="FloorHighlightRight">
 		<control type="image">
 			<top>880</top>
 			<width>1920</width>
@@ -505,26 +461,15 @@
 			<texture colordiffuse="$VAR[FloorHighlightColorVar]">panels/floor/highlight-right.png</texture>
 		</control>
 	</include>
-	<include name="FloorMiddle">
+	<include name="FloorHighlightRightHigh">
 		<control type="image">
-			<top>860</top>
+			<top>805</top>
 			<width>1920</width>
-			<height>20</height>
-			<texture colordiffuse="$VAR[FloorShadowColorVar]" border="1">panels/floor/shadow.png</texture>
+			<height>275</height>
+			<texture colordiffuse="$VAR[FloorHighlightColorVar]">panels/floor/highlight-right.png</texture>
 		</control>
-		<control type="image">
-			<top>480</top>
-			<width>1920</width>
-			<height>600</height>
-			<texture colordiffuse="$VAR[FloorStyleColorVar]" border="1">$VAR[FloorStyleVar]</texture>
-		</control>
-		<control type="image">
-			<top>880</top>
-			<width>1920</width>
-			<height>200</height>
-			<aspectratio align="right" scalediffuse="false">scale</aspectratio>
-			<texture colordiffuse="$VAR[FloorTextureColorVar]" border="1">$INFO[Skin.String(FloorTexture.texture)]</texture>
-		</control>
+	</include>
+	<include name="FloorHighlightMiddle">
 		<control type="image">
 			<top>880</top>
 			<width>1920</width>
@@ -533,13 +478,28 @@
 		</control>
 	</include>
 	<include name="FloorShadow">
+		<param name="visible">true</param>
+		<definition>
+			<control type="image">
+				<visible>$PARAM[visible]</visible>
+				<top>780</top>
+				<width>1920</width>
+				<height>300</height>
+				<texture colordiffuse="$VAR[FloorShadowColorVar]" border="1">panels/background-gradient.png</texture>
+			</control>
+		</definition>
+	</include>
+	<include name="FloorShadowWall">
 		<control type="image">
-			<top>780</top>
+			<top>880</top>
 			<width>1920</width>
-			<height>300</height>
-			<texture colordiffuse="$VAR[FloorShadowColorVar]" border="1">panels/background-gradient.png</texture>
+			<height>200</height>
+			<texture colordiffuse="$VAR[FloorShadowColorVar]" border="1">panels/wall-gradient.png</texture>
 		</control>
 	</include>
+
+
+
 	<!-- Panels -->
 	<include name="PanelWide">
 		<param name="top">860</param>

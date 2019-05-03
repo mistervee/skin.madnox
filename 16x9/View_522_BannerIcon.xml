@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+	<include name="View522BannerIcon">
+		<!-- Floor -->
+		<control type="group">
+			<visible>Control.IsVisible(522)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<control type="group">
+				<visible>!Skin.HasSetting(View522HideFloor)</visible>
+				<include>FloorDefault</include>
+				<include>FloorHighlightMiddle</include>
+			</control>
+			<include content="FloorShadow">
+				<param name="visible">Skin.HasSetting(View522HideFloor)</param>
+			</include>
+		</control>
+		<!-- Panel -->
+		<control type="group">
+			<visible>Control.IsVisible(522)</visible>
+			<include>AnimationZoomWindow</include>
+			<include>AnimationZoomVisible</include>
+			<include content="PanelDefault">
+				<param name="top">92</param>
+				<param name="height">878</param>
+				<param name="toptexture">112</param>
+				<param name="heighttexture">838</param>
+				<param name="reflecttop">938</param>
+				<param name="reflect">!Skin.HasSetting(View522HideReflect)</param>
+			</include>
+			<control type="panel" id="522">
+				<top>162</top>
+				<left>110</left>
+				<width>1700</width>
+				<height>738</height>
+				<!-- <height>692</height> -->
+				<onleft>9050</onleft>
+				<onright>60514</onright>
+				<pagecontrol>60514</pagecontrol>
+				<viewtype label="$LOCALIZE[31249]">bigicon</viewtype>
+				<itemlayout height="123" width="566.65" condition="!Skin.HasSetting(View522SmallIcons)">
+					<include content="ViewArtwork">
+						<param name="art">$VAR[BannerVar]</param>
+					</include>
+				</itemlayout>
+				<focusedlayout height="123" width="566.65" condition="!Skin.HasSetting(View522SmallIcons)">
+					<control type="image">
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
+					</control>
+					<control type="group">
+						<animation  type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+						</animation>
+						<include content="ViewArtwork">
+							<param name="art">$VAR[BannerVar]</param>
+						</include>
+					</control>
+				</focusedlayout>
+				<itemlayout height="92" width="425" condition="Skin.HasSetting(View522SmallIcons)">
+					<include content="ViewArtwork">
+						<param name="art">$VAR[BannerVar]</param>
+					</include>
+				</itemlayout>
+				<focusedlayout height="92" width="425" condition="Skin.HasSetting(View522SmallIcons)">
+					<control type="image">
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
+					</control>
+					<control type="group">
+						<animation  type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+						</animation>
+						<include content="ViewArtwork">
+							<param name="art">$VAR[BannerVar]</param>
+						</include>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="scrollbar" id="60514">
+				<right>80</right>
+				<top>192</top>
+				<bottom>176</bottom>
+				<onleft>514</onleft>
+			</control>
+		</control>
+		<!-- Bottom info/Media flags -->
+		<control type="group">
+			<visible>Control.IsVisible(522)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include content="ViewCoverFlowBottomInfo">
+				<param name="logovisible">View522Logo</param>
+			</include>
+			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsPanelVideos</include>
+		</control>
+	</include>
+</includes>

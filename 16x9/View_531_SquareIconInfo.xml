@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<include name="View531SquareIconInfo">
+		<!-- Floor -->
+		<control type="group">
+			<visible>Control.IsVisible(531)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include>FloorDefault</include>
+			<include>FloorHighlightRight</include>
+		</control>
+		<!-- Right info -->
+		<control type="group">
+			<visible>Control.IsVisible(531)</visible>
+			<include>ViewInfo1ListArt</include>
+			<control type="grouplist">
+				<top>593</top>
+				<right>125</right>
+				<width>612</width>
+				<height>300</height>
+				<include>ViewListInfo</include>
+				<control type="textbox">
+					<top>2</top>
+					<height>209</height>
+					<font>Font28_Reg_106</font>
+					<label>$VAR[ViewPlotVar]</label>
+					<pagecontrol>60531</pagecontrol>
+					<include>AutoScrollPlot</include>
+				</control>
+			</control>
+			<control type="scrollbar" id="60531">
+				<right>80</right>
+				<top>676</top>
+				<bottom>195</bottom>
+				<onleft>6053</onleft>
+			</control>
+		</control>
+		<!-- Left Content -->
+		<control type="group">
+			<visible>Control.IsVisible(531)</visible>
+			<include content="AnimationSlideLeftWindow">
+				<param name="slide">1017</param>
+			</include>
+			<include content="AnimationSlideLeftVisible">
+				<param name="slide">1017</param>
+			</include>
+			<include content="PanelDefault">
+				<param name="right">742</param>
+				<param name="righttexture">762</param>
+				<param name="diffusetexture">diffuse/rounded20-992x880.png</param>
+				<param name="reflect">!Skin.HasSetting(ViewsHideFloor)</param>
+			</include>
+			<control type="panel" id="531">
+				<top>150</top>
+				<left>110</left>
+				<width>1068</width>
+				<height>780</height>
+				<onleft>9050</onleft>
+				<onright>60511</onright>
+				<pagecontrol>60511</pagecontrol>
+				<viewtype label="$LOCALIZE[31216]">icon</viewtype>
+				<itemlayout height="390" width="267" condition="!Skin.HasSetting(View518SmallIcons)">
+					<control type="image">
+						<bordersize>10</bordersize>
+						<aspectratio align="center" aligny="center">scale</aspectratio>
+						<texture diffuse="diffuse/rounded5-532x800.png">$VAR[PosterVar]</texture>
+					</control>
+					<control type="image">
+						<texture border="20">thumbs/overlay.png</texture>
+					</control>
+				</itemlayout>
+				<focusedlayout height="390" width="267" condition="!Skin.HasSetting(View518SmallIcons)">
+					<control type="image">
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
+					</control>
+					<control type="group">
+						<animation  type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+						</animation>
+						<control type="image">
+							<bordersize>10</bordersize>
+							<aspectratio align="center" aligny="center">scale</aspectratio>
+							<texture diffuse="diffuse/rounded5-532x800.png">$VAR[PosterVar]</texture>
+						</control>
+						<control type="image">
+							<texture border="20">thumbs/overlay.png</texture>
+						</control>
+					</control>
+				</focusedlayout>
+				<itemlayout height="260" width="173">
+					<control type="image">
+						<bordersize>10</bordersize>
+						<aspectratio align="center" aligny="center">scale</aspectratio>
+						<texture diffuse="diffuse/rounded5-532x800.png">$VAR[PosterVar]</texture>
+					</control>
+					<control type="image">
+						<texture border="20">thumbs/overlay.png</texture>
+					</control>
+				</itemlayout>
+				<focusedlayout height="260" width="173">
+					<control type="image">
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
+					</control>
+					<control type="group">
+						<animation  type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+						</animation>
+						<control type="image">
+							<bordersize>10</bordersize>
+							<aspectratio align="center" aligny="center">scale</aspectratio>
+							<texture diffuse="diffuse/rounded5-532x800.png">$VAR[PosterVar]</texture>
+						</control>
+						<control type="image">
+							<texture border="20">thumbs/overlay.png</texture>
+						</control>
+					</control>
+				</focusedlayout>
+				
+			</control>
+			<control type="scrollbar" id="6053">
+				<left>1072</left>
+				<top>140</top>
+				<bottom>140</bottom>
+				<onleft>53</onleft>
+				<onright>60531</onright>
+			</control>
+		</control>
+	</include>
+</includes>

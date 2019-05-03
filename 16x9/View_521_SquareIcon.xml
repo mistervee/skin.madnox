@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+	<include name="View521SquareIcon">
+		<!-- Floor -->
+		<control type="group">
+			<visible>Control.IsVisible(521)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include>FloorDefault</include>
+			<include>FloorHighlightMiddle</include>
+		</control>
+		<control type="group">
+			<visible>Control.IsVisible(521)</visible>
+			<include>AnimationZoomWindow</include>
+			<include>AnimationZoomVisible</include>
+			<include content="PanelDefault">
+				<param name="top">143</param>
+				<param name="height">821</param>
+				<param name="toptexture">163</param>
+				<param name="heighttexture">781</param>
+				<param name="reflecttop">864</param>
+				<param name="reflect">!Skin.HasSetting(ViewsHideFloor)</param>
+			</include>
+			<control type="panel" id="521">
+				<top>213</top>
+				<left>109</left>
+				<width>1702</width>
+				<height>681</height>
+				<onleft>9050</onleft>
+				<onright>60512</onright>
+				<pagecontrol>60512</pagecontrol>
+				<itemlayout height="340.4" width="340.4">
+					<control type="image">
+						<bordersize>10</bordersize>
+						<aspectratio align="center" aligny="center">scale</aspectratio>
+						<texture diffuse="diffuse/rounded5-532x800.png">$VAR[PosterVar]</texture>
+					</control>
+					<control type="image">
+						<texture border="20">thumbs/overlay.png</texture>
+					</control>
+				</itemlayout>
+				<focusedlayout height="340.4" width="340.4">
+					<control type="image">
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
+					</control>
+					<control type="group">
+						<animation  type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+						</animation>
+						<control type="image">
+							<bordersize>10</bordersize>
+							<aspectratio align="center" aligny="center">scale</aspectratio>
+							<texture diffuse="diffuse/rounded5-532x800.png">$VAR[PosterVar]</texture>
+						</control>
+						<control type="image">
+							<texture border="20">thumbs/overlay.png</texture>
+						</control>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="scrollbar" id="60512">
+				<right>80</right>
+				<top>203</top>
+				<bottom>176</bottom>
+				<onleft>512</onleft>
+			</control>
+		</control>
+	</include>
+</includes>

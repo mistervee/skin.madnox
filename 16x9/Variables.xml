@@ -205,11 +205,61 @@
 		<value condition="Container.Content(albums)">$LOCALIZE[134]</value>
 	</variable>
 	<!-- View settings labels -->
-	<variable name="ShowcaseInfoLabelVar">
-		<value condition="Skin.String(ShowcaseInfo,2thumbs)">$LOCALIZE[31231]</value>
-		<value condition="Skin.String(ShowcaseInfo,4thumbs)">$LOCALIZE[31232]</value>
-		<value condition="Skin.String(ShowcaseInfo,poster)">$LOCALIZE[20021]</value>
-		<value>$LOCALIZE[571]</value>
+	<variable name="View500InfoLabelVar">
+		<value condition="Skin.String(View500Info,2thumbs)">$LOCALIZE[31231]</value>
+		<value condition="Skin.String(View500Info,4thumbs)">$LOCALIZE[31232]</value>
+		<value condition="Skin.String(View500Info,poster)">$LOCALIZE[20021]</value>
+		<value condition="Skin.String(View500Info,none)">$LOCALIZE[231]</value>
+		<value>$LOCALIZE[20445]</value>
+	</variable>
+	<variable name="View501InfoLabelVar">
+		<value condition="Skin.String(View501Info,2thumbs)">$LOCALIZE[31231]</value>
+		<value condition="Skin.String(View501Info,4thumbs)">$LOCALIZE[31232]</value>
+		<value condition="Skin.String(View501Info,poster)">$LOCALIZE[20021]</value>
+		<value condition="Skin.String(View501Info,none)">$LOCALIZE[231]</value>
+		<value>$LOCALIZE[20445]</value>
+	</variable>
+	<variable name="View502InfoLabelVar">
+		<value condition="Skin.String(View502Info,2thumbs)">$LOCALIZE[31231]</value>
+		<value condition="Skin.String(View502Info,4thumbs)">$LOCALIZE[31232]</value>
+		<value condition="Skin.String(View502Info,poster)">$LOCALIZE[20021]</value>
+		<value condition="Skin.String(View502Info,none)">$LOCALIZE[231]</value>
+		<value>$LOCALIZE[20445]</value>
+	</variable>
+	<variable name="View503InfoLabelVar">
+		<value condition="Skin.String(View503Info,2thumbs)">$LOCALIZE[31231]</value>
+		<value condition="Skin.String(View503Info,4thumbs)">$LOCALIZE[31232]</value>
+		<value condition="Skin.String(View503Info,poster)">$LOCALIZE[20021]</value>
+		<value condition="Skin.String(View503Info,none)">$LOCALIZE[231]</value>
+		<value>$LOCALIZE[20445]</value>
+	</variable>
+	<variable name="View503ArtworkLabelVar">
+		<value condition="Skin.String(View503Art,clearlogo)">$LOCALIZE[31123]</value>
+		<value condition="Skin.String(View503Art,clearart)">$LOCALIZE[31165]</value>
+		<value condition="Skin.String(View503Art,fanart)">$LOCALIZE[20445]</value>
+		<value>$LOCALIZE[31201]</value>
+	</variable>
+	<variable name="View508InfoLabelVar">
+		<value condition="Skin.String(View508Info,2thumbs)">$LOCALIZE[31231]</value>
+		<value condition="Skin.String(View508Info,4thumbs)">$LOCALIZE[31232]</value>
+		<value condition="Skin.String(View508Info,poster)">$LOCALIZE[20021]</value>
+		<value condition="Skin.String(View508Info,none)">$LOCALIZE[231]</value>
+		<value>$LOCALIZE[20445]</value>
+	</variable>
+	<variable name="View523ArtworkLabelVar">
+		<value condition="Skin.String(View523Art,clearlogo)">$LOCALIZE[31123]</value>
+		<value condition="Skin.String(View523Art,clearart)">$LOCALIZE[31165]</value>
+		<value>$LOCALIZE[31201]</value>
+	</variable>
+	<variable name="View533ArtworkLabelVar">
+		<value condition="Skin.String(View533Art,clearlogo)">$LOCALIZE[31123]</value>
+		<value condition="Skin.String(View533Art,clearart)">$LOCALIZE[31165]</value>
+		<value>$LOCALIZE[31201]</value>
+	</variable>
+	<variable name="View543ArtworkLabelVar">
+		<value condition="Skin.String(View543Art,clearlogo)">$LOCALIZE[31123]</value>
+		<value condition="Skin.String(View543Art,clearart)">$LOCALIZE[31165]</value>
+		<value>$LOCALIZE[31201]</value>
 	</variable>
 
 
@@ -988,6 +1038,13 @@
 	</variable>
 
 	<!-- Art -->
+	<variable name="VideoCaseVar">
+		<value condition="String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
+		<value condition="ListItem.IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem.IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="!String.IsEmpty(ListItem.VideoResolution)">thumbs/case/portrait/$INFO[ListItem.VideoResolution]p.png</value>
+		<value></value>
+	</variable>
 	<variable name="PosterVar">
 		<value condition="!String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(season.poster))">$INFO[ListItem.Art(season.poster)]</value>
@@ -999,6 +1056,15 @@
 		<value condition="String.Contains(ListItem.FolderPath,music) + System.HasAddon(resource.images.recordlabels.white)">$INFO[ListItem.Label,resource://resource.images.recordlabels.white/,.png]</value>
 		<value condition="!Skin.HasSetting(MediaFlagsColored) + System.HasAddon(resource.images.studios.white)">$INFO[ListItem.Label,resource://resource.images.studios.white/,.png]</value>
 		<value condition="Skin.HasSetting(MediaFlagsColored) + System.HasAddon(resource.images.studios.coloured)">$INFO[ListItem.Label,resource://resource.images.studios.coloured/,.png]</value>
+		<value>$INFO[ListItem.Icon]</value>
+	</variable>
+	<variable name="CountryIconVar">
+		<value condition="System.HasAddon(resource.images.moviecountryicons.flags)">$INFO[ListItem.Label,resource://resource.images.moviecountryicons.flags/,.png]</value>
+		<value>$INFO[ListItem.Icon]</value>
+	</variable>
+	<variable name="GenreIconVar">
+		<value condition="!Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem.Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem.Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
 		<value>$INFO[ListItem.Icon]</value>
 	</variable>
 	<variable name="FanartVar">
@@ -1047,6 +1113,10 @@
 		<value condition="!String.IsEmpty(ListItem.Art(tvshow.banner))">$INFO[ListItem.Art(tvshow.banner)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(artist.banner))">$INFO[ListItem.Art(artist.banner)]</value>
 		<value>$INFO[ListItem.Icon]</value>
+	</variable>
+	<variable name="ShowCaseBackVar">
+		<value condition="ListItem.IsStereoscopic">thumbs/case/portrait/back/1080p.png</value>
+		<value>thumbs/case/portrait/back/$INFO[ListItem.VideoResolution]p.png</value>
 	</variable>
 
 

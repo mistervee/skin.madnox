@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+	<include name="View501Square">
+		<!-- Info panel -->
+		<control type="group">
+			<visible>Control.IsVisible(501)</visible>
+			<include content="ViewCoverFlowInfoPanel">
+				<param name="id">501</param>
+			</include>
+		</control>
+		<!-- Floor -->
+		<control type="group">
+			<visible>Control.IsVisible(501)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<control type="group">
+				<visible>!Skin.HasSetting(View501HideFloor)</visible>
+				<include>FloorDefault</include>
+				<include>FloorHighlightMiddle</include>
+			</control>
+			<include content="FloorShadow">
+				<param name="visible">Skin.HasSetting(View501HideFloor)</param>
+			</include>
+		</control>
+		<!-- Panel -->
+		<control type="group">
+			<visible>Control.IsVisible(501)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">525</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">525</param>
+			</include>
+			<control type="wraplist" id="501">
+				<animation effect="slide" end="-84" condition="Skin.HasSetting(View501AlbumCase) + [Container.Content(albums) | Container.Content(musicvideos)]">conditional</animation>
+				<top>595</top>
+				<left>-209</left>
+				<width>2338</width>
+				<height>469</height>
+				<onup condition="!Skin.HasSetting(View501ManualInfo) | ListItem.IsParentFolder">9050</onup>
+				<onup condition="Skin.HasSetting(View501ManualInfo) + !ListItem.IsParentFolder">9999</onup>
+				<focusposition>3</focusposition>
+				<pagecontrol>60500</pagecontrol>
+				<orientation>horizontal</orientation>
+				<viewtype label="$LOCALIZE[31241]">icon</viewtype>
+				<itemlayout width="334" height="334" condition="!Skin.HasSetting(View501AlbumCase) | ![Container.Content(albums) | Container.Content(musicvideos)]">
+					<control type="group">
+						<visible>!Skin.HasSetting(View501HideReflect)</visible>
+						<top>318</top>
+						<height>334</height>
+						<include>ViewArtworkReflect</include>
+					</control>
+					<include>ViewArtwork</include>
+				</itemlayout>
+				<focusedlayout width="334" height="334" condition="!Skin.HasSetting(View501AlbumCase) | ![Container.Content(albums) | Container.Content(musicvideos)]">
+					<control type="group">
+						<animation effect="zoom" start="100" end="120" center="auto" time="160">focus</animation>
+						<animation effect="zoom" start="120" end="100" center="auto" time="160">unfocus</animation>
+						<control type="group">
+							<visible>!Skin.HasSetting(View501HideReflect)</visible>
+							<top>318</top>
+							<height>334</height>
+							<include>ViewArtworkReflect</include>
+						</control>
+						<include>ViewArtwork</include>
+					</control>
+				</focusedlayout>
+				<itemlayout width="358" height="334" condition="Skin.HasSetting(View501AlbumCase) + [Container.Content(albums) | Container.Content(musicvideos)]">
+					<control type="group">
+						<visible>!Skin.HasSetting(View501HideReflect)</visible>
+						<top>319</top>
+						<height>334</height>
+						<include content="ViewArtworkAudioCaseReflect">
+							<param name="bordersize">53,15,15,14</param>
+						</include>
+					</control>
+					<include content="ViewArtworkAudioCase">
+						<param name="bordersize">38,14,14,14</param>
+					</include>
+				</itemlayout>
+				<focusedlayout width="358" height="334" condition="Skin.HasSetting(View501AlbumCase) + [Container.Content(albums) | Container.Content(musicvideos)]">
+					<control type="group">
+						<animation effect="zoom" start="100" end="120" center="auto" time="160">focus</animation>
+						<animation effect="zoom" start="120" end="100" center="auto" time="160">unfocus</animation>
+						<control type="group">
+							<visible>!Skin.HasSetting(View501HideReflect)</visible>
+							<top>319</top>
+							<height>334</height>
+							<include content="ViewArtworkAudioCaseReflect">
+								<param name="bordersize">53,15,15,14</param>
+							</include>
+						</control>
+						<include content="ViewArtworkAudioCase">
+							<param name="bordersize">38,14,14,14</param>
+						</include>
+					</control>
+				</focusedlayout>
+			</control>
+			<!-- <control type="scrollbar" id="6057">
+				<right>80</right>
+				<top>144</top>
+				<bottom>144</bottom>
+				<onleft>80</onleft>
+			</control> -->
+		</control>
+		<!-- Bottom info/Media flags -->
+		<control type="group">
+			<visible>Control.IsVisible(501)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include content="ViewCoverFlowBottomInfo">
+				<param name="logovisible">View501Logo</param>
+			</include>
+			<include condition="Window.IsVisible(MyMusicNav.xml)">MediaFlagsPanelAudio</include>
+		</control>
+	</include>
+</includes>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+	<include name="View500Portrait">
+		<!-- Info panel -->
+		<control type="group">
+			<visible>Control.IsVisible(500)</visible>
+			<include content="ViewCoverFlowInfoPanel">
+				<param name="id">500</param>
+			</include>
+		</control>
+		<!-- Floor -->
+		<control type="group">
+			<visible>Control.IsVisible(500)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<control type="group">
+				<visible>!Skin.HasSetting(View500HideFloor)</visible>
+				<include>FloorDefault</include>
+				<include>FloorHighlightMiddle</include>
+			</control>
+			<include content="FloorShadow">
+				<param name="visible">Skin.HasSetting(View500HideFloor)</param>
+			</include>
+		</control>
+		<!-- Panel -->
+		<control type="group">
+			<visible>Control.IsVisible(500)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">525</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">525</param>
+			</include>
+			<control type="wraplist" id="500">
+				<top>595</top>
+				<left>-70.50</left>
+				<width>2062</width>
+				<height>469</height>
+				<onup condition="!Skin.HasSetting(View500ManualInfo) | ListItem.IsParentFolder">9050</onup>
+				<onup condition="Skin.HasSetting(View500ManualInfo) + !ListItem.IsParentFolder">9999</onup>
+				<focusposition>4</focusposition>
+				<pagecontrol>60500</pagecontrol>
+				<orientation>horizontal</orientation>
+				<viewtype label="$LOCALIZE[31239]">icon</viewtype>
+				<itemlayout width="229" height="334">
+					<control type="group">
+						<visible>!Skin.HasSetting(View500VideoCase)</visible>
+						<control type="group">
+							<visible>!Skin.HasSetting(View500HideReflect)</visible>
+							<top>319</top>
+							<height>334</height>
+							<include>ViewArtworkReflect</include>
+						</control>
+						<include>ViewArtwork</include>
+					</control>
+					<control type="group">
+						<visible>Skin.HasSetting(View500VideoCase)</visible>
+						<control type="group">
+							<visible>!Skin.HasSetting(View500HideReflect)</visible>
+							<top>319</top>
+							<height>334</height>
+							<include content="ViewArtworkVideoCaseReflect">
+								<param name="bordersize">15,17,15,33</param>
+							</include>
+						</control>
+						<include content="ViewArtworkVideoCase">
+							<param name="logoheight">27</param>
+							<param name="bordersize">15,33,15,17</param>
+						</include>
+					</control>
+				</itemlayout>
+				<focusedlayout width="229" height="334">
+					<control type="group">
+						<animation effect="zoom" start="100" end="120" center="auto" time="160">focus</animation>
+						<animation effect="zoom" start="120" end="100" center="auto" time="160">unfocus</animation>
+						<control type="group">
+							<visible>!Skin.HasSetting(View500VideoCase)</visible>
+							<control type="group">
+								<visible>!Skin.HasSetting(View500HideReflect)</visible>
+								<top>319</top>
+								<height>334</height>
+								<include>ViewArtworkReflect</include>
+							</control>
+							<include>ViewArtwork</include>
+						</control>
+						<control type="group">
+							<visible>Skin.HasSetting(View500VideoCase)</visible>
+							<control type="group">
+								<visible>!Skin.HasSetting(View500HideReflect)</visible>
+								<top>319</top>
+								<height>334</height>
+								<include content="ViewArtworkVideoCaseReflect">
+									<param name="bordersize">15,17,15,33</param>
+								</include>
+							</control>
+							<include content="ViewArtworkVideoCase">
+								<param name="logoheight">27</param>
+								<param name="bordersize">15,33,15,17</param>
+							</include>
+						</control>
+					</control>
+				</focusedlayout>
+			</control>
+			<!-- <control type="scrollbar" id="6057">
+				<right>80</right>
+				<top>144</top>
+				<bottom>144</bottom>
+				<onleft>80</onleft>
+			</control> -->
+		</control>
+		<!-- Bottom info/Media flags -->
+		<control type="group">
+			<visible>Control.IsVisible(500)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include content="ViewCoverFlowBottomInfo">
+				<param name="logovisible">View500Logo</param>
+			</include>
+			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsPanelVideos</include>
+		</control>
+	</include>
+</includes>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+	<include name="View503Landscape">
+		<!-- Info panel -->
+		<control type="group">
+			<visible>Control.IsVisible(503)</visible>
+			<include content="ViewCoverFlowInfoPanel">
+				<param name="id">503</param>
+			</include>
+		</control>
+		<!-- Floor -->
+		<control type="group">
+			<visible>Control.IsVisible(503)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<control type="group">
+				<visible>!Skin.HasSetting(View503HideFloor)</visible>
+				<include>FloorDefault</include>
+				<include>FloorHighlightMiddle</include>
+			</control>
+			<include content="FloorShadow">
+				<param name="visible">Skin.HasSetting(View503HideFloor)</param>
+			</include>
+		</control>
+
+		<control type="group">
+			<visible>Control.IsVisible(503)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">525</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">525</param>
+			</include>
+			<control type="fixedlist" id="503">
+				<top>656</top>
+				<left>-212</left>
+				<width>2344</width>
+				<height>469</height>
+				<onup condition="!Skin.HasSetting(View503ManualInfo) | ListItem.IsParentFolder">9050</onup>
+				<onup condition="Skin.HasSetting(View503ManualInfo) + !ListItem.IsParentFolder">9999</onup>
+				<focusposition>2</focusposition>
+				<pagecontrol>6080</pagecontrol>
+				<orientation>horizontal</orientation>
+				<viewtype label="$LOCALIZE[31243]">icon</viewtype>
+				<itemlayout width="468.8" height="272" condition="String.IsEmpty(Skin.String(View503Art))">
+					<control type="group">
+						<visible>!Skin.HasSetting(View503HideReflect)</visible>
+						<top>257</top>
+						<height>272</height>
+						<include content="ViewArtworkReflect">
+							<param name="art">$VAR[LandscapeVar]</param>
+						</include>
+					</control>
+					<include content="ViewArtwork">
+						<param name="art">$VAR[LandscapeVar]</param>
+						<param name="diffuse">diffuse/rounded5-532x395.png</param>
+					</include>
+				</itemlayout>
+				<focusedlayout width="468.8" height="272" condition="String.IsEmpty(Skin.String(View503Art))">
+					<control type="group">
+						<animation effect="zoom" start="100" end="125" center="auto" time="160">focus</animation>
+						<animation effect="zoom" start="125" end="100" center="auto" time="160">unfocus</animation>
+						<control type="group">
+							<visible>!Skin.HasSetting(View503HideReflect)</visible>
+							<top>257</top>
+							<height>272</height>
+							<include content="ViewArtworkReflect">
+								<param name="art">$VAR[LandscapeVar]</param>
+							</include>
+						</control>
+						<include content="ViewArtwork">
+							<param name="art">$VAR[LandscapeVar]</param>
+							<param name="diffuse">diffuse/rounded5-532x395.png</param>
+						</include>
+					</control>
+				</focusedlayout>
+				<itemlayout width="468.8" height="272" condition="Skin.String(View503Art,clearlogo)">
+					<control type="group">
+						<visible>!Skin.HasSetting(View503HideReflect)</visible>
+						<top>257</top>
+						<height>272</height>
+						<include content="ViewArtworkReflect">
+							<param name="aspect">keep</param>
+							<param name="art">$VAR[ClearLogoVar]</param>
+						</include>
+					</control>
+					<include content="ViewArtwork">
+						<param name="aspect">keep</param>
+						<param name="art">$VAR[ClearLogoVar]</param>
+						<param name="diffuse">diffuse/rounded5-532x395.png</param>
+					</include>
+				</itemlayout>
+				<focusedlayout width="468.8" height="272" condition="Skin.String(View503Art,clearlogo)">
+					<control type="group">
+						<animation effect="zoom" start="100" end="125" center="auto" time="160">focus</animation>
+						<animation effect="zoom" start="125" end="100" center="auto" time="160">unfocus</animation>
+						<control type="group">
+							<visible>!Skin.HasSetting(View503HideReflect)</visible>
+							<top>257</top>
+							<height>272</height>
+							<include content="ViewArtworkReflect">
+								<param name="aspect">keep</param>
+								<param name="art">$VAR[ClearLogoVar]</param>
+							</include>
+						</control>
+						<include content="ViewArtwork">
+							<param name="aspect">keep</param>
+							<param name="art">$VAR[ClearLogoVar]</param>
+							<param name="diffuse">diffuse/rounded5-532x395.png</param>
+						</include>
+					</control>
+				</focusedlayout>
+				<itemlayout width="468.8" height="272" condition="Skin.String(View503Art,clearart)">
+					<control type="group">
+						<visible>!Skin.HasSetting(View503HideReflect)</visible>
+						<top>257</top>
+						<height>272</height>
+						<include content="ViewArtworkReflect">
+							<param name="aspect">keep</param>
+							<param name="art">$VAR[ClearArtVar]</param>
+						</include>
+					</control>
+					<include content="ViewArtwork">
+						<param name="aspect">keep</param>
+						<param name="art">$VAR[ClearArtVar]</param>
+						<param name="diffuse">diffuse/rounded5-532x395.png</param>
+					</include>
+				</itemlayout>
+				<focusedlayout width="468.8" height="272" condition="Skin.String(View503Art,clearart)">
+					<control type="group">
+						<animation effect="zoom" start="100" end="125" center="auto" time="160">focus</animation>
+						<animation effect="zoom" start="125" end="100" center="auto" time="160">unfocus</animation>
+						<control type="group">
+							<visible>!Skin.HasSetting(View503HideReflect)</visible>
+							<top>257</top>
+							<height>272</height>
+							<include content="ViewArtworkReflect">
+								<param name="aspect">keep</param>
+								<param name="art">$VAR[ClearArtVar]</param>
+							</include>
+						</control>
+						<include content="ViewArtwork">
+							<param name="aspect">keep</param>
+							<param name="art">$VAR[ClearArtVar]</param>
+							<param name="diffuse">diffuse/rounded5-532x395.png</param>
+						</include>
+					</control>
+				</focusedlayout>
+				<itemlayout width="468.8" height="272" condition="Skin.String(View503Art,fanart)">
+					<control type="group">
+						<visible>!Skin.HasSetting(View503HideReflect)</visible>
+						<top>257</top>
+						<height>272</height>
+						<include content="ViewArtworkReflect">
+							<param name="art">$VAR[FanartVar]</param>
+						</include>
+					</control>
+					<include content="ViewArtwork">
+						<param name="art">$VAR[FanartVar]</param>
+						<param name="diffuse">diffuse/rounded5-532x395.png</param>
+					</include>
+				</itemlayout>
+				<focusedlayout width="468.8" height="272" condition="Skin.String(View503Art,fanart)">
+					<control type="group">
+						<animation effect="zoom" start="100" end="125" center="auto" time="160">focus</animation>
+						<animation effect="zoom" start="125" end="100" center="auto" time="160">unfocus</animation>
+						<control type="group">
+							<visible>!Skin.HasSetting(View503HideReflect)</visible>
+							<top>257</top>
+							<height>272</height>
+							<include content="ViewArtworkReflect">
+								<param name="art">$VAR[FanartVar]</param>
+							</include>
+						</control>
+						<include content="ViewArtwork">
+							<param name="art">$VAR[FanartVar]</param>
+							<param name="diffuse">diffuse/rounded5-532x395.png</param>
+						</include>
+					</control>
+				</focusedlayout>
+			</control>
+			<!-- <control type="scrollbar" id="6057">
+				<right>80</right>
+				<top>144</top>
+				<bottom>144</bottom>
+				<onleft>80</onleft>
+			</control> -->
+		</control>
+		<!-- Bottom info/Media flags -->
+		<control type="group">
+			<visible>Control.IsVisible(503)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include content="ViewCoverFlowBottomInfo">
+				<param name="logovisible">View503Logo</param>
+			</include>
+			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsPanelVideos</include>
+		</control>
+	</include>
+</includes>

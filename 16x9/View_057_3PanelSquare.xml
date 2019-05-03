@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <includes>
 	<include name="View573PanelSquare">
-		<!-- Left Content -->
+		<!-- Floor -->
 		<control type="group">
 			<visible>Control.IsVisible(57)</visible>
-			<animation type="WindowOpen" reversible="false">
-				<effect type="fade" start="0" end="100" delay="400" time="300"/>
-				<effect type="slide" start="-602" delay="200" end="0" time="400" tween="cubic" easing="out" />
-			</animation>
-			<animation type="WindowClose" reversible="false">
-				<effect type="fade" start="100" end="0" time="300"/>
-				<effect type="slide" start="0" end="-1840" time="300" tween="cubic" easing="out" />
-			</animation>
-			<animation type="Visible" reversible="false">
-				<effect type="fade" start="0" end="100" delay="400" time="300"/>
-				<effect type="slide" start="-602" delay="200" end="0" time="400" tween="cubic" easing="out" />
-			</animation>
-			<animation type="Hidden" reversible="false">
-				<effect type="fade" start="100" end="0" time="300"/>
-				<effect type="slide" start="0" end="-1840" time="300" tween="cubic" easing="out" />
-			</animation>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<control type="group">
+				<visible>!Skin.HasSetting(View57HideFloor)</visible>
+				<include>FloorDefault</include>
+				<include>FloorHighlightRight</include>
+			</control>
+			<include content="FloorShadow">
+				<param name="visible">Skin.HasSetting(View57HideFloor)</param>
+			</include>
+		</control>
+		<!-- Info -->
+		<control type="group">
+			<visible>Control.IsVisible(57)</visible>
+			<include>AnimationSlidePanel</include>
 			<include content="PanelSideBlade">
-				<param name="top">430</param>
-				<param name="height">510</param>
-				<param name="left">1361</param>
-				<param name="width">479</param>
-				<param name="toptexture">450</param>
-				<param name="heighttexture">470</param>
-				<param name="lefttexture">1361</param>
-				<param name="widthtexture">459</param>
+				<param name="top">439</param>
+				<param name="height">501</param>
+				<param name="left">1353</param>
+				<param name="width">487</param>
+				<param name="toptexture">459</param>
+				<param name="heighttexture">461</param>
+				<param name="lefttexture">1353</param>
+				<param name="widthtexture">467</param>
 				<param name="reflecttop">905</param>
-				<param name="diffusetexture">diffuse/siderounded20-459x470.png</param>
-				<param name="reflect">!Skin.HasSetting(ViewsHideFloor)</param>
+				<param name="diffusetexture">diffuse/siderounded20-467x461.png</param>
+				<param name="reflect">!Skin.HasSetting(View57HideReflect)</param>
 			</include>
 			<control type="grouplist">
-				<top>510</top>
+				<top>518</top>
 				<right>125</right>
-				<width>409</width>
-				<height>345</height>
+				<width>417</width>
+				<height>337</height>
 				<include>View3PanelListInfo</include>
 				<control type="textbox">
 					<visible>!Container.Content(artists) + !String.IsEmpty(Control.GetLabel(5303))</visible>
 					<top>-2</top>
 					<height>188</height>
 					<align>left</align>
-					<font>Font28_Reg_098</font>
+					<font>Font28_Reg_114</font>
 					<label>$VAR[ViewPlotVar]</label>
 					<pagecontrol>60571</pagecontrol>
 					<include>AutoScrollPlot</include>
@@ -54,7 +54,7 @@
 					<top>-2</top>
 					<height>226</height>
 					<align>left</align>
-					<font>Font28_Reg_098</font>
+					<font>Font28_Reg_110</font>
 					<label>$VAR[ViewPlotVar]</label>
 					<pagecontrol>60572</pagecontrol>
 					<include>AutoScrollPlot</include>
@@ -64,7 +64,7 @@
 					<top>-2</top>
 					<height>265</height>
 					<align>left</align>
-					<font>Font28_Reg</font>
+					<font>Font28_Reg_110</font>
 					<label>$VAR[ViewPlotVar]</label>
 					<pagecontrol>60573</pagecontrol>
 					<include>AutoScrollPlot</include>
@@ -92,79 +92,159 @@
 				<onleft>6057</onleft>
 			</control>
 		</control>
+		<!-- Art -->
 		<control type="group">
 			<visible>Control.IsVisible(57)</visible>
-			<animation type="WindowOpen" reversible="false">
-				<effect type="fade" start="0" end="100" delay="200" time="300"/>
-				<effect type="slide" start="-567" delay="200" end="0" time="400" tween="cubic" easing="out" />
-			</animation>
-			<animation type="WindowClose" reversible="false">
-				<effect type="fade" start="100" end="0" time="300"/>
-				<effect type="slide" start="0" end="-1840" time="300" tween="cubic" easing="out" />
-			</animation>
-			<animation type="Visible" reversible="false">
-				<effect type="fade" start="0" end="100" delay="200" time="300"/>
-				<effect type="slide" start="-567" delay="200" end="0" time="400" tween="cubic" easing="out" />
-			</animation>
-			<animation type="Hidden" reversible="false">
-				<effect type="fade" start="100" end="0" time="300"/>
-				<effect type="slide" start="0" end="-1840" time="300" tween="cubic" easing="out" />
-			</animation>
+			<include>AnimationSlidePanel</include>
 			<control type="group">
-				<left>821</left>
+				<visible>Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos)</visible>
+				<left>822</left>
 				<bottom>120</bottom>
-				<width>550</width>
-				<height>550</height>
-				<control type="image">
-					<visible>String.IsEqual(ListItem.DBTYPE,album) | String.IsEqual(ListItem.DBTYPE,song) | String.IsEqual(ListItem.DBTYPE,musicvideo)</visible>
-					<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" condition="Player.Playing + [String.IsEqual(ListItem.Album,MusicPlayer.Album) | String.IsEqual(ListItem.Title,Player.Title)]">Conditional</animation>
-					<left>20</left>
-					<bottom>285</bottom>
-					<width>510</width>
-					<height>510</height>
-					<fadetime>TextureFadeTime</fadetime>
-					<texture diffuse="diffuse/disc.png" background="true">$VAR[DiscArtVar]</texture>
+				<width>541</width>
+				<height>541</height>
+				<control type="group">
+					<visible>!Skin.HasSetting(View57AlbumCase)</visible>
+					<control type="image">
+						<visible>!Skin.HasSetting(View57HideDiscArt)</visible>
+						<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" condition="Player.Playing + [String.IsEqual(ListItem.Album,MusicPlayer.Album) | String.IsEqual(ListItem.Title,Player.Title)]">Conditional</animation>
+						<left>20</left>
+						<bottom>276</bottom>
+						<width>501</width>
+						<height>501</height>
+						<fadetime>TextureFadeTime</fadetime>
+						<texture diffuse="diffuse/disc.png" background="true">$VAR[DiscArtVar]</texture>
+					</control>
+					<control type="group">
+						<visible>!Skin.HasSetting(View57HideReflect)</visible>
+						<top>526</top>
+						<height>541</height>
+						<include content="ViewArtworkReflect">
+							<param name="art">$VAR[PosterVar]</param>
+							<param name="fallback">DefaultFile.png</param>
+						</include>
+					</control>
+					<include content="ViewArtwork">
+						<param name="diffuse">diffuse/rounded5-522x522.png</param>
+					</include>
 				</control>
 				<control type="group">
-					<visible>!Skin.HasSetting(ViewsHideFloor)</visible>
-					<top>535</top>
-					<height>550</height>
+					<visible>Skin.HasSetting(View57AlbumCase)</visible>
 					<control type="image">
-						<bordersize>10</bordersize>
-						<aspectratio scalediffuse="false">scale</aspectratio>
-						<texture diffuse="thumbs/reflect.png" flipy="true" background="true" colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
-					</control>
-					<control type="image">
-						<bordersize>10</bordersize>
+						<visible>!Skin.HasSetting(View57HideDiscArt)</visible>
+						<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" condition="Player.Playing + [String.IsEqual(ListItem.Album,MusicPlayer.Album) | String.IsEqual(ListItem.Title,Player.Title)]">Conditional</animation>
+						<left>64</left>
+						<bottom>294</bottom>
+						<width>452</width>
+						<height>452</height>
 						<fadetime>TextureFadeTime</fadetime>
-						<aspectratio scalediffuse="false">scale</aspectratio>
-						<texture background="true" flipy="true" diffuse="thumbs/reflect.png" fallback="DefaultFile.png">$VAR[PosterVar]</texture>
+						<texture diffuse="diffuse/disc.png" background="true">$VAR[DiscArtVar]</texture>
 					</control>
-				</control>
-				<control type="image">
-					<bordersize>10</bordersize>
-					<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
-				</control>
-				<control type="image">
-					<bordersize>10</bordersize>
-					<fadetime>TextureFadeTime</fadetime>
-					<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-					<texture diffuse="diffuse/rounded5-530x530.png">$VAR[PosterVar]</texture>
-				</control>
-				<control type="image">
-					<texture border="20">thumbs/overlay.png</texture>
+					<control type="group">
+						<visible>!Skin.HasSetting(View57HideReflect)</visible>
+						<top>522</top>
+						<height>561</height>
+						<control type="group">
+							<visible>ListItem.IsParentFolder | String.Contains(ListItem.Label,*)</visible>
+							<control type="image">
+								<bordersize>10</bordersize>
+								<texture diffuse="thumbs/reflect.png" flipy="true" colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+							</control>
+							<control type="image">
+								<bordersize>10</bordersize>
+								<fadetime>TextureFadeTime</fadetime>
+								<aspectratio scalediffuse="false">$PARAM[aspect]</aspectratio>
+								<texture flipy="true" diffuse="thumbs/reflect.png" fallback="$PARAM[fallback]">$INFO[ListItem.Icon]</texture>
+							</control>
+						</control>
+						<control type="group">
+							<visible>!ListItem.IsParentFolder + !String.Contains(ListItem.Label,*)</visible>
+							<left>-10</left>
+							<width>561</width>
+							<control type="image">
+								<bordersize>54,15,15,15</bordersize>
+								<texture diffuse="thumbs/reflect.png" flipy="true" colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+							</control>
+							<control type="image">
+								<bordersize>54,15,15,15</bordersize>
+								<fadetime>TextureFadeTime</fadetime>
+								<aspectratio scalediffuse="false">stretch</aspectratio>
+								<texture background="true" flipy="true" diffuse="thumbs/reflect.png" fallback="DefaultFile.png">$VAR[PosterVar]</texture>
+							</control>
+							<control type="image">
+								<fadetime>TextureFadeTime</fadetime>
+								<aspectratio scalediffuse="false">stretch</aspectratio>
+								<texture flipy="true" diffuse="thumbs/reflect.png" border="15">thumbs/case/cd.png</texture>
+							</control>
+						</control>
+					</control>
+					<control type="group">
+						<visible>ListItem.IsParentFolder | String.Contains(ListItem.Label,*)</visible>
+						<control type="image">
+							<bordersize>10</bordersize>
+							<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+						</control>
+						<control type="image">
+							<fadetime>TextureFadeTime</fadetime>
+							<aspectratio>scale</aspectratio>
+							<texture>$INFO[ListItem.Icon]</texture>
+						</control>
+						<control type="image">
+							<texture border="20">thumbs/overlay.png</texture>
+						</control>
+					</control>
+					<control type="group">
+						<visible>!ListItem.IsParentFolder + !String.Contains(ListItem.Label,*)</visible>
+						<left>-10</left>
+						<width>561</width>
+						<control type="image">
+							<bordersize>54,15,15,15</bordersize>
+							<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+						</control>
+						<control type="image">
+							<bordersize>54,15,15,15</bordersize>
+							<fadetime>TextureFadeTime</fadetime>
+							<aspectratio scalediffuse="false">stretch</aspectratio>
+							<texture background="true" diffuse="diffuse/rounded5-522x522.png" fallback="DefaultFile.png">$VAR[PosterVar]</texture>
+						</control>
+						<control type="image">
+							<fadetime>TextureFadeTime</fadetime>
+							<aspectratio>stretch</aspectratio>
+							<texture border="15">thumbs/case/cd.png</texture>
+						</control>
+					</control>
 				</control>
 			</control>
+			<control type="group">
+				<visible>![Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos)]</visible>
+				<left>822</left>
+				<bottom>120</bottom>
+				<width>542</width>
+				<height>542</height>
+				<control type="group">
+					<visible>!Skin.HasSetting(View57HideReflect)</visible>
+					<top>527</top>
+					<height>542</height>
+					<include content="ViewArtworkReflect">
+						<param name="art">$VAR[PosterVar]</param>
+						<param name="fallback">DefaultFile.png</param>
+					</include>
+				</control>
+				<include content="ViewArtwork">
+					<param name="diffuse">diffuse/rounded5-522x522.png</param>
+				</include>
+			</control>
 			<control type="image">
-				<top>230</top>
+				<visible>!Skin.HasSetting(View57HideLogo)</visible>
+				<top>214</top>
 				<right>125</right>
-				<width>409</width>
-				<height>268</height>
+				<width>416</width>
+				<height>234</height>
 				<fadetime>TextureFadeTime</fadetime>
-				<aspectratio>keep</aspectratio>
+				<aspectratio aligny="bottom">keep</aspectratio>
 				<texture background="true">$VAR[ClearLogoVar]</texture>
 			</control>
 		</control>
+		<!-- List -->
 		<control type="group">
 			<visible>Control.IsVisible(57)</visible>
 			<include content="AnimationSlideLeftWindow">
@@ -174,25 +254,28 @@
 				<param name="slide">1017</param>
 			</include>
 			<include content="PanelDefault">
-				<param name="top">370</param>
-				<param name="toptexture">390</param>
+				<param name="top">379</param>
+				<param name="toptexture">399</param>
 				<param name="right">1068</param>
 				<param name="righttexture">1088</param>
-				<param name="height">630</param>
-				<param name="heighttexture">590</param>
-				<param name="diffusetexture">diffuse/rounded20-732x590.png</param>
-				<param name="reflect">!Skin.HasSetting(ViewsHideFloor)</param>
+				<param name="height">621</param>
+				<param name="heighttexture">581</param>
+				<param name="diffusetexture">diffuse/rounded20-732x581.png</param>
+				<param name="reflect">!Skin.HasSetting(View57HideReflect)</param>
 			</include>
 			<control type="panel" id="57">
 				<left>100</left>
-				<top>431</top>
+				<top>440</top>
 				<width>732</width>
-				<height>508</height>
+				<height>500</height>
 				<onleft>9050</onleft>
 				<onright>6057</onright>
 				<pagecontrol>6057</pagecontrol>
-				<viewtype label="$LOCALIZE[31225]">list</viewtype>
-				<include>ViewContainerList</include>
+				<viewtype label="$LOCALIZE[31233]">list</viewtype>
+				<include content="ViewContainerList">
+					<param name="listheight">71.4</param>
+					<param name="biglistvisible">Skin.HasSetting(View57BigList)</param>
+				</include>
 			</control>
 			<control type="scrollbar" id="6057">
 				<left>812</left>
@@ -203,6 +286,14 @@
 				<onright condition="!Container.Content(artists) + String.IsEmpty(Control.GetLabel(5303))">60572</onright>
 				<onright condition="Container.Content(artists)">60573</onright>
 			</control>
+		</control>
+		<!-- Media flags -->
+		<control type="group">
+			<visible>Control.IsVisible(57)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include condition="Window.IsVisible(MyMusicNav.xml) | Window.IsVisible(musicplaylist)">MediaFlagsAudio</include>
 		</control>
 	</include>
 </includes>

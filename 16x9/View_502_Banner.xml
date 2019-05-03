@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+	<include name="View502Banner">
+		<!-- Info panel -->
+		<control type="group">
+			<visible>Control.IsVisible(502)</visible>
+			<include content="ViewCoverFlowInfoPanel">
+				<param name="id">502</param>
+			</include>
+		</control>
+		<!-- Floor -->
+		<control type="group">
+			<visible>Control.IsVisible(502)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<control type="group">
+				<visible>!Skin.HasSetting(View502HideFloor)</visible>
+				<include>FloorDefault</include>
+				<include>FloorHighlightMiddle</include>
+			</control>
+			<include content="FloorShadow">
+				<param name="visible">Skin.HasSetting(View502HideFloor)</param>
+			</include>
+		</control>
+
+		<control type="group">
+			<visible>Control.IsVisible(502)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">525</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">525</param>
+			</include>
+			<control type="panel" id="502">
+				<top>588</top>
+				<left>90</left>
+				<width>1740</width>
+				<height>492</height>
+				<onup>9050</onup>
+				<focusposition>2</focusposition>
+				<pagecontrol>6080</pagecontrol>
+				<orientation>horizontal</orientation>
+				<viewtype label="$LOCALIZE[31242]">icon</viewtype>
+				<itemlayout width="580" height="124">
+					<control type="group">
+						<visible>!Skin.HasSetting(View502HideReflect)</visible>
+						<top>109</top>
+						<height>124</height>
+						<include content="ViewArtworkReflect">
+							<param name="art">$VAR[BannerVar]</param>
+						</include>
+					</control>
+					<include content="ViewArtwork">
+						<param name="art">$VAR[BannerVar]</param>
+						<param name="diffuse">diffuse/rounded5-216x324.png</param>
+					</include>
+				</itemlayout>
+				<focusedlayout width="580" height="124">
+					<control type="image">
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
+					</control>
+					<control type="group">
+						<animation  type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+						</animation>
+						<control type="group">
+							<visible>!Skin.HasSetting(View502HideReflect)</visible>
+							<top>109</top>
+							<height>124</height>
+							<include content="ViewArtworkReflect">
+								<param name="art">$VAR[BannerVar]</param>
+							</include>
+						</control>
+						<include content="ViewArtwork">
+							<param name="art">$VAR[BannerVar]</param>
+							<param name="diffuse">diffuse/rounded5-216x324.png</param>
+						</include>
+					</control>
+				</focusedlayout>
+			</control>
+			<!-- <control type="scrollbar" id="6057">
+				<right>80</right>
+				<top>144</top>
+				<bottom>144</bottom>
+				<onleft>80</onleft>
+			</control> -->
+		</control>
+		<!-- Bottom info/Media flags -->
+		<control type="group">
+			<visible>Control.IsVisible(502)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include content="ViewCoverFlowBottomInfo">
+				<param name="logovisible">View502Logo</param>
+			</include>
+			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsPanelVideos</include>
+		</control>
+	</include>
+</includes>

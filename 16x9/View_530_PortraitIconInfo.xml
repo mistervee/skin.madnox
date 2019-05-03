@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<include name="View530PortraitIconInfo">
+		<!-- Floor -->
+		<control type="group">
+			<visible>Control.IsVisible(530)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<control type="group">
+				<visible>!Skin.HasSetting(View530HideFloor)</visible>
+				<include>FloorDefault</include>
+				<include>FloorHighlightRight</include>
+			</control>
+			<include content="FloorShadow">
+				<param name="visible">Skin.HasSetting(View530HideFloor)</param>
+			</include>
+		</control>
+		<!-- Info -->
+		<control type="group">
+			<visible>Control.IsVisible(530)</visible>
+			<include>AnimationSlidePanel</include>
+			<include content="PanelSideBlade">
+				<param name="left">1188</param>
+				<param name="width">652</param>
+				<param name="lefttexture">1188</param>
+				<param name="widthtexture">632</param>
+				<param name="diffusetexture">diffuse/siderounded20-728x820.png</param>
+				<param name="reflect">!Skin.HasSetting(View530HideReflect)</param>
+			</include>
+			<include content="ViewFanartInfoVideoPreview">
+				<param name="id">530</param>
+				<param name="width">582</param>
+				<param name="height">327</param>
+				<param name="diffuse">diffuse/rounded5-678x381.png</param>
+			</include>
+			<control type="image">
+				<visible>!Skin.HasSetting(View530HideLogo)</visible>
+				<top>546</top>
+				<right>125</right>
+				<width>582</width>
+				<height>339</height>
+				<aspectratio>keep</aspectratio>
+				<texture background="true">$VAR[ClearLogoVar]</texture>
+				<animation effect="fade" end="10" time="0" condition="true">Conditional</animation>
+			</control>
+			<control type="grouplist">
+				<top>541</top>
+				<right>125</right>
+				<width>582</width>
+				<height>400</height>
+				<include>ViewListInfo</include>
+				<control type="textbox">
+					<top>2</top>
+					<height>261</height>
+					<font>Font28_Reg_112</font>
+					<label>$VAR[ViewPlotVar]</label>
+					<pagecontrol>605301</pagecontrol>
+					<include>AutoScrollPlot</include>
+				</control>
+			</control>
+			<control type="scrollbar" id="605301">
+				<right>80</right>
+				<top>676</top>
+				<bottom>195</bottom>
+				<onleft>60530</onleft>
+			</control>
+		</control>
+		<!-- Panel -->
+		<control type="group">
+			<visible>Control.IsVisible(530)</visible>
+			<include content="AnimationSlideLeftWindow">
+				<param name="slide">1017</param>
+			</include>
+			<include content="AnimationSlideLeftVisible">
+				<param name="slide">1017</param>
+			</include>
+			<include content="PanelDefault">
+				<param name="right">712</param>
+				<param name="righttexture">732</param>
+				<param name="diffusetexture">diffuse/rounded20-992x880.png</param>
+				<param name="reflect">!Skin.HasSetting(View530HideReflect)</param>
+			</include>
+			<control type="panel" id="530">
+				<top>150</top>
+				<left>110</left>
+				<width>1080</width>
+				<height>780</height>
+				<onleft>9050</onleft>
+				<onright>60530</onright>
+				<pagecontrol>60530</pagecontrol>
+				<viewtype label="$LOCALIZE[31251]">icon</viewtype>
+				<itemlayout height="390" width="267" condition="!Skin.HasSetting(View530SmallIcons)">
+					<control type="group">
+						<visible>!Skin.HasSetting(View530VideoCase)</visible>
+						<include content="ViewArtwork">
+							<param name="diffuse"></param>
+						</include>
+					</control>
+					<control type="group">
+						<visible>Skin.HasSetting(View530VideoCase)</visible>
+						<include content="ViewArtworkVideoCase">
+							<param name="logoheight">27</param>
+							<param name="bordersize">16,36,16,27</param>
+						</include>
+					</control>
+				</itemlayout>
+				<focusedlayout height="390" width="267" condition="!Skin.HasSetting(View530SmallIcons)">
+					<control type="image">
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
+					</control>
+					<control type="group">
+						<animation  type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+						</animation>
+						<control type="group">
+							<visible>!Skin.HasSetting(View530VideoCase)</visible>
+							<include content="ViewArtwork">
+								<param name="diffuse"></param>
+							</include>
+						</control>
+						<control type="group">
+							<visible>Skin.HasSetting(View530VideoCase)</visible>
+							<include content="ViewArtworkVideoCase">
+								<param name="logoheight">27</param>
+								<param name="bordersize">16,36,16,27</param>
+							</include>
+						</control>
+					</control>
+				</focusedlayout>
+				<itemlayout height="260" width="178" condition="Skin.HasSetting(View530SmallIcons)">
+					<control type="group">
+						<visible>!Skin.HasSetting(View530VideoCase)</visible>
+						<include content="ViewArtwork">
+							<param name="diffuse"></param>
+						</include>
+					</control>
+					<control type="group">
+						<visible>Skin.HasSetting(View530VideoCase)</visible>
+						<include content="ViewArtworkVideoCase">
+							<param name="logoheight">19</param>
+							<param name="bordersize">15,28,15,16</param>
+						</include>
+					</control>
+				</itemlayout>
+				<focusedlayout height="260" width="178" condition="Skin.HasSetting(View530SmallIcons)">
+					<control type="image">
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
+					</control>
+					<control type="group">
+						<animation  type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+						</animation>
+						<control type="group">
+							<visible>!Skin.HasSetting(View530VideoCase)</visible>
+							<include content="ViewArtwork">
+								<param name="diffuse"></param>
+							</include>
+						</control>
+						<control type="group">
+							<visible>Skin.HasSetting(View530VideoCase)</visible>
+							<include content="ViewArtworkVideoCase">
+								<param name="logoheight">19</param>
+								<param name="bordersize">15,28,15,16</param>
+							</include>
+						</control>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="scrollbar" id="60530">
+				<left>1168</left>
+				<top>140</top>
+				<bottom>140</bottom>
+				<onleft>53</onleft>
+				<onright>605301</onright>
+			</control>
+		</control>
+		<!-- Media flags -->
+		<control type="group">
+			<visible>Control.IsVisible(530)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsTVShows</include>
+			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsVideos4</include>
+		</control>
+	</include>
+</includes>

@@ -1065,6 +1065,58 @@
 							<include>SettingsButton</include>
 						</control>
 					</control>
+					<!--  Artwork -->
+					<control type="grouplist" id="7007">
+						<visible>Container(7000).Hasfocus(7)</visible>
+						<top>200</top>
+						<left>425</left>
+						<width>1395</width>
+						<height>737</height>
+						<onleft>7000</onleft>
+						<onright>607006</onright>
+						<pagecontrol>607006</pagecontrol>
+						<control type="radiobutton" id="602">
+							<label>$LOCALIZE[31062]</label>
+							<onclick>Skin.ToggleSetting(IconsColored)</onclick>
+							<selected>Skin.HasSetting(IconsColored)</selected>
+							<include>SettingsRadioButton</include>
+						</control>
+						<control type="radiobutton" id="603">
+							<label>$LOCALIZE[31052]</label>
+							<onclick condition="!System.HasAddon(resource.images.studios.coloured)">InstallAddon(resource.images.studios.coloured)</onclick>
+							<onclick condition="System.HasAddon(resource.images.studios.coloured)">Skin.ToggleSetting(MediaFlagsColored)</onclick>
+							<selected>Skin.HasSetting(MediaFlagsColored)</selected>
+							<include>SettingsRadioButton</include>
+						</control>
+						<control type="radiobutton" id="608">
+							<label>$LOCALIZE[31229]</label>
+							<onclick condition="!System.HasAddon(resource.images.languageflags.rounded)">InstallAddon(resource.images.languageflags.round)</onclick>
+							<onclick condition="System.HasAddon(resource.images.languageflags.rounded)">Skin.ToggleSetting(ShowLanguageFlags)</onclick>
+							<selected>Skin.HasSetting(ShowLanguageFlags)</selected>
+							<include>SettingsRadioButton</include>
+						</control>
+						<control type="button" id="609">
+							<label>$LOCALIZE[31034]</label>
+							<label2>$INFO[Skin.String(WeatherIcons.name)]</label2>
+							<onclick condition="!System.HasAddon(script.image.resource.select)">InstallAddon(script.image.resource.select)</onclick>
+							<onclick condition="System.HasAddon(script.image.resource.select)">RunScript(script.image.resource.select,property=WeatherIcons&amp;type=resource.images.weathericons)</onclick>
+							<include>SettingsButton</include>
+						</control>
+						<control type="button" id="610">
+							<label>$LOCALIZE[31004]</label>
+							<label2>$INFO[Skin.String(WeatherFanart.name)]</label2>
+							<onclick condition="!System.HasAddon(script.image.resource.select)">InstallAddon(script.image.resource.select)</onclick>
+							<onclick condition="System.HasAddon(script.image.resource.select)">RunScript(script.image.resource.select,property=WeatherFanart&amp;type=resource.images.weatherfanart)</onclick>
+							<include>SettingsButton</include>
+						</control>
+						<control type="button" id="611">
+							<label>$LOCALIZE[31009]</label>
+							<label2>$VAR[NowPlayingMusicDiscArtLabelVar]</label2>
+							<onclick>SetProperty(CustomSelect,$LOCALIZE[31009],home)</onclick>
+							<onclick>ActivateWindow(1110)</onclick>
+							<include>SettingsButton</include>
+						</control>
+					</control>
 					<!-- Credits -->
 					<control type="grouplist" id="7009">
 						<visible>Container(7000).Hasfocus(9)</visible>
