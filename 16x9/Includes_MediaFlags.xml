@@ -376,15 +376,17 @@
 	<include name="MediaFlagsAudio">
 		<param name="bottom">25</param>
 		<param name="right">125</param>
+		<param name="left">125</param>
+		<param name="align">right</param>
 		<definition>
 			<control type="group">
 				<bottom>$PARAM[bottom]</bottom>
-				<left>125</left>
+				<left>$PARAM[left]</left>
 				<right>$PARAM[right]</right>
 				<height>80</height>
 				<control type="grouplist">
 					<visible>!ListItem.IsParentFolder + Container.Content(artists)</visible>
-					<align>right</align>
+					<align>$PARAM[align]</align>
 					<itemgap>10</itemgap>
 					<orientation>horizontal</orientation>
 					<usecontrolcoords>true</usecontrolcoords>
@@ -413,7 +415,7 @@
 				</control>
 				<control type="grouplist">
 					<visible>!ListItem.IsParentFolder + Container.Content(albums)</visible>
-					<align>right</align>
+					<align>$PARAM[align]</align>
 					<itemgap>10</itemgap>
 					<orientation>horizontal</orientation>
 					<usecontrolcoords>true</usecontrolcoords>
@@ -435,7 +437,7 @@
 				</control>
 				<control type="grouplist">
 					<visible>!ListItem.IsParentFolder + [Container.Content(songs) | String.IsEqual(ListItem.DBTYPE,song)]</visible>
-					<align>right</align>
+					<align>$PARAM[align]</align>
 					<itemgap>10</itemgap>
 					<orientation>horizontal</orientation>
 					<usecontrolcoords>true</usecontrolcoords>

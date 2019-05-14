@@ -1,29 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
 	<defaultcontrol always="true">50</defaultcontrol>
-	<views>50,51,53,500,501,503,513,516</views>
+	<views>50,51,53,531,533</views>
 	<menucontrol>9050</menucontrol>
 	<controls>
 		<!-- Backdrop -->
 		<include content="BackgroundDefault">
 			<param name="imagepath">$VAR[PVRBackgroundVar]</param>
 		</include>
-		<!-- Floor -->
-		<include>ViewsFloor</include>
 		<!-- Views -->
 		<control type="group">
 			<visible>!Window.IsActive(pvrguideinfo)</visible>
 			<include>AnimationInfoDialog</include>
+			<!-- List -->
 			<include>View50CoverList</include>
 			<include>View51SimpleList</include>
-			<include>View53InfoList1</include>
-			<include>View500BigPosterList</include>
-			<include>View501BigSimpleList</include>
-			<include>View503BigInfoList1</include>
-			<include>View513LandscapeWall</include>
-			<include>View516LandscapeFullscreenWall</include>
-			<!-- Media flags -->
-			<include>ViewsMediaFlagsPVR</include>
+			<include condition="!Skin.HasSetting(DisableViewInfo1)">View53InfoList1</include>
+			<!-- Icon info-->
+			<include condition="!Skin.HasSetting(DisableViewSquareIconInfo)">View531SquareIconInfo</include>
+			<include condition="!Skin.HasSetting(DisableViewLandscapeIconInfo)">View533LandscapeIconInfo</include>
 		</control>
 		<!-- Topbar -->
 		<control type="label" id="29">

@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
 	<defaultcontrol always="true">50</defaultcontrol>
-	<views>50,51,53,54,57,500,501,503,504,507,512,515</views>
+	<views>50,51,501,505,507,509,521,531,541</views>
 	<menucontrol>9050</menucontrol>
 	<controls>
 		<!-- Background -->
 		<include content="BackgroundDefault">
 			<param name="imagepath">$VAR[GamesBackgroundVar]</param>
 		</include>
-		<!-- Floor -->
-		<include>ViewsFloor</include>
 		<!-- Views -->
 		<control type="group">
 			<visible>!Window.IsActive(addoninformation)</visible>
 			<include>AnimationInfoDialog</include>
-			<include>View50PosterList</include>
+			<!-- List -->
+			<include>View50CoverList</include>
 			<include>View51SimpleList</include>
-			<include>View53InfoList1</include>
-			<include>View54InfoList2</include>
-			<include>View573PanelSquare</include>
-			<include>View500BigPosterList</include>
-			<include>View501BigSimpleList</include>
-			<include>View503BigInfoList1</include>
-			<include>View504BigInfoList2</include>
-			<include>View507Big3PanelSquare</include>
-			<include>View512PosterWallSquare</include>
-			<include>View515PosterFullscreenWall</include>
+			<!-- Cover flow -->
+			<include condition="!Skin.HasSetting(DisableViewSquare)">View501Square</include>
+			<include condition="!Skin.HasSetting(DisableViewFocusSquare)">View505FocusSquare</include>
+			<include condition="!Skin.HasSetting(DisableViewCascadeSquare)">View507CascadeSquare</include>
+			<include condition="!Skin.HasSetting(DisableViewShowCaseSquare)">View509ShowcaseSquare</include>
+			<!-- Icon -->
+			<include condition="!Skin.HasSetting(DisableViewSquareIcon)">View521SquareIcon</include>
+			<!-- Icon info-->
+			<include condition="!Skin.HasSetting(DisableViewSquareIconInfo)">View531SquareIconInfo</include>
+			<!-- Wall -->
+			<include condition="!Skin.HasSetting(DisableViewSquareWall)">View541SquareWall</include>
 		</control>
 		<!-- Topbar -->
 		<control type="group">

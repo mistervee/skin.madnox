@@ -60,7 +60,7 @@
 								<include>ViewArtworkVideoCaseReflect</include>
 							</control>
 							<include content="ViewArtworkVideoCase">
-								<param name="logoheight">53</param>
+								<param name="logoheight">34</param>
 								<param name="bordersize">16,41,16,18</param>
 								<param name="diffuse">diffuse/rounded5-532x395.png</param>
 							</include>
@@ -75,7 +75,7 @@
 						<animation effect="zoom" start="117.7" end="100" center="auto" time="160">unfocus</animation>
 						<control type="image">
 							<visible>Skin.HasSetting(View504DiscArt)</visible>
-							<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" condition="Player.Playing + String.IsEqual(ListItem.Title,Player.Title)">Conditional</animation>
+							<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" condition="Player.Playing + ListItem.IsPlaying">Conditional</animation>
 							<animation effect="fade" start="0" end="100" time="160">focus</animation>
 							<animation effect="fade" start="100" end="0" time="160">unfocus</animation>
 							<top>-150</top>
@@ -107,7 +107,7 @@
 								</include>
 							</control>
 							<include content="ViewArtworkVideoCase">
-								<param name="logoheight">53</param>
+								<param name="logoheight">34</param>
 								<param name="bordersize">16,41,16,18</param>
 								<param name="diffuse">diffuse/rounded5-532x395.png</param>
 							</include>
@@ -136,6 +136,10 @@
 				<param name="logovisible">View504Logo</param>
 			</include>
 			<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsVideos6">
+				<param name="right">100</param>
+				<param name="bottom">25</param>
+			</include>
+			<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsTVShows">
 				<param name="right">100</param>
 				<param name="bottom">25</param>
 			</include>

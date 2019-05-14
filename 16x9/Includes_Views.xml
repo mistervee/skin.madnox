@@ -91,7 +91,7 @@
 				</control>
 				<control type="image">
 					<visible>String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season)</visible>
-					<top>10</top>
+					<top>9</top>
 					<height>$PARAM[logoheight]</height>
 					<align>center</align>
 					<aspectratio>keep</aspectratio>
@@ -137,7 +137,6 @@
 		</definition>
 	</include>
 	<include name="ViewArtworkAudioCase">
-		<param name="diffuse">diffuse/rounded5-532x532.png</param>
 		<param name="bordersize">53,15,15,15</param>
 		<definition>
 			<control type="group">
@@ -165,7 +164,7 @@
 					<bordersize>$PARAM[bordersize]</bordersize>
 					<fadetime>TextureFadeTime</fadetime>
 					<aspectratio scalediffuse="false">stretch</aspectratio>
-					<texture background="true" diffuse="$PARAM[diffuse]" fallback="DefaultFile.png">$VAR[PosterVar]</texture>
+					<texture background="true" fallback="DefaultFile.png">$VAR[PosterVar]</texture>
 				</control>
 				<control type="image">
 					<fadetime>TextureFadeTime</fadetime>
@@ -195,18 +194,18 @@
 				<visible>!ListItem.IsParentFolder + !String.Contains(ListItem.Label,*)</visible>
 				<control type="image">
 					<bordersize>$PARAM[bordersize]</bordersize>
-					<texture diffuse="thumbs/reflect.png" flipy="true" colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+					<texture diffuse="thumbs/reflectsquare.png" flipy="true" colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
 				</control>
 				<control type="image">
 					<bordersize>$PARAM[bordersize]</bordersize>
 					<fadetime>TextureFadeTime</fadetime>
 					<aspectratio scalediffuse="false">stretch</aspectratio>
-					<texture background="true" flipy="true" diffuse="thumbs/reflect.png" fallback="DefaultFile.png">$VAR[PosterVar]</texture>
+					<texture background="true" flipy="true" diffuse="thumbs/reflectsquare.png" fallback="DefaultFile.png">$VAR[PosterVar]</texture>
 				</control>
 				<control type="image">
 					<fadetime>TextureFadeTime</fadetime>
 					<aspectratio scalediffuse="false">stretch</aspectratio>
-					<texture flipy="true" diffuse="thumbs/reflect.png" border="15">thumbs/case/cd.png</texture>
+					<texture flipy="true" diffuse="thumbs/reflectsquare.png" border="15">thumbs/case/cd.png</texture>
 				</control>
 			</control>
 		</definition>
@@ -216,6 +215,8 @@
 		<param name="width"></param>
 		<param name="height"></param>
 		<param name="diffuse"></param>
+		<param name="textboxheight">214</param>
+		<param name="textboxfont">Font28_Reg_112</param>
 		<definition>
 			<control type="group">
 				<top>194</top>
@@ -241,6 +242,45 @@
 				<control type="image">
 					<bordersize>-10</bordersize>
 					<texture border="20">thumbs/overlay.png</texture>
+				</control>
+			</control>
+			<control type="group">
+				<top>237</top>
+				<control type="image">
+					<visible>!Skin.HasSetting(View$PARAM[id]HideLogo)</visible>
+					<top>$PARAM[height]</top>
+					<bottom>195</bottom>
+					<right>125</right>
+					<width>$PARAM[width]</width>
+					<aspectratio>keep</aspectratio>
+					<texture background="true">$VAR[ClearLogoVar]</texture>
+					<animation effect="fade" end="10" time="0" condition="true">Conditional</animation>
+				</control>
+			</control>
+			<control type="group">
+				<top>214</top>
+				<control type="grouplist">
+					<top>$PARAM[height]</top>
+					<right>125</right>
+					<width>$PARAM[width]</width>
+					<include>ViewListInfo</include>
+					<control type="textbox">
+						<top>2</top>
+						<height>$PARAM[textboxheight]</height>
+						<font>$PARAM[textboxfont]</font>
+						<label>$VAR[ViewPlotVar]</label>
+						<pagecontrol>60$PARAM[id]1</pagecontrol>
+						<include>AutoScrollPlot</include>
+					</control>
+				</control>
+			</control>
+			<control type="group">
+				<top>220</top>
+				<control type="scrollbar" id="60$PARAM[id]1">
+					<top>$PARAM[height]</top>
+					<right>80</right>
+					<bottom>195</bottom>
+					<onleft>60$PARAM[id]</onleft>
 				</control>
 			</control>
 		</definition>
@@ -4736,7 +4776,7 @@
 							</control>
 						</control>
 						<control type="group">
-							<visible>Skin.String(View$PARAM[id]Info,poster)</visible>
+							<visible>Skin.String(View$PARAM[id]Info,poster) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)]</visible>
 							<control type="group">
 								<top>155</top>
 								<right>135</right>
@@ -4763,6 +4803,46 @@
 							<control type="image">
 								<top>140</top>
 								<right>423</right>
+								<height>433</height>
+								<width>4</width>
+								<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
+							</control>
+							<control type="image">
+								<top>571</top>
+								<left>120</left>
+								<right>120</right>
+								<height>4</height>
+								<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+							</control>
+						</control>
+						<control type="group">
+							<visible>Skin.String(View$PARAM[id]Info,poster) + ![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)]</visible>
+							<control type="group">
+								<top>155</top>
+								<right>135</right>
+								<width>403</width>
+								<height>403</height>
+								<control type="image">
+									<bordersize>10</bordersize>
+									<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+								</control>
+								<control type="image">
+									<bordersize>10</bordersize>
+									<fadetime>TextureFadeTime</fadetime>
+									<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+									<texture background="true" diffuse="diffuse/rounded5-678x381.png">$VAR[PosterVar]</texture>
+								</control>
+								<control type="image">
+									<texture border="20">thumbs/overlay.png</texture>
+								</control>
+							</control>
+							<include content="ViewShowCaseListInfo">
+								<param name="left">145</param>
+								<param name="width">1195</param>
+							</include>
+							<control type="image">
+								<top>140</top>
+								<right>551</right>
 								<height>433</height>
 								<width>4</width>
 								<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
@@ -5196,6 +5276,103 @@
 			</control>
 		</definition>
 	</include>
+	<include name="CascadeItemSquare">
+		<param name="item"></param>
+		<param name="reflecttop"></param>
+		<param name="logoheight"></param>
+		<param name="caseborder"></param>
+		<param name="casereflectborder"></param>
+		<param name="diffuse"></param>
+		<definition>
+			<visible>!String.IsEmpty(Container.ListItem($PARAM[item]).FolderPath)</visible>
+			<control type="group">
+				<visible>![Container.Content(musicvideos) | Container.Content(albums)] | [!Skin.HasSetting(View507AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]]</visible>
+				<control type="group">
+					<visible>!Skin.HasSetting(View507HideReflect)</visible>
+					<top>$PARAM[reflecttop]</top>
+					<height>$PARAM[reflecttop]</height>
+					<control type="image">
+						<bordersize>10</bordersize>
+						<texture diffuse="thumbs/reflect.png" flipy="true" colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+					</control>
+					<control type="image">
+						<bordersize>10</bordersize>
+						<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+						<texture background="true" flipy="true" diffuse="thumbs/reflect.png" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+					</control>
+				</control>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+				</control>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture background="true" diffuse="$PARAM[diffuse]" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+				</control>
+				<control type="image">
+					<texture border="20">thumbs/overlay.png</texture>
+				</control>
+			</control>
+			<control type="group">
+				<visible>Skin.HasSetting(View507AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]</visible>
+				<control type="group">
+					<top>4</top>
+					<control type="group">
+						<visible>!Skin.HasSetting(View507HideReflect)</visible>
+						<top>$PARAM[reflecttop]</top>
+						<height>$PARAM[reflecttop]</height>
+						<control type="image">
+							<bordersize>10</bordersize>
+							<texture diffuse="thumbs/reflect.png" flipy="true" colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+						</control>
+						<control type="image">
+							<visible>ListItem($PARAM[item]).IsParentFolder</visible>
+							<bordersize>10</bordersize>
+							<aspectratio>scale</aspectratio>
+							<texture flipy="true" diffuse="thumbs/reflect.png">$INFO[ListItem($PARAM[item]).Icon]</texture>
+						</control>
+						<control type="image">
+							<visible>!ListItem($PARAM[item]).IsParentFolder</visible>
+							<bordersize>10</bordersize>
+							<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
+							<texture background="true" flipy="true" diffuse="thumbs/reflectsquare.png" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+						</control>
+						<control type="image">
+							<visible>!ListItem($PARAM[item]).IsParentFolder</visible>
+							<bordersize>-44,-4,-4,-4</bordersize>
+							<texture flipy="true" diffuse="thumbs/reflect.png" border="15">thumbs/case/cd.png</texture>
+						</control>
+					</control>
+				</control>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+				</control>
+				<control type="image">
+					<visible>ListItem($PARAM[item]).IsParentFolder</visible>
+					<bordersize>10</bordersize>
+					<aspectratio>scale</aspectratio>
+					<texture>$INFO[ListItem($PARAM[item]).Icon]</texture>
+				</control>
+				<control type="image">
+					<visible>!ListItem($PARAM[item]).IsParentFolder</visible>
+					<bordersize>10</bordersize>
+					<aspectratio scalediffuse="false">stretch</aspectratio>
+					<texture background="true" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+				</control>
+				<control type="image">
+					<visible>!ListItem($PARAM[item]).IsParentFolder</visible>
+					<bordersize>-44,-4,-4,-4</bordersize>
+					<texture border="15">thumbs/case/cd.png</texture>
+				</control>
+				<control type="image">
+					<visible>ListItem($PARAM[item]).IsParentFolder</visible>
+					<texture border="20">thumbs/overlay.png</texture>
+				</control>
+			</control>
+		</definition>
+	</include>
 	<include name="ShowCaseItemPortrait">
 		<param name="left"></param>
 		<param name="item"></param>
@@ -5288,14 +5465,125 @@
 				</control>
 				<control type="image">
 					<visible>String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season)</visible>
-					<top>10</top>
-					<height>27</height>
+					<top>9</top>
+					<height>29</height>
 					<align>center</align>
 					<aspectratio>keep</aspectratio>
 					<texture background="true">$VAR[Showcase$PARAM[item]StudioIconsVar]</texture>
 				</control>
 				<control type="image">
 					<visible>ListItem($PARAM[item]).IsParentFolder</visible>
+					<texture border="20">thumbs/overlay.png</texture>
+				</control>
+			</control>
+		</definition>
+	</include>
+	<include name="ShowCaseItemSquare">
+		<param name="left"></param>
+		<param name="item"></param>
+		<param name="casevisible">true</param>
+		<param name="casefrontvisible">false</param>
+		<definition>
+			<visible>!String.IsEmpty(Container.ListItem($PARAM[item]).FolderPath)</visible>
+			<left>$PARAM[left]</left>
+			<width>396</width>
+			<height>396</height>
+			<control type="group">
+				<visible>![Container.Content(musicvideos) | Container.Content(albums)] | [!Skin.HasSetting(View509AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]]</visible>
+				<control type="group">
+					<visible>!Skin.HasSetting(View509HideReflect)</visible>
+					<top>381</top>
+					<height>396</height>
+					<control type="image">
+						<bordersize>10</bordersize>
+						<texture diffuse="thumbs/reflect.png" flipy="true" colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+					</control>
+					<control type="image">
+						<bordersize>10</bordersize>
+						<aspectratio scalediffuse="false">scale</aspectratio>
+						<texture background="true" flipy="true" diffuse="thumbs/reflectsquare.png" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+					</control>
+				</control>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+				</control>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture background="true" diffuse="$PARAM[diffuse]" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+				</control>
+				<control type="image">
+					<texture border="20">thumbs/overlay.png</texture>
+				</control>
+			</control>
+			<control type="group">
+				<visible>Skin.HasSetting(View509AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]</visible>
+				<control type="group">
+					<visible>!Skin.HasSetting(View509HideReflect)</visible>
+					<top>381</top>
+					<height>396</height>
+					<control type="image">
+						<bordersize>-19,10,10,10</bordersize>
+						<texture diffuse="thumbs/reflectsquare.png" flipy="true" colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+					</control>
+					<control type="image">
+						<visible>ListItem($PARAM[item]).IsParentFolder</visible>
+						<bordersize>10</bordersize>
+						<aspectratio>scale</aspectratio>
+						<texture flipy="true" diffuse="thumbs/reflectsquare.png">$INFO[ListItem($PARAM[item]).Icon]</texture>
+					</control>
+					<control type="image">
+						<visible>!ListItem($PARAM[item]).IsParentFolder</visible>
+						<bordersize>14</bordersize>
+						<aspectratio scalediffuse="false">stretch</aspectratio>
+						<texture background="true" flipy="true" diffuse="thumbs/reflectsquare.png" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+					</control>
+					<control type="image">
+						<visible>$PARAM[casefrontvisible] + !ListItem($PARAM[item]).IsParentFolder + !String.Contains(ListItem($PARAM[item]).Label,*)</visible>
+						<bordersize>-29,0,0,0</bordersize>
+						<texture flipy="true" diffuse="thumbs/reflectsquare.png" border="15">thumbs/case/cdfront.png</texture>
+					</control>
+					<control type="image">
+						<visible>$PARAM[casevisible] + !ListItem($PARAM[item]).IsParentFolder + !String.Contains(ListItem($PARAM[item]).Label,*)</visible>
+						<bordersize>-29,0,0,0</bordersize>
+						<texture flipy="true" diffuse="thumbs/reflectsquare.png" border="15">thumbs/case/cd.png</texture>
+					</control>
+					<control type="image">
+						<visible>ListItem($PARAM[item]).IsParentFolder | String.Contains(ListItem($PARAM[item]).Label,*)</visible>
+						<bordersize>-29,0,0,0</bordersize>
+						<texture flipy="true" diffuse="thumbs/reflectsquare.png" border="20">thumbs/overlay.png</texture>
+					</control>
+				</control>
+				<control type="image">
+					<bordersize>-19,10,10,10</bordersize>
+					<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+				</control>
+				<control type="image">
+					<visible>ListItem($PARAM[item]).IsParentFolder</visible>
+					<bordersize>10</bordersize>
+					<aspectratio>scale</aspectratio>
+					<texture>$INFO[ListItem($PARAM[item]).Icon]</texture>
+				</control>
+				<control type="image">
+					<visible>!ListItem($PARAM[item]).IsParentFolder</visible>
+					<bordersize>14</bordersize>
+					<aspectratio scalediffuse="false">stretch</aspectratio>
+					<texture background="true" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+				</control>
+				<control type="image">
+					<visible>$PARAM[casefrontvisible] + !ListItem($PARAM[item]).IsParentFolder + !String.Contains(ListItem($PARAM[item]).Label,*)</visible>
+					<bordersize>-29,0,0,0</bordersize>
+					<texture background="true" border="15">thumbs/case/cdfront.png</texture>
+				</control>
+				<control type="image">
+					<visible>$PARAM[casevisible] + !ListItem($PARAM[item]).IsParentFolder + !String.Contains(ListItem($PARAM[item]).Label,*)</visible>
+					<bordersize>-29,0,0,0</bordersize>
+					<texture background="true" border="15">thumbs/case/cd.png</texture>
+				</control>
+				<control type="image">
+					<visible>ListItem($PARAM[item]).IsParentFolder | String.Contains(ListItem($PARAM[item]).Label,*)</visible>
+					<bordersize>-29,0,0,0</bordersize>
 					<texture border="20">thumbs/overlay.png</texture>
 				</control>
 			</control>

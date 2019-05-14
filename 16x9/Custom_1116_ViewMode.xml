@@ -20,200 +20,222 @@
 				<pagecontrol>60</pagecontrol>
 				<onright>Dialog.Close(1116)</onright>
 				<onback>Dialog.Close(1116)</onback>
-
+				<!-- List -->
 				<control type="label" id="101">
 					<label>$LOCALIZE[535]</label>
 					<include>MediaMenuLabelViewType</include>
 				</control>
 				<control type="button" id="150">
-					<label>Cover</label>
+					<label>$LOCALIZE[31259]</label>
 					<onclick>Container.SetViewMode(50)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
 				<control type="button" id="151">
-					<label>Simple</label>
+					<label>$LOCALIZE[31266]</label>
 					<onclick>Container.SetViewMode(51)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
 				<control type="button" id="153">
-					<visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(addons) | Container.Content(musicvideos) | $EXP[AreaVisiblePVR] | Window.IsVisible(MyPlaylist.xml)</visible>
-					<label>Info 1</label>
+					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(addons) | Container.Content(musicvideos) | $EXP[AreaVisiblePVR] | Window.IsVisible(MyPlaylist.xml)] + !Skin.HasSetting(DisableViewInfo1)</visible>
+					<label>$LOCALIZE[31267]</label>
 					<onclick>Container.SetViewMode(53)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
 				<control type="button" id="154">
-					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(addons) | Container.Content(musicvideos)] + !Window.IsVisible(MyPlaylist.xml)</visible>
-					<label>Info 2</label>
+					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(addons) | Container.Content(musicvideos)] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewInfo2)</visible>
+					<label>$LOCALIZE[31268]</label>
 					<onclick>Container.SetViewMode(54)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
 				<control type="button" id="155">
-					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(addons) | Container.Content(musicvideos)] + !Window.IsVisible(MyPlaylist.xml)</visible>
-					<label>Low</label>
+					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(addons) | Container.Content(musicvideos)] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewLow)</visible>
+					<label>$LOCALIZE[391]</label>
 					<onclick>Container.SetViewMode(55)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
 				<control type="button" id="156">
-					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + !Window.IsVisible(MyPlaylist.xml)</visible>
-					<label>3 Panel</label>
+					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableView3Panel)</visible>
+					<label>$LOCALIZE[31225]</label>
 					<onclick>Container.SetViewMode(56)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
 				<control type="button" id="157">
-					<visible>[Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(addons) | Container.Content(musicvideos)] + !Window.IsVisible(MyPlaylist.xml)</visible>
-					<visible>true</visible>
-					<label>3 Panel</label>
+					<visible>[Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(addons) | Container.Content(musicvideos)] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableView3PanelSquare)</visible>
+					<label>$LOCALIZE[31233]</label>
 					<onclick>Container.SetViewMode(57)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
+				<!-- Cover flow -->
 				<control type="label" id="102">
-					<label>Cover flow</label>
+					<visible>Control.IsVisible(1500) | Control.IsVisible(1501) | Control.IsVisible(1502) | Control.IsVisible(1503) | Control.IsVisible(1504) | Control.IsVisible(1505) | Control.IsVisible(1506) | Control.IsVisible(1507) | Control.IsVisible(1508) | Control.IsVisible(1509) | Control.IsVisible(1510) | Control.IsVisible(1511) | Control.IsVisible(1512)</visible>
+					<label>$LOCALIZE[31269]</label>
 					<include>MediaMenuLabelViewType</include>
 				</control>
 				<control type="button" id="1500">
-					<label>Portrait</label>
+					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(genres) + !String.Contains(ListItem.FolderPath,music)]] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewPortrait)</visible>
+					<label>$LOCALIZE[31203]</label>
 					<onclick>Container.SetViewMode(500)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
-				<!-- <control type="button" id="1501">
-					<label>Square</label>
+				<control type="button" id="1501">
+					<visible>[Container.Content(artists) | Container.Content(albums) | Container.Content(addons) | [Container.Content(genres) + String.Contains(ListItem.FolderPath,music)]] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewSquare)</visible>
+					<label>$LOCALIZE[31130]</label>
 					<onclick>Container.SetViewMode(501)</onclick>
 					<include>MediaMenuButtonViewType</include>
-				</control> -->
+				</control>
 				<control type="button" id="1502">
-					<label>Banner</label>
+					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists) | Container.Content(albums)] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewBanner)</visible>
+					<label>$LOCALIZE[20020]</label>
 					<onclick>Container.SetViewMode(502)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
 				<control type="button" id="1503">
-					<label>Landscape</label>
+					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists) | Container.Content(albums)] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewLandscape)</visible>
+					<label>$LOCALIZE[31201]</label>
 					<onclick>Container.SetViewMode(503)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
-
 				<control type="button" id="1504">
-					<label>Focus</label>
+					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(genres) + !String.Contains(ListItem.FolderPath,music)]] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewFocus)</visible>
+					<label>$LOCALIZE[31245]</label>
 					<onclick>Container.SetViewMode(504)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
-				<!-- <control type="button" id="1505">
-					<label>Focus</label>
+				<control type="button" id="1505">
+					<visible>[Container.Content(artists) | Container.Content(albums) | Container.Content(addons) | [Container.Content(genres) + String.Contains(ListItem.FolderPath,music)]] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewFocusSquare)</visible>
+					<label>$LOCALIZE[31258]</label>
 					<onclick>Container.SetViewMode(505)</onclick>
 					<include>MediaMenuButtonViewType</include>
-				</control> -->
+				</control>
 				<control type="button" id="1506">
-					<label>Cascade</label>
+					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(genres) + !String.Contains(ListItem.FolderPath,music)]] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewCascade)</visible>
+					<label>$LOCALIZE[31246]</label>
 					<onclick>Container.SetViewMode(506)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
-				<!-- <control type="button" id="1507">
-					<label>Cascade</label>
+				<control type="button" id="1507">
+					<visible>[Container.Content(artists) | Container.Content(albums) | Container.Content(addons) | [Container.Content(genres) + String.Contains(ListItem.FolderPath,music)]] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewCascadeSquare)</visible>
+					<label>$LOCALIZE[31263]</label>
 					<onclick>Container.SetViewMode(507)</onclick>
 					<include>MediaMenuButtonViewType</include>
-				</control> -->
+				</control>
 				<control type="button" id="1508">
-					<label>Showcase</label>
+					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(genres) + !String.Contains(ListItem.FolderPath,music)]] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewShowCase)</visible>
+					<label>$LOCALIZE[31230]</label>
 					<onclick>Container.SetViewMode(508)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
-				<!-- <control type="button" id="1509">
-					<label>Showcase</label>
+				<control type="button" id="1509">
+					<visible>[Container.Content(artists) | Container.Content(albums) | Container.Content(addons) | [Container.Content(genres) + String.Contains(ListItem.FolderPath,music)]] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewShowCaseSquare)</visible>
+					<label>$LOCALIZE[31264]</label>
 					<onclick>Container.SetViewMode(509)</onclick>
 					<include>MediaMenuButtonViewType</include>
-				</control> -->
+				</control>
 				<control type="button" id="1510">
-					<label>KodiFlix</label>
+					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewKodiflix)</visible>
+					<label>$LOCALIZE[31247]</label>
 					<onclick>Container.SetViewMode(510)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
-				<!-- <control type="button" id="1511">
-					<label>KodiFlix</label>
+				<control type="button" id="1511">
+					<visible>[Container.Content(artists) | Container.Content(albums)] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewKodiflixSquare)</visible>
+					<label>$LOCALIZE[31262]</label>
 					<onclick>Container.SetViewMode(511)</onclick>
 					<include>MediaMenuButtonViewType</include>
-				</control> -->
+				</control>
+				<control type="button" id="1512">
+					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists) | Container.Content(albums)] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewKodiflixLandscape)</visible>
+					<label>$LOCALIZE[31265]</label>
+					<onclick>Container.SetViewMode(512)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
 
 				<control type="label" id="103">
-					<label>Icon</label>
+					<visible>Control.IsVisible(1520) | Control.IsVisible(1521) | Control.IsVisible(1522) | Control.IsVisible(1523)</visible>
+					<label>$LOCALIZE[31061]</label>
 					<include>MediaMenuLabelViewType</include>
 				</control>
 				<control type="button" id="1520">
-					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)] + !Window.IsVisible(MyPlaylist.xml)</visible>
-					<label>Portrait</label>
+					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(genres) + !String.Contains(ListItem.FolderPath,music)]] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewPortraitIcon)</visible>
+					<label>$LOCALIZE[31203]</label>
 					<onclick>Container.SetViewMode(520)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
-				<!-- <control type="button" id="1521">
-					<visible>[![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(songs)] | !$EXP[AreaVisiblePVR]] + !Window.IsVisible(MyPlaylist.xml)</visible>
-					<label>Square</label>
+				<control type="button" id="1521">
+					<visible>[Container.Content(genres) + String.Contains(ListItem.FolderPath,music)] | ![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(genres) | Container.Content(years) | Container.Content(directors) | Container.Content(studios) | Container.Content(countries) | Container.Content(tags) | $EXP[AreaVisiblePVR]] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewSquareIcon)</visible>
+					<label>$LOCALIZE[31130]</label>
 					<onclick>Container.SetViewMode(521)</onclick>
 					<include>MediaMenuButtonViewType</include>
-				</control> -->
+				</control>
 				<control type="button" id="1522">
-					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists) | Container.Content(musicvideos)] + !Window.IsVisible(MyPlaylist.xml)</visible>
-					<label>Banner</label>
+					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists)] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewBannerIcon)</visible>
+					<label>$LOCALIZE[20020]</label>
 					<onclick>Container.SetViewMode(522)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
 				<control type="button" id="1523">
-					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(artists) | Container.Content(addons) | Container.Content(musicvideos) | Container.Content(images) | Window.IsVisible(MyPVRChannels.xml)] + !Window.IsVisible(MyPlaylist.xml)</visible>
-					<label>Landscape</label>
+					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists) | Container.Content(images)] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewLandscapeIcon)</visible>
+					<label>$LOCALIZE[31201]</label>
 					<onclick>Container.SetViewMode(523)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
 
 				<control type="label" id="104">
-					<label>Icon info</label>
+					<visible>Control.IsVisible(1530) | Control.IsVisible(1531) | Control.IsVisible(1532) | Control.IsVisible(1533)</visible>
+					<label>$LOCALIZE[31271]</label>
 					<include>MediaMenuLabelViewType</include>
 				</control>
 				<control type="button" id="1530">
-					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)] + !Window.IsVisible(MyPlaylist.xml)</visible>
-					<label>Portrait</label>
+					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewPortraitIconInfo)</visible>
+					<label>$LOCALIZE[31203]</label>
 					<onclick>Container.SetViewMode(530)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
-				<!-- <control type="button" id="1531">
-					<visible>[![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(songs)] | !$EXP[AreaVisiblePVR]] + !Window.IsVisible(MyPlaylist.xml)</visible>
-					<label>Square</label>
+				<control type="button" id="1531">
+					<visible>[Container.Content(artists) | Container.Content(albums) | Container.Content(addons) | Window.IsVisible(MyPVRChannels.xml)] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewSquareIconInfo)</visible>
+					<label>$LOCALIZE[31130]</label>
 					<onclick>Container.SetViewMode(531)</onclick>
 					<include>MediaMenuButtonViewType</include>
-				</control> -->
+				</control>
 				<control type="button" id="1532">
-					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists) | Container.Content(musicvideos)] + !Window.IsVisible(MyPlaylist.xml)</visible>
-					<label>Banner</label>
+					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists)] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewBannerIconInfo)</visible>
+					<label>$LOCALIZE[20020]</label>
 					<onclick>Container.SetViewMode(532)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
 				<control type="button" id="1533">
-					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(artists) | Container.Content(addons) | Container.Content(musicvideos) | Container.Content(images) | Window.IsVisible(MyPVRChannels.xml)] + !Window.IsVisible(MyPlaylist.xml)</visible>
-					<label>Landscape</label>
+					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists) | Window.IsVisible(MyPVRChannels.xml)] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewLandscapeIconInfo)</visible>
+					<label>$LOCALIZE[31201]</label>
 					<onclick>Container.SetViewMode(533)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
 
 				<control type="label" id="105">
-					<label>Wall</label>
+					<visible>Control.IsVisible(1540) | Control.IsVisible(1541) | Control.IsVisible(1542) | Control.IsVisible(1543)</visible>
+					<label>$LOCALIZE[31272]</label>
 					<include>MediaMenuLabelViewType</include>
 				</control>
 				<control type="button" id="1540">
-					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)] + !Window.IsVisible(MyPlaylist.xml)</visible>
-					<label>Portrait</label>
+					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(genres) + !String.Contains(ListItem.FolderPath,music)]] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewPortraitWall)</visible>
+					<label>$LOCALIZE[31203]</label>
 					<onclick>Container.SetViewMode(540)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
-				<!-- <control type="button" id="1541">
-					<label>Square</label>
+				<control type="button" id="1541">
+					<visible>[Container.Content(genres) + String.Contains(ListItem.FolderPath,music)] | ![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(genres) | Container.Content(years) | Container.Content(directors) | Container.Content(studios) | Container.Content(countries) | Container.Content(tags) | $EXP[AreaVisiblePVR]] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewSquareWall)</visible>
+					<label>$LOCALIZE[31130]</label>
 					<onclick>Container.SetViewMode(541)</onclick>
 					<include>MediaMenuButtonViewType</include>
-				</control> -->
+				</control>
 				<control type="button" id="1542">
-					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists) | Container.Content(musicvideos)] + !Window.IsVisible(MyPlaylist.xml)</visible>
-					<label>Banner</label>
+					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists)] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewBannerWall)</visible>
+					<label>$LOCALIZE[20020]</label>
 					<onclick>Container.SetViewMode(542)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
 				<control type="button" id="1543">
-					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(artists) | Container.Content(addons) | Container.Content(musicvideos) | Container.Content(images) | Window.IsVisible(MyPVRChannels.xml)] + !Window.IsVisible(MyPlaylist.xml)</visible>
-					<label>Landscape</label>
+					<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists) | Container.Content(images)] + !Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewLandscapeWall)</visible>
+					<label>$LOCALIZE[31201]</label>
 					<onclick>Container.SetViewMode(543)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>

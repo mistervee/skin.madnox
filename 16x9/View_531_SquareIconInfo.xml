@@ -7,70 +7,128 @@
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
 			</include>
-			<include>FloorDefault</include>
-			<include>FloorHighlightRight</include>
+			<control type="group">
+				<visible>!Skin.HasSetting(View531HideFloor)</visible>
+				<include>FloorDefault</include>
+				<include>FloorHighlightRight</include>
+			</control>
+			<include content="FloorShadow">
+				<param name="visible">Skin.HasSetting(View531HideFloor)</param>
+			</include>
 		</control>
-		<!-- Right info -->
+		<!-- Info -->
 		<control type="group">
 			<visible>Control.IsVisible(531)</visible>
-			<include>ViewInfo1ListArt</include>
-			<control type="grouplist">
-				<top>593</top>
-				<right>125</right>
-				<width>612</width>
-				<height>300</height>
-				<include>ViewListInfo</include>
-				<control type="textbox">
-					<top>2</top>
-					<height>209</height>
-					<font>Font28_Reg_106</font>
-					<label>$VAR[ViewPlotVar]</label>
-					<pagecontrol>60531</pagecontrol>
-					<include>AutoScrollPlot</include>
-				</control>
+			<include>AnimationSlidePanel</include>
+			<control type="group">
+				<visible>![Container.Content(musicvideos) | Container.Content(albums)] | [!Skin.HasSetting(View531AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]]</visible>
+				<include>AnimationSlidePanel</include>
+				<include content="PanelSideBlade">
+					<param name="left">1160</param>
+					<param name="width">680</param>
+					<param name="lefttexture">1160</param>
+					<param name="widthtexture">660</param>
+					<param name="diffusetexture">diffuse/siderounded20-728x820.png</param>
+					<param name="reflect">!Skin.HasSetting(View531HideReflect)</param>
+				</include>
+				<include content="ViewFanartInfoVideoPreview">
+					<param name="id">531</param>
+					<param name="width">610</param>
+					<param name="height">343</param>
+					<param name="diffuse">diffuse/rounded5-678x381.png</param>
+					<param name="textboxheight">245</param>
+					<param name="textboxfont">Font28_Reg_106</param>
+				</include>
 			</control>
-			<control type="scrollbar" id="60531">
-				<right>80</right>
-				<top>676</top>
-				<bottom>195</bottom>
-				<onleft>6053</onleft>
+			<control type="group">
+				<visible>Skin.HasSetting(View531AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]</visible>
+				<include>AnimationSlidePanel</include>
+				<include content="PanelSideBlade">
+					<param name="left">1227</param>
+					<param name="width">613</param>
+					<param name="lefttexture">1227</param>
+					<param name="widthtexture">593</param>
+					<param name="diffusetexture">diffuse/siderounded20-728x820.png</param>
+					<param name="reflect">!Skin.HasSetting(View531HideReflect)</param>
+				</include>
+				<include content="ViewFanartInfoVideoPreview">
+					<param name="id">531</param>
+					<param name="width">543</param>
+					<param name="height">305</param>
+					<param name="diffuse">diffuse/rounded5-678x381.png</param>
+					<param name="textboxheight">283</param>
+					<param name="textboxfont">Font28_Reg_106</param>
+				</include>
 			</control>
 		</control>
-		<!-- Left Content -->
+		<!-- Panel -->
 		<control type="group">
 			<visible>Control.IsVisible(531)</visible>
 			<include content="AnimationSlideLeftWindow">
-				<param name="slide">1017</param>
+				<param name="slide">1160</param>
 			</include>
 			<include content="AnimationSlideLeftVisible">
-				<param name="slide">1017</param>
+				<param name="slide">1160</param>
 			</include>
-			<include content="PanelDefault">
-				<param name="right">742</param>
-				<param name="righttexture">762</param>
-				<param name="diffusetexture">diffuse/rounded20-992x880.png</param>
-				<param name="reflect">!Skin.HasSetting(ViewsHideFloor)</param>
-			</include>
+			<control type="group">
+				<visible>![Container.Content(musicvideos) | Container.Content(albums)] | [!Skin.HasSetting(View531AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]]</visible>
+				<include content="PanelDefault">
+					<param name="right">740</param>
+					<param name="righttexture">760</param>
+					<param name="diffusetexture">diffuse/rounded20-992x880.png</param>
+					<param name="reflect">!Skin.HasSetting(View531HideReflect)</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>Skin.HasSetting(View531AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]</visible>
+				<include content="PanelDefault">
+					<param name="right">673</param>
+					<param name="righttexture">693</param>
+					<param name="diffusetexture">diffuse/rounded20-992x880.png</param>
+					<param name="reflect">!Skin.HasSetting(View531HideReflect)</param>
+				</include>
+			</control>
 			<control type="panel" id="531">
 				<top>150</top>
 				<left>110</left>
-				<width>1068</width>
+				<width>1170</width>
 				<height>780</height>
 				<onleft>9050</onleft>
-				<onright>60511</onright>
-				<pagecontrol>60511</pagecontrol>
-				<viewtype label="$LOCALIZE[31216]">icon</viewtype>
-				<itemlayout height="390" width="267" condition="!Skin.HasSetting(View518SmallIcons)">
-					<control type="image">
-						<bordersize>10</bordersize>
-						<aspectratio align="center" aligny="center">scale</aspectratio>
-						<texture diffuse="diffuse/rounded5-532x800.png">$VAR[PosterVar]</texture>
-					</control>
-					<control type="image">
-						<texture border="20">thumbs/overlay.png</texture>
+				<onright>60531</onright>
+				<pagecontrol>60531</pagecontrol>
+				<viewtype label="$LOCALIZE[31261]">icon</viewtype>
+				<itemlayout height="260" width="260" condition="![Container.Content(musicvideos) | Container.Content(albums)] | [!Skin.HasSetting(View531AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]]">
+					<control type="group">
+						<include content="ViewArtwork">
+							<param name="aspect">stretch</param>
+							<param name="diffuse"></param>
+						</include>
 					</control>
 				</itemlayout>
-				<focusedlayout height="390" width="267" condition="!Skin.HasSetting(View518SmallIcons)">
+				<focusedlayout height="260" width="260" condition="![Container.Content(musicvideos) | Container.Content(albums)] | [!Skin.HasSetting(View531AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]]">
+					<control type="group">
+						<top>3.2</top>
+						<control type="image">
+							<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
+						</control>
+						<control type="group">
+							<animation  type="Focus" reversible="false">
+								<effect type="zoom" start="95" end="100" time="300" center="auto" />
+							</animation>
+							<include content="ViewArtwork">
+								<param name="aspect">stretch</param>
+								<param name="diffuse"></param>
+							</include>
+						</control>
+					</control>
+				</focusedlayout>
+				<itemlayout height="260" width="277" condition="Skin.HasSetting(View531AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]">
+					<include content="ViewArtworkAudioCase">
+						<param name="diffuse"></param>
+						<param name="bordersize">29,14,14,14</param>
+					</include>
+				</itemlayout>
+				<focusedlayout height="260" width="277" condition="Skin.HasSetting(View531AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]">
 					<control type="image">
 						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
 					</control>
@@ -78,52 +136,35 @@
 						<animation  type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" center="auto" />
 						</animation>
-						<control type="image">
-							<bordersize>10</bordersize>
-							<aspectratio align="center" aligny="center">scale</aspectratio>
-							<texture diffuse="diffuse/rounded5-532x800.png">$VAR[PosterVar]</texture>
-						</control>
-						<control type="image">
-							<texture border="20">thumbs/overlay.png</texture>
-						</control>
+						<include content="ViewArtworkAudioCase">
+							<param name="diffuse"></param>
+							<param name="bordersize">29,14,14,14</param>
+						</include>
 					</control>
 				</focusedlayout>
-				<itemlayout height="260" width="173">
-					<control type="image">
-						<bordersize>10</bordersize>
-						<aspectratio align="center" aligny="center">scale</aspectratio>
-						<texture diffuse="diffuse/rounded5-532x800.png">$VAR[PosterVar]</texture>
-					</control>
-					<control type="image">
-						<texture border="20">thumbs/overlay.png</texture>
-					</control>
-				</itemlayout>
-				<focusedlayout height="260" width="173">
-					<control type="image">
-						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
-					</control>
-					<control type="group">
-						<animation  type="Focus" reversible="false">
-							<effect type="zoom" start="95" end="100" time="300" center="auto" />
-						</animation>
-						<control type="image">
-							<bordersize>10</bordersize>
-							<aspectratio align="center" aligny="center">scale</aspectratio>
-							<texture diffuse="diffuse/rounded5-532x800.png">$VAR[PosterVar]</texture>
-						</control>
-						<control type="image">
-							<texture border="20">thumbs/overlay.png</texture>
-						</control>
-					</control>
-				</focusedlayout>
-				
 			</control>
-			<control type="scrollbar" id="6053">
-				<left>1072</left>
+			<control type="scrollbar" id="60531">
+				<left>1140</left>
 				<top>140</top>
 				<bottom>140</bottom>
-				<onleft>53</onleft>
-				<onright>60531</onright>
+				<onleft>531</onleft>
+				<onright>605311</onright>
+			</control>
+		</control>
+		<!-- Media flags -->
+		<control type="group">
+			<visible>Control.IsVisible(531)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include condition="Window.IsVisible(MyMusicNav.xml)">MediaFlagsAudio</include>
+			<control type="group">
+				<visible>!Skin.HasSetting(View531BigIcons)</visible>
+				<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsVideos4</include>
+			</control>
+			<control type="group">
+				<visible>Skin.HasSetting(View531BigIcons)</visible>
+				<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsVideos4</include>
 			</control>
 		</control>
 	</include>

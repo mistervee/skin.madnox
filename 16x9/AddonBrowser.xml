@@ -2,50 +2,34 @@
 <window>
 	<defaultcontrol>50</defaultcontrol>
 	<menucontrol>9050</menucontrol>
-	<views>50,51,53,54,55,56,57,500,501,503,504,505,506,507,512,513,515,516</views>
+	<views>50,51,53,54,55,57,501,505,507,509,521,531,541</views>
 	<controls>
 		<!-- Background -->
 		<include content="BackgroundDefault">
 			<param name="imagepath">$VAR[AddonBackgroundVar]</param>
 		</include>
-		<!-- Floor -->
-		<control type="group">
-			<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">220</param>
-				<param name="opencondition">$EXP[SystemAnimationOpenCondition]</param>
-				<param name="closecondition">$EXP[SystemAnimationCloseCondition]</param>
-			</include>
-			<include content="AnimationSlideBottomVisible">
-				<param name="slide">220</param>
-			</include>
-			<include>FloorRight</include>
-		</control>
 		<!-- Views -->
 		<control type="group">
-			<visible>!Window.IsVisible(addoninformation)</visible>
-			<animation effect="fade" time="400" tween="sine" easing="out">Visible</animation>
-			<animation effect="fade" time="400" tween="sine" easing="out">Hidden</animation>
-			<control type="group">
-				<include>View50PosterList</include>
-				<include>View51SimpleList</include>
-				<include>View53InfoList1</include>
-				<include>View54InfoList2</include>
-				<include>View55LowList</include>
-				<include>View563Panel</include>
-				<include>View573PanelSquare</include>
-				<include>View500BigPosterList</include>
-				<include>View501BigSimpleList</include>
-				<include>View503BigInfoList1</include>
-				<include>View504BigInfoList2</include>
-				<include>View505BigLowList</include>
-				<include>View506Big3Panel</include>
-				<include>View507Big3PanelSquare</include>
-				<include>View512PosterWallSquare</include>
-				<include>View513LandscapeWall</include>
-				<include>View515PosterFullscreenWall</include>
-				<include>View516LandscapeFullscreenWall</include>
-			</control>
+			<visible>!Window.IsActive(addoninformation)</visible>
+			<include>AnimationInfoDialog</include>
+			<!-- List -->
+			<include>View50CoverList</include>
+			<include>View51SimpleList</include>
+			<include condition="!Skin.HasSetting(DisableViewInfo1)">View53InfoList1</include>
+			<include condition="!Skin.HasSetting(DisableViewInfo2)">View54InfoList2</include>
+			<include condition="!Skin.HasSetting(DisableViewLow)">View55LowList</include>
+			<include condition="!Skin.HasSetting(DisableView3PanelSquare)">View573PanelSquare</include>
+			<!-- Cover flow -->
+			<include condition="!Skin.HasSetting(DisableViewSquare)">View501Square</include>
+			<include condition="!Skin.HasSetting(DisableViewFocusSquare)">View505FocusSquare</include>
+			<include condition="!Skin.HasSetting(DisableViewCascadeSquare)">View507CascadeSquare</include>
+			<include condition="!Skin.HasSetting(DisableViewShowCaseSquare)">View509ShowcaseSquare</include>
+			<!-- Icon -->
+			<include condition="!Skin.HasSetting(DisableViewSquareIcon)">View521SquareIcon</include>
+			<!-- Icon info-->
+			<include condition="!Skin.HasSetting(DisableViewSquareIconInfo)">View531SquareIconInfo</include>
+			<!-- Wall -->
+			<include condition="!Skin.HasSetting(DisableViewSquareWall)">View541SquareWall</include>
 		</control>
 		<!-- Top bar -->
 		<control type="group">

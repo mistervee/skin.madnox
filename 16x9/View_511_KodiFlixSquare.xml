@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+	<include name="View511KodiFlixSquare">
+		<!-- Background fade -->
+		<control type ="image">
+			<visible>Control.IsVisible(511)</visible>
+			<width>1300</width>
+			<texture colordiffuse="FF000000">panels/kodiflix-gradient.png</texture>
+		</control>
+		<!-- Floor -->
+		<control type="group">
+			<visible>Control.IsVisible(511)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<control type="group">
+				<visible>!Skin.HasSetting(View511HideFloor)</visible>
+				<include>FloorDefault</include>
+				<include>FloorHighlightLeft</include>
+			</control>
+			<include content="FloorShadow">
+				<param name="visible">Skin.HasSetting(View511HideFloor)</param>
+			</include>
+		</control>
+		<control type="group">
+			<visible>Control.IsVisible(511)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">525</param>
+			</include>
+			<include content="AnimationSlideBottomVisible">
+				<param name="slide">525</param>
+			</include>
+			<!-- Info -->
+			<control type="label">
+				<visible>!Skin.HasSetting(View511Logo)</visible>
+				<top>170</top>
+				<left>50</left>
+				<height>30</height>
+				<scroll>true</scroll>
+				<font>Font38_Reg</font>
+				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				<label>$INFO[ListItem.Label]</label>
+			</control>
+			<control type="image">
+				<visible>Skin.HasSetting(View511Logo)</visible>
+				<include>AnimationVisibleFade</include>
+				<top>90</top>
+				<left>50</left>
+				<height>120</height>
+				<fadetime>TextureFadeTime</fadetime>
+				<aspectratio align="left">keep</aspectratio>
+				<texture background="true">$VAR[ClearLogoVar]</texture>
+			</control>
+			<control type="grouplist">
+				<top>221</top>
+				<left>50</left>
+				<width>910</width>
+				<height>500</height>
+				<itemgap>10</itemgap>
+				<usecontrolcoords>true</usecontrolcoords>
+				<control type="label">
+					<height>30</height>
+					<scroll>true</scroll>
+					<font>Font28_Reg</font>
+					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+					<label>$VAR[ListViewTitleVar]</label>
+				</control>
+				<control type="grouplist">
+					<visible>!String.IsEmpty(Control.GetLabel(5301)) | !String.IsEmpty(Control.GetLabel(5302)) | !String.IsEmpty(Control.GetLabel(5303))</visible>
+					<height>37</height>
+					<usecontrolcoords>true</usecontrolcoords>
+					<orientation>horizontal</orientation>
+					<control type="image">
+						<visible>!String.IsEmpty(Control.GetLabel(5301))</visible>
+						<top>9</top>
+						<width>22</width>
+						<height>22</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$VAR[ListViewIcon1Var]</texture>
+					</control>
+					<control type="label" id="5301">
+						<width>auto</width>
+						<font>Font26_Reg</font>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<label>$VAR[ListViewInfo1Var]</label>
+					</control>
+					<control type="image">
+						<visible>!String.IsEmpty(Control.GetLabel(5302))</visible>
+						<top>9</top>
+						<width>22</width>
+						<height>22</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$VAR[ListViewIcon2Var]</texture>
+					</control>
+					<control type="label" id="5302">
+						<width>auto</width>
+						<font>Font26_Reg</font>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<label>$VAR[ListViewInfo2Var]</label>
+					</control>
+					<control type="image">
+						<visible>!String.IsEmpty(Control.GetLabel(5303))</visible>
+						<top>9</top>
+						<width>22</width>
+						<height>22</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$VAR[ListViewIcon3Var]</texture>
+					</control>
+					<control type="label" id="5303">
+						<width>auto</width>
+						<font>Font26_Reg</font>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<label>$VAR[ListViewInfo3Var]</label>
+					</control>
+					<control type="image">
+						<visible>!String.IsEmpty(ListItem.Top250)</visible>
+						<top>3</top>
+						<width>50</width>
+						<height>35</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$VAR[IconPathVar]imdb.png</texture>
+					</control>
+					<control type="label">
+						<visible>!String.IsEmpty(ListItem.Top250)</visible>
+						<width>auto</width>
+						<font>Font26_Reg</font>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<label>$INFO[ListItem.Top250, #,]</label>
+					</control>
+				</control>
+				<control type="grouplist">
+					<visible>!String.IsEmpty(ListItem.Director)</visible>
+					<top>-9</top>
+					<height>37</height>
+					<usecontrolcoords>true</usecontrolcoords>
+					<orientation>horizontal</orientation>
+					<control type="image">
+						<top>9</top>
+						<width>22</width>
+						<height>22</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$VAR[IconPathVar]movies.png</texture>
+					</control>
+					<control type="label" id="5301">
+						<width>auto</width>
+						<font>Font26_Reg</font>
+						<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+						<label>$INFO[ListItem.Director, ]</label>
+					</control>
+				</control>
+				<control type="grouplist">
+					<visible>!String.IsEmpty(ListItem.Writer)</visible>
+					<top>-9</top>
+					<height>37</height>
+					<usecontrolcoords>true</usecontrolcoords>
+					<orientation>horizontal</orientation>
+					<control type="image">
+						<top>9</top>
+						<width>22</width>
+						<height>22</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$VAR[IconPathVar]writer.png</texture>
+					</control>
+					<control type="label" id="5301">
+						<width>auto</width>
+						<font>Font26_Reg</font>
+						<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+						<label>$INFO[ListItem.Writer, ]</label>
+					</control>
+				</control>
+				<control type="textbox">
+					<top>-3</top>
+					<height>120</height>
+					<font>Font28_Reg</font>
+					<label>$VAR[ViewPlotVar]</label>
+					<pagecontrol>605531</pagecontrol>
+					<include>AutoScrollPlot</include>
+				</control>
+			</control>
+			<!-- Panel -->
+			<control type="wraplist" id="511">
+				<animation effect="slide" end="-22" condition="Skin.HasSetting(View511AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]">conditional</animation>
+				<top>551</top>
+				<left>-299</left>
+				<width>2520</width>
+				<height>764</height>
+				<onup>9050</onup>
+				<pagecontrol>6080</pagecontrol>
+				<focusposition>1</focusposition>
+				<orientation>horizontal</orientation>
+				<viewtype label="$LOCALIZE[31262]">icon</viewtype>
+				<itemlayout width="374" height="374" condition="![Container.Content(musicvideos) | Container.Content(albums)] | [!Skin.HasSetting(View511AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]]">
+					<control type="group">
+						<visible>!Skin.HasSetting(View511HideReflect)</visible>
+						<top>359</top>
+						<height>374</height>
+						<include>ViewArtworkReflect</include>
+					</control>
+					<include content="ViewArtwork">
+						<param name="diffuse">diffuse/rounded5-532x395.png</param>
+					</include>
+				</itemlayout>
+				<focusedlayout width="374" height="374" condition="![Container.Content(musicvideos) | Container.Content(albums)] | [!Skin.HasSetting(View511AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]]">
+					<control type="group">
+						<animation effect="zoom" start="100" end="120" center="auto" time="160">focus</animation>
+						<animation effect="zoom" start="120" end="100" center="auto" time="160">unfocus</animation>
+						<control type="group">
+							<visible>!Skin.HasSetting(View511HideReflect)</visible>
+							<top>359</top>
+							<height>374</height>
+							<include>ViewArtworkReflect</include>
+						</control>
+						<include content="ViewArtwork">
+							<param name="diffuse">diffuse/rounded5-532x395.png</param>
+						</include>
+					</control>
+				</focusedlayout>
+				<itemlayout width="399" height="374" condition="Skin.HasSetting(View511AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]">
+					<control type="group">
+							<visible>!Skin.HasSetting(View511HideReflect)</visible>
+							<top>359</top>
+							<height>374</height>
+							<include>ViewArtworkAudioCaseReflect</include>
+						</control>
+						<include content="ViewArtworkAudioCase">
+							<param name="bordersize">41,14,14,14</param>
+							<param name="diffuse">diffuse/rounded5-532x395.png</param>
+						</include>
+				</itemlayout>
+				<focusedlayout width="399" height="374" condition="Skin.HasSetting(View511AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]">
+					<control type="group">
+						<animation effect="zoom" start="100" end="120" center="auto" time="160">focus</animation>
+						<animation effect="zoom" start="120" end="100" center="auto" time="160">unfocus</animation>
+						<control type="group">
+							<visible>!Skin.HasSetting(View511HideReflect)</visible>
+							<top>359</top>
+							<height>374</height>
+							<include>ViewArtworkAudioCaseReflect</include>
+						</control>
+						<include content="ViewArtworkAudioCase">
+							<param name="bordersize">41,14,14,14</param>
+							<param name="diffuse">diffuse/rounded5-532x395.png</param>
+						</include>
+					</control>
+				</focusedlayout>
+
+			</control>
+			<!-- <control type="scrollbar" id="6057">
+				<right>80</right>
+				<top>144</top>
+				<bottom>144</bottom>
+				<onleft>80</onleft>
+			</control> -->
+		</control>
+		<control type="group">
+			<visible>Control.IsVisible(511)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsVideos8">
+				<param name="align">left</param>
+				<param name="left">50</param>
+				<param name="bottom">20</param>
+			</include>
+			<include condition="Window.IsVisible(MyMusicNav.xml)" content="MediaFlagsAudio">
+				<param name="align">left</param>
+				<param name="left">50</param>
+				<param name="bottom">20</param>
+			</include>
+		</control>
+	</include>
+</includes>
