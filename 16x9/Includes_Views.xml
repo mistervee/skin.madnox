@@ -4579,7 +4579,7 @@
 			<control type="group">
 				<visible>!Skin.String(View$PARAM[id]Info,none)</visible>
 				<control type="button" id="9999">
-					<visible>Skin.HasSetting(View$PARAM[id]ManualInfo)</visible>
+					<visible>Skin.String(View$PARAM[id]InfoDelay,manual)</visible>
 					<include>HiddenObject</include>
 					<onfocus>SetProperty(ShowInfoPanel,true,home)</onfocus>
 					<onunfocus>ClearProperty(ShowInfoPanel,home)</onunfocus>
@@ -4595,18 +4595,17 @@
 					<onup>9050</onup>
 				</control>
 				<control type ="image">
-					<visible>[Skin.HasSetting(View$PARAM[id]HidePanel) + !Skin.HasSetting(View$PARAM[id]ManualInfo)] | [Skin.HasSetting(View$PARAM[id]HidePanel) + !String.IsEmpty(Window(Home).Property(ShowInfoPanel))]</visible>
-					<include>AnimationVisibleFade</include>
+					<visible>[!ListItem.IsParentFolder + !Skin.String(View$PARAM[id]InfoDelay,manual) + Skin.HasSetting(View$PARAM[id]HidePanel)] | [Skin.String(View$PARAM[id]InfoDelay,manual) + !String.IsEmpty(Window(Home).Property(ShowInfoPanel)) + Skin.HasSetting(View$PARAM[id]HidePanel)]</visible>
+					<include content="AnimationFadeInfo">
+						<param name="condition">View$PARAM[id]InfoDelay</param>
+					</include>
 					<include>FullScreenDimensions</include>
 					<texture colordiffuse="CCFFFFFF">colors/black.png</texture>
 				</control>
 				<control type="group">
-					<visible>[!ListItem.IsParentFolder + !Skin.HasSetting(View$PARAM[id]ManualInfo)] | [Skin.HasSetting(View$PARAM[id]ManualInfo) + !String.IsEmpty(Window(Home).Property(ShowInfoPanel))]</visible>
-					<include content="AnimationSlideBottomWindow">
-						<param name="slide">1000</param>
-					</include>
-					<include content="AnimationSlideBottomVisible">
-						<param name="slide">1000</param>
+					<visible>[!ListItem.IsParentFolder + !Skin.String(View$PARAM[id]InfoDelay,manual)] | [Skin.String(View$PARAM[id]InfoDelay,manual) + !String.IsEmpty(Window(Home).Property(ShowInfoPanel))]</visible>
+					<include content="AnimationSlideInfo">
+						<param name="condition">View$PARAM[id]InfoDelay</param>
 					</include>
 					<control type="group">
 						<visible>!Skin.HasSetting(View$PARAM[id]HidePanel)</visible>
@@ -4960,7 +4959,7 @@
 							</include>
 						</control>
 						<control type="group">
-							<visible>Skin.String(View$PARAM[id]Info,poster)</visible>
+							<visible>Skin.String(View$PARAM[id]Info,poster) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)]</visible>
 							<control type="group">
 								<top>90</top>
 								<right>90</right>
@@ -4975,6 +4974,24 @@
 								<param name="top">95</param>
 								<param name="left">100</param>
 								<param name="width">1396</param>
+							</include>
+						</control>
+						<control type="group">
+							<visible>Skin.String(View$PARAM[id]Info,poster) + ![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)]</visible>
+							<control type="group">
+								<top>90</top>
+								<right>90</right>
+								<width>469</width>
+								<height>469</height>
+								<include content="ViewArtwork">
+									<param name="fallback">DefaultFile.png</param>
+									<param name="diffuse">diffuse/rounded5-678x381.png</param>
+								</include>
+							</control>
+							<include content="ViewShowCaseListInfo">
+								<param name="top">95</param>
+								<param name="left">100</param>
+								<param name="width">1246</param>
 							</include>
 						</control>
 					</control>
