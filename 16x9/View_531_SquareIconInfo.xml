@@ -97,6 +97,26 @@
 				<onright>60531</onright>
 				<pagecontrol>60531</pagecontrol>
 				<viewtype label="$LOCALIZE[31261]">icon</viewtype>
+				<itemlayout height="260" width="260" condition="Window.IsVisible(MyPVRChannels.xml)">
+					<include content="ViewArtwork">
+						<param name="aspect">keep</param>
+						<param name="art">$INFO[ListItem.Icon]</param>
+					</include>
+				</itemlayout>
+				<focusedlayout height="260" width="260" condition="Window.IsVisible(MyPVRChannels.xml)">
+					<control type="image">
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
+					</control>
+					<control type="group">
+						<animation  type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+						</animation>
+						<include content="ViewArtwork">
+							<param name="aspect">keep</param>
+							<param name="art">$INFO[ListItem.Icon]</param>
+						</include>
+					</control>
+				</focusedlayout>
 				<itemlayout height="260" width="260" condition="![Container.Content(musicvideos) | Container.Content(albums)] | [!Skin.HasSetting(View531AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]]">
 					<control type="group">
 						<include content="ViewArtwork">
@@ -158,14 +178,7 @@
 				<param name="slide">220</param>
 			</include>
 			<include condition="Window.IsVisible(MyMusicNav.xml)">MediaFlagsAudio</include>
-			<control type="group">
-				<visible>!Skin.HasSetting(View531BigIcons)</visible>
-				<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsVideos4</include>
-			</control>
-			<control type="group">
-				<visible>Skin.HasSetting(View531BigIcons)</visible>
-				<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsVideos4</include>
-			</control>
+			<include condition="Window.IsVisible(MyPVRChannels.xml)">MediaFlagsPVR</include>
 		</control>
 	</include>
 </includes>

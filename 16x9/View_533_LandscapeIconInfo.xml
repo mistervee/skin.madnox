@@ -155,6 +155,62 @@
 				<onright>60511</onright>
 				<pagecontrol>60511</pagecontrol>
 				<viewtype label="$LOCALIZE[31253]">icon</viewtype>
+				<itemlayout height="260" width="447" condition="!Skin.HasSetting(View533SmallIcons) + Window.IsVisible(MyPVRChannels.xml)">
+					<include content="ViewArtwork">
+						<param name="fallback"></param>
+						<param name="aspect">keep</param>
+						<param name="art">$INFO[ListItem.Art(thumb)]</param>
+					</include>
+					<include content="ViewLogoFallback">
+						<param name="font">Font38_Bold</param>
+					</include>
+				</itemlayout>
+				<focusedlayout height="260" width="447" condition="!Skin.HasSetting(View533SmallIcons) + Window.IsVisible(MyPVRChannels.xml)">
+					<control type="image">
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
+					</control>
+					<control type="group">
+						<animation  type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+						</animation>
+						<include content="ViewArtwork">
+							<param name="fallback"></param>
+							<param name="aspect">keep</param>
+							<param name="art">$INFO[ListItem.Art(thumb)]</param>
+						</include>
+					</control>
+					<include content="ViewLogoFallback">
+						<param name="font">Font38_Bold</param>
+					</include>
+				</focusedlayout>
+				<itemlayout height="195" width="330" condition="Skin.HasSetting(View533SmallIcons) + Window.IsVisible(MyPVRChannels.xml)">
+					<include content="ViewArtwork">
+						<param name="fallback"></param>
+						<param name="aspect">keep</param>
+						<param name="art">$INFO[ListItem.Art(thumb)]</param>
+					</include>
+					<include content="ViewLogoFallback">
+						<param name="font">Font32_Bold</param>
+					</include>
+				</itemlayout>
+				<focusedlayout height="195" width="330" condition="Skin.HasSetting(View533SmallIcons) + Window.IsVisible(MyPVRChannels.xml)">
+					<control type="image">
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
+					</control>
+					<control type="group">
+						<animation  type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+						</animation>
+						<include content="ViewArtwork">
+							<param name="fallback"></param>
+							<param name="aspect">keep</param>
+							<param name="art">$INFO[ListItem.Art(thumb)]</param>
+						</include>
+						<include content="ViewLogoFallback">
+						<param name="font">Font32_Bold</param>
+					</include>
+					</control>
+				</focusedlayout>
 				<itemlayout height="260" width="447" condition="!Skin.HasSetting(View533SmallIcons) + String.IsEmpty(Skin.String(View533Art))">
 					<include content="ViewArtwork">
 						<param name="art">$VAR[LandscapeVar]</param>
@@ -176,10 +232,14 @@
 					</control>
 				</focusedlayout>
 				<itemlayout height="260" width="447" condition="!Skin.HasSetting(View533SmallIcons) + Skin.String(View533Art,clearlogo)">
-					<include content="ViewArtwork">
-						<param name="aspect">keep</param>
-						<param name="art">$VAR[ClearLogoVar]</param>
-					</include>
+					<control type="group">
+						<visible>!String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo))</visible>
+						<include content="ViewArtwork">
+							<param name="aspect">keep</param>
+							<param name="art">$VAR[ClearLogoVar]</param>
+						</include>
+					</control>
+					<include>ViewLogoFallback</include>
 				</itemlayout>
 				<focusedlayout height="260" width="447" condition="!Skin.HasSetting(View533SmallIcons) + Skin.String(View533Art,clearlogo)">
 					<control type="image">
@@ -189,17 +249,25 @@
 						<animation  type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" center="auto" />
 						</animation>
-						<include content="ViewArtwork">
-							<param name="aspect">keep</param>
-							<param name="art">$VAR[ClearLogoVar]</param>
-						</include>
+						<control type="group">
+							<visible>!String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo))</visible>
+							<include content="ViewArtwork">
+								<param name="aspect">keep</param>
+								<param name="art">$VAR[ClearLogoVar]</param>
+							</include>
+						</control>
+						<include>ViewLogoFallback</include>
 					</control>
 				</focusedlayout>
 				<itemlayout height="260" width="447" condition="!Skin.HasSetting(View533SmallIcons) + Skin.String(View533Art,clearart)">
-					<include content="ViewArtwork">
-						<param name="aspect">keep</param>
-						<param name="art">$VAR[ClearArtVar]</param>
-					</include>
+					<control type="group">
+						<visible>!String.IsEmpty(ListItem.Art(clearart)) | !String.IsEmpty(ListItem.Art(tvshow.clearart)) | !String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearart)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo))</visible>
+						<include content="ViewArtwork">
+							<param name="aspect">keep</param>
+							<param name="art">$VAR[ClearArtVar]</param>
+						</include>
+					</control>
+					<include>ViewLogoFallback</include>
 				</itemlayout>
 				<focusedlayout height="260" width="447" condition="!Skin.HasSetting(View533SmallIcons) + Skin.String(View533Art,clearart)">
 					<control type="image">
@@ -209,13 +277,16 @@
 						<animation  type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" center="auto" />
 						</animation>
-						<include content="ViewArtwork">
-							<param name="aspect">keep</param>
-							<param name="art">$VAR[ClearArtVar]</param>
-						</include>
+						<control type="group">
+							<visible>!String.IsEmpty(ListItem.Art(clearart)) | !String.IsEmpty(ListItem.Art(tvshow.clearart)) | !String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearart)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo))</visible>
+							<include content="ViewArtwork">
+								<param name="aspect">keep</param>
+								<param name="art">$VAR[ClearArtVar]</param>
+							</include>
+						</control>
+						<include>ViewLogoFallback</include>
 					</control>
 				</focusedlayout>
-
 				<itemlayout height="195" width="330" condition="Skin.HasSetting(View533SmallIcons) + String.IsEmpty(Skin.String(View533Art))">
 					<include content="ViewArtwork">
 						<param name="art">$VAR[LandscapeVar]</param>
@@ -237,9 +308,15 @@
 					</control>
 				</focusedlayout>
 				<itemlayout height="195" width="330" condition="Skin.HasSetting(View533SmallIcons) + Skin.String(View533Art,clearlogo)">
-					<include content="ViewArtwork">
-						<param name="aspect">keep</param>
-						<param name="art">$VAR[ClearLogoVar]</param>
+					<control type="group">
+						<visible>!String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo))</visible>
+						<include content="ViewArtwork">
+							<param name="aspect">keep</param>
+							<param name="art">$VAR[ClearLogoVar]</param>
+						</include>
+					</control>
+					<include content="ViewLogoFallback">
+						<param name="font">Font32_Bold</param>
 					</include>
 				</itemlayout>
 				<focusedlayout height="195" width="330" condition="Skin.HasSetting(View533SmallIcons) + Skin.String(View533Art,clearlogo)">
@@ -250,16 +327,28 @@
 						<animation  type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" center="auto" />
 						</animation>
-						<include content="ViewArtwork">
-							<param name="aspect">keep</param>
-							<param name="art">$VAR[ClearLogoVar]</param>
+						<control type="group">
+							<visible>!String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo))</visible>
+							<include content="ViewArtwork">
+								<param name="aspect">keep</param>
+								<param name="art">$VAR[ClearLogoVar]</param>
+							</include>
+						</control>
+						<include content="ViewLogoFallback">
+							<param name="font">Font32_Bold</param>
 						</include>
 					</control>
 				</focusedlayout>
 				<itemlayout height="195" width="330" condition="Skin.HasSetting(View533SmallIcons) + Skin.String(View533Art,clearart)">
-					<include content="ViewArtwork">
-						<param name="aspect">keep</param>
-						<param name="art">$VAR[ClearArtVar]</param>
+					<control type="group">
+						<visible>!String.IsEmpty(ListItem.Art(clearart)) | !String.IsEmpty(ListItem.Art(tvshow.clearart)) | !String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearart)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo))</visible>
+						<include content="ViewArtwork">
+							<param name="aspect">keep</param>
+							<param name="art">$VAR[ClearArtVar]</param>
+						</include>
+					</control>
+					<include content="ViewLogoFallback">
+						<param name="font">Font32_Bold</param>
 					</include>
 				</itemlayout>
 				<focusedlayout height="195" width="330" condition="Skin.HasSetting(View533SmallIcons) + Skin.String(View533Art,clearart)">
@@ -270,9 +359,15 @@
 						<animation  type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" center="auto" />
 						</animation>
-						<include content="ViewArtwork">
-							<param name="aspect">keep</param>
-							<param name="art">$VAR[ClearArtVar]</param>
+						<control type="group">
+							<visible>!String.IsEmpty(ListItem.Art(clearart)) | !String.IsEmpty(ListItem.Art(tvshow.clearart)) | !String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearart)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo))</visible>
+							<include content="ViewArtwork">
+								<param name="aspect">keep</param>
+								<param name="art">$VAR[ClearArtVar]</param>
+							</include>
+						</control>
+						<include content="ViewLogoFallback">
+							<param name="font">Font32_Bold</param>
 						</include>
 					</control>
 				</focusedlayout>
@@ -293,6 +388,8 @@
 			</include>
 			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsTVShows</include>
 			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsVideos5</include>
+			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsVideos5</include>
+			<include condition="Window.IsVisible(MyPVRChannels.xml)">MediaFlagsPVR</include>
 		</control>
 	</include>
 </includes>

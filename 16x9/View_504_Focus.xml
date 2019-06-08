@@ -26,6 +26,7 @@
 				<param name="slide">820</param>
 			</include>
 			<control type="fixedlist" id="504">
+				<animation effect="slide" end="0,30" condition="Container.Content(genres) + [System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour) | System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)]">conditional</animation>
 				<top>290</top>
 				<left>-203</left>
 				<width>2340</width>
@@ -40,7 +41,7 @@
 						<top>160</top>
 						<height>470</height>
 						<control type="group">
-							<visible>!Skin.HasSetting(View504VideoCase)</visible>
+							<visible>!Skin.HasSetting(View504VideoCase) | Container.Content(genres)</visible>
 							<control type="group">
 								<visible>!Skin.HasSetting(View504HideReflect)</visible>
 								<top>455</top>
@@ -52,7 +53,7 @@
 							</include>
 						</control>
 						<control type="group">
-							<visible>Skin.HasSetting(View504VideoCase)</visible>
+							<visible>Skin.HasSetting(View504VideoCase) + !Container.Content(genres)</visible>
 							<control type="group">
 								<visible>!Skin.HasSetting(View504HideReflect)</visible>
 								<top>455</top>
@@ -85,7 +86,7 @@
 							<texture background="true">$VAR[DiscArtVar]</texture>
 						</control>
 						<control type="group">
-							<visible>!Skin.HasSetting(View504VideoCase)</visible>
+							<visible>!Skin.HasSetting(View504VideoCase) | Container.Content(genres)</visible>
 							<control type="group">
 								<visible>!Skin.HasSetting(View504HideReflect)</visible>
 								<top>455</top>
@@ -97,7 +98,7 @@
 							</include>
 						</control>
 						<control type="group">
-							<visible>Skin.HasSetting(View504VideoCase)</visible>
+							<visible>Skin.HasSetting(View504VideoCase) + !Container.Content(genres)</visible>
 							<control type="group">
 								<visible>!Skin.HasSetting(View504HideReflect)</visible>
 								<top>455</top>

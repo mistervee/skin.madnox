@@ -3,7 +3,7 @@
 	<include name="View500Portrait">
 		<!-- Info panel -->
 		<control type="group">
-			<visible>Control.IsVisible(500)</visible>
+			<visible>Control.IsVisible(500) + !Container.Content(genres)</visible>
 			<include content="ViewCoverFlowInfoPanel">
 				<param name="id">500</param>
 			</include>
@@ -33,6 +33,7 @@
 				<param name="slide">525</param>
 			</include>
 			<control type="wraplist" id="500">
+				<animation effect="slide" end="0,30" condition="Container.Content(genres) + [System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour) | System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)]">conditional</animation>
 				<top>595</top>
 				<left>-70.50</left>
 				<width>2062</width>
@@ -45,7 +46,7 @@
 				<viewtype label="$LOCALIZE[31239]">icon</viewtype>
 				<itemlayout width="229" height="334">
 					<control type="group">
-						<visible>!Skin.HasSetting(View500VideoCase)</visible>
+						<visible>!Skin.HasSetting(View500VideoCase) | Container.Content(genres)</visible>
 						<control type="group">
 							<visible>!Skin.HasSetting(View500HideReflect)</visible>
 							<top>319</top>
@@ -54,8 +55,8 @@
 						</control>
 						<include>ViewArtwork</include>
 					</control>
-					<control type="group">
-						<visible>Skin.HasSetting(View500VideoCase)</visible>
+					<control  type="group">
+						<visible>Skin.HasSetting(View500VideoCase) + !Container.Content(genres)</visible>
 						<control type="group">
 							<visible>!Skin.HasSetting(View500HideReflect)</visible>
 							<top>319</top>
@@ -75,7 +76,7 @@
 						<animation effect="zoom" start="100" end="120" center="auto" time="160">focus</animation>
 						<animation effect="zoom" start="120" end="100" center="auto" time="160">unfocus</animation>
 						<control type="group">
-							<visible>!Skin.HasSetting(View500VideoCase)</visible>
+							<visible>!Skin.HasSetting(View500VideoCase) | Container.Content(genres)</visible>
 							<control type="group">
 								<visible>!Skin.HasSetting(View500HideReflect)</visible>
 								<top>319</top>
@@ -85,7 +86,7 @@
 							<include>ViewArtwork</include>
 						</control>
 						<control type="group">
-							<visible>Skin.HasSetting(View500VideoCase)</visible>
+							<visible>Skin.HasSetting(View500VideoCase) + !Container.Content(genres)</visible>
 							<control type="group">
 								<visible>!Skin.HasSetting(View500HideReflect)</visible>
 								<top>319</top>

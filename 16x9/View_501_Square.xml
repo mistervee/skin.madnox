@@ -3,7 +3,7 @@
 	<include name="View501Square">
 		<!-- Info panel -->
 		<control type="group">
-			<visible>Control.IsVisible(501)</visible>
+			<visible>Control.IsVisible(501) + !Container.Content(genres)</visible>
 			<include content="ViewCoverFlowInfoPanel">
 				<param name="id">501</param>
 			</include>
@@ -34,6 +34,7 @@
 			</include>
 			<control type="wraplist" id="501">
 				<animation effect="slide" end="-84" condition="Skin.HasSetting(View501AlbumCase) + [Container.Content(albums) | Container.Content(musicvideos)]">conditional</animation>
+				<animation effect="slide" end="0,30" condition="Container.Content(genres) + System.HasAddon(resource.images.musicgenreicons.text)">conditional</animation>
 				<top>595</top>
 				<left>-209</left>
 				<width>2338</width>

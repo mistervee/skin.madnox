@@ -23,7 +23,7 @@
 				<param name="visible">Skin.HasSetting(View503HideFloor)</param>
 			</include>
 		</control>
-
+		<!-- Panel -->
 		<control type="group">
 			<visible>Control.IsVisible(503)</visible>
 			<include content="AnimationSlideBottomWindow">
@@ -43,7 +43,7 @@
 				<pagecontrol>6080</pagecontrol>
 				<orientation>horizontal</orientation>
 				<viewtype label="$LOCALIZE[31243]">icon</viewtype>
-				<itemlayout width="468.8" height="272" condition="String.IsEmpty(Skin.String(View503Art))">
+				<itemlayout width="468.8" height="272" condition="String.IsEmpty(Skin.String(View503Art)) | Container.Content(episodes)">
 					<control type="group">
 						<visible>!Skin.HasSetting(View503HideReflect)</visible>
 						<top>257</top>
@@ -57,7 +57,7 @@
 						<param name="diffuse">diffuse/rounded5-532x395.png</param>
 					</include>
 				</itemlayout>
-				<focusedlayout width="468.8" height="272" condition="String.IsEmpty(Skin.String(View503Art))">
+				<focusedlayout width="468.8" height="272" condition="String.IsEmpty(Skin.String(View503Art)) | Container.Content(episodes)">
 					<control type="group">
 						<animation effect="zoom" start="100" end="125" center="auto" time="160">focus</animation>
 						<animation effect="zoom" start="125" end="100" center="auto" time="160">unfocus</animation>
@@ -85,11 +85,15 @@
 							<param name="art">$VAR[ClearLogoVar]</param>
 						</include>
 					</control>
-					<include content="ViewArtwork">
-						<param name="aspect">keep</param>
-						<param name="art">$VAR[ClearLogoVar]</param>
-						<param name="diffuse">diffuse/rounded5-532x395.png</param>
-					</include>
+					<control type="group">
+						<visible>!String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo))</visible>
+						<include content="ViewArtwork">
+							<param name="aspect">keep</param>
+							<param name="art">$VAR[ClearLogoVar]</param>
+							<param name="diffuse">diffuse/rounded5-532x395.png</param>
+						</include>
+					</control>
+					<include>ViewLogoFallback</include>
 				</itemlayout>
 				<focusedlayout width="468.8" height="272" condition="Skin.String(View503Art,clearlogo)">
 					<control type="group">
@@ -104,11 +108,15 @@
 								<param name="art">$VAR[ClearLogoVar]</param>
 							</include>
 						</control>
-						<include content="ViewArtwork">
-							<param name="aspect">keep</param>
-							<param name="art">$VAR[ClearLogoVar]</param>
-							<param name="diffuse">diffuse/rounded5-532x395.png</param>
-						</include>
+						<control type="group">
+							<visible>!String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo))</visible>
+							<include content="ViewArtwork">
+								<param name="aspect">keep</param>
+								<param name="art">$VAR[ClearLogoVar]</param>
+								<param name="diffuse">diffuse/rounded5-532x395.png</param>
+							</include>
+						</control>
+						<include>ViewLogoFallback</include>
 					</control>
 				</focusedlayout>
 				<itemlayout width="468.8" height="272" condition="Skin.String(View503Art,clearart)">
@@ -121,11 +129,15 @@
 							<param name="art">$VAR[ClearArtVar]</param>
 						</include>
 					</control>
-					<include content="ViewArtwork">
-						<param name="aspect">keep</param>
-						<param name="art">$VAR[ClearArtVar]</param>
-						<param name="diffuse">diffuse/rounded5-532x395.png</param>
-					</include>
+					<control type="group">
+						<visible>!String.IsEmpty(ListItem.Art(clearart)) | !String.IsEmpty(ListItem.Art(tvshow.clearart)) | !String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearart)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo))</visible>
+						<include content="ViewArtwork">
+							<param name="aspect">keep</param>
+							<param name="art">$VAR[ClearArtVar]</param>
+							<param name="diffuse">diffuse/rounded5-532x395.png</param>
+						</include>
+					</control>
+					<include>ViewLogoFallback</include>
 				</itemlayout>
 				<focusedlayout width="468.8" height="272" condition="Skin.String(View503Art,clearart)">
 					<control type="group">
@@ -140,11 +152,15 @@
 								<param name="art">$VAR[ClearArtVar]</param>
 							</include>
 						</control>
-						<include content="ViewArtwork">
-							<param name="aspect">keep</param>
-							<param name="art">$VAR[ClearArtVar]</param>
-							<param name="diffuse">diffuse/rounded5-532x395.png</param>
-						</include>
+						<control type="group">
+							<visible>!String.IsEmpty(ListItem.Art(clearart)) | !String.IsEmpty(ListItem.Art(tvshow.clearart)) | !String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearart)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo))</visible>
+							<include content="ViewArtwork">
+								<param name="aspect">keep</param>
+								<param name="art">$VAR[ClearArtVar]</param>
+								<param name="diffuse">diffuse/rounded5-532x395.png</param>
+							</include>
+						</control>
+						<include>ViewLogoFallback</include>
 					</control>
 				</focusedlayout>
 				<itemlayout width="468.8" height="272" condition="Skin.String(View503Art,fanart)">
@@ -197,6 +213,7 @@
 				<param name="logovisible">View503Logo</param>
 			</include>
 			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsPanelVideos</include>
+			<include condition="Window.IsVisible(MyMusicNav.xml)">MediaFlagsPanelAudio</include>
 		</control>
 	</include>
 </includes>
