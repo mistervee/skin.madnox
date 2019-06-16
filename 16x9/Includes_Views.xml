@@ -5037,31 +5037,48 @@
 					</control>
 				</control>
 			</control>
+			<!-- Video preview -->
 			<control type="group">
 				<visible>!Skin.HasSetting(View$PARAM[id]HidePanel) + Skin.HasSetting(View$PARAM[id]VideoPreviewWindow)</visible>
+				<include content="AnimationSlideBottomWindow">
+					<param name="slide">1000</param>
+				</include>
 				<include content="AnimationSlideBottomVisible">
 					<param name="slide">1000</param>
 				</include>
-				<include content="ViewVideoPreview">
-					<param name="id">$PARAM[id]</param>
-					<param name="top">165</param>
-					<param name="left">145</param>
-					<param name="width">682</param>
-					<param name="height">383</param>
-				</include>
+				<top>165</top>
+				<right>145</right>
+				<width>682</width>
+				<height>383</height>
+				<control type="image">
+					<texture>colors/black.png</texture>
+				</control>
+				<control type="videowindow" />
+				<control type="image">
+					<bordersize>-10</bordersize>
+					<texture border="20">thumbs/overlay2.png</texture>
+				</control>
 			</control>
 			<control type="group">
 				<visible>Skin.HasSetting(View$PARAM[id]HidePanel) + Skin.HasSetting(View$PARAM[id]VideoPreviewWindow)</visible>
+				<include content="AnimationSlideBottomWindow">
+					<param name="slide">1000</param>
+				</include>
 				<include content="AnimationSlideBottomVisible">
 					<param name="slide">1000</param>
 				</include>
-				<include content="ViewVideoPreview">
-					<param name="id">$PARAM[id]</param>
-					<param name="top">100</param>
-					<param name="left">100</param>
-					<param name="width">799</param>
-					<param name="height">449</param>
-				</include>
+				<top>100</top>
+				<right>100</right>
+				<width>799</width>
+				<height>449</height>
+				<control type="image">
+					<texture>colors/black.png</texture>
+				</control>
+				<control type="videowindow" />
+				<control type="image">
+					<bordersize>-10</bordersize>
+					<texture border="20">thumbs/overlay2.png</texture>
+				</control>
 			</control>
 		</definition>
 	</include>

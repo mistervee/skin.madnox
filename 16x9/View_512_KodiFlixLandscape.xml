@@ -2,13 +2,27 @@
 <includes>
 	<include name="View512KodiFlixLandscape">
 		<!-- Video preview -->
-		<include content="ViewVideoPreview">
-			<param name="id">512</param>
-			<param name="top">130</param>
-			<param name="left">60</param>
-			<param name="width">728</param>
-			<param name="height">409</param>
-		</include>
+		<control type="group">
+			<visible>Control.IsVisible(512) + Player.HasVideo + Skin.HasSetting(View512VideoPreviewWindow)</visible>
+			<include content="AnimationSlideRightWindow">
+				<param name="slide">800</param>
+			</include>
+			<include content="AnimationSlideRightVisible">
+				<param name="slide">800</param>
+			</include>
+			<top>130</top>
+			<right>60</right>
+			<width>728</width>
+			<height>409</height>
+			<control type="image">
+				<texture>colors/black.png</texture>
+			</control>
+			<control type="videowindow" />
+			<control type="image">
+				<bordersize>-10</bordersize>
+				<texture border="20">thumbs/overlay2.png</texture>
+			</control>
+		</control>
 		<!-- Background fade -->
 		<control type ="image">
 			<visible>Control.IsVisible(512)</visible>

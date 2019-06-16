@@ -2,9 +2,27 @@
 <includes>
 	<include name="View507CascadeSquare">
 		<!-- Video preview -->
-		<include content="ViewVideoPreview">
-			<param name="id">507</param>
-		</include>
+		<control type="group">
+			<visible>Control.IsVisible(507) + Player.HasVideo + Skin.HasSetting(View507VideoPreviewWindow)</visible>
+			<include content="AnimationSlideRightWindow">
+				<param name="slide">680</param>
+			</include>
+			<include content="AnimationSlideRightVisible">
+				<param name="slide">680</param>
+			</include>
+			<top>100</top>
+			<right>60</right>
+			<width>610</width>
+			<height>343</height>
+			<control type="image">
+				<texture>colors/black.png</texture>
+			</control>
+			<control type="videowindow" />
+			<control type="image">
+				<bordersize>-10</bordersize>
+				<texture border="20">thumbs/overlay2.png</texture>
+			</control>
+		</control>
 		<!-- Floor -->
 		<control type="group">
 			<visible>Control.IsVisible(507)</visible>
