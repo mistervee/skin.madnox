@@ -3,7 +3,7 @@
 	<include name="View509ShowcaseSquare">
 		<!-- Info panel -->
 		<control type="group">
-			<visible>Control.IsVisible(509) + !Container.Content(genres)</visible>
+			<visible>Control.IsVisible(509)</visible>
 			<include content="ViewCoverFlowInfoPanel">
 				<param name="id">509</param>
 			</include>
@@ -26,7 +26,7 @@
 		<!-- Panel -->
 		<control type="group">
 			<visible>Control.IsVisible(509)</visible>
-			<animation effect="slide" end="18" condition="Skin.HasSetting(View509AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]">conditional</animation>
+			<animation effect="slide" end="18" condition="Skin.HasSetting(View509AlbumCase) + Container.Content(albums)">conditional</animation>
 			<animation effect="slide" end="0,30" condition="Container.Content(genres) + System.HasAddon(resource.images.musicgenreicons.text)">conditional</animation>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">525</param>
@@ -365,19 +365,19 @@
 			</control>
 			<!-- Container -->
 			<control type="wraplist" id="509">
-				<top>10</top>
-				<left>0</left>
-				<width>1917</width>
-				<height>645</height>
+				<top>0</top>
+				<left>-30</left>
+				<width>1980</width>
+				<height>396</height>
 				<onup condition="!Skin.String(View509InfoDelay,manual) | ListItem.IsParentFolder">9050</onup>
 				<onup condition="Skin.String(View509InfoDelay,manual) + !ListItem.IsParentFolder">9999</onup>
 				<orientation>horizontal</orientation>
 				<viewtype label="$LOCALIZE[31264]">icon</viewtype>
 				<!-- <pagecontrol>95660</pagecontrol> -->
-				<focusposition>1</focusposition>
+				<focusposition>2</focusposition>
 				<preloaditems>2</preloaditems>
-				<itemlayout width="213" height="645"/>
-				<focusedlayout width="213" height="645"/>
+				<itemlayout width="396" height="396"/>
+				<focusedlayout width="396" height="396"/>
 			</control>
 		</control>
 		<!-- Bottom info/Media flags -->

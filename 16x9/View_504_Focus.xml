@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <includes>
 	<include name="View504Focus">
+		<!-- Video preview -->
+		<control type="group">
+			<visible>Control.IsVisible(504) + Player.HasVideo + Skin.HasSetting(View504VideoPreviewWindow)</visible>
+			<include content="AnimationSlideRightWindow">
+				<param name="slide">610</param>
+			</include>
+			<include content="AnimationSlideRightVisible">
+				<param name="slide">610</param>
+			</include>
+			<top>100</top>
+			<right>60</right>
+			<width>534</width>
+			<height>300</height>
+			<control type="image">
+				<texture>colors/black.png</texture>
+			</control>
+			<control type="videowindow" />
+			<control type="image">
+				<bordersize>-10</bordersize>
+				<texture border="20">thumbs/overlay2.png</texture>
+			</control>
+		</control>
 		<!-- Floor -->
 		<control type="group">
 			<visible>Control.IsVisible(504)</visible>
@@ -17,112 +39,12 @@
 			</include>
 		</control>
 		<!-- Panel -->
-		<control type="group">
-			<visible>Control.IsVisible(504)</visible>
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">820</param>
-			</include>
-			<include content="AnimationSlideBottomVisible">
-				<param name="slide">820</param>
-			</include>
-			<control type="fixedlist" id="504">
-				<animation effect="slide" end="0,30" condition="Container.Content(genres) + [System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour) | System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)]">conditional</animation>
-				<top>290</top>
-				<left>-203</left>
-				<width>2340</width>
-				<height>1000</height>
-				<onup>9050</onup>
-				<pagecontrol>6080</pagecontrol>
-				<focusposition>1</focusposition>
-				<orientation>horizontal</orientation>
-				<viewtype label="$LOCALIZE[31245]">icon</viewtype>
-				<itemlayout width="320" height="630">
-					<control type="group">
-						<top>160</top>
-						<height>470</height>
-						<control type="group">
-							<visible>!Skin.HasSetting(View504VideoCase) | Container.Content(genres)</visible>
-							<control type="group">
-								<visible>!Skin.HasSetting(View504HideReflect)</visible>
-								<top>455</top>
-								<height>470</height>
-								<include>ViewArtworkReflect</include>
-							</control>
-							<include content="ViewArtwork">
-								<param name="diffuse">diffuse/rounded5-532x395.png</param>
-							</include>
-						</control>
-						<control type="group">
-							<visible>Skin.HasSetting(View504VideoCase) + !Container.Content(genres)</visible>
-							<control type="group">
-								<visible>!Skin.HasSetting(View504HideReflect)</visible>
-								<top>455</top>
-								<height>470</height>
-								<include>ViewArtworkVideoCaseReflect</include>
-							</control>
-							<include content="ViewArtworkVideoCase">
-								<param name="logoheight">34</param>
-								<param name="bordersize">16,41,16,18</param>
-								<param name="diffuse">diffuse/rounded5-532x395.png</param>
-							</include>
-						</control>
-					</control>
-				</itemlayout>
-				<focusedlayout width="320" height="630">
-					<control type="group">
-						<top>160</top>
-						<height>470</height>
-						<animation effect="zoom" start="100" end="117.7" center="auto" time="160">focus</animation>
-						<animation effect="zoom" start="117.7" end="100" center="auto" time="160">unfocus</animation>
-						<control type="image">
-							<visible>Skin.HasSetting(View504DiscArt)</visible>
-							<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" condition="Player.Playing + ListItem.IsPlaying">Conditional</animation>
-							<animation effect="fade" start="0" end="100" time="160">focus</animation>
-							<animation effect="fade" start="100" end="0" time="160">unfocus</animation>
-							<top>-150</top>
-							<height>320</height>
-							<bordersize>20</bordersize>
-							<aspectratio>keep</aspectratio>
-							<texture background="true">$VAR[DiscArtVar]</texture>
-						</control>
-						<control type="group">
-							<visible>!Skin.HasSetting(View504VideoCase) | Container.Content(genres)</visible>
-							<control type="group">
-								<visible>!Skin.HasSetting(View504HideReflect)</visible>
-								<top>455</top>
-								<height>470</height>
-								<include>ViewArtworkReflect</include>
-							</control>
-							<include content="ViewArtwork">
-								<param name="diffuse">diffuse/rounded5-532x395.png</param>
-							</include>
-						</control>
-						<control type="group">
-							<visible>Skin.HasSetting(View504VideoCase) + !Container.Content(genres)</visible>
-							<control type="group">
-								<visible>!Skin.HasSetting(View504HideReflect)</visible>
-								<top>455</top>
-								<height>470</height>
-								<include content="ViewArtworkVideoCaseReflect">
-									<param name="bordersize">16,18,16,41</param>
-								</include>
-							</control>
-							<include content="ViewArtworkVideoCase">
-								<param name="logoheight">34</param>
-								<param name="bordersize">16,41,16,18</param>
-								<param name="diffuse">diffuse/rounded5-532x395.png</param>
-							</include>
-						</control>
-					</control>
-				</focusedlayout>
-			</control>
-			<!-- <control type="scrollbar" id="6057">
-				<right>80</right>
-				<top>144</top>
-				<bottom>144</bottom>
-				<onleft>80</onleft>
-			</control> -->
-		</control>
+		<include content="View504Panel" condition="!Skin.HasSetting(View504FixedList)">
+			<param name="listtype">wraplist</param>
+		</include>
+		<include content="View504Panel" condition="Skin.HasSetting(View504FixedList)">
+			<param name="listtype">fixedlist</param>
+		</include>
 		<!-- Bottom info/Media flags -->
 		<control type="group">
 			<visible>Control.IsVisible(504)</visible>
@@ -145,5 +67,115 @@
 				<param name="bottom">25</param>
 			</include>
 		</control>
+	</include>
+	<!-- Includes panel -->
+	<include name="View504Panel">
+		<param name="listtype">wraplist</param>
+		<definition>
+			<control type="group">
+				<visible>Control.IsVisible(504)</visible>
+				<include content="AnimationSlideBottomWindow">
+					<param name="slide">820</param>
+				</include>
+				<include content="AnimationSlideBottomVisible">
+					<param name="slide">820</param>
+				</include>
+				<control type="$PARAM[listtype]" id="504">
+					<animation effect="slide" end="0,30" condition="Container.Content(genres) + [System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour) | System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)]">conditional</animation>
+					<top>290</top>
+					<left>-203</left>
+					<width>2340</width>
+					<height>1000</height>
+					<onup>9050</onup>
+					<pagecontrol>6080</pagecontrol>
+					<focusposition>1</focusposition>
+					<orientation>horizontal</orientation>
+					<viewtype label="$LOCALIZE[31245]">icon</viewtype>
+					<itemlayout width="320" height="630">
+						<control type="group">
+							<top>160</top>
+							<height>470</height>
+							<control type="group">
+								<visible>!Skin.HasSetting(View504VideoCase) | Container.Content(genres)</visible>
+								<control type="group">
+									<visible>!Skin.HasSetting(View504HideReflect)</visible>
+									<top>455</top>
+									<height>470</height>
+									<include>ViewArtworkReflect</include>
+								</control>
+								<include content="ViewArtwork">
+									<param name="diffuse">diffuse/rounded5-300x450.png</param>
+								</include>
+							</control>
+							<control type="group">
+								<visible>Skin.HasSetting(View504VideoCase) + !Container.Content(genres)</visible>
+								<control type="group">
+									<visible>!Skin.HasSetting(View504HideReflect)</visible>
+									<top>455</top>
+									<height>470</height>
+									<include>ViewArtworkVideoCaseReflect</include>
+								</control>
+								<include content="ViewArtworkVideoCase">
+									<param name="logoheight">34</param>
+									<param name="bordersize">16,41,16,18</param>
+								</include>
+							</control>
+						</control>
+					</itemlayout>
+					<focusedlayout width="320" height="630">
+						<control type="group">
+							<top>160</top>
+							<height>470</height>
+							<animation effect="zoom" start="100" end="117.7" center="auto" time="160">focus</animation>
+							<animation effect="zoom" start="117.7" end="100" center="auto" time="160">unfocus</animation>
+							<control type="image">
+								<visible>Skin.HasSetting(View504DiscArt)</visible>
+								<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" condition="Player.Playing + ListItem.IsPlaying">Conditional</animation>
+								<animation effect="fade" start="0" end="100" time="160">focus</animation>
+								<animation effect="fade" start="100" end="0" time="160">unfocus</animation>
+								<top>-150</top>
+								<height>320</height>
+								<bordersize>20</bordersize>
+								<aspectratio>keep</aspectratio>
+								<texture background="true">$VAR[DiscArtVar]</texture>
+							</control>
+							<control type="group">
+								<visible>!Skin.HasSetting(View504VideoCase) | Container.Content(genres)</visible>
+								<control type="group">
+									<visible>!Skin.HasSetting(View504HideReflect)</visible>
+									<top>455</top>
+									<height>470</height>
+									<include>ViewArtworkReflect</include>
+								</control>
+								<include content="ViewArtwork">
+									<param name="diffuse">diffuse/rounded5-300x450.png</param>
+								</include>
+							</control>
+							<control type="group">
+								<visible>Skin.HasSetting(View504VideoCase) + !Container.Content(genres)</visible>
+								<control type="group">
+									<visible>!Skin.HasSetting(View504HideReflect)</visible>
+									<top>455</top>
+									<height>470</height>
+									<include content="ViewArtworkVideoCaseReflect">
+										<param name="bordersize">16,18,16,41</param>
+									</include>
+								</control>
+								<include content="ViewArtworkVideoCase">
+									<param name="logoheight">34</param>
+									<param name="bordersize">16,41,16,18</param>
+								</include>
+							</control>
+						</control>
+					</focusedlayout>
+				</control>
+				<!-- <control type="scrollbar" id="6057">
+					<right>80</right>
+					<top>144</top>
+					<bottom>144</bottom>
+					<onleft>80</onleft>
+				</control> -->
+			</control>
+		</definition>
 	</include>
 </includes>

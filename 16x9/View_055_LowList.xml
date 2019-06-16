@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 	<include name="View55LowList">
+		<!-- Video preview -->
+		<control type="group">
+			<visible>Control.IsVisible(55) + Player.HasVideo + Skin.HasSetting(View55VideoPreviewWindow)</visible>
+			<include content="AnimationSlideRightWindow">
+				<param name="slide">800</param>
+			</include>
+			<include content="AnimationSlideRightVisible">
+				<param name="slide">800</param>
+			</include>
+			<top>100</top>
+			<right>60</right>
+			<width>730</width>
+			<height>410</height>
+			<control type="image">
+				<texture>colors/black.png</texture>
+			</control>
+			<control type="videowindow" />
+			<control type="image">
+				<bordersize>-10</bordersize>
+				<texture border="20">thumbs/overlay2.png</texture>
+			</control>
+		</control>
+		<!-- Panel -->
 		<control type="group">
 			<visible>Control.IsVisible(55)</visible>
 			<include content="AnimationSlideBottomWindow">
@@ -23,7 +46,6 @@
 				<param name="opencondition">![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</param>
 				<param name="closecondition">![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</param>
 			</include>
-			<!-- Panel -->
 			<include content="PanelWide">
 				<param name="top">550</param>
 				<param name="toptexture">570</param>
@@ -147,7 +169,7 @@
 				</include>
 			</control>
 			<control type="image">
-				<visible>!Skin.HasSetting(View55HideLogo)</visible>
+				<visible>!Skin.HasSetting(View55HideLogo) + !Skin.HasSetting(View55VideoPreviewWindow)</visible>
 				<bottom>520</bottom>
 				<right>10</right>
 				<width>552</width>

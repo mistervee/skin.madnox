@@ -28,46 +28,17 @@
 					<param name="width">826</param>
 					<param name="lefttexture">1014</param>
 					<param name="widthtexture">806</param>
-					<param name="diffusetexture">diffuse/siderounded20-728x820.png</param>
+					<param name="diffusetexture">diffuse/siderounded20-806x820.png</param>
 					<param name="reflect">!Skin.HasSetting(View533HideReflect)</param>
 				</include>
 				<include content="ViewFanartInfoVideoPreview">
 					<param name="id">533</param>
 					<param name="width">756</param>
 					<param name="height">425</param>
-					<param name="diffuse">diffuse/rounded5-678x381.png</param>
+					<param name="diffuse">diffuse/rounded5-756x425.png</param>
+					<param name="textboxheight">163</param>
+					<param name="textboxfont">Font28_Reg_106</param>
 				</include>
-				<control type="image">
-					<visible>!Skin.HasSetting(View533HideLogo)</visible>
-					<top>644</top>
-					<right>125</right>
-					<width>756</width>
-					<height>241</height>
-					<aspectratio>keep</aspectratio>
-					<texture background="true">$VAR[ClearLogoVar]</texture>
-					<animation effect="fade" end="10" time="0" condition="true">Conditional</animation>
-				</control>
-				<control type="grouplist">
-					<top>639</top>
-					<right>125</right>
-					<width>756</width>
-					<height>400</height>
-					<include>ViewListInfo</include>
-					<control type="textbox">
-						<top>2</top>
-						<height>163</height>
-						<font>Font28_Reg_106</font>
-						<label>$VAR[ViewPlotVar]</label>
-						<pagecontrol>605321</pagecontrol>
-						<include>AutoScrollPlot</include>
-					</control>
-				</control>
-				<control type="scrollbar" id="605321">
-					<right>80</right>
-					<top>676</top>
-					<bottom>195</bottom>
-					<onleft>60532</onleft>
-				</control>
 			</control>
 			<control type="group">
 				<visible>Skin.HasSetting(View533SmallIcons)</visible>
@@ -77,46 +48,16 @@
 					<param name="width">730</param>
 					<param name="lefttexture">1110</param>
 					<param name="widthtexture">710</param>
-					<param name="diffusetexture">diffuse/siderounded20-728x820.png</param>
+					<param name="diffusetexture">diffuse/siderounded20-710x820.png</param>
 					<param name="reflect">!Skin.HasSetting(View533HideReflect)</param>
 				</include>
 				<include content="ViewFanartInfoVideoPreview">
 					<param name="id">533</param>
 					<param name="width">660</param>
 					<param name="height">371</param>
-					<param name="diffuse">diffuse/rounded5-678x381.png</param>
+					<param name="diffuse">diffuse/rounded5-660x371.png</param>
+					<param name="textboxheight">217</param>
 				</include>
-				<control type="image">
-					<visible>!Skin.HasSetting(View533HideLogo)</visible>
-					<top>590</top>
-					<right>125</right>
-					<width>660</width>
-					<height>295</height>
-					<aspectratio>keep</aspectratio>
-					<texture background="true">$VAR[ClearLogoVar]</texture>
-					<animation effect="fade" end="10" time="0" condition="true">Conditional</animation>
-				</control>
-				<control type="grouplist">
-					<top>585</top>
-					<right>125</right>
-					<width>660</width>
-					<height>400</height>
-					<include>ViewListInfo</include>
-					<control type="textbox">
-						<top>2</top>
-						<height>217</height>
-						<font>Font28_Reg_112</font>
-						<label>$VAR[ViewPlotVar]</label>
-						<pagecontrol>605321</pagecontrol>
-						<include>AutoScrollPlot</include>
-					</control>
-				</control>
-				<control type="scrollbar" id="605321">
-					<right>80</right>
-					<top>676</top>
-					<bottom>195</bottom>
-					<onleft>60532</onleft>
-				</control>
 			</control>
 		</control>
 		<!-- Panel -->
@@ -156,12 +97,15 @@
 				<pagecontrol>60511</pagecontrol>
 				<viewtype label="$LOCALIZE[31253]">icon</viewtype>
 				<itemlayout height="260" width="447" condition="!Skin.HasSetting(View533SmallIcons) + Window.IsVisible(MyPVRChannels.xml)">
-					<include content="ViewArtwork">
-						<param name="fallback"></param>
-						<param name="aspect">keep</param>
-						<param name="art">$INFO[ListItem.Art(thumb)]</param>
-					</include>
+					<control type="group">
+						<visible>!String.IsEmpty(ListItem.Art(Thumb))</visible>
+						<include content="ViewArtwork">
+							<param name="aspect">keep</param>
+							<param name="art">$INFO[ListItem.Art(thumb)]</param>
+						</include>
+					</control>
 					<include content="ViewLogoFallback">
+						<param name="visible">String.IsEmpty(ListItem.Art(Thumb))</param>
 						<param name="font">Font38_Bold</param>
 					</include>
 				</itemlayout>
@@ -173,24 +117,30 @@
 						<animation  type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" center="auto" />
 						</animation>
+						<control type="group">
+							<visible>!String.IsEmpty(ListItem.Art(Thumb))</visible>
+							<include content="ViewArtwork">
+								<param name="aspect">keep</param>
+								<param name="art">$INFO[ListItem.Art(thumb)]</param>
+							</include>
+						</control>
+						<include content="ViewLogoFallback">
+							<param name="visible">String.IsEmpty(ListItem.Art(Thumb))</param>
+							<param name="font">Font38_Bold</param>
+						</include>
+					</control>
+				</focusedlayout>
+				<itemlayout height="195" width="330" condition="Skin.HasSetting(View533SmallIcons) + Window.IsVisible(MyPVRChannels.xml)">
+					<control type="group">
+						<visible>!String.IsEmpty(ListItem.Art(Thumb))</visible>
 						<include content="ViewArtwork">
-							<param name="fallback"></param>
 							<param name="aspect">keep</param>
 							<param name="art">$INFO[ListItem.Art(thumb)]</param>
 						</include>
 					</control>
 					<include content="ViewLogoFallback">
-						<param name="font">Font38_Bold</param>
-					</include>
-				</focusedlayout>
-				<itemlayout height="195" width="330" condition="Skin.HasSetting(View533SmallIcons) + Window.IsVisible(MyPVRChannels.xml)">
-					<include content="ViewArtwork">
-						<param name="fallback"></param>
-						<param name="aspect">keep</param>
-						<param name="art">$INFO[ListItem.Art(thumb)]</param>
-					</include>
-					<include content="ViewLogoFallback">
-						<param name="font">Font32_Bold</param>
+						<param name="visible">String.IsEmpty(ListItem.Art(Thumb))</param>
+						<param name="font">Font33_Bold</param>
 					</include>
 				</itemlayout>
 				<focusedlayout height="195" width="330" condition="Skin.HasSetting(View533SmallIcons) + Window.IsVisible(MyPVRChannels.xml)">
@@ -201,20 +151,23 @@
 						<animation  type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" center="auto" />
 						</animation>
-						<include content="ViewArtwork">
-							<param name="fallback"></param>
-							<param name="aspect">keep</param>
-							<param name="art">$INFO[ListItem.Art(thumb)]</param>
-						</include>
+						<control type="group">
+							<visible>!String.IsEmpty(ListItem.Art(Thumb))</visible>
+							<include content="ViewArtwork">
+								<param name="aspect">keep</param>
+								<param name="art">$INFO[ListItem.Art(thumb)]</param>
+							</include>
+						</control>
 						<include content="ViewLogoFallback">
-						<param name="font">Font32_Bold</param>
-					</include>
+							<param name="visible">String.IsEmpty(ListItem.Art(Thumb))</param>
+							<param name="font">Font33_Bold</param>
+						</include>
 					</control>
 				</focusedlayout>
 				<itemlayout height="260" width="447" condition="!Skin.HasSetting(View533SmallIcons) + String.IsEmpty(Skin.String(View533Art))">
 					<include content="ViewArtwork">
 						<param name="art">$VAR[LandscapeVar]</param>
-						<param name="diffuse">diffuse/rounded5-532x800.png</param>
+						<param name="diffuse">diffuse/rounded5-427x240.png</param>
 					</include>
 				</itemlayout>
 				<focusedlayout height="260" width="447" condition="!Skin.HasSetting(View533SmallIcons) + String.IsEmpty(Skin.String(View533Art))">
@@ -227,7 +180,7 @@
 						</animation>
 						<include content="ViewArtwork">
 							<param name="art">$VAR[LandscapeVar]</param>
-							<param name="diffuse">diffuse/rounded5-532x800.png</param>
+							<param name="diffuse">diffuse/rounded5-427x240.png</param>
 						</include>
 					</control>
 				</focusedlayout>
@@ -239,7 +192,10 @@
 							<param name="art">$VAR[ClearLogoVar]</param>
 						</include>
 					</control>
-					<include>ViewLogoFallback</include>
+					<include content="ViewLogoFallback">
+						<param name="visible">String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</param>
+						<param name="font">Font38_Bold</param>
+					</include>
 				</itemlayout>
 				<focusedlayout height="260" width="447" condition="!Skin.HasSetting(View533SmallIcons) + Skin.String(View533Art,clearlogo)">
 					<control type="image">
@@ -256,7 +212,10 @@
 								<param name="art">$VAR[ClearLogoVar]</param>
 							</include>
 						</control>
-						<include>ViewLogoFallback</include>
+						<include content="ViewLogoFallback">
+							<param name="visible">String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</param>
+							<param name="font">Font38_Bold</param>
+						</include>
 					</control>
 				</focusedlayout>
 				<itemlayout height="260" width="447" condition="!Skin.HasSetting(View533SmallIcons) + Skin.String(View533Art,clearart)">
@@ -267,7 +226,10 @@
 							<param name="art">$VAR[ClearArtVar]</param>
 						</include>
 					</control>
-					<include>ViewLogoFallback</include>
+					<include content="ViewLogoFallback">
+						<param name="visible">String.IsEmpty(ListItem.Art(clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearart)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</param>
+						<param name="font">Font38_Bold</param>
+					</include>
 				</itemlayout>
 				<focusedlayout height="260" width="447" condition="!Skin.HasSetting(View533SmallIcons) + Skin.String(View533Art,clearart)">
 					<control type="image">
@@ -284,13 +246,16 @@
 								<param name="art">$VAR[ClearArtVar]</param>
 							</include>
 						</control>
-						<include>ViewLogoFallback</include>
+						<include content="ViewLogoFallback">
+							<param name="visible">String.IsEmpty(ListItem.Art(clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearart)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</param>
+							<param name="font">Font38_Bold</param>
+						</include>
 					</control>
 				</focusedlayout>
 				<itemlayout height="195" width="330" condition="Skin.HasSetting(View533SmallIcons) + String.IsEmpty(Skin.String(View533Art))">
 					<include content="ViewArtwork">
 						<param name="art">$VAR[LandscapeVar]</param>
-						<param name="diffuse">diffuse/rounded5-532x800.png</param>
+						<param name="diffuse">diffuse/rounded5-310x175.png</param>
 					</include>
 				</itemlayout>
 				<focusedlayout height="195" width="330" condition="Skin.HasSetting(View533SmallIcons) + String.IsEmpty(Skin.String(View533Art))">
@@ -303,7 +268,7 @@
 						</animation>
 						<include content="ViewArtwork">
 							<param name="art">$VAR[LandscapeVar]</param>
-							<param name="diffuse">diffuse/rounded5-532x800.png</param>
+							<param name="diffuse">diffuse/rounded5-310x175.png</param>
 						</include>
 					</control>
 				</focusedlayout>
@@ -316,6 +281,7 @@
 						</include>
 					</control>
 					<include content="ViewLogoFallback">
+						<param name="visible">String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</param>
 						<param name="font">Font32_Bold</param>
 					</include>
 				</itemlayout>
@@ -335,6 +301,7 @@
 							</include>
 						</control>
 						<include content="ViewLogoFallback">
+							<param name="visible">String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</param>
 							<param name="font">Font32_Bold</param>
 						</include>
 					</control>
@@ -348,6 +315,7 @@
 						</include>
 					</control>
 					<include content="ViewLogoFallback">
+						<param name="visible">String.IsEmpty(ListItem.Art(clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearart)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</param>
 						<param name="font">Font32_Bold</param>
 					</include>
 				</itemlayout>
@@ -367,6 +335,7 @@
 							</include>
 						</control>
 						<include content="ViewLogoFallback">
+							<param name="visible">String.IsEmpty(ListItem.Art(clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearart)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</param>
 							<param name="font">Font32_Bold</param>
 						</include>
 					</control>
@@ -388,7 +357,7 @@
 			</include>
 			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsTVShows</include>
 			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsVideos5</include>
-			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsVideos5</include>
+			<include condition="Window.IsVisible(MyMusicNav.xml)">MediaFlagsAudio</include>
 			<include condition="Window.IsVisible(MyPVRChannels.xml)">MediaFlagsPVR</include>
 		</control>
 	</include>

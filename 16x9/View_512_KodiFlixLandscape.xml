@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <includes>
 	<include name="View512KodiFlixLandscape">
+		<!-- Video preview -->
+		<include content="ViewVideoPreview">
+			<param name="id">512</param>
+			<param name="top">130</param>
+			<param name="left">60</param>
+			<param name="width">728</param>
+			<param name="height">409</param>
+		</include>
 		<!-- Background fade -->
 		<control type ="image">
 			<visible>Control.IsVisible(512)</visible>
@@ -22,71 +30,14 @@
 				<param name="visible">Skin.HasSetting(View512HideFloor)</param>
 			</include>
 		</control>
-		<control type="group">
-			<visible>Control.IsVisible(512)</visible>
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">525</param>
-			</include>
-			<include content="AnimationSlideBottomVisible">
-				<param name="slide">525</param>
-			</include>
-			<!-- Info -->
-			<include content="ViewKodiFlixInfoPanel">
-				<param name="id">512</param>
-				<param name="textboxheight">120</param>
-				<param name="textboxfont">Font28_Reg</param>
-			</include>
-			<!-- Panel -->
-			<control type="wraplist" id="512">
-				<top>636</top>
-				<left>-400</left>
-				<width>2658</width>
-				<height>432</height>
-				<onup>9050</onup>
-				<pagecontrol>6080</pagecontrol>
-				<focusposition>1</focusposition>
-				<orientation>horizontal</orientation>
-				<viewtype label="$LOCALIZE[31265]">icon</viewtype>
-				<itemlayout width="500" height="290">
-					<control type="group">
-						<visible>!Skin.HasSetting(View512HideReflect)</visible>
-						<top>275</top>
-						<height>290</height>
-						<include content="ViewArtworkReflect">
-							<param name="art">$VAR[LandscapeVar]</param>
-						</include>
-					</control>
-					<include content="ViewArtwork">
-						<param name="art">$VAR[LandscapeVar]</param>
-						<param name="diffuse">diffuse/rounded5-532x395</param>
-					</include>
-				</itemlayout>
-				<focusedlayout width="500" height="290">
-					<control type="group">
-						<animation effect="zoom" start="100" end="125" center="auto" time="160">focus</animation>
-						<animation effect="zoom" start="125" end="100" center="auto" time="160">unfocus</animation>
-						<control type="group">
-							<visible>!Skin.HasSetting(View512HideReflect)</visible>
-							<top>275</top>
-							<height>290</height>
-							<include content="ViewArtworkReflect">
-								<param name="art">$VAR[LandscapeVar]</param>
-							</include>
-						</control>
-						<include content="ViewArtwork">
-							<param name="art">$VAR[LandscapeVar]</param>
-							<param name="diffuse">diffuse/rounded5-532x395</param>
-						</include>
-					</control>
-				</focusedlayout>
-			</control>
-			<!-- <control type="scrollbar" id="6057">
-				<right>80</right>
-				<top>144</top>
-				<bottom>144</bottom>
-				<onleft>80</onleft>
-			</control> -->
-		</control>
+		<!-- Panel -->
+		<include content="View512Panel" condition="!Skin.HasSetting(View512FixedList)">
+			<param name="listtype">wraplist</param>
+		</include>
+		<include content="View512Panel" condition="Skin.HasSetting(View512FixedList)">
+			<param name="listtype">fixedlist</param>
+		</include>
+		<!-- Media flags -->
 		<control type="group">
 			<visible>Control.IsVisible(512)</visible>
 			<include content="AnimationSlideBottomWindow">
@@ -108,5 +59,76 @@
 				<param name="bottom">20</param>
 			</include>
 		</control>
+	</include>
+	<!-- Includes panel -->
+	<include name="View512Panel">
+		<param name="listtype">wraplist</param>
+		<definition>
+			<control type="group">
+				<visible>Control.IsVisible(512)</visible>
+				<include content="AnimationSlideBottomWindow">
+					<param name="slide">525</param>
+				</include>
+				<include content="AnimationSlideBottomVisible">
+					<param name="slide">525</param>
+				</include>
+				<!-- Info -->
+				<include content="ViewKodiFlixInfoPanel">
+					<param name="id">512</param>
+					<param name="textboxheight">120</param>
+					<param name="textboxfont">Font28_Reg</param>
+				</include>
+				<!-- Panel -->
+				<control type="$PARAM[listtype]" id="512">
+					<top>636</top>
+					<left>-400</left>
+					<width>2658</width>
+					<height>432</height>
+					<onup>9050</onup>
+					<pagecontrol>6080</pagecontrol>
+					<focusposition>1</focusposition>
+					<orientation>horizontal</orientation>
+					<viewtype label="$LOCALIZE[31265]">icon</viewtype>
+					<itemlayout width="500" height="290">
+						<control type="group">
+							<visible>!Skin.HasSetting(View512HideReflect)</visible>
+							<top>275</top>
+							<height>290</height>
+							<include content="ViewArtworkReflect">
+								<param name="art">$VAR[LandscapeVar]</param>
+							</include>
+						</control>
+						<include content="ViewArtwork">
+							<param name="art">$VAR[LandscapeVar]</param>
+							<param name="diffuse">diffuse/rounded5-480x270.png</param>
+						</include>
+					</itemlayout>
+					<focusedlayout width="500" height="290">
+						<control type="group">
+							<animation effect="zoom" start="100" end="125" center="auto" time="160">focus</animation>
+							<animation effect="zoom" start="125" end="100" center="auto" time="160">unfocus</animation>
+							<control type="group">
+								<visible>!Skin.HasSetting(View512HideReflect)</visible>
+								<top>275</top>
+								<height>290</height>
+								<include content="ViewArtworkReflect">
+									<param name="art">$VAR[LandscapeVar]</param>
+								</include>
+							</control>
+							<include content="ViewArtwork">
+								<param name="art">$VAR[LandscapeVar]</param>
+								<param name="diffuse">diffuse/rounded5-480x270</param>
+							</include>
+						</control>
+					</focusedlayout>
+				</control>
+				<!-- <control type="scrollbar" id="6057">
+					<right>80</right>
+					<top>144</top>
+					<bottom>144</bottom>
+					<onleft>80</onleft>
+				</control> -->
+			</control>
+		</definition>
 	</include>
 </includes>

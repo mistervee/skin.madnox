@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <includes>
 	<include name="View505FocusSquare">
+		<!-- Video preview -->
+		<include content="ViewVideoPreview">
+			<param name="id">505</param>
+			<param name="width">610</param>
+			<param name="height">343</param>
+		</include>
 		<!-- Floor -->
 		<control type="group">
 			<visible>Control.IsVisible(505)</visible>
@@ -17,156 +23,12 @@
 			</include>
 		</control>
 		<!-- Panel -->
-		<control type="group">
-			<visible>Control.IsVisible(505)</visible>
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">820</param>
-			</include>
-			<include content="AnimationSlideBottomVisible">
-				<param name="slide">820</param>
-			</include>
-			<control type="fixedlist" id="505">
-				<animation effect="slide" end="0,30" condition="Container.Content(genres) + System.HasAddon(resource.images.musicgenreicons.text)">conditional</animation>
-				<top>293</top>
-				<left>-304</left>
-				<width>2340</width>
-				<height>1000</height>
-				<onup>9050</onup>
-				<pagecontrol>6080</pagecontrol>
-				<focusposition>1</focusposition>
-				<orientation>horizontal</orientation>
-				<viewtype label="$LOCALIZE[31258]">icon</viewtype>
-				<itemlayout width="430" height="630" condition="![Container.Content(musicvideos) | Container.Content(albums)]">
-					<control type="group">
-						<top>200</top>
-						<height>430</height>
-						<control type="group">
-							<visible>!Skin.HasSetting(View505HideReflect)</visible>
-							<top>415</top>
-							<height>430</height>
-							<include>ViewArtworkReflect</include>
-						</control>
-						<include content="ViewArtwork">
-							<param name="diffuse">diffuse/rounded5-532x395.png</param>
-						</include>
-					</control>
-				</itemlayout>
-				<focusedlayout width="430" height="630" condition="![Container.Content(musicvideos) | Container.Content(albums)]">
-					<control type="group">
-						<top>200</top>
-						<height>430</height>
-						<animation effect="zoom" start="100" end="117.7" center="auto" time="160">focus</animation>
-						<animation effect="zoom" start="117.7" end="100" center="auto" time="160">unfocus</animation>
-						<control type="group">
-							<visible>!Skin.HasSetting(View505HideReflect)</visible>
-							<top>415</top>
-							<height>430</height>
-							<include>ViewArtworkReflect</include>
-						</control>
-						<include content="ViewArtwork">
-							<param name="diffuse">diffuse/rounded5-532x395.png</param>
-						</include>
-					</control>
-				</focusedlayout>
-				<itemlayout width="430" height="630" condition="!Skin.HasSetting(View505AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]">
-					<control type="group">
-						<top>200</top>
-						<height>430</height>
-						<control type="group">
-							<visible>!Skin.HasSetting(View505HideReflect)</visible>
-							<top>415</top>
-							<height>430</height>
-							<include>ViewArtworkReflect</include>
-						</control>
-						<include content="ViewArtwork">
-							<param name="diffuse">diffuse/rounded5-532x395.png</param>
-						</include>
-					</control>
-				</itemlayout>
-				<focusedlayout width="430" height="630" condition="!Skin.HasSetting(View505AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]">
-					<control type="group">
-						<top>200</top>
-						<height>430</height>
-						<animation effect="zoom" start="100" end="117.7" center="auto" time="160">focus</animation>
-						<animation effect="zoom" start="117.7" end="100" center="auto" time="160">unfocus</animation>
-						<control type="image">
-							<visible>Skin.HasSetting(View505DiscArt)</visible>
-							<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" condition="Player.Playing + ListItem.IsPlaying">Conditional</animation>
-							<animation effect="fade" start="0" end="100" time="160">focus</animation>
-							<animation effect="fade" start="100" end="0" time="160">unfocus</animation>
-							<top>-200</top>
-							<height>430</height>
-							<bordersize>20</bordersize>
-							<aspectratio>keep</aspectratio>
-							<texture background="true">$VAR[DiscArtVar]</texture>
-						</control>
-						<control type="group">
-							<visible>!Skin.HasSetting(View505HideReflect)</visible>
-							<top>415</top>
-							<height>430</height>
-							<include>ViewArtworkReflect</include>
-						</control>
-						<include content="ViewArtwork">
-							<param name="diffuse">diffuse/rounded5-532x395.png</param>
-						</include>
-					</control>
-				</focusedlayout>
-				<itemlayout width="430" height="630" condition="Skin.HasSetting(View505AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]">
-					<control type="group">
-						<top>229</top>
-						<height>401</height>
-						<control type="group">
-							<visible>!Skin.HasSetting(View504HideReflect)</visible>
-							<top>386</top>
-							<height>401</height>
-							<include>ViewArtworkAudioCaseReflect</include>
-						</control>
-						<include content="ViewArtworkAudioCase">
-							<param name="logoheight">53</param>
-							<param name="bordersize">43,14,14,14</param>
-							<param name="diffuse">diffuse/rounded5-532x395.png</param>
-						</include>
-					</control>
-				</itemlayout>
-				<focusedlayout width="430" height="630" condition="Skin.HasSetting(View505AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]">
-					<control type="group">
-						<top>229</top>
-						<height>401</height>
-						<animation effect="zoom" start="100" end="117.7" center="auto" time="160">focus</animation>
-						<animation effect="zoom" start="117.7" end="100" center="auto" time="160">unfocus</animation>
-						<control type="image">
-							<visible>Skin.HasSetting(View505DiscArt)</visible>
-							<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" condition="Player.Playing + ListItem.IsPlaying">Conditional</animation>
-							<animation effect="fade" start="0" end="100" time="160">focus</animation>
-							<animation effect="fade" start="100" end="0" time="160">unfocus</animation>
-							<top>-185</top>
-							<left>33</left>
-							<height>401</height>
-							<bordersize>20</bordersize>
-							<aspectratio>keep</aspectratio>
-							<texture background="true">$VAR[DiscArtVar]</texture>
-						</control>
-						<control type="group">
-							<visible>!Skin.HasSetting(View504HideReflect)</visible>
-							<top>386</top>
-							<height>401</height>
-							<include>ViewArtworkAudioCaseReflect</include>
-						</control>
-						<include content="ViewArtworkAudioCase">
-							<param name="logoheight">53</param>
-							<param name="bordersize">43,14,14,14</param>
-							<param name="diffuse">diffuse/rounded5-532x395.png</param>
-						</include>
-					</control>
-				</focusedlayout>
-			</control>
-			<!-- <control type="scrollbar" id="6057">
-				<right>80</right>
-				<top>144</top>
-				<bottom>144</bottom>
-				<onleft>80</onleft>
-			</control> -->
-		</control>
+		<include content="View505Panel" condition="!Skin.HasSetting(View505FixedList)">
+			<param name="listtype">wraplist</param>
+		</include>
+		<include content="View505Panel" condition="Skin.HasSetting(View505FixedList)">
+			<param name="listtype">fixedlist</param>
+		</include>
 		<!-- Bottom info/Media flags -->
 		<control type="group">
 			<visible>Control.IsVisible(505)</visible>
@@ -189,5 +51,116 @@
 				<param name="bottom">25</param>
 			</include>
 		</control>
+	</include>
+	<!-- Includes panel -->
+	<include name="View505Panel">
+		<param name="listtype">wraplist</param>
+		<definition>
+			<control type="group">
+				<visible>Control.IsVisible(505)</visible>
+				<include content="AnimationSlideBottomWindow">
+					<param name="slide">820</param>
+				</include>
+				<include content="AnimationSlideBottomVisible">
+					<param name="slide">820</param>
+				</include>
+				<control type="$PARAM[listtype]" id="505">
+					<animation effect="slide" end="0,30" condition="Container.Content(genres) + System.HasAddon(resource.images.musicgenreicons.text)">conditional</animation>
+					<top>293</top>
+					<left>-304</left>
+					<width>2340</width>
+					<height>1000</height>
+					<onup>9050</onup>
+					<pagecontrol>6080</pagecontrol>
+					<focusposition>1</focusposition>
+					<orientation>horizontal</orientation>
+					<viewtype label="$LOCALIZE[31258]">icon</viewtype>
+					<itemlayout width="430" height="630" condition="!Skin.HasSetting(View505AlbumCase) | !Container.Content(albums)">
+						<control type="group">
+							<top>200</top>
+							<height>430</height>
+							<control type="group">
+								<visible>!Skin.HasSetting(View505HideReflect)</visible>
+								<top>415</top>
+								<height>430</height>
+								<include>ViewArtworkReflect</include>
+							</control>
+							<include content="ViewArtwork">
+								<param name="diffuse">diffuse/rounded5-410x410.png</param>
+							</include>
+						</control>
+					</itemlayout>
+					<focusedlayout width="430" height="630" condition="!Skin.HasSetting(View505AlbumCase) | !Container.Content(albums)">
+						<control type="group">
+							<top>200</top>
+							<height>430</height>
+							<animation effect="zoom" start="100" end="117.7" center="auto" time="160">focus</animation>
+							<animation effect="zoom" start="117.7" end="100" center="auto" time="160">unfocus</animation>
+							<control type="group">
+								<visible>!Skin.HasSetting(View505HideReflect)</visible>
+								<top>415</top>
+								<height>430</height>
+								<include>ViewArtworkReflect</include>
+							</control>
+							<include content="ViewArtwork">
+								<param name="diffuse">diffuse/rounded5-410x410.png</param>
+							</include>
+						</control>
+					</focusedlayout>
+					<itemlayout width="430" height="630" condition="Skin.HasSetting(View505AlbumCase)">
+						<control type="group">
+							<top>229</top>
+							<height>401</height>
+							<control type="group">
+								<visible>!Skin.HasSetting(View505HideReflect)</visible>
+								<top>386</top>
+								<height>401</height>
+								<include>ViewArtworkAudioCaseReflect</include>
+							</control>
+							<include content="ViewArtworkAudioCase">
+								<param name="logoheight">53</param>
+								<param name="bordersize">43,14,14,14</param>
+							</include>
+						</control>
+					</itemlayout>
+					<focusedlayout width="430" height="630" condition="Skin.HasSetting(View505AlbumCase)">
+						<control type="group">
+							<top>229</top>
+							<height>401</height>
+							<animation effect="zoom" start="100" end="117.7" center="auto" time="160">focus</animation>
+							<animation effect="zoom" start="117.7" end="100" center="auto" time="160">unfocus</animation>
+							<control type="image">
+								<visible>Skin.HasSetting(View505DiscArt)</visible>
+								<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" condition="Player.Playing + ListItem.IsPlaying">Conditional</animation>
+								<animation effect="fade" start="0" end="100" time="160">focus</animation>
+								<animation effect="fade" start="100" end="0" time="160">unfocus</animation>
+								<top>-185</top>
+								<left>33</left>
+								<height>401</height>
+								<bordersize>20</bordersize>
+								<aspectratio>keep</aspectratio>
+								<texture background="true">$VAR[DiscArtVar]</texture>
+							</control>
+							<control type="group">
+								<visible>!Skin.HasSetting(View505HideReflect)</visible>
+								<top>386</top>
+								<height>401</height>
+								<include>ViewArtworkAudioCaseReflect</include>
+							</control>
+							<include content="ViewArtworkAudioCase">
+								<param name="logoheight">53</param>
+								<param name="bordersize">43,14,14,14</param>
+							</include>
+						</control>
+					</focusedlayout>
+				</control>
+				<!-- <control type="scrollbar" id="6057">
+					<right>80</right>
+					<top>144</top>
+					<bottom>144</bottom>
+					<onleft>80</onleft>
+				</control> -->
+			</control>
+		</definition>
 	</include>
 </includes>

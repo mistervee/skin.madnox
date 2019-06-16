@@ -39,6 +39,7 @@
 				<itemlayout height="250" width="425" condition="!Skin.HasSetting(View523SmallIcons) + String.IsEmpty(Skin.String(View523Art)) | [!Skin.HasSetting(View523SmallIcons) + Container.Content(images)]">
 					<include content="ViewArtwork">
 						<param name="art">$VAR[LandscapeVar]</param>
+						<param name="diffuse">diffuse/rounded5-405x230.png</param>
 					</include>
 				</itemlayout>
 				<focusedlayout height="250" width="425" condition="!Skin.HasSetting(View523SmallIcons) + String.IsEmpty(Skin.String(View523Art)) + String.IsEmpty(Skin.String(View523Art)) | [!Skin.HasSetting(View523SmallIcons) + Container.Content(images)]">
@@ -51,12 +52,14 @@
 						</animation>
 						<include content="ViewArtwork">
 							<param name="art">$VAR[LandscapeVar]</param>
+							<param name="diffuse">diffuse/rounded5-405x230.png</param>
 						</include>
 					</control>
 				</focusedlayout>
 				<itemlayout height="187.5" width="340" condition="Skin.HasSetting(View523SmallIcons) + String.IsEmpty(Skin.String(View523Art)) | [Skin.HasSetting(View523SmallIcons) + Container.Content(images)]">
 					<include content="ViewArtwork">
 						<param name="art">$VAR[LandscapeVar]</param>
+						<param name="diffuse">diffuse/rounded5-320x167.png</param>
 					</include>
 				</itemlayout>
 				<focusedlayout height="187.5" width="340" condition="Skin.HasSetting(View523SmallIcons) + String.IsEmpty(Skin.String(View523Art)) | [Skin.HasSetting(View523SmallIcons) + Container.Content(images)]">
@@ -69,6 +72,7 @@
 						</animation>
 						<include content="ViewArtwork">
 							<param name="art">$VAR[LandscapeVar]</param>
+							<param name="diffuse">diffuse/rounded5-320x167.png</param>
 						</include>
 					</control>
 				</focusedlayout>
@@ -80,7 +84,10 @@
 							<param name="art">$VAR[ClearLogoVar]</param>
 						</include>
 					</control>
-					<include>ViewLogoFallback</include>
+					<include content="ViewLogoFallback">
+						<param name="visible">String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</param>
+						<param name="font">Font38_Bold</param>
+					</include>
 				</itemlayout>
 				<focusedlayout height="250" width="425" condition="!Skin.HasSetting(View523SmallIcons) + Skin.String(View523Art,clearlogo)">
 					<control type="image">
@@ -97,7 +104,10 @@
 								<param name="art">$VAR[ClearLogoVar]</param>
 							</include>
 						</control>
-						<include>ViewLogoFallback</include>
+						<include content="ViewLogoFallback">
+							<param name="visible">String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</param>
+							<param name="font">Font38_Bold</param>
+						</include>
 					</control>
 				</focusedlayout>
 				<itemlayout height="250" width="425" condition="!Skin.HasSetting(View523SmallIcons) + Skin.String(View523Art,clearart)">
@@ -109,7 +119,8 @@
 						</include>
 					</control>
 					<include content="ViewLogoFallback">
-						<param name="font">Font33_Bold</param>
+						<param name="visible">String.IsEmpty(ListItem.Art(clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearart)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</param>
+						<param name="font">Font38_Bold</param>
 					</include>
 				</itemlayout>
 				<focusedlayout height="250" width="425" condition="!Skin.HasSetting(View523SmallIcons) + Skin.String(View523Art,clearart)">
@@ -128,7 +139,8 @@
 							</include>
 						</control>
 						<include content="ViewLogoFallback">
-							<param name="font">Font33_Bold</param>
+							<param name="visible">String.IsEmpty(ListItem.Art(clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearart)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</param>
+							<param name="font">Font38_Bold</param>
 						</include>
 					</control>
 				</focusedlayout>
@@ -141,7 +153,8 @@
 						</include>
 					</control>
 					<include content="ViewLogoFallback">
-						<param name="font">Font38_Bold</param>
+						<param name="visible">String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</param>
+						<param name="font">Font33_Bold</param>
 					</include>
 				</itemlayout>
 				<focusedlayout height="187.5" width="340" condition="Skin.HasSetting(View523SmallIcons) + Skin.String(View523Art,clearlogo)">
@@ -160,8 +173,9 @@
 							</include>
 						</control>
 						<include content="ViewLogoFallback">
-						<param name="font">Font38_Bold</param>
-					</include>
+							<param name="visible">String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</param>
+							<param name="font">Font33_Bold</param>
+						</include>
 					</control>
 				</focusedlayout>
 				<itemlayout height="187.5" width="340" condition="Skin.HasSetting(View523SmallIcons) + Skin.String(View523Art,clearart)">
@@ -173,6 +187,7 @@
 						</include>
 					</control>
 					<include content="ViewLogoFallback">
+						<param name="visible">String.IsEmpty(ListItem.Art(clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearart)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</param>
 						<param name="font">Font33_Bold</param>
 					</include>
 				</itemlayout>
@@ -192,8 +207,9 @@
 							</include>
 						</control>
 						<include content="ViewLogoFallback">
-						<param name="font">Font33_Bold</param>
-					</include>
+							<param name="visible">String.IsEmpty(ListItem.Art(clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearart)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</param>
+							<param name="font">Font33_Bold</param>
+						</include>
 					</control>
 				</focusedlayout>
 			</control>

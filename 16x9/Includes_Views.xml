@@ -54,11 +54,13 @@
 			</control>
 		</definition>
 	</include>
+	<!-- <visible>[String.IsEmpty(ListItem.Art(clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearart)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo)) + !Window.IsVisible(MyPVRChannels.xml)] | [Window.IsVisible(MyPVRChannels.xml) + String.IsEmpty(ListItem.Art(Thumb))]</visible> -->
 	<include name="ViewLogoFallback">
 		<param name="font">Font44_Bold</param>
+		<param name="visible"></param>
 		<definition>
 			<control type="group">
-				<visible>[String.IsEmpty(ListItem.Art(clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearart)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo)) + !Window.IsVisible(MyPVRChannels.xml)] | [Window.IsVisible(MyPVRChannels.xml) + String.IsEmpty(ListItem.Art(Thumb))]</visible>
+				<visible>$PARAM[visible]</visible>
 				<control type="image">
 					<bordersize>10</bordersize>
 					<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
@@ -273,11 +275,16 @@
 				<control type="group">
 					<visible>Player.HasVideo + Skin.HasSetting(View$PARAM[id]VideoPreviewWindow)</visible>
 					<control type="image">
-						<texture diffuse="$PARAM[diffuse]">colors/black.png</texture>
+						<texture>colors/black.png</texture>
 					</control>
 					<control type="videowindow" />
+					<control type="image">
+						<bordersize>-10</bordersize>
+						<texture border="20">thumbs/overlay2.png</texture>
+					</control>
 				</control>
 				<control type="image">
+					<visible>![Player.HasVideo + Skin.HasSetting(View$PARAM[id]VideoPreviewWindow)]</visible>
 					<bordersize>-10</bordersize>
 					<texture border="20">thumbs/overlay.png</texture>
 				</control>
@@ -4544,11 +4551,36 @@
 			</control>
 		</definition>
 	</include>
+	<include name="ViewVideoPreview">
+		<param name="id"></param>
+		<param name="top">100</param>
+		<param name="left">60</param>
+		<param name="width">666</param>
+		<param name="height">374</param>
+		<definition>
+			<control type="group">
+				<visible>Control.IsVisible($PARAM[id]) + Player.HasVideo + Skin.HasSetting(View$PARAM[id]VideoPreviewWindow)</visible>
+				
+				<top>$PARAM[top]</top>
+				<right>$PARAM[left]</right>
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<control type="image">
+					<texture diffuse="diffuse/rounded5-666x374.png">colors/black.png</texture>
+				</control>
+				<control type="videowindow" />
+				<control type="image">
+					<bordersize>-10</bordersize>
+					<texture border="20">thumbs/overlay.png</texture>
+				</control>
+			</control>
+		</definition>
+	</include>
 	<include name="ViewCoverFlowInfoPanel">
 		<param name="id"></param>
 		<definition>
 			<control type="group">
-				<visible>!Skin.String(View$PARAM[id]Info,none)</visible>
+				<visible>!Skin.String(View$PARAM[id]Info,none) + !Container.Content(genres)</visible>
 				<control type="button" id="9999">
 					<visible>Skin.String(View$PARAM[id]InfoDelay,manual)</visible>
 					<include>HiddenObject</include>
@@ -4565,8 +4597,8 @@
 					<onup>ClearProperty(ShowInfoPanel,home)</onup>
 					<onup>9050</onup>
 				</control>
-				<control type ="image">
-					<visible>[!ListItem.IsParentFolder + !Skin.String(View$PARAM[id]InfoDelay,manual) + Skin.HasSetting(View$PARAM[id]HidePanel)] | [Skin.String(View$PARAM[id]InfoDelay,manual) + !String.IsEmpty(Window(Home).Property(ShowInfoPanel)) + Skin.HasSetting(View$PARAM[id]HidePanel)]</visible>
+				<control type="image">
+					<visible>[!Skin.String(View$PARAM[id]InfoDelay,manual) + Skin.HasSetting(View$PARAM[id]HidePanel)] | [Skin.String(View$PARAM[id]InfoDelay,manual) + !String.IsEmpty(Window(Home).Property(ShowInfoPanel)) + Skin.HasSetting(View$PARAM[id]HidePanel)]</visible>
 					<include content="AnimationFadeInfo">
 						<param name="condition">View$PARAM[id]InfoDelay</param>
 					</include>
@@ -4574,399 +4606,462 @@
 					<texture colordiffuse="CCFFFFFF">colors/black.png</texture>
 				</control>
 				<control type="group">
-					<visible>[!ListItem.IsParentFolder + !Skin.String(View$PARAM[id]InfoDelay,manual)] | [Skin.String(View$PARAM[id]InfoDelay,manual) + !String.IsEmpty(Window(Home).Property(ShowInfoPanel))]</visible>
-					<include content="AnimationSlideInfo">
-						<param name="condition">View$PARAM[id]InfoDelay</param>
+					<visible>!ListItem.IsParentFolder</visible>
+					<include content="AnimationSlideBottomWindow">
+						<param name="slide">1000</param>
+					</include>
+					<include content="AnimationSlideBottomVisible">
+						<param name="slide">1000</param>
 					</include>
 					<control type="group">
-						<visible>!Skin.HasSetting(View$PARAM[id]HidePanel)</visible>
-						<include content="PanelDefault">
-							<param name="left">100</param>
-							<param name="right">100</param>
-							<param name="height">860</param>
-							<param name="lefttexture">120</param>
-							<param name="righttexture">120</param>
-							<param name="heighttexture">820</param>
-							<param name="reflect">false</param>
+						<visible>[!Skin.String(View$PARAM[id]InfoDelay,manual)] | [Skin.String(View$PARAM[id]InfoDelay,manual) + !String.IsEmpty(Window(Home).Property(ShowInfoPanel))]</visible>
+						<include content="AnimationSlideInfo">
+							<param name="condition">View$PARAM[id]InfoDelay</param>
 						</include>
 						<control type="group">
-							<visible>String.IsEmpty(Skin.String(View$PARAM[id]Info))</visible>
-							<control type="group">
-								<top>155</top>
-								<right>135</right>
-								<width>702</width>
-								<height>403</height>
-								<include content="ViewArtwork">
-									<param name="art">$INFO[ListItem.Art(fanart)]</param>
-									<param name="fallback">DefaultFile.png</param>
-									<param name="diffuse">diffuse/rounded5-678x381.png</param>
-								</include>
-							</control>
-							<include content="ViewShowCaseListInfo">
-								<param name="left">145</param>
-								<param name="width">896</param>
+							<visible>!Skin.HasSetting(View$PARAM[id]HidePanel)</visible>
+							<include content="AnimationSlideBottomVisible">
+								<param name="slide">1000</param>
 							</include>
-							<control type="image">
-								<top>140</top>
-								<right>850</right>
-								<height>433</height>
-								<width>4</width>
-								<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
-							</control>
-							<control type="image">
-								<top>571</top>
-								<left>120</left>
-								<right>120</right>
-								<height>4</height>
-								<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
-							</control>
-						</control>
-						<control type="group">
-							<visible>Skin.String(View$PARAM[id]Info,2thumbs)</visible>
-							<control type="group">
-								<top>155</top>
-								<right>135</right>
-								<width>343</width>
-								<height>202</height>
-								<include content="ViewArtwork">
-									<param name="art">$VAR[Fanart1Var]</param>
-									<param name="fallback">DefaultFile.png</param>
-									<param name="diffuse">diffuse/rounded5-678x381.png</param>
-								</include>
-							</control>
-							<control type="group">
-								<top>357</top>
-								<right>135</right>
-								<width>343</width>
-								<height>202</height>
-								<include content="ViewArtwork">
-									<param name="art">$VAR[Fanart2Var]</param>
-									<param name="fallback">DefaultFile.png</param>
-									<param name="diffuse">diffuse/rounded5-678x381.png</param>
-								</include>
-							</control>
-							<include content="ViewShowCaseListInfo">
-								<param name="left">145</param>
-								<param name="width">1253</param>
-							</include>
-							<control type="image">
-								<top>140</top>
-								<right>493</right>
-								<height>433</height>
-								<width>4</width>
-								<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
-							</control>
-							<control type="image">
-								<top>571</top>
-								<left>120</left>
-								<right>120</right>
-								<height>4</height>
-								<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
-							</control>
-							<control type="scrollbar" id="605531">
-								<right>475</right>
-								<top>320</top>
-								<bottom>532</bottom>
-								<onleft>60503</onleft>
-							</control>
-						</control>
-						<control type="group">
-							<visible>Skin.String(View$PARAM[id]Info,4thumbs)</visible>
-							<control type="group">
-								<top>155</top>
-								<left>135</left>
-								<width>343</width>
-								<height>202</height>
-								<include content="ViewArtwork">
-									<param name="art">$VAR[Fanart1Var]</param>
-									<param name="fallback">DefaultFile.png</param>
-									<param name="diffuse">diffuse/rounded5-678x381.png</param>
-								</include>
-							</control>
-							<control type="group">
-								<top>357</top>
-								<left>135</left>
-								<width>343</width>
-								<height>202</height>
-								<include content="ViewArtwork">
-									<param name="art">$VAR[Fanart2Var]</param>
-									<param name="fallback">DefaultFile.png</param>
-									<param name="diffuse">diffuse/rounded5-678x381.png</param>
-								</include>
-							</control>
-							<control type="group">
-								<top>155</top>
-								<right>135</right>
-								<width>343</width>
-								<height>202</height>
-								<include content="ViewArtwork">
-									<param name="art">$VAR[Fanart3Var]</param>
-									<param name="fallback">DefaultFile.png</param>
-									<param name="diffuse">diffuse/rounded5-678x381.png</param>
-								</include>
-							</control>
-							<control type="group">
-								<top>357</top>
-								<right>135</right>
-								<width>343</width>
-								<height>202</height>
-								<include content="ViewArtwork">
-									<param name="art">$VAR[Fanart4Var]</param>
-									<param name="fallback">DefaultFile.png</param>
-									<param name="diffuse">diffuse/rounded5-678x381.png</param>
-								</include>
-							</control>
-							<include>ViewShowCaseListInfo</include>
-							<control type="image">
-								<top>140</top>
-								<left>493</left>
-								<height>433</height>
-								<width>4</width>
-								<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
-							</control>
-							<control type="image">
-								<top>140</top>
-								<right>493</right>
-								<height>433</height>
-								<width>4</width>
-								<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
-							</control>
-							<control type="image">
-								<top>571</top>
-								<left>120</left>
-								<right>120</right>
-								<height>4</height>
-								<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
-							</control>
-							<control type="scrollbar" id="605531">
-								<right>475</right>
-								<top>320</top>
-								<bottom>532</bottom>
-								<onleft>60503</onleft>
-							</control>
-						</control>
-						<control type="group">
-							<visible>Skin.String(View$PARAM[id]Info,poster) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
-							<control type="group">
-								<top>155</top>
-								<right>135</right>
-								<width>275</width>
-								<height>403</height>
-								<control type="image">
-									<bordersize>10</bordersize>
-									<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
-								</control>
-								<control type="image">
-									<bordersize>10</bordersize>
-									<fadetime>TextureFadeTime</fadetime>
-									<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-									<texture background="true" diffuse="diffuse/rounded5-678x381.png">$VAR[PosterVar]</texture>
-								</control>
-								<control type="image">
-									<texture border="20">thumbs/overlay.png</texture>
-								</control>
-							</control>
-							<include content="ViewShowCaseListInfo">
-								<param name="left">145</param>
-								<param name="width">1323</param>
-							</include>
-							<control type="image">
-								<top>140</top>
-								<right>423</right>
-								<height>433</height>
-								<width>4</width>
-								<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
-							</control>
-							<control type="image">
-								<top>571</top>
-								<left>120</left>
-								<right>120</right>
-								<height>4</height>
-								<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
-							</control>
-						</control>
-						<control type="group">
-							<visible>Skin.String(View$PARAM[id]Info,poster) + ![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
-							<control type="group">
-								<top>155</top>
-								<right>135</right>
-								<width>403</width>
-								<height>403</height>
-								<control type="image">
-									<bordersize>10</bordersize>
-									<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
-								</control>
-								<control type="image">
-									<bordersize>10</bordersize>
-									<fadetime>TextureFadeTime</fadetime>
-									<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-									<texture background="true" diffuse="diffuse/rounded5-678x381.png">$VAR[PosterVar]</texture>
-								</control>
-								<control type="image">
-									<texture border="20">thumbs/overlay.png</texture>
-								</control>
-							</control>
-							<include content="ViewShowCaseListInfo">
-								<param name="left">145</param>
-								<param name="width">1195</param>
-							</include>
-							<control type="image">
-								<top>140</top>
-								<right>551</right>
-								<height>433</height>
-								<width>4</width>
-								<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
-							</control>
-							<control type="image">
-								<top>571</top>
-								<left>120</left>
-								<right>120</right>
-								<height>4</height>
-								<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
-							</control>
-						</control>
-					</control>
-					<control type="group">
-						<visible>Skin.HasSetting(View$PARAM[id]HidePanel)</visible>
-						<control type="group">
-							<visible>String.IsEmpty(Skin.String(View$PARAM[id]Info))</visible>
-							<control type="group">
-								<top>90</top>
-								<right>90</right>
-								<width>819</width>
-								<height>469</height>
-								<include content="ViewArtwork">
-									<param name="art">$INFO[ListItem.Art(fanart)]</param>
-									<param name="fallback">DefaultFile.png</param>
-									<param name="diffuse">diffuse/rounded5-678x381.png</param>
-								</include>
-							</control>
-							<include content="ViewShowCaseListInfo">
-								<param name="top">95</param>
+							<include content="PanelDefault">
 								<param name="left">100</param>
-								<param name="width">910</param>
+								<param name="right">100</param>
+								<param name="height">860</param>
+								<param name="lefttexture">120</param>
+								<param name="righttexture">120</param>
+								<param name="heighttexture">820</param>
+								<param name="reflect">false</param>
 							</include>
+							<control type="group">
+								<visible>String.IsEmpty(Skin.String(View$PARAM[id]Info)) | [Player.HasVideo + Skin.HasSetting(View$PARAM[id]VideoPreviewWindow)]</visible>
+								<control type="group">
+									<visible>![Player.HasVideo + Skin.HasSetting(View$PARAM[id]VideoPreviewWindow)]</visible>
+									<include content="AnimationSlideBottomVisible">
+										<param name="slide">1000</param>
+									</include>
+									<top>165</top>
+									<right>145</right>
+									<width>682</width>
+									<height>383</height>
+									<control type="image">
+										<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+									</control>
+									<control type="image">
+										<fadetime>TextureFadeTime</fadetime>
+										<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+										<texture background="true" diffuse="diffuse/rounded5-682x383.png" fallback="DefaultFile.png">$INFO[ListItem.Art(fanart)]</texture>
+									</control>
+									<control type="image">
+										<bordersize>-10</bordersize>
+										<texture border="20">thumbs/overlay.png</texture>
+									</control>
+								</control>
+								<include content="ViewShowCaseListInfo">
+									<param name="left">145</param>
+									<param name="width">896</param>
+								</include>
+								<control type="image">
+									<top>140</top>
+									<right>850</right>
+									<height>433</height>
+									<width>4</width>
+									<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
+								</control>
+								<control type="image">
+									<top>571</top>
+									<left>120</left>
+									<right>120</right>
+									<height>4</height>
+									<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+								</control>
+							</control>
+							<control type="group">
+								<visible>Skin.String(View$PARAM[id]Info,2thumbs) + ![Player.HasVideo + Skin.HasSetting(View$PARAM[id]VideoPreviewWindow)]</visible>
+								<control type="group">
+									<top>155</top>
+									<right>135</right>
+									<width>343</width>
+									<height>202</height>
+									<include content="ViewArtwork">
+										<param name="art">$VAR[Fanart1Var]</param>
+										<param name="fallback">DefaultFile.png</param>
+										<param name="diffuse">diffuse/rounded5-323x182.png</param>
+									</include>
+								</control>
+								<control type="group">
+									<top>357</top>
+									<right>135</right>
+									<width>343</width>
+									<height>202</height>
+									<include content="ViewArtwork">
+										<param name="art">$VAR[Fanart2Var]</param>
+										<param name="fallback">DefaultFile.png</param>
+										<param name="diffuse">diffuse/rounded5-323x182.png</param>
+									</include>
+								</control>
+								<include content="ViewShowCaseListInfo">
+									<param name="left">145</param>
+									<param name="width">1253</param>
+								</include>
+								<control type="image">
+									<top>140</top>
+									<right>493</right>
+									<height>433</height>
+									<width>4</width>
+									<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
+								</control>
+								<control type="image">
+									<top>571</top>
+									<left>120</left>
+									<right>120</right>
+									<height>4</height>
+									<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+								</control>
+								<control type="scrollbar" id="605531">
+									<right>475</right>
+									<top>320</top>
+									<bottom>532</bottom>
+									<onleft>60503</onleft>
+								</control>
+							</control>
+							<control type="group">
+								<visible>Skin.String(View$PARAM[id]Info,4thumbs) + ![Player.HasVideo + Skin.HasSetting(View$PARAM[id]VideoPreviewWindow)]</visible>
+								<control type="group">
+									<top>155</top>
+									<left>135</left>
+									<width>343</width>
+									<height>202</height>
+									<include content="ViewArtwork">
+										<param name="art">$VAR[Fanart1Var]</param>
+										<param name="fallback">DefaultFile.png</param>
+										<param name="diffuse">diffuse/rounded5-323x182.png</param>
+									</include>
+								</control>
+								<control type="group">
+									<top>357</top>
+									<left>135</left>
+									<width>343</width>
+									<height>202</height>
+									<include content="ViewArtwork">
+										<param name="art">$VAR[Fanart2Var]</param>
+										<param name="fallback">DefaultFile.png</param>
+										<param name="diffuse">diffuse/rounded5-323x182.png</param>
+									</include>
+								</control>
+								<control type="group">
+									<top>155</top>
+									<right>135</right>
+									<width>343</width>
+									<height>202</height>
+									<include content="ViewArtwork">
+										<param name="art">$VAR[Fanart3Var]</param>
+										<param name="fallback">DefaultFile.png</param>
+										<param name="diffuse">diffuse/rounded5-323x182.png</param>
+									</include>
+								</control>
+								<control type="group">
+									<top>357</top>
+									<right>135</right>
+									<width>343</width>
+									<height>202</height>
+									<include content="ViewArtwork">
+										<param name="art">$VAR[Fanart4Var]</param>
+										<param name="fallback">DefaultFile.png</param>
+										<param name="diffuse">diffuse/rounded5-323x182.png</param>
+									</include>
+								</control>
+								<include>ViewShowCaseListInfo</include>
+								<control type="image">
+									<top>140</top>
+									<left>493</left>
+									<height>433</height>
+									<width>4</width>
+									<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
+								</control>
+								<control type="image">
+									<top>140</top>
+									<right>493</right>
+									<height>433</height>
+									<width>4</width>
+									<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
+								</control>
+								<control type="image">
+									<top>571</top>
+									<left>120</left>
+									<right>120</right>
+									<height>4</height>
+									<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+								</control>
+								<control type="scrollbar" id="605531">
+									<right>475</right>
+									<top>320</top>
+									<bottom>532</bottom>
+									<onleft>60503</onleft>
+								</control>
+							</control>
+							<control type="group">
+								<visible>Skin.String(View$PARAM[id]Info,poster) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + ![Player.HasVideo + Skin.HasSetting(View$PARAM[id]VideoPreviewWindow)]</visible>
+								<control type="group">
+									<top>155</top>
+									<right>135</right>
+									<width>275</width>
+									<height>403</height>
+									<control type="image">
+										<bordersize>10</bordersize>
+										<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+									</control>
+									<control type="image">
+										<bordersize>10</bordersize>
+										<fadetime>TextureFadeTime</fadetime>
+										<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+										<texture background="true" diffuse="diffuse/rounded5-255x383.png">$VAR[PosterVar]</texture>
+									</control>
+									<control type="image">
+										<texture border="20">thumbs/overlay.png</texture>
+									</control>
+								</control>
+								<include content="ViewShowCaseListInfo">
+									<param name="left">145</param>
+									<param name="width">1323</param>
+								</include>
+								<control type="image">
+									<top>140</top>
+									<right>423</right>
+									<height>433</height>
+									<width>4</width>
+									<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
+								</control>
+								<control type="image">
+									<top>571</top>
+									<left>120</left>
+									<right>120</right>
+									<height>4</height>
+									<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+								</control>
+							</control>
+							<control type="group">
+								<visible>Skin.String(View$PARAM[id]Info,poster) + ![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + ![Player.HasVideo + Skin.HasSetting(View$PARAM[id]VideoPreviewWindow)]</visible>
+								<control type="group">
+									<top>155</top>
+									<right>135</right>
+									<width>403</width>
+									<height>403</height>
+									<control type="image">
+										<bordersize>10</bordersize>
+										<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+									</control>
+									<control type="image">
+										<bordersize>10</bordersize>
+										<fadetime>TextureFadeTime</fadetime>
+										<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+										<texture background="true" diffuse="diffuse/rounded5-383x383.png">$VAR[PosterVar]</texture>
+									</control>
+									<control type="image">
+										<texture border="20">thumbs/overlay.png</texture>
+									</control>
+								</control>
+								<include content="ViewShowCaseListInfo">
+									<param name="left">145</param>
+									<param name="width">1195</param>
+								</include>
+								<control type="image">
+									<top>140</top>
+									<right>551</right>
+									<height>433</height>
+									<width>4</width>
+									<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
+								</control>
+								<control type="image">
+									<top>571</top>
+									<left>120</left>
+									<right>120</right>
+									<height>4</height>
+									<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+								</control>
+							</control>
 						</control>
 						<control type="group">
-							<visible>Skin.String(View$PARAM[id]Info,2thumbs)</visible>
-							<control type="group">
-								<top>90</top>
-								<right>90</right>
-								<width>403</width>
-								<height>235</height>
-								<include content="ViewArtwork">
-									<param name="art">$INFO[ListItem.Art(fanart1)]</param>
-									<param name="fallback">DefaultFile.png</param>
-									<param name="diffuse">diffuse/rounded5-678x381.png</param>
-								</include>
-							</control>
-							<control type="group">
-								<top>324</top>
-								<right>90</right>
-								<width>403</width>
-								<height>235</height>
-								<include content="ViewArtwork">
-									<param name="art">$INFO[ListItem.Art(fanart2)]</param>
-									<param name="fallback">DefaultFile.png</param>
-									<param name="diffuse">diffuse/rounded5-678x381.png</param>
-								</include>
-							</control>
-							<include content="ViewShowCaseListInfo">
-								<param name="top">95</param>
-								<param name="left">100</param>
-								<param name="width">1312</param>
+							<visible>Skin.HasSetting(View$PARAM[id]HidePanel)</visible>
+							<include content="AnimationSlideBottomVisible">
+								<param name="slide">1000</param>
 							</include>
-						</control>
-						<control type="group">
-							<visible>Skin.String(View$PARAM[id]Info,4thumbs)</visible>
 							<control type="group">
-								<top>90</top>
-								<left>90</left>
-								<width>403</width>
-								<height>235</height>
-								<include content="ViewArtwork">
-									<param name="art">$INFO[ListItem.Art(fanart1)]</param>
-									<param name="fallback">DefaultFile.png</param>
-									<param name="diffuse">diffuse/rounded5-678x381.png</param>
+								<visible>String.IsEmpty(Skin.String(View$PARAM[id]Info)) | [Player.HasVideo + Skin.HasSetting(View$PARAM[id]VideoPreviewWindow)]</visible>
+								<control type="group">
+									<visible>![Player.HasVideo + Skin.HasSetting(View$PARAM[id]VideoPreviewWindow)]</visible>
+									<include content="AnimationSlideBottomVisible">
+										<param name="slide">1000</param>
+									</include>
+									<top>100</top>
+									<right>100</right>
+									<width>799</width>
+									<height>449</height>
+									<control type="image">
+										<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+									</control>
+									<control type="image">
+										<fadetime>TextureFadeTime</fadetime>
+										<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+										<texture background="true" diffuse="diffuse/rounded5-799x449.png" fallback="DefaultFile.png">$INFO[ListItem.Art(fanart)]</texture>
+									</control>
+									<control type="image">
+										<bordersize>-10</bordersize>
+										<texture border="20">thumbs/overlay.png</texture>
+									</control>
+								</control>
+								<include content="ViewShowCaseListInfo">
+									<param name="top">95</param>
+									<param name="left">100</param>
+									<param name="width">910</param>
 								</include>
 							</control>
 							<control type="group">
-								<top>324</top>
-								<left>90</left>
-								<width>403</width>
-								<height>235</height>
-								<include content="ViewArtwork">
-									<param name="art">$INFO[ListItem.Art(fanart2)]</param>
-									<param name="fallback">DefaultFile.png</param>
-									<param name="diffuse">diffuse/rounded5-678x381.png</param>
+								<visible>Skin.String(View$PARAM[id]Info,2thumbs) + ![Player.HasVideo + Skin.HasSetting(View$PARAM[id]VideoPreviewWindow)]</visible>
+								<control type="group">
+									<top>90</top>
+									<right>90</right>
+									<width>403</width>
+									<height>235</height>
+									<include content="ViewArtwork">
+										<param name="art">$INFO[ListItem.Art(fanart1)]</param>
+										<param name="fallback">DefaultFile.png</param>
+										<param name="diffuse">diffuse/rounded5-383x215.png</param>
+									</include>
+								</control>
+								<control type="group">
+									<top>324</top>
+									<right>90</right>
+									<width>403</width>
+									<height>235</height>
+									<include content="ViewArtwork">
+										<param name="art">$INFO[ListItem.Art(fanart2)]</param>
+										<param name="fallback">DefaultFile.png</param>
+										<param name="diffuse">diffuse/rounded5-383x215.png</param>
+									</include>
+								</control>
+								<include content="ViewShowCaseListInfo">
+									<param name="top">95</param>
+									<param name="left">100</param>
+									<param name="width">1312</param>
 								</include>
 							</control>
 							<control type="group">
-								<top>90</top>
-								<right>90</right>
-								<width>403</width>
-								<height>235</height>
-								<include content="ViewArtwork">
-									<param name="art">$INFO[ListItem.Art(fanart3)]</param>
-									<param name="fallback">DefaultFile.png</param>
-									<param name="diffuse">diffuse/rounded5-678x381.png</param>
+								<visible>Skin.String(View$PARAM[id]Info,4thumbs) + ![Player.HasVideo + Skin.HasSetting(View$PARAM[id]VideoPreviewWindow)]</visible>
+								<control type="group">
+									<top>90</top>
+									<left>90</left>
+									<width>403</width>
+									<height>235</height>
+									<include content="ViewArtwork">
+										<param name="art">$INFO[ListItem.Art(fanart1)]</param>
+										<param name="fallback">DefaultFile.png</param>
+										<param name="diffuse">diffuse/rounded5-383x215.png</param>
+									</include>
+								</control>
+								<control type="group">
+									<top>324</top>
+									<left>90</left>
+									<width>403</width>
+									<height>235</height>
+									<include content="ViewArtwork">
+										<param name="art">$INFO[ListItem.Art(fanart2)]</param>
+										<param name="fallback">DefaultFile.png</param>
+										<param name="diffuse">diffuse/rounded5-383x215.png</param>
+									</include>
+								</control>
+								<control type="group">
+									<top>90</top>
+									<right>90</right>
+									<width>403</width>
+									<height>235</height>
+									<include content="ViewArtwork">
+										<param name="art">$INFO[ListItem.Art(fanart3)]</param>
+										<param name="fallback">DefaultFile.png</param>
+										<param name="diffuse">diffuse/rounded5-383x215.png</param>
+									</include>
+								</control>
+								<control type="group">
+									<top>324</top>
+									<right>90</right>
+									<width>403</width>
+									<height>235</height>
+									<include content="ViewArtwork">
+										<param name="art">$INFO[ListItem.Art(fanart4)]</param>
+										<param name="fallback">DefaultFile.png</param>
+										<param name="diffuse">diffuse/rounded5-383x215.png</param>
+									</include>
+								</control>
+								<include content="ViewShowCaseListInfo">
+									<param name="top">95</param>
+									<param name="left">508</param>
+									<param name="width">904</param>
 								</include>
 							</control>
 							<control type="group">
-								<top>324</top>
-								<right>90</right>
-								<width>403</width>
-								<height>235</height>
-								<include content="ViewArtwork">
-									<param name="art">$INFO[ListItem.Art(fanart4)]</param>
-									<param name="fallback">DefaultFile.png</param>
-									<param name="diffuse">diffuse/rounded5-678x381.png</param>
+								<visible>Skin.String(View$PARAM[id]Info,poster) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)] + ![Player.HasVideo + Skin.HasSetting(View$PARAM[id]VideoPreviewWindow)]</visible>
+								<control type="group">
+									<top>90</top>
+									<right>90</right>
+									<width>319</width>
+									<height>469</height>
+									<include content="ViewArtwork">
+										<param name="fallback">DefaultFile.png</param>
+										<param name="diffuse">diffuse/rounded5-299x449.png</param>
+									</include>
+								</control>
+								<include content="ViewShowCaseListInfo">
+									<param name="top">95</param>
+									<param name="left">100</param>
+									<param name="width">1396</param>
 								</include>
 							</control>
-							<include content="ViewShowCaseListInfo">
-								<param name="top">95</param>
-								<param name="left">508</param>
-								<param name="width">904</param>
-							</include>
-						</control>
-						<control type="group">
-							<visible>Skin.String(View$PARAM[id]Info,poster) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)]</visible>
 							<control type="group">
-								<top>90</top>
-								<right>90</right>
-								<width>319</width>
-								<height>469</height>
-								<include content="ViewArtwork">
-									<param name="fallback">DefaultFile.png</param>
-									<param name="diffuse">diffuse/rounded5-678x381.png</param>
+								<visible>Skin.String(View$PARAM[id]Info,poster) + ![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)] + ![Player.HasVideo + Skin.HasSetting(View$PARAM[id]VideoPreviewWindow)]</visible>
+								<control type="group">
+									<top>90</top>
+									<right>90</right>
+									<width>469</width>
+									<height>469</height>
+									<include content="ViewArtwork">
+										<param name="fallback">DefaultFile.png</param>
+										<param name="diffuse">diffuse/rounded5-449x449.png</param>
+									</include>
+								</control>
+								<include content="ViewShowCaseListInfo">
+									<param name="top">95</param>
+									<param name="left">100</param>
+									<param name="width">1246</param>
 								</include>
 							</control>
-							<include content="ViewShowCaseListInfo">
-								<param name="top">95</param>
-								<param name="left">100</param>
-								<param name="width">1396</param>
-							</include>
-						</control>
-						<control type="group">
-							<visible>Skin.String(View$PARAM[id]Info,poster) + ![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)]</visible>
-							<control type="group">
-								<top>90</top>
-								<right>90</right>
-								<width>469</width>
-								<height>469</height>
-								<include content="ViewArtwork">
-									<param name="fallback">DefaultFile.png</param>
-									<param name="diffuse">diffuse/rounded5-678x381.png</param>
-								</include>
-							</control>
-							<include content="ViewShowCaseListInfo">
-								<param name="top">95</param>
-								<param name="left">100</param>
-								<param name="width">1246</param>
-							</include>
 						</control>
 					</control>
 				</control>
+			</control>
+			<control type="group">
+				<visible>!Skin.HasSetting(View$PARAM[id]HidePanel) + Skin.HasSetting(View$PARAM[id]VideoPreviewWindow)</visible>
+				<include content="AnimationSlideBottomVisible">
+					<param name="slide">1000</param>
+				</include>
+				<include content="ViewVideoPreview">
+					<param name="id">$PARAM[id]</param>
+					<param name="top">165</param>
+					<param name="left">145</param>
+					<param name="width">682</param>
+					<param name="height">383</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>Skin.HasSetting(View$PARAM[id]HidePanel) + Skin.HasSetting(View$PARAM[id]VideoPreviewWindow)</visible>
+				<include content="AnimationSlideBottomVisible">
+					<param name="slide">1000</param>
+				</include>
+				<include content="ViewVideoPreview">
+					<param name="id">$PARAM[id]</param>
+					<param name="top">100</param>
+					<param name="left">100</param>
+					<param name="width">799</param>
+					<param name="height">449</param>
+				</include>
 			</control>
 		</definition>
 	</include>
@@ -5280,9 +5375,9 @@
 		<param name="casereflectborder"></param>
 		<param name="diffuse"></param>
 		<definition>
-			<visible>!String.IsEmpty(Container.ListItem($PARAM[item]).FolderPath)</visible>
+			<visible>[!Skin.HasSetting(View506FixedList) + !String.IsEmpty(Container.ListItem($PARAM[item]).FolderPath)] | [Skin.HasSetting(View506FixedList) + !String.IsEmpty(Container.ListItemNoWrap($PARAM[item]).FolderPath)]</visible>
 			<control type="group">
-				<visible>!Skin.HasSetting(View506VideoCase)</visible>
+				<visible>!Skin.HasSetting(View506VideoCase) | Container.Content(genres)</visible>
 				<control type="group">
 					<visible>!Skin.HasSetting(View506HideReflect)</visible>
 					<top>$PARAM[reflecttop]</top>
@@ -5294,7 +5389,7 @@
 					<control type="image">
 						<bordersize>10</bordersize>
 						<aspectratio aligny="top" scalediffuse="false">keep</aspectratio>
-						<texture background="true" flipy="true" diffuse="thumbs/reflect.png" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+						<texture background="true" flipy="true" diffuse="thumbs/reflect.png">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
 					</control>
 				</control>
 				<control type="image">
@@ -5304,14 +5399,14 @@
 				<control type="image">
 					<bordersize>10</bordersize>
 					<aspectratio scalediffuse="false">scale</aspectratio>
-					<texture background="true" diffuse="$PARAM[diffuse]" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+					<texture background="true" diffuse="$PARAM[diffuse]">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
 				</control>
 				<control type="image">
 					<texture border="20">thumbs/overlay.png</texture>
 				</control>
 			</control>
 			<control type="group">
-				<visible>Skin.HasSetting(View506VideoCase)</visible>
+				<visible>Skin.HasSetting(View506VideoCase) + !Container.Content(genres)</visible>
 				<control type="group">
 					<visible>!Skin.HasSetting(View506HideReflect)</visible>
 					<top>$PARAM[reflecttop]</top>
@@ -5330,7 +5425,7 @@
 						<visible>!ListItem($PARAM[item]).IsParentFolder</visible>
 						<bordersize>$PARAM[casereflectborder]</bordersize>
 						<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
-						<texture background="true" flipy="true" diffuse="thumbs/reflectsquare.png" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+						<texture background="true" flipy="true" diffuse="thumbs/reflectsquare.png">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
 					</control>
 					<control type="image">
 						<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
@@ -5351,7 +5446,7 @@
 					<visible>!ListItem($PARAM[item]).IsParentFolder</visible>
 					<bordersize>$PARAM[caseborder]</bordersize>
 					<aspectratio scalediffuse="false">stretch</aspectratio>
-					<texture background="true" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+					<texture background="true">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
 				</control>
 				<control type="image">
 					<texture background="true" border="15">$VAR[ShowcaseCase$PARAM[item]Var]</texture>
@@ -5379,9 +5474,9 @@
 		<param name="casereflectborder"></param>
 		<param name="diffuse"></param>
 		<definition>
-			<visible>!String.IsEmpty(Container.ListItem($PARAM[item]).FolderPath)</visible>
+			<visible>[!Skin.HasSetting(View507FixedList) + !String.IsEmpty(Container.ListItem($PARAM[item]).FolderPath)] | [Skin.HasSetting(View507FixedList) + !String.IsEmpty(Container.ListItemNoWrap($PARAM[item]).FolderPath)]</visible>
 			<control type="group">
-				<visible>![Container.Content(musicvideos) | Container.Content(albums)] | [!Skin.HasSetting(View507AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]]</visible>
+				<visible>!Container.Content(albums) | [!Skin.HasSetting(View507AlbumCase) + Container.Content(albums)]</visible>
 				<control type="group">
 					<visible>!Skin.HasSetting(View507HideReflect)</visible>
 					<top>$PARAM[reflecttop]</top>
@@ -5393,7 +5488,7 @@
 					<control type="image">
 						<bordersize>10</bordersize>
 						<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-						<texture background="true" flipy="true" diffuse="thumbs/reflect.png" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+						<texture background="true" flipy="true" diffuse="thumbs/reflect.png">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
 					</control>
 				</control>
 				<control type="image">
@@ -5403,14 +5498,14 @@
 				<control type="image">
 					<bordersize>10</bordersize>
 					<aspectratio scalediffuse="false">scale</aspectratio>
-					<texture background="true" diffuse="$PARAM[diffuse]" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+					<texture background="true" diffuse="$PARAM[diffuse]">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
 				</control>
 				<control type="image">
 					<texture border="20">thumbs/overlay.png</texture>
 				</control>
 			</control>
 			<control type="group">
-				<visible>Skin.HasSetting(View507AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]</visible>
+				<visible>Skin.HasSetting(View507AlbumCase) + Container.Content(albums)</visible>
 				<control type="group">
 					<top>4</top>
 					<control type="group">
@@ -5431,7 +5526,7 @@
 							<visible>!ListItem($PARAM[item]).IsParentFolder</visible>
 							<bordersize>10</bordersize>
 							<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
-							<texture background="true" flipy="true" diffuse="thumbs/reflectsquare.png" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+							<texture background="true" flipy="true" diffuse="thumbs/reflectsquare.png">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
 						</control>
 						<control type="image">
 							<visible>!ListItem($PARAM[item]).IsParentFolder</visible>
@@ -5454,7 +5549,7 @@
 					<visible>!ListItem($PARAM[item]).IsParentFolder</visible>
 					<bordersize>10</bordersize>
 					<aspectratio scalediffuse="false">stretch</aspectratio>
-					<texture background="true" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+					<texture background="true">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
 				</control>
 				<control type="image">
 					<visible>!ListItem($PARAM[item]).IsParentFolder</visible>
@@ -5472,7 +5567,7 @@
 		<param name="left"></param>
 		<param name="item"></param>
 		<definition>
-			<visible>!String.IsEmpty(Container.ListItem($PARAM[item]).FolderPath)</visible>
+			<visible>[!Skin.HasSetting(View508FixedList) + !String.IsEmpty(Container.ListItem($PARAM[item]).FolderPath)] | [Skin.HasSetting(View508FixedList) + !String.IsEmpty(Container.ListItemNoWrap($PARAM[item]).FolderPath)]</visible>
 			<left>$PARAM[left]</left>
 			<width>270</width>
 			<height>396</height>
@@ -5489,7 +5584,7 @@
 					<control type="image">
 						<bordersize>10</bordersize>
 						<aspectratio scalediffuse="false">scale</aspectratio>
-						<texture background="true" flipy="true" diffuse="thumbs/reflect.png" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+						<texture background="true" flipy="true" diffuse="thumbs/reflect.png">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
 					</control>
 				</control>
 				<control type="image">
@@ -5499,7 +5594,7 @@
 				<control type="image">
 					<bordersize>10</bordersize>
 					<aspectratio scalediffuse="false">scale</aspectratio>
-					<texture background="true" diffuse="$PARAM[diffuse]" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+					<texture background="true" diffuse="diffuse/rounded5-250x376.png">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
 				</control>
 				<!-- <control type="image">
 					<top>10</top>
@@ -5533,7 +5628,7 @@
 						<visible>!ListItem($PARAM[item]).IsParentFolder</visible>
 						<bordersize>17,19,17,37</bordersize>
 						<aspectratio scalediffuse="false">stretch</aspectratio>
-						<texture background="true" flipy="true" diffuse="thumbs/reflectsquare.png" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+						<texture background="true" flipy="true" diffuse="thumbs/reflectsquare.png">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
 					</control>
 					<control type="image">
 						<texture background="true" flipy="true" diffuse="thumbs/reflect.png" border="15">$VAR[ShowcaseCase$PARAM[item]Var]</texture>
@@ -5553,7 +5648,7 @@
 					<visible>!ListItem($PARAM[item]).IsParentFolder</visible>
 					<bordersize>17,37,17,19</bordersize>
 					<aspectratio scalediffuse="false">stretch</aspectratio>
-					<texture background="true" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+					<texture background="true">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
 				</control>
 				<control type="image">
 					<texture background="true" border="15">$VAR[ShowcaseCase$PARAM[item]Var]</texture>
@@ -5579,12 +5674,12 @@
 		<param name="casevisible">true</param>
 		<param name="casefrontvisible">false</param>
 		<definition>
-			<visible>!String.IsEmpty(Container.ListItem($PARAM[item]).FolderPath)</visible>
+			<visible>[!Skin.HasSetting(View509FixedList) + !String.IsEmpty(Container.ListItem($PARAM[item]).FolderPath)] | [Skin.HasSetting(View509FixedList) + !String.IsEmpty(Container.ListItemNoWrap($PARAM[item]).FolderPath)]</visible>
 			<left>$PARAM[left]</left>
 			<width>396</width>
 			<height>396</height>
 			<control type="group">
-				<visible>![Container.Content(musicvideos) | Container.Content(albums)] | [!Skin.HasSetting(View509AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]]</visible>
+				<visible>!Container.Content(albums) | [!Skin.HasSetting(View509AlbumCase) + Container.Content(albums)]</visible>
 				<control type="group">
 					<visible>!Skin.HasSetting(View509HideReflect)</visible>
 					<top>381</top>
@@ -5596,7 +5691,7 @@
 					<control type="image">
 						<bordersize>10</bordersize>
 						<aspectratio scalediffuse="false">scale</aspectratio>
-						<texture background="true" flipy="true" diffuse="thumbs/reflectsquare.png" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+						<texture background="true" flipy="true" diffuse="thumbs/reflectsquare.png">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
 					</control>
 				</control>
 				<control type="image">
@@ -5606,14 +5701,14 @@
 				<control type="image">
 					<bordersize>10</bordersize>
 					<aspectratio scalediffuse="false">scale</aspectratio>
-					<texture background="true" diffuse="$PARAM[diffuse]" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+					<texture background="true" diffuse="diffuse/rounded5-376x376.png">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
 				</control>
 				<control type="image">
 					<texture border="20">thumbs/overlay.png</texture>
 				</control>
 			</control>
 			<control type="group">
-				<visible>Skin.HasSetting(View509AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]</visible>
+				<visible>Skin.HasSetting(View509AlbumCase) + Container.Content(albums)</visible>
 				<control type="group">
 					<visible>!Skin.HasSetting(View509HideReflect)</visible>
 					<top>381</top>
@@ -5632,7 +5727,7 @@
 						<visible>!ListItem($PARAM[item]).IsParentFolder</visible>
 						<bordersize>14</bordersize>
 						<aspectratio scalediffuse="false">stretch</aspectratio>
-						<texture background="true" flipy="true" diffuse="thumbs/reflectsquare.png" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+						<texture background="true" flipy="true" diffuse="thumbs/reflectsquare.png">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
 					</control>
 					<control type="image">
 						<visible>$PARAM[casefrontvisible] + !ListItem($PARAM[item]).IsParentFolder + !String.Contains(ListItem($PARAM[item]).Label,*)</visible>
@@ -5664,7 +5759,7 @@
 					<visible>!ListItem($PARAM[item]).IsParentFolder</visible>
 					<bordersize>14</bordersize>
 					<aspectratio scalediffuse="false">stretch</aspectratio>
-					<texture background="true" fallback="">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+					<texture background="true">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
 				</control>
 				<control type="image">
 					<visible>$PARAM[casefrontvisible] + !ListItem($PARAM[item]).IsParentFolder + !String.Contains(ListItem($PARAM[item]).Label,*)</visible>
@@ -5685,144 +5780,141 @@
 		</definition>
 	</include>
 	<variable name="ShowcaseItem-1Var">
-		<value condition="Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-1).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(-1).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(-1).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!ListItem(-1).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-1).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(-1).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(-1).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(-1).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(-1).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
 		<value condition="!String.IsEmpty(ListItem(-1).Art(poster))">$INFO[ListItem(-1).Art(poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(-1).Thumb)">$INFO[ListItem(-1).Thumb]</value>
 		<value>$INFO[ListItem(-1).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem-2Var">
-		<value condition="Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-2).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(-2).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(-2).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!ListItem(-2).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-2).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(-2).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(-2).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(-2).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(-2).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
 		<value condition="!String.IsEmpty(ListItem(-2).Art(poster))">$INFO[ListItem(-2).Art(poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(-2).Thumb)">$INFO[ListItem(-2).Thumb]</value>
 		<value>$INFO[ListItem(-2).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem-3Var">
-		<value condition="Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-3).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(-3).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(-3).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!ListItem(-3).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-3).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(-3).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(-3).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(-3).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(-3).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
 		<value condition="!String.IsEmpty(ListItem(-3).Art(poster))">$INFO[ListItem(-3).Art(poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(-3).Thumb)">$INFO[ListItem(-3).Thumb]</value>
 		<value>$INFO[ListItem(-3).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem-4Var">
-		<value condition="Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-4).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(-4).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(-4).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!ListItem(-4).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-4).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(-4).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(-4).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(-4).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(-4).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
 		<value condition="!String.IsEmpty(ListItem(-4).Art(poster))">$INFO[ListItem(-4).Art(poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(-4).Thumb)">$INFO[ListItem(-4).Thumb]</value>
 		<value>$INFO[ListItem(-4).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem-5Var">
-		<value condition="Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-5).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(-5).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(-5).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!ListItem(-5).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-5).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(-5).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(-5).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(-5).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(-5).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
 		<value condition="!String.IsEmpty(ListItem(-5).Art(poster))">$INFO[ListItem(-5).Art(poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(-5).Thumb)">$INFO[ListItem(-5).Thumb]</value>
 		<value>$INFO[ListItem(-5).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem-6Var">
-		<value condition="Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-6).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(-6).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(-6).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!ListItem(-6).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-6).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(-6).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(-6).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(-6).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(-6).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
 		<value condition="!String.IsEmpty(ListItem(-6).Art(poster))">$INFO[ListItem(-6).Art(poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(-6).Thumb)">$INFO[ListItem(-6).Thumb]</value>
 		<value>$INFO[ListItem(-6).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem-7Var">
-		<value condition="Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-7).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(-7).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(-7).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!ListItem(-7).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-7).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(-7).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(-7).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(-7).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(-7).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
 		<value condition="!String.IsEmpty(ListItem(-7).Art(poster))">$INFO[ListItem(-7).Art(poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(-7).Thumb)">$INFO[ListItem(-7).Thumb]</value>
 		<value>$INFO[ListItem(-7).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem0Var">
-		<value condition="Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(0).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(0).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(0).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!ListItem(0).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(0).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(0).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(0).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(0).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(0).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
 		<value condition="!String.IsEmpty(ListItem(0).Art(poster))">$INFO[ListItem(0).Art(poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(0).Thumb)">$INFO[ListItem(0).Thumb]</value>
 		<value>$INFO[ListItem(0).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem1Var">
-		<value condition="Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(1).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(1).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(1).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!ListItem(1).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(1).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(1).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(1).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(1).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(1).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
 		<value condition="!String.IsEmpty(ListItem(1).Art(poster))">$INFO[ListItem(1).Art(poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(1).Thumb)">$INFO[ListItem(1).Thumb]</value>
 		<value>$INFO[ListItem(1).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem2Var">
-		<value condition="Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(2).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(2).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(2).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!ListItem(2).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(2).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(2).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(2).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(2).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(2).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
 		<value condition="!String.IsEmpty(ListItem(2).Art(poster))">$INFO[ListItem(2).Art(poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(2).Thumb)">$INFO[ListItem(2).Thumb]</value>
 		<value>$INFO[ListItem(2).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem3Var">
-		<value condition="Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(3).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(3).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(3).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!ListItem(3).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(3).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(3).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(3).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(3).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(3).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
 		<value condition="!String.IsEmpty(ListItem(3).Art(poster))">$INFO[ListItem(3).Art(poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(3).Thumb)">$INFO[ListItem(3).Thumb]</value>
 		<value>$INFO[ListItem(3).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem4Var">
-		<value condition="Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(4).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(4).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(4).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!ListItem(4).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(4).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(4).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(4).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(4).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(4).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
 		<value condition="!String.IsEmpty(ListItem(4).Art(poster))">$INFO[ListItem(4).Art(poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(4).Thumb)">$INFO[ListItem(4).Thumb]</value>
 		<value>$INFO[ListItem(4).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem5Var">
-		<value condition="Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(5).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(5).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(5).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!ListItem(5).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(5).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(5).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(5).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(5).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(5).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
 		<value condition="!String.IsEmpty(ListItem(5).Art(poster))">$INFO[ListItem(5).Art(poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(5).Thumb)">$INFO[ListItem(5).Thumb]</value>
 		<value>$INFO[ListItem(5).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem6Var">
-		<value condition="Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(6).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(6).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(6).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!ListItem(6).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(6).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(6).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(6).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(6).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(6).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
 		<value condition="!String.IsEmpty(ListItem(6).Art(poster))">$INFO[ListItem(6).Art(poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(6).Thumb)">$INFO[ListItem(6).Thumb]</value>
 		<value>$INFO[ListItem(6).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem7Var">
-		<value condition="Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(7).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(7).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(7).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!ListItem(7).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(7).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(7).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(7).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(7).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(7).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
 		<value condition="!String.IsEmpty(ListItem(7).Art(poster))">$INFO[ListItem(7).Art(poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(7).Thumb)">$INFO[ListItem(7).Thumb]</value>
 		<value>$INFO[ListItem(7).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem8Var">
-		<value condition="Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(8).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(8).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(8).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!ListItem(8).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(8).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(8).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(8).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(8).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(8).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
 		<value condition="!String.IsEmpty(ListItem(8).Art(poster))">$INFO[ListItem(8).Art(poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(8).Thumb)">$INFO[ListItem(8).Thumb]</value>
 		<value>$INFO[ListItem(8).Icon]</value>
 	</variable>
 	<variable name="ShowcaseItem9Var">
-		<value condition="Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(9).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(9).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
-		<value condition="Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(9).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!ListItem(9).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(9).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(9).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(9).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(9).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(9).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
 		<value condition="!String.IsEmpty(ListItem(9).Art(poster))">$INFO[ListItem(9).Art(poster)]</value>
 		<value condition="!String.IsEmpty(ListItem(9).Thumb)">$INFO[ListItem(9).Thumb]</value>
 		<value>$INFO[ListItem(9).Icon]</value>
 	</variable>
-
-
-
 	<variable name="ShowcaseCase-9Var">
 		<value condition="String.IsEqual(ListItem(-9).DBTYPE,tvshow) | String.IsEqual(ListItem(-9).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
 		<value condition="ListItem(-9).IsCollection">thumbs/case/portrait/set.png</value>
@@ -5998,11 +6090,6 @@
 		<value condition="ListItem(7).IsStereoscopic">thumbs/case/portrait/back/1087p.png</value>
 		<value condition="!String.IsEmpty(ListItem(7).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(7).VideoResolution]p.png</value>
 	</variable>
-	<variable name="ShowcaseCaseBack7Var">
-		<value condition="ListItem(7).IsStereoscopic">thumbs/case/portrait/back/1087p.png</value>
-		<value condition="!String.IsEmpty(ListItem(7).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(7).VideoResolution]p.png</value>
-	</variable>
-
 	<variable name="Showcase-7StudioIconsVar">
 		<value condition="!String.IsEmpty(ListItem(-7).Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(-7).Studio,resource://resource.images.studios.white/,.png]</value>
 		<value condition="!String.IsEmpty(ListItem(-7).Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(-7).Studio,resource://resource.images.studios.coloured/,.png]</value>
