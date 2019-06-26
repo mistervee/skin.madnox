@@ -74,6 +74,7 @@
 		<definition>
 			<control type="group">
 				<visible>Control.IsVisible(504)</visible>
+				<animation effect="slide" end="0,30" condition="Container.Content(genres) + [System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour) | System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)]">conditional</animation>
 				<include content="AnimationSlideBottomWindow">
 					<param name="slide">820</param>
 				</include>
@@ -81,13 +82,13 @@
 					<param name="slide">820</param>
 				</include>
 				<control type="$PARAM[listtype]" id="504">
-					<animation effect="slide" end="0,30" condition="Container.Content(genres) + [System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour) | System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)]">conditional</animation>
 					<top>290</top>
 					<left>-203</left>
-					<width>2340</width>
+					<width>2123</width>
 					<height>1000</height>
 					<onup>9050</onup>
-					<pagecontrol>6080</pagecontrol>
+					<ondown>60504</ondown>
+					<pagecontrol>60504</pagecontrol>
 					<focusposition>1</focusposition>
 					<orientation>horizontal</orientation>
 					<viewtype label="$LOCALIZE[31245]">icon</viewtype>
@@ -169,12 +170,9 @@
 						</control>
 					</focusedlayout>
 				</control>
-				<!-- <control type="scrollbar" id="6057">
-					<right>80</right>
-					<top>144</top>
-					<bottom>144</bottom>
-					<onleft>80</onleft>
-				</control> -->
+				<include content="ViewCoverFlowScrollBar">
+					<param name="id">504</param>
+				</include>
 			</control>
 		</definition>
 	</include>

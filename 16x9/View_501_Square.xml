@@ -48,6 +48,7 @@
 		<definition>
 			<control type="group">
 				<visible>Control.IsVisible(501)</visible>
+				<animation effect="slide" end="0,30" condition="Container.Content(genres) + System.HasAddon(resource.images.musicgenreicons.text)">conditional</animation>
 				<include content="AnimationSlideBottomWindow">
 					<param name="slide">525</param>
 				</include>
@@ -56,15 +57,15 @@
 				</include>
 				<control type="$PARAM[listtype]" id="501">
 					<animation effect="slide" end="-84" condition="Skin.HasSetting(View501AlbumCase) + [Container.Content(albums) | Container.Content(musicvideos)]">conditional</animation>
-					<animation effect="slide" end="0,30" condition="Container.Content(genres) + System.HasAddon(resource.images.musicgenreicons.text)">conditional</animation>
 					<top>595</top>
 					<left>-209</left>
-					<width>2338</width>
+					<width>2213</width>
 					<height>469</height>
 					<onup condition="!Skin.String(View501InfoDelay,manual) | ListItem.IsParentFolder">9050</onup>
 					<onup condition="Skin.String(View501InfoDelay,manual) + !ListItem.IsParentFolder">9999</onup>
+					<ondown>60501</ondown>
+					<pagecontrol>60501</pagecontrol>
 					<focusposition>3</focusposition>
-					<pagecontrol>60500</pagecontrol>
 					<orientation>horizontal</orientation>
 					<viewtype label="$LOCALIZE[31241]">icon</viewtype>
 					<itemlayout width="334" height="334" condition="!Skin.HasSetting(View501AlbumCase) | !Container.Content(albums)">
@@ -124,12 +125,9 @@
 						</control>
 					</focusedlayout>
 				</control>
-				<!-- <control type="scrollbar" id="6057">
-					<right>80</right>
-					<top>144</top>
-					<bottom>144</bottom>
-					<onleft>80</onleft>
-				</control> -->
+				<include content="ViewCoverFlowScrollBar">
+					<param name="id">501</param>
+				</include>
 			</control>
 		</definition>
 	</include>

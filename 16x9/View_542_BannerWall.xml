@@ -13,7 +13,7 @@
 		</control>
 		<!-- Panel -->
 		<control type="group">
-			<visible>Control.IsVisible(542)</visible>
+			<visible>Control.IsVisible(542)</visible>$INFO[Container(542).CurrentItem]
 			<animation effect="slide" end="0,-40" time="240" condition="Skin.HasSetting(ViewsHideTopBar)">Conditional</animation>
 			<include>AnimationZoomWindow</include>
 			<include>AnimationZoomVisible</include>
@@ -21,11 +21,10 @@
 				<top>80</top>
 				<left>40</left>
 				<width>1840</width>
-				<height>1000</height>
+				<height>999</height>
 				<onleft>9050</onleft>
-				<onright>60515</onright>
-				<movement>3</movement>
-				<pagecontrol>60515</pagecontrol>
+				<onright>60542</onright>
+				<pagecontrol>60542</pagecontrol>
 				<viewtype label="$LOCALIZE[31256]">bigicon</viewtype>
 				<itemlayout height="130" width="613.3" condition="!Skin.HasSetting(View542SmallIcons)">
 					<include content="ViewArtwork">
@@ -42,17 +41,17 @@
 						</control>
 						<include content="ViewArtwork">
 							<param name="art">$VAR[BannerVar]</param>
-						<param name="diffuse">diffuse/rounded5-593x110.png</param>
+							<param name="diffuse">diffuse/rounded5-593x110.png</param>
 						</include>
 					</control>
 				</focusedlayout>
-				<itemlayout height="101" width="460" condition="Skin.HasSetting(View542SmallIcons)">
+				<itemlayout height="100" width="460" condition="Skin.HasSetting(View542SmallIcons)">
 					<include content="ViewArtwork">
 						<param name="art">$VAR[BannerVar]</param>
 						<param name="diffuse">diffuse/rounded5-440x81.png</param>
 					</include>
 				</itemlayout>
-				<focusedlayout height="101" width="460" condition="Skin.HasSetting(View542SmallIcons)">
+				<focusedlayout height="100" width="460" condition="Skin.HasSetting(View542SmallIcons)">
 					<control type="group">
 						<animation effect="zoom" start="100" end="115" center="auto" time="160">focus</animation>
 						<animation effect="zoom" start="115" end="100" center="auto" time="160">unfocus</animation>
@@ -61,17 +60,14 @@
 						</control>
 						<include content="ViewArtwork">
 							<param name="art">$VAR[BannerVar]</param>
-						<param name="diffuse">diffuse/rounded5-440x81.png</param>
+							<param name="diffuse">diffuse/rounded5-440x81.png</param>
 						</include>
 					</control>
 				</focusedlayout>
 			</control>
-			<control type="scrollbar" id="60517">
-				<right>-20</right>
-				<top>0</top>
-				<bottom>0</bottom>
-				<onleft>517</onleft>
-			</control>
+			<include content="ViewWallScrollBar">
+				<param name="id">542</param>
+			</include>
 		</control>
 		<!-- Bottom info/Media flags -->
 		<control type="group">

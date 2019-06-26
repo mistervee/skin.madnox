@@ -366,18 +366,19 @@
 			<!-- Container -->
 			<control type="fixedlist" id="509">
 				<top>0</top>
-				<left>-30</left>
-				<width>1980</width>
+				<left>100</left>
+				<width>1720</width>
 				<height>396</height>
 				<onup condition="!Skin.String(View509InfoDelay,manual) | ListItem.IsParentFolder">9050</onup>
 				<onup condition="Skin.String(View509InfoDelay,manual) + !ListItem.IsParentFolder">9999</onup>
+				<ondown>60509</ondown>
+				<pagecontrol>60509</pagecontrol>
 				<orientation>horizontal</orientation>
 				<viewtype label="$LOCALIZE[31264]">icon</viewtype>
-				<!-- <pagecontrol>95660</pagecontrol> -->
 				<focusposition>2</focusposition>
 				<preloaditems>2</preloaditems>
-				<itemlayout width="396" height="396"/>
-				<focusedlayout width="396" height="396"/>
+				<itemlayout width="156" height="396"/>
+				<focusedlayout width="156" height="396"/>
 			</control>
 		</control>
 		<!-- Bottom info/Media flags -->
@@ -390,6 +391,9 @@
 				<param name="logovisible">View509Logo</param>
 			</include>
 			<include condition="Window.IsVisible(MyMusicNav.xml)">MediaFlagsPanelAudio</include>
+			<include content="ViewCoverFlowScrollBar">
+				<param name="id">509</param>
+			</include>
 		</control>
 	</include>
 </includes>

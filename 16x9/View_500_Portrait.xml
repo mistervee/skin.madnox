@@ -48,6 +48,7 @@
 		<definition>
 			<control type="group">
 				<visible>Control.IsVisible(500)</visible>
+				<animation effect="slide" end="0,30" condition="Container.Content(genres) + [System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour) | System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)]">conditional</animation>
 				<include content="AnimationSlideBottomWindow">
 					<param name="slide">525</param>
 				</include>
@@ -55,15 +56,15 @@
 					<param name="slide">525</param>
 				</include>
 				<control type="$PARAM[listtype]" id="500">
-					<animation effect="slide" end="0,30" condition="Container.Content(genres) + [System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour) | System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)]">conditional</animation>
 					<top>595</top>
 					<left>-70.50</left>
-					<width>2062</width>
+					<width>1991</width>
 					<height>469</height>
 					<onup condition="!Skin.String(View500InfoDelay,manual) | ListItem.IsParentFolder">9050</onup>
 					<onup condition="Skin.String(View500InfoDelay,manual) + !ListItem.IsParentFolder">9999</onup>
-					<focusposition>4</focusposition>
+					<ondown>60500</ondown>
 					<pagecontrol>60500</pagecontrol>
+					<focusposition>4</focusposition>
 					<orientation>horizontal</orientation>
 					<viewtype label="$LOCALIZE[31239]">icon</viewtype>
 					<itemlayout width="229" height="334">
@@ -129,12 +130,9 @@
 						</control>
 					</focusedlayout>
 				</control>
-				<!-- <control type="scrollbar" id="6057">
-					<right>80</right>
-					<top>144</top>
-					<bottom>144</bottom>
-					<onleft>80</onleft>
-				</control> -->
+				<include content="ViewCoverFlowScrollBar">
+					<param name="id">500</param>
+				</include>
 			</control>
 		</definition>
 	</include>

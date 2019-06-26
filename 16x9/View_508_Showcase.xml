@@ -404,18 +404,19 @@
 			<!-- Container -->
 			<control type="fixedlist" id="508">
 				<top>0</top>
-				<left>-30</left>
-				<width>1980</width>
+				<left>100</left>
+				<width>1820</width>
 				<height>396</height>
 				<onup condition="!Skin.String(View508InfoDelay,manual) | ListItem.IsParentFolder">9050</onup>
 				<onup condition="Skin.String(View508InfoDelay,manual) + !ListItem.IsParentFolder">9999</onup>
+				<ondown>60508</ondown>
+				<pagecontrol>60508</pagecontrol>
 				<orientation>horizontal</orientation>
 				<viewtype label="$LOCALIZE[31230]">icon</viewtype>
-				<!-- <pagecontrol>95660</pagecontrol> -->
-				<focusposition>4</focusposition>
+				<focusposition>6</focusposition>
 				<preloaditems>2</preloaditems>
-				<itemlayout width="220" height="396"/>
-				<focusedlayout width="220" height="396"/>
+				<itemlayout width="140" height="396"/>
+				<focusedlayout width="140" height="396"/>
 			</control>
 		</control>
 		<!-- Bottom info/Media flags -->
@@ -428,6 +429,9 @@
 				<param name="logovisible">View508Logo</param>
 			</include>
 			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsPanelVideos</include>
+			<include content="ViewCoverFlowScrollBar">
+				<param name="id">508</param>
+			</include>
 		</control>
 	</include>
 </includes>

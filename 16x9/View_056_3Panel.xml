@@ -126,43 +126,13 @@
 			</control>
 		</control>
 		<!-- List -->
-		<control type="group">
-			<visible>Control.IsVisible(56)</visible>
-			<include content="AnimationSlideLeftWindow">
-				<param name="slide">1017</param>
-			</include>
-			<include content="AnimationSlideLeftVisible">
-				<param name="slide">1017</param>
-			</include>
-			<include content="PanelDefault">
-				<param name="right">1068</param>
-				<param name="righttexture">1088</param>
-				<param name="diffusetexture">diffuse/rounded20-732x880.png</param>
-				<param name="reflect">!Skin.HasSetting(View56HideReflect)</param>
-			</include>
-			<control type="panel" id="56">
-				<left>100</left>
-				<top>140</top>
-				<width>732</width>
-				<height>800</height>
-				<onleft>9050</onleft>
-				<onright>6056</onright>
-				<pagecontrol>6056</pagecontrol>
-				<viewtype label="$LOCALIZE[31225]">list</viewtype>
-				<include content="ViewContainerList">
-					<param name="biglistvisible">Skin.HasSetting(View56BigList)</param>
-				</include>
-			</control>
-			<control type="scrollbar" id="6056">
-				<left>812</left>
-				<top>140</top>
-				<bottom>140</bottom>
-				<onleft>56</onleft>
-				<onright condition="![String.IsEqual(ListItem.DBTYPE,set) | Container.Content(seasons)]">60561</onright>
-				<onright condition="String.IsEqual(ListItem.DBTYPE,set)">60562</onright>
-				<onright condition="Container.Content(seasons)">60563</onright>
-			</control>
-		</control>
+		<include condition="!Skin.HasSetting(View56BannerList) | Container.Content(episodes)">View56List</include>
+		<include content="View56List" condition="Skin.HasSetting(View56BannerList) + !Container.Content(episodes)">
+			<param name="left">110</param>
+			<param name="top">150</param>
+			<param name="height">780</param>
+			<param name="content">ViewContainerBannerList</param>
+		</include>
 		<!-- Media flags -->
 		<control type="group">
 			<visible>Control.IsVisible(56)</visible>
@@ -172,5 +142,52 @@
 			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsTVShows</include>
 			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsVideos7</include>
 		</control>
+	</include>
+	<!-- Includes panel -->
+	<include name="View56List">
+		<param name="left">100</param>
+		<param name="top">140</param>
+		<param name="height">800</param>
+		<param name="content">ViewContainerList</param>
+		<definition>
+			<control type="group">
+				<visible>Control.IsVisible(56)</visible>
+				<include content="AnimationSlideLeftWindow">
+					<param name="slide">1017</param>
+				</include>
+				<include content="AnimationSlideLeftVisible">
+					<param name="slide">1017</param>
+				</include>
+				<include content="PanelDefault">
+					<param name="right">1068</param>
+					<param name="righttexture">1088</param>
+					<param name="diffusetexture">diffuse/rounded20-732x880.png</param>
+					<param name="reflect">!Skin.HasSetting(View56HideReflect)</param>
+				</include>
+				<control type="list" id="56">
+					<left>$PARAM[left]</left>
+					<top>$PARAM[top]</top>
+					<width>732</width>
+					<height>$PARAM[height]</height>
+					<onleft>9050</onleft>
+					<onright>6056</onright>
+					<pagecontrol>6056</pagecontrol>
+					<viewtype label="$LOCALIZE[31225]">list</viewtype>
+					<include content="$PARAM[content]">
+						<param name="id">56</param>
+						<param name="biglistvisible">Skin.HasSetting(View56BigList)</param>
+					</include>
+				</control>
+				<control type="scrollbar" id="6056">
+					<left>812</left>
+					<top>140</top>
+					<bottom>140</bottom>
+					<onleft>56</onleft>
+					<onright condition="![String.IsEqual(ListItem.DBTYPE,set) | Container.Content(seasons)]">60561</onright>
+					<onright condition="String.IsEqual(ListItem.DBTYPE,set)">60562</onright>
+					<onright condition="Container.Content(seasons)">60563</onright>
+				</control>
+			</control>
+		</definition>
 	</include>
 </includes>

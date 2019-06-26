@@ -54,7 +54,6 @@
 			</control>
 		</definition>
 	</include>
-	<!-- <visible>[String.IsEmpty(ListItem.Art(clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearart)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearart)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo)) + !Window.IsVisible(MyPVRChannels.xml)] | [Window.IsVisible(MyPVRChannels.xml) + String.IsEmpty(ListItem.Art(Thumb))]</visible> -->
 	<include name="ViewLogoFallback">
 		<param name="font">Font44_Bold</param>
 		<param name="visible"></param>
@@ -320,14 +319,75 @@
 				</control>
 			</control>
 			<control type="group">
-				<top>220</top>
+				<top>297</top>
 				<control type="scrollbar" id="60$PARAM[id]1">
 					<top>$PARAM[height]</top>
 					<right>80</right>
-					<bottom>195</bottom>
+					<height>$PARAM[textboxheight]</height>
 					<onleft>60$PARAM[id]</onleft>
 				</control>
 			</control>
+		</definition>
+	</include>
+	<include name="ViewCoverFlowScrollBar">
+		<param name="id"></param>
+		<param name="top">932</param>
+		<param name="left">100</param>
+		<param name="width">1720</param>
+		<definition>
+			<control type="scrollbar" id="60$PARAM[id]">
+				<visible allowhiddenfocus="true">Control.HasFocus(60$PARAM[id])</visible>
+				<include>AnimationVisibleFade</include>
+				<top>$PARAM[top]</top>
+				<left>$PARAM[left]</left>
+				<width>$PARAM[width]</width>
+				<height>40</height>
+				<onup>$PARAM[id]</onup>
+				<orientation>horizontal</orientation>
+				<textureslidernib colordiffuse="$VAR[PanelHighlightColorVar]">buttons/scrollbar-nib-focus.png</textureslidernib>
+				<texturesliderbackground border="2">buttons/scrollbar-nib-back.png</texturesliderbackground>
+			</control>
+		</definition>
+	</include>
+	<include name="ViewWallScrollBar">
+		<param name="id"></param>
+		<definition>
+			<control type="scrollbar" id="60$PARAM[id]">
+				<animation effect="slide" end="-15" time="200" condition="Control.HasFocus(60$PARAM[id])">Conditional</animation>
+				<right>-20</right>
+				<top>90</top>
+				<bottom>90</bottom>
+				<onleft>$PARAM[id]</onleft>
+				<texturesliderbackground border="2">buttons/scrollbar-nib-back-vertical.png</texturesliderbackground>
+			</control>
+		</definition>
+	</include>
+	<include name="ViewContainerBannerList">
+		<param name="id"></param>
+		<definition>
+			<itemlayout width="712" height="156">
+				<include content="ViewArtwork">
+					<param name="aspect">stretch</param>
+					<param name="art">$VAR[BannerVar]</param>
+					<param name="diffuse">diffuse/rounded5-547x103.png</param>
+				</include>
+			</itemlayout>
+			<focusedlayout width="712" height="156">
+				<control type="image">
+					<visible>Control.HasFocus($PARAM[id])</visible>
+					<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
+				</control>
+				<control type="group">
+					<animation  type="Focus" reversible="false">
+						<effect type="zoom" start="95" end="100" time="300" center="auto" />
+					</animation>
+					<include content="ViewArtwork">
+						<param name="aspect">stretch</param>
+						<param name="art">$VAR[BannerVar]</param>
+						<param name="diffuse">diffuse/rounded5-547x103.png</param>
+					</include>
+				</control>
+			</focusedlayout>
 		</definition>
 	</include>
 	<include name="ViewContainerList">
@@ -359,7 +419,8 @@
 			</itemlayout>
 			<focusedlayout height="$PARAM[listheight]" condition="!$PARAM[biglistvisible] + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos)]">
 				<control type="image">
-					<texture border="30" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+					<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+					<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 				</control>
 				<control type="label">
 					<left>25</left>
@@ -400,7 +461,8 @@
 			</itemlayout>
 			<focusedlayout height="$PARAM[listheight]" condition="!$PARAM[biglistvisible]">
 				<control type="image">
-					<texture border="30" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+					<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+					<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 				</control>
 				<control type="label">
 					<left>25</left>
@@ -478,6 +540,7 @@
 			<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(movies)">
 				<control type="image">
 					<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+					<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 				</control>
 				<control type="image">
 					<visible>ListItem.IsParentFolder</visible>
@@ -606,6 +669,7 @@
 			<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(tvshows)">
 				<control type="image">
 					<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+					<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 				</control>
 				<control type="image">
 					<visible>ListItem.IsParentFolder</visible>
@@ -722,6 +786,7 @@
 			<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(seasons)">
 				<control type="image">
 					<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+					<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 				</control>
 				<control type="image">
 					<top>10</top>
@@ -818,6 +883,7 @@
 			<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(episodes)">
 				<control type="image">
 					<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+					<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 				</control>
 				<control type="image">
 					<visible>ListItem.IsParentFolder</visible>
@@ -897,6 +963,7 @@
 			<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(artists)">
 				<control type="image">
 					<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+					<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 				</control>
 				<control type="image">
 					<top>10</top>
@@ -959,6 +1026,7 @@
 			<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(albums)">
 				<control type="image">
 					<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+					<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 				</control>
 				<control type="image">
 					<top>10</top>
@@ -1054,6 +1122,7 @@
 			<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(songs)">
 				<control type="image">
 					<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+					<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 				</control>
 				<control type="image">
 					<visible>ListItem.IsParentFolder</visible>
@@ -1146,6 +1215,7 @@
 			<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(musicvideos)">
 				<control type="image">
 					<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+					<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 				</control>
 				<control type="image">
 					<top>10</top>
@@ -1223,6 +1293,7 @@
 			<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(sets)">
 				<control type="image">
 					<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+					<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 				</control>
 				<control type="image">
 					<top>10</top>
@@ -1303,6 +1374,7 @@
 			<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(addons)">
 				<control type="image">
 					<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+					<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 				</control>
 				<control type="image">
 					<top>10</top>
@@ -1386,6 +1458,7 @@
 			<focusedlayout height="100" condition="$PARAM[biglistvisible]">
 				<control type="image">
 					<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+					<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 				</control>
 				<control type="image">
 					<top>10</top>
@@ -1452,7 +1525,8 @@
 		</itemlayout>
 		<focusedlayout height="72.7" condition="!$PARAM[biglistvisible] + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos)]">
 			<control type="image">
-				<texture border="30" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="label">
 				<left>25</left>
@@ -1493,7 +1567,8 @@
 		</itemlayout>
 		<focusedlayout height="72.7" condition="!$PARAM[biglistvisible]">
 			<control type="image">
-				<texture border="30" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="label">
 				<left>25</left>
@@ -1577,6 +1652,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(movies)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<visible>ListItem.IsParentFolder</visible>
@@ -1717,6 +1793,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(tvshows)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<visible>ListItem.IsParentFolder</visible>
@@ -1837,6 +1914,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(seasons)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
@@ -1946,6 +2024,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(episodes)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<visible>ListItem.IsParentFolder</visible>
@@ -2052,6 +2131,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(artists)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
@@ -2141,6 +2221,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(albums)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
@@ -2248,6 +2329,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(songs)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<visible>ListItem.IsParentFolder</visible>
@@ -2352,6 +2434,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(musicvideos)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
@@ -2441,6 +2524,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(sets)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
@@ -2553,6 +2637,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(addons)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
@@ -2653,6 +2738,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + [Container.Content(actors) | Container.Content(directors)]">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
@@ -2727,6 +2813,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(studios)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<visible>ListItem.IsParentFolder</visible>
@@ -2798,6 +2885,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(genres) + String.Contains(ListItem(1).FolderPath,music)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<visible>ListItem.IsParentFolder</visible>
@@ -2862,6 +2950,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(genres) + !String.Contains(ListItem(1).FolderPath,music)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<visible>ListItem.IsParentFolder</visible>
@@ -2926,6 +3015,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(countries)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<visible>ListItem.IsParentFolder</visible>
@@ -2995,6 +3085,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Container.Content(images)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
@@ -3075,6 +3166,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible]">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
@@ -3140,7 +3232,8 @@
 		</itemlayout>
 		<focusedlayout height="72.5" condition="!$PARAM[biglistvisible] + Window.IsActive(MyPVRRecordings.xml)">
 			<control type="image">
-				<texture border="30" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="label">
 				<left>25</left>
@@ -3189,7 +3282,8 @@
 		</itemlayout>
 		<focusedlayout height="72.5" condition="!$PARAM[biglistvisible] + Window.IsActive(MyPVRChannels.xml)">
 			<control type="image">
-				<texture border="30" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
@@ -3240,7 +3334,8 @@
 		</itemlayout>
 		<focusedlayout height="72.5" condition="!$PARAM[biglistvisible]">
 			<control type="image">
-				<texture border="30" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
@@ -3318,6 +3413,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Window.IsActive(MyPVRRecordings.xml)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
@@ -3401,6 +3497,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Window.IsActive(MyPVRChannels.xml)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
@@ -3475,6 +3572,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Window.IsActive(MyPVRTimers.xml)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
@@ -3558,6 +3656,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Window.IsActive(MyPVRSearch.xml)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
@@ -3623,7 +3722,8 @@
 		</itemlayout>
 		<focusedlayout height="72.5" condition="!$PARAM[biglistvisible] + Window.IsActive(MyPVRRecordings.xml)">
 			<control type="image">
-				<texture border="30" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="label">
 				<left>25</left>
@@ -3672,7 +3772,8 @@
 		</itemlayout>
 		<focusedlayout height="72.5" condition="!$PARAM[biglistvisible] + Window.IsActive(MyPVRChannels.xml)">
 			<control type="image">
-				<texture border="30" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
@@ -3723,7 +3824,8 @@
 		</itemlayout>
 		<focusedlayout height="72.5" condition="!$PARAM[biglistvisible]">
 			<control type="image">
-				<texture border="30" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
@@ -3795,6 +3897,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Window.IsActive(MyPVRRecordings.xml)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
@@ -3878,6 +3981,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Window.IsActive(MyPVRChannels.xml)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
@@ -3976,6 +4080,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Window.IsActive(MyPVRTimers.xml)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
@@ -4083,6 +4188,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible] + Window.IsActive(MyPVRSearch.xml)">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
@@ -4157,7 +4263,8 @@
 		</itemlayout>
 		<focusedlayout height="72.5" condition="!$PARAM[biglistvisible]">
 			<control type="image">
-				<texture border="30" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="label">
 				<left>25</left>
@@ -4215,6 +4322,7 @@
 		<focusedlayout height="100" condition="$PARAM[biglistvisible]">
 			<control type="image">
 				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus($PARAM[id])">Conditional</animation>
 			</control>
 			<control type="image">
 				<top>10</top>
