@@ -10,15 +10,17 @@
 		</control>
 		<!-- Floor -->
 		<control type="group">
-			<top>80</top>
+			
 			<visible>Control.IsVisible(58)</visible>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
 			</include>
 			<control type="group">
 				<visible>!Skin.HasSetting(View58HideFloor)</visible>
-				<include>FloorDefault</include>
-				<include>FloorHighlightRight</include>
+				<include content="Floor">
+					<param name="top">960</param>
+					<param name="highlight">FloorHighlightRight</param>
+				</include>
 			</control>
 			<include content="FloorShadow">
 				<param name="visible">Skin.HasSetting(View58HideFloor)</param>

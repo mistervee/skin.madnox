@@ -65,7 +65,7 @@
 					<info>Player.ProgressCache</info>
 					<texturebg>colors/none.png</texturebg>
 					<lefttexture />
-					<midtexture colordiffuse="$VAR[TopbarNowPlayingColorVar]">colors/white20.png</midtexture>
+					<midtexture colordiffuse="$VAR[PanelHighlightColorVar]">colors/white20.png</midtexture>
 					<righttexture></righttexture>
 					<overlaytexture />
 				</control>
@@ -77,7 +77,7 @@
 					<info>Player.Progress</info>
 					<texturebg>colors/none.png</texturebg>
 					<lefttexture />
-					<midtexture colordiffuse="$VAR[TopbarNowPlayingColorVar]">colors/white20.png</midtexture>
+					<midtexture colordiffuse="$VAR[PanelHighlightColorVar]">colors/white20.png</midtexture>
 					<righttexture></righttexture>
 					<overlaytexture />
 				</control>
@@ -89,7 +89,7 @@
 					<info>Player.ProgressCache</info>
 					<texturebg>panels/mainmenu/shadow-bar-empty.png</texturebg>
 					<lefttexture />
-					<midtexture colordiffuse="$VAR[TopbarNowPlayingColorVar]">panels/mainmenu/shadow-bar20.png</midtexture>
+					<midtexture colordiffuse="$VAR[PanelHighlightColorVar]">panels/mainmenu/shadow-bar20.png</midtexture>
 					<righttexture></righttexture>
 					<overlaytexture />
 				</control>
@@ -101,7 +101,7 @@
 					<info>Player.Progress</info>
 					<texturebg>panels/mainmenu/shadow-bar-empty.png</texturebg>
 					<lefttexture />
-					<midtexture colordiffuse="$VAR[TopbarNowPlayingColorVar]">panels/mainmenu/shadow-bar20.png</midtexture>
+					<midtexture colordiffuse="$VAR[PanelHighlightColorVar]">panels/mainmenu/shadow-bar20.png</midtexture>
 					<righttexture></righttexture>
 					<overlaytexture />
 				</control>
@@ -123,12 +123,9 @@
 					<height>40</height>
 					<orientation>horizontal</orientation>
 					<usecontrolcoords>true</usecontrolcoords>
-					<control type="image">
-						<top>2</top>
-						<width>36</width>
-						<height>36</height>
-						<texture colordiffuse="$VAR[TopbarIconColorVar]">$VAR[TopbarIconPathVar]$PARAM[icon]</texture>
-					</control>
+					<include content="BreadcrumbsIcon">
+						<param name="icon">$PARAM[icon]</param>
+					</include>
 					<control type="label">
 						<width>10</width>
 						<label />
@@ -179,15 +176,12 @@
 					<orientation>horizontal</orientation>
 					<usecontrolcoords>true</usecontrolcoords>
 					<itemgap>10</itemgap>
-					<control type="image">
-						<top>2</top>
-						<width>36</width>
-						<height>36</height>
-						<texture colordiffuse="$VAR[TopbarIconColorVar]">$VAR[TopbarIconPathVar]$VAR[NowPlayingInfoBarStatusVar]</texture>
-					</control>
+					<include content="BreadcrumbsIcon">
+						<param name="icon">$VAR[NowPlayingInfoBarStatusVar]</param>
+					</include>
 					<control type="label">
 						<label>$INFO[Player.Time]</label>
-						<textcolor>$VAR[TopbarSubTextColorVar]</textcolor>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 						<include>BreadcrumbsLabel</include>
 					</control>
 					<control type="fadelabel">
@@ -252,13 +246,13 @@
 						<visible>!Skin.HasSetting(DisableTopbarWeather) + !String.IsEmpty(Window(Weather).Property(Current.Temperature))</visible>
 					</control>
 					<control type="label">
-						<textcolor>$VAR[TopbarSubtextColorVar]</textcolor>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 						<label>$INFO[System.Date,  ]</label>
 						<include>BreadcrumbsLabel</include>
 						<visible>!Skin.HasSetting(DisableTopbarDate)</visible>
 					</control>
 					<control type="label">
-						<textcolor>$VAR[TopbarHighlightColorVar]</textcolor>
+						<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 						<label>$INFO[System.Time,  ]</label>
 						<include>BreadcrumbsLabel</include>
 						<visible>!Skin.HasSetting(DisableTopbarTime)</visible>
@@ -274,12 +268,9 @@
 					<align>center</align>
 					<usecontrolcoords>true</usecontrolcoords>
 					<itemgap>0</itemgap>
-					<control type="image">
-						<top>2</top>
-						<width>36</width>
-						<height>36</height>
-						<texture colordiffuse="$VAR[TopbarIconColorVar]">$VAR[TopbarIconPathVar]list.png</texture>
-					</control>
+					<include content="BreadcrumbsIcon">
+						<param name="icon">list.png</param>
+					</include>
 					<control type="label">
 						<label>$INFO[Container($PARAM[id]).NumItems, , $LOCALIZE[31001]]</label>
 						<include>BreadcrumbsLabel</include>
@@ -287,12 +278,9 @@
 					<control type="label">
 						<width>10</width>
 					</control>
-					<control type="image">
-						<top>2</top>
-						<width>36</width>
-						<height>36</height>
-						<texture colordiffuse="$VAR[TopbarIconColorVar]">$VAR[TopbarIconPathVar]pages.png</texture>
-					</control>
+					<include content="BreadcrumbsIcon">
+						<param name="icon">pages.png</param>
+					</include>
 					<control type="label">
 						<label>$INFO[Container($PARAM[id]).CurrentPage, ]$INFO[Container($PARAM[id]).NumPages,/]</label>
 						<include>BreadcrumbsLabel</include>
@@ -321,7 +309,7 @@
 					<right>10</right>
 					<bottom>10</bottom>
 					<aspectratio scalediffuse="false">center</aspectratio>
-					<texture diffuse="diffuse/rounded10-104x104.png" colordiffuse="$VAR[PanelTextureColorVar]">$VAR[DialogTextureVar]</texture>
+					<texture diffuse="diffuse/rounded10-104x104.png" colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
 					<visible>!Skin.HasSetting(DialogSquare.texture)</visible>
 				</control>
 				<control type="image">
@@ -330,7 +318,7 @@
 					<right>10</right>
 					<bottom>10</bottom>
 					<aspectratio scalediffuse="false">center</aspectratio>
-					<texture colordiffuse="$VAR[PanelTextureColorVar]">$VAR[DialogTextureVar]</texture>
+					<texture colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
 					<visible>Skin.HasSetting(DialogSquare.texture)</visible>
 				</control>
 				<control type="image">
@@ -353,11 +341,29 @@
 		<font>Font30_Reg</font>
 		<height>38</height>
 		<width min="1" max="590">auto</width>
-		<textcolor>$VAR[TopbarTextColorVar]</textcolor>
+		<textcolor>$VAR[PanelTextColorVar]</textcolor>
 	</include>
+	<include name="BreadcrumbsIcon">
+		<param name="icon">$PARAM[icon]</param>
+		<definition>
+			<control type="image">
+				<visible>!Skin.HasSetting(TopbarIconColored)</visible>
+				<top>2</top>
+				<width>36</width>
+				<height>36</height>
+				<texture colordiffuse="$VAR[PanelTextColorVar]">icons/default/$PARAM[icon]</texture>
+			</control>
+			<control type="image">
+				<visible>Skin.HasSetting(TopbarIconColored)</visible>
+				<top>2</top>
+				<width>36</width>
+				<height>36</height>
+				<texture>icons/colored/$PARAM[icon]</texture>
+			</control>
+		</definition>
+	</include>
+
 	<!-- Settings -->
-
-
 	<include name="SettingsLabel">
 		<width>1395</width>
 		<height>67</height>
@@ -414,21 +420,32 @@
 	</include>
 
 	<!--  Floor -->
-	<include name="FloorDefault">
-		<control type="image">
-			<top>860</top>
-			<width>1920</width>
-			<height>20</height>
-			<texture colordiffuse="$VAR[FloorShadowColorVar]" border="1">panels/floor/shadow.png</texture>
-		</control>
-		<control type="image">
-			<top>480</top>
-			<width>1920</width>
-			<height>600</height>
-			<texture colordiffuse="$VAR[FloorStyleColorVar]" border="1">panels/floor/default.png</texture>
-		</control>
+	<include name="Floor">
+		<param name="highlight">FloorHighlight</param>
+		<param name="top">880</param>
+		<definition>
+			<control type="group">
+				<top>$PARAM[top]</top>
+				<control type="image">
+					<top>-20</top>
+					<width>1920</width>
+					<height>20</height>
+					<texture colordiffuse="$VAR[FloorShadowColorVar]" border="1">panels/floor/shadow.png</texture>
+				</control>
+			</control>
+			<control type="image">
+				<top>$PARAM[top]</top>
+				<bottom>0</bottom>
+				<width>1920</width>
+				<texture colordiffuse="$VAR[FloorStyleColorVar]" border="1">panels/floor/floor.png</texture>
+			</control>
+			<include content="$PARAM[highlight]">
+				<param name="top">$PARAM[top]</param>
+			</include>
+		</definition>
 	</include>
 	<include name="FloorHigh">
+		
 		<control type="image">
 			<top>785</top>
 			<width>1920</width>
@@ -442,21 +459,38 @@
 			<texture colordiffuse="$VAR[FloorStyleColorVar]" border="1,400,1,1">panels/floor/default.png</texture>
 		</control>
 	</include>
+	<include name="FloorHighlight">
+		<param name="top">880</param>
+		<definition>
+			<control type="image">
+				<top>$PARAM[top]</top>
+				<bottom>0</bottom>
+				<width>1920</width>
+				<texture colordiffuse="$VAR[FloorHighlightColorVar]">panels/floor/highlight.png</texture>
+			</control>
+		</definition>
+	</include>
 	<include name="FloorHighlightLeft">
-		<control type="image">
-			<top>880</top>
-			<width>1920</width>
-			<height>200</height>
-			<texture flipx="true" colordiffuse="$VAR[FloorHighlightColorVar]">panels/floor/highlight-right.png</texture>
-		</control>
+		<param name="top">880</param>
+		<definition>
+			<control type="image">
+				<top>$PARAM[top]</top>
+				<bottom>0</bottom>
+				<width>1920</width>
+				<texture flipx="true" colordiffuse="$VAR[FloorHighlightColorVar]">panels/floor/highlight-right.png</texture>
+			</control>
+		</definition>
 	</include>
 	<include name="FloorHighlightRight">
-		<control type="image">
-			<top>880</top>
-			<width>1920</width>
-			<height>200</height>
-			<texture colordiffuse="$VAR[FloorHighlightColorVar]">panels/floor/highlight-right.png</texture>
-		</control>
+		<param name="top">880</param>
+		<definition>
+			<control type="image">
+				<top>$PARAM[top]</top>
+				<bottom>0</bottom>
+				<width>1920</width>
+				<texture colordiffuse="$VAR[FloorHighlightColorVar]">panels/floor/highlight-right.png</texture>
+			</control>
+		</definition>
 	</include>
 	<include name="FloorHighlightRightHigh">
 		<control type="image">
@@ -467,12 +501,15 @@
 		</control>
 	</include>
 	<include name="FloorHighlightMiddle">
-		<control type="image">
-			<top>880</top>
-			<width>1920</width>
-			<height>200</height>
-			<texture colordiffuse="$VAR[FloorHighlightColorVar]">panels/floor/highlight-middle.png</texture>
-		</control>
+		<param name="top">880</param>
+		<definition>
+			<control type="image">
+				<top>$PARAM[top]</top>
+				<bottom>0</bottom>
+				<width>1920</width>
+				<texture colordiffuse="$VAR[FloorHighlightColorVar]">panels/floor/highlight-middle.png</texture>
+			</control>
+		</definition>
 	</include>
 	<include name="FloorShadow">
 		<param name="visible">true</param>
@@ -568,7 +605,7 @@
 				<top>$PARAM[toptexture]</top>
 				<height>$PARAM[heighttexture]</height>
 				<aspectratio align="right" scalediffuse="false">scale</aspectratio>
-				<texture diffuse="$PARAM[diffusetexture]" colordiffuse="$VAR[PanelTextureColorVar]">$VAR[PanelTextureVar]</texture>
+				<texture diffuse="$PARAM[diffusetexture]" colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
 				<visible>!Skin.HasSetting(PanelSquare.texture)</visible>
 			</control>
 			<control type="image">
@@ -577,7 +614,7 @@
 				<top>$PARAM[toptexture]</top>
 				<height>$PARAM[heighttexture]</height>
 				<aspectratio align="right" scalediffuse="false">scale</aspectratio>
-				<texture colordiffuse="$VAR[PanelTextureColorVar]">$VAR[PanelTextureVar]</texture>
+				<texture colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
 				<visible>Skin.HasSetting(PanelSquare.texture)</visible>
 			</control>
 			<control type="image">
@@ -632,7 +669,7 @@
 				<width>$PARAM[widthtexture]</width>
 				<height>$PARAM[heighttexture]</height>
 				<aspectratio align="right" scalediffuse="false">scale</aspectratio>
-				<texture flipx="$PARAM[flipx]" diffuse="$PARAM[diffusetexture]" colordiffuse="$VAR[PanelTextureColorVar]">$VAR[PanelTextureVar]</texture>
+				<texture flipx="$PARAM[flipx]" diffuse="$PARAM[diffusetexture]" colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
 				<visible>!Skin.HasSetting(PanelSquare.texture)</visible>
 			</control>
 			<control type="image">
@@ -641,7 +678,7 @@
 				<width>$PARAM[widthtexture]</width>
 				<height>$PARAM[heighttexture]</height>
 				<aspectratio align="right" scalediffuse="false">scale</aspectratio>
-				<texture flipx="$PARAM[flipx]" colordiffuse="$VAR[PanelTextureColorVar]">$VAR[PanelTextureVar]</texture>
+				<texture flipx="$PARAM[flipx]" colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
 				<visible>Skin.HasSetting(PanelSquare.texture)</visible>
 			</control>
 			<control type="image">
@@ -689,7 +726,7 @@
 					<top>$PARAM[toptexture]</top>
 					<height>$PARAM[heighttexture]</height>
 					<aspectratio scalediffuse="false">scale</aspectratio>
-					<texture diffuse="$PARAM[diffusetexture]" colordiffuse="$VAR[PanelTextureColorVar]">$VAR[PanelTextureVar]</texture>
+					<texture diffuse="$PARAM[diffusetexture]" colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
 					<visible>!Skin.HasSetting(PanelSquare.texture)</visible>
 				</control>
 				<control type="image">
@@ -698,7 +735,7 @@
 					<top>$PARAM[toptexture]</top>
 					<height>$PARAM[heighttexture]</height>
 					<aspectratio scalediffuse="false">scale</aspectratio>
-					<texture colordiffuse="$VAR[PanelTextureColorVar]">$VAR[PanelTextureVar]</texture>
+					<texture colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
 					<visible>Skin.HasSetting(PanelSquare.texture)</visible>
 				</control>
 				<control type="image">

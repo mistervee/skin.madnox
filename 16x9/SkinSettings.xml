@@ -19,7 +19,7 @@
 			<include content="AnimationSlideBottomVisible">
 				<param name="slide">220</param>
 			</include>
-			<include>FloorDefault</include>
+			<include>Floor</include>
 		</control>
 		<!-- Panel -->
 		<control type="group">
@@ -179,21 +179,31 @@
 						<pagecontrol>607002</pagecontrol>
 						<!-- Panels -->
 						<control type="label" id="201">
-							<label>$LOCALIZE[31056]</label>
+							<label>$LOCALIZE[31281]</label>
 							<include>SettingsLabel</include>
 						</control>
 						<control type="button" id="202">
 							<label>$LOCALIZE[736]</label>
 							<label2>$VAR[PanelStyleLabelVar]</label2>
-							<onclick>SetProperty(CustomSelect,$LOCALIZE[31056] $LOCALIZE[31129],home)</onclick>
-							<onclick>ActivateWindow(1110)</onclick>
+							<onclick condition="String.IsEmpty(Panel.texture)">Skin.SetString(Panel.texture,nox4)</onclick>
+							<onclick condition="Skin.String(Panel.texture,nox4)">Skin.SetString(Panel.texture,auriga)</onclick>
+							<onclick condition="Skin.String(Panel.texture,auriga)">Skin.Reset(Panel.texture)</onclick>
 							<include>SettingsButton</include>
 						</control>
 						<control type="button" id="203">
 							<label>$LOCALIZE[31051]</label>
 							<label2>$VAR[PanelTextureLabelVar]</label2>
-							<onclick>SetProperty(CustomSelect,$LOCALIZE[31056] $LOCALIZE[31132],home)</onclick>
-							<onclick>ActivateWindow(1110)</onclick>
+							<onclick condition="String.IsEmpty(PanelTexture.texture)">Skin.SetString(PanelTexture.texture,panels/patterns/brushed.png)</onclick>
+							<onclick condition="Skin.String(PanelTexture.texture,panels/patterns/brushed.png)">Skin.SetString(PanelTexture.texture,panels/patterns/carbon.png)</onclick>
+							<onclick condition="Skin.String(PanelTexture.texture,panels/patterns/carbon.png)">Skin.SetString(PanelTexture.texture,panels/patterns/gradient.png)</onclick>
+							<onclick condition="Skin.String(PanelTexture.texture,panels/patterns/carbon.png)">Skin.SetString(PanelTexture.texture,panels/patterns/concrete.png)</onclick>
+							<onclick condition="Skin.String(PanelTexture.texture,panels/patterns/concrete.png)">Skin.SetString(PanelTexture.texture,panels/patterns/pixels.png)</onclick>
+							<onclick condition="Skin.String(PanelTexture.texture,panels/patterns/pixels.png)">Skin.SetString(PanelTexture.texture,panels/patterns/mud.png)</onclick>
+							<onclick condition="Skin.String(PanelTexture.texture,panels/patterns/mud.png)">Skin.SetString(PanelTexture.texture,panels/patterns/steelplate.png)</onclick>
+							<onclick condition="Skin.String(PanelTexture.texture,panels/patterns/steelplate.png)">Skin.SetString(PanelTexture.texture,panels/patterns/wallpaper.png)</onclick>
+							<onclick condition="Skin.String(PanelTexture.texture,panels/patterns/wallpaper.png)">Skin.SetString(PanelTexture.texture,panels/patterns/wood.png)</onclick>
+							<onclick condition="Skin.String(PanelTexture.texture,panels/patterns/wood.png)">Skin.SetString(PanelTexture.texture,panels/patterns/wrinkles.png)</onclick>
+							<onclick condition="Skin.String(PanelTexture.texture,panels/patterns/wrinkles.png)">Skin.Reset(PanelTexture.texture)</onclick>
 							<include>SettingsButton</include>
 						</control>
 						<control type="radiobutton" id="204">
@@ -208,98 +218,135 @@
 							<selected>Skin.HasSetting(PanelEmboss.texture)</selected>
 							<include>SettingsRadioButton</include>
 						</control>
+						<control type="radiobutton" id="206">
+							<label>$LOCALIZE[31062]</label>
+							<onclick>Skin.ToggleSetting(IconsColored)</onclick>
+							<selected>Skin.HasSetting(IconsColored)</selected>
+							<include>SettingsRadioButton</include>
+						</control>
+						<control type="radiobutton" id="207">
+							<label>$LOCALIZE[31052]</label>
+							<onclick condition="!System.HasAddon(resource.images.studios.coloured)">InstallAddon(resource.images.studios.coloured)</onclick>
+							<onclick condition="System.HasAddon(resource.images.studios.coloured)">Skin.ToggleSetting(MediaFlagsColored)</onclick>
+							<selected>Skin.HasSetting(MediaFlagsColored)</selected>
+							<include>SettingsRadioButton</include>
+						</control>
 						<!-- Top bar -->
-						<control type="label" id="222">
+						<control type="label" id="210">
 							<label>$LOCALIZE[31042]</label>
 							<include>SettingsLabel</include>
 						</control>
-						<control type="button" id="223">
+						<control type="button" id="211">
 							<label>$LOCALIZE[31051]</label>
 							<label2>$VAR[TopbarTextureLabelVar]</label2>
-							<onclick>SetProperty(CustomSelect,$LOCALIZE[31042] $LOCALIZE[31132],home)</onclick>
-							<onclick>ActivateWindow(1110)</onclick>
+							<onclick condition="String.IsEmpty(TopbarTexture.texture)">Skin.SetString(TopbarTexture.texture,shadow)</onclick>
+							<onclick condition="Skin.String(TopbarTexture.texture,shadow)">Skin.Reset(TopbarTexture.texture)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="radiobutton" id="224">
+						<control type="radiobutton" id="212">
 							<label>$LOCALIZE[31062]</label>
 							<onclick>Skin.ToggleSetting(TopbarIconColored)</onclick>
 							<selected>Skin.HasSetting(TopbarIconColored)</selected>
 							<include>SettingsRadioButton</include>
 						</control>
 						<!-- Background -->
-						<control type="label" id="217">
+						<control type="label" id="220">
 							<label>$LOCALIZE[33069]</label>
 							<include>SettingsLabel</include>
 						</control>
-						<control type="button" id="218">
+						<control type="button" id="221">
 							<label>$LOCALIZE[31051]</label>
 							<label2>$VAR[BackgroundTextureLabelVar]</label2>
-							<onclick>SetProperty(CustomSelect,$LOCALIZE[33068] $LOCALIZE[31132],home)</onclick>
-							<onclick>ActivateWindow(1110)</onclick>
+							<onclick condition="String.IsEmpty(BackgroundTexture.texture)">Skin.SetString(BackgroundTexture.texture,panels/patterns/brushed.png)</onclick>
+							<onclick condition="Skin.String(BackgroundTexture.texture,panels/patterns/brushed.png)">Skin.SetString(BackgroundTexture.texture,panels/patterns/carbon.png)</onclick>
+							<onclick condition="Skin.String(BackgroundTexture.texture,panels/patterns/carbon.png)">Skin.SetString(BackgroundTexture.texture,panels/patterns/gradient.png)</onclick>
+							<onclick condition="Skin.String(BackgroundTexture.texture,panels/patterns/carbon.png)">Skin.SetString(BackgroundTexture.texture,panels/patterns/concrete.png)</onclick>
+							<onclick condition="Skin.String(BackgroundTexture.texture,panels/patterns/concrete.png)">Skin.SetString(BackgroundTexture.texture,panels/patterns/pixels.png)</onclick>
+							<onclick condition="Skin.String(BackgroundTexture.texture,panels/patterns/pixels.png)">Skin.SetString(BackgroundTexture.texture,colors/white90.png)</onclick>
+							<onclick condition="Skin.String(BackgroundTexture.texture,colors/white90.png)">Skin.SetString(BackgroundTexture.texture,panels/patterns/mud.png)</onclick>
+							<onclick condition="Skin.String(BackgroundTexture.texture,panels/patterns/mud.png)">Skin.SetString(BackgroundTexture.texture,panels/patterns/steelplate.png)</onclick>
+							<onclick condition="Skin.String(BackgroundTexture.texture,panels/patterns/steelplate.png)">Skin.SetString(BackgroundTexture.texture,panels/patterns/wallpaper.png)</onclick>
+							<onclick condition="Skin.String(BackgroundTexture.texture,panels/patterns/wallpaper.png)">Skin.SetString(BackgroundTexture.texture,panels/patterns/wood.png)</onclick>
+							<onclick condition="Skin.String(BackgroundTexture.texture,panels/patterns/wood.png)">Skin.SetString(BackgroundTexture.texture,panels/patterns/wrinkles.png)</onclick>
+							<onclick condition="Skin.String(BackgroundTexture.texture,panels/patterns/wrinkles.png)">Skin.Reset(BackgroundTexture.texture)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="219">
+						<control type="button" id="222">
 							<label>$LOCALIZE[31145]</label>
 							<label2>$VAR[BackgroundEffectLabelVar]</label2>
-							<onclick>SetProperty(CustomSelect,$LOCALIZE[31145],home)</onclick>
-							<onclick>ActivateWindow(1110)</onclick>
+							<onclick condition="String.IsEmpty(BackgroundEffect.texture)">Skin.SetString(BackgroundEffect.texture,snow)</onclick>
+							<onclick condition="Skin.String(BackgroundEffect.texture,snow)">Skin.SetString(BackgroundEffect.texture,leaves)</onclick>
+							<onclick condition="Skin.String(BackgroundEffect.texture,leaves)">Skin.SetString(BackgroundEffect.texture,confetti)</onclick>
+							<onclick condition="Skin.String(BackgroundEffect.texture,confetti)">Skin.SetString(BackgroundEffect.texture,valentine)</onclick>
+							<onclick condition="Skin.String(BackgroundEffect.texture,valentine)">Skin.SetString(BackgroundEffect.texture,easter)</onclick>
+							<onclick condition="Skin.String(BackgroundEffect.texture,easter)">Skin.Reset(BackgroundEffect.texture)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="radiobutton" id="220">
+						<control type="radiobutton" id="223">
 							<label>$LOCALIZE[31048]</label>
 							<onclick>Skin.ToggleSetting(BackgroundShadow)</onclick>
 							<selected>Skin.HasSetting(BackgroundShadow)</selected>
 							<include>SettingsRadioButton</include>
 						</control>
-						<control type="radiobutton" id="221">
+						<control type="radiobutton" id="224">
 							<label>$LOCALIZE[1427]</label>
 							<onclick>Skin.ToggleSetting(BackgroundSmoke)</onclick>
 							<selected>Skin.HasSetting(BackgroundSmoke)</selected>
 							<include>SettingsRadioButton</include>
 						</control>
 						<!-- Main menu -->
-						<control type="label" id="206">
+						<control type="label" id="230">
 							<label>$LOCALIZE[31041]</label>
 							<include>SettingsLabel</include>
 						</control>
-						<control type="button" id="207">
+						<control type="button" id="231">
 							<label>$LOCALIZE[736]</label>
 							<label2>$VAR[MainMenuStyleLabelVar]</label2>
-							<onclick>SetProperty(CustomSelect,$LOCALIZE[31041] $LOCALIZE[31129],home)</onclick>
-							<onclick>ActivateWindow(1110)</onclick>
+							<onclick condition="String.IsEmpty(MainMenuStyle.texture)">Skin.SetString(MainMenuStyle.texture,panels/mainmenu/nox4.png)</onclick>
+							<onclick condition="Skin.String(MainMenuStyle.texture,panels/mainmenu/nox4.png)">Skin.SetString(MainMenuStyle.texture,panels/mainmenu/auriga.png)</onclick>
+							<onclick condition="Skin.String(MainMenuStyle.texture,panels/mainmenu/auriga.png)">Skin.Reset(MainMenuStyle.texture)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="208">
+						<control type="button" id="232">
 							<label>$LOCALIZE[31051]</label>
 							<label2>$VAR[MainMenuTextureLabelVar]</label2>
-							<onclick>SetProperty(CustomSelect,$LOCALIZE[31041] $LOCALIZE[31132],home)</onclick>
-							<onclick>ActivateWindow(1110)</onclick>
+							<onclick condition="String.IsEmpty(MainMenuTexture.texture)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu-patterns/brushed.png)</onclick>
+							<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu-patterns/brushed.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu-patterns/carbon.png)</onclick>
+							<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu-patterns/carbon.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu-patterns/gradient.png)</onclick>
+							<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu-patterns/carbon.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu-patterns/concrete.png)</onclick>
+							<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu-patterns/concrete.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu-patterns/pixels.png)</onclick>
+							<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu-patterns/pixels.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu-patterns/plain.png)</onclick>
+							<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu-patterns/plain.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu-patterns/mud.png)</onclick>
+							<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu-patterns/mud.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu-patterns/steelplate.png)</onclick>
+							<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu-patterns/steelplate.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu-patterns/wallpaper.png)</onclick>
+							<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu-patterns/wallpaper.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu-patterns/wood.png)</onclick>
+							<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu-patterns/wood.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu-patterns/wrinkles.png)</onclick>
+							<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu-patterns/wrinkles.png)">Skin.Reset(MainMenuTexture.texture)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="209">
+						<control type="button" id="233">
 							<label>$LOCALIZE[31141]</label>
 							<label2>$VAR[MainMenuSystemBarLabelVar]</label2>
-							<onclick>SetProperty(CustomSelect,$LOCALIZE[31141],home)</onclick>
-							<onclick>ActivateWindow(1110)</onclick>
+							<onclick condition="String.IsEmpty(MainMenuSystemBar.texture)">Skin.SetString(MainMenuSystemBar.texture,wide)</onclick>
+							<onclick condition="Skin.String(MainMenuSystemBar.texture,wide)">Skin.SetString(MainMenuSystemBar.texture,shadow)</onclick>
+							<onclick condition="Skin.String(MainMenuSystemBar.texture,shadow)">Skin.Reset(MainMenuSystemBar.texture)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="210">
+						<control type="button" id="234">
 							<label>$LOCALIZE[31142]</label>
 							<label2>$VAR[MainMenuSubmenuBarLabelVar]</label2>
-							<onclick>SetProperty(CustomSelect,$LOCALIZE[31142],home)</onclick>
-							<onclick>ActivateWindow(1110)</onclick>
+							<onclick condition="String.IsEmpty(MainMenuSubmenuBar.texture)">Skin.SetString(MainMenuSubmenuBar.texture,wide)</onclick>
+							<onclick condition="Skin.String(MainMenuSubmenuBar.texture,wide)">Skin.SetString(MainMenuSubmenuBar.texture,shadow)</onclick>
+							<onclick condition="Skin.String(MainMenuSubmenuBar.texture,shadow)">Skin.Reset(MainMenuSubmenuBar.texture)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="211">
+						<control type="button" id="235">
 							<label>$LOCALIZE[31143]</label>
 							<label2>$VAR[MainMenuRSSBarLabelVar]</label2>
-							<onclick>SetProperty(CustomSelect,$LOCALIZE[31143],home)</onclick>
-							<onclick>ActivateWindow(1110)</onclick>
+							<onclick condition="String.IsEmpty(MainMenuRSSBar.texture)">Skin.SetString(MainMenuRSSBar.texture,wide)</onclick>
+							<onclick condition="Skin.String(MainMenuRSSBar.texture,wide)">Skin.Reset(MainMenuRSSBar.texture)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						
-						
-						
 					</control>
 					<!--  Colors -->
 					<control type="grouplist" id="7003">
@@ -313,14 +360,8 @@
 						<pagecontrol>607003</pagecontrol>
 						<!-- Panels -->
 						<control type="label" id="301">
-							<label>$LOCALIZE[31056]</label>
+							<label>$LOCALIZE[31281]</label>
 							<include>SettingsLabel</include>
-						</control>
-						<control type="button" id="390">
-							<label>Media flag</label>
-							<label2>[COLOR $VAR[PanelMediaFlagColorVar]]$VAR[PanelMediaFlagLabelVar][/COLOR]</label2>
-							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=PanelMediaFlag.color,header=Media Flag)</onclick>
-							<include>SettingsButton</include>
 						</control>
 						<control type="button" id="302">
 							<label>$LOCALIZE[736]</label>
@@ -329,12 +370,14 @@
 							<include>SettingsButton</include>
 						</control>
 						<control type="button" id="303">
+							<visible>!String.IsEmpty(Skin.String(PanelTexture.texture))</visible>
 							<label>$LOCALIZE[31051]</label>
 							<label2>[COLOR $VAR[PanelTextureColorVar]]$VAR[PanelTextureColorLabelVar][/COLOR]</label2>
 							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=PanelTexture.color,header=$LOCALIZE[31051])</onclick>
 							<include>SettingsButton</include>
 						</control>
 						<control type="button" id="304">
+							<visible>Skin.HasSetting(PanelEmboss.texture)</visible>
 							<label>$LOCALIZE[31131]</label>
 							<label2>[COLOR $VAR[PanelEmbossColorVar]]$VAR[PanelEmbossColorLabelVar][/COLOR]</label2>
 							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=PanelEmboss.color,header=$LOCALIZE[31131])</onclick>
@@ -377,31 +420,14 @@
 							<include>SettingsButton</include>
 						</control>
 						<control type="button" id="311">
-							<label>$LOCALIZE[31160]</label>
-							<label2>[COLOR $VAR[PanelArtworkTextBackgroundColorVar]]$VAR[PanelArtworkTextBackgroundColorLabelVar][/COLOR]</label2>
-							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=PanelArtworkTextBackground.color,header=$LOCALIZE[31160])</onclick>
-							<include>SettingsButton</include>
-						</control>
-						<control type="button" id="312">
 							<label>$LOCALIZE[31139]</label>
 							<label2>[COLOR $VAR[PanelListSeparatorColorVar]]$VAR[PanelListSeparatorColorLabelVar][/COLOR]</label2>
 							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=PanelListSeparator.color,header=$LOCALIZE[31139])</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="313">
-							<label>$LOCALIZE[31140]</label>
-							<label2>[COLOR $VAR[PanelButtonColorVar]]$VAR[PanelButtonColorLabelVar][/COLOR]</label2>
-							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=PanelButton.color,header=$LOCALIZE[31140])</onclick>
-							<include>SettingsButton</include>
-						</control>
-						<control type="button" id="314">
-							<label>$LOCALIZE[31175]</label>
-							<label2>[COLOR $VAR[PanelRadioButtonColorVar]]$VAR[PanelRadioButtonColorLabelVar][/COLOR]</label2>
-							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=PanelRadioButton.color,header=$LOCALIZE[31175])</onclick>
-							<include>SettingsButton</include>
-						</control>
+
 						<!-- Main menu -->
-						<control type="label" id="315">
+						<!-- <control type="label" id="315">
 							<label>$LOCALIZE[31041]</label>
 							<include>SettingsLabel</include>
 						</control>
@@ -518,7 +544,7 @@
 							<label2>[COLOR $VAR[MainMenuWeatherIconColorVar]]$VAR[MainMenuWeatherIconColorLabelVar][/COLOR]</label2>
 							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuWeatherIcon.color,header=$LOCALIZE[31156])</onclick>
 							<include>SettingsButton</include>
-						</control>
+						</control> -->
 						
 						
 						<!-- Background -->
@@ -527,24 +553,28 @@
 							<include>SettingsLabel</include>
 						</control>
 						<control type="button" id="351">
+							<visible>!String.IsEmpty(Skin.String(BackgroundTexture.texture))</visible>
 							<label>$LOCALIZE[31051]</label>
 							<label2>[COLOR $VAR[BackgroundTextureColorVar]]$VAR[BackgroundTextureColorLabelVar][/COLOR]</label2>
 							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=BackgroundTexture.color,header=$LOCALIZE[31051])</onclick>
 							<include>SettingsButton</include>
 						</control>
 						<control type="button" id="352">
+							<visible>!String.IsEmpty(Skin.String(BackgroundEffect.texture))</visible>
 							<label>$LOCALIZE[31145]</label>
 							<label2>[COLOR $VAR[BackgroundEffectColorVar]]$VAR[BackgroundEffectColorLabelVar][/COLOR]</label2>
 							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=BackgroundEffect.color,header=$LOCALIZE[31051])</onclick>
 							<include>SettingsButton</include>
 						</control>
 						<control type="button" id="353">
+							<visible>Skin.HasSetting(BackgroundShadow)</visible>
 							<label>$LOCALIZE[31048]</label>
 							<label2>[COLOR $VAR[BackgroundShadowColorVar]]$VAR[BackgroundShadowColorLabelVar][/COLOR]</label2>
 							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=BackgroundShadow.color,header=$LOCALIZE[31048])</onclick>
 							<include>SettingsButton</include>
 						</control>
 						<control type="button" id="354">
+							<visible>Skin.HasSetting(BackgroundSmoke)</visible>
 							<label>$LOCALIZE[1427]</label>
 							<label2>[COLOR $VAR[BackgroundSmokeColorVar]]$VAR[BackgroundSmokeColorLabelVar][/COLOR]</label2>
 							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=BackgroundSmoke.color,header=$LOCALIZE[1427])</onclick>
@@ -567,40 +597,10 @@
 							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=TopbarShadow.color,header=$LOCALIZE[31048])</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="363">
-							<label>$LOCALIZE[31049]</label>
-							<label2>[COLOR $VAR[TopbarHighlightColorVar]]$VAR[TopbarHighlightColorLabelVar][/COLOR]</label2>
-							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=TopbarHighlight.color,header=$LOCALIZE[31049])</onclick>
-							<include>SettingsButton</include>
-						</control>
-						<control type="button" id="364">
-							<label>$LOCALIZE[31136]</label>
-							<label2>[COLOR $VAR[TopbarTextColorVar]]$VAR[TopbarTextColorLabelVar][/COLOR]</label2>
-							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=TopbarText.color,header=$LOCALIZE[31136])</onclick>
-							<include>SettingsButton</include>
-						</control>
-						<control type="button" id="365">
-							<label>$LOCALIZE[31137]</label>
-							<label2>[COLOR $VAR[TopbarSubTextColorVar]]$VAR[TopbarSubTextColorLabelVar][/COLOR]</label2>
-							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=TopbarSubText.color,header=$LOCALIZE[31137])</onclick>
-							<include>SettingsButton</include>
-						</control>
-						<control type="button" id="366">
-							<label>$LOCALIZE[31061]</label>
-							<label2>[COLOR $VAR[TopbarIconColorVar]]$VAR[TopbarIconColorLabelVar][/COLOR]</label2>
-							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=TopbarIcon.color,header=$LOCALIZE[31061])</onclick>
-							<include>SettingsButton</include>
-						</control>
 						<control type="button" id="367">
 							<label>$LOCALIZE[31156]</label>
 							<label2>[COLOR $VAR[TopbarWeatherIconColorVar]]$VAR[TopbarWeatherIconColorLabelVar][/COLOR]</label2>
 							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=TopbarWeatherIcon.color,header=$LOCALIZE[31156])</onclick>
-							<include>SettingsButton</include>
-						</control>
-						<control type="button" id="368">
-							<label>$LOCALIZE[31002]</label>
-							<label2>[COLOR $VAR[TopbarNowPlayingColorVar]]$VAR[TopbarNowPlayingColorLabelVar][/COLOR]</label2>
-							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=TopbarNowPlaying.color,header=$LOCALIZE[31002])</onclick>
 							<include>SettingsButton</include>
 						</control>
 						<!-- Floor -->
@@ -612,12 +612,6 @@
 							<label>$LOCALIZE[736]</label>
 							<label2>[COLOR $VAR[FloorStyleColorVar]]$VAR[FloorStyleColorLabelVar][/COLOR]</label2>
 							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=FloorStyle.color,header=$LOCALIZE[736])</onclick>
-							<include>SettingsButton</include>
-						</control>
-						<control type="button" id="372">
-							<label>$LOCALIZE[31051]</label>
-							<label2>[COLOR $VAR[FloorTextureColorVar]]$VAR[FloorTextureColorLabelVar][/COLOR]</label2>
-							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=FloorTexture.color,header=$LOCALIZE[31051])</onclick>
 							<include>SettingsButton</include>
 						</control>
 						<control type="button" id="373">
@@ -632,21 +626,10 @@
 							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=FloorHighlight.color,header=$LOCALIZE[31049])</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<!-- Media menu -->
-						<control type="label" id="375">
-							<label>$LOCALIZE[31151]</label>
-							<include>SettingsLabel</include>
-						</control>
-						<control type="button" id="384">
-							<label>$LOCALIZE[31061]</label>
-							<label2>[COLOR $VAR[MediaMenuIconColorVar]]$VAR[MediaMenuIconColorLabelVar][/COLOR]</label2>
-							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MediaMenuIcon.color,header=$LOCALIZE[31061])</onclick>
-							<include>SettingsButton</include>
-						</control>
-						<control type="button" id="385">
-							<label>$LOCALIZE[31152]</label>
-							<label2>[COLOR $VAR[MediaMenuFocusIconColorVar]]$VAR[MediaMenuFocusIconColorLabelVar][/COLOR]</label2>
-							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MediaMenuFocusIcon.color,header=$LOCALIZE[536])</onclick>
+						<control type="button" id="375">
+							<label>$LOCALIZE[31140]</label>
+							<label2>[COLOR $VAR[FloorMediaFlagsColorVar]]$VAR[FloorMediaFlagsColorLabelVar][/COLOR]</label2>
+							<onclick>RunScript(script.skin.helper.colorpicker,skinstring=FloorMediaFlags.color,header=$LOCALIZE[31140])</onclick>
 							<include>SettingsButton</include>
 						</control>
 					</control>

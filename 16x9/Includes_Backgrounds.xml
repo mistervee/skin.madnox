@@ -73,7 +73,7 @@
 			</control>
 			<control type="image">
 				<include>FullScreenDimensions</include>
-				<texture colordiffuse="$VAR[BackgroundShadowColorVar]">backgrounds/shadow.png</texture>
+				<texture colordiffuse="$VAR[BackgroundShadowColorVar]">panels/patterns/shadow.png</texture>
 				<visible>Skin.HasSetting(BackgroundShadow)</visible>
 			</control>
 			<control type="group">
@@ -89,6 +89,32 @@
 					<texture colordiffuse="BB000000">colors/white.png</texture>
 					<visible>Skin.HasSetting(VideoInfoBlurBackground) | String.IsEmpty(Skin.String(BackgroundTexture.texture))</visible>
 				</control>
+			</control>
+			<!-- Widget background -->
+			<control type="image">
+				<visible>Window.IsActive(home) + !Skin.HasSetting(WidgetHigh) + ControlGroup(90010).HasFocus</visible>
+				<animation effect="slide" end="0,$PARAM[infotopposition]" condition="true">Conditional</animation>
+				<animation effect="slide" end="0,91" condition="Skin.String(MainMenuPosition,bottom)">Conditional</animation>
+				<animation effect="slide" end="0,274" condition="Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)">Conditional</animation>
+				<animation effect="slide" end="0,-42" condition="system.getbool(lookandfeel.enablerssfeeds)">Conditional</animation>
+				<animation effect="slide" end="0,42" condition="[String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)] + Skin.HasSetting(InfoBarTop)">Conditional</animation>
+				<include>AnimationVisibleFade</include>
+				<bottom>0</bottom>
+				<width>1920</width>
+				<height>1122</height>
+				<texture colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/widget-gradient.png</texture>
+			</control>
+			<control type="image">
+				<visible>Window.IsActive(home) + Skin.HasSetting(WidgetHigh) + ControlGroup(90010).HasFocus</visible>
+				<animation effect="slide" end="0,-$PARAM[infotopposition]" condition="true">Conditional</animation>
+				<animation effect="slide" end="0,-91" condition="Skin.String(MainMenuPosition,top)">Conditional</animation>
+				<animation effect="slide" end="0,-274" condition="String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)">Conditional</animation>
+				<animation effect="slide" end="0,42" condition="[String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)] + Skin.HasSetting(InfoBarTop)">Conditional</animation>
+				<include>AnimationVisibleFade</include>
+				<bottom>-49</bottom>
+				<width>1920</width>
+				<height>1122</height>
+				<texture flipy="true" colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/widget-gradient.png</texture>
 			</control>
 			<!-- Effects -->
 			<control type="multiimage">
