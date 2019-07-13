@@ -45,17 +45,18 @@
 				<visible>!Skin.HasSetting(DisableTopbar)</visible>
 				<include>AnimationVisibleFade</include>
 				<control type="image">
-					<description>background image</description>
-					<top>40</top>
-					<width>1920</width>
-					<height>20</height>
-					<texture border="1" colordiffuse="$VAR[TopbarShadowColorVar]">panels/mainmenu/shadows.png</texture>
-				</control>
-				<control type="image">
+					<visible>String.IsEmpty(Skin.String(TopbarTexture.texture))</visible>
 					<description>background image</description>
 					<width>1920</width>
 					<height>88</height>
-					<texture border="1" colordiffuse="$VAR[TopbarTextureColorVar]">$VAR[TopbarTextureVar]</texture>
+					<texture border="1" colordiffuse="$VAR[TopbarTextureColorVar]">panels/mainmenu/wide-bar.png</texture>
+				</control>
+				<control type="image">
+					<visible>Skin.String(TopbarTexture.texture,shadow)</visible>
+					<description>background image</description>
+					<width>1920</width>
+					<height>88</height>
+					<texture border="1" colordiffuse="$VAR[TopbarShadowTextureColorVar]">panels/mainmenu/shadow-bar.png</texture>
 				</control>
 				<control type="progress">
 					<visible>Player.HasMedia + !Skin.HasSetting(DisableTopbarNowPlayingProgress) + !String.IsEqual(Skin.String(TopbarTexture.texture),shadow)</visible>
@@ -519,7 +520,7 @@
 				<top>780</top>
 				<width>1920</width>
 				<height>300</height>
-				<texture colordiffuse="$VAR[FloorShadowColorVar]" border="1">panels/background-gradient.png</texture>
+				<texture colordiffuse="$VAR[PanelBackgroundShadowColorVar]" border="1">panels/background-gradient.png</texture>
 			</control>
 		</definition>
 	</include>
@@ -528,7 +529,7 @@
 			<top>900</top>
 			<width>1920</width>
 			<height>180</height>
-			<texture colordiffuse="$VAR[FloorShadowColorVar]" border="1">panels/wall-gradient.png</texture>
+			<texture colordiffuse="$VAR[PanelBackgroundShadowColorVar]" border="1">panels/wall-gradient.png</texture>
 		</control>
 	</include>
 

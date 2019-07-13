@@ -14,7 +14,7 @@
 					<font>Font30_Reg</font>
 					<label>$VAR[InfoLineVar]</label>
 					<include>AnimationVisibleFade</include>
-					<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
 				</control>
 				<control type="grouplist">
 					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar)</visible>
@@ -84,7 +84,7 @@
 						<left>20</left>
 						<width>40</width>
 						<height>40</height>
-						<imagepath colordiffuse="$VAR[MainMenuWeatherIconColorVar]">$INFO[Skin.String(WeatherIcons.path)]$INFO[Weather.FanartCode]$INFO[Skin.String(WeatherIcons.ext)]</imagepath>
+						<imagepath colordiffuse="$VAR[TopbarWeatherIconColorVar]">$INFO[Skin.String(WeatherIcons.path)]$INFO[Weather.FanartCode]$INFO[Skin.String(WeatherIcons.ext)]</imagepath>
 						<timeperimage>70</timeperimage>
 						<fadetime>1</fadetime>
 						<randomize>false</randomize>
@@ -92,7 +92,7 @@
 						<visible>!String.IsEmpty(Window(Weather).Property(Current.Temperature))</visible>
 					</control>
 					<control type="label">
-						<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
 						<label>$INFO[Window(weather).Property(Current.Temperature), ]$INFO[System.TemperatureUnits]</label>
 						<font>Font30_Reg</font>
 						<height>38</height>
@@ -101,7 +101,7 @@
 						<visible>!String.IsEmpty(Window(Weather).Property(Current.Temperature))</visible>
 					</control>
 					<control type="label">
-						<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 						<label>$INFO[System.Date,  ]</label>
 						<font>Font30_Reg</font>
 						<height>38</height>
@@ -109,7 +109,7 @@
 						<include>AnimationVisibleFade</include>
 					</control>
 					<control type="label">
-						<textcolor>$VAR[MainMenuHighlightColorVar]</textcolor>
+						<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 						<label>$INFO[System.Time,  ]</label>
 						<font>Font30_Reg</font>
 						<height>38</height>
@@ -144,18 +144,18 @@
 					<width>810</width>
 					<height>88</height>
 					<include>AnimationVisibleFade</include>
-					<texture flipx="true" border="1,1,70,1" colordiffuse="$VAR[MainMenuSystemBarColorVar]">panels/mainmenu/default-systembar.png</texture>
+					<texture flipx="true" border="1,1,70,1" colordiffuse="$VAR[TopbarTextureColorVar]">panels/mainmenu/default-systembar.png</texture>
 				</control>
 				<control type="image">
 					<right>0</right>
 					<width>810</width>
 					<height>88</height>
 					<include>AnimationVisibleFade</include>
-					<texture border="70,1,1,1" colordiffuse="$VAR[MainMenuSystemBarColorVar]">panels/mainmenu/default-systembar.png</texture>
+					<texture border="70,1,1,1" colordiffuse="$VAR[TopbarTextureColorVar]">panels/mainmenu/default-systembar.png</texture>
 				</control>
 				<control type="progress">
 					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar)</visible>
-					<include>AnimationVisibleFade</include>
+					<include>AnimationVisibleFade</include> 
 					<top>47</top>
 					<width>740</width>
 					<height>41</height>
@@ -187,10 +187,18 @@
 				<visible>!String.IsEmpty(Skin.String(MainMenuSystemBar.texture))</visible>
 				<include>AnimationVisibleFade</include>
 				<control type="image">
+					<visible>Skin.String(MainMenuSystemBar.texture,wide)</visible>
 					<width>1920</width>
 					<height>88</height>
 					<include>AnimationVisibleFade</include>
-					<texture flipy="true" colordiffuse="$VAR[MainMenuSystemBarColorVar]" border="1">$VAR[MainMenuSystemBarVar]</texture>
+					<texture flipy="true" colordiffuse="$VAR[TopbarTextureColorVar]" border="1">panels/mainmenu/wide-bar.png</texture>
+				</control>
+				<control type="image">
+					<visible>Skin.String(MainMenuSystemBar.texture,shadow)</visible>
+					<width>1920</width>
+					<height>88</height>
+					<include>AnimationVisibleFade</include>
+					<texture flipy="true" colordiffuse="$VAR[TopbarShadowTextureColorVar]" border="1">panels/mainmenu/shadow-bar.png</texture>
 				</control>
 				<control type="progress">
 					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + Skin.String(MainMenuSystemBar.texture,wide)</visible>
@@ -260,14 +268,14 @@
 				<control type="image">
 					<width>810</width>
 					<height>88</height>
-					<texture flipx="true" flipy="true" border="1,1,70,1" colordiffuse="$VAR[MainMenuSystemBarColorVar]">panels/mainmenu/default-systembar.png</texture>
+					<texture flipx="true" flipy="true" border="1,1,70,1" colordiffuse="$VAR[TopbarTextureColorVar]">panels/mainmenu/default-systembar.png</texture>
 				</control>
 				<control type="image">
 					<right>0</right>
 					<width>810</width>
 					<height>88</height>
 					<include>AnimationVisibleFade</include>
-					<texture border="70,1,1,1" flipy="true" colordiffuse="$VAR[MainMenuSystemBarColorVar]">panels/mainmenu/default-systembar.png</texture>
+					<texture border="70,1,1,1" flipy="true" colordiffuse="$VAR[TopbarTextureColorVar]">panels/mainmenu/default-systembar.png</texture>
 				</control>
 				<control type="progress">
 					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar)</visible>
@@ -299,10 +307,18 @@
 				<visible>!String.IsEmpty(Skin.String(MainMenuSystemBar.texture))</visible>
 				<include>AnimationVisibleFade</include>
 				<control type="image">
+					<visible>Skin.String(MainMenuSystemBar.texture,wide)</visible>
 					<width>1920</width>
 					<height>88</height>
 					<include>AnimationVisibleFade</include>
-					<texture colordiffuse="$VAR[MainMenuSystemBarColorVar]" border="1">$VAR[MainMenuSystemBarVar]</texture>
+					<texture colordiffuse="$VAR[TopbarTextureColorVar]" border="1">panels/mainmenu/wide-bar.png</texture>
+				</control>
+				<control type="image">
+					<visible>Skin.String(MainMenuSystemBar.texture,shadow)</visible>
+					<width>1920</width>
+					<height>88</height>
+					<include>AnimationVisibleFade</include>
+					<texture colordiffuse="$VAR[TopbarShadowTextureColorVar]" border="1">panels/mainmenu/shadow-bar.png</texture>
 				</control>
 				<control type="progress">
 					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + Skin.String(MainMenuSystemBar.texture,wide)</visible>
@@ -367,10 +383,20 @@
 			<control type="group">
 				<visible>system.getbool(lookandfeel.enablerssfeeds)</visible>
 				<control type="image">
+					<visible>Skin.String(MainMenuRSSBar.texture,wide)</visible>
 					<top>-48</top>
 					<width>1920</width>
 					<height>88</height>
-					<texture flipy="true" border="1" colordiffuse="$VAR[MainMenuRSSBarColorVar]">$VAR[MainMenuRSSBarVar]</texture>
+					<include>AnimationVisibleFade</include>
+					<texture colordiffuse="$VAR[TopbarTextureColorVar]" flipy="true" border="1">panels/mainmenu/wide-bar.png</texture>
+				</control>
+				<control type="image">
+					<visible>String.IsEmpty(Skin.String(MainMenuRSSBar.texture))</visible>
+					<top>-48</top>
+					<width>1920</width>
+					<height>88</height>
+					<include>AnimationVisibleFade</include>
+					<texture colordiffuse="$VAR[TopbarShadowTextureColorVar]" flipy="true" border="1">panels/mainmenu/shadow-bar.png</texture>
 				</control>
 				<control type="rss">
 					<top>0</top>
@@ -378,9 +404,9 @@
 					<height>38</height>
 					<font>Font28_Reg</font>
 					<urlset>1</urlset>
-					<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
-					<headlinecolor>$VAR[MainMenuSubTextColorVar]</headlinecolor>
-					<titlecolor>$VAR[MainMenuTextColorVar]</titlecolor>
+					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					<headlinecolor>$VAR[PanelSubTextColorVar]</headlinecolor>
+					<titlecolor>$VAR[PanelTextColorVar]</titlecolor>
 				</control>
 			</control>
 			<control type="image">
@@ -389,7 +415,7 @@
 				<bottom>0</bottom>
 				<width>1920</width>
 				<height>140</height>
-				<texture colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/background-gradient.png</texture>
+				<texture colordiffuse="$VAR[PanelBackgroundShadowColorVar]">panels/background-gradient.png</texture>
 			</control>
 			<control type="grouplist" id="9003">
 				<animation effect="slide" start="0" end="0,79" time="200" condition="!ControlGroup(9003).HasFocus">Conditional</animation>
@@ -467,10 +493,10 @@
 		<height>70</height>
 		<align>center</align>
 		<font>Font40_Icon</font>
-		<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
-		<focusedcolor>$VAR[MainMenuTextColorVar]</focusedcolor>
-		<texturefocus border="20" colordiffuse="$VAR[MainMenuHighlightColorVar]">buttons/button.png</texturefocus>
-		<texturenofocus border="20" colordiffuse="$VAR[MainMenuButtonColorVar]">buttons/button.png</texturenofocus>
+		<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+		<focusedcolor>$VAR[PanelTextColorVar]</focusedcolor>
+		<texturefocus border="20" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/button.png</texturefocus>
+		<texturenofocus border="20" colordiffuse="$VAR[PanelSubTextColorVar]">buttons/button.png</texturenofocus>
 	</include>
 	<include name="MainMenu">
 		<param name="listtype">wraplist</param>
@@ -494,19 +520,26 @@
 				<control type="group">
 					<top>100</top>
 					<control type="image">
+						<visible>!Skin.HasSetting(MainMenuSubmenuBar.texture)</visible>
 						<centerleft>50%</centerleft>
 						<width>1808</width>
 						<height>88</height>
 						<include>AnimationVisibleFade</include>
-						<texture border="70,0,70,0" colordiffuse="$VAR[MainMenuSubmenuBarColorVar]">panels/mainmenu/default-submenubar.png</texture>
-						<visible>String.IsEmpty(Skin.String(MainMenuSubmenuBar.texture))</visible>
+						<texture border="70,0,70,0" colordiffuse="$VAR[TopbarTextureColorVar]">panels/mainmenu/default-submenubar.png</texture>
 					</control>
 					<control type="image">
+						<visible>String.IsEqual(Skin.String(MainMenuSubmenuBar.texture),wide)</visible>
 						<width>1920</width>
 						<height>88</height>
 						<include>AnimationVisibleFade</include>
-						<texture colordiffuse="$VAR[MainMenuSubmenuBarColorVar]" border="1,0,1,0">$VAR[MainMenuSubmenuBarVar]</texture>
-						<visible>!String.IsEmpty(Skin.String(MainMenuSubmenuBar.texture))</visible>
+						<texture colordiffuse="$VAR[TopbarTextureColorVar]" border="1,0,1,0">panels/mainmenu/wide-bar.png</texture>
+					</control>
+					<control type="image">
+						<visible>String.IsEqual(Skin.String(MainMenuSubmenuBar.texture),shadow)</visible>
+						<width>1920</width>
+						<height>88</height>
+						<include>AnimationVisibleFade</include>
+						<texture colordiffuse="$VAR[TopbarShadowTextureColorVar]" border="1,0,1,0">panels/mainmenu/shadow-bar.png</texture>
 					</control>
 					<control type="fixedlist" id="9001">
 						<centerleft>50%</centerleft>
@@ -525,7 +558,7 @@
 						<itemlayout width="334" height="41">
 							<control type="label">
 								<align>center</align>
-								<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
+								<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 								<font>Font30_Caps</font>
 								<textoffsetx>20</textoffsetx>
 								<label>$INFO[ListItem.Label]</label>
@@ -535,17 +568,17 @@
 							<control type="group">
 								<visible>Control.HasFocus(9001)</visible>
 								<control type="image">
-									<texture border="1" colordiffuse="$VAR[MainMenuHighlightColorVar]">buttons/list-select-focus.png</texture>
+									<texture border="1" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
 									<visible>!String.IsEqual(Skin.String(MainMenuSubmenuBar.texture),shadow)</visible>
 								</control>
 								<control type="image">
 									<height>70</height>
-									<texture border="1" colordiffuse="$VAR[MainMenuHighlightColorVar]">panels/mainmenu/shadow-bar-focus.png</texture>
+									<texture border="1" colordiffuse="$VAR[PanelHighlightColorVar]">panels/mainmenu/shadow-bar-focus.png</texture>
 									<visible>String.IsEqual(Skin.String(MainMenuSubmenuBar.texture),shadow)</visible>
 								</control>
 								<control type="label">
 									<align>center</align>
-									<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+									<textcolor>$VAR[PanelTextColorVar]</textcolor>
 									<font>Font30_Caps</font>
 									<textoffsetx>20</textoffsetx>
 									<label>$INFO[ListItem.Label]</label>
@@ -553,7 +586,7 @@
 							</control>
 							<control type="label">
 								<align>center</align>
-								<textcolor>$VAR[MainMenuSubTextColorVar]</textcolor>
+								<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 								<font>Font30_Caps</font>
 								<label>$INFO[ListItem.Label]</label>
 								<visible>!Control.HasFocus(9001)</visible>
@@ -569,7 +602,7 @@
 					<top>-20</top>
 					<width>1920</width>
 					<height>140</height>
-					<texture colordiffuse="$VAR[MainMenuShadowColorVar]">panels/mainmenu/shadow.png</texture>
+					<texture colordiffuse="$VAR[PanelShadowColorVar]">panels/mainmenu/shadow.png</texture>
 				</control>
 				<control type="image">
 					<top>-20</top>
@@ -602,7 +635,7 @@
 						<control type="label">
 							<align>center</align>
 							<font>Font_MainMenu</font>
-							<textcolor>$VAR[MainMenuNofocusTextColorVar]</textcolor>
+							<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 							<label>$INFO[ListItem.Label]</label>
 						</control>
 					</itemlayout>
@@ -610,7 +643,7 @@
 						<control type="label">
 							<align>center</align>
 							<font>Font_MainMenu</font>
-							<textcolor>$VAR[MainMenuFocusTextColorVar]</textcolor>
+							<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 							<label>$INFO[ListItem.Label]</label>
 							<animation effect="fade" start="100" end="28" time="200" condition="!Control.HasFocus(9000)">Conditional</animation>
 						</control>
@@ -619,7 +652,7 @@
 						<control type="label">
 							<align>center</align>
 							<font>Font_MainMenu</font>
-							<textcolor>$VAR[MainMenuNofocusTextColorVar]</textcolor>
+							<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 							<label>$INFO[ListItem.Label]</label>
 						</control>
 					</itemlayout>
@@ -627,7 +660,7 @@
 						<control type="label">
 							<align>center</align>
 							<font>Font_MainMenu</font>
-							<textcolor>$VAR[MainMenuFocusTextColorVar]</textcolor>
+							<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 							<label>$INFO[ListItem.Label]</label>
 							<animation effect="fade" start="100" end="28" time="200" condition="!Control.HasFocus(9000)">Conditional</animation>
 						</control>
@@ -637,14 +670,14 @@
 							<top>5</top>
 							<height>60</height>
 							<aspectratio align="center" aligny="center">keep</aspectratio>
-							<texture colordiffuse="$VAR[MainMenuNofocusIconColorVar]">$INFO[ListItem.Property(MenuIcon)]</texture>
+							<texture colordiffuse="$VAR[PanelSubTextColorVar]">$INFO[ListItem.Property(MenuIcon)]</texture>
 						</control>
 						<control type="label">
 							<top>67</top>
 							<height>30</height>
 							<align>center</align>
 							<font>Font_MainMenu_Icons</font>
-							<textcolor>$VAR[MainMenuNofocusTextColorVar]</textcolor>
+							<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 							<label>$INFO[ListItem.Label]</label>
 						</control>
 					</itemlayout>
@@ -662,7 +695,7 @@
 								<height>30</height>
 								<align>center</align>
 								<font>Font_MainMenu_Icons</font>
-								<textcolor>$VAR[MainMenuFocusTextColorVar]</textcolor>
+								<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 								<label>$INFO[ListItem.Label]</label>
 							</control>
 						</control>
@@ -672,14 +705,14 @@
 							<top>5</top>
 							<height>60</height>
 							<aspectratio align="center" aligny="center">keep</aspectratio>
-							<texture colordiffuse="$VAR[MainMenuNofocusIconColorVar]">$INFO[ListItem.Property(MenuIcon)]</texture>
+							<texture colordiffuse="$VAR[PanelSubTextColorVar]">$INFO[ListItem.Property(MenuIcon)]</texture>
 						</control>
 						<control type="label">
 							<top>67</top>
 							<height>30</height>
 							<align>center</align>
 							<font>Font_MainMenu_Icons</font>
-							<textcolor>$VAR[MainMenuNofocusTextColorVar]</textcolor>
+							<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 							<label>$INFO[ListItem.Label]</label>
 						</control>
 					</itemlayout>
@@ -697,7 +730,7 @@
 								<height>30</height>
 								<align>center</align>
 								<font>Font_MainMenu_Icons</font>
-								<textcolor>$VAR[MainMenuFocusTextColorVar]</textcolor>
+								<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 								<label>$INFO[ListItem.Label]</label>
 							</control>
 						</control>
@@ -707,7 +740,7 @@
 							<top>5</top>
 							<height>90</height>
 							<aspectratio align="center" aligny="center">keep</aspectratio>
-							<texture colordiffuse="$VAR[MainMenuNofocusIconColorVar]">$INFO[ListItem.Property(MenuIcon)]</texture>
+							<texture colordiffuse="$VAR[PanelSubTextColorVar]">$INFO[ListItem.Property(MenuIcon)]</texture>
 						</control>
 					</itemlayout>
 					<focusedlayout width="274" height="100" condition="Skin.String(MainMenuStyle,bigicons)">
@@ -724,7 +757,7 @@
 							<top>5</top>
 							<height>90</height>
 							<aspectratio align="center" aligny="center">keep</aspectratio>
-							<texture colordiffuse="$VAR[MainMenuNofocusIconColorVar]">$INFO[ListItem.Property(MenuIcon)]</texture>
+							<texture colordiffuse="$VAR[PanelSubTextColorVar]">$INFO[ListItem.Property(MenuIcon)]</texture>
 						</control>
 					</itemlayout>
 					<focusedlayout width="384" height="100" condition="Skin.String(MainMenuStyle,bigiconswide)">
@@ -779,7 +812,7 @@
 				<bottom>0</bottom>
 				<height>100</height>
 				<bordersize>10</bordersize>
-				<texture colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/background-gradient.png</texture>
+				<texture colordiffuse="$VAR[PanelBackgroundShadowColorVar]">panels/background-gradient.png</texture>
 				<visible>$PARAM[labelvisible]</visible>
 			</control>
 			<control type="label">
@@ -789,7 +822,7 @@
 				<height>50</height>
 				<align>center</align>
 				<font>Font29_Cond</font>
-				<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+				<textcolor>$VAR[PanelTextColorVar]</textcolor>
 				<textoffsetx>5</textoffsetx>
 				<label>$INFO[ListItem.Title]</label>
 				<visible>$PARAM[labelvisible]</visible>
@@ -800,7 +833,7 @@
 		</itemlayout>
 		<focusedlayout width="$PARAM[containerwidth]">
 			<control type="image">
-				<texture colordiffuse="$VAR[MainMenuHighlightColorVar]" border="10">buttons/widget-select-focus.png</texture>
+				<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/widget-select-focus.png</texture>
 			</control>
 			<control type="group">
 				<animation  type="Focus" reversible="false">
@@ -821,7 +854,7 @@
 					<bottom>0</bottom>
 					<height>100</height>
 					<bordersize>10</bordersize>
-					<texture colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/background-gradient.png</texture>
+					<texture colordiffuse="$VAR[PanelBackgroundShadowColorVar]">panels/background-gradient.png</texture>
 					<visible>$PARAM[labelvisible]</visible>
 				</control>
 				<control type="label">
@@ -831,7 +864,7 @@
 					<height>50</height>
 					<align>center</align>
 					<font>Font29_Cond</font>
-					<textcolor>$VAR[MainMenuHighlightColorVar]</textcolor>
+					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 					<textoffsetx>5</textoffsetx>
 					<label>$INFO[ListItem.Title]</label>
 					<visible>$PARAM[labelvisible]</visible>
@@ -892,7 +925,7 @@
 		</itemlayout>
 		<focusedlayout width="$PARAM[containerwidth]">
 			<control type="image">
-				<texture colordiffuse="$VAR[MainMenuHighlightColorVar]" border="10">buttons/widget-select-focus.png</texture>
+				<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/widget-select-focus.png</texture>
 			</control>
 			<control type="group">
 				<animation  type="Focus" reversible="false">
@@ -996,7 +1029,7 @@
 		</itemlayout>
 		<focusedlayout width="$PARAM[containerwidth]">
 			<control type="image">
-				<texture colordiffuse="$VAR[MainMenuHighlightColorVar]" border="10">buttons/widget-select-focus.png</texture>
+				<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/widget-select-focus.png</texture>
 			</control>
 			<control type="group">
 				<animation  type="Focus" reversible="false">
@@ -1070,7 +1103,7 @@
 					<height>30</height>
 					<align>right</align>
 					<font>Font32_Reg</font>
-					<textcolor>$VAR[MainMenuHighlightColorVar]</textcolor>
+					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 					<shadowcolor>black</shadowcolor>
 					<label>$PARAM[label]</label>
 				</control>
@@ -1080,7 +1113,7 @@
 					<usecontrolcoords>true</usecontrolcoords>
 					<control type="label">
 						<height>32</height>
-						<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
 						<shadowcolor>black</shadowcolor>
 						<font>Font36_Reg</font>
 						<fadetime>TextureFadeTime</fadetime>
@@ -1090,12 +1123,12 @@
 						<width>388</width>
 						<height>4</height>
 						<aspectratio>scale</aspectratio>
-						<texture colordiffuse="$VAR[MainMenuListSeparatorColorVar]">panels/separator.png</texture>
+						<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
 					</control>
 					<control type="label">
 						<height>20</height>
 						<font>Font32_Reg</font>
-						<textcolor>$VAR[MainMenuHighlightColorVar]</textcolor>
+						<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 						<shadowcolor>black</shadowcolor>
 						<label>$VAR[WidgetSubTitleVar]</label>
 					</control>
@@ -1119,7 +1152,7 @@
 						<control type="label">
 							<top>-2</top>
 							<width>auto</width>
-							<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+							<textcolor>$VAR[PanelTextColorVar]</textcolor>
 							<label>$VAR[WidgetInfo1Var]</label>
 						</control>
 						<control type="image">
@@ -1137,7 +1170,7 @@
 						<control type="label">
 							<top>-2</top>
 							<width>auto</width>
-							<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+							<textcolor>$VAR[PanelTextColorVar]</textcolor>
 							<label>$VAR[WidgetInfo2Var]</label>
 						</control>
 						<control type="image">
@@ -1150,7 +1183,7 @@
 							<visible>!String.IsEmpty(Container.ListItem.Rating) | !String.IsEmpty(Container.ListItem.UserRating)</visible>
 							<top>-2</top>
 							<width>auto</width>
-							<textcolor>$VAR[MainMenuTextColorVar]</textcolor>
+							<textcolor>$VAR[PanelTextColorVar]</textcolor>
 							<label>$VAR[WidgetInfo3Var]</label>
 						</control>
 					</control>
@@ -1170,7 +1203,7 @@
 			<bottom>-42</bottom>
 			<width>1920</width>
 			<height>926</height>
-			<texture colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/widget-gradient.png</texture>
+			<texture colordiffuse="$VAR[PanelBackgroundShadowColorVar]">panels/widget-gradient.png</texture>
 		</control>
 		<control type="image">
 			<visible>Skin.HasSetting(WidgetHigh)</visible>
@@ -1181,7 +1214,7 @@
 			<top>0</top>
 			<width>1920</width>
 			<height>870</height>
-			<texture flipy="true" colordiffuse="$VAR[MainMenuBackgroundColorVar]">panels/widget-gradient.png</texture>
+			<texture flipy="true" colordiffuse="$VAR[PanelBackgroundShadowColorVar]">panels/widget-gradient.png</texture>
 		</control>
 		<control type="group">
 			<top>429</top>
