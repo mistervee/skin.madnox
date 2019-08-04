@@ -5,6 +5,38 @@
 	<onunload>ClearProperty(skinshortcuts-Widget,Home)</onunload>
 	<onunload>ClearProperty(skinshortcuts-management-widget,10000)</onunload>
 	<onunload condition="String.IsEmpty(Window.Property(additionalDialog))">RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;levels=2&amp;group=mainmenu|quicknav)</onunload>
+	<onunload>ClearProperty(WidgetFocus1,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus2,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus3,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus4,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus5,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus6,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus7,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus8,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus9,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus10,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus11,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus12,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus13,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus14,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus15,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus16,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus17,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus18,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus19,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus20,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus21,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus22,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus23,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus24,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus25,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus26,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus27,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus28,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus29,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus30,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus31,Home)</onunload>
+	<onunload>ClearProperty(WidgetFocus32,Home)</onunload>
 	<controls>
 		<control type="group">
 			<visible>String.IsEmpty(Window.Property(additionalDialog))</visible>
@@ -24,10 +56,15 @@
 				<width>324</width>
 				<height>612</height>
 				<onright condition="String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))">90001</onright>
-				<onright condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))">8000</onright>
+				<onright condition="String.IsEqual(Window(Home).Property(skinshortcuts-Widget),1)">8011</onright>
+				<onright condition="String.IsEqual(Window(Home).Property(skinshortcuts-Widget),2)">8012</onright>
+				<onright condition="String.IsEqual(Window(Home).Property(skinshortcuts-Widget),3)">8013</onright>
+				<onright condition="String.IsEqual(Window(Home).Property(skinshortcuts-Widget),4)">8014</onright>
+				<onright condition="String.IsEqual(Window(Home).Property(skinshortcuts-Widget),5)">8015</onright>
+				<onright condition="String.IsEqual(Window(Home).Property(skinshortcuts-Widget),6)">8016</onright>
 				<itemlayout height="67">
 					<control type="label">
-						<visible>!String.Contains(Skin.String(MainMenuStyle),icons) + !String.IsEqual(Window.Property(groupname),quicknav)</visible>
+						<visible>!String.Contains(Skin.String(MainMenuLayout),icons) + !String.IsEqual(Window.Property(groupname),quicknav)</visible>
 						<left>25</left>
 						<width>273</width>
 						<font>Font36_Reg</font>
@@ -35,7 +72,7 @@
 						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 					</control>
 					<control type="label">
-						<visible>String.Contains(Skin.String(MainMenuStyle),icons) | String.IsEqual(Window.Property(groupname),quicknav)</visible>
+						<visible>String.Contains(Skin.String(MainMenuLayout),icons) | String.IsEqual(Window.Property(groupname),quicknav)</visible>
 						<left>25</left>
 						<width>213</width>
 						<font>Font36_Reg</font>
@@ -43,12 +80,12 @@
 						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 					</control>
 					<control type="image">
-						<visible>String.Contains(Skin.String(MainMenuStyle),icons) | String.IsEqual(Window.Property(groupname),quicknav)</visible>
+						<visible>String.Contains(Skin.String(MainMenuLayout),icons) | String.IsEqual(Window.Property(groupname),quicknav)</visible>
 						<top>9</top>
 						<left>248</left>
 						<width>50</width>
 						<height>50</height>
-						<texture>$INFO[ListItem.Property(MenuIcon)]</texture>
+						<texture>$INFO[ListItem.Icon]</texture>
 					</control>
 				</itemlayout>
 				<focusedlayout height="67">
@@ -57,7 +94,7 @@
 						<animation effect="fade" start="100" end="50" time="40" condition="!Control.HasFocus(211)">Conditional</animation>
 					</control>
 					<control type="label">
-						<visible>!String.Contains(Skin.String(MainMenuStyle),icons) | String.IsEqual(Window.Property(groupname),quicknav) + !String.IsEqual(Window.Property(groupname),quicknav)</visible>
+						<visible>!String.Contains(Skin.String(MainMenuLayout),icons) | String.IsEqual(Window.Property(groupname),quicknav) + !String.IsEqual(Window.Property(groupname),quicknav)</visible>
 						<left>25</left>
 						<width>273</width>
 						<font>Font36_Reg</font>
@@ -65,7 +102,7 @@
 						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
 					</control>
 					<control type="label">
-						<visible>String.Contains(Skin.String(MainMenuStyle),icons) | String.IsEqual(Window.Property(groupname),quicknav)</visible>
+						<visible>String.Contains(Skin.String(MainMenuLayout),icons) | String.IsEqual(Window.Property(groupname),quicknav)</visible>
 						<left>25</left>
 						<width>213</width>
 						<font>Font36_Reg</font>
@@ -73,12 +110,12 @@
 						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
 					</control>
 					<control type="image">
-						<visible>String.Contains(Skin.String(MainMenuStyle),icons) | String.IsEqual(Window.Property(groupname),quicknav)</visible>
+						<visible>String.Contains(Skin.String(MainMenuLayout),icons) | String.IsEqual(Window.Property(groupname),quicknav)</visible>
 						<top>9</top>
 						<left>248</left>
 						<width>50</width>
 						<height>50</height>
-						<texture>$INFO[ListItem.Property(MenuIcon)]</texture>
+						<texture>$INFO[ListItem.Icon]</texture>
 					</control>
 				</focusedlayout>
 			</control>
@@ -209,21 +246,72 @@
 					<onclick>SendClick(404)</onclick>
 					<include>SettingsButton</include>
 				</control>
-				<control type="button" id="501">
-					<visible>[String.IsEqual(Window.Property(groupname),mainmenu) + String.Contains(Skin.String(MainMenuStyle),icons)] | String.IsEqual(Window.Property(groupname),quicknav)</visible>
-					<description>Change icon</description>
-					<label>$ADDON[script.skinshortcuts 32026]</label>
-					<onclick>RunScript(script.skin.helper.service,action=selectimage,header=Choose Icon,skinshortcutsproperty=MenuIcon,resourceaddon=resource.images.skinicons)</onclick>
+				<control type="button" id="306">
+					<visible>[String.IsEqual(Window.Property(groupname),mainmenu) + String.Contains(Skin.String(MainMenuLayout),icons)] | String.IsEqual(Window.Property(groupname),quicknav)</visible>
+					<description>Background</description>
+					<label>$LOCALIZE[31061]</label>
+					<label2>$INFO[Container(211).ListItem.Property(icon)]</label2>
+					<visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
 					<include>SettingsButton</include>
 				</control>
-				<control type="button" id="800">
+				<control type="button" id="501">
 					<visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
-					<description>Widget</description>
-					<label>$ADDON[script.skinshortcuts 32044]</label>
-					<label2>$INFO[Container(211).ListItem.Property(widgetName)]</label2>
+					<description>$LOCALIZE[31289] 1</description>
+					<label>$ADDON[script.skinshortcuts 32044] 1</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetName.1)]</label2>
 					<onfocus condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))">ClearProperty(skinshortcuts-Widget,Home)</onfocus>
 					<onclick>SetProperty(skinshortcuts-Widget,1,Home)</onclick>
-					<onclick>Control.SetFocus(312)</onclick>
+					<onclick>Control.SetFocus(8012)</onclick>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="502">
+					<visible>String.IsEqual(Window.Property(groupname),mainmenu) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.1))</visible>
+					<description>$LOCALIZE[31289] 2</description>
+					<label>$ADDON[script.skinshortcuts 32044] 2</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetName.2)]</label2>
+					<onfocus condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))">ClearProperty(skinshortcuts-Widget,Home)</onfocus>
+					<onclick>SetProperty(skinshortcuts-Widget,2,Home)</onclick>
+					<onclick>Control.SetFocus(8022)</onclick>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="503">
+					<visible>String.IsEqual(Window.Property(groupname),mainmenu) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.1)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.2))</visible>
+					<description>$LOCALIZE[31289] 3</description>
+					<label>$ADDON[script.skinshortcuts 32044] 3</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetName.3)]</label2>
+					<onfocus condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))">ClearProperty(skinshortcuts-Widget,Home)</onfocus>
+					<onclick>SetProperty(skinshortcuts-Widget,3,Home)</onclick>
+					<onclick>Control.SetFocus(8032)</onclick>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="504">
+					<visible>String.IsEqual(Window.Property(groupname),mainmenu) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.1)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.2)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.3))</visible>
+					<description>$LOCALIZE[31289] 4</description>
+					<label>$ADDON[script.skinshortcuts 32044] 4</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetName.4)]</label2>
+					<onfocus condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))">ClearProperty(skinshortcuts-Widget,Home)</onfocus>
+					<onclick>SetProperty(skinshortcuts-Widget,4,Home)</onclick>
+					<onclick>Control.SetFocus(8042)</onclick>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="505">
+					<visible>String.IsEqual(Window.Property(groupname),mainmenu) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.1)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.2)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.3)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.4))</visible>
+					<description>$LOCALIZE[31289] 5</description>
+					<label>$ADDON[script.skinshortcuts 32044] 5</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetName.5)]</label2>
+					<onfocus condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))">ClearProperty(skinshortcuts-Widget,Home)</onfocus>
+					<onclick>SetProperty(skinshortcuts-Widget,5,Home)</onclick>
+					<onclick>Control.SetFocus(8052)</onclick>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="506">
+					<visible>String.IsEqual(Window.Property(groupname),mainmenu) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.1)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.2)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.3)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.4)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.5)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.1))</visible>
+					<description>$LOCALIZE[31289] 6</description>
+					<label>$ADDON[script.skinshortcuts 32044] 6</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetName.6)]</label2>
+					<onfocus condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))">ClearProperty(skinshortcuts-Widget,Home)</onfocus>
+					<onclick>SetProperty(skinshortcuts-Widget,6,Home)</onclick>
+					<onclick>Control.SetFocus(8062)</onclick>
 					<include>SettingsButton</include>
 				</control>
 				<control type="button" id="308">
@@ -233,10 +321,10 @@
 				</control>
 			</control>
 		</control>
-		<!-- Widget settings -->
+		<!-- Widget 1 settings -->
 		<control type="group">
-			<visible>!String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
-			<control type="button" id="8100">
+			<visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),1)</visible>
+			<control type="button" id="801">
 				<left>425</left>
 				<width>1395</width>
 				<height>100%</height>
@@ -244,7 +332,7 @@
 				<texturefocus />
 				<texturenofocus />
 			</control>
-			<control type="grouplist" id="8000">
+			<control type="grouplist" id="8011">
 				<top>200</top>
 				<left>425</left>
 				<width>1395</width>
@@ -252,55 +340,549 @@
 				<onleft>211</onleft>
 				<onright>60</onright>
 				<pagecontrol>60</pagecontrol>
-				<control type="button" id="312">
-					<label>Widget</label>
-					<label2>$INFO[Container(211).ListItem.Property(widgetType)]</label2>
-					<onclick>SetProperty(customProperty,widgetAspect)</onclick>
+				<control type="button" id="8012">
+					<label>$LOCALIZE[31289] 1</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetName.1)]</label2>
+					<onclick>SetProperty(customProperty,widgetArtwork.1)</onclick>
 					<onclick>SendClick(404)</onclick>
-					<onclick>SetProperty(customProperty,widgetArtwork)</onclick>
-					<onclick>SendClick(404)</onclick>
+					<onclick>SetProperty(widgetID,1)</onclick>
+					<onclick>SendClick(312)</onclick>
 					<include>SettingsButton</include>
 				</control>
-				<control type="button" id="8001">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetType))</visible>
-					<label>Style</label>
-					<label2>$VAR[WidgetStyleLabelVar]</label2>
+				<control type="button" id="8013">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.1))</visible>
+					<label>$LOCALIZE[736]</label>
+					<label2>$VAR[Widget1StyleLabelVar]</label2>
 					<include>SettingsButton</include>
 				</control>
-				<control type="button" id="8002">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle))</visible>
-					<label>Artwork</label>
-					<label2>$VAR[WidgetArtworkLabelVar]</label2>
+				<control type="button" id="8014">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.1)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.1))</visible>
+					<label>$LOCALIZE[31044]</label>
+					<label2>$VAR[Widget1ArtworkLabelVar]</label2>
 					<include>SettingsButton</include>
 				</control>
-				<control type="button" id="8003">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath))</visible>
-					<label>Aspect</label>
-					<label2>$VAR[WidgetAspectLabelVar]</label2>
+				<control type="button" id="8015">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.1)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.1))</visible>
+					<label>$LOCALIZE[31290]</label>
+					<label2>$VAR[Widget1AspectLabelVar]</label2>
 					<include>SettingsButton</include>
 				</control>
-				<control type="radiobutton" id="8010">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath)) + !String.IsEqual(Container(211).ListItem.Property(widget),info)</visible>
+				<control type="radiobutton" id="8016">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.1)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.1)) + !String.IsEqual(Container(211).ListItem.Property(widget.1),info)</visible>
 					<description>Label</description>
-					<label>Label</label>
-					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetLabel))">SetProperty(customProperty,widgetLabel)</onclick>
-					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel))">SetProperty(customProperty,widgetLabel)</onclick>
-					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel))">SetProperty(customValue,true)</onclick>
+					<label>$LOCALIZE[21899]</label>
+					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetLabel.1))">SetProperty(customProperty,widgetLabel.1)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel.1))">SetProperty(customProperty,widgetLabel.1)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel.1))">SetProperty(customValue,true)</onclick>
 					<onclick>SendClick(404)</onclick>
-					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetLabel))</selected>
+					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetLabel.1))</selected>
 					<include>SettingsRadioButton</include>
 				</control>
-				<control type="radiobutton" id="8011">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath)) + !String.IsEqual(Container(211).ListItem.Property(widget),info)</visible>
-					<label>Info</label>
-					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetInfo))">SetProperty(customProperty,widgetInfo)</onclick>
-					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetInfo))">SetProperty(customProperty,widgetInfo)</onclick>
-					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetInfo))">SetProperty(customValue,true)</onclick>
+				<control type="radiobutton" id="8017">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.1)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.1)) + String.IsEqual(Container(211).ListItem.Property(widgetAspect.1),portrait) + String.IsEqual(Container(211).ListItem.Property(widgetArtwork.1),poster) + String.IsEqual(Container(211).ListItem.Property(widgetTarget.1),videos)</visible>
+					<description>Label</description>
+					<label>$LOCALIZE[31237]</label>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.1),false)">SetProperty(customProperty,widgetCaseVideo.1)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.1),false)">SetProperty(customValue,true)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.1),true)">SetProperty(customProperty,widgetCaseVideo.1)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.1),true)">SetProperty(customValue,false)</onclick>
 					<onclick>SendClick(404)</onclick>
-					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetInfo))</selected>
+					<selected>String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.1),true)</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+				<control type="radiobutton" id="8018">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.1)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.1)) + String.IsEqual(Container(211).ListItem.Property(widgetAspect.1),square) + String.IsEqual(Container(211).ListItem.Property(widgetArtwork.1),poster) + String.IsEqual(Container(211).ListItem.Property(widgetTarget.1),music)</visible>
+					<description>Label</description>
+					<label>$LOCALIZE[31291]</label>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.1),false)">SetProperty(customProperty,widgetCaseMusic.1)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.1),false)">SetProperty(customValue,true)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.1),true)">SetProperty(customProperty,widgetCaseMusic.1)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.1),true)">SetProperty(customValue,false)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.1),true)</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+				<control type="radiobutton" id="8019">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle.1)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.1)) + !String.IsEqual(Container(211).ListItem.Property(widget.1),info)</visible>
+					<label>$LOCALIZE[29915]</label>
+					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetInfo.1))">SetProperty(customProperty,widgetInfo.1)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetInfo.1))">SetProperty(customProperty,widgetInfo.1)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetInfo.1))">SetProperty(customValue,true)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetInfo.1))</selected>
 					<include>SettingsRadioButton</include>
 				</control>
 			</control>
+		</control>
+		<!-- Widget 2 settings -->
+		<control type="group">
+			<visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),2)</visible>
+			<control type="button" id="802">
+				<left>425</left>
+				<width>1395</width>
+				<height>100%</height>
+				<onclick>back</onclick>
+				<texturefocus />
+				<texturenofocus />
+			</control>
+			<control type="grouplist" id="8021">
+				<top>200</top>
+				<left>425</left>
+				<width>1395</width>
+				<height>670</height>
+				<onleft>211</onleft>
+				<onright>60</onright>
+				<pagecontrol>60</pagecontrol>
+				<control type="button" id="8022">
+					<label>$LOCALIZE[31289] 2</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetName.2)]</label2>
+					<onclick>SetProperty(customProperty,widgetArtwork.2)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<onclick>SetProperty(widgetID,2)</onclick>
+					<onclick>SendClick(312)</onclick>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8023">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.2))</visible>
+					<label>$LOCALIZE[736]</label>
+					<label2>$VAR[Widget2StyleLabelVar]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8024">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.2)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.2))</visible>
+					<label>$LOCALIZE[31044]</label>
+					<label2>$VAR[Widget2ArtworkLabelVar]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8025">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.2)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.2))</visible>
+					<label>$LOCALIZE[31290]</label>
+					<label2>$VAR[Widget2AspectLabelVar]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="radiobutton" id="8026">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.2)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.2)) + !String.IsEqual(Container(211).ListItem.Property(widget.2),info)</visible>
+					<description>Label</description>
+					<label>$LOCALIZE[21899]</label>
+					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetLabel.2))">SetProperty(customProperty,widgetLabel.2)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel.2))">SetProperty(customProperty,widgetLabel.2)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel.2))">SetProperty(customValue,true)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetLabel.2))</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+				<control type="radiobutton" id="8027">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.2)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.2)) + String.IsEqual(Container(211).ListItem.Property(widgetAspect.2),portrait) + String.IsEqual(Container(211).ListItem.Property(widgetArtwork.2),poster) + String.IsEqual(Container(211).ListItem.Property(widgetTarget.2),videos)</visible>
+					<description>Label</description>
+					<label>$LOCALIZE[31237]</label>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.2),false)">SetProperty(customProperty,widgetCaseVideo.2)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.2),false)">SetProperty(customValue,true)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.2),true)">SetProperty(customProperty,widgetCaseVideo.2)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.2),true)">SetProperty(customValue,false)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.2),true)</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+				<control type="radiobutton" id="8028">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.2)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.2)) + String.IsEqual(Container(211).ListItem.Property(widgetAspect.2),square) + String.IsEqual(Container(211).ListItem.Property(widgetArtwork.2),poster) + String.IsEqual(Container(211).ListItem.Property(widgetTarget.2),music)</visible>
+					<description>Label</description>
+					<label>$LOCALIZE[31291]</label>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.2),false)">SetProperty(customProperty,widgetCaseMusic.2)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.2),false)">SetProperty(customValue,true)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.2),true)">SetProperty(customProperty,widgetCaseMusic.2)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.2),true)">SetProperty(customValue,false)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.2),true)</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+				<control type="radiobutton" id="8029">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle.2)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.2)) + !String.IsEqual(Container(211).ListItem.Property(widget.2),info)</visible>
+					<label>$LOCALIZE[29915]</label>
+					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetInfo.2))">SetProperty(customProperty,widgetInfo.2)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetInfo.2))">SetProperty(customProperty,widgetInfo.2)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetInfo.2))">SetProperty(customValue,true)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetInfo.2))</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+			</control>
+		</control>
+		<!-- Widget 3 settings -->
+		<control type="group">
+			<visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),3)</visible>
+			<control type="button" id="803">
+				<left>425</left>
+				<width>1395</width>
+				<height>100%</height>
+				<onclick>back</onclick>
+				<texturefocus />
+				<texturenofocus />
+			</control>
+			<control type="grouplist" id="8031">
+				<top>200</top>
+				<left>425</left>
+				<width>1395</width>
+				<height>670</height>
+				<onleft>211</onleft>
+				<onright>60</onright>
+				<pagecontrol>60</pagecontrol>
+				<control type="button" id="8032">
+					<label>$LOCALIZE[31289] 3</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetName.3)]</label2>
+					<onclick>SetProperty(customProperty,widgetArtwork.3)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<onclick>SetProperty(widgetID,3)</onclick>
+					<onclick>SendClick(312)</onclick>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8033">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.3))</visible>
+					<label>$LOCALIZE[736]</label>
+					<label2>$VAR[Widget3StyleLabelVar]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8034">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.3)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.3))</visible>
+					<label>$LOCALIZE[31044]</label>
+					<label2>$VAR[Widget3ArtworkLabelVar]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8035">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.3)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.3))</visible>
+					<label>$LOCALIZE[31290]</label>
+					<label2>$VAR[Widget3AspectLabelVar]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="radiobutton" id="8036">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.3)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.3)) + !String.IsEqual(Container(211).ListItem.Property(widget.3),info)</visible>
+					<description>Label</description>
+					<label>$LOCALIZE[21899]</label>
+					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetLabel.3))">SetProperty(customProperty,widgetLabel.3)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel.3))">SetProperty(customProperty,widgetLabel.3)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel.3))">SetProperty(customValue,true)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetLabel.3))</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+				<control type="radiobutton" id="8037">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.3)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.3)) + String.IsEqual(Container(211).ListItem.Property(widgetAspect.3),portrait) + String.IsEqual(Container(211).ListItem.Property(widgetArtwork.3),poster) + String.IsEqual(Container(211).ListItem.Property(widgetTarget.3),videos)</visible>
+					<description>Label</description>
+					<label>$LOCALIZE[31237]</label>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.3),false)">SetProperty(customProperty,widgetCaseVideo.3)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.3),false)">SetProperty(customValue,true)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.3),true)">SetProperty(customProperty,widgetCaseVideo.3)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.3),true)">SetProperty(customValue,false)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.3),true)</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+				<control type="radiobutton" id="8038">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.3)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.3)) + String.IsEqual(Container(211).ListItem.Property(widgetAspect.3),square) + String.IsEqual(Container(211).ListItem.Property(widgetArtwork.3),poster) + String.IsEqual(Container(211).ListItem.Property(widgetTarget.3),music)</visible>
+					<description>Label</description>
+					<label>$LOCALIZE[31291]</label>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.3),false)">SetProperty(customProperty,widgetCaseMusic.3)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.3),false)">SetProperty(customValue,true)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.3),true)">SetProperty(customProperty,widgetCaseMusic.3)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.3),true)">SetProperty(customValue,false)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.3),true)</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+				<control type="radiobutton" id="8039">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle.3)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.3)) + !String.IsEqual(Container(211).ListItem.Property(widget.3),info)</visible>
+					<label>$LOCALIZE[29915]</label>
+					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetInfo.3))">SetProperty(customProperty,widgetInfo.3)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetInfo.3))">SetProperty(customProperty,widgetInfo.3)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetInfo.3))">SetProperty(customValue,true)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetInfo.3))</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+			</control>
+		</control>
+		<!-- Widget 4 settings -->
+		<control type="group">
+			<visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),4)</visible>
+			<control type="button" id="804">
+				<left>425</left>
+				<width>1395</width>
+				<height>100%</height>
+				<onclick>back</onclick>
+				<texturefocus />
+				<texturenofocus />
+			</control>
+			<control type="grouplist" id="8041">
+				<top>200</top>
+				<left>425</left>
+				<width>1395</width>
+				<height>670</height>
+				<onleft>211</onleft>
+				<onright>60</onright>
+				<pagecontrol>60</pagecontrol>
+				<control type="button" id="8042">
+					<label>$LOCALIZE[31289] 4</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetName.4)]</label2>
+					<onclick>SetProperty(customProperty,widgetArtwork.4)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<onclick>SetProperty(widgetID,4)</onclick>
+					<onclick>SendClick(312)</onclick>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8043">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.4))</visible>
+					<label>$LOCALIZE[736]</label>
+					<label2>$VAR[Widget4StyleLabelVar]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8044">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.4)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.4))</visible>
+					<label>$LOCALIZE[31044]</label>
+					<label2>$VAR[Widget4ArtworkLabelVar]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8045">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.4)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.4))</visible>
+					<label>$LOCALIZE[31290]</label>
+					<label2>$VAR[Widget4AspectLabelVar]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="radiobutton" id="8046">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.4)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.4)) + !String.IsEqual(Container(211).ListItem.Property(widget.4),info)</visible>
+					<description>Label</description>
+					<label>$LOCALIZE[21899]</label>
+					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetLabel.4))">SetProperty(customProperty,widgetLabel.4)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel.4))">SetProperty(customProperty,widgetLabel.4)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel.4))">SetProperty(customValue,true)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetLabel.4))</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+				<control type="radiobutton" id="8047">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.4)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.4)) + String.IsEqual(Container(211).ListItem.Property(widgetAspect.4),portrait) + String.IsEqual(Container(211).ListItem.Property(widgetArtwork.4),poster) + String.IsEqual(Container(211).ListItem.Property(widgetTarget.4),videos)</visible>
+					<description>Label</description>
+					<label>$LOCALIZE[31237]</label>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.4),false)">SetProperty(customProperty,widgetCaseVideo.4)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.4),false)">SetProperty(customValue,true)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.4),true)">SetProperty(customProperty,widgetCaseVideo.4)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.4),true)">SetProperty(customValue,false)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.4),true)</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+				<control type="radiobutton" id="8048">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.4)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.4)) + String.IsEqual(Container(211).ListItem.Property(widgetAspect.4),square) + String.IsEqual(Container(211).ListItem.Property(widgetArtwork.4),poster) + String.IsEqual(Container(211).ListItem.Property(widgetTarget.4),music)</visible>
+					<description>Label</description>
+					<label>$LOCALIZE[31291]</label>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.4),false)">SetProperty(customProperty,widgetCaseMusic.4)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.4),false)">SetProperty(customValue,true)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.4),true)">SetProperty(customProperty,widgetCaseMusic.4)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.4),true)">SetProperty(customValue,false)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.4),true)</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+				<control type="radiobutton" id="8049">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle.4)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.4)) + !String.IsEqual(Container(211).ListItem.Property(widget.4),info)</visible>
+					<label>$LOCALIZE[29915]</label>
+					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetInfo.4))">SetProperty(customProperty,widgetInfo.4)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetInfo.4))">SetProperty(customProperty,widgetInfo.4)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetInfo.4))">SetProperty(customValue,true)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetInfo.4))</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+			</control>
+		</control>
+		<!-- Widget 5 settings -->
+		<control type="group">
+			<visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),5)</visible>
+			<control type="button" id="805">
+				<left>425</left>
+				<width>1395</width>
+				<height>100%</height>
+				<onclick>back</onclick>
+				<texturefocus />
+				<texturenofocus />
+			</control>
+			<control type="grouplist" id="8051">
+				<top>200</top>
+				<left>425</left>
+				<width>1395</width>
+				<height>670</height>
+				<onleft>211</onleft>
+				<onright>60</onright>
+				<pagecontrol>60</pagecontrol>
+				<control type="button" id="8052">
+					<label>$LOCALIZE[31289] 5</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetName.5)]</label2>
+					<onclick>SetProperty(customProperty,widgetArtwork.5)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<onclick>SetProperty(widgetID,5)</onclick>
+					<onclick>SendClick(312)</onclick>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8053">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.5))</visible>
+					<label>$LOCALIZE[736]</label>
+					<label2>$VAR[Widget5StyleLabelVar]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8054">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.5)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.5))</visible>
+					<label>$LOCALIZE[31044]</label>
+					<label2>$VAR[Widget5ArtworkLabelVar]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8055">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.5)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.5))</visible>
+					<label>$LOCALIZE[31290]</label>
+					<label2>$VAR[Widget5AspectLabelVar]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="radiobutton" id="8056">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.5)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.5)) + !String.IsEqual(Container(211).ListItem.Property(widget.5),info)</visible>
+					<description>Label</description>
+					<label>$LOCALIZE[21899]</label>
+					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetLabel.5))">SetProperty(customProperty,widgetLabel.5)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel.5))">SetProperty(customProperty,widgetLabel.5)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel.5))">SetProperty(customValue,true)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetLabel.5))</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+				<control type="radiobutton" id="8057">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.5)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.5)) + String.IsEqual(Container(211).ListItem.Property(widgetAspect.5),portrait) + String.IsEqual(Container(211).ListItem.Property(widgetArtwork.5),poster) + String.IsEqual(Container(211).ListItem.Property(widgetTarget.5),videos)</visible>
+					<description>Label</description>
+					<label>$LOCALIZE[31237]</label>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.5),false)">SetProperty(customProperty,widgetCaseVideo.5)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.5),false)">SetProperty(customValue,true)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.5),true)">SetProperty(customProperty,widgetCaseVideo.5)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.5),true)">SetProperty(customValue,false)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.5),true)</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+				<control type="radiobutton" id="8058">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.5)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.5)) + String.IsEqual(Container(211).ListItem.Property(widgetAspect.5),square) + String.IsEqual(Container(211).ListItem.Property(widgetArtwork.5),poster) + String.IsEqual(Container(211).ListItem.Property(widgetTarget.5),music)</visible>
+					<description>Label</description>
+					<label>$LOCALIZE[31291]</label>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.5),false)">SetProperty(customProperty,widgetCaseMusic.5)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.5),false)">SetProperty(customValue,true)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.5),true)">SetProperty(customProperty,widgetCaseMusic.5)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.5),true)">SetProperty(customValue,false)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.5),true)</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+				<control type="radiobutton" id="8059">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle.5)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.5)) + !String.IsEqual(Container(211).ListItem.Property(widget.5),info)</visible>
+					<label>$LOCALIZE[29915]</label>
+					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetInfo.5))">SetProperty(customProperty,widgetInfo.5)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetInfo.5))">SetProperty(customProperty,widgetInfo.5)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetInfo.5))">SetProperty(customValue,true)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetInfo.5))</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+			</control>
+		</control>
+		<!-- Widget 6 settings -->
+		<control type="group">
+			<visible>String.IsEqual(Window(Home).Property(skinshortcuts-Widget),6)</visible>
+			<control type="button" id="806">
+				<left>425</left>
+				<width>1395</width>
+				<height>100%</height>
+				<onclick>back</onclick>
+				<texturefocus />
+				<texturenofocus />
+			</control>
+			<control type="grouplist" id="8061">
+				<top>200</top>
+				<left>425</left>
+				<width>1395</width>
+				<height>670</height>
+				<onleft>211</onleft>
+				<onright>60</onright>
+				<pagecontrol>60</pagecontrol>
+				<control type="button" id="8062">
+					<label>$LOCALIZE[31289] 6</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetName.6)]</label2>
+					<onclick>SetProperty(customProperty,widgetArtwork.6)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<onclick>SetProperty(widgetID,6)</onclick>
+					<onclick>SendClick(312)</onclick>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8063">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.6))</visible>
+					<label>$LOCALIZE[736]</label>
+					<label2>$VAR[Widget6StyleLabelVar]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8064">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.6)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.6))</visible>
+					<label>$LOCALIZE[31044]</label>
+					<label2>$VAR[Widget6ArtworkLabelVar]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8065">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.6)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.6))</visible>
+					<label>$LOCALIZE[31290]</label>
+					<label2>$VAR[Widget6AspectLabelVar]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="radiobutton" id="8066">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.6)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.6)) + !String.IsEqual(Container(211).ListItem.Property(widget.6),info)</visible>
+					<description>Label</description>
+					<label>$LOCALIZE[21899]</label>
+					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetLabel.6))">SetProperty(customProperty,widgetLabel.6)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel.6))">SetProperty(customProperty,widgetLabel.6)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel.6))">SetProperty(customValue,true)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetLabel.6))</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+				<control type="radiobutton" id="8067">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.6)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.6)) + String.IsEqual(Container(211).ListItem.Property(widgetAspect.6),portrait) + String.IsEqual(Container(211).ListItem.Property(widgetArtwork.6),poster) + String.IsEqual(Container(211).ListItem.Property(widgetTarget.6),videos)</visible>
+					<description>Label</description>
+					<label>$LOCALIZE[31237]</label>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.6),false)">SetProperty(customProperty,widgetCaseVideo.6)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.6),false)">SetProperty(customValue,true)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.6),true)">SetProperty(customProperty,widgetCaseVideo.6)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.6),true)">SetProperty(customValue,false)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.6),true)</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+				<control type="radiobutton" id="8068">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.6)) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.6)) + String.IsEqual(Container(211).ListItem.Property(widgetAspect.6),square) + String.IsEqual(Container(211).ListItem.Property(widgetArtwork.6),poster) + String.IsEqual(Container(211).ListItem.Property(widgetTarget.6),music)</visible>
+					<description>Label</description>
+					<label>$LOCALIZE[31291]</label>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.6),false)">SetProperty(customProperty,widgetCaseMusic.6)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.6),false)">SetProperty(customValue,true)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.6),true)">SetProperty(customProperty,widgetCaseMusic.6)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.6),true)">SetProperty(customValue,false)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.6),true)</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+				<control type="radiobutton" id="8069">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle.6)) + !String.IsEmpty(Container(211).ListItem.Property(widgetPath.6)) + !String.IsEqual(Container(211).ListItem.Property(widget.6),info)</visible>
+					<label>$LOCALIZE[29915]</label>
+					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetInfo.6))">SetProperty(customProperty,widgetInfo.6)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetInfo.6))">SetProperty(customProperty,widgetInfo.6)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetInfo.6))">SetProperty(customValue,true)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetInfo.6))</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+			</control>
+		</control>
+		<!-- 312, for setting widget -->
+		<control type="button" id="312">
+			<visible>False</visible>
+			<include>HiddenObject</include>
 		</control>
 		<!-- 404, for setting custom property -->
 		<control type="button" id="404">

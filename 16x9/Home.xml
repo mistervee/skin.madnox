@@ -3,8 +3,10 @@
 	<defaultcontrol always="true">9000</defaultcontrol>
 	<menucontrol>9050</menucontrol>
 	<onload condition="!System.HasAddon(script.skinshortcuts)">InstallAddon(script.skinshortcuts)</onload>
+	<onload condition="!System.HasAddon(script.embuary.helper)">InstallAddon(script.embuary.helper)</onload>
 	<onload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;levels=2&amp;group=mainmenu|quicknav)</onload>
-	<onunload>ClearProperty(SkinHelper.WidgetContainer,home)</onunload>
+	<!-- <include>skinshortcuts-template-widgetOnloadFocus</include> -->
+	<!-- <onload>SetProperty(WidgetFocus4,2,home)</onload> -->
 	<controls>
 		<!-- Backdrop -->
 		<include content="BackgroundDefault">
@@ -39,8 +41,14 @@
 				</include>
 				<animation effect="fade" start="100" end="0" time="200" condition="[!Skin.HasSetting(NowplayingHomeDisableAudio) + Player.HasAudio + !ControlGroup(90010).HasFocus] | [Player.HasVideo + !Skin.HasSetting(NowplayingHomeDisableVideo) + !ControlGroup(90010).HasFocus] | [Skin.HasSetting(WidgetHide) + !ControlGroup(90010).HasFocus]">Conditional</animation>
 				<!-- The visibility condition causes a quick flash of the widgets between menu items but is required for navigation -->
-				<visible>!String.IsEmpty(Container(9000).ListItem.Property(widgetType))</visible>
+				<!-- <visible>!String.IsEmpty(Container(9000).ListItem.Property(widgetPath.1))</visible> -->
+				
 				<include>skinshortcuts-template-widget1</include>
+				<include>skinshortcuts-template-widget2</include>
+				<include>skinshortcuts-template-widget3</include>
+				<include>skinshortcuts-template-widget4</include>
+				<include>skinshortcuts-template-widget5</include>
+				<include>skinshortcuts-template-widget6</include>
 			</control>
 			<!-- System/RSS/Time bar and Shortcuts -->
 			<include>InfoTimeBar</include>
@@ -52,6 +60,10 @@
 
 			<include>RSSShortcuts</include>
 		</control>
+
+
+
+
 		<!-- Media Menu -->
 		<include>MediaMenuMouseOverlay</include>
 		<control type="group">
@@ -75,7 +87,7 @@
 						<param name="iconon" value="icons/mediamenu/settings.png" />
 						<param name="iconoff" value="icons/mediamenu/settings.png" />
 					</include>
-					<label>$LOCALIZE[33061]</label>
+					<label>$LOCALIZE[31286]</label>
 					<onclick>SetProperty(MediaMenuSelect,menu,home)</onclick>
 					<onclick>ActivateWindow(1115)</onclick>
 				</control>
@@ -86,15 +98,6 @@
 					</include>
 					<label>$LOCALIZE[29915]</label>
 					<onclick>SetProperty(MediaMenuSelect,info,home)</onclick>
-					<onclick>ActivateWindow(1115)</onclick>
-				</control>
-				<control type="radiobutton" id="9054">
-					<include content="MediaMenuIconButton">
-						<param name="iconon" value="icons/mediamenu/widgets.png" />
-						<param name="iconoff" value="icons/mediamenu/widgets.png" />
-					</include>
-					<label>$LOCALIZE[31039]</label>
-					<onclick>SetProperty(MediaMenuSelect,widgets,home)</onclick>
 					<onclick>ActivateWindow(1115)</onclick>
 				</control>
 				<control type="radiobutton" id="9055">
@@ -111,7 +114,7 @@
 						<param name="iconon" value="icons/mediamenu/colors.png" />
 						<param name="iconoff" value="icons/mediamenu/colors.png" />
 					</include>
-					<label>$LOCALIZE[14078]</label>
+					<label>$LOCALIZE[31285]</label>
 					<onclick>SetProperty(MediaMenuSelect,colors,home)</onclick>
 					<onclick>ActivateWindow(1115)</onclick>
 				</control>

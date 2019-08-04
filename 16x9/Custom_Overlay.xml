@@ -12,10 +12,16 @@
 			<visible>Skin.HasSetting(DebugGrid)</visible>
 		</control>
 		<!-- Controls debug -->
+		<control type ="image">
+			<visible>Skin.HasSetting(DebugInfo)</visible>
+			<left>1000</left>
+			<width>920</width>
+			<texture flipx="true">panels/kodiflix-gradient.png</texture>
+		</control>
 		<control type="grouplist">
 			<right>15</right>
 			<top>15</top>
-			<width>1000</width>
+			<width>1920</width>
 			<height>1080</height>
 			<itemgap>12</itemgap>
 			<visible>Skin.HasSetting(DebugInfo)</visible>
@@ -30,12 +36,12 @@
 				<height>21</height>
 				<textcolor>yellow</textcolor>
 				<align>right</align>
-				<label>ListItem.DBTYPE</label>
+				<label>ListItem.Thumb</label>
 			</control>
 			<control type="label">
 				<height>21</height>
 				<align>right</align>
-				<label>$INFO[ListItem.DBTYPE]</label>
+				<label>$INFO[ListItem.Thumb]</label>
 			</control>
 			<control type="label">
 				<height>21</height>
@@ -46,12 +52,27 @@
 				<height>21</height>
 				<textcolor>yellow</textcolor>
 				<align>right</align>
-				<label>Container.Content</label>
+				<label>ListItem.Art(thumb)</label>
 			</control>
 			<control type="label">
 				<height>21</height>
 				<align>right</align>
-				<label>$INFO[Container.Content]</label>
+				<label>$INFO[ListItem.Art(thumb)]</label>
+			</control>
+			<control type="label">
+				<height>21</height>
+				<align>right</align>
+			</control>
+			<control type="label">
+				<height>21</height>
+				<textcolor>yellow</textcolor>
+				<align>right</align>
+				<label>ListItem.Art(poster)</label>
+			</control>
+			<control type="label">
+				<height>21</height>
+				<align>right</align>
+				<label>$INFO[ListItem.Art(poster)]</label>
 			</control>
 			<control type="label">
 				<height>21</height>
@@ -59,62 +80,84 @@
 			</control>
 			<!-- Paths -->
 			<control type="label">
-				<height>21</height>
-				<textcolor>yellow</textcolor>
-				<align>right</align>
-				<label>PATHS</label>
-			</control>
-			<control type="label">
-				<height>21</height>
-				<align>right</align>
-				<label>$INFO[ListItem.Path,[COLOR FF00FF00]Path - [/COLOR]]</label>
-			</control>
-			<control type="label">
-				<height>21</height>
-				<align>right</align>
-				<label>$INFO[ListItem.FolderName,[COLOR FF00FF00]Folder name - [/COLOR]]</label>
-			</control>
-			<control type="label">
-				<height>21</height>
-				<align>right</align>
-				<label>$INFO[ListItem.FolderPath,[COLOR FF00FF00]Folder path - [/COLOR]]</label>
-			</control>
-			<control type="label">
-				<height>21</height>
-				<align>right</align>
-				<label>$INFO[ListItem.FileNameAndPath,[COLOR FF00FF00]Filename and path - [/COLOR]]</label>
-			</control>
-			<control type="label">
-				<height>21</height>
-				<align>right</align>
-				<label>$INFO[ListItem.FileExtension,[COLOR FF00FF00]Ext - [/COLOR]]</label>
-			</control>
-			<control type="label">
-				<height>21</height>
-				<align>right</align>
-				<label>$INFO[Player.Folderpath,[COLOR FF00FF00]Ext - [/COLOR]]</label>
-			</control>
-			<control type="label">
-				<height>21</height>
-				<align>right</align>
-				<label>$INFO[Player.Filename,[COLOR FF00FF00]Ext - [/COLOR]]</label>
-			</control>
-			<control type="label">
-				<height>21</height>
-				<align>right</align>
-				<label>$INFO[Player.Filenameandpath,[COLOR FF00FF00]Ext - [/COLOR]]</label>
-			</control>
-			<control type="label">
-				<height>21</height>
-				<align>right</align>
-				<label>$INFO[Window(Home).Property(SkinHelper.WidgetContainer)]</label>
-			</control>
-			<control type="label">
-				<height>21</height>
-				<align>right</align>
-				<label>seek</label>
-				<visible>Player.DisplayAfterSeek</visible>
-			</control>
+					<height>21</height>
+					<textcolor>yellow</textcolor>
+					<align>right</align>
+					<label>content</label>
+				</control>
+				<control type="label">
+					<height>21</height>
+					<align>right</align>
+					<label>$INFO[Container.Content]</label>
+				</control>
+				<control type="label">
+					<height>21</height>
+					<textcolor>yellow</textcolor>
+					<align>right</align>
+					<label>DBTYPE</label>
+				</control>
+				<control type="label">
+					<height>21</height>
+					<align>right</align>
+					<label>$INFO[ListItem.DBTYPE]</label>
+				</control>
+				<control type="label">
+					<height>21</height>
+					<textcolor>yellow</textcolor>
+					<align>right</align>
+					<label>PATHS</label>
+				</control>
+				<control type="label">
+					<height>21</height>
+					<align>right</align>
+					<label>$INFO[ListItem.Path,[COLOR FF00FF00]Path - [/COLOR]]</label>
+				</control>
+				<control type="label">
+					<height>21</height>
+					<align>right</align>
+					<label>$INFO[ListItem.FolderName,[COLOR FF00FF00]Folder name - [/COLOR]]</label>
+				</control>
+				<control type="label">
+					<height>21</height>
+					<align>right</align>
+					<label>$INFO[ListItem.FolderPath,[COLOR FF00FF00]Folder path - [/COLOR]]</label>
+				</control>
+				<control type="label">
+					<height>21</height>
+					<align>right</align>
+					<label>$INFO[ListItem.FileNameAndPath,[COLOR FF00FF00]Filename and path - [/COLOR]]</label>
+				</control>
+				<control type="label">
+					<height>21</height>
+					<align>right</align>
+					<label>$INFO[ListItem.FileExtension,[COLOR FF00FF00]Ext - [/COLOR]]</label>
+				</control>
+				<control type="label">
+					<height>21</height>
+					<align>right</align>
+					<label>$INFO[Player.Folderpath,[COLOR FF00FF00]Ext - [/COLOR]]</label>
+				</control>
+				<control type="label">
+					<height>21</height>
+					<align>right</align>
+					<label>$INFO[Player.Filename,[COLOR FF00FF00]Ext - [/COLOR]]</label>
+				</control>
+				<control type="label">
+					<height>21</height>
+					<align>right</align>
+					<label>$INFO[Player.Filenameandpath,[COLOR FF00FF00]Ext - [/COLOR]]</label>
+				</control>
+				<control type="label">
+					<height>21</height>
+					<align>right</align>
+					<label>$INFO[Window(Home).Property(SkinHelper.WidgetContainer)]</label>
+				</control>
+				<control type="label">
+					<height>21</height>
+					<align>right</align>
+					<label>seek</label>
+					<visible>Player.DisplayAfterSeek</visible>
+				</control>
 			
 		</control>
 	</controls>

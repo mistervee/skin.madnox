@@ -1,226 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <template>
-	<other include="widget1">
-		<!-- Widget style condition-->
-		<condition tag="property" attribute="name|widgetStyle">big</condition>
-		<condition tag="property" attribute="name|widgetContent">default</condition>
-		<condition tag="property" attribute="name|widgetPath" />
-		<propertyGroup>widgetCommon</propertyGroup>
-		<!-- Container size -->
-		<property name="containerwidth" tag="property" attribute="name|widgetAspect" value="square">372</property>
-		<property name="containerheight" tag="property" attribute="name|widgetAspect" value="square">372</property>
-		<property name="containerwidth" tag="property" attribute="name|widgetAspect" value="landscape">620</property>
-		<property name="containerheight" tag="property" attribute="name|widgetAspect" value="landscape">357</property>
-		<property name="containerwidth">265.71</property>
-		<property name="containerheight">388</property>
-		<!-- Diffuse -->
-		<property name="diffuse" tag="property" attribute="name|widgetAspect" value="square">diffuse/rounded5-352x352.png</property>
-		<property name="diffuse" tag="property" attribute="name|widgetAspect" value="landscape">diffuse/rounded5-600x337.png</property>
-		<property name="diffuse">diffuse/rounded5-245x368.png</property>
-		<!-- Artwork border -->
-		<property name="border" tag="property">10</property>
-		<controls>
-			<control type="group">
-				<skinshortcuts>visibility</skinshortcuts>
-				<include>AnimationVisibleFade</include>
-				<include content="WidgetInfo">
-					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
-					<param name="label">$SKINSHORTCUTS[name]</param>
-					<param name="infotopposition">$PYTHON[(388 - int(containerheight))]</param>
-					<param name="infobottomposition">$PYTHON[(int(containerheight)) - 4]</param>
-				</include>
-				<control type="panel" id="8011$SKINSHORTCUTS[id]">
-					<animation effect="slide" end="0,$PYTHON[(388 - int(containerheight))]" condition="!Skin.HasSetting(WidgetHigh)">Conditional</animation>
-					<top>388</top>
-					<left>30</left>
-					<right>30</right>
-					<height>$SKINSHORTCUTS[containerheight]</height>
-					<onclick condition="System.HasAddon(script.playalbum) + String.IsEqual(ListItem.DBType,album)">RunScript(script.playalbum,albumid=$INFO[ListItem.DBID])</onclick>
-					<onup condition="Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)">9001</onup>
-					<onup condition="String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)">9050</onup>
-					<ondown condition="Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)">9003</ondown>
-					<ondown condition="String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)">9000</ondown>
-					<preloaditems>2</preloaditems>
-					<orientation>horizontal</orientation>
-					<include content="WidgetContainer">
-						<param name="id">8011$SKINSHORTCUTS[id]</param>
-						<param name="containerwidth">$SKINSHORTCUTS[containerwidth]</param>
-						<param name="diffuse">$SKINSHORTCUTS[diffuse]</param>
-						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
-						<param name="border">$SKINSHORTCUTS[border]</param>
-						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
-						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
-					</include>
-					<content limit="25" target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
-				</control>
-			</control>
-		</controls>
-	</other>
-	<other include="widget1">
-		<!-- Widget style condition-->
-		<condition tag="property" attribute="name|widgetStyle">medium</condition>
-		<condition tag="property" attribute="name|widgetContent">default</condition>
-		<condition tag="property" attribute="name|widgetPath" />
-		<propertyGroup>widgetCommon</propertyGroup>
-		<!-- Container size -->
-		<property name="containerwidth" tag="property" attribute="name|widgetAspect" value="square">310</property>
-		<property name="containerheight" tag="property" attribute="name|widgetAspect" value="square">310</property>
-		<property name="containerwidth" tag="property" attribute="name|widgetAspect" value="landscape">465</property>
-		<property name="containerheight" tag="property" attribute="name|widgetAspect" value="landscape">270</property>
-		<property name="containerwidth">232.50</property>
-		<property name="containerheight">339</property>
-		<!-- Diffuse -->
-		<property name="diffuse" tag="property" attribute="name|widgetAspect" value="landscape">diffuse/rounded5-290x290.png</property>
-		<property name="diffuse" tag="property" attribute="name|widgetAspect" value="landscape">diffuse/rounded5-445x250.png</property>
-		<property name="diffuse">diffuse/rounded5-212x319.png</property>
-		<!-- Artwork border -->
-		<property name="border" tag="property">10</property>
-		<controls>
-			<control type="group">
-				<skinshortcuts>visibility</skinshortcuts>
-				<include>AnimationVisibleFade</include>
-				<include content="WidgetInfo">
-					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
-					<param name="label">$SKINSHORTCUTS[name]</param>
-					<param name="infotopposition">$PYTHON[(388 - int(containerheight))]</param>
-					<param name="infobottomposition">$PYTHON[(int(containerheight)) - 4]</param>
-				</include>
-				<control type="panel" id="8011$SKINSHORTCUTS[id]">
-					<animation effect="slide" end="0,$PYTHON[(388 - int(containerheight))]" condition="!Skin.HasSetting(WidgetHigh)">Conditional</animation>
-					<top>388</top>
-					<left>30</left>
-					<right>30</right>
-					<height>$SKINSHORTCUTS[containerheight]</height>
-					<onclick condition="System.HasAddon(script.playalbum) + String.IsEqual(ListItem.DBType,album)">RunScript(script.playalbum,albumid=$INFO[ListItem.DBID])</onclick>
-					<onup condition="Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)">9001</onup>
-					<onup condition="String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)">9050</onup>
-					<ondown condition="Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)">9003</ondown>
-					<ondown condition="String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)">9000</ondown>
-					<preloaditems>2</preloaditems>
-					<orientation>horizontal</orientation>
-					<include content="WidgetContainer">
-						<param name="id">8011$SKINSHORTCUTS[id]</param>
-						<param name="containerwidth">$SKINSHORTCUTS[containerwidth]</param>
-						<param name="diffuse">$SKINSHORTCUTS[diffuse]</param>
-						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
-						<param name="border">$SKINSHORTCUTS[border]</param>
-						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
-						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
-					</include>
-					<content limit="25" target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
-				</control>
-			</control>
-		</controls>
-	</other>
-	<other include="widget1">
-		<!-- Widget style condition-->
-		<condition tag="property" attribute="name|widgetStyle">small</condition>
-		<condition tag="property" attribute="name|widgetContent">default</condition>
-		<condition tag="property" attribute="name|widgetPath" />
-		<propertyGroup>widgetCommon</propertyGroup>
-		<!-- Container size -->
-		<property name="containerwidth" tag="property" attribute="name|widgetAspect" value="square">265.71</property>
-		<property name="containerheight" tag="property" attribute="name|widgetAspect" value="square">265</property>
-		<property name="containerwidth" tag="property" attribute="name|widgetAspect" value="landscape">372</property>
-		<property name="containerheight" tag="property" attribute="name|widgetAspect" value="landscape">218</property>
-		<property name="containerwidth">206.66</property>
-		<property name="containerheight">300</property>
-		<!-- Diffuse -->
-		<property name="diffuse" tag="property" attribute="name|widgetAspect" value="square">diffuse/rounded5-245x245.png</property>
-		<property name="diffuse" tag="property" attribute="name|widgetAspect" value="landscape">diffuse/rounded5-352x198.png</property>
-		<property name="diffuse">diffuse/rounded5-186x280.png</property>
-		<!-- Artwork border -->
-		<property name="border" tag="property">10</property>
-		<controls>
-			<control type="group">
-				<skinshortcuts>visibility</skinshortcuts>
-				<include>AnimationVisibleFade</include>
-				<include content="WidgetInfo">
-					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
-					<param name="label">$SKINSHORTCUTS[name]</param>
-					<param name="infotopposition">$PYTHON[(388 - int(containerheight))]</param>
-					<param name="infobottomposition">$PYTHON[(int(containerheight)) - 4]</param>
-				</include>
-				<control type="panel" id="8011$SKINSHORTCUTS[id]">
-					<animation effect="slide" end="0,$PYTHON[(388 - int(containerheight))]" condition="!Skin.HasSetting(WidgetHigh)">Conditional</animation>
-					<top>388</top>
-					<left>30</left>
-					<right>30</right>
-					<height>$SKINSHORTCUTS[containerheight]</height>
-					<onclick condition="System.HasAddon(script.playalbum) + String.IsEqual(ListItem.DBType,album)">RunScript(script.playalbum,albumid=$INFO[ListItem.DBID])</onclick>
-					<onup condition="Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)">9001</onup>
-					<onup condition="String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)">9050</onup>
-					<ondown condition="Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)">9003</ondown>
-					<ondown condition="String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)">9000</ondown>
-					<preloaditems>2</preloaditems>
-					<orientation>horizontal</orientation>
-					<include content="WidgetContainer">
-						<param name="id">8011$SKINSHORTCUTS[id]</param>
-						<param name="containerwidth">$SKINSHORTCUTS[containerwidth]</param>
-						<param name="diffuse">$SKINSHORTCUTS[diffuse]</param>
-						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
-						<param name="border">$SKINSHORTCUTS[border]</param>
-						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
-						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
-					</include>
-					<content limit="25" target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
-				</control>
-			</control>
-		</controls>
-	</other>
-	<other include="widget1">
-		<!-- Widget style condition-->
-		<condition tag="property" attribute="name|widgetStyle">big</condition>
-		<condition tag="property" attribute="name|widgetContent">info</condition>
-		<condition tag="property" attribute="name|widgetPath" />
+	<!-- Main menu onup navigation -->
+	<other include="widgetOnUpMainMenu">
+		<!-- Build onup include if path is set for first widget -->
+		<condition tag="property" attribute="name|widgetPath.1" />
 		<!-- Retrieve properties -->
 		<property name="id" tag="mainmenuid" />
-		<property name="path" tag="property" attribute="name|widgetPath" />
-		<property name="name" tag="property" attribute="name|widgetName" />
-		<!-- Container size -->
-		<property name="containerwidth" tag="property" attribute="name|widgetAspect" value="landscape">620</property>
-		<property name="containerheight" tag="property" attribute="name|widgetAspect" value="landscape">357</property>
-		<property name="containerwidth">372</property>
-		<property name="containerheight">372</property>
-		<!-- Diffuse -->
-		<property name="diffuse" tag="property" attribute="name|widgetAspect" value="landscape">diffuse/rounded5-600x337.png</property>
-		<property name="diffuse">diffuse/rounded5-352x352.png</property>
-		<!-- Font -->
-		<property name="font1">Font32_Bold</property>
-		<property name="font2">Font29_Cond</property>
-		<property name="font3">Font32_Reg</property>
-		<!-- Label position -->
-		<property name="label1position">87</property>
-		<property name="label2position">49</property>
-		<property name="label3position">13</property>
-		<!-- Icon size -->
-		<property name="icontop">68</property>
-		<property name="iconbottom">99</property>
-		<!-- Artwork type-->
-		<property name="container" tag="property" attribute="name|widgetArtwork" value="fanart">WidgetFanartInfoContainer</property>
-		<property name="container">WidgetPosterInfoContainer</property>
-		<!-- Artwork border -->
-		<property name="border" tag="property">10</property>
+		<property name="type1" tag="property" attribute="name|widgetType.1" />
+		<property name="type2" tag="property" attribute="name|widgetType.2" />
+		<property name="type3" tag="property" attribute="name|widgetType.3" />
+		<property name="type4" tag="property" attribute="name|widgetType.4" />
+		<property name="type5" tag="property" attribute="name|widgetType.5" />
+		<property name="type6" tag="property" attribute="name|widgetType.6" />
+		<!-- Set onup condition to false if next widget is not set (widgetType in overrides sets to 'none' if widget is not set)-->
+		<property name="onup2">'false' if (type1 in 'none' or type2 in 'none') else 'String.IsEqual(Container(9000).ListItem.Property(id),$SKINSHORTCUTS[id]) + String.IsEqual(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]),2)'</property>
+		<property name="onup3">'false' if (type1 in 'none' or type2 in 'none' or type3 in 'none') else 'String.IsEqual(Container(9000).ListItem.Property(id),$SKINSHORTCUTS[id]) + String.IsEqual(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]),3)'</property>
+		<property name="onup4">'false' if (type1 in 'none' or type2 in 'none' or type3 in 'none' or type4 in 'none') else 'String.IsEqual(Container(9000).ListItem.Property(id),$SKINSHORTCUTS[id]) + String.IsEqual(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]),4)'</property>
+		<property name="onup5">'false' if (type1 in 'none' or type2 in 'none' or type3 in 'none' or type4 in 'none' or type5 in 'none') else 'String.IsEqual(Container(9000).ListItem.Property(id),$SKINSHORTCUTS[id]) + String.IsEqual(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]),5)'</property>
+		<property name="onup6">'false' if (type1 in 'none' or type2 in 'none' or type3 in 'none' or type4 in 'none' or type5 in 'none' or type6 in 'none') else 'String.IsEqual(Container(9000).ListItem.Property(id),$SKINSHORTCUTS[id]) + String.IsEqual(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]),6)'</property>
+		<controls>
+			<onup condition="String.IsEqual(Container(9000).ListItem.Property(id),$SKINSHORTCUTS[id]) + String.IsEmpty(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]))">SetFocus(1600$SKINSHORTCUTS[id]1)</onup>
+			<onup condition="$PYTHON[$SKINSHORTCUTS[onup2]]">SetFocus(1600$SKINSHORTCUTS[id]2)</onup>
+			<onup condition="$PYTHON[$SKINSHORTCUTS[onup3]]">SetFocus(1600$SKINSHORTCUTS[id]3)</onup>
+			<onup condition="$PYTHON[$SKINSHORTCUTS[onup4]]">SetFocus(1600$SKINSHORTCUTS[id]4)</onup>
+			<onup condition="$PYTHON[$SKINSHORTCUTS[onup5]]">SetFocus(1600$SKINSHORTCUTS[id]5)</onup>
+			<onup condition="$PYTHON[$SKINSHORTCUTS[onup6]]">SetFocus(1600$SKINSHORTCUTS[id]6)</onup>
+		</controls>
+	</other>
+	<!-- Small widgtes -->
+	<other include="widget1">
+		<!-- Conditions to be met to build include-->
+		<condition tag="property" attribute="name|widgetStyle.1">small</condition>
+		<condition tag="property" attribute="name|widgetPath.1" />
+		<!-- Common widget 1 propertys -->
+		<propertyGroup>widgetCommon1</propertyGroup>
+		<!-- Widget size propertys -->
+		<propertyGroup>widgetSmall</propertyGroup>
 		<controls>
 			<control type="group">
 				<skinshortcuts>visibility</skinshortcuts>
-				<include>AnimationVisibleFade</include>
-				<control type="panel" id="8011$SKINSHORTCUTS[id]">
-					<animation effect="slide" end="0,$PYTHON[(388 - int(containerheight))]" condition="!Skin.HasSetting(WidgetHigh)">Conditional</animation>
-					<top>388</top>
-					<left>30</left>
-					<right>30</right>
-					<height>$SKINSHORTCUTS[containerheight]</height>
-					<onup condition="Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)">9001</onup>
-					<onup condition="String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)">9050</onup>
-					<ondown condition="Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)">9003</ondown>
-					<ondown condition="String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)">9000</ondown>
-					<preloaditems>2</preloaditems>
-					<orientation>horizontal</orientation>
-					<include content="$SKINSHORTCUTS[container]">
-						<param name="id">8011$SKINSHORTCUTS[id]</param>
-						<param name="containerwidth">$SKINSHORTCUTS[containerwidth]</param>
-						<param name="diffuse">$SKINSHORTCUTS[diffuse]</param>
+				<include content="WidgetInfo">
+					<param name="label">$SKINSHORTCUTS[name]</param>
+					<param name="infoposition">$PYTHON[$SKINSHORTCUTS[containerheight]]</param>
+					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
+					<param name="visible">String.IsEmpty(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]))</param>
+				</include>
+				<control type="panel" id="1600$SKINSHORTCUTS[id]1">
+					<height>$PYTHON[$SKINSHORTCUTS[containerheight]]</height>
+					<onup condition="$SKINSHORTCUTS[onup]">SetProperty(WidgetFocus$SKINSHORTCUTS[id],2,home)</onup>
+					<onup condition="$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]2)</onup>
+					<include content="$PYTHON[$SKINSHORTCUTS[container]]">
+						<param name="id">1600$SKINSHORTCUTS[id]1</param>
+						<param name="containerwidth">$PYTHON[$SKINSHORTCUTS[containerwidth]]</param>
+						<param name="diffuse">$PYTHON[$SKINSHORTCUTS[diffuse]]</param>
+						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
+						<param name="border">$PYTHON[$SKINSHORTCUTS[border]]</param>
+						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
+						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
+						<param name="videocase">$PYTHON[$SKINSHORTCUTS[videocase]]</param>
+						<param name="musiccase">$PYTHON[$SKINSHORTCUTS[musiccase]]</param>
 						<param name="font1">$SKINSHORTCUTS[font1]</param>
 						<param name="font2">$SKINSHORTCUTS[font2]</param>
 						<param name="font3">$SKINSHORTCUTS[font3]</param>
@@ -229,66 +67,55 @@
 						<param name="label1position">$SKINSHORTCUTS[label1position]</param>
 						<param name="label2position">$SKINSHORTCUTS[label2position]</param>
 						<param name="label3position">$SKINSHORTCUTS[label3position]</param>
-						<param name="border">$SKINSHORTCUTS[border]</param>
+						<param name="studioiconvisible">$SKINSHORTCUTS[studioiconvisible]</param>
+						<param name="iconstudioheight">$SKINSHORTCUTS[iconstudioheight]</param>
 					</include>
-					<content>$SKINSHORTCUTS[path]</content>
+					<content>
+						<item>
+							<icon>DefaultAddonNone.png</icon>
+							<thumb>DefaultAddonNone.png</thumb>
+							<visible>String.IsEmpty(Container(1600$SKINSHORTCUTS[id]1).ListItem(1).Label)</visible>
+						</item>
+					</content>
+					<content limit="25" target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
 				</control>
 			</control>
 		</controls>
 	</other>
-	<other include="widget1">
-		<!-- Widget style condition-->
-		<condition tag="property" attribute="name|widgetStyle">medium</condition>
-		<condition tag="property" attribute="name|widgetContent">info</condition>
-		<condition tag="property" attribute="name|widgetPath" />
-		<!-- Retrieve properties -->
-		<property name="id" tag="mainmenuid" />
-		<property name="path" tag="property" attribute="name|widgetPath" />
-		<property name="name" tag="property" attribute="name|widgetName" />
-		<!-- Container size -->
-		<property name="containerwidth" tag="property" attribute="name|widgetAspect" value="landscape">465</property>
-		<property name="containerheight" tag="property" attribute="name|widgetAspect" value="landscape">270</property>
-		<property name="containerwidth">310</property>
-		<property name="containerheight">310</property>
-		<!-- Diffuse -->
-		<property name="diffuse" tag="property" attribute="name|widgetAspect" value="landscape">diffuse/rounded5-445x250.png</property>
-		<property name="diffuse">diffuse/rounded5-290x290.png</property>
-		<!-- Font -->
-		<property name="font1">Font30_Bold</property>
-		<property name="font2">Font29_Cond</property>
-		<property name="font3">Font30_Reg</property>
-		<!-- Label position -->
-		<property name="label1position">83</property>
-		<property name="label2position">46</property>
-		<property name="label3position">12</property>
-		<!-- Icon size -->
-		<property name="icontop">62</property>
-		<property name="iconbottom">97</property>
-		<!-- Artwork type-->
-		<property name="container" tag="property" attribute="name|widgetArtwork" value="fanart">WidgetFanartInfoContainer</property>
-		<property name="container">WidgetPosterInfoContainer</property>
-		<!-- Artwork border -->
-		<property name="border" tag="property">10</property>
+	<other include="widget2">
+		<!-- Conditions to be met to build include-->
+		<condition tag="property" attribute="name|widgetStyle.2">small</condition>
+		<condition tag="property" attribute="name|widgetPath.1" />
+		<condition tag="property" attribute="name|widgetPath.2" />
+		<!-- Common widget 2 propertys -->
+		<propertyGroup>widgetCommon2</propertyGroup>
+		<!-- Widget size propertys -->
+		<propertyGroup>widgetSmall</propertyGroup>
 		<controls>
 			<control type="group">
 				<skinshortcuts>visibility</skinshortcuts>
-				<include>AnimationVisibleFade</include>
-				<control type="panel" id="8011$SKINSHORTCUTS[id]">
-					<animation effect="slide" end="0,$PYTHON[(388 - int(containerheight))]" condition="!Skin.HasSetting(WidgetHigh)">Conditional</animation>
-					<top>388</top>
-					<left>30</left>
-					<right>30</right>
-					<height>$SKINSHORTCUTS[containerheight]</height>
-					<onup condition="Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)">9001</onup>
-					<onup condition="String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)">9050</onup>
-					<ondown condition="Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)">9003</ondown>
-					<ondown condition="String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)">9000</ondown>
-					<preloaditems>2</preloaditems>
-					<orientation>horizontal</orientation>
-					<include content="$SKINSHORTCUTS[container]">
-						<param name="id">8011$SKINSHORTCUTS[id]</param>
-						<param name="containerwidth">$SKINSHORTCUTS[containerwidth]</param>
-						<param name="diffuse">$SKINSHORTCUTS[diffuse]</param>
+				<include content="WidgetInfo">
+					<param name="label">$SKINSHORTCUTS[name]</param>
+					<param name="infoposition">$PYTHON[$SKINSHORTCUTS[containerheight]]</param>
+					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
+					<param name="visible">String.IsEqual(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]),2)</param>
+				</include>
+				<control type="panel" id="1600$SKINSHORTCUTS[id]2">
+					<height>$PYTHON[$SKINSHORTCUTS[containerheight]]</height>
+					<onup condition="$SKINSHORTCUTS[onup]">SetProperty(WidgetFocus$SKINSHORTCUTS[id],3,home)</onup>
+					<onup condition="$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]3)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">ClearProperty(WidgetFocus$SKINSHORTCUTS[id],home)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]1)</onup>
+					<include content="$PYTHON[$SKINSHORTCUTS[container]]">
+						<param name="id">1600$SKINSHORTCUTS[id]2</param>
+						<param name="containerwidth">$PYTHON[$SKINSHORTCUTS[containerwidth]]</param>
+						<param name="diffuse">$PYTHON[$SKINSHORTCUTS[diffuse]]</param>
+						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
+						<param name="border">$PYTHON[$SKINSHORTCUTS[border]]</param>
+						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
+						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
+						<param name="videocase">$PYTHON[$SKINSHORTCUTS[videocase]]</param>
+						<param name="musiccase">$PYTHON[$SKINSHORTCUTS[musiccase]]</param>
 						<param name="font1">$SKINSHORTCUTS[font1]</param>
 						<param name="font2">$SKINSHORTCUTS[font2]</param>
 						<param name="font3">$SKINSHORTCUTS[font3]</param>
@@ -297,66 +124,54 @@
 						<param name="label1position">$SKINSHORTCUTS[label1position]</param>
 						<param name="label2position">$SKINSHORTCUTS[label2position]</param>
 						<param name="label3position">$SKINSHORTCUTS[label3position]</param>
-						<param name="border">$SKINSHORTCUTS[border]</param>
 					</include>
-					<content>$SKINSHORTCUTS[path]</content>
+					<content>
+						<item>
+							<icon>DefaultAddonNone.png</icon>
+							<thumb>DefaultAddonNone.png</thumb>
+							<visible>String.IsEmpty(Container(1600$SKINSHORTCUTS[id]2).ListItem(1).Label)</visible>
+						</item>
+					</content>
+					<content limit="25" target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
 				</control>
 			</control>
 		</controls>
 	</other>
-	<other include="widget1">
-		<!-- Widget style condition-->
-		<condition tag="property" attribute="name|widgetStyle">small</condition>
-		<condition tag="property" attribute="name|widgetContent">info</condition>
-		<condition tag="property" attribute="name|widgetPath" />
-		<!-- Retrieve properties -->
-		<property name="id" tag="mainmenuid" />
-		<property name="path" tag="property" attribute="name|widgetPath" />
-		<property name="name" tag="property" attribute="name|widgetName" />
-		<!-- Container size -->
-		<property name="containerwidth" tag="property" attribute="name|widgetAspect" value="landscape">372</property>
-		<property name="containerheight" tag="property" attribute="name|widgetAspect" value="landscape">218</property>
-		<property name="containerwidth">265.71</property>
-		<property name="containerheight">265</property>
-		<!-- Diffuse -->
-		<property name="diffuse" tag="property" attribute="name|widgetAspect" value="landscape">diffuse/rounded5-352x198.png</property>
-		<property name="diffuse">diffuse/rounded5-245x245.png</property>
-		<!-- Font -->
-		<property name="font1">Font28_Bold</property>
-		<property name="font2">Font26_Cond</property>
-		<property name="font3">Font28_Reg</property>
-		<!-- Label position -->
-		<property name="label1position">79</property>
-		<property name="label2position">44</property>
-		<property name="label3position">11</property>
-		<!-- Icon size -->
-		<property name="icontop">56</property>
-		<property name="iconbottom">89</property>
-		<!-- Artwork type-->
-		<property name="container" tag="property" attribute="name|widgetArtwork" value="fanart">WidgetFanartInfoContainer</property>
-		<property name="container">WidgetPosterInfoContainer</property>
-		<!-- Artwork border -->
-		<property name="border" tag="property">10</property>
+	<other include="widget3">
+		<!-- Conditions to be met to build include-->
+		<condition tag="property" attribute="name|widgetStyle.3">small</condition>
+		<condition tag="property" attribute="name|widgetPath.1" />
+		<condition tag="property" attribute="name|widgetPath.2" />
+		<condition tag="property" attribute="name|widgetPath.3" />
+		<!-- Common widget 3 propertys -->
+		<propertyGroup>widgetCommon3</propertyGroup>
+		<!-- Widget size propertys -->
+		<propertyGroup>widgetSmall</propertyGroup>
 		<controls>
 			<control type="group">
 				<skinshortcuts>visibility</skinshortcuts>
-				<include>AnimationVisibleFade</include>
-				<control type="panel" id="8011$SKINSHORTCUTS[id]">
-					<animation effect="slide" end="0,$PYTHON[(388 - int(containerheight))]" condition="!Skin.HasSetting(WidgetHigh)">Conditional</animation>
-					<top>388</top>
-					<left>30</left>
-					<right>30</right>
-					<height>$SKINSHORTCUTS[containerheight]</height>
-					<onup condition="Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)">9001</onup>
-					<onup condition="String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)">9050</onup>
-					<ondown condition="Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)">9003</ondown>
-					<ondown condition="String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)">9000</ondown>
-					<preloaditems>2</preloaditems>
-					<orientation>horizontal</orientation>
-					<include content="$SKINSHORTCUTS[container]">
-						<param name="id">8011$SKINSHORTCUTS[id]</param>
-						<param name="containerwidth">$SKINSHORTCUTS[containerwidth]</param>
-						<param name="diffuse">$SKINSHORTCUTS[diffuse]</param>
+				<include content="WidgetInfo">
+					<param name="label">$SKINSHORTCUTS[name]</param>
+					<param name="infoposition">$PYTHON[$SKINSHORTCUTS[containerheight]]</param>
+					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
+					<param name="visible">String.IsEqual(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]),3)</param>
+				</include>
+				<control type="panel" id="1600$SKINSHORTCUTS[id]3">
+					<height>$PYTHON[$SKINSHORTCUTS[containerheight]]</height>
+					<onup condition="$SKINSHORTCUTS[onup]">SetProperty(WidgetFocus$SKINSHORTCUTS[id],4,home)</onup>
+					<onup condition="$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]4)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">ClearProperty(WidgetFocus$SKINSHORTCUTS[id],home)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]1)</onup>
+					<include content="$PYTHON[$SKINSHORTCUTS[container]]">
+						<param name="id">1600$SKINSHORTCUTS[id]3</param>
+						<param name="containerwidth">$PYTHON[$SKINSHORTCUTS[containerwidth]]</param>
+						<param name="diffuse">$PYTHON[$SKINSHORTCUTS[diffuse]]</param>
+						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
+						<param name="border">$PYTHON[$SKINSHORTCUTS[border]]</param>
+						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
+						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
+						<param name="videocase">$PYTHON[$SKINSHORTCUTS[videocase]]</param>
+						<param name="musiccase">$PYTHON[$SKINSHORTCUTS[musiccase]]</param>
 						<param name="font1">$SKINSHORTCUTS[font1]</param>
 						<param name="font2">$SKINSHORTCUTS[font2]</param>
 						<param name="font3">$SKINSHORTCUTS[font3]</param>
@@ -365,24 +180,882 @@
 						<param name="label1position">$SKINSHORTCUTS[label1position]</param>
 						<param name="label2position">$SKINSHORTCUTS[label2position]</param>
 						<param name="label3position">$SKINSHORTCUTS[label3position]</param>
-						<param name="labelposition">$SKINSHORTCUTS[labelposition]</param>
-						<param name="label2position">$SKINSHORTCUTS[label2position]</param>
-						<param name="border">$SKINSHORTCUTS[border]</param>
 					</include>
-					<content>$SKINSHORTCUTS[path]</content>
+					<content>
+						<item>
+							<icon>DefaultAddonNone.png</icon>
+							<thumb>DefaultAddonNone.png</thumb>
+							<visible>String.IsEmpty(Container(1600$SKINSHORTCUTS[id]3).ListItem(1).Label)</visible>
+						</item>
+					</content>
+					<content limit="25" target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
+				</control>
+			</control>
+		</controls>
+	</other>
+	<other include="widget4">
+		<!-- Conditions to be met to build include-->
+		<condition tag="property" attribute="name|widgetStyle.4">small</condition>
+		<condition tag="property" attribute="name|widgetPath.1" />
+		<condition tag="property" attribute="name|widgetPath.2" />
+		<condition tag="property" attribute="name|widgetPath.3" />
+		<condition tag="property" attribute="name|widgetPath.4" />
+		<!-- Common widget 4 propertys -->
+		<propertyGroup>widgetCommon4</propertyGroup>
+		<!-- Widget size propertys -->
+		<propertyGroup>widgetMedium</propertyGroup>
+		<controls>
+			<control type="group">
+				<skinshortcuts>visibility</skinshortcuts>
+				<include content="WidgetInfo">
+					<param name="label">$SKINSHORTCUTS[name]</param>
+					<param name="infoposition">$PYTHON[$SKINSHORTCUTS[containerheight]]</param>
+					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
+					<param name="visible">String.IsEqual(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]),4)</param>
+				</include>
+				<control type="panel" id="1600$SKINSHORTCUTS[id]4">
+					<height>$PYTHON[$SKINSHORTCUTS[containerheight]]</height>
+					<onup condition="$SKINSHORTCUTS[onup]">SetProperty(WidgetFocus$SKINSHORTCUTS[id],5,home)</onup>
+					<onup condition="$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]5)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">ClearProperty(WidgetFocus$SKINSHORTCUTS[id],home)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]1)</onup>
+					<include content="$PYTHON[$SKINSHORTCUTS[container]]">
+						<param name="id">1600$SKINSHORTCUTS[id]4</param>
+						<param name="containerwidth">$PYTHON[$SKINSHORTCUTS[containerwidth]]</param>
+						<param name="diffuse">$PYTHON[$SKINSHORTCUTS[diffuse]]</param>
+						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
+						<param name="border">$PYTHON[$SKINSHORTCUTS[border]]</param>
+						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
+						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
+						<param name="videocase">$PYTHON[$SKINSHORTCUTS[videocase]]</param>
+						<param name="musiccase">$PYTHON[$SKINSHORTCUTS[musiccase]]</param>
+						<param name="font1">$SKINSHORTCUTS[font1]</param>
+						<param name="font2">$SKINSHORTCUTS[font2]</param>
+						<param name="font3">$SKINSHORTCUTS[font3]</param>
+						<param name="icontop">$SKINSHORTCUTS[icontop]</param>
+						<param name="iconbottom">$SKINSHORTCUTS[iconbottom]</param>
+						<param name="label1position">$SKINSHORTCUTS[label1position]</param>
+						<param name="label2position">$SKINSHORTCUTS[label2position]</param>
+						<param name="label3position">$SKINSHORTCUTS[label3position]</param>
+					</include>
+					<content>
+						<item>
+							<icon>DefaultAddonNone.png</icon>
+							<thumb>DefaultAddonNone.png</thumb>
+							<visible>String.IsEmpty(Container(1600$SKINSHORTCUTS[id]4).ListItem(1).Label)</visible>
+						</item>
+					</content>
+					<content limit="25" target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
+				</control>
+			</control>
+		</controls>
+	</other>
+	<other include="widget5">
+		<!-- Conditions to be met to build include-->
+		<condition tag="property" attribute="name|widgetStyle.5">small</condition>
+		<condition tag="property" attribute="name|widgetPath.1" />
+		<condition tag="property" attribute="name|widgetPath.2" />
+		<condition tag="property" attribute="name|widgetPath.3" />
+		<condition tag="property" attribute="name|widgetPath.4" />
+		<condition tag="property" attribute="name|widgetPath.5" />
+		<!-- Common widget 5 propertys -->
+		<propertyGroup>widgetCommon5</propertyGroup>
+		<!-- Widget size propertys -->
+		<propertyGroup>widgetSmall</propertyGroup>
+		<controls>
+			<control type="group">
+				<skinshortcuts>visibility</skinshortcuts>
+				<include content="WidgetInfo">
+					<param name="label">$SKINSHORTCUTS[name]</param>
+					<param name="infoposition">$PYTHON[$SKINSHORTCUTS[containerheight]]</param>
+					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
+					<param name="visible">String.IsEqual(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]),5)</param>
+				</include>
+				<control type="panel" id="1600$SKINSHORTCUTS[id]5">
+					<height>$PYTHON[$SKINSHORTCUTS[containerheight]]</height>
+					<onup condition="$SKINSHORTCUTS[onup]">SetProperty(WidgetFocus$SKINSHORTCUTS[id],6,home)</onup>
+					<onup condition="$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]6)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">ClearProperty(WidgetFocus$SKINSHORTCUTS[id],home)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]1)</onup>
+					<include content="$PYTHON[$SKINSHORTCUTS[container]]">
+						<param name="id">1600$SKINSHORTCUTS[id]5</param>
+						<param name="containerwidth">$PYTHON[$SKINSHORTCUTS[containerwidth]]</param>
+						<param name="diffuse">$PYTHON[$SKINSHORTCUTS[diffuse]]</param>
+						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
+						<param name="border">$PYTHON[$SKINSHORTCUTS[border]]</param>
+						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
+						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
+						<param name="videocase">$PYTHON[$SKINSHORTCUTS[videocase]]</param>
+						<param name="musiccase">$PYTHON[$SKINSHORTCUTS[musiccase]]</param>
+						<param name="font1">$SKINSHORTCUTS[font1]</param>
+						<param name="font2">$SKINSHORTCUTS[font2]</param>
+						<param name="font3">$SKINSHORTCUTS[font3]</param>
+						<param name="icontop">$SKINSHORTCUTS[icontop]</param>
+						<param name="iconbottom">$SKINSHORTCUTS[iconbottom]</param>
+						<param name="label1position">$SKINSHORTCUTS[label1position]</param>
+						<param name="label2position">$SKINSHORTCUTS[label2position]</param>
+						<param name="label3position">$SKINSHORTCUTS[label3position]</param>
+					</include>
+					<content>
+						<item>
+							<icon>DefaultAddonNone.png</icon>
+							<thumb>DefaultAddonNone.png</thumb>
+							<visible>String.IsEmpty(Container(1600$SKINSHORTCUTS[id]5).ListItem(1).Label)</visible>
+						</item>
+					</content>
+					<content limit="25" target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
+				</control>
+			</control>
+		</controls>
+	</other>
+	<other include="widget6">
+		<!-- Conditions to be met to build include-->
+		<condition tag="property" attribute="name|widgetStyle.6">small</condition>
+		<condition tag="property" attribute="name|widgetPath.1" />
+		<condition tag="property" attribute="name|widgetPath.2" />
+		<condition tag="property" attribute="name|widgetPath.3" />
+		<condition tag="property" attribute="name|widgetPath.4" />
+		<condition tag="property" attribute="name|widgetPath.5" />
+		<condition tag="property" attribute="name|widgetPath.6" />
+		<!-- Common widget 6 propertys -->
+		<propertyGroup>widgetCommon6</propertyGroup>
+		<!-- Widget size propertys -->
+		<propertyGroup>widgetSmall</propertyGroup>
+		<controls>
+			<control type="group">
+				<skinshortcuts>visibility</skinshortcuts>
+				<include content="WidgetInfo">
+					<param name="label">$SKINSHORTCUTS[name]</param>
+					<param name="infoposition">$PYTHON[$SKINSHORTCUTS[containerheight]]</param>
+					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
+					<param name="visible">String.IsEqual(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]),6)</param>
+				</include>
+				<control type="panel" id="1600$SKINSHORTCUTS[id]6">
+					<height>$PYTHON[$SKINSHORTCUTS[containerheight]]</height>
+					<onup>ClearProperty(WidgetFocus$SKINSHORTCUTS[id],home)</onup>
+					<onup>SetFocus(1600$SKINSHORTCUTS[id]1)</onup>
+					<include content="$PYTHON[$SKINSHORTCUTS[container]]">
+						<param name="id">1600$SKINSHORTCUTS[id]6</param>
+						<param name="containerwidth">$PYTHON[$SKINSHORTCUTS[containerwidth]]</param>
+						<param name="diffuse">$PYTHON[$SKINSHORTCUTS[diffuse]]</param>
+						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
+						<param name="border">$PYTHON[$SKINSHORTCUTS[border]]</param>
+						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
+						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
+						<param name="videocase">$PYTHON[$SKINSHORTCUTS[videocase]]</param>
+						<param name="musiccase">$PYTHON[$SKINSHORTCUTS[musiccase]]</param>
+						<param name="font1">$SKINSHORTCUTS[font1]</param>
+						<param name="font2">$SKINSHORTCUTS[font2]</param>
+						<param name="font3">$SKINSHORTCUTS[font3]</param>
+						<param name="icontop">$SKINSHORTCUTS[icontop]</param>
+						<param name="iconbottom">$SKINSHORTCUTS[iconbottom]</param>
+						<param name="label1position">$SKINSHORTCUTS[label1position]</param>
+						<param name="label2position">$SKINSHORTCUTS[label2position]</param>
+						<param name="label3position">$SKINSHORTCUTS[label3position]</param>
+					</include>
+					<content>
+						<item>
+							<icon>DefaultAddonNone.png</icon>
+							<thumb>DefaultAddonNone.png</thumb>
+							<visible>String.IsEmpty(Container(1600$SKINSHORTCUTS[id]6).ListItem(1).Label)</visible>
+						</item>
+					</content>
+					<content limit="25" target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
+				</control>
+			</control>
+		</controls>
+	</other>
+	<!-- Medium widgets -->
+	<other include="widget1">
+		<!-- Conditions to be met to build include-->
+		<condition tag="property" attribute="name|widgetStyle.1">medium</condition>
+		<condition tag="property" attribute="name|widgetPath.1" />
+		<!-- Common widget 1 propertys -->
+		<propertyGroup>widgetCommon1</propertyGroup>
+		<!-- Widget size propertys -->
+		<propertyGroup>widgetMedium</propertyGroup>
+		<controls>
+			<control type="group">
+				<skinshortcuts>visibility</skinshortcuts>
+				<include content="WidgetInfo">
+					<param name="label">$SKINSHORTCUTS[name]</param>
+					<param name="infoposition">$PYTHON[$SKINSHORTCUTS[containerheight]]</param>
+					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
+					<param name="visible">String.IsEmpty(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]))</param>
+				</include>
+				<control type="panel" id="1600$SKINSHORTCUTS[id]1">
+					<height>$PYTHON[$SKINSHORTCUTS[containerheight]]</height>
+					<onup condition="$SKINSHORTCUTS[onup]">SetProperty(WidgetFocus$SKINSHORTCUTS[id],2,home)</onup>
+					<onup condition="$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]2)</onup>
+					<include content="$PYTHON[$SKINSHORTCUTS[container]]">
+						<param name="id">1600$SKINSHORTCUTS[id]1</param>
+						<param name="containerwidth">$PYTHON[$SKINSHORTCUTS[containerwidth]]</param>
+						<param name="diffuse">$PYTHON[$SKINSHORTCUTS[diffuse]]</param>
+						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
+						<param name="border">$PYTHON[$SKINSHORTCUTS[border]]</param>
+						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
+						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
+						<param name="videocase">$PYTHON[$SKINSHORTCUTS[videocase]]</param>
+						<param name="musiccase">$PYTHON[$SKINSHORTCUTS[musiccase]]</param>
+						<param name="font1">$SKINSHORTCUTS[font1]</param>
+						<param name="font2">$SKINSHORTCUTS[font2]</param>
+						<param name="font3">$SKINSHORTCUTS[font3]</param>
+						<param name="icontop">$SKINSHORTCUTS[icontop]</param>
+						<param name="iconbottom">$SKINSHORTCUTS[iconbottom]</param>
+						<param name="label1position">$SKINSHORTCUTS[label1position]</param>
+						<param name="label2position">$SKINSHORTCUTS[label2position]</param>
+						<param name="label3position">$SKINSHORTCUTS[label3position]</param>
+						<param name="studioiconvisible">$SKINSHORTCUTS[studioiconvisible]</param>
+						<param name="iconstudioheight">$SKINSHORTCUTS[iconstudioheight]</param>
+					</include>
+					<content>
+						<item>
+							<icon>DefaultAddonNone.png</icon>
+							<thumb>DefaultAddonNone.png</thumb>
+							<visible>String.IsEmpty(Container(1600$SKINSHORTCUTS[id]1).ListItem(1).Label)</visible>
+						</item>
+					</content>
+					<content limit="25" target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
+				</control>
+			</control>
+		</controls>
+	</other>
+	<other include="widget2">
+		<!-- Conditions to be met to build include-->
+		<condition tag="property" attribute="name|widgetStyle.2">medium</condition>
+		<condition tag="property" attribute="name|widgetPath.1" />
+		<condition tag="property" attribute="name|widgetPath.2" />
+		<!-- Common widget 2 propertys -->
+		<propertyGroup>widgetCommon2</propertyGroup>
+		<!-- Widget size propertys -->
+		<propertyGroup>widgetMedium</propertyGroup>
+		<controls>
+			<control type="group">
+				<skinshortcuts>visibility</skinshortcuts>
+				<include content="WidgetInfo">
+					<param name="label">$SKINSHORTCUTS[name]</param>
+					<param name="infoposition">$PYTHON[$SKINSHORTCUTS[containerheight]]</param>
+					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
+					<param name="visible">String.IsEqual(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]),2)</param>
+				</include>
+				<control type="panel" id="1600$SKINSHORTCUTS[id]2">
+					<height>$PYTHON[$SKINSHORTCUTS[containerheight]]</height>
+					<onup condition="$SKINSHORTCUTS[onup]">SetProperty(WidgetFocus$SKINSHORTCUTS[id],3,home)</onup>
+					<onup condition="$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]3)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">ClearProperty(WidgetFocus$SKINSHORTCUTS[id],home)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]1)</onup>
+					<include content="$PYTHON[$SKINSHORTCUTS[container]]">
+						<param name="id">1600$SKINSHORTCUTS[id]2</param>
+						<param name="containerwidth">$PYTHON[$SKINSHORTCUTS[containerwidth]]</param>
+						<param name="diffuse">$PYTHON[$SKINSHORTCUTS[diffuse]]</param>
+						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
+						<param name="border">$PYTHON[$SKINSHORTCUTS[border]]</param>
+						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
+						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
+						<param name="videocase">$PYTHON[$SKINSHORTCUTS[videocase]]</param>
+						<param name="musiccase">$PYTHON[$SKINSHORTCUTS[musiccase]]</param>
+						<param name="font1">$SKINSHORTCUTS[font1]</param>
+						<param name="font2">$SKINSHORTCUTS[font2]</param>
+						<param name="font3">$SKINSHORTCUTS[font3]</param>
+						<param name="icontop">$SKINSHORTCUTS[icontop]</param>
+						<param name="iconbottom">$SKINSHORTCUTS[iconbottom]</param>
+						<param name="label1position">$SKINSHORTCUTS[label1position]</param>
+						<param name="label2position">$SKINSHORTCUTS[label2position]</param>
+						<param name="label3position">$SKINSHORTCUTS[label3position]</param>
+					</include>
+					<content>
+						<item>
+							<icon>DefaultAddonNone.png</icon>
+							<thumb>DefaultAddonNone.png</thumb>
+							<visible>String.IsEmpty(Container(1600$SKINSHORTCUTS[id]2).ListItem(1).Label)</visible>
+						</item>
+					</content>
+					<content limit="25" target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
+				</control>
+			</control>
+		</controls>
+	</other>
+	<other include="widget3">
+		<!-- Conditions to be met to build include-->
+		<condition tag="property" attribute="name|widgetStyle.3">medium</condition>
+		<condition tag="property" attribute="name|widgetPath.1" />
+		<condition tag="property" attribute="name|widgetPath.2" />
+		<condition tag="property" attribute="name|widgetPath.3" />
+		<!-- Common widget 3 propertys -->
+		<propertyGroup>widgetCommon3</propertyGroup>
+		<!-- Widget size propertys -->
+		<propertyGroup>widgetMedium</propertyGroup>
+		<controls>
+			<control type="group">
+				<skinshortcuts>visibility</skinshortcuts>
+				<include content="WidgetInfo">
+					<param name="label">$SKINSHORTCUTS[name]</param>
+					<param name="infoposition">$PYTHON[$SKINSHORTCUTS[containerheight]]</param>
+					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
+					<param name="visible">String.IsEqual(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]),3)</param>
+				</include>
+				<control type="panel" id="1600$SKINSHORTCUTS[id]3">
+					<height>$PYTHON[$SKINSHORTCUTS[containerheight]]</height>
+					<onup condition="$SKINSHORTCUTS[onup]">SetProperty(WidgetFocus$SKINSHORTCUTS[id],4,home)</onup>
+					<onup condition="$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]4)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">ClearProperty(WidgetFocus$SKINSHORTCUTS[id],home)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]1)</onup>
+					<include content="$PYTHON[$SKINSHORTCUTS[container]]">
+						<param name="id">1600$SKINSHORTCUTS[id]3</param>
+						<param name="containerwidth">$PYTHON[$SKINSHORTCUTS[containerwidth]]</param>
+						<param name="diffuse">$PYTHON[$SKINSHORTCUTS[diffuse]]</param>
+						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
+						<param name="border">$PYTHON[$SKINSHORTCUTS[border]]</param>
+						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
+						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
+						<param name="videocase">$PYTHON[$SKINSHORTCUTS[videocase]]</param>
+						<param name="musiccase">$PYTHON[$SKINSHORTCUTS[musiccase]]</param>
+						<param name="font1">$SKINSHORTCUTS[font1]</param>
+						<param name="font2">$SKINSHORTCUTS[font2]</param>
+						<param name="font3">$SKINSHORTCUTS[font3]</param>
+						<param name="icontop">$SKINSHORTCUTS[icontop]</param>
+						<param name="iconbottom">$SKINSHORTCUTS[iconbottom]</param>
+						<param name="label1position">$SKINSHORTCUTS[label1position]</param>
+						<param name="label2position">$SKINSHORTCUTS[label2position]</param>
+						<param name="label3position">$SKINSHORTCUTS[label3position]</param>
+					</include>
+					<content>
+						<item>
+							<icon>DefaultAddonNone.png</icon>
+							<thumb>DefaultAddonNone.png</thumb>
+							<visible>String.IsEmpty(Container(1600$SKINSHORTCUTS[id]3).ListItem(1).Label)</visible>
+						</item>
+					</content>
+					<content limit="25" target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
+				</control>
+			</control>
+		</controls>
+	</other>
+	<other include="widget4">
+		<!-- Conditions to be met to build include-->
+		<condition tag="property" attribute="name|widgetStyle.4">medium</condition>
+		<condition tag="property" attribute="name|widgetPath.1" />
+		<condition tag="property" attribute="name|widgetPath.2" />
+		<condition tag="property" attribute="name|widgetPath.3" />
+		<condition tag="property" attribute="name|widgetPath.4" />
+		<!-- Common widget 4 propertys -->
+		<propertyGroup>widgetCommon4</propertyGroup>
+		<!-- Widget size propertys -->
+		<propertyGroup>widgetMedium</propertyGroup>
+		<controls>
+			<control type="group">
+				<skinshortcuts>visibility</skinshortcuts>
+				<include content="WidgetInfo">
+					<param name="label">$SKINSHORTCUTS[name]</param>
+					<param name="infoposition">$PYTHON[$SKINSHORTCUTS[containerheight]]</param>
+					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
+					<param name="visible">String.IsEqual(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]),4)</param>
+				</include>
+				<control type="panel" id="1600$SKINSHORTCUTS[id]4">
+					<height>$PYTHON[$SKINSHORTCUTS[containerheight]]</height>
+					<onup condition="$SKINSHORTCUTS[onup]">SetProperty(WidgetFocus$SKINSHORTCUTS[id],5,home)</onup>
+					<onup condition="$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]5)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">ClearProperty(WidgetFocus$SKINSHORTCUTS[id],home)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]1)</onup>
+					<include content="$PYTHON[$SKINSHORTCUTS[container]]">
+						<param name="id">1600$SKINSHORTCUTS[id]4</param>
+						<param name="containerwidth">$PYTHON[$SKINSHORTCUTS[containerwidth]]</param>
+						<param name="diffuse">$PYTHON[$SKINSHORTCUTS[diffuse]]</param>
+						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
+						<param name="border">$PYTHON[$SKINSHORTCUTS[border]]</param>
+						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
+						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
+						<param name="videocase">$PYTHON[$SKINSHORTCUTS[videocase]]</param>
+						<param name="musiccase">$PYTHON[$SKINSHORTCUTS[musiccase]]</param>
+						<param name="font1">$SKINSHORTCUTS[font1]</param>
+						<param name="font2">$SKINSHORTCUTS[font2]</param>
+						<param name="font3">$SKINSHORTCUTS[font3]</param>
+						<param name="icontop">$SKINSHORTCUTS[icontop]</param>
+						<param name="iconbottom">$SKINSHORTCUTS[iconbottom]</param>
+						<param name="label1position">$SKINSHORTCUTS[label1position]</param>
+						<param name="label2position">$SKINSHORTCUTS[label2position]</param>
+						<param name="label3position">$SKINSHORTCUTS[label3position]</param>
+					</include>
+					<content>
+						<item>
+							<icon>DefaultAddonNone.png</icon>
+							<thumb>DefaultAddonNone.png</thumb>
+							<visible>String.IsEmpty(Container(1600$SKINSHORTCUTS[id]4).ListItem(1).Label)</visible>
+						</item>
+					</content>
+					<content limit="25" target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
+				</control>
+			</control>
+		</controls>
+	</other>
+	<other include="widget5">
+		<!-- Conditions to be met to build include-->
+		<condition tag="property" attribute="name|widgetStyle.5">medium</condition>
+		<condition tag="property" attribute="name|widgetPath.1" />
+		<condition tag="property" attribute="name|widgetPath.2" />
+		<condition tag="property" attribute="name|widgetPath.3" />
+		<condition tag="property" attribute="name|widgetPath.4" />
+		<condition tag="property" attribute="name|widgetPath.5" />
+		<!-- Common widget 5 propertys -->
+		<propertyGroup>widgetCommon5</propertyGroup>
+		<!-- Widget size propertys -->
+		<propertyGroup>widgetMedium</propertyGroup>
+		<controls>
+			<control type="group">
+				<skinshortcuts>visibility</skinshortcuts>
+				<include content="WidgetInfo">
+					<param name="label">$SKINSHORTCUTS[name]</param>
+					<param name="infoposition">$PYTHON[$SKINSHORTCUTS[containerheight]]</param>
+					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
+					<param name="visible">String.IsEqual(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]),5)</param>
+				</include>
+				<control type="panel" id="1600$SKINSHORTCUTS[id]5">
+					<height>$PYTHON[$SKINSHORTCUTS[containerheight]]</height>
+					<onup condition="$SKINSHORTCUTS[onup]">SetProperty(WidgetFocus$SKINSHORTCUTS[id],6,home)</onup>
+					<onup condition="$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]6)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">ClearProperty(WidgetFocus$SKINSHORTCUTS[id],home)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]1)</onup>
+					<include content="$PYTHON[$SKINSHORTCUTS[container]]">
+						<param name="id">1600$SKINSHORTCUTS[id]5</param>
+						<param name="containerwidth">$PYTHON[$SKINSHORTCUTS[containerwidth]]</param>
+						<param name="diffuse">$PYTHON[$SKINSHORTCUTS[diffuse]]</param>
+						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
+						<param name="border">$PYTHON[$SKINSHORTCUTS[border]]</param>
+						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
+						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
+						<param name="videocase">$PYTHON[$SKINSHORTCUTS[videocase]]</param>
+						<param name="musiccase">$PYTHON[$SKINSHORTCUTS[musiccase]]</param>
+						<param name="font1">$SKINSHORTCUTS[font1]</param>
+						<param name="font2">$SKINSHORTCUTS[font2]</param>
+						<param name="font3">$SKINSHORTCUTS[font3]</param>
+						<param name="icontop">$SKINSHORTCUTS[icontop]</param>
+						<param name="iconbottom">$SKINSHORTCUTS[iconbottom]</param>
+						<param name="label1position">$SKINSHORTCUTS[label1position]</param>
+						<param name="label2position">$SKINSHORTCUTS[label2position]</param>
+						<param name="label3position">$SKINSHORTCUTS[label3position]</param>
+					</include>
+					<content>
+						<item>
+							<icon>DefaultAddonNone.png</icon>
+							<thumb>DefaultAddonNone.png</thumb>
+							<visible>String.IsEmpty(Container(1600$SKINSHORTCUTS[id]5).ListItem(1).Label)</visible>
+						</item>
+					</content>
+					<content limit="25" target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
+				</control>
+			</control>
+		</controls>
+	</other>
+	<other include="widget6">
+		<!-- Conditions to be met to build include-->
+		<condition tag="property" attribute="name|widgetStyle.6">medium</condition>
+		<condition tag="property" attribute="name|widgetPath.1" />
+		<condition tag="property" attribute="name|widgetPath.2" />
+		<condition tag="property" attribute="name|widgetPath.3" />
+		<condition tag="property" attribute="name|widgetPath.4" />
+		<condition tag="property" attribute="name|widgetPath.5" />
+		<condition tag="property" attribute="name|widgetPath.6" />
+		<!-- Common widget 6 propertys -->
+		<propertyGroup>widgetCommon6</propertyGroup>
+		<!-- Widget size propertys -->
+		<propertyGroup>widgetMedium</propertyGroup>
+		<controls>
+			<control type="group">
+				<skinshortcuts>visibility</skinshortcuts>
+				<include content="WidgetInfo">
+					<param name="label">$SKINSHORTCUTS[name]</param>
+					<param name="infoposition">$PYTHON[$SKINSHORTCUTS[containerheight]]</param>
+					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
+					<param name="visible">String.IsEqual(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]),6)</param>
+				</include>
+				<control type="panel" id="1600$SKINSHORTCUTS[id]6">
+					<height>$PYTHON[$SKINSHORTCUTS[containerheight]]</height>
+					<onup>ClearProperty(WidgetFocus$SKINSHORTCUTS[id],home)</onup>
+					<onup>SetFocus(1600$SKINSHORTCUTS[id]1)</onup>
+					<include content="$PYTHON[$SKINSHORTCUTS[container]]">
+						<param name="id">1600$SKINSHORTCUTS[id]6</param>
+						<param name="containerwidth">$PYTHON[$SKINSHORTCUTS[containerwidth]]</param>
+						<param name="diffuse">$PYTHON[$SKINSHORTCUTS[diffuse]]</param>
+						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
+						<param name="border">$PYTHON[$SKINSHORTCUTS[border]]</param>
+						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
+						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
+						<param name="videocase">$PYTHON[$SKINSHORTCUTS[videocase]]</param>
+						<param name="musiccase">$PYTHON[$SKINSHORTCUTS[musiccase]]</param>
+						<param name="font1">$SKINSHORTCUTS[font1]</param>
+						<param name="font2">$SKINSHORTCUTS[font2]</param>
+						<param name="font3">$SKINSHORTCUTS[font3]</param>
+						<param name="icontop">$SKINSHORTCUTS[icontop]</param>
+						<param name="iconbottom">$SKINSHORTCUTS[iconbottom]</param>
+						<param name="label1position">$SKINSHORTCUTS[label1position]</param>
+						<param name="label2position">$SKINSHORTCUTS[label2position]</param>
+						<param name="label3position">$SKINSHORTCUTS[label3position]</param>
+					</include>
+					<content>
+						<item>
+							<icon>DefaultAddonNone.png</icon>
+							<thumb>DefaultAddonNone.png</thumb>
+							<visible>String.IsEmpty(Container(1600$SKINSHORTCUTS[id]6).ListItem(1).Label)</visible>
+						</item>
+					</content>
+					<content limit="25" target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
+				</control>
+			</control>
+		</controls>
+	</other>
+	<!-- Big widgets -->
+	<other include="widget1">
+		<!-- Conditions to be met to build include-->
+		<condition tag="property" attribute="name|widgetStyle.1">big</condition>
+		<condition tag="property" attribute="name|widgetPath.1" />
+		<!-- Common widget 1 propertys -->
+		<propertyGroup>widgetCommon1</propertyGroup>
+		<!-- Widget size propertys -->
+		<propertyGroup>widgetBig</propertyGroup>
+		<controls>
+			<control type="group">
+				<skinshortcuts>visibility</skinshortcuts>
+				<include content="WidgetInfo">
+					<param name="label">$SKINSHORTCUTS[name]</param>
+					<param name="infoposition">$PYTHON[$SKINSHORTCUTS[containerheight]]</param>
+					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
+					<param name="visible">String.IsEmpty(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]))</param>
+				</include>
+				<control type="panel" id="1600$SKINSHORTCUTS[id]1">
+					<height>$PYTHON[$SKINSHORTCUTS[containerheight]]</height>
+					<onup condition="$SKINSHORTCUTS[onup]">SetProperty(WidgetFocus$SKINSHORTCUTS[id],2,home)</onup>
+					<onup condition="$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]2)</onup>
+					<include content="$PYTHON[$SKINSHORTCUTS[container]]">
+						<param name="id">1600$SKINSHORTCUTS[id]1</param>
+						<param name="containerwidth">$PYTHON[$SKINSHORTCUTS[containerwidth]]</param>
+						<param name="diffuse">$PYTHON[$SKINSHORTCUTS[diffuse]]</param>
+						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
+						<param name="border">$PYTHON[$SKINSHORTCUTS[border]]</param>
+						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
+						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
+						<param name="videocase">$PYTHON[$SKINSHORTCUTS[videocase]]</param>
+						<param name="musiccase">$PYTHON[$SKINSHORTCUTS[musiccase]]</param>
+						<param name="font1">$SKINSHORTCUTS[font1]</param>
+						<param name="font2">$SKINSHORTCUTS[font2]</param>
+						<param name="font3">$SKINSHORTCUTS[font3]</param>
+						<param name="icontop">$SKINSHORTCUTS[icontop]</param>
+						<param name="iconbottom">$SKINSHORTCUTS[iconbottom]</param>
+						<param name="label1position">$SKINSHORTCUTS[label1position]</param>
+						<param name="label2position">$SKINSHORTCUTS[label2position]</param>
+						<param name="label3position">$SKINSHORTCUTS[label3position]</param>
+						<param name="studioiconvisible">$SKINSHORTCUTS[studioiconvisible]</param>
+						<param name="iconstudioheight">$SKINSHORTCUTS[iconstudioheight]</param>
+					</include>
+					<content>
+						<item>
+							<icon>DefaultAddonNone.png</icon>
+							<thumb>DefaultAddonNone.png</thumb>
+							<visible>String.IsEmpty(Container(1600$SKINSHORTCUTS[id]1).ListItem(1).Label)</visible>
+						</item>
+					</content>
+					<content limit="25" target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
+				</control>
+			</control>
+		</controls>
+	</other>
+	<other include="widget2">
+		<!-- Conditions to be met to build include-->
+		<condition tag="property" attribute="name|widgetStyle.2">big</condition>
+		<condition tag="property" attribute="name|widgetPath.1" />
+		<condition tag="property" attribute="name|widgetPath.2" />
+		<!-- Common widget 2 propertys -->
+		<propertyGroup>widgetCommon2</propertyGroup>
+		<!-- Widget size propertys -->
+		<propertyGroup>widgetBig</propertyGroup>
+		<controls>
+			<control type="group">
+				<skinshortcuts>visibility</skinshortcuts>
+				<include content="WidgetInfo">
+					<param name="label">$SKINSHORTCUTS[name]</param>
+					<param name="infoposition">$PYTHON[$SKINSHORTCUTS[containerheight]]</param>
+					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
+					<param name="visible">String.IsEqual(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]),2)</param>
+				</include>
+				<control type="panel" id="1600$SKINSHORTCUTS[id]2">
+					<height>$PYTHON[$SKINSHORTCUTS[containerheight]]</height>
+					<onup condition="$SKINSHORTCUTS[onup]">SetProperty(WidgetFocus$SKINSHORTCUTS[id],3,home)</onup>
+					<onup condition="$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]3)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">ClearProperty(WidgetFocus$SKINSHORTCUTS[id],home)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]1)</onup>
+					<include content="$PYTHON[$SKINSHORTCUTS[container]]">
+						<param name="id">1600$SKINSHORTCUTS[id]2</param>
+						<param name="containerwidth">$PYTHON[$SKINSHORTCUTS[containerwidth]]</param>
+						<param name="diffuse">$PYTHON[$SKINSHORTCUTS[diffuse]]</param>
+						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
+						<param name="border">$PYTHON[$SKINSHORTCUTS[border]]</param>
+						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
+						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
+						<param name="videocase">$PYTHON[$SKINSHORTCUTS[videocase]]</param>
+						<param name="musiccase">$PYTHON[$SKINSHORTCUTS[musiccase]]</param>
+						<param name="font1">$SKINSHORTCUTS[font1]</param>
+						<param name="font2">$SKINSHORTCUTS[font2]</param>
+						<param name="font3">$SKINSHORTCUTS[font3]</param>
+						<param name="icontop">$SKINSHORTCUTS[icontop]</param>
+						<param name="iconbottom">$SKINSHORTCUTS[iconbottom]</param>
+						<param name="label1position">$SKINSHORTCUTS[label1position]</param>
+						<param name="label2position">$SKINSHORTCUTS[label2position]</param>
+						<param name="label3position">$SKINSHORTCUTS[label3position]</param>
+					</include>
+					<content>
+						<item>
+							<icon>DefaultAddonNone.png</icon>
+							<thumb>DefaultAddonNone.png</thumb>
+							<visible>String.IsEmpty(Container(1600$SKINSHORTCUTS[id]2).ListItem(1).Label)</visible>
+						</item>
+					</content>
+					<content limit="25" target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
+				</control>
+			</control>
+		</controls>
+	</other>
+	<other include="widget3">
+		<!-- Conditions to be met to build include-->
+		<condition tag="property" attribute="name|widgetStyle.3">big</condition>
+		<condition tag="property" attribute="name|widgetPath.1" />
+		<condition tag="property" attribute="name|widgetPath.2" />
+		<condition tag="property" attribute="name|widgetPath.3" />
+		<!-- Common widget 3 propertys -->
+		<propertyGroup>widgetCommon3</propertyGroup>
+		<!-- Widget size propertys -->
+		<propertyGroup>widgetBig</propertyGroup>
+		<controls>
+			<control type="group">
+				<skinshortcuts>visibility</skinshortcuts>
+				<include content="WidgetInfo">
+					<param name="label">$SKINSHORTCUTS[name]</param>
+					<param name="infoposition">$PYTHON[$SKINSHORTCUTS[containerheight]]</param>
+					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
+					<param name="visible">String.IsEqual(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]),3)</param>
+				</include>
+				<control type="panel" id="1600$SKINSHORTCUTS[id]3">
+					<height>$PYTHON[$SKINSHORTCUTS[containerheight]]</height>
+					<onup condition="$SKINSHORTCUTS[onup]">SetProperty(WidgetFocus$SKINSHORTCUTS[id],4,home)</onup>
+					<onup condition="$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]4)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">ClearProperty(WidgetFocus$SKINSHORTCUTS[id],home)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]1)</onup>
+					<include content="$PYTHON[$SKINSHORTCUTS[container]]">
+						<param name="id">1600$SKINSHORTCUTS[id]3</param>
+						<param name="containerwidth">$PYTHON[$SKINSHORTCUTS[containerwidth]]</param>
+						<param name="diffuse">$PYTHON[$SKINSHORTCUTS[diffuse]]</param>
+						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
+						<param name="border">$PYTHON[$SKINSHORTCUTS[border]]</param>
+						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
+						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
+						<param name="videocase">$PYTHON[$SKINSHORTCUTS[videocase]]</param>
+						<param name="musiccase">$PYTHON[$SKINSHORTCUTS[musiccase]]</param>
+						<param name="font1">$SKINSHORTCUTS[font1]</param>
+						<param name="font2">$SKINSHORTCUTS[font2]</param>
+						<param name="font3">$SKINSHORTCUTS[font3]</param>
+						<param name="icontop">$SKINSHORTCUTS[icontop]</param>
+						<param name="iconbottom">$SKINSHORTCUTS[iconbottom]</param>
+						<param name="label1position">$SKINSHORTCUTS[label1position]</param>
+						<param name="label2position">$SKINSHORTCUTS[label2position]</param>
+						<param name="label3position">$SKINSHORTCUTS[label3position]</param>
+					</include>
+					<content>
+						<item>
+							<icon>DefaultAddonNone.png</icon>
+							<thumb>DefaultAddonNone.png</thumb>
+							<visible>String.IsEmpty(Container(1600$SKINSHORTCUTS[id]3).ListItem(1).Label)</visible>
+						</item>
+					</content>
+					<content limit="25" target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
+				</control>
+			</control>
+		</controls>
+	</other>
+	<other include="widget4">
+		<!-- Conditions to be met to build include-->
+		<condition tag="property" attribute="name|widgetStyle.4">big</condition>
+		<condition tag="property" attribute="name|widgetPath.1" />
+		<condition tag="property" attribute="name|widgetPath.2" />
+		<condition tag="property" attribute="name|widgetPath.3" />
+		<condition tag="property" attribute="name|widgetPath.4" />
+		<!-- Common widget 4 propertys -->
+		<propertyGroup>widgetCommon4</propertyGroup>
+		<!-- Widget size propertys -->
+		<propertyGroup>widgetBig</propertyGroup>
+		<controls>
+			<control type="group">
+				<skinshortcuts>visibility</skinshortcuts>
+				<include content="WidgetInfo">
+					<param name="label">$SKINSHORTCUTS[name]</param>
+					<param name="infoposition">$PYTHON[$SKINSHORTCUTS[containerheight]]</param>
+					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
+					<param name="visible">String.IsEqual(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]),4)</param>
+				</include>
+				<control type="panel" id="1600$SKINSHORTCUTS[id]4">
+					<height>$PYTHON[$SKINSHORTCUTS[containerheight]]</height>
+					<onup condition="$SKINSHORTCUTS[onup]">SetProperty(WidgetFocus$SKINSHORTCUTS[id],5,home)</onup>
+					<onup condition="$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]5)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">ClearProperty(WidgetFocus$SKINSHORTCUTS[id],home)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]1)</onup>
+					<include content="$PYTHON[$SKINSHORTCUTS[container]]">
+						<param name="id">1600$SKINSHORTCUTS[id]4</param>
+						<param name="containerwidth">$PYTHON[$SKINSHORTCUTS[containerwidth]]</param>
+						<param name="diffuse">$PYTHON[$SKINSHORTCUTS[diffuse]]</param>
+						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
+						<param name="border">$PYTHON[$SKINSHORTCUTS[border]]</param>
+						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
+						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
+						<param name="videocase">$PYTHON[$SKINSHORTCUTS[videocase]]</param>
+						<param name="musiccase">$PYTHON[$SKINSHORTCUTS[musiccase]]</param>
+						<param name="font1">$SKINSHORTCUTS[font1]</param>
+						<param name="font2">$SKINSHORTCUTS[font2]</param>
+						<param name="font3">$SKINSHORTCUTS[font3]</param>
+						<param name="icontop">$SKINSHORTCUTS[icontop]</param>
+						<param name="iconbottom">$SKINSHORTCUTS[iconbottom]</param>
+						<param name="label1position">$SKINSHORTCUTS[label1position]</param>
+						<param name="label2position">$SKINSHORTCUTS[label2position]</param>
+						<param name="label3position">$SKINSHORTCUTS[label3position]</param>
+					</include>
+					<content>
+						<item>
+							<icon>DefaultAddonNone.png</icon>
+							<thumb>DefaultAddonNone.png</thumb>
+							<visible>String.IsEmpty(Container(1600$SKINSHORTCUTS[id]4).ListItem(1).Label)</visible>
+						</item>
+					</content>
+					<content limit="25" target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
+				</control>
+			</control>
+		</controls>
+	</other>
+	<other include="widget5">
+		<!-- Conditions to be met to build include-->
+		<condition tag="property" attribute="name|widgetStyle.5">big</condition>
+		<condition tag="property" attribute="name|widgetPath.1" />
+		<condition tag="property" attribute="name|widgetPath.2" />
+		<condition tag="property" attribute="name|widgetPath.3" />
+		<condition tag="property" attribute="name|widgetPath.4" />
+		<condition tag="property" attribute="name|widgetPath.5" />
+		<!-- Common widget 5 propertys -->
+		<propertyGroup>widgetCommon5</propertyGroup>
+		<!-- Widget size propertys -->
+		<propertyGroup>widgetBig</propertyGroup>
+		<controls>
+			<control type="group">
+				<skinshortcuts>visibility</skinshortcuts>
+				<include content="WidgetInfo">
+					<param name="label">$SKINSHORTCUTS[name]</param>
+					<param name="infoposition">$PYTHON[$SKINSHORTCUTS[containerheight]]</param>
+					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
+					<param name="visible">String.IsEqual(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]),5)</param>
+				</include>
+				<control type="panel" id="1600$SKINSHORTCUTS[id]5">
+					<height>$PYTHON[$SKINSHORTCUTS[containerheight]]</height>
+					<onup condition="$SKINSHORTCUTS[onup]">SetProperty(WidgetFocus$SKINSHORTCUTS[id],6,home)</onup>
+					<onup condition="$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]6)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">ClearProperty(WidgetFocus$SKINSHORTCUTS[id],home)</onup>
+					<onup condition="!$SKINSHORTCUTS[onup]">SetFocus(1600$SKINSHORTCUTS[id]1)</onup>
+					<include content="$PYTHON[$SKINSHORTCUTS[container]]">
+						<param name="id">1600$SKINSHORTCUTS[id]5</param>
+						<param name="containerwidth">$PYTHON[$SKINSHORTCUTS[containerwidth]]</param>
+						<param name="diffuse">$PYTHON[$SKINSHORTCUTS[diffuse]]</param>
+						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
+						<param name="border">$PYTHON[$SKINSHORTCUTS[border]]</param>
+						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
+						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
+						<param name="videocase">$PYTHON[$SKINSHORTCUTS[videocase]]</param>
+						<param name="musiccase">$PYTHON[$SKINSHORTCUTS[musiccase]]</param>
+						<param name="font1">$SKINSHORTCUTS[font1]</param>
+						<param name="font2">$SKINSHORTCUTS[font2]</param>
+						<param name="font3">$SKINSHORTCUTS[font3]</param>
+						<param name="icontop">$SKINSHORTCUTS[icontop]</param>
+						<param name="iconbottom">$SKINSHORTCUTS[iconbottom]</param>
+						<param name="label1position">$SKINSHORTCUTS[label1position]</param>
+						<param name="label2position">$SKINSHORTCUTS[label2position]</param>
+						<param name="label3position">$SKINSHORTCUTS[label3position]</param>
+					</include>
+					<content>
+						<item>
+							<icon>DefaultAddonNone.png</icon>
+							<thumb>DefaultAddonNone.png</thumb>
+							<visible>String.IsEmpty(Container(1600$SKINSHORTCUTS[id]5).ListItem(1).Label)</visible>
+						</item>
+					</content>
+					<content limit="25" target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
+				</control>
+			</control>
+		</controls>
+	</other>
+	<other include="widget6">
+		<!-- Conditions to be met to build include-->
+		<condition tag="property" attribute="name|widgetStyle.6">big</condition>
+		<condition tag="property" attribute="name|widgetPath.1" />
+		<condition tag="property" attribute="name|widgetPath.2" />
+		<condition tag="property" attribute="name|widgetPath.3" />
+		<condition tag="property" attribute="name|widgetPath.4" />
+		<condition tag="property" attribute="name|widgetPath.5" />
+		<condition tag="property" attribute="name|widgetPath.6" />
+		<!-- Common widget 6 propertys -->
+		<propertyGroup>widgetCommon6</propertyGroup>
+		<!-- Widget size propertys -->
+		<propertyGroup>widgetBig</propertyGroup>
+		<controls>
+			<control type="group">
+				<skinshortcuts>visibility</skinshortcuts>
+				<include content="WidgetInfo">
+					<param name="label">$SKINSHORTCUTS[name]</param>
+					<param name="infoposition">$PYTHON[$SKINSHORTCUTS[containerheight]]</param>
+					<param name="infovisible">$SKINSHORTCUTS[infovisible]</param>
+					<param name="visible">String.IsEqual(Window(home).Property(WidgetFocus$SKINSHORTCUTS[id]),6)</param>
+				</include>
+				<control type="panel" id="1600$SKINSHORTCUTS[id]6">
+					<height>$PYTHON[$SKINSHORTCUTS[containerheight]]</height>
+					<onup>ClearProperty(WidgetFocus$SKINSHORTCUTS[id],home)</onup>
+					<onup>SetFocus(1600$SKINSHORTCUTS[id]1)</onup>
+					<include content="$PYTHON[$SKINSHORTCUTS[container]]">
+						<param name="id">1600$SKINSHORTCUTS[id]6</param>
+						<param name="containerwidth">$PYTHON[$SKINSHORTCUTS[containerwidth]]</param>
+						<param name="diffuse">$PYTHON[$SKINSHORTCUTS[diffuse]]</param>
+						<param name="artwork">$SKINSHORTCUTS[artwork]</param>
+						<param name="border">$PYTHON[$SKINSHORTCUTS[border]]</param>
+						<param name="artworkaspect">$SKINSHORTCUTS[artworkaspect]</param>
+						<param name="labelvisible">$SKINSHORTCUTS[labelvisible]</param>
+						<param name="videocase">$PYTHON[$SKINSHORTCUTS[videocase]]</param>
+						<param name="musiccase">$PYTHON[$SKINSHORTCUTS[musiccase]]</param>
+						<param name="font1">$SKINSHORTCUTS[font1]</param>
+						<param name="font2">$SKINSHORTCUTS[font2]</param>
+						<param name="font3">$SKINSHORTCUTS[font3]</param>
+						<param name="icontop">$SKINSHORTCUTS[icontop]</param>
+						<param name="iconbottom">$SKINSHORTCUTS[iconbottom]</param>
+						<param name="label1position">$SKINSHORTCUTS[label1position]</param>
+						<param name="label2position">$SKINSHORTCUTS[label2position]</param>
+						<param name="label3position">$SKINSHORTCUTS[label3position]</param>
+					</include>
+					<content>
+						<item>
+							<icon>DefaultAddonNone.png</icon>
+							<thumb>DefaultAddonNone.png</thumb>
+							<visible>String.IsEmpty(Container(1600$SKINSHORTCUTS[id]6).ListItem(1).Label)</visible>
+						</item>
+					</content>
+					<content limit="25" target="$SKINSHORTCUTS[target]">$SKINSHORTCUTS[path]</content>
 				</control>
 			</control>
 		</controls>
 	</other>
 	<!-- System -->
 	<other include="SystemContent">
-		<condition tag="property" attribute="name|widgetType">sysinfo</condition>
+		<condition tag="property" attribute="name|widgetType.1">sysinfo</condition>
+		<condition tag="property" attribute="name|widgetType.2">sysinfo</condition>
+		<condition tag="property" attribute="name|widgetType.3">sysinfo</condition>
+		<condition tag="property" attribute="name|widgetType.4">sysinfo</condition>
+		<condition tag="property" attribute="name|widgetType.5">sysinfo</condition>
+		<condition tag="property" attribute="name|widgetType.6">sysinfo</condition>
+		<match>any</match>
 		<controls>
 			<item>
 				<label>12395</label>
 				<label2>$INFO[System.BatteryLevel]</label2>
-				<icon>thumbs/systeminfo/square/battery100.png</icon>
-				<property name="fanart">thumbs/systeminfo/fanart/battery100.jpg</property>
+				<icon>icons/systeminfo/icons/battery100.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/battery100.jpg</property>
 				<property name="label3">Remaining</property>
 				<visible>Integer.IsGreater(System.BatteryLevel,60)</visible>
 				<onclick>ActivateWindow(systeminfo)</onclick>
@@ -390,8 +1063,8 @@
 			<item>
 				<label>12395</label>
 				<label2>$INFO[System.BatteryLevel]</label2>
-				<icon>thumbs/systeminfo/square/battery50.png</icon>
-				<property name="fanart">thumbs/systeminfo/fanart/battery50.jpg</property>
+				<icon>icons/systeminfo/icons/battery50.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/battery50.jpg</property>
 				<property name="label3">Remaining</property>
 				<visible>Integer.IsGreater(System.BatteryLevel,20) + !Integer.IsGreater(System.BatteryLevel,60)</visible>
 				<onclick>ActivateWindow(systeminfo)</onclick>
@@ -399,8 +1072,8 @@
 			<item>
 				<label>12395</label>
 				<label2>$INFO[System.BatteryLevel]</label2>
-				<icon>thumbs/systeminfo/square/battery10.png</icon>
-				<property name="fanart">thumbs/systeminfo/fanart/battery10.jpg</property>
+				<icon>icons/systeminfo/icons/battery10.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/battery10.jpg</property>
 				<property name="label3">Remaining</property>
 				<visible>Integer.IsGreater(System.BatteryLevel,5) + !Integer.IsGreater(System.BatteryLevel,20)</visible>
 				<onclick>ActivateWindow(systeminfo)</onclick>
@@ -408,8 +1081,8 @@
 			<item>
 				<label>12395</label>
 				<label2>$INFO[System.BatteryLevel]</label2>
-				<icon>thumbs/systeminfo/square/battery-critical.png</icon>
-				<property name="fanart">thumbs/systeminfo/fanart/battery-critical.jpg</property>
+				<icon>icons/systeminfo/icons/battery-critical.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/battery-critical.jpg</property>
 				<property name="label3">Remaining</property>
 				<visible>Integer.IsGreater(System.BatteryLevel,0) + !Integer.IsGreater(System.BatteryLevel,5)</visible>
 				<onclick>ActivateWindow(systeminfo)</onclick>
@@ -417,8 +1090,8 @@
 			<item>
 				<label>705</label>
 				<label2>$INFO[System.InternetState]</label2>
-				<icon>thumbs/systeminfo/square/connected.png</icon>
-				<property name="fanart">thumbs/systeminfo/fanart/connected.jpg</property>
+				<icon>icons/systeminfo/icons/connected.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/connected.jpg</property>
 				<property name="label3">$INFO[Network.IPAddress]</property>
 				<visible>System.InternetState</visible>
 				<onclick>ActivateWindow(systeminfo)</onclick>
@@ -426,8 +1099,8 @@
 			<item>
 				<label>705</label>
 				<label2>$INFO[System.InternetState]</label2>
-				<icon>thumbs/systeminfo/square/disconnected.png</icon>
-				<property name="fanart">thumbs/systeminfo/fanart/disconnected.jpg</property>
+				<icon>icons/systeminfo/icons/disconnected.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/disconnected.jpg</property>
 				<property name="label3">$INFO[Network.IPAddress]</property>
 				<visible>!System.InternetState</visible>
 				<onclick>ActivateWindow(systeminfo)</onclick>
@@ -435,26 +1108,26 @@
 			<item>
 				<label>13280</label>
 				<label2>$INFO[System.fps,, FPS]</label2>
-				<icon>thumbs/systeminfo/square/video.png</icon>
-				<property name="fanart">thumbs/systeminfo/fanart/video.jpg</property>
+				<icon>icons/systeminfo/icons/video.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/video.jpg</property>
 				<property name="label3">$INFO[System.ScreenWidth]x$INFO[System.ScreenHeight]</property>
 				<visible>!Integer.IsGreater(System.GPUTemperature,0)</visible>
 				<onclick>ActivateWindow(systeminfo)</onclick>
 			</item>
 			<item>
 				<label>13280</label>
-				<label2>$INFO[System.ScreenWidth]x$INFO[System.ScreenHeight]</label2>
-				<icon>thumbs/systeminfo/square/video.png</icon>
-				<property name="fanart">thumbs/systeminfo/fanart/video.jpg</property>
-				<property name="label3">$INFO[System.fps] FPS $INFO[System.GPUTemperature]</property>
+				<label2>$INFO[System.fps,, FPS] $INFO[System.GPUTemperature]</label2>
+				<icon>icons/systeminfo/icons/video.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/video.jpg</property>
+				<property name="label3">$INFO[System.ScreenWidth]x$INFO[System.ScreenHeight]</property>
 				<visible>Integer.IsGreater(System.GPUTemperature,0)</visible>
 				<onclick>ActivateWindow(systeminfo)</onclick>
 			</item>
 			<item>
 				<label>CPU</label>
 				<label2>$INFO[System.CpuFrequency] $INFO[System.CPUTemperature]</label2>
-				<icon>thumbs/systeminfo/square/cpu.png</icon>
-				<property name="fanart">thumbs/systeminfo/fanart/cpu.jpg</property>
+				<icon>icons/systeminfo/icons/cpu.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/cpu.jpg</property>
 				<property name="label3">$INFO[System.CPUUsage(used.percent)]</property>
 				<visible>Integer.IsGreater(System.CPUTemperature,0)</visible>
 				<onclick>ActivateWindow(systeminfo)</onclick>
@@ -462,8 +1135,8 @@
 			<item>
 				<label>CPU</label>
 				<label2>$INFO[System.CpuFrequency]</label2>
-				<icon>thumbs/systeminfo/square/cpu.png</icon>
-				<property name="fanart">thumbs/systeminfo/fanart/cpu.jpg</property>
+				<icon>icons/systeminfo/icons/cpu.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/cpu.jpg</property>
 				<property name="label3">$INFO[System.CPUUsage(used.percent)]</property>
 				<visible>!Integer.IsGreater(System.CPUTemperature,0)</visible>
 				<onclick>ActivateWindow(systeminfo)</onclick>
@@ -471,24 +1144,24 @@
 			<item>
 				<label>31023</label>
 				<label2>$INFO[System.Memory(total)] $LOCALIZE[20161]</label2>
-				<icon>thumbs/systeminfo/square/memory.png</icon>
-				<property name="fanart">thumbs/systeminfo/fanart/memory.jpg</property>
+				<icon>icons/systeminfo/icons/memory.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/memory.jpg</property>
 				<property name="label3">$INFO[System.Memory(free.percent)] $LOCALIZE[156]</property>
 				<onclick>ActivateWindow(systeminfo)</onclick>
 			</item>
 			<item>
 				<label>154</label>
 				<label2>$INFO[System.TotalSpace]</label2>
-				<icon>thumbs/systeminfo/square/storage.png</icon>
-				<property name="fanart">thumbs/systeminfo/fanart/storage.jpg</property>
+				<icon>icons/systeminfo/icons/storage.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/storage.jpg</property>
 				<property name="label3">$INFO[System.FreeSpacePercent]</property>
 				<onclick>ActivateWindow(systeminfo)</onclick>
 			</item>
 			<item>
 				<label>19020</label>
 				<label2>$INFO[Pvr.BackendName]</label2>
-				<icon>thumbs/systeminfo/square/pvr.png</icon>
-				<property name="fanart">thumbs/systeminfo/fanart/pvr.jpg</property>
+				<icon>icons/systeminfo/icons/pvr.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/pvr.jpg</property>
 				<property name="label3">$INFO[Pvr.BackendChannels] $LOCALIZE[19019]</property>
 				<visible>PVR.HasTVChannels</visible>
 				<onclick>ActivateWindow(systeminfo)</onclick>
@@ -496,36 +1169,267 @@
 			<item>
 				<label>19114</label>
 				<label2>$INFO[System.BuildVersion]</label2>
-				<icon>thumbs/systeminfo/square/system.png</icon>
-				<property name="fanart">thumbs/systeminfo/fanart/system.jpg</property>
+				<icon>icons/systeminfo/icons/system.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/system.jpg</property>
 				<property name="label3">$INFO[System.BuildDate]</property>
 				<onclick>ActivateWindow(systeminfo)</onclick>
 			</item>
 			<item>
 				<label>12390</label>
 				<label2>$INFO[System.TotalUptime]</label2>
-				<icon>thumbs/systeminfo/square/uptime.png</icon>
-				<property name="fanart">thumbs/systeminfo/fanart/uptime.jpg</property>
+				<icon>icons/systeminfo/icons/uptime.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/uptime.jpg</property>
+				<property name="label3">$INFO[System.Uptime]</property>
+				<onclick>ActivateWindow(systeminfo)</onclick>
+			</item>
+		</controls>
+	</other>
+	<other include="SystemBattery">
+		<condition tag="property" attribute="name|widgetType.1">sysinfobattery</condition>
+		<condition tag="property" attribute="name|widgetType.2">sysinfobattery</condition>
+		<condition tag="property" attribute="name|widgetType.3">sysinfobattery</condition>
+		<condition tag="property" attribute="name|widgetType.4">sysinfobattery</condition>
+		<condition tag="property" attribute="name|widgetType.5">sysinfobattery</condition>
+		<condition tag="property" attribute="name|widgetType.6">sysinfobattery</condition>
+		<match>any</match>
+		<controls>
+			<item>
+				<label>12395</label>
+				<label2>$INFO[System.BatteryLevel]</label2>
+				<icon>icons/systeminfo/icons/battery100.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/battery100.jpg</property>
+				<property name="label3">Remaining</property>
+				<visible>Integer.IsGreater(System.BatteryLevel,60)</visible>
+				<onclick>ActivateWindow(systeminfo)</onclick>
+			</item>
+			<item>
+				<label>12395</label>
+				<label2>$INFO[System.BatteryLevel]</label2>
+				<icon>icons/systeminfo/icons/battery50.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/battery50.jpg</property>
+				<property name="label3">Remaining</property>
+				<visible>Integer.IsGreater(System.BatteryLevel,20) + !Integer.IsGreater(System.BatteryLevel,60)</visible>
+				<onclick>ActivateWindow(systeminfo)</onclick>
+			</item>
+			<item>
+				<label>12395</label>
+				<label2>$INFO[System.BatteryLevel]</label2>
+				<icon>icons/systeminfo/icons/battery10.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/battery10.jpg</property>
+				<property name="label3">Remaining</property>
+				<visible>Integer.IsGreater(System.BatteryLevel,5) + !Integer.IsGreater(System.BatteryLevel,20)</visible>
+				<onclick>ActivateWindow(systeminfo)</onclick>
+			</item>
+			<item>
+				<label>12395</label>
+				<label2>$INFO[System.BatteryLevel]</label2>
+				<icon>icons/systeminfo/icons/battery-critical.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/battery-critical.jpg</property>
+				<property name="label3">Remaining</property>
+				<visible>Integer.IsGreaterOrEqual(System.BatteryLevel,0) + !Integer.IsGreater(System.BatteryLevel,5)</visible>
+				<onclick>ActivateWindow(systeminfo)</onclick>
+			</item>
+		</controls>
+	</other>
+	<other include="SystemNetwork">
+		<condition tag="property" attribute="name|widgetType.1">sysinfonetwork</condition>
+		<condition tag="property" attribute="name|widgetType.2">sysinfonetwork</condition>
+		<condition tag="property" attribute="name|widgetType.3">sysinfonetwork</condition>
+		<condition tag="property" attribute="name|widgetType.4">sysinfonetwork</condition>
+		<condition tag="property" attribute="name|widgetType.5">sysinfonetwork</condition>
+		<condition tag="property" attribute="name|widgetType.6">sysinfonetwork</condition>
+		<match>any</match>
+		<controls>
+			<item>
+				<label>705</label>
+				<label2>$INFO[System.InternetState]</label2>
+				<icon>icons/systeminfo/icons/connected.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/connected.jpg</property>
+				<property name="label3">$INFO[Network.IPAddress]</property>
+				<visible>System.InternetState</visible>
+				<onclick>ActivateWindow(systeminfo)</onclick>
+			</item>
+			<item>
+				<label>705</label>
+				<label2>$INFO[System.InternetState]</label2>
+				<icon>icons/systeminfo/icons/disconnected.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/disconnected.jpg</property>
+				<property name="label3">$INFO[Network.IPAddress]</property>
+				<visible>!System.InternetState</visible>
+				<onclick>ActivateWindow(systeminfo)</onclick>
+			</item>
+		</controls>
+	</other>
+	<other include="SystemVideo">
+		<condition tag="property" attribute="name|widgetType.1">sysinfovideo</condition>
+		<condition tag="property" attribute="name|widgetType.2">sysinfovideo</condition>
+		<condition tag="property" attribute="name|widgetType.3">sysinfovideo</condition>
+		<condition tag="property" attribute="name|widgetType.4">sysinfovideo</condition>
+		<condition tag="property" attribute="name|widgetType.5">sysinfovideo</condition>
+		<condition tag="property" attribute="name|widgetType.6">sysinfovideo</condition>
+		<match>any</match>
+		<controls>
+			<item>
+				<label>13280</label>
+				<label2>$INFO[System.fps,, FPS]</label2>
+				<icon>icons/systeminfo/icons/video.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/video.jpg</property>
+				<property name="label3">$INFO[System.ScreenWidth]x$INFO[System.ScreenHeight]</property>
+				<visible>!Integer.IsGreater(System.GPUTemperature,0)</visible>
+				<onclick>ActivateWindow(systeminfo)</onclick>
+			</item>
+			<item>
+				<label>13280</label>
+				<label2>$INFO[System.fps,, FPS] $INFO[System.GPUTemperature]</label2>
+				<icon>icons/systeminfo/icons/video.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/video.jpg</property>
+				<property name="label3">$INFO[System.ScreenWidth]x$INFO[System.ScreenHeight]</property>
+				<visible>Integer.IsGreater(System.GPUTemperature,0)</visible>
+				<onclick>ActivateWindow(systeminfo)</onclick>
+			</item>
+		</controls>
+	</other>
+	<other include="SystemCPU">
+		<condition tag="property" attribute="name|widgetType.1">sysinfocpu</condition>
+		<condition tag="property" attribute="name|widgetType.2">sysinfocpu</condition>
+		<condition tag="property" attribute="name|widgetType.3">sysinfocpu</condition>
+		<condition tag="property" attribute="name|widgetType.4">sysinfocpu</condition>
+		<condition tag="property" attribute="name|widgetType.5">sysinfocpu</condition>
+		<condition tag="property" attribute="name|widgetType.6">sysinfocpu</condition>
+		<match>any</match>
+		<controls>
+			<item>
+				<label>CPU</label>
+				<label2>$INFO[System.CpuFrequency] $INFO[System.CPUTemperature]</label2>
+				<icon>icons/systeminfo/icons/cpu.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/cpu.jpg</property>
+				<property name="label3">$INFO[System.CPUUsage(used.percent)]</property>
+				<visible>Integer.IsGreater(System.CPUTemperature,0)</visible>
+				<onclick>ActivateWindow(systeminfo)</onclick>
+			</item>
+			<item>
+				<label>CPU</label>
+				<label2>$INFO[System.CpuFrequency]</label2>
+				<icon>icons/systeminfo/icons/cpu.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/cpu.jpg</property>
+				<property name="label3">$INFO[System.CPUUsage(used.percent)]</property>
+				<visible>!Integer.IsGreater(System.CPUTemperature,0)</visible>
+				<onclick>ActivateWindow(systeminfo)</onclick>
+			</item>
+		</controls>
+	</other>
+	<other include="SystemMemory">
+		<condition tag="property" attribute="name|widgetType.1">sysinfomemory</condition>
+		<condition tag="property" attribute="name|widgetType.2">sysinfomemory</condition>
+		<condition tag="property" attribute="name|widgetType.3">sysinfomemory</condition>
+		<condition tag="property" attribute="name|widgetType.4">sysinfomemory</condition>
+		<condition tag="property" attribute="name|widgetType.5">sysinfomemory</condition>
+		<condition tag="property" attribute="name|widgetType.6">sysinfomemory</condition>
+		<match>any</match>
+		<controls>
+			<item>
+				<label>31023</label>
+				<label2>$INFO[System.Memory(total)] $LOCALIZE[20161]</label2>
+				<icon>icons/systeminfo/icons/memory.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/memory.jpg</property>
+				<property name="label3">$INFO[System.Memory(free.percent)] $LOCALIZE[156]</property>
+				<onclick>ActivateWindow(systeminfo)</onclick>
+			</item>
+		</controls>
+	</other>
+	<other include="SystemStorage">
+		<condition tag="property" attribute="name|widgetType.1">sysinfostorage</condition>
+		<condition tag="property" attribute="name|widgetType.2">sysinfostorage</condition>
+		<condition tag="property" attribute="name|widgetType.3">sysinfostorage</condition>
+		<condition tag="property" attribute="name|widgetType.4">sysinfostorage</condition>
+		<condition tag="property" attribute="name|widgetType.5">sysinfostorage</condition>
+		<condition tag="property" attribute="name|widgetType.6">sysinfostorage</condition>
+		<match>any</match>
+		<controls>
+			<item>
+				<label>154</label>
+				<label2>$INFO[System.TotalSpace]</label2>
+				<icon>icons/systeminfo/icons/storage.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/storage.jpg</property>
+				<property name="label3">$INFO[System.FreeSpacePercent]</property>
+				<onclick>ActivateWindow(systeminfo)</onclick>
+			</item>
+		</controls>
+	</other>
+	<other include="SystemPVR">
+		<condition tag="property" attribute="name|widgetType.1">sysinfopvr</condition>
+		<condition tag="property" attribute="name|widgetType.2">sysinfopvr</condition>
+		<condition tag="property" attribute="name|widgetType.3">sysinfopvr</condition>
+		<condition tag="property" attribute="name|widgetType.4">sysinfopvr</condition>
+		<condition tag="property" attribute="name|widgetType.5">sysinfopvr</condition>
+		<condition tag="property" attribute="name|widgetType.6">sysinfopvr</condition>
+		<match>any</match>
+		<controls>
+			<item>
+				<label>19020</label>
+				<label2>$INFO[Pvr.BackendName]</label2>
+				<icon>icons/systeminfo/icons/pvr.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/pvr.jpg</property>
+				<property name="label3">$INFO[Pvr.BackendChannels] $LOCALIZE[19019]</property>
+				<visible>PVR.HasTVChannels</visible>
+				<onclick>ActivateWindow(systeminfo)</onclick>
+			</item>
+		</controls>
+	</other>
+	<other include="SystemVersion">
+		<condition tag="property" attribute="name|widgetType.1">sysinfoversion</condition>
+		<condition tag="property" attribute="name|widgetType.2">sysinfoversion</condition>
+		<condition tag="property" attribute="name|widgetType.3">sysinfoversion</condition>
+		<condition tag="property" attribute="name|widgetType.4">sysinfoversion</condition>
+		<condition tag="property" attribute="name|widgetType.5">sysinfoversion</condition>
+		<condition tag="property" attribute="name|widgetType.6">sysinfoversion</condition>
+		<match>any</match>
+		<controls>
+			<item>
+				<label>19114</label>
+				<label2>$INFO[System.BuildVersion]</label2>
+				<icon>icons/systeminfo/icons/system.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/system.jpg</property>
+				<property name="label3">$INFO[System.BuildDate]</property>
+				<onclick>ActivateWindow(systeminfo)</onclick>
+			</item>
+		</controls>
+	</other>
+	<other include="SystemUptime">
+		<condition tag="property" attribute="name|widgetType.1">sysinfouptime</condition>
+		<condition tag="property" attribute="name|widgetType.2">sysinfouptime</condition>
+		<condition tag="property" attribute="name|widgetType.3">sysinfouptime</condition>
+		<condition tag="property" attribute="name|widgetType.4">sysinfouptime</condition>
+		<condition tag="property" attribute="name|widgetType.5">sysinfouptime</condition>
+		<condition tag="property" attribute="name|widgetType.6">sysinfouptime</condition>
+		<match>any</match>
+		<controls>
+			<item>
+				<label>12390</label>
+				<label2>$INFO[System.TotalUptime]</label2>
+				<icon>icons/systeminfo/icons/uptime.png</icon>
+				<property name="fanart">icons/systeminfo/fanart/uptime.jpg</property>
 				<property name="label3">$INFO[System.Uptime]</property>
 				<onclick>ActivateWindow(systeminfo)</onclick>
 			</item>
 		</controls>
 	</other>
 	<!-- Weather -->
-	<other include="WeatherForecastContent">
-		<condition tag="property" attribute="name|widgetType">weather</condition>
+	<other include="WeatherContentDaily">
+		<condition tag="property" attribute="name|widgetType.1">weatherdaily</condition>
+		<condition tag="property" attribute="name|widgetType.2">weatherdaily</condition>
+		<condition tag="property" attribute="name|widgetType.3">weatherdaily</condition>
+		<condition tag="property" attribute="name|widgetType.4">weatherdaily</condition>
+		<condition tag="property" attribute="name|widgetType.5">weatherdaily</condition>
+		<condition tag="property" attribute="name|widgetType.6">weatherdaily</condition>
+		<match>any</match>
 		<controls>
-			<item>
-				<label>$LOCALIZE[31909]</label>
-				<icon />
-				<visible>!Weather.IsFetched</visible>
-			</item>
 			<item>
 				<label>$INFO[Window(weather).Property(Day0.Title)]</label>
 				<label2>$INFO[Window(weather).Property(Day0.Outlook)]</label2>
 				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Day0.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
 				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(Day0.HighTemp)]$INFO[System.TemperatureUnits,,  ][/COLOR]$INFO[Window(weather).Property(Day0.LowTemp)]$INFO[System.TemperatureUnits]</property>
-				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Day0.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Day0.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
 				<onclick>ActivateWindow(weather)</onclick>
 				<visible>!String.IsEmpty(Window(Weather).Property(Day0.Title))</visible>
 			</item>
@@ -534,7 +1438,7 @@
 				<label2>$INFO[Window(weather).Property(Day1.Outlook)]</label2>
 				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Day1.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
 				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(Day1.HighTemp)]$INFO[System.TemperatureUnits,,  ][/COLOR]$INFO[Window(weather).Property(Day1.LowTemp)]$INFO[System.TemperatureUnits]</property>
-				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Day1.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Day1.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
 				<onclick>ActivateWindow(weather)</onclick>
 				<visible>!String.IsEmpty(Window(Weather).Property(Day1.Title))</visible>
 			</item>
@@ -543,7 +1447,7 @@
 				<label2>$INFO[Window(weather).Property(Day2.Outlook)]</label2>
 				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Day2.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
 				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(Day2.HighTemp)]$INFO[System.TemperatureUnits,,  ][/COLOR]$INFO[Window(weather).Property(Day2.LowTemp)]$INFO[System.TemperatureUnits]</property>
-				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Day2.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Day2.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
 				<onclick>ActivateWindow(weather)</onclick>
 				<visible>!String.IsEmpty(Window(Weather).Property(Day2.Title))</visible>
 			</item>
@@ -552,7 +1456,7 @@
 				<label2>$INFO[Window(weather).Property(Day3.Outlook)]</label2>
 				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Day3.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
 				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(Day3.HighTemp)]$INFO[System.TemperatureUnits,,  ][/COLOR]$INFO[Window(weather).Property(Day3.LowTemp)]$INFO[System.TemperatureUnits]</property>
-				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Day3.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Day3.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
 				<onclick>ActivateWindow(weather)</onclick>
 				<visible>!String.IsEmpty(Window(Weather).Property(Day3.Title))</visible>
 			</item>
@@ -561,7 +1465,7 @@
 				<label2>$INFO[Window(weather).Property(Day4.Outlook)]</label2>
 				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Day4.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
 				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(Day4.HighTemp)]$INFO[System.TemperatureUnits,,  ][/COLOR]$INFO[Window(weather).Property(Day4.LowTemp)]$INFO[System.TemperatureUnits]</property>
-				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Day4.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Day4.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
 				<onclick>ActivateWindow(weather)</onclick>
 				<visible>!String.IsEmpty(Window(Weather).Property(Day4.Title))</visible>
 			</item>
@@ -570,7 +1474,7 @@
 				<label2>$INFO[Window(weather).Property(Day5.Outlook)]</label2>
 				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Day5.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
 				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(Day5.HighTemp)]$INFO[System.TemperatureUnits,,  ][/COLOR]$INFO[Window(weather).Property(Day5.LowTemp)]$INFO[System.TemperatureUnits]</property>
-				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Day5.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Day5.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
 				<onclick>ActivateWindow(weather)</onclick>
 				<visible>!String.IsEmpty(Window(Weather).Property(Day5.Title))</visible>
 			</item>
@@ -579,18 +1483,182 @@
 				<label2>$INFO[Window(weather).Property(Day6.Outlook)]</label2>
 				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Day6.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
 				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(Day6.HighTemp)]$INFO[System.TemperatureUnits,,  ][/COLOR]$INFO[Window(weather).Property(Day6.LowTemp)]$INFO[System.TemperatureUnits]</property>
-				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Day6.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Day6.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
 				<onclick>ActivateWindow(weather)</onclick>
 				<visible>!String.IsEmpty(Window(Weather).Property(Day6.Title))</visible>
 			</item>
 		</controls>
 	</other>
+	<other include="WeatherContentHourly">
+		<condition tag="property" attribute="name|widgetType.1">weatherhourly</condition>
+		<condition tag="property" attribute="name|widgetType.2">weatherhourly</condition>
+		<condition tag="property" attribute="name|widgetType.3">weatherhourly</condition>
+		<condition tag="property" attribute="name|widgetType.4">weatherhourly</condition>
+		<condition tag="property" attribute="name|widgetType.5">weatherhourly</condition>
+		<condition tag="property" attribute="name|widgetType.6">weatherhourly</condition>
+		<match>any</match>
+		<controls>
+			<item>
+				<label>$INFO[Window(weather).Property(Hourly.1.Time)]</label>
+				<label2>$INFO[Window(weather).Property(Hourly.1.Outlook)]</label2>
+				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Hourly.1.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
+				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(Hourly.1.Temperature)][/COLOR]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Hourly.1.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
+				<onclick>ActivateWindow(weather)</onclick>
+				<visible>!String.IsEmpty(Window(Weather).Property(Hourly.1.Time))</visible>
+			</item>
+			<item>
+				<label>$INFO[Window(weather).Property(Hourly.2.Time)]</label>
+				<label2>$INFO[Window(weather).Property(Hourly.2.Outlook)]</label2>
+				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Hourly.2.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
+				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(Hourly.2.Temperature)][/COLOR]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Hourly.2.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
+				<onclick>ActivateWindow(weather)</onclick>
+				<visible>!String.IsEmpty(Window(Weather).Property(Hourly.2.Time))</visible>
+			</item>
+			<item>
+				<label>$INFO[Window(weather).Property(Hourly.3.Time)]</label>
+				<label2>$INFO[Window(weather).Property(Hourly.3.Outlook)]</label2>
+				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Hourly.3.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
+				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(Hourly.3.Temperature)][/COLOR]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Hourly.3.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
+				<onclick>ActivateWindow(weather)</onclick>
+				<visible>!String.IsEmpty(Window(Weather).Property(Hourly.3.Time))</visible>
+			</item>
+			<item>
+				<label>$INFO[Window(weather).Property(Hourly.4.Time)]</label>
+				<label2>$INFO[Window(weather).Property(Hourly.4.Outlook)]</label2>
+				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Hourly.4.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
+				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(Hourly.4.Temperature)][/COLOR]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Hourly.4.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
+				<onclick>ActivateWindow(weather)</onclick>
+				<visible>!String.IsEmpty(Window(Weather).Property(Hourly.4.Time))</visible>
+			</item>
+			<item>
+				<label>$INFO[Window(weather).Property(Hourly.5.Time)]</label>
+				<label2>$INFO[Window(weather).Property(Hourly.5.Outlook)]</label2>
+				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Hourly.5.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
+				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(Hourly.5.Temperature)][/COLOR]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Hourly.5.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
+				<onclick>ActivateWindow(weather)</onclick>
+				<visible>!String.IsEmpty(Window(Weather).Property(Hourly.5.Time))</visible>
+			</item>
+			<item>
+				<label>$INFO[Window(weather).Property(Hourly.6.Time)]</label>
+				<label2>$INFO[Window(weather).Property(Hourly.6.Outlook)]</label2>
+				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Hourly.6.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
+				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(Hourly.6.Temperature)][/COLOR]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Hourly.6.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
+				<onclick>ActivateWindow(weather)</onclick>
+				<visible>!String.IsEmpty(Window(Weather).Property(Hourly.6.Time))</visible>
+			</item>
+			<item>
+				<label>$INFO[Window(weather).Property(Hourly.7.Time)]</label>
+				<label2>$INFO[Window(weather).Property(Hourly.7.Outlook)]</label2>
+				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Hourly.7.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
+				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(Hourly.7.Temperature)][/COLOR]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Hourly.7.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
+				<onclick>ActivateWindow(weather)</onclick>
+				<visible>!String.IsEmpty(Window(Weather).Property(Hourly.7.Time))</visible>
+			</item>
+			<item>
+				<label>$INFO[Window(weather).Property(Hourly.8.Time)]</label>
+				<label2>$INFO[Window(weather).Property(Hourly.8.Outlook)]</label2>
+				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Hourly.8.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
+				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(Hourly.8.Temperature)][/COLOR]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Hourly.8.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
+				<onclick>ActivateWindow(weather)</onclick>
+				<visible>!String.IsEmpty(Window(Weather).Property(Hourly.8.Time))</visible>
+			</item>
+			<item>
+				<label>$INFO[Window(weather).Property(Hourly.9.Time)]</label>
+				<label2>$INFO[Window(weather).Property(Hourly.9.Outlook)]</label2>
+				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Hourly.9.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
+				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(Hourly.9.Temperature)][/COLOR]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Hourly.9.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
+				<onclick>ActivateWindow(weather)</onclick>
+				<visible>!String.IsEmpty(Window(Weather).Property(Hourly.9.Time))</visible>
+			</item>
+			<item>
+				<label>$INFO[Window(weather).Property(Hourly.10.Time)]</label>
+				<label2>$INFO[Window(weather).Property(Hourly.10.Outlook)]</label2>
+				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Hourly.10.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
+				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(Hourly.10.Temperature)][/COLOR]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Hourly.10.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
+				<onclick>ActivateWindow(weather)</onclick>
+				<visible>!String.IsEmpty(Window(Weather).Property(Hourly.10.Time))</visible>
+			</item>
+			<item>
+				<label>$INFO[Window(weather).Property(Hourly.11.Time)]</label>
+				<label2>$INFO[Window(weather).Property(Hourly.11.Outlook)]</label2>
+				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Hourly.11.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
+				<property name="label13">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(Hourly.11.Temperature)][/COLOR]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Hourly.11.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
+				<onclick>ActivateWindow(weather)</onclick>
+				<visible>!String.IsEmpty(Window(Weather).Property(Hourly.11.Time))</visible>
+			</item>
+			<item>
+				<label>$INFO[Window(weather).Property(Hourly.12.Time)]</label>
+				<label2>$INFO[Window(weather).Property(Hourly.12.Outlook)]</label2>
+				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Hourly.12.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
+				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(Hourly.12.Temperature)][/COLOR]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(Hourly.12.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
+				<onclick>ActivateWindow(weather)</onclick>
+				<visible>!String.IsEmpty(Window(Weather).Property(Hourly.12.Time))</visible>
+			</item>
+		</controls>
+	</other>
+	<other include="WeatherContent36Hour">
+		<condition tag="property" attribute="name|widgetType.1">weather36hour</condition>
+		<condition tag="property" attribute="name|widgetType.2">weather36hour</condition>
+		<condition tag="property" attribute="name|widgetType.3">weather36hour</condition>
+		<condition tag="property" attribute="name|widgetType.4">weather36hour</condition>
+		<condition tag="property" attribute="name|widgetType.5">weather36hour</condition>
+		<condition tag="property" attribute="name|widgetType.6">weather36hour</condition>
+		<match>any</match>
+		<controls>
+			<item>
+				<label>$INFO[Window(weather).Property(36Hour.1.Heading)]</label>
+				<label2>$INFO[Window(weather).Property(36hour.1.Outlook)]</label2>
+				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(36Hour.1.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
+				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(36Hour.1.Temperature)][/COLOR]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(36Hour.1.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
+				<onclick>ActivateWindow(weather)</onclick>
+				<visible>!String.IsEmpty(Window(Weather).Property(36Hour.1.Heading))</visible>
+			</item>
+			<item>
+				<label>$INFO[Window(weather).Property(36Hour.2.Heading)]</label>
+				<label2>$INFO[Window(weather).Property(36Hour.2.Outlook)]</label2>
+				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(36Hour.2.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
+				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(36Hour.2.Temperature)][/COLOR]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(36Hour.2.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
+				<onclick>ActivateWindow(weather)</onclick>
+				<visible>!String.IsEmpty(Window(Weather).Property(36Hour.2.Heading))</visible>
+			</item>
+			<item>
+				<label>$INFO[Window(weather).Property(36Hour.3.Heading)]</label>
+				<label2>$INFO[Window(weather).Property(36Hour.3.Outlook)]</label2>
+				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(36Hour.3.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
+				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(36Hour.3.Temperature)][/COLOR]</property>
+				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(36Hour.3.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
+				<onclick>ActivateWindow(weather)</onclick>
+				<visible>!String.IsEmpty(Window(Weather).Property(36Hour.3.Heading))</visible>
+			</item>
+		</controls>
+	</other>
 	<other include="NextAiredContent">
-		<condition tag="property" attribute="name|widgetPath">$INCLUDE[skinshortcuts-template-NextAiredContent]</condition>
+		<condition tag="property" attribute="name|widgetPath.1">$INCLUDE[skinshortcuts-template-NextAiredContent]</condition>
+		<condition tag="property" attribute="name|widgetPath.2">$INCLUDE[skinshortcuts-template-NextAiredContent]</condition>
+		<condition tag="property" attribute="name|widgetPath.3">$INCLUDE[skinshortcuts-template-NextAiredContent]</condition>
+		<condition tag="property" attribute="name|widgetPath.4">$INCLUDE[skinshortcuts-template-NextAiredContent]</condition>
+		<condition tag="property" attribute="name|widgetPath.5">$INCLUDE[skinshortcuts-template-NextAiredContent]</condition>
+		<condition tag="property" attribute="name|widgetPath.6">$INCLUDE[skinshortcuts-template-NextAiredContent]</condition>
+		<match>any</match>
 		<controls>
 			<item>
 				<visible>!String.IsEmpty(Window(Home).Property(NextAired.1.label))</visible>
-				<label>$INFO[Window(Home).Property(NextAired.1.NextDay),,  ]$INFO[Window(Home).Property(NextAired.1.ShortTime)]</label>
+				<!-- <label>$INFO[Window(Home).Property(NextAired.1.NextDay),,  ]$INFO[Window(Home).Property(NextAired.1.ShortTime)]</label> -->
+				<label>$INFO[Window(Home).Property(NextAired.1.NextNumber),, ] $INFO[Window(Home).Property(NextAired.1.NextTitle)]</label>
 				<icon>$INFO[Window(Home).Property(NextAired.1.Art(poster))]</icon>
 				<property name="fanart">$INFO[Window(Home).Property(NextAired.1.Art(fanart))]</property>
 				<property name="landscape">$INFO[Window(Home).Property(NextAired.1.Art(landscape))]</property>
@@ -601,6 +1669,7 @@
 				<property name="subtitle">$INFO[Window(Home).Property(NextAired.1.label)]</property>
 				<property name="calender">$INFO[Window(Home).Property(NextAired.1.NextDay),,  ]$INFO[Window(Home).Property(NextAired.1.ShortTime)]</property>
 				<property name="duration">$INFO[Window(Home).Property(NextAired.1.Runtime),,m00s]</property>
+				<property name="studio">$INFO[Window(Home).Property(NextAired.1.Network)]</property>
 				<onclick>RunAddOn(script.tv.show.next.aired)</onclick>
 			</item>
 			<item>
@@ -614,8 +1683,9 @@
 				<property name="characterart">$INFO[Window(Home).Property(NextAired.2.Art(characterart))]</property>
 				<property name="title">$INFO[Window(Home).Property(NextAired.2.NextNumber),, ] $INFO[Window(Home).Property(NextAired.2.NextTitle)]</property>
 				<property name="subtitle">$INFO[Window(Home).Property(NextAired.2.label)]</property>
-				<property name="calender">$INFO[Window(Home).Property(NextAired.2.NextDay),,  ]$INFO[Window(Home).Property(NextAired.2.ShortTime)]</property>
+				<property name="calender">$INFO[Window(Home).Property(NextAired.2.NextDay),,  ]$INFO[Window(Home).Property(N1extAired.2.ShortTime)]</property>
 				<property name="duration">$INFO[Window(Home).Property(NextAired.2.Runtime),,m00s]</property>
+				<property name="studio">$INFO[Window(Home).Property(NextAired.2.Network)]</property>
 				<onclick>RunAddOn(script.tv.show.next.aired)</onclick>
 			</item>
 			<item>
@@ -629,8 +1699,9 @@
 				<property name="characterart">$INFO[Window(Home).Property(NextAired.3.Art(characterart))]</property>
 				<property name="title">$INFO[Window(Home).Property(NextAired.3.NextNumber),, ] $INFO[Window(Home).Property(NextAired.3.NextTitle)]</property>
 				<property name="subtitle">$INFO[Window(Home).Property(NextAired.3.label)]</property>
-				<property name="calender">$INFO[Window(Home).Property(NextAired.3.NextDay),,  ]$INFO[Window(Home).Property(NextAired.3.ShortTime)]</property>
+				<property name="calender">$INFO[Window(Home).Property(NextAired.3.NextDay),,  ]$INFO[Window(Home).Property(N2extAired.3.ShortTime)]</property>
 				<property name="duration">$INFO[Window(Home).Property(NextAired.3.Runtime),,m00s]</property>
+				<property name="studio">$INFO[Window(Home).Property(NextAired.3.Network)]</property>
 				<onclick>RunAddOn(script.tv.show.next.aired)</onclick>
 			</item>
 			<item>
@@ -644,8 +1715,9 @@
 				<property name="characterart">$INFO[Window(Home).Property(NextAired.4.Art(characterart))]</property>
 				<property name="title">$INFO[Window(Home).Property(NextAired.4.NextNumber),, ] $INFO[Window(Home).Property(NextAired.4.NextTitle)]</property>
 				<property name="subtitle">$INFO[Window(Home).Property(NextAired.4.label)]</property>
-				<property name="calender">$INFO[Window(Home).Property(NextAired.4.NextDay),,  ]$INFO[Window(Home).Property(NextAired.4.ShortTime)]</property>
+				<property name="calender">$INFO[Window(Home).Property(NextAired.4.NextDay),,  ]$INFO[Window(Home).Property(N3extAired.4.ShortTime)]</property>
 				<property name="duration">$INFO[Window(Home).Property(NextAired.4.Runtime),,m00s]</property>
+				<property name="studio">$INFO[Window(Home).Property(NextAired.4.Network)]</property>
 				<onclick>RunAddOn(script.tv.show.next.aired)</onclick>
 			</item>
 			<item>
@@ -659,8 +1731,9 @@
 				<property name="characterart">$INFO[Window(Home).Property(NextAired.5.Art(characterart))]</property>
 				<property name="title">$INFO[Window(Home).Property(NextAired.5.NextNumber),, ] $INFO[Window(Home).Property(NextAired.5.NextTitle)]</property>
 				<property name="subtitle">$INFO[Window(Home).Property(NextAired.5.label)]</property>
-				<property name="calender">$INFO[Window(Home).Property(NextAired.5.NextDay),,  ]$INFO[Window(Home).Property(NextAired.5.ShortTime)]</property>
+				<property name="calender">$INFO[Window(Home).Property(NextAired.5.NextDay),,  ]$INFO[Window(Home).Property(N4extAired.5.ShortTime)]</property>
 				<property name="duration">$INFO[Window(Home).Property(NextAired.5.Runtime),,m00s]</property>
+				<property name="studio">$INFO[Window(Home).Property(NextAired.5.Network)]</property>
 				<onclick>RunAddOn(script.tv.show.next.aired)</onclick>
 			</item>
 			<item>
@@ -674,8 +1747,9 @@
 				<property name="characterart">$INFO[Window(Home).Property(NextAired.6.Art(characterart))]</property>
 				<property name="title">$INFO[Window(Home).Property(NextAired.6.NextNumber),, ] $INFO[Window(Home).Property(NextAired.6.NextTitle)]</property>
 				<property name="subtitle">$INFO[Window(Home).Property(NextAired.6.label)]</property>
-				<property name="calender">$INFO[Window(Home).Property(NextAired.6.NextDay),,  ]$INFO[Window(Home).Property(NextAired.6.ShortTime)]</property>
+				<property name="calender">$INFO[Window(Home).Property(NextAired.6.NextDay),,  ]$INFO[Window(Home).Property(N5extAired.6.ShortTime)]</property>
 				<property name="duration">$INFO[Window(Home).Property(NextAired.6.Runtime),,m00s]</property>
+				<property name="studio">$INFO[Window(Home).Property(NextAired.6.Network)]</property>
 				<onclick>RunAddOn(script.tv.show.next.aired)</onclick>
 			</item>
 			<item>
@@ -689,8 +1763,9 @@
 				<property name="characterart">$INFO[Window(Home).Property(NextAired.7.Art(characterart))]</property>
 				<property name="title">$INFO[Window(Home).Property(NextAired.7.NextNumber),, ] $INFO[Window(Home).Property(NextAired.7.NextTitle)]</property>
 				<property name="subtitle">$INFO[Window(Home).Property(NextAired.7.label)]</property>
-				<property name="calender">$INFO[Window(Home).Property(NextAired.7.NextDay),,  ]$INFO[Window(Home).Property(NextAired.7.ShortTime)]</property>
+				<property name="calender">$INFO[Window(Home).Property(NextAired.7.NextDay),,  ]$INFO[Window(Home).Property(N6extAired.7.ShortTime)]</property>
 				<property name="duration">$INFO[Window(Home).Property(NextAired.7.Runtime),,m00s]</property>
+				<property name="studio">$INFO[Window(Home).Property(NextAired.7.Network)]</property>
 				<onclick>RunAddOn(script.tv.show.next.aired)</onclick>
 			</item>
 			<item>
@@ -704,8 +1779,9 @@
 				<property name="characterart">$INFO[Window(Home).Property(NextAired.8.Art(characterart))]</property>
 				<property name="title">$INFO[Window(Home).Property(NextAired.8.NextNumber),, ] $INFO[Window(Home).Property(NextAired.8.NextTitle)]</property>
 				<property name="subtitle">$INFO[Window(Home).Property(NextAired.8.label)]</property>
-				<property name="calender">$INFO[Window(Home).Property(NextAired.8.NextDay),,  ]$INFO[Window(Home).Property(NextAired.8.ShortTime)]</property>
+				<property name="calender">$INFO[Window(Home).Property(NextAired.8.NextDay),,  ]$INFO[Window(Home).Property(N7extAired.8.ShortTime)]</property>
 				<property name="duration">$INFO[Window(Home).Property(NextAired.8.Runtime),,m00s]</property>
+				<property name="studio">$INFO[Window(Home).Property(NextAired.8.Network)]</property>
 				<onclick>RunAddOn(script.tv.show.next.aired)</onclick>
 			</item>
 			<item>
@@ -719,8 +1795,9 @@
 				<property name="characterart">$INFO[Window(Home).Property(NextAired.9.Art(characterart))]</property>
 				<property name="title">$INFO[Window(Home).Property(NextAired.9.NextNumber),, ] $INFO[Window(Home).Property(NextAired.9.NextTitle)]</property>
 				<property name="subtitle">$INFO[Window(Home).Property(NextAired.9.label)]</property>
-				<property name="calender">$INFO[Window(Home).Property(NextAired.9.NextDay),,  ]$INFO[Window(Home).Property(NextAired.9.ShortTime)]</property>
+				<property name="calender">$INFO[Window(Home).Property(NextAired.9.NextDay),,  ]$INFO[Window(Home).Property(N8extAired.9.ShortTime)]</property>
 				<property name="duration">$INFO[Window(Home).Property(NextAired.9.Runtime),,m00s]</property>
+				<property name="studio">$INFO[Window(Home).Property(NextAired.9.Network)]</property>
 				<onclick>RunAddOn(script.tv.show.next.aired)</onclick>
 			</item>
 			<item>
@@ -734,8 +1811,9 @@
 				<property name="characterart">$INFO[Window(Home).Property(NextAired.10.Art(characterart))]</property>
 				<property name="title">$INFO[Window(Home).Property(NextAired.10.NextNumber),, ] $INFO[Window(Home).Property(NextAired.10.NextTitle)]</property>
 				<property name="subtitle">$INFO[Window(Home).Property(NextAired.10.label)]</property>
-				<property name="calender">$INFO[Window(Home).Property(NextAired.10.NextDay),,  ]$INFO[Window(Home).Property(NextAired.10.ShortTime)]</property>
+				<property name="calender">$INFO[Window(Home).Property(NextAired.10.NextDay),,  ]$INFO[Window(Home).Property(N9extAired.10.ShortTime)]</property>
 				<property name="duration">$INFO[Window(Home).Property(NextAired.10.Runtime),,m00s]</property>
+				<property name="studio">$INFO[Window(Home).Property(NextAired.10.Network)]</property>
 				<onclick>RunAddOn(script.tv.show.next.aired)</onclick>
 			</item>
 			<item>
@@ -749,8 +1827,9 @@
 				<property name="characterart">$INFO[Window(Home).Property(NextAired.11.Art(characterart))]</property>
 				<property name="title">$INFO[Window(Home).Property(NextAired.11.NextNumber),, ] $INFO[Window(Home).Property(NextAired.11.NextTitle)]</property>
 				<property name="subtitle">$INFO[Window(Home).Property(NextAired.11.label)]</property>
-				<property name="calender">$INFO[Window(Home).Property(NextAired.11.NextDay),,  ]$INFO[Window(Home).Property(NextAired.11.ShortTime)]</property>
+				<property name="calender">$INFO[Window(Home).Property(NextAired.11.NextDay),,  ]$INFO[Window(Home).Property(N10extAired.11.ShortTime)]</property>
 				<property name="duration">$INFO[Window(Home).Property(NextAired.11.Runtime),,m00s]</property>
+				<property name="studio">$INFO[Window(Home).Property(NextAired.11.Network)]</property>
 				<onclick>RunAddOn(script.tv.show.next.aired)</onclick>
 			</item>
 			<item>
@@ -764,8 +1843,9 @@
 				<property name="characterart">$INFO[Window(Home).Property(NextAired.12.Art(characterart))]</property>
 				<property name="title">$INFO[Window(Home).Property(NextAired.12.NextNumber),, ] $INFO[Window(Home).Property(NextAired.12.NextTitle)]</property>
 				<property name="subtitle">$INFO[Window(Home).Property(NextAired.12.label)]</property>
-				<property name="calender">$INFO[Window(Home).Property(NextAired.12.NextDay),,  ]$INFO[Window(Home).Property(NextAired.12.ShortTime)]</property>
+				<property name="calender">$INFO[Window(Home).Property(NextAired.12.NextDay),,  ]$INFO[Window(Home).Property(N11extAired.12.ShortTime)]</property>
 				<property name="duration">$INFO[Window(Home).Property(NextAired.12.Runtime),,m00s]</property>
+				<property name="studio">$INFO[Window(Home).Property(NextAired.12.Network)]</property>
 				<onclick>RunAddOn(script.tv.show.next.aired)</onclick>
 			</item>
 			<item>
@@ -779,8 +1859,9 @@
 				<property name="characterart">$INFO[Window(Home).Property(NextAired.13.Art(characterart))]</property>
 				<property name="title">$INFO[Window(Home).Property(NextAired.13.NextNumber),, ] $INFO[Window(Home).Property(NextAired.13.NextTitle)]</property>
 				<property name="subtitle">$INFO[Window(Home).Property(NextAired.13.label)]</property>
-				<property name="calender">$INFO[Window(Home).Property(NextAired.13.NextDay),,  ]$INFO[Window(Home).Property(NextAired.13.ShortTime)]</property>
+				<property name="calender">$INFO[Window(Home).Property(NextAired.13.NextDay),,  ]$INFO[Window(Home).Property(N12extAired.13.ShortTime)]</property>
 				<property name="duration">$INFO[Window(Home).Property(NextAired.13.Runtime),,m00s]</property>
+				<property name="studio">$INFO[Window(Home).Property(NextAired.13.Network)]</property>
 				<onclick>RunAddOn(script.tv.show.next.aired)</onclick>
 			</item>
 			<item>
@@ -794,8 +1875,9 @@
 				<property name="characterart">$INFO[Window(Home).Property(NextAired.14.Art(characterart))]</property>
 				<property name="title">$INFO[Window(Home).Property(NextAired.14.NextNumber),, ] $INFO[Window(Home).Property(NextAired.14.NextTitle)]</property>
 				<property name="subtitle">$INFO[Window(Home).Property(NextAired.14.label)]</property>
-				<property name="calender">$INFO[Window(Home).Property(NextAired.14.NextDay),,  ]$INFO[Window(Home).Property(NextAired.14.ShortTime)]</property>
+				<property name="calender">$INFO[Window(Home).Property(NextAired.14.NextDay),,  ]$INFO[Window(Home).Property(N13extAired.14.ShortTime)]</property>
 				<property name="duration">$INFO[Window(Home).Property(NextAired.14.Runtime),,m00s]</property>
+				<property name="studio">$INFO[Window(Home).Property(NextAired.14.Network)]</property>
 				<onclick>RunAddOn(script.tv.show.next.aired)</onclick>
 			</item>
 			<item>
@@ -809,8 +1891,9 @@
 				<property name="characterart">$INFO[Window(Home).Property(NextAired.15.Art(characterart))]</property>
 				<property name="title">$INFO[Window(Home).Property(NextAired.15.NextNumber),, ] $INFO[Window(Home).Property(NextAired.15.NextTitle)]</property>
 				<property name="subtitle">$INFO[Window(Home).Property(NextAired.15.label)]</property>
-				<property name="calender">$INFO[Window(Home).Property(NextAired.15.NextDay),,  ]$INFO[Window(Home).Property(NextAired.15.ShortTime)]</property>
+				<property name="calender">$INFO[Window(Home).Property(NextAired.15.NextDay),,  ]$INFO[Window(Home).Property(N14extAired.15.ShortTime)]</property>
 				<property name="duration">$INFO[Window(Home).Property(NextAired.15.Runtime),,m00s]</property>
+				<property name="studio">$INFO[Window(Home).Property(NextAired.15.Network)]</property>
 				<onclick>RunAddOn(script.tv.show.next.aired)</onclick>
 			</item>
 			<item>
@@ -824,8 +1907,9 @@
 				<property name="characterart">$INFO[Window(Home).Property(NextAired.16.Art(characterart))]</property>
 				<property name="title">$INFO[Window(Home).Property(NextAired.16.NextNumber),, ] $INFO[Window(Home).Property(NextAired.16.NextTitle)]</property>
 				<property name="subtitle">$INFO[Window(Home).Property(NextAired.16.label)]</property>
-				<property name="calender">$INFO[Window(Home).Property(NextAired.16.NextDay),,  ]$INFO[Window(Home).Property(NextAired.16.ShortTime)]</property>
+				<property name="calender">$INFO[Window(Home).Property(NextAired.16.NextDay),,  ]$INFO[Window(Home).Property(N15extAired.16.ShortTime)]</property>
 				<property name="duration">$INFO[Window(Home).Property(NextAired.16.Runtime),,m00s]</property>
+				<property name="studio">$INFO[Window(Home).Property(NextAired.16.Network)]</property>
 				<onclick>RunAddOn(script.tv.show.next.aired)</onclick>
 			</item>
 			<item>
@@ -839,8 +1923,9 @@
 				<property name="characterart">$INFO[Window(Home).Property(NextAired.17.Art(characterart))]</property>
 				<property name="title">$INFO[Window(Home).Property(NextAired.17.NextNumber),, ] $INFO[Window(Home).Property(NextAired.17.NextTitle)]</property>
 				<property name="subtitle">$INFO[Window(Home).Property(NextAired.17.label)]</property>
-				<property name="calender">$INFO[Window(Home).Property(NextAired.17.NextDay),,  ]$INFO[Window(Home).Property(NextAired.17.ShortTime)]</property>
+				<property name="calender">$INFO[Window(Home).Property(NextAired.17.NextDay),,  ]$INFO[Window(Home).Property(N16extAired.17.ShortTime)]</property>
 				<property name="duration">$INFO[Window(Home).Property(NextAired.17.Runtime),,m00s]</property>
+				<property name="studio">$INFO[Window(Home).Property(NextAired.17.Network)]</property>
 				<onclick>RunAddOn(script.tv.show.next.aired)</onclick>
 			</item>
 			<item>
@@ -854,8 +1939,9 @@
 				<property name="characterart">$INFO[Window(Home).Property(NextAired.18.Art(characterart))]</property>
 				<property name="title">$INFO[Window(Home).Property(NextAired.18.NextNumber),, ] $INFO[Window(Home).Property(NextAired.18.NextTitle)]</property>
 				<property name="subtitle">$INFO[Window(Home).Property(NextAired.18.label)]</property>
-				<property name="calender">$INFO[Window(Home).Property(NextAired.18.NextDay),,  ]$INFO[Window(Home).Property(NextAired.18.ShortTime)]</property>
+				<property name="calender">$INFO[Window(Home).Property(NextAired.18.NextDay),,  ]$INFO[Window(Home).Property(N17extAired.18.ShortTime)]</property>
 				<property name="duration">$INFO[Window(Home).Property(NextAired.18.Runtime),,m00s]</property>
+				<property name="studio">$INFO[Window(Home).Property(NextAired.18.Network)]</property>
 				<onclick>RunAddOn(script.tv.show.next.aired)</onclick>
 			</item>
 			<item>
@@ -869,8 +1955,9 @@
 				<property name="characterart">$INFO[Window(Home).Property(NextAired.19.Art(characterart))]</property>
 				<property name="title">$INFO[Window(Home).Property(NextAired.19.NextNumber),, ] $INFO[Window(Home).Property(NextAired.19.NextTitle)]</property>
 				<property name="subtitle">$INFO[Window(Home).Property(NextAired.19.label)]</property>
-				<property name="calender">$INFO[Window(Home).Property(NextAired.19.NextDay),,  ]$INFO[Window(Home).Property(NextAired.19.ShortTime)]</property>
+				<property name="calender">$INFO[Window(Home).Property(NextAired.19.NextDay),,  ]$INFO[Window(Home).Property(N18extAired.19.ShortTime)]</property>
 				<property name="duration">$INFO[Window(Home).Property(NextAired.19.Runtime),,m00s]</property>
+				<property name="studio">$INFO[Window(Home).Property(NextAired.19.Network)]</property>
 				<onclick>RunAddOn(script.tv.show.next.aired)</onclick>
 			</item>
 			<item>
@@ -884,44 +1971,379 @@
 				<property name="characterart">$INFO[Window(Home).Property(NextAired.20.Art(characterart))]</property>
 				<property name="title">$INFO[Window(Home).Property(NextAired.20.NextNumber),, ] $INFO[Window(Home).Property(NextAired.20.NextTitle)]</property>
 				<property name="subtitle">$INFO[Window(Home).Property(NextAired.20.label)]</property>
-				<property name="calender">$INFO[Window(Home).Property(NextAired.20.NextDay),,  ]$INFO[Window(Home).Property(NextAired.20.ShortTime)]</property>
+				<property name="calender">$INFO[Window(Home).Property(NextAired.20.NextDay),,  ]$INFO[Window(Home).Property(N19extAired.20.ShortTime)]</property>
 				<property name="duration">$INFO[Window(Home).Property(NextAired.20.Runtime),,m00s]</property>
+				<property name="studio">$INFO[Window(Home).Property(NextAired.20.Network)]</property>
 				<onclick>RunAddOn(script.tv.show.next.aired)</onclick>
 			</item>
 		</controls>
 	</other>
-	<!-- Property groups -->
-	<propertyGroup name="widgetCommon">
+	<!-- Favourites, up to 10 -->
+	<!-- <other include="FavouriteContent">
+        <condition tag="property" attribute="name|widgetPath.1">$INCLUDE[skinshortcuts-template-FavouriteContent]</condition>
+		<condition tag="property" attribute="name|widgetPath.2">$INCLUDE[skinshortcuts-template-FavouriteContent]</condition>
+		<condition tag="property" attribute="name|widgetPath.3">$INCLUDE[skinshortcuts-template-FavouriteContent]</condition>
+		<condition tag="property" attribute="name|widgetPath.4">$INCLUDE[skinshortcuts-template-FavouriteContent]</condition>
+		<condition tag="property" attribute="name|widgetPath.5">$INCLUDE[skinshortcuts-template-FavouriteContent]</condition>
+		<condition tag="property" attribute="name|widgetPath.6">$INCLUDE[skinshortcuts-template-FavouriteContent]</condition>
+        <match>any</match>
+        <controls>
+		    <item>
+			    <visible>!String.IsEmpty(Window(Home).Property(favourite.1.path))</visible>
+			    <label>$INFO[Window(Home).Property(favourite.1.name)]</label>
+			    <thumb>$INFO[Window(Home).Property(favourite.1.thumb)]</thumb>
+			    <onclick>$INFO[Window(Home).Property(favourite.1.path)]</onclick>
+		    </item>
+		    <item>
+			    <visible>!String.IsEmpty(Window(Home).Property(favourite.2.path))</visible>
+			    <label>$INFO[Window(Home).Property(favourite.2.name)]</label>
+			    <thumb>$INFO[Window(Home).Property(favourite.2.thumb)]</thumb>
+			    <onclick>$INFO[Window(Home).Property(favourite.2.path)]</onclick>
+		    </item>
+		    <item>
+			    <visible>!String.IsEmpty(Window(Home).Property(favourite.3.path))</visible>
+			    <label>$INFO[Window(Home).Property(favourite.3.name)]</label>
+			    <thumb>$INFO[Window(Home).Property(favourite.3.thumb)]</thumb>
+			    <onclick>$INFO[Window(Home).Property(favourite.3.path)]</onclick>
+		    </item>
+		    <item>
+			    <visible>!String.IsEmpty(Window(Home).Property(favourite.4.path))</visible>
+			    <label>$INFO[Window(Home).Property(favourite.4.name)]</label>
+			    <thumb>$INFO[Window(Home).Property(favourite.4.thumb)]</thumb>
+			    <onclick>$INFO[Window(Home).Property(favourite.4.path)]</onclick>
+		    </item>
+		    <item>
+			    <visible>!String.IsEmpty(Window(Home).Property(favourite.5.path))</visible>
+			    <label>$INFO[Window(Home).Property(favourite.5.name)]</label>
+			    <thumb>$INFO[Window(Home).Property(favourite.5.thumb)]</thumb>
+			    <onclick>$INFO[Window(Home).Property(favourite.5.path)]</onclick>
+		    </item>
+		    <item>
+			    <visible>!String.IsEmpty(Window(Home).Property(favourite.6.path))</visible>
+			    <label>$INFO[Window(Home).Property(favourite.6.name)]</label>
+			    <thumb>$INFO[Window(Home).Property(favourite.6.thumb)]</thumb>
+			    <onclick>$INFO[Window(Home).Property(favourite.6.path)]</onclick>
+		    </item>
+		    <item>
+			    <visible>!String.IsEmpty(Window(Home).Property(favourite.7.path))</visible>
+			    <label>$INFO[Window(Home).Property(favourite.7.name)]</label>
+			    <thumb>$INFO[Window(Home).Property(favourite.7.thumb)]</thumb>
+			    <onclick>$INFO[Window(Home).Property(favourite.7.path)]</onclick>
+		    </item>
+		    <item>
+			    <visible>!String.IsEmpty(Window(Home).Property(favourite.8.path))</visible>
+			    <label>$INFO[Window(Home).Property(favourite.8.name)]</label>
+			    <thumb>$INFO[Window(Home).Property(favourite.8.thumb)]</thumb>
+			    <onclick>$INFO[Window(Home).Property(favourite.8.path)]</onclick>
+		    </item>
+		    <item>
+			    <visible>!String.IsEmpty(Window(Home).Property(favourite.9.path))</visible>
+			    <label>$INFO[Window(Home).Property(favourite.9.name)]</label>
+			    <thumb>$INFO[Window(Home).Property(favourite.9.thumb)]</thumb>
+			    <onclick>$INFO[Window(Home).Property(favourite.9.path)]</onclick>
+		    </item>
+		    <item>
+			    <visible>!String.IsEmpty(Window(Home).Property(favourite.10.path))</visible>
+			    <label>$INFO[Window(Home).Property(favourite.10.name)]</label>
+			    <thumb>$INFO[Window(Home).Property(favourite.10.thumb)]</thumb>
+			    <onclick>$INFO[Window(Home).Property(favourite.10.path)]</onclick>
+		    </item>
+        </controls>
+	</other> -->
+    <!-- Property groups -->
+	<propertyGroup name="widgetSmall">
+		<!-- Case -->
+		<property name="musiccase">'true' if (type in 'albums' or type in 'songs' or type in 'musicvideos') and art in 'poster' and aspect in 'square' and casemusic in 'true' else 'false'</property>
+		<property name="videocase">'true' if (type in 'movies' or type in 'episodes' or type in 'tvshows') and art in 'poster' and aspect in 'portrait' and casevideo in 'true' else 'false'</property>
+		<!-- Container size -->
+		<property name="containerheight">'248' if (type in 'albums' or type in 'songs' or type in 'musicvideos') and art in 'poster' and aspect in 'square' and casemusic in 'true' else '265' if aspect in 'square' else '218' if aspect in 'landscape' else '300'</property>
+		<property name="containerwidth">'265.71' if aspect in 'square' else '372' if aspect in 'landscape' else '206.66'</property>
+		<!-- Diffuse texture -->
+		<property name="diffuse">'' if (type in 'albums' or type in 'songs' or type in 'musicvideos') and art in 'poster' and aspect in 'square' and casemusic in 'true' else '' if (type in 'movies' or type in 'episodes' or type in 'tvshows') and art in 'poster' and aspect in 'portrait' and casevideo in 'true' else 'diffuse/rounded5-290x290.png' if aspect in 'square' else 'diffuse/rounded5-445x250.png' if aspect in 'landscape' else 'diffuse/rounded5-212x319.png'</property>
+		<!-- Artwork border -->
+		<property name="border">'32,14,14,14' if (type in 'albums' or type in 'songs' or type in 'musicvideos') and art in 'poster' and aspect in 'square' and casemusic in 'true' else '15,31,15,17' if (type in 'movies' or type in 'episodes' or type in 'tvshows') and art in 'poster' and aspect in 'portrait' and casevideo in 'true' else '10'</property>
+		<!-- Container type -->
+		<property name="container">'WidgetPosterInfoContainer' if type in 'sysinfo' and art in 'poster' else 'WidgetFanartInfoContainer' if type in 'sysinfo' and art in 'fanart' else 'WidgetContainer'</property>
+		<!-- Font -->
+		<property name="font1">Font30_Bold</property>
+		<property name="font2">Font29_Cond</property>
+		<property name="font3">Font30_Reg</property>
+		<!-- Label position -->
+		<property name="label1position">83</property>
+		<property name="label2position">46</property>
+		<property name="label3position">12</property>
+		<!-- Icon size -->
+		<property name="icontop">62</property>
+		<property name="iconbottom">97</property>
+		<!-- Studio icon size -->
+		<property name="iconstudioheight">21</property>
+	</propertyGroup>
+	<propertyGroup name="widgetMedium">
+		<!-- Case -->
+		<property name="musiccase">'true' if (type in 'albums' or type in 'songs' or type in 'musicvideos') and art in 'poster' and aspect in 'square' and casemusic in 'true' else 'false'</property>
+		<property name="videocase">'true' if (type in 'movies' or type in 'episodes' or type in 'tvshows') and art in 'poster' and aspect in 'portrait' and casevideo in 'true' else 'false'</property>
+		<!-- Container size -->
+		<property name="containerheight">'290' if (type in 'albums' or type in 'songs' or type in 'musicvideos') and art in 'poster' and aspect in 'square' and casemusic in 'true' else '310' if aspect in 'square' else '270' if aspect in 'landscape' else '339'</property>
+		<property name="containerwidth">'310' if aspect in 'square' else '465' if aspect in 'landscape' else '232.5'</property>
+		<!-- Diffuse texture -->
+		<property name="diffuse">'' if (type in 'albums' or type in 'songs' or type in 'musicvideos') and art in 'poster' and aspect in 'square' and casemusic in 'true' else '' if (type in 'movies' or type in 'episodes' or type in 'tvshows') and art in 'poster' and aspect in 'portrait' and casevideo in 'true' else 'diffuse/rounded5-290x290.png' if aspect in 'square' else 'diffuse/rounded5-445x250.png' if aspect in 'landscape' else 'diffuse/rounded5-212x319.png'</property>
+		<!-- Artwork border -->
+		<property name="border">'35,14,14,14' if (type in 'albums' or type in 'songs' or type in 'musicvideos') and art in 'poster' and aspect in 'square' and casemusic in 'true' else '16,33,16,17' if (type in 'movies' or type in 'episodes' or type in 'tvshows') and art in 'poster' and aspect in 'portrait' and casevideo in 'true' else '10'</property>
+		<!-- Container type -->
+		<property name="container">'WidgetPosterInfoContainer' if (type in 'sysinfo' or 'weather') and art in 'icon' else 'WidgetFanartInfoContainer' if (type in 'sysinfo' or 'weather') and art in 'fanart' else 'WidgetContainer'</property>
+		<!-- Font -->
+		<property name="font1">Font30_Bold</property>
+		<property name="font2">Font29_Cond</property>
+		<property name="font3">Font30_Reg</property>
+		<!-- Label position -->
+		<property name="label1position">83</property>
+		<property name="label2position">46</property>
+		<property name="label3position">12</property>
+		<!-- Icon size -->
+		<property name="icontop">62</property>
+		<property name="iconbottom">97</property>
+		<!-- Studio icon size -->
+		<property name="iconstudioheight">24</property>
+	</propertyGroup>
+	<propertyGroup name="widgetBig">
+		<!-- Case -->
+		<property name="musiccase">'true' if (type in 'albums' or type in 'songs' or type in 'musicvideos') and art in 'poster' and aspect in 'square' and casemusic in 'true' else 'false'</property>
+		<property name="videocase">'true' if (type in 'movies' or type in 'episodes' or type in 'tvshows') and art in 'poster' and aspect in 'portrait' and casevideo in 'true' else 'false'</property>
+		<!-- Container size -->
+		<property name="containerheight">'346' if (type in 'albums' or type in 'songs' or type in 'musicvideos') and art in 'poster' and aspect in 'square' and casemusic in 'true' else '372' if aspect in 'square' else '357' if aspect in 'landscape' else '388'</property>
+		<property name="containerwidth">'372' if aspect in 'square' else '620' if aspect in 'landscape' else '265.71'</property>
+		<!-- Diffuse texture -->
+		<property name="diffuse">'' if (type in 'albums' or type in 'songs' or type in 'musicvideos') and art in 'poster' and aspect in 'square' and casemusic in 'true' else '' if (type in 'movies' or type in 'episodes' or type in 'tvshows') and art in 'poster' and aspect in 'portrait' and casevideo in 'true' else 'diffuse/rounded5-290x290.png' if aspect in 'square' else 'diffuse/rounded5-445x250.png' if aspect in 'landscape' else 'diffuse/rounded5-212x319.png'</property>
+		<!-- Artwork border -->
+		<property name="border">'39,14,14,14' if (type in 'albums' or type in 'songs' or type in 'musicvideos') and art in 'poster' and aspect in 'square' and casemusic in 'true' else '16,36,16,18' if (type in 'movies' or type in 'episodes' or type in 'tvshows') and art in 'poster' and aspect in 'portrait' and casevideo in 'true' else '10'</property>
+		<!-- Container type -->
+		<property name="container">'WidgetPosterInfoContainer' if type in 'sysinfo' and art in 'poster' else 'WidgetFanartInfoContainer' if type in 'sysinfo' and art in 'fanart' else 'WidgetContainer'</property>
+		<!-- Font -->
+		<property name="font1">Font30_Bold</property>
+		<property name="font2">Font29_Cond</property>
+		<property name="font3">Font30_Reg</property>
+		<!-- Label position -->
+		<property name="label1position">83</property>
+		<property name="label2position">46</property>
+		<property name="label3position">12</property>
+		<!-- Icon size -->
+		<property name="icontop">62</property>
+		<property name="iconbottom">97</property>
+		<!-- Studio icon size -->
+		<property name="iconstudioheight">27</property>
+	</propertyGroup>
+	<propertyGroup name="widgetCommon1">
 		<!-- Retrieve properties -->
 		<property name="id" tag="mainmenuid" />
-		<property name="path" tag="property" attribute="name|widgetPath" />
-		<property name="target" tag="property" attribute="name|widgetTarget" />
-		<property name="name" tag="property" attribute="name|widgetName" />
+		<property name="type" tag="property" attribute="name|widgetType.1" />
+		<property name="path" tag="property" attribute="name|widgetPath.1" />
+		<property name="name" tag="property" attribute="name|widgetName.1" />
+		<property name="art" tag="property" attribute="name|widgetArtwork.1" />
+		<property name="aspect" tag="property" attribute="name|widgetAspect.1" />
+		<property name="casemusic" tag="property" attribute="name|widgetCaseMusic.1" />
+		<property name="casevideo" tag="property" attribute="name|widgetCaseVideo.1" />
+		<!-- If target is set to true for next widget navigate to next (fallback if empty set to false in overrides.xml) -->
+		<property name="onup" tag="property" attribute="name|widgetType.2" value="none">false</property>
+		<property name="onup">true</property>
 		<!-- Artwork -->
-		<property name="artwork" tag="property" attribute="name|widgetArtwork" value="fanart">$VAR[FanArtVar]</property>
-		<property name="artwork" tag="property" attribute="name|widgetArtwork" value="landscape">$VAR[LandscapeVar]</property>
-		<property name="artwork" tag="property" attribute="name|widgetArtwork" value="clearart">$VAR[ClearArtVar]</property>
-		<property name="artwork" tag="property" attribute="name|widgetArtwork" value="clearlogo">$VAR[ClearLogoVar]</property>
-		<property name="artwork" tag="property" attribute="name|widgetArtwork" value="thumb">$VAR[ThumbVar]</property>
-		<property name="artwork" tag="property" attribute="name|widgetArtwork" value="discart">$VAR[DiscArtVar]</property>
-		<property name="artwork" tag="property" attribute="name|widgetArtwork" value="characterart">$VAR[CharacterArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.1" value="fanart">$VAR[FanArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.1" value="landscape">$VAR[LandscapeVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.1" value="clearart">$VAR[ClearArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.1" value="clearlogo">$VAR[ClearLogoVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.1" value="thumb">$VAR[ThumbVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.1" value="discart">$VAR[DiscArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.1" value="characterart">$VAR[CharacterArtVar]</property>
 		<property name="artwork">$VAR[PosterVar]</property>
 		<!-- Artwork aspect -->
-		<property name="artworkaspect" tag="property" attribute="name|widget" value="pvr">keep</property>
-		<property name="artworkaspect" tag="property" attribute="name|widgetArtwork" value="clearart|clearlogo|discart|characterart">keep</property>
+		<property name="artworkaspect" tag="property" attribute="name|widget.1" value="pvr">keep</property>
+		<property name="artworkaspect" tag="property" attribute="name|widgetArtwork.1" value="clearart|clearlogo|discart|characterart">keep</property>
 		<property name="artworkaspect">scale</property>
 		<!-- Label -->
-		<property name="labelvisible" tag="property" attribute="name|widgetLabel" value="true">true</property>
+		<property name="labelvisible" tag="property" attribute="name|widgetLabel.1" value="true">true</property>
 		<property name="labelvisible">false</property>
 		<!-- Info -->
-		<property name="infovisible" tag="property" attribute="name|widgetInfo" value="true">true</property>
-		<property name="infovisible">false</property>
-		<!-- Info dimensions -->
-		<property name="infoleft" tag="property" attribute="name|widgetType" value="movies|episodes|tvshows">245</property>
-		<property name="infoleft">347</property>
-		<property name="infowidth" tag="property" attribute="name|widgetType" value="movies|episodes|tvshows">225</property>
-		<property name="infowidth">327</property>
-		<property name="infoaspect" tag="property" attribute="name|widgetType" value="pvr">keep</property>
-		<property name="infoaspect">scale</property>
+		<property name="infovisible" tag="property" attribute="name|widget.1" value="info">false</property>
+		<property name="infovisible">true</property>
+		<!-- Studio icon case visible -->
+		<property name="studioiconvisible" tag="property" attribute="name|widgetType.1" value="tvshows|seasons">true</property>
+		<property name="studioiconvisible">false</property>
+	</propertyGroup>
+	<propertyGroup name="widgetCommon2">
+		<!-- Retrieve properties -->
+		<property name="id" tag="mainmenuid" />
+		<property name="type" tag="property" attribute="name|widgetType.2" />
+		<property name="path" tag="property" attribute="name|widgetPath.2" />
+		<property name="name" tag="property" attribute="name|widgetName.2" />
+		<property name="art" tag="property" attribute="name|widgetArtwork.2" />
+		<property name="aspect" tag="property" attribute="name|widgetAspect.2" />
+		<property name="casemusic" tag="property" attribute="name|widgetCaseMusic.2" />
+		<property name="casevideo" tag="property" attribute="name|widgetCaseVideo.2" />
+		<!-- If target is set to true for next widget navigate to next (fallback if empty set to false in overrides.xml) -->
+		<property name="onup" tag="property" attribute="name|widgetType.3" value="none">false</property>
+		<property name="onup">true</property>
+		<!-- Artwork -->
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.2" value="fanart">$VAR[FanArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.2" value="landscape">$VAR[LandscapeVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.2" value="clearart">$VAR[ClearArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.2" value="clearlogo">$VAR[ClearLogoVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.2" value="thumb">$VAR[ThumbVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.2" value="discart">$VAR[DiscArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.2" value="characterart">$VAR[CharacterArtVar]</property>
+		<property name="artwork">$VAR[PosterVar]</property>
+		<!-- Artwork aspect -->
+		<property name="artworkaspect" tag="property" attribute="name|widget.2" value="pvr">keep</property>
+		<property name="artworkaspect" tag="property" attribute="name|widgetArtwork.2" value="clearart|clearlogo|discart|characterart">keep</property>
+		<property name="artworkaspect">scale</property>
+		<!-- Label -->
+		<property name="labelvisible" tag="property" attribute="name|widgetLabel.2" value="true">true</property>
+		<property name="labelvisible">false</property>
+		<!-- Info -->
+		<property name="infovisible" tag="property" attribute="name|widget.2" value="info">false</property>
+		<property name="infovisible">true</property>
+		<!-- Studio icon case visible -->
+		<property name="studioiconvisible" tag="property" attribute="name|widgetType.2" value="tvshows|seasons">true</property>
+		<property name="studioiconvisible">false</property>
+	</propertyGroup>
+	<propertyGroup name="widgetCommon3">
+		<!-- Retrieve properties -->
+		<property name="id" tag="mainmenuid" />
+		<property name="type" tag="property" attribute="name|widgetType.3" />
+		<property name="path" tag="property" attribute="name|widgetPath.3" />
+		<property name="name" tag="property" attribute="name|widgetName.3" />
+		<property name="art" tag="property" attribute="name|widgetArtwork.3" />
+		<property name="aspect" tag="property" attribute="name|widgetAspect.3" />
+		<property name="casemusic" tag="property" attribute="name|widgetCaseMusic.3" />
+		<property name="casevideo" tag="property" attribute="name|widgetCaseVideo.3" />
+		<!-- If target is set to true for next widget navigate to next (fallback if empty set to false in overrides.xml) -->
+		<property name="onup" tag="property" attribute="name|widgetType.4" value="none">false</property>
+		<property name="onup">true</property>
+		<!-- Artwork -->
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.3" value="fanart">$VAR[FanArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.3" value="landscape">$VAR[LandscapeVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.3" value="clearart">$VAR[ClearArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.3" value="clearlogo">$VAR[ClearLogoVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.3" value="thumb">$VAR[ThumbVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.3" value="discart">$VAR[DiscArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.3" value="characterart">$VAR[CharacterArtVar]</property>
+		<property name="artwork">$VAR[PosterVar]</property>
+		<!-- Artwork aspect -->
+		<property name="artworkaspect" tag="property" attribute="name|widget.3" value="pvr">keep</property>
+		<property name="artworkaspect" tag="property" attribute="name|widgetArtwork.3" value="clearart|clearlogo|discart|characterart">keep</property>
+		<property name="artworkaspect">scale</property>
+		<!-- Label -->
+		<property name="labelvisible" tag="property" attribute="name|widgetLabel.3" value="true">true</property>
+		<property name="labelvisible">false</property>
+		<!-- Info -->
+		<property name="infovisible" tag="property" attribute="name|widget.3" value="info">false</property>
+		<property name="infovisible">true</property>
+		<!-- Studio icon case visible -->
+		<property name="studioiconvisible" tag="property" attribute="name|widgetType.3" value="tvshows|seasons">true</property>
+		<property name="studioiconvisible">false</property>
+	</propertyGroup>
+	<propertyGroup name="widgetCommon4">
+		<!-- Retrieve properties -->
+		<property name="id" tag="mainmenuid" />
+		<property name="type" tag="property" attribute="name|widgetType.4" />
+		<property name="path" tag="property" attribute="name|widgetPath.4" />
+		<property name="name" tag="property" attribute="name|widgetName.4" />
+		<property name="art" tag="property" attribute="name|widgetArtwork.4" />
+		<property name="aspect" tag="property" attribute="name|widgetAspect.4" />
+		<property name="casemusic" tag="property" attribute="name|widgetCaseMusic.4" />
+		<property name="casevideo" tag="property" attribute="name|widgetCaseVideo.4" />
+		<!-- If target is set to true for next widget navigate to next (fallback if empty set to false in overrides.xml) -->
+		<property name="onup" tag="property" attribute="name|widgetType.5" value="none">false</property>
+		<property name="onup">true</property>
+		<!-- Artwork -->
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.4" value="fanart">$VAR[FanArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.4" value="landscape">$VAR[LandscapeVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.4" value="clearart">$VAR[ClearArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.4" value="clearlogo">$VAR[ClearLogoVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.4" value="thumb">$VAR[ThumbVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.4" value="discart">$VAR[DiscArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.4" value="characterart">$VAR[CharacterArtVar]</property>
+		<property name="artwork">$VAR[PosterVar]</property>
+		<!-- Artwork aspect -->
+		<property name="artworkaspect" tag="property" attribute="name|widget.4" value="pvr">keep</property>
+		<property name="artworkaspect" tag="property" attribute="name|widgetArtwork.4" value="clearart|clearlogo|discart|characterart">keep</property>
+		<property name="artworkaspect">scale</property>
+		<!-- Label -->
+		<property name="labelvisible" tag="property" attribute="name|widgetLabel.4" value="true">true</property>
+		<property name="labelvisible">false</property>
+		<!-- Info -->
+		<property name="infovisible" tag="property" attribute="name|widget.4" value="info">false</property>
+		<property name="infovisible">true</property>
+		<!-- Studio icon case visible -->
+		<property name="studioiconvisible" tag="property" attribute="name|widgetType.4" value="tvshows|seasons">true</property>
+		<property name="studioiconvisible">false</property>
+	</propertyGroup>
+	<propertyGroup name="widgetCommon5">
+		<!-- Retrieve properties -->
+		<property name="id" tag="mainmenuid" />
+		<property name="type" tag="property" attribute="name|widgetType.5" />
+		<property name="path" tag="property" attribute="name|widgetPath.5" />
+		<property name="name" tag="property" attribute="name|widgetName.5" />
+		<property name="art" tag="property" attribute="name|widgetArtwork.5" />
+		<property name="aspect" tag="property" attribute="name|widgetAspect.5" />
+		<property name="casemusic" tag="property" attribute="name|widgetCaseMusic.5" />
+		<property name="casevideo" tag="property" attribute="name|widgetCaseVideo.5" />
+		<!-- If target is set to true for next widget navigate to next (fallback if empty set to false in overrides.xml) -->
+		<property name="onup" tag="property" attribute="name|widgetType.6" value="none">false</property>
+		<property name="onup">true</property>
+		<!-- Artwork -->
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.5" value="fanart">$VAR[FanArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.5" value="landscape">$VAR[LandscapeVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.5" value="clearart">$VAR[ClearArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.5" value="clearlogo">$VAR[ClearLogoVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.5" value="thumb">$VAR[ThumbVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.5" value="discart">$VAR[DiscArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.5" value="characterart">$VAR[CharacterArtVar]</property>
+		<property name="artwork">$VAR[PosterVar]</property>
+		<!-- Artwork aspect -->
+		<property name="artworkaspect" tag="property" attribute="name|widget.5" value="pvr">keep</property>
+		<property name="artworkaspect" tag="property" attribute="name|widgetArtwork.5" value="clearart|clearlogo|discart|characterart">keep</property>
+		<property name="artworkaspect">scale</property>
+		<!-- Label -->
+		<property name="labelvisible" tag="property" attribute="name|widgetLabel.5" value="true">true</property>
+		<property name="labelvisible">false</property>
+		<!-- Info -->
+		<property name="infovisible" tag="property" attribute="name|widget.5" value="info">false</property>
+		<property name="infovisible">true</property>
+		<!-- Studio icon case visible -->
+		<property name="studioiconvisible" tag="property" attribute="name|widgetType.5" value="tvshows|seasons">true</property>
+		<property name="studioiconvisible">false</property>
+	</propertyGroup>
+	<propertyGroup name="widgetCommon6">
+		<!-- Retrieve properties -->
+		<property name="id" tag="mainmenuid" />
+		<property name="type" tag="property" attribute="name|widgetType.6" />
+		<property name="path" tag="property" attribute="name|widgetPath.6" />
+		<property name="target" tag="property" attribute="name|widgetTarget.6" />
+		<property name="name" tag="property" attribute="name|widgetName.6" />
+		<property name="art" tag="property" attribute="name|widgetArtwork.6" />
+		<property name="aspect" tag="property" attribute="name|widgetAspect.6" />
+		<property name="casemusic" tag="property" attribute="name|widgetCaseMusic.6" />
+		<property name="casevideo" tag="property" attribute="name|widgetCaseVideo.6" />
+		<!-- Artwork -->
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.6" value="fanart">$VAR[FanArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.6" value="landscape">$VAR[LandscapeVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.6" value="clearart">$VAR[ClearArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.6" value="clearlogo">$VAR[ClearLogoVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.6" value="thumb">$VAR[ThumbVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.6" value="discart">$VAR[DiscArtVar]</property>
+		<property name="artwork" tag="property" attribute="name|widgetArtwork.6" value="characterart">$VAR[CharacterArtVar]</property>
+		<property name="artwork">$VAR[PosterVar]</property>
+		<!-- Artwork aspect -->
+		<property name="artworkaspect" tag="property" attribute="name|widget.6" value="pvr">keep</property>
+		<property name="artworkaspect" tag="property" attribute="name|widgetArtwork.6" value="clearart|clearlogo|discart|characterart">keep</property>
+		<property name="artworkaspect">scale</property>
+		<!-- Label -->
+		<property name="labelvisible" tag="property" attribute="name|widgetLabel.6" value="true">true</property>
+		<property name="labelvisible">false</property>
+		<!-- Info -->
+		<property name="infovisible" tag="property" attribute="name|widget.6" value="info">false</property>
+		<property name="infovisible">true</property>
+		<!-- Studio icon case visible -->
+		<property name="studioiconvisible" tag="property" attribute="name|widgetType.6" value="tvshows|seasons">true</property>
+		<property name="studioiconvisible">false</property>
 	</propertyGroup>
 </template>

@@ -308,30 +308,13 @@
 		<control type="button" id="202">
 			<label>$LOCALIZE[31059]</label>
 			<label2>$VAR[MainMenuLayoutLabelVar]</label2>
-			<onclick>SetProperty(CustomSelect,$LOCALIZE[31041] $LOCALIZE[31144],home)</onclick>
-			<onclick>ActivateWindow(1110)</onclick>
+			<onclick condition="String.IsEmpty(MainMenuLayout)">Skin.SetString(MainMenuLayout,wide)</onclick>
+			<onclick condition="Skin.String(MainMenuLayout,wide)">Skin.SetString(MainMenuLayout,icons)</onclick>
+			<onclick condition="Skin.String(MainMenuLayout,icons)">Skin.SetString(MainMenuLayout,iconswide)</onclick>
+			<onclick condition="Skin.String(MainMenuLayout,iconswide)">Skin.SetString(MainMenuLayout,bigicons)</onclick>
+			<onclick condition="Skin.String(MainMenuLayout,bigicons)">Skin.SetString(MainMenuLayout,bigiconswide)</onclick>
+			<onclick condition="Skin.String(MainMenuLayout,bigiconswide)">Skin.Reset(MainMenuLayout)</onclick>
 			<include>MediaMenuButton</include>
-		</control>
-		<control type="button" id="203">
-			<label>$LOCALIZE[736]</label>
-			<label2>$VAR[MainMenuStyleLabelVar]</label2>
-			<onclick>SetProperty(CustomSelect,$LOCALIZE[31041] $LOCALIZE[31129],home)</onclick>
-			<onclick>ActivateWindow(1110)</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="button" id="204">
-			<label>$LOCALIZE[31051]</label>
-			<label2>$VAR[MainMenuTextureLabelVar]</label2>
-			<onclick>SetProperty(CustomSelect,$LOCALIZE[31041] $LOCALIZE[31132],home)</onclick>
-			<onclick>ActivateWindow(1110)</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="button" id="205">
-			<label>$LOCALIZE[31207]</label>
-			<label2>$VAR[MainMenuPositionLabelVar]</label2>
-			<onclick>SetProperty(CustomSelect,$LOCALIZE[31041] $LOCALIZE[31207],home)</onclick>
-			<onclick>ActivateWindow(1110)</onclick>
-			<include>MediaMenuRadioButton</include>
 		</control>
 		<control type="radiobutton" id="206">
 			<label>$LOCALIZE[31043]</label>
@@ -344,15 +327,14 @@
 			<label>$LOCALIZE[1034]</label>
 			<include>MediaMenuLabel</include>
 		</control>
-		<control type="button" id="208">
-			<label>$LOCALIZE[736]</label>
-			<label2>$VAR[MainMenuSubmenuBarLabelVar]</label2>
-			<onclick>SetProperty(CustomSelect,$LOCALIZE[31142],home)</onclick>
-			<onclick>ActivateWindow(1110)</onclick>
-			<include>MediaMenuButton</include>
+		<control type="radiobutton" id="208">
+			<label>$LOCALIZE[31288]</label>
+			<onclick>Skin.ToggleSetting(SubmenuHide)</onclick>
+			<selected>Skin.HasSetting(SubmenuHide)</selected>
+			<include>MediaMenuRadioButton</include>
 		</control>
 		<control type="label" id="209">
-			<label>$LOCALIZE[111]</label>
+			<label>$LOCALIZE[31287]</label>
 			<include>MediaMenuLabel</include>
 		</control>
 		<control type="radiobutton" id="210">
@@ -409,57 +391,46 @@
 			<label>$LOCALIZE[31141]</label>
 			<include>MediaMenuLabel</include>
 		</control>
-		<control type="radiobutton" id="206">
+		<control type="radiobutton" id="202">
 			<label>$LOCALIZE[393]</label>
 			<onclick>Skin.ToggleSetting(InfoBarTop)</onclick>
 			<selected>Skin.HasSetting(InfoBarTop)</selected>
 			<include>MediaMenuRadioButton</include>
 		</control>
-		<control type="button" id="207">
-			<label>$LOCALIZE[736]</label>
-			<label2>$VAR[MainMenuSystemBarLabelVar]</label2>
-			<onclick>SetProperty(CustomSelect,$LOCALIZE[31141],home)</onclick>
-			<onclick>ActivateWindow(1110)</onclick>
-			<include>MediaMenuButton</include>
+		<control type="radiobutton" id="203">
+			<label>$LOCALIZE[31050]</label>
+			<onclick>Skin.ToggleSetting(HideInfoLine)</onclick>
+			<selected>!Skin.HasSetting(HideInfoLine)</selected>
+			<include>MediaMenuRadioButton</include>
 		</control>
-		<control type="label" id="208">
+		<control type="radiobutton" id="204">
+			<label>$LOCALIZE[31002]</label>
+			<onclick>Skin.ToggleSetting(NowplayingSystemBar)</onclick>
+			<selected>Skin.HasSetting(NowplayingSystemBar)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="label" id="205">
 			<label>RSS</label>
 			<include>MediaMenuLabel</include>
 		</control>
-		<control type="radiobutton" id="209">
+		<control type="radiobutton" id="206">
 			<label>Enable</label>
-			<onclick>XBMC.RunScript(script.skin.helper.service,action=togglekodisetting,setting=lookandfeel.enablerssfeeds)</onclick>
+			<onclick>RunScript(script.embuary.helper,action=togglekodisetting,setting=lookandfeel.enablerssfeeds)</onclick>
 			<selected>system.getbool(lookandfeel.enablerssfeeds)</selected>
 			<include>MediaMenuRadioButton</include>
 		</control>
-		<control type="button" id="210">
+		<control type="button" id="207">
 			<label>$LOCALIZE[21435]</label>
 			<onclick condition="!System.HasAddon(script.rss.editor)">InstallAddon(script.rss.editor)</onclick>
 			<onclick condition="System.HasAddon(script.rss.editor)">XBMC.RunScript(script.rss.editor)</onclick>
 			<include>MediaMenuRadioButton</include>
 			<visible>system.getbool(lookandfeel.enablerssfeeds)</visible>
 		</control>
-		<control type="button" id="211">
-			<label>$LOCALIZE[736]</label>
-			<label2>$VAR[MainMenuRSSBarLabelVar]</label2>
-			<onclick>SetProperty(CustomSelect,$LOCALIZE[31143],home)</onclick>
-			<onclick>ActivateWindow(1110)</onclick>
-			<include>MediaMenuButton</include>
-			<visible>system.getbool(lookandfeel.enablerssfeeds)</visible>
-		</control>
-	</include>
-	<include name="MediaMenuViewsettingsWidgetsHome">
-		<control type="label" id="201">
+		<control type="label" id="208">
 			<label>$LOCALIZE[31039]</label>
 			<include>MediaMenuLabel</include>
 		</control>
-		<control type="radiobutton" id="205">
-			<label>$LOCALIZE[393]</label>
-			<onclick>Skin.ToggleSetting(WidgetHigh)</onclick>
-			<selected>Skin.HasSetting(WidgetHigh)</selected>
-			<include>MediaMenuRadioButton</include>
-		</control>
-		<control type="radiobutton" id="206">
+		<control type="radiobutton" id="209">
 			<label>Hide</label>
 			<onclick>Skin.ToggleSetting(WidgetHide)</onclick>
 			<selected>Skin.HasSetting(WidgetHide)</selected>
@@ -518,12 +489,7 @@
 			<label>$LOCALIZE[292]</label>
 			<include>MediaMenuLabel</include>
 		</control>
-		<control type="radiobutton" id="211">
-			<label>$LOCALIZE[31141]</label>
-			<onclick>Skin.ToggleSetting(NowplayingSystemBar)</onclick>
-			<selected>Skin.HasSetting(NowplayingSystemBar)</selected>
-			<include>MediaMenuRadioButton</include>
-		</control>
+		
 		<control type="radiobutton" id="212">
 			<label>$LOCALIZE[24022]</label>
 			<onclick>Skin.ToggleSetting(NowplayingHomeDisableAudio)</onclick>
@@ -600,123 +566,88 @@
 	</include>
 	<include name="MediaMenuViewsettingsColorsHome">
 		<control type="label" id="201">
-			<label>$LOCALIZE[14078]</label>
+			<label>$LOCALIZE[21895]</label>
 			<font>Font28_Bold</font>
 			<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 			<include>MediaMenuButton</include>
 		</control>
 		<control type="button" id="202">
 			<label>$LOCALIZE[736]</label>
+			<label2>$VAR[MainMenuStyleLabelVar]</label2>
+			<onclick condition="String.IsEmpty(MainMenuStyle.texture)">Skin.SetString(MainMenuStyle.texture,panels/mainmenu/nox4.png)</onclick>
+			<onclick condition="Skin.String(MainMenuStyle.texture,panels/mainmenu/nox4.png)">Skin.SetString(MainMenuStyle.texture,panels/mainmenu/auriga.png)</onclick>
+			<onclick condition="Skin.String(MainMenuStyle.texture,panels/mainmenu/auriga.png)">Skin.Reset(MainMenuStyle.texture)</onclick>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="button" id="203">
+			<label>$LOCALIZE[31051]</label>
+			<label2>$VAR[MainMenuTextureLabelVar]</label2>
+			<onclick condition="String.IsEmpty(MainMenuTexture.texture)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/brushed.png)</onclick>
+			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/brushed.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/carbon.png)</onclick>
+			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/carbon.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/gradient.png)</onclick>
+			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/carbon.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/concrete.png)</onclick>
+			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/concrete.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/pixels.png)</onclick>
+			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/pixels.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/plain.png)</onclick>
+			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/plain.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/mud.png)</onclick>
+			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/mud.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/steelplate.png)</onclick>
+			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/steelplate.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/wallpaper.png)</onclick>
+			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/wallpaper.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/wood.png)</onclick>
+			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/wood.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/wrinkles.png)</onclick>
+			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/wrinkles.png)">Skin.Reset(MainMenuTexture.texture)</onclick>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="button" id="204">
+			<label>$LOCALIZE[31141]</label>
+			<label2>$VAR[MainMenuSystemBarLabelVar]</label2>
+			<onclick condition="String.IsEmpty(MainMenuSystemBar.texture)">Skin.SetString(MainMenuSystemBar.texture,wide)</onclick>
+			<onclick condition="Skin.String(MainMenuSystemBar.texture,wide)">Skin.SetString(MainMenuSystemBar.texture,shadow)</onclick>
+			<onclick condition="Skin.String(MainMenuSystemBar.texture,shadow)">Skin.Reset(MainMenuSystemBar.texture)</onclick>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="button" id="205">
+			<label>$LOCALIZE[31142]</label>
+			<label2>$VAR[MainMenuSubmenuBarLabelVar]</label2>
+			<onclick condition="String.IsEmpty(MainMenuSubmenuBar.texture)">Skin.SetString(MainMenuSubmenuBar.texture,wide)</onclick>
+			<onclick condition="Skin.String(MainMenuSubmenuBar.texture,wide)">Skin.SetString(MainMenuSubmenuBar.texture,shadow)</onclick>
+			<onclick condition="Skin.String(MainMenuSubmenuBar.texture,shadow)">Skin.Reset(MainMenuSubmenuBar.texture)</onclick>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="button" id="206">
+			<visible>system.getbool(lookandfeel.enablerssfeeds)</visible>
+			<label>$LOCALIZE[31143]</label>
+			<label2>$VAR[MainMenuRSSBarLabelVar]</label2>
+			<onclick condition="String.IsEmpty(MainMenuRSSBar.texture)">Skin.SetString(MainMenuRSSBar.texture,wide)</onclick>
+			<onclick condition="Skin.String(MainMenuRSSBar.texture,wide)">Skin.Reset(MainMenuRSSBar.texture)</onclick>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="label" id="210">
+			<label>$LOCALIZE[14078]</label>
+			<font>Font28_Bold</font>
+			<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="button" id="211">
+			<label>$LOCALIZE[736]</label>
 			<label2>[COLOR $VAR[MainMenuStyleColorVar]]$VAR[MainMenuStyleColorLabelVar][/COLOR]</label2>
 			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuStyle.color,header=$LOCALIZE[736])</onclick>
 			<include>MediaMenuButton</include>
 		</control>
-		<control type="button" id="203">
+		<control type="button" id="212">
 			<label>$LOCALIZE[31051]</label>
 			<label2>[COLOR $VAR[MainMenuTextureColorVar]]$VAR[MainMenuTextureColorLabelVar][/COLOR]</label2>
 			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuTexture.color,header=$LOCALIZE[31051])</onclick>
 			<include>MediaMenuButton</include>
 		</control>
-		<control type="button" id="204">
-			<label>$LOCALIZE[31048]</label>
-			<label2>[COLOR $VAR[MainMenuShadowColorVar]]$VAR[MainMenuShadowColorLabelVar][/COLOR]</label2>
-			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuShadow.color,header=$LOCALIZE[31048])</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="button" id="205">
+		<control type="button" id="213">
 			<label>$LOCALIZE[31134]</label>
 			<label2>[COLOR $VAR[MainMenuGradientColorVar]]$VAR[MainMenuGradientColorLabelVar][/COLOR]</label2>
 			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuGradient.color,header=$LOCALIZE[31134])</onclick>
 			<include>MediaMenuButton</include>
 		</control>
-		<control type="button" id="206">
-			<label>$LOCALIZE[31138]</label>
-			<label2>[COLOR $VAR[MainMenuFocusTextColorVar]]$VAR[MainMenuFocusTextColorLabelVar][/COLOR]</label2>
-			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuFocusText.color,header=$LOCALIZE[31138])</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="button" id="207">
-			<label>$LOCALIZE[31157]</label>
-			<label2>[COLOR $VAR[MainMenuNofocusTextColorVar]]$VAR[MainMenuNofocusTextColorLabelVar][/COLOR]</label2>
-			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuNofocusText.color,header=$LOCALIZE[31157])</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="button" id="208">
-			<label>$LOCALIZE[31152]</label>
-			<label2>[COLOR $VAR[MainMenuFocusIconColorVar]]$VAR[MainMenuFocusIconColorLabelVar][/COLOR]</label2>
-			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuFocusIcon.color,header=$LOCALIZE[31152])</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="button" id="209">
-			<label>$LOCALIZE[31158]</label>
-			<label2>[COLOR $VAR[MainMenuNofocusIconColorVar]]$VAR[MainMenuNofocusIconColorLabelVar][/COLOR]</label2>
-			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuNofocusIcon.color,header=$LOCALIZE[31158])</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="button" id="210">
-			<label>$LOCALIZE[31049]</label>
-			<label2>[COLOR $VAR[MainMenuHighlightColorVar]]$VAR[MainMenuHighlightColorLabelVar][/COLOR]</label2>
-			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuHighlight.color,header=$LOCALIZE[31049])</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="button" id="211">
-			<label>$LOCALIZE[31136]</label>
-			<label2>[COLOR $VAR[MainMenuTextColorVar]]$VAR[MainMenuTextColorLabelVar][/COLOR]</label2>
-			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuText.color,header=$LOCALIZE[31136])</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="button" id="212">
-			<label>$LOCALIZE[31137]</label>
-			<label2>[COLOR $VAR[MainMenuSubTextColorVar]]$VAR[MainMenuSubTextColorLabelVar][/COLOR]</label2>
-			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuSubText.color,header=$LOCALIZE[31137])</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="button" id="213">
-			<label>$LOCALIZE[31139]</label>
-			<label2>[COLOR $VAR[MainMenuListSeparatorColorVar]]$VAR[MainMenuListSeparatorColorLabelVar][/COLOR]</label2>
-			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuListSeparator.color,header=$LOCALIZE[31139])</onclick>
-			<include>MediaMenuButton</include>
-		</control>
 		<control type="button" id="214">
-			<label>$LOCALIZE[31140]</label>
-			<label2>[COLOR $VAR[MainMenuButtonColorVar]]$VAR[MainMenuButtonColorLabelVar][/COLOR]</label2>
-			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuButton.color,header=$LOCALIZE[31140])</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="button" id="215">
 			<label>$LOCALIZE[31039]</label>
 			<label2>[COLOR $VAR[MainMenuWidgetColorVar]]$VAR[MainMenuWidgetColorLabelVar][/COLOR]</label2>
 			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuWidget.color,header=$LOCALIZE[31039])</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="button" id="216">
-			<label>$LOCALIZE[31141]</label>
-			<label2>[COLOR $VAR[MainMenuSystemBarColorVar]]$VAR[MainMenuSystemBarColorLabelVar][/COLOR]</label2>
-			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuSystemBar.color,header=$LOCALIZE[31141])</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="button" id="217">
-			<label>$LOCALIZE[31142]</label>
-			<label2>[COLOR $VAR[MainMenuSubmenuBarColorVar]]$VAR[MainMenuSubmenuBarColorLabelVar][/COLOR]</label2>
-			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuSubmenuBar.color,header=$LOCALIZE[31142])</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="button" id="218">
-			<label>$LOCALIZE[31143]</label>
-			<label2>[COLOR $VAR[MainMenuRSSBarColorVar]]$VAR[MainMenuRSSBarColorLabelVar][/COLOR]</label2>
-			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuRSSBar.color,header=$LOCALIZE[31143])</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="button" id="219">
-			<label>$LOCALIZE[33068]</label>
-			<label2>[COLOR $VAR[MainMenuBackgroundColorVar]]$VAR[MainMenuBackgroundColorLabelVar][/COLOR]</label2>
-			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuBackground.color,header=$LOCALIZE[33068])</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="button" id="220">
-			<label>$LOCALIZE[31156]</label>
-			<label2>[COLOR $VAR[MainMenuWeatherIconColorVar]]$VAR[MainMenuWeatherIconColorLabelVar][/COLOR]</label2>
-			<onclick>RunScript(script.skin.helper.colorpicker,skinstring=MainMenuWeatherIcon.color,header=$LOCALIZE[31156])</onclick>
 			<include>MediaMenuButton</include>
 		</control>
 	</include>
