@@ -905,8 +905,9 @@
 		</control>
 		<control type="radiobutton" id="131">
 			<label>$LOCALIZE[31197]</label>
-			<onclick>Skin.ToggleSetting(DisableAutoOpenMusicViz)</onclick>
-			<selected>!Skin.HasSetting(DisableAutoOpenMusicViz)</selected>
+			<onclick>Skin.ToggleSetting(StartPlayerFullscreen)</onclick>
+			<onclick>RunScript(script.embuary.helper,action=restartservice)</onclick>
+			<selected>Skin.HasSetting(StartPlayerFullscreen)</selected>
 			<include>DialogRadioButtonCustomSelect</include>
 		</control>
 		<control type="radiobutton" id="132">
@@ -1187,6 +1188,34 @@
 		<item>
 			<label>$LOCALIZE[20021]</label>
 			<onclick>Skin.SetString(ShowcaseInfo,poster)</onclick>
+		</item>
+	</include>
+	<!-- Favourites select -->
+	<include name="SelectFavourites">
+		<item>
+			<label>$LOCALIZE[1036] 1</label>
+			<label2>$INFO[Skin.String(CustomFavourite.1.Label)]</label2>
+			<onclick>RunScript(script.favourites,property=CustomFavourite.1)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[1036] 2</label>
+			<label2>$INFO[Skin.String(CustomFavourite.2.Label)]</label2>
+			<onclick>RunScript(script.favourites,property=CustomFavourite.2)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[1036] 3</label>
+			<label2>$INFO[Skin.String(CustomFavourite.3.Label)]</label2>
+			<onclick>RunScript(script.favourites,property=CustomFavourite.3)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[1036] 4</label>
+			<label2>$INFO[Skin.String(CustomFavourite.4.Label)]</label2>
+			<onclick>RunScript(script.favourites,property=CustomFavourite.4)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[1036] 5</label>
+			<label2>$INFO[Skin.String(CustomFavourite.5.Label)]</label2>
+			<onclick>RunScript(script.favourites,property=CustomFavourite.5)</onclick>
 		</item>
 	</include>
 </includes>
