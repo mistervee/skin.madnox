@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <window>
-	<defaultcontrol>9000</defaultcontrol>
-	
+	<defaultcontrol>111</defaultcontrol>
 	<controls>
 		<control type="list" id="10051">
 			<include>HiddenList</include>
@@ -9,7 +8,7 @@
 		<control type="group">
 			<left>736</left>
 			<control type="group">
-				<top>17</top>
+				<top>16</top>
 				<right>25</right>
 				<!-- Title -->
 				<control type="label">
@@ -21,83 +20,82 @@
 				</control>
 				<!-- Subtitle -->
 				<control type="label">
-					<top>50</top>
+					<top>52</top>
 					<height>40</height>
 					<font>Font36_Reg</font>
 					<label>$INFO[Container(10051).ListItem.Property(place_of_birth)]</label>
 					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 					<scroll>true</scroll>
 				</control>
-				<!-- Top media flags -->
-				<control type="image">
-					<top>99</top>
-					<height>4</height>
-					<texture border="0,0,220,0" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
-				</control>
+				<!-- Info -->
 				<control type="grouplist">
-					<top>100</top>
-					<height>84</height>
-					<itemgap>10</itemgap>
-					<orientation>horizontal</orientation>
+					<top>105</top>
+					<height>30</height>
 					<usecontrolcoords>true</usecontrolcoords>
-					<control type="label">
-						<width>100</width>
-						<include>MediaFlagLabel</include>
-						<label>Age</label>
+					<orientation>horizontal</orientation>
+					<control type="image">
+						<visible>!String.IsEmpty(Control.GetLabel(5301))</visible>
+						<top>3</top>
+						<width>30</width>
+						<aspectratio>keep</aspectratio>
+						<texture>$VAR[ListViewIcon1Var]</texture>
 					</control>
-					<control type="label">
-						<left>-110</left>
-						<width>100</width>
-						<include>MediaFlagBigLabel</include>
-						<label>$INFO[Container(10051).ListItem.Property(age)]</label>
+					<control type="label" id="5301">
+						<width>auto</width>
+						<font>Font30_Reg</font>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<label>$INFO[Container(10051).ListItem.Property(age), ,  ]</label>
 					</control>
 					<control type="image">
-						<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
+						<visible>!String.IsEmpty(Control.GetLabel(5302))</visible>
+						<top>3</top>
+						<width>30</width>
+						<aspectratio>keep</aspectratio>
+						<texture>$VAR[ListViewIcon2Var]</texture>
 					</control>
-					<control type="label">
-						<width>250</width>
-						<include>MediaFlagLabel</include>
-						<label>Born</label>
-					</control>
-					<control type="label">
-						<left>-260</left>
-						<width>250</width>
-						<include>MediaFlagBigLabel</include>
-						<label>$INFO[Container(10051).ListItem.Property(birthday)]</label>
+					<control type="label" id="5302">
+						<width>auto</width>
+						<font>Font30_Reg</font>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<label>$INFO[Container(10051).ListItem.Property(birthday), ]$INFO[Container(10051).ListItem.Property(deathday), - ]</label>
 					</control>
 				</control>
 				<control type="image">
-					<top>184</top>
+					<top>157</top>
 					<height>4</height>
 					<texture border="0,0,220,0" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
 				</control>
 				<!-- Image containers -->
-				<control type="group">
-					<top>195</top>
-					<right>15</right>
-					<height>348</height>
-					<include content="DialogInfoEmbuaryInfo">
+				<control type="panel" id="10052">
+					<include content="DialogExtraInfo">
 						<param name="id">10052</param>
-						<param name="visible">!Control.HasFocus(112) + !Control.HasFocus(113)</param>
+						<param name="buttonid">111</param>
+						<param name="label">true</param>
 					</include>
-					<include content="DialogInfoEmbuaryInfo">
+				</control>
+				<control type="panel" id="10053">
+					<include content="DialogExtraInfo">
 						<param name="id">10053</param>
-						<param name="visible">Control.HasFocus(112)</param>
+						<param name="buttonid">112</param>
+						<param name="label">true</param>
 					</include>
-					<include content="DialogInfoEmbuaryInfo">
+				</control>
+				<control type="panel" id="10054">
+					<include content="DialogExtraInfo">
 						<param name="id">10054</param>
-						<param name="visible">Control.HasFocus(113)</param>
+						<param name="buttonid">113</param>
+						<param name="label">true</param>
 					</include>
-					<control type="image">
-						<top>332</top>
-						<height>4</height>
-					<texture border="0,0,220,0" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
-					</control>
+				</control>
+				<control type="panel" id="504">
+					<visible>Control.HasFocus(114) | Control.HasFocus(504)</visible>
+					<include>DialogExtraInfoYoutube</include>
+					<content limit="25" target="videos" sortby="file">$INFO[Container(10051).ListItem.Label,plugin://plugin.video.youtube/search/?q=,]</content>
 				</control>
 				<!-- Buttons -->
 				<control type="group" id="9000">
 					<control type="grouplist">
-						<top>533</top>
+						<top>512</top>
 						<left>-10</left>
 						<right>15</right>
 						<onleft>102</onleft>
@@ -122,6 +120,10 @@
 							<label>Images</label>
 							<include>DialogButtonInfo</include>
 						</control>
+						<control type="button" id="114">
+							<label>Youtube</label>
+							<include>DialogButtonInfo</include>
+						</control>
 					</control>
 				</control>
 				<!-- Biography -->
@@ -142,9 +144,9 @@
 					<include>HiddenObject</include>
 				</control>
 				<control type="textbox">
-					<top>623</top>
+					<top>607</top>
 					<right>25</right>
-					<height>309</height>
+					<height>431</height>
 					<include>AutoScrollPlot</include>
 					<label>$INFO[Container(10051).ListItem.Property(biography)]</label>
 				</control>

@@ -17,7 +17,7 @@
 		<value condition="Window.IsActive(MyPlaylist.xml)">$INFO[ListItem.Duration]</value>
 		<value>$INFO[ListItem.Label2]</value>
 	</variable>
-		<variable name="ListLabel2VideoVar">
+	<variable name="ListLabel2VideoVar">
 		<value condition="Container.Content(movies) + [String.IsEqual(Container.SortMethod,$LOCALIZE[556]) | String.Contains(ListItem.FolderPath,recent)]"></value>
 		<value condition="Container.Content(sets) + String.IsEqual(Container.SortMethod,$LOCALIZE[551])">$INFO[ListItem.Year]</value>
 		<value condition="Container.Content(tvshows) + [String.IsEqual(Container.SortMethod,$LOCALIZE[556]) | String.IsEqual(Container.SortMethod,$LOCALIZE[20360])]">$INFO[ListItem.Property(WatchedEpisodes),,/]$INFO[ListItem.Property(TotalEpisodes)]</value>
@@ -259,8 +259,8 @@
 	</variable>
 	<variable name="ListViewInfo3Var">
 		<value condition="Window.IsActive(MyPVRChannels.xml)">$INFO[ListItem.NextTitle, ]</value>
-		<value condition="!String.IsEmpty(Container.ListItem.UserRating)">$INFO[Container.ListItem.UserRating, ,.0  ]</value>
-		<value condition="!String.IsEmpty(Container.ListItem.Rating)">$INFO[Container.ListItem.Rating, ,  ]</value>
+		<value condition="!String.IsEmpty(ListItem.UserRating)">$INFO[ListItem.UserRating, ,.0  ]</value>
+		<value condition="!String.IsEmpty(ListItem.Rating)">$INFO[ListItem.Rating, ,  ]</value>
 	</variable>
 	<variable name="ViewPlotVar">
 		<value condition="!Skin.HasSetting(DisablePlotOutline) + !String.IsEmpty(ListItem.PlotOutline)">$INFO[ListItem.PlotOutline]</value>
@@ -672,15 +672,14 @@
 		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetStyle.1),small)">$LOCALIZE[1438]</value>
 	</variable>
 	<variable name="Widget1ArtworkLabelVar">
-		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork.1),poster)">$LOCALIZE[20021]</value>
-		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork.1),icon)">$LOCALIZE[31061]</value>
+		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork.1),portraiticon)">$LOCALIZE[31248]</value>
+		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork.1),squareicon)">$LOCALIZE[31260]</value>
+		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork.1),landscapeicon)">$LOCALIZE[31250]</value>
 		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork.1),fanart)">$LOCALIZE[20445]</value>
-		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork.1),thumb)">$LOCALIZE[21371]</value>
+		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork.1),thumb)">$LOCALIZE[39114]</value>
 		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork.1),landscape)">$LOCALIZE[31201]</value>
 		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork.1),clearart)">$LOCALIZE[31165]</value>
 		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork.1),clearlogo)">$LOCALIZE[31202]</value>
-		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork.1),discart)">$LOCALIZE[31108]</value>
-		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork.1),characterart)">$LOCALIZE[31162]</value>
 	</variable>
 	<variable name="Widget1AspectLabelVar">
 		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetAspect.1),portrait)">$LOCALIZE[31203]</value>
@@ -881,99 +880,8 @@
 		<value condition="Integer.IsGreater(Container(9060).NumItems,0)">1</value>
 		<value>[COLOR grey]0[/COLOR]</value>
 	</variable>
-	<variable name="AddonSkinShortcutsVar">
-		<value condition="!System.HasAddon(script.skinshortcuts)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[System.AddonVersion(script.skinshortcuts),v, ][COLOR green]✓[/COLOR]</value>
-	</variable>
-	<variable name="AddonColorPickerVar">
-		<value condition="!System.HasAddon(script.skin.helper.colorpicker)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[System.AddonVersion(script.skin.helper.colorpicker),v, ][COLOR green]✓[/COLOR]</value>
-	</variable>
-	<variable name="AddonArtworkBeefVar">
-		<value condition="!System.HasAddon(repository.rector.stuff)">[COLOR red]✕[/COLOR]</value>
-		<value condition="!System.HasAddon(script.artwork.beef)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[System.AddonVersion(script.artwork.beef),v, ][COLOR green]✓[/COLOR]</value>
-	</variable>
-	<variable name="AddonImageResourceVar">
-		<value condition="!System.HasAddon(script.image.resource.select)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[System.AddonVersion(script.image.resource.select),v, ][COLOR green]✓[/COLOR]</value>
-	</variable>
-	<variable name="AddonImageResourceVar">
-		<value condition="!System.HasAddon(script.image.resource.select)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[System.AddonVersion(script.image.resource.select),v, ][COLOR green]✓[/COLOR]</value>
-	</variable>
-	<variable name="AddonWeatherIconsVar">
-		<value condition="!System.HasAddon(script.image.resource.select)">[COLOR red]✕[/COLOR]</value>
-		<value condition="!Skin.String(WeatherIcons.name)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[Skin.String(WeatherIcons.name),, ][COLOR green]✓[/COLOR]</value>
-	</variable>
-	<variable name="AddonWeatherFanartVar">
-		<value condition="!System.HasAddon(script.image.resource.select)">[COLOR red]✕[/COLOR]</value>
-		<value condition="!Skin.String(WeatherFanart.name)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[Skin.String(WeatherFanart.name),, ][COLOR green]✓[/COLOR]</value>
-	</variable>
-	<variable name="AddonCountryIconsVar">
-		<value condition="!System.HasAddon(resource.images.moviecountryicons.flags)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[System.AddonVersion(resource.images.moviecountryicons.flags),v, ][COLOR green]✓[/COLOR]</value>
-	</variable>
-	<variable name="AddonLanguageFlagsVar">
-		<value condition="!System.HasAddon(script.image.resource.select)">[COLOR red]✕[/COLOR]</value>
-		<value condition="!Skin.String(LanguageFlags.name)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[Skin.String(LanguageFlags.name),, ][COLOR green]✓[/COLOR]</value>
-	</variable>
-	<variable name="AddonStudiosVar">
-		<value condition="!System.HasAddon(resource.images.studios.white)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[System.AddonVersion(resource.images.studios.white),v, ][COLOR green]✓[/COLOR]</value>
-	</variable>
-	<variable name="AddonRecordLabelsVar">
-		<value condition="!System.HasAddon(resource.images.recordlabels.white)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[System.AddonVersion(resource.images.recordlabels.white),v, ][COLOR green]✓[/COLOR]</value>
-	</variable>
-
-	<variable name="AddonColouredStudiosVar">
-		<value condition="!System.HasAddon(resource.images.studios.coloured)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[System.AddonVersion(resource.images.studios.coloured),v, ][COLOR green]✓[/COLOR]</value>
-	</variable>
-	<variable name="AdoonMusicGenreIconsVar">
-		<value condition="!System.HasAddon(resource.images.musicgenreicons.text)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[System.AddonVersion(resource.images.musicgenreicons.text),v, ][COLOR green]✓[/COLOR]</value>
-	</variable>
-	<variable name="AddonExtendedInfoVar">
-		<value condition="!System.HasAddon(script.extendedinfo)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[System.AddonVersion(script.extendedinfo),v, ][COLOR green]✓[/COLOR]</value>
-	</variable>
-	<variable name="AddonLyricsVar">
-		<value condition="!System.HasAddon(script.cu.lrclyrics)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[System.AddonVersion(script.cu.lrclyrics),v, ][COLOR green]✓[/COLOR]</value>
-	</variable>
-	<variable name="AddonNextAiredVar">
-		<value condition="!System.HasAddon(script.tv.show.next.aired)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[System.AddonVersion(script.tv.show.next.aired),v, ][COLOR green]✓[/COLOR]</value>
-	</variable>
-	<variable name="AddonSpecialFeaturesVar">
-		<value condition="!System.HasAddon(plugin.video.specialfeatures)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[System.AddonVersion(plugin.video.specialfeatures),v, ][COLOR green]✓[/COLOR]</value>
-	</variable>
-	<variable name="AddonAutoCompletionVar">
-		<value condition="!System.HasAddon(script.module.autocompletion)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[System.AddonVersion(script.module.autocompletion),v, ][COLOR green]✓[/COLOR]</value>
-	</variable>
-	<variable name="AddonTraktVar">
-		<value condition="!System.HasAddon(script.trakt)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[System.AddonVersion(script.trakt),v, ][COLOR green]✓[/COLOR]</value>
-	</variable>
-	<variable name="AddonCinemaVisionVar">
-		<value condition="!System.HasAddon(script.cinemavision)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[System.AddonVersion(script.cinemavision),v, ][COLOR green]✓[/COLOR]</value>
-	</variable>
-	<variable name="AddonLibraryEditorVar">
-		<value condition="!System.HasAddon(script.libraryeditor)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[System.AddonVersion(script.libraryeditor),v, ][COLOR green]✓[/COLOR]</value>
-	</variable>
-	<variable name="AddonSpotifyVar">
-		<value condition="!System.HasAddon(plugin.audio.spotify)">[COLOR red]✕[/COLOR]</value>
-		<value>$INFO[System.AddonVersion(plugin.audio.spotify),v, ][COLOR green]✓[/COLOR]</value>
-	</variable>
+	
+	
 
 
 
@@ -1781,7 +1689,84 @@
 
 
 
-
+	<variable name="RTAllCriticsLabelVar">
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),10)">10</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),9)">9</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),8)">8</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),7)">7</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),6)">6</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),5)">5</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),4)">4</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),3)">3</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),2)">2</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),1)">1</value>
+	</variable>
+	<variable name="RTAllCriticsLabel2Var">
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),0)">0</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),9)">9</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),8)">8</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),7)">7</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),6)">6</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),5)">5</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),4)">4</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),3)">3</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),2)">2</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),1)">1</value>
+	</variable>
+	<variable name="RTAllCriticsIconVar">
+		<value condition="Integer.IsGreater(ListItem.Rating(tomatometerallcritics),7.4) + Integer.IsGreater(ListItem.Votes(tomatometerallcritics),79)">flags/ratings/certified.png</value>
+		<value condition="Integer.IsLess(ListItem.Rating(tomatometerallcritics),6.0)">flags/ratings/rotten.png</value>
+		<value>flags/ratings/fresh.png</value>
+	</variable>
+	<variable name="RTAllAudienceLabelVar">
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),10)">10</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),9)">9</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),8)">8</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),7)">7</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),6)">6</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),5)">5</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),4)">4</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),3)">3</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),2)">2</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),1)">1</value>
+	</variable>
+	<variable name="RTAllAudienceLabel2Var">
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),0)">0</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),9)">9</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),8)">8</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),7)">7</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),6)">6</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),5)">5</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),4)">4</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),3)">3</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),2)">2</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),1)">1</value>
+	</variable>
+	
+	<variable name="MetacriticLabelVar">$INFO[ListItem.Rating(metacritic)]
+		<value condition="String.StartsWith(ListItem.Rating(metacritic),10)">10</value>
+		<value condition="String.StartsWith(ListItem.Rating(metacritic),9)">9</value>
+		<value condition="String.StartsWith(ListItem.Rating(metacritic),8)">8</value>
+		<value condition="String.StartsWith(ListItem.Rating(metacritic),7)">7</value>
+		<value condition="String.StartsWith(ListItem.Rating(metacritic),6)">6</value>
+		<value condition="String.StartsWith(ListItem.Rating(metacritic),5)">5</value>
+		<value condition="String.StartsWith(ListItem.Rating(metacritic),4)">4</value>
+		<value condition="String.StartsWith(ListItem.Rating(metacritic),3)">3</value>
+		<value condition="String.StartsWith(ListItem.Rating(metacritic),2)">2</value>
+		<value condition="String.StartsWith(ListItem.Rating(metacritic),1)">1</value>
+	</variable>
+	<variable name="MetacriticLabel2Var">
+		<value condition="String.EndsWith(ListItem.Rating(metacritic),0)">0</value>
+		<value condition="String.EndsWith(ListItem.Rating(metacritic),9)">9</value>
+		<value condition="String.EndsWith(ListItem.Rating(metacritic),8)">8</value>
+		<value condition="String.EndsWith(ListItem.Rating(metacritic),7)">7</value>
+		<value condition="String.EndsWith(ListItem.Rating(metacritic),6)">6</value>
+		<value condition="String.EndsWith(ListItem.Rating(metacritic),5)">5</value>
+		<value condition="String.EndsWith(ListItem.Rating(metacritic),4)">4</value>
+		<value condition="String.EndsWith(ListItem.Rating(metacritic),3)">3</value>
+		<value condition="String.EndsWith(ListItem.Rating(metacritic),2)">2</value>
+		<value condition="String.EndsWith(ListItem.Rating(metacritic),1)">1</value>
+	</variable>
 
 
 

@@ -69,7 +69,7 @@
 	<propertydefault labelID="disc" property="InfoLine">disc</propertydefault>
 	<!-- Background selection-->
 	<backgroundBrowse>True</backgroundBrowse>
-	<background label="::PLAYLIST::">s:playlist|i:playlist</background>
+	<background label="::PLAYLIST::" icon="DefaultPlaylist.png">s:playlist|i:playlist</background>
 	<background label="31055">$INFO[Skin.String(WeatherFanart.path)]$INFO[Weather.fanartcode]$INFO[Skin.String(WeatherFanart.ext)]</background>
 	<background label="24001" icon="special://skin/extras/backgrounds/addons.jpg">special://skin/extras/backgrounds/addons.jpg</background>
 	<background label="427" icon="special://skin/extras/backgrounds/disc.jpg">special://skin/extras/backgrounds/disc.jpg</background>
@@ -81,7 +81,6 @@
 	<background label="1" icon="special://skin/extras/backgrounds/pictures.jpg">special://skin/extras/backgrounds/pictures.jpg</background>
 	<background label="33060" icon="special://skin/extras/backgrounds/power.jpg">special://skin/extras/backgrounds/power.jpg</background>
 	<background label="19021" icon="special://skin/extras/backgrounds/radio.jpg">special://skin/extras/backgrounds/radio.jpg</background>
-	<background label="137" icon="special://skin/extras/backgrounds/search.jpg">special://skin/extras/backgrounds/search.jpg</background>
 	<background label="13000" icon="special://skin/extras/backgrounds/system.jpg">special://skin/extras/backgrounds/system.jpg</background>
 	<background label="19020" icon="special://skin/extras/backgrounds/tv.jpg">special://skin/extras/backgrounds/tv.jpg</background>
 	<background label="20343" icon="special://skin/extras/backgrounds/tvshows.jpg">special://skin/extras/backgrounds/tvshows.jpg</background>
@@ -109,7 +108,7 @@
 			<shortcut label="20382" icon="icons/addons/kodi-pl.png" widget="library" widgetType="episodes" widgetTarget="videos" condition="Library.HasContent(tvshows)">special://skin/extras/playlists/episodes/recentlyadded.xsp</shortcut>
 			<shortcut label="$ADDON[script.embuary.helper 32013]" icon="icons/addons/embuaryhelper.png" widget="library" widgetType="episodes" widgetTarget="videos" condition="Library.HasContent(tvshows)">plugin://script.embuary.helper/?info=getinprogress&amp;type=tvshow&amp;reload=$INFO[Window(home).Property(EmbuaryWidgetUpdate)]</shortcut>
 			<shortcut label="$ADDON[script.embuary.helper 32008]" icon="icons/addons/embuaryhelper.png" widget="library" widgetType="episodes" widgetTarget="videos" condition="Library.HasContent(tvshows)">plugin://script.embuary.helper/?info=getnextup&amp;reload=$INFO[Window(home).Property(EmbuaryWidgetUpdate)]</shortcut>
-			<shortcut label="31280" icon="icons/addons/nextaired.png" widget="library" widgetType="episodes" widgetTarget="videos" condition="Library.HasContent(tvshows) + System.HasAddon(script.tv.show.next.aired)">$INCLUDE[skinshortcuts-template-NextAiredContent]</shortcut>
+			<shortcut label="31280" icon="icons/addons/nextaired.png" widget="library" widgetType="tvshows" widgetTarget="videos" condition="Library.HasContent(tvshows) + System.HasAddon(script.tv.show.next.aired)">$INCLUDE[skinshortcuts-template-NextAiredContent]</shortcut>
 		</node>
 		<!-- TV Shows -->
 		<node label="20343">
@@ -168,7 +167,7 @@
 		</node>
 		<!-- Games -->
 		<node label="$LOCALIZE[10821]">
-			<shortcut label="35049" widget="addon" widgetType="games" widgetTarget="">addons://sources/game/</shortcut>
+			<shortcut label="35049" widget="addon" widgetType="games" widgetTarget="games">addons://sources/game/</shortcut>
 		</node>
 		<!-- Container.Content(addons) -->
 		<node label="24001">
@@ -235,7 +234,8 @@
 		<!-- Favourites -->
 		<node label="1036">
 			<shortcut label="1036" icon="icons/addons/kodi.png" widget="favourites" widgetType="favourites">favourites://*</shortcut>
-			<shortcut label="Script favourites" icon="icons/addons/favourites.png" widget="favourites" widgetType="favourites" condition="System.HasAddon(script.favourites)">$INCLUDE[skinshortcuts-template-FavouriteContent]</shortcut>
+			<shortcut label="31292" icon="icons/addons/favourites.png" widget="favourites" widgetType="favourites" condition="System.HasAddon(script.favourites)">$INCLUDE[skinshortcuts-template-CustomFavouriteContent]</shortcut>
+			<shortcut label="31294" icon="icons/addons/favourites.png" widget="favourites" widgetType="favourites">$INCLUDE[skinshortcuts-template-CustomFavouriteAddonContent]</shortcut>
 		</node>
 	</widget-groupings>
 	<!-- Widget style -->
@@ -265,83 +265,58 @@
 	<property property="widgetStyle.6" label="$LOCALIZE[1438]">small</property>
 	<!-- Widget 1 Artwork -->
 	<propertySettings property="widgetArtwork.1" buttonID="8014" showNone="false" title="Artwork" requires="widgetStyle.1" templateonly="true"/>
-	<property property="widgetArtwork.1" label="$LOCALIZE[20021]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.1),info)">poster</property>
-	<property property="widgetArtwork.1" label="$LOCALIZE[31061]" condition="String.IsEqual(Container(211).ListItem.Property(widget.1),info)">icon</property>
-	<property property="widgetArtwork.1" label="$LOCALIZE[20445]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.1),picture)">fanart</property>
-	<property property="widgetArtwork.1" label="$LOCALIZE[31201]" condition="String.IsEqual(Container(211).ListItem.Property(widget.1),library) | String.IsEqual(Container(211).ListItem.Property(widget.1),playlist)">landscape</property>
-	<property property="widgetArtwork.1" label="$LOCALIZE[21371]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.1),library) | String.IsEqual(Container(211).ListItem.Property(widget.1),playlist)] + String.IsEqual(Container(211).ListItem.Property(widgetType.1),episodes)">thumb</property>
-	<property property="widgetArtwork.1" label="$LOCALIZE[31165]" condition="String.IsEqual(Container(211).ListItem.Property(widget.1),library) | String.IsEqual(Container(211).ListItem.Property(widget.1),playlist)">clearart</property>
-	<property property="widgetArtwork.1" label="$LOCALIZE[31202]" condition="String.IsEqual(Container(211).ListItem.Property(widget.1),library) | String.IsEqual(Container(211).ListItem.Property(widget.1),playlist)">clearlogo</property>
+	<property property="widgetArtwork.1" label="$LOCALIZE[31248]">portraiticon</property>
+	<property property="widgetArtwork.1" label="$LOCALIZE[31260]">squareicon</property>
+	<property property="widgetArtwork.1" label="$LOCALIZE[31250]">landscapeicon</property>
+	<property property="widgetArtwork.1" label="$LOCALIZE[20445]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.1),favourites) + !String.IsEqual(Container(211).ListItem.Property(widgetType.1),picture) + !String.IsEqual(Container(211).ListItem.Property(widget.1),pvr)">fanart</property>
+	<property property="widgetArtwork.1" label="$LOCALIZE[39114]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.1),library) | String.IsEqual(Container(211).ListItem.Property(widget.1),playlist)] + String.IsEqual(Container(211).ListItem.Property(widgetType.1),episodes)">thumb</property>
+	<property property="widgetArtwork.1" label="$LOCALIZE[31165]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.1),library) | String.IsEqual(Container(211).ListItem.Property(widget.1),playlist)] + [String.IsEqual(Container(211).ListItem.Property(widgetType.1),movies) | String.IsEqual(Container(211).ListItem.Property(widgetType.1),episodes) | String.IsEqual(Container(211).ListItem.Property(widgetType.1),tvshows) | String.IsEqual(Container(211).ListItem.Property(widgetType.1),musicvideos) | String.IsEqual(Container(211).ListItem.Property(widgetType.1),artists)]">clearart</property>
+	<property property="widgetArtwork.1" label="$LOCALIZE[31202]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.1),library) | String.IsEqual(Container(211).ListItem.Property(widget.1),playlist)] + [String.IsEqual(Container(211).ListItem.Property(widgetType.1),movies) | String.IsEqual(Container(211).ListItem.Property(widgetType.1),episodes) | String.IsEqual(Container(211).ListItem.Property(widgetType.1),tvshows) | String.IsEqual(Container(211).ListItem.Property(widgetType.1),musicvideos) | String.IsEqual(Container(211).ListItem.Property(widgetType.1),artists)]">clearlogo</property>
 	<!-- Widget 2 Artwork -->
 	<propertySettings property="widgetArtwork.2" buttonID="8024" showNone="false" title="Artwork" requires="widgetStyle.2" templateonly="true"/>
-	<property property="widgetArtwork.2" label="$LOCALIZE[20021]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.2),info)">poster</property>
-	<property property="widgetArtwork.2" label="$LOCALIZE[31061]" condition="String.IsEqual(Container(211).ListItem.Property(widget.2),info)">icon</property>
-	<property property="widgetArtwork.2" label="$LOCALIZE[20445]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.2),picture)">fanart</property>
-	<property property="widgetArtwork.2" label="$LOCALIZE[31201]" condition="String.IsEqual(Container(211).ListItem.Property(widget.2),library) | String.IsEqual(Container(211).ListItem.Property(widget.2),playlist)">landscape</property>
-	<property property="widgetArtwork.2" label="$LOCALIZE[21371]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.2),library) | String.IsEqual(Container(211).ListItem.Property(widget.2),playlist)] + String.IsEqual(Container(211).ListItem.Property(widgetType.2),episodes)">thumb</property>
-	<property property="widgetArtwork.2" label="$LOCALIZE[31165]" condition="String.IsEqual(Container(211).ListItem.Property(widget.2),library) | String.IsEqual(Container(211).ListItem.Property(widget.2),playlist)">clearart</property>
-	<property property="widgetArtwork.2" label="$LOCALIZE[31202]" condition="String.IsEqual(Container(211).ListItem.Property(widget.2),library) | String.IsEqual(Container(211).ListItem.Property(widget.2),playlist)">clearlogo</property>
+	<property property="widgetArtwork.2" label="$LOCALIZE[31248]">portraiticon</property>
+	<property property="widgetArtwork.2" label="$LOCALIZE[31260]">squareicon</property>
+	<property property="widgetArtwork.2" label="$LOCALIZE[31250]">landscapeicon</property>
+	<property property="widgetArtwork.2" label="$LOCALIZE[20445]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.2),picture) + !String.IsEqual(Container(211).ListItem.Property(widget.2),pvr)">fanart</property>
+	<property property="widgetArtwork.2" label="$LOCALIZE[39114]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.2),library) | String.IsEqual(Container(211).ListItem.Property(widget.2),playlist)] + String.IsEqual(Container(211).ListItem.Property(widgetType.2),episodes)">thumb</property>
+	<property property="widgetArtwork.2" label="$LOCALIZE[31165]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.2),library) | String.IsEqual(Container(211).ListItem.Property(widget.2),playlist)] + [String.IsEqual(Container(211).ListItem.Property(widgetType.2),movies) | String.IsEqual(Container(211).ListItem.Property(widgetType.2),episodes) | String.IsEqual(Container(211).ListItem.Property(widgetType.2),tvshows) | String.IsEqual(Container(211).ListItem.Property(widgetType.2),musicvideos) | String.IsEqual(Container(211).ListItem.Property(widgetType.2),artists)]">clearart</property>
+	<property property="widgetArtwork.2" label="$LOCALIZE[31202]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.2),library) | String.IsEqual(Container(211).ListItem.Property(widget.2),playlist)] + [String.IsEqual(Container(211).ListItem.Property(widgetType.2),movies) | String.IsEqual(Container(211).ListItem.Property(widgetType.2),episodes) | String.IsEqual(Container(211).ListItem.Property(widgetType.2),tvshows) | String.IsEqual(Container(211).ListItem.Property(widgetType.2),musicvideos) | String.IsEqual(Container(211).ListItem.Property(widgetType.2),artists)]">clearlogo</property>
 	<!-- Widget 3 Artwork -->
 	<propertySettings property="widgetArtwork.3" buttonID="8034" showNone="false" title="Artwork" requires="widgetStyle.3" templateonly="true"/>
-	<property property="widgetArtwork.3" label="$LOCALIZE[20021]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.3),info)">poster</property>
-	<property property="widgetArtwork.3" label="$LOCALIZE[31061]" condition="String.IsEqual(Container(211).ListItem.Property(widget.3),info)">icon</property>
-	<property property="widgetArtwork.3" label="$LOCALIZE[20445]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.3),picture)">fanart</property>
-	<property property="widgetArtwork.3" label="$LOCALIZE[31201]" condition="String.IsEqual(Container(211).ListItem.Property(widget.3),library) | String.IsEqual(Container(211).ListItem.Property(widget.3),playlist)">landscape</property>
-	<property property="widgetArtwork.3" label="$LOCALIZE[21371]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.3),library) | String.IsEqual(Container(211).ListItem.Property(widget.3),playlist)] + String.IsEqual(Container(211).ListItem.Property(widgetType.3),episodes)">thumb</property>
-	<property property="widgetArtwork.3" label="$LOCALIZE[31165]" condition="String.IsEqual(Container(211).ListItem.Property(widget.3),library) | String.IsEqual(Container(211).ListItem.Property(widget.3),playlist)">clearart</property>
-	<property property="widgetArtwork.3" label="$LOCALIZE[31202]" condition="String.IsEqual(Container(211).ListItem.Property(widget.3),library) | String.IsEqual(Container(211).ListItem.Property(widget.3),playlist)">clearlogo</property>
+	<property property="widgetArtwork.3" label="$LOCALIZE[31248]">portraiticon</property>
+	<property property="widgetArtwork.3" label="$LOCALIZE[31260]">squareicon</property>
+	<property property="widgetArtwork.3" label="$LOCALIZE[31250]">landscapeicon</property>
+	<property property="widgetArtwork.3" label="$LOCALIZE[20445]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.3),picture) + !String.IsEqual(Container(211).ListItem.Property(widget.3),pvr)">fanart</property>
+	<property property="widgetArtwork.3" label="$LOCALIZE[39114]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.3),library) | String.IsEqual(Container(211).ListItem.Property(widget.3),playlist)] + String.IsEqual(Container(211).ListItem.Property(widgetType.3),episodes)">thumb</property>
+	<property property="widgetArtwork.3" label="$LOCALIZE[31165]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.3),library) | String.IsEqual(Container(211).ListItem.Property(widget.3),playlist)] + [String.IsEqual(Container(211).ListItem.Property(widgetType.3),movies) | String.IsEqual(Container(211).ListItem.Property(widgetType.3),episodes) | String.IsEqual(Container(211).ListItem.Property(widgetType.3),tvshows) | String.IsEqual(Container(211).ListItem.Property(widgetType.3),musicvideos) | String.IsEqual(Container(211).ListItem.Property(widgetType.3),artists)]">clearart</property>
+	<property property="widgetArtwork.3" label="$LOCALIZE[31202]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.3),library) | String.IsEqual(Container(211).ListItem.Property(widget.3),playlist)] + [String.IsEqual(Container(211).ListItem.Property(widgetType.3),movies) | String.IsEqual(Container(211).ListItem.Property(widgetType.3),episodes) | String.IsEqual(Container(211).ListItem.Property(widgetType.3),tvshows) | String.IsEqual(Container(211).ListItem.Property(widgetType.3),musicvideos) | String.IsEqual(Container(211).ListItem.Property(widgetType.3),artists)]">clearlogo</property>
 	<!-- Widget 4 Artwork -->
 	<propertySettings property="widgetArtwork.4" buttonID="8044" showNone="false" title="Artwork" requires="widgetStyle.4" templateonly="true"/>
-	<property property="widgetArtwork.4" label="$LOCALIZE[20021]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.4),info)">poster</property>
-	<property property="widgetArtwork.4" label="$LOCALIZE[31061]" condition="String.IsEqual(Container(211).ListItem.Property(widget.4),info)">icon</property>
-	<property property="widgetArtwork.4" label="$LOCALIZE[20445]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.4),picture)">fanart</property>
-	<property property="widgetArtwork.4" label="$LOCALIZE[31201]" condition="String.IsEqual(Container(211).ListItem.Property(widget.4),library) | String.IsEqual(Container(211).ListItem.Property(widget.4),playlist)">landscape</property>
-	<property property="widgetArtwork.4" label="$LOCALIZE[21371]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.4),library) | String.IsEqual(Container(211).ListItem.Property(widget.4),playlist)] + String.IsEqual(Container(211).ListItem.Property(widgetType.4),episodes)">thumb</property>
-	<property property="widgetArtwork.4" label="$LOCALIZE[31165]" condition="String.IsEqual(Container(211).ListItem.Property(widget.4),library) | String.IsEqual(Container(211).ListItem.Property(widget.4),playlist)">clearart</property>
-	<property property="widgetArtwork.4" label="$LOCALIZE[31202]" condition="String.IsEqual(Container(211).ListItem.Property(widget.4),library) | String.IsEqual(Container(211).ListItem.Property(widget.4),playlist)">clearlogo</property>
+	<property property="widgetArtwork.4" label="$LOCALIZE[31248]">portraiticon</property>
+	<property property="widgetArtwork.4" label="$LOCALIZE[31260]">squareicon</property>
+	<property property="widgetArtwork.4" label="$LOCALIZE[31250]">landscapeicon</property>
+	<property property="widgetArtwork.4" label="$LOCALIZE[20445]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.4),picture) + !String.IsEqual(Container(211).ListItem.Property(widget.4),pvr)">fanart</property>
+	<property property="widgetArtwork.4" label="$LOCALIZE[39114]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.4),library) | String.IsEqual(Container(211).ListItem.Property(widget.4),playlist)] + String.IsEqual(Container(211).ListItem.Property(widgetType.4),episodes)">thumb</property>
+	<property property="widgetArtwork.4" label="$LOCALIZE[31165]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.4),library) | String.IsEqual(Container(211).ListItem.Property(widget.4),playlist)] + [String.IsEqual(Container(211).ListItem.Property(widgetType.4),movies) | String.IsEqual(Container(211).ListItem.Property(widgetType.4),episodes) | String.IsEqual(Container(211).ListItem.Property(widgetType.4),tvshows) | String.IsEqual(Container(211).ListItem.Property(widgetType.4),musicvideos) | String.IsEqual(Container(211).ListItem.Property(widgetType.4),artists)]">clearart</property>
+	<property property="widgetArtwork.4" label="$LOCALIZE[31202]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.4),library) | String.IsEqual(Container(211).ListItem.Property(widget.4),playlist)] + [String.IsEqual(Container(211).ListItem.Property(widgetType.4),movies) | String.IsEqual(Container(211).ListItem.Property(widgetType.4),episodes) | String.IsEqual(Container(211).ListItem.Property(widgetType.4),tvshows) | String.IsEqual(Container(211).ListItem.Property(widgetType.4),musicvideos) | String.IsEqual(Container(211).ListItem.Property(widgetType.4),artists)]">clearlogo</property>
 	<!-- Widget 5 Artwork -->
 	<propertySettings property="widgetArtwork.5" buttonID="8054" showNone="false" title="Artwork" requires="widgetStyle.5" templateonly="true"/>
-	<property property="widgetArtwork.5" label="$LOCALIZE[20021]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.5),info)">poster</property>
-	<property property="widgetArtwork.5" label="$LOCALIZE[31061]" condition="String.IsEqual(Container(211).ListItem.Property(widget.5),info)">icon</property>
-	<property property="widgetArtwork.5" label="$LOCALIZE[20445]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.5),picture)">fanart</property>
-	<property property="widgetArtwork.5" label="$LOCALIZE[31201]" condition="String.IsEqual(Container(211).ListItem.Property(widget.5),library) | String.IsEqual(Container(211).ListItem.Property(widget.5),playlist)">landscape</property>
-	<property property="widgetArtwork.5" label="$LOCALIZE[21371]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.5),library) | String.IsEqual(Container(211).ListItem.Property(widget.5),playlist)] + String.IsEqual(Container(211).ListItem.Property(widgetType.5),episodes)">thumb</property>
-	<property property="widgetArtwork.5" label="$LOCALIZE[31165]" condition="String.IsEqual(Container(211).ListItem.Property(widget.5),library) | String.IsEqual(Container(211).ListItem.Property(widget.5),playlist)">clearart</property>
-	<property property="widgetArtwork.5" label="$LOCALIZE[31202]" condition="String.IsEqual(Container(211).ListItem.Property(widget.5),library) | String.IsEqual(Container(211).ListItem.Property(widget.5),playlist)">clearlogo</property>
+	<property property="widgetArtwork.5" label="$LOCALIZE[31248]">portraiticon</property>
+	<property property="widgetArtwork.5" label="$LOCALIZE[31260]">squareicon</property>
+	<property property="widgetArtwork.5" label="$LOCALIZE[31250]">landscapeicon</property>
+	<property property="widgetArtwork.5" label="$LOCALIZE[20445]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.5),picture) + !String.IsEqual(Container(211).ListItem.Property(widget.5),pvr)">fanart</property>
+	<property property="widgetArtwork.5" label="$LOCALIZE[39114]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.5),library) | String.IsEqual(Container(211).ListItem.Property(widget.5),playlist)] + String.IsEqual(Container(211).ListItem.Property(widgetType.5),episodes)">thumb</property>
+	<property property="widgetArtwork.5" label="$LOCALIZE[31165]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.5),library) | String.IsEqual(Container(211).ListItem.Property(widget.5),playlist)] + [String.IsEqual(Container(211).ListItem.Property(widgetType.5),movies) | String.IsEqual(Container(211).ListItem.Property(widgetType.5),episodes) | String.IsEqual(Container(211).ListItem.Property(widgetType.5),tvshows) | String.IsEqual(Container(211).ListItem.Property(widgetType.5),musicvideos) | String.IsEqual(Container(211).ListItem.Property(widgetType.5),artists)]">clearart</property>
+	<property property="widgetArtwork.5" label="$LOCALIZE[31202]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.5),library) | String.IsEqual(Container(211).ListItem.Property(widget.5),playlist)] + [String.IsEqual(Container(211).ListItem.Property(widgetType.5),movies) | String.IsEqual(Container(211).ListItem.Property(widgetType.5),episodes) | String.IsEqual(Container(211).ListItem.Property(widgetType.5),tvshows) | String.IsEqual(Container(211).ListItem.Property(widgetType.5),musicvideos) | String.IsEqual(Container(211).ListItem.Property(widgetType.5),artists)]">clearlogo</property>
 	<!-- Widget 6 Artwork -->
 	<propertySettings property="widgetArtwork.6" buttonID="8064" showNone="false" title="Artwork" requires="widgetStyle.6" templateonly="true"/>
-	<property property="widgetArtwork.6" label="$LOCALIZE[20021]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.6),info)">poster</property>
-	<property property="widgetArtwork.6" label="$LOCALIZE[31061]" condition="String.IsEqual(Container(211).ListItem.Property(widget.6),info)">icon</property>
-	<property property="widgetArtwork.6" label="$LOCALIZE[20445]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.6),picture)">fanart</property>
-	<property property="widgetArtwork.6" label="$LOCALIZE[31201]" condition="String.IsEqual(Container(211).ListItem.Property(widget.6),library) | String.IsEqual(Container(211).ListItem.Property(widget.6),playlist)">landscape</property>
-	<property property="widgetArtwork.6" label="$LOCALIZE[21371]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.6),library) | String.IsEqual(Container(211).ListItem.Property(widget.6),playlist)] + String.IsEqual(Container(211).ListItem.Property(widgetType.6),episodes)">thumb</property>
-	<property property="widgetArtwork.6" label="$LOCALIZE[31165]" condition="String.IsEqual(Container(211).ListItem.Property(widget.6),library) | String.IsEqual(Container(211).ListItem.Property(widget.6),playlist)">clearart</property>
-	<property property="widgetArtwork.6" label="$LOCALIZE[31202]" condition="String.IsEqual(Container(211).ListItem.Property(widget.6),library) | String.IsEqual(Container(211).ListItem.Property(widget.6),playlist)">clearlogo</property>
-	<!-- Widget aspect -->
-	<propertySettings property="widgetAspect.1" buttonID="8015" showNone="false" title="Aspect" requires="widgetStyle.1" templateonly="true"/>
-	<property property="widgetAspect.1" label="Portrait" condition="!String.IsEqual(Container(211).ListItem.Property(widget.1),info)">portrait</property>
-	<property property="widgetAspect.1" label="Square">square</property>
-	<property property="widgetAspect.1" label="Landscape">landscape</property>
-	<propertySettings property="widgetAspect.2" buttonID="8025" showNone="false" title="Aspect" requires="widgetStyle.2" templateonly="true"/>
-	<property property="widgetAspect.2" label="Portrait" condition="!String.IsEqual(Container(211).ListItem.Property(widget.2),info)">portrait</property>
-	<property property="widgetAspect.2" label="Square">square</property>
-	<property property="widgetAspect.2" label="Landscape">landscape</property>
-	<propertySettings property="widgetAspect.3" buttonID="8035" showNone="false" title="Aspect" requires="widgetStyle.2" templateonly="true"/>
-	<property property="widgetAspect.3" label="Portrait" condition="!String.IsEqual(Container(211).ListItem.Property(widget.3),info)">portrait</property>
-	<property property="widgetAspect.3" label="Square">square</property>
-	<property property="widgetAspect.3" label="Landscape">landscape</property>
-	<propertySettings property="widgetAspect.4" buttonID="8045" showNone="false" title="Aspect" requires="widgetStyle.2" templateonly="true"/>
-	<property property="widgetAspect.4" label="Portrait" condition="!String.IsEqual(Container(211).ListItem.Property(widget.4),info)">portrait</property>
-	<property property="widgetAspect.4" label="Square">square</property>
-	<property property="widgetAspect.4" label="Landscape">landscape</property>
-	<propertySettings property="widgetAspect.5" buttonID="8055" showNone="false" title="Aspect" requires="widgetStyle.2" templateonly="true"/>
-	<property property="widgetAspect.5" label="Portrait" condition="!String.IsEqual(Container(211).ListItem.Property(widget.5),info)">portrait</property>
-	<property property="widgetAspect.5" label="Square">square</property>
-	<property property="widgetAspect.5" label="Landscape">landscape</property>
-	<propertySettings property="widgetAspect.6" buttonID="8065" showNone="false" title="Aspect" requires="widgetStyle.2" templateonly="true"/>
-	<property property="widgetAspect.6" label="Portrait" condition="!String.IsEqual(Container(211).ListItem.Property(widget.6),info)">portrait</property>
-	<property property="widgetAspect.6" label="Square">square</property>
-	<property property="widgetAspect.6" label="Landscape">landscape</property>
+	<property property="widgetArtwork.6" label="$LOCALIZE[31248]">portraiticon</property>
+	<property property="widgetArtwork.6" label="$LOCALIZE[31260]">squareicon</property>
+	<property property="widgetArtwork.6" label="$LOCALIZE[31250]">landscapeicon</property>
+	<property property="widgetArtwork.6" label="$LOCALIZE[20445]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.6),picture) + !String.IsEqual(Container(211).ListItem.Property(widget.6),pvr)">fanart</property>
+	<property property="widgetArtwork.6" label="$LOCALIZE[39114]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.6),library) | String.IsEqual(Container(211).ListItem.Property(widget.6),playlist)] + String.IsEqual(Container(211).ListItem.Property(widgetType.6),episodes)">thumb</property>
+	<property property="widgetArtwork.6" label="$LOCALIZE[31165]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.6),library) | String.IsEqual(Container(211).ListItem.Property(widget.6),playlist)] + [String.IsEqual(Container(211).ListItem.Property(widgetType.6),movies) | String.IsEqual(Container(211).ListItem.Property(widgetType.6),episodes) | String.IsEqual(Container(211).ListItem.Property(widgetType.6),tvshows) | String.IsEqual(Container(211).ListItem.Property(widgetType.6),musicvideos) | String.IsEqual(Container(211).ListItem.Property(widgetType.6),artists)]">clearart</property>
+	<property property="widgetArtwork.6" label="$LOCALIZE[31202]" condition="[String.IsEqual(Container(211).ListItem.Property(widget.6),library) | String.IsEqual(Container(211).ListItem.Property(widget.6),playlist)] + [String.IsEqual(Container(211).ListItem.Property(widgetType.6),movies) | String.IsEqual(Container(211).ListItem.Property(widgetType.6),episodes) | String.IsEqual(Container(211).ListItem.Property(widgetType.6),tvshows) | String.IsEqual(Container(211).ListItem.Property(widgetType.6),musicvideos) | String.IsEqual(Container(211).ListItem.Property(widgetType.6),artists)]">clearlogo</property>
 	<!-- Widget fallback if empty -->
 	<!-- NOTE: values cannot be empty when using python in the template.xml or template will not build -->
 	<propertyfallback property="widgetType.1">none</propertyfallback>
@@ -362,85 +337,42 @@
 	<propertyfallback property="widgetCaseVideo.5">false</propertyfallback>
 	<propertyfallback property="widgetCaseMusic.6">false</propertyfallback>
 	<propertyfallback property="widgetCaseVideo.6">false</propertyfallback>
-	<propertyfallback property="widgetArtwork.1" attribute="widget.1" value="info">icon</propertyfallback>
-	<propertyfallback property="widgetArtwork.1">poster</propertyfallback>
-	<propertyfallback property="widgetArtwork.2" attribute="widget.2" value="info">icon</propertyfallback>
-	<propertyfallback property="widgetArtwork.2">poster</propertyfallback>
-	<propertyfallback property="widgetArtwork.3" attribute="widget.3" value="info">icon</propertyfallback>
-	<propertyfallback property="widgetArtwork.3">poster</propertyfallback>
-	<propertyfallback property="widgetArtwork.4" attribute="widget.4" value="info">icon</propertyfallback>
-	<propertyfallback property="widgetArtwork.4">poster</propertyfallback>
-	<propertyfallback property="widgetArtwork.5" attribute="widget.5" value="info">icon</propertyfallback>
-	<propertyfallback property="widgetArtwork.5">poster</propertyfallback>
-	<propertyfallback property="widgetArtwork.6" attribute="widget.6" value="info">icon</propertyfallback>
-	<propertyfallback property="widgetArtwork.6">poster</propertyfallback>
+	<propertyfallback property="widgetArtwork.1" attribute="widgetType.1" value="movies">portraiticon</propertyfallback>
+	<propertyfallback property="widgetArtwork.1" attribute="widgetType.1" value="tvshows">portraiticon</propertyfallback>
+	<propertyfallback property="widgetArtwork.1" attribute="widgetType.1" value="episodes">portraiticon</propertyfallback>
+	<propertyfallback property="widgetArtwork.1" attribute="widgetType.1" value="picture">landscapeicon</propertyfallback>
+	<propertyfallback property="widgetArtwork.1">squareicon</propertyfallback>
+	<propertyfallback property="widgetArtwork.2" attribute="widgetType.2" value="movies">portraiticon</propertyfallback>
+	<propertyfallback property="widgetArtwork.2" attribute="widgetType.2" value="tvshows">portraiticon</propertyfallback>
+	<propertyfallback property="widgetArtwork.2" attribute="widgetType.2" value="episodes">portraiticon</propertyfallback>
+	<propertyfallback property="widgetArtwork.2" attribute="widgetType.2" value="picture">landscapeicon</propertyfallback>
+	<propertyfallback property="widgetArtwork.2">squareicon</propertyfallback>
+	<propertyfallback property="widgetArtwork.3" attribute="widgetType.3" value="movies">portraiticon</propertyfallback>
+	<propertyfallback property="widgetArtwork.3" attribute="widgetType.3" value="tvshows">portraiticon</propertyfallback>
+	<propertyfallback property="widgetArtwork.3" attribute="widgetType.3" value="episodes">portraiticon</propertyfallback>
+	<propertyfallback property="widgetArtwork.3" attribute="widgetType.3" value="picture">landscapeicon</propertyfallback>
+	<propertyfallback property="widgetArtwork.3">squareicon</propertyfallback>
+	<propertyfallback property="widgetArtwork.4" attribute="widgetType.4" value="movies">portraiticon</propertyfallback>
+	<propertyfallback property="widgetArtwork.4" attribute="widgetType.4" value="tvshows">portraiticon</propertyfallback>
+	<propertyfallback property="widgetArtwork.4" attribute="widgetType.4" value="episodes">portraiticon</propertyfallback>
+	<propertyfallback property="widgetArtwork.4" attribute="widgetType.4" value="picture">landscapeicon</propertyfallback>
+	<propertyfallback property="widgetArtwork.4">squareicon</propertyfallback>
+	<propertyfallback property="widgetArtwork.5" attribute="widgetType.5" value="movies">portraiticon</propertyfallback>
+	<propertyfallback property="widgetArtwork.5" attribute="widgetType.5" value="tvshows">portraiticon</propertyfallback>
+	<propertyfallback property="widgetArtwork.5" attribute="widgetType.5" value="episodes">portraiticon</propertyfallback>
+	<propertyfallback property="widgetArtwork.5" attribute="widgetType.5" value="picture">landscapeicon</propertyfallback>
+	<propertyfallback property="widgetArtwork.5">squareicon</propertyfallback>
+	<propertyfallback property="widgetArtwork.6" attribute="widgetType.6" value="movies">portraiticon</propertyfallback>
+	<propertyfallback property="widgetArtwork.6" attribute="widgetType.6" value="tvshows">portraiticon</propertyfallback>
+	<propertyfallback property="widgetArtwork.6" attribute="widgetType.6" value="episodes">portraiticon</propertyfallback>
+	<propertyfallback property="widgetArtwork.6" attribute="widgetType.6" value="picture">landscapeicon</propertyfallback>
+	<propertyfallback property="widgetArtwork.6">squareicon</propertyfallback>
 	<propertyfallback property="widgetStyle.1">medium</propertyfallback>
 	<propertyfallback property="widgetStyle.2">medium</propertyfallback>
 	<propertyfallback property="widgetStyle.3">medium</propertyfallback>
 	<propertyfallback property="widgetStyle.4">medium</propertyfallback>
 	<propertyfallback property="widgetStyle.5">medium</propertyfallback>
 	<propertyfallback property="widgetStyle.6">medium</propertyfallback>
-	<!-- <propertyfallback property="widgetAspect.1" attribute="widgetArtwork.1" value="poster">portrait</propertyfallback>
-	<propertyfallback property="widgetAspect.1" attribute="widgetType.1" value="artists">square</propertyfallback>
-	<propertyfallback property="widgetAspect.1" attribute="widgetType.1" value="albums">square</propertyfallback>
-	<propertyfallback property="widgetAspect.1" attribute="widgetType.1" value="songs">square</propertyfallback>
-	<propertyfallback property="widgetAspect.1" attribute="widgetType.1" value="musicvideos">square</propertyfallback>
-	<propertyfallback property="widgetAspect.1" attribute="widget.1" value="info">square</propertyfallback>
-	<propertyfallback property="widgetAspect.1" attribute="widget.1" value="pvr">square</propertyfallback>
-	<propertyfallback property="widgetAspect.1" attribute="widget.1" value="addon">square</propertyfallback>
-	<propertyfallback property="widgetAspect.1" attribute="widget.1" value="info">square</propertyfallback>
-	<propertyfallback property="widgetAspect.1" attribute="widgetType.1" value="picture">landscape</propertyfallback> -->
-	<propertyfallback property="widgetAspect.1">portrait</propertyfallback>
-	<propertyfallback property="widgetAspect.2" attribute="widgetType.2" value="artists">square</propertyfallback>
-	<propertyfallback property="widgetAspect.2" attribute="widgetType.2" value="albums">square</propertyfallback>
-	<propertyfallback property="widgetAspect.2" attribute="widgetType.2" value="songs">square</propertyfallback>
-	<propertyfallback property="widgetAspect.2" attribute="widgetType.2" value="musicvideos">square</propertyfallback>
-	<propertyfallback property="widgetAspect.2" attribute="widget.2" value="info">square</propertyfallback>
-	<propertyfallback property="widgetAspect.2" attribute="widget.2" value="pvr">square</propertyfallback>
-	<propertyfallback property="widgetAspect.2" attribute="widget.2" value="addon">square</propertyfallback>
-	<propertyfallback property="widgetAspect.2" attribute="widget.2" value="info">square</propertyfallback>
-	<propertyfallback property="widgetAspect.2" attribute="widgetType.2" value="picture">landscape</propertyfallback>
-	<propertyfallback property="widgetAspect.2">portrait</propertyfallback>
-	<propertyfallback property="widgetAspect.3" attribute="widgetType.3" value="artists">square</propertyfallback>
-	<propertyfallback property="widgetAspect.3" attribute="widgetType.3" value="albums">square</propertyfallback>
-	<propertyfallback property="widgetAspect.3" attribute="widgetType.3" value="songs">square</propertyfallback>
-	<propertyfallback property="widgetAspect.3" attribute="widgetType.3" value="musicvideos">square</propertyfallback>
-	<propertyfallback property="widgetAspect.3" attribute="widget.3" value="info">square</propertyfallback>
-	<propertyfallback property="widgetAspect.3" attribute="widget.3" value="pvr">square</propertyfallback>
-	<propertyfallback property="widgetAspect.3" attribute="widget.3" value="addon">square</propertyfallback>
-	<propertyfallback property="widgetAspect.3" attribute="widget.3" value="info">square</propertyfallback>
-	<propertyfallback property="widgetAspect.3" attribute="widgetType.3" value="picture">landscape</propertyfallback>
-	<propertyfallback property="widgetAspect.3">portrait</propertyfallback>
-	<propertyfallback property="widgetAspect.4" attribute="widgetType.4" value="artists">square</propertyfallback>
-	<propertyfallback property="widgetAspect.4" attribute="widgetType.4" value="albums">square</propertyfallback>
-	<propertyfallback property="widgetAspect.4" attribute="widgetType.4" value="songs">square</propertyfallback>
-	<propertyfallback property="widgetAspect.4" attribute="widgetType.4" value="musicvideos">square</propertyfallback>
-	<propertyfallback property="widgetAspect.4" attribute="widget.4" value="info">square</propertyfallback>
-	<propertyfallback property="widgetAspect.4" attribute="widget.4" value="pvr">square</propertyfallback>
-	<propertyfallback property="widgetAspect.4" attribute="widget.4" value="addon">square</propertyfallback>
-	<propertyfallback property="widgetAspect.4" attribute="widget.4" value="info">square</propertyfallback>
-	<propertyfallback property="widgetAspect.4" attribute="widgetType.4" value="picture">landscape</propertyfallback>
-	<propertyfallback property="widgetAspect.4">portrait</propertyfallback>
-	<propertyfallback property="widgetAspect.5" attribute="widgetType.5" value="artists">square</propertyfallback>
-	<propertyfallback property="widgetAspect.5" attribute="widgetType.5" value="albums">square</propertyfallback>
-	<propertyfallback property="widgetAspect.5" attribute="widgetType.5" value="songs">square</propertyfallback>
-	<propertyfallback property="widgetAspect.5" attribute="widgetType.5" value="musicvideos">square</propertyfallback>
-	<propertyfallback property="widgetAspect.5" attribute="widget.5" value="info">square</propertyfallback>
-	<propertyfallback property="widgetAspect.5" attribute="widget.5" value="pvr">square</propertyfallback>
-	<propertyfallback property="widgetAspect.5" attribute="widget.5" value="addon">square</propertyfallback>
-	<propertyfallback property="widgetAspect.5" attribute="widget.5" value="info">square</propertyfallback>
-	<propertyfallback property="widgetAspect.5" attribute="widgetType.5" value="picture">landscape</propertyfallback>
-	<propertyfallback property="widgetAspect.5">portrait</propertyfallback>
-	<propertyfallback property="widgetAspect.6" attribute="widgetType.6" value="artists">square</propertyfallback>
-	<propertyfallback property="widgetAspect.6" attribute="widgetType.6" value="albums">square</propertyfallback>
-	<propertyfallback property="widgetAspect.6" attribute="widgetType.6" value="songs">square</propertyfallback>
-	<propertyfallback property="widgetAspect.6" attribute="widgetType.6" value="musicvideos">square</propertyfallback>
-	<propertyfallback property="widgetAspect.6" attribute="widget.6" value="info">square</propertyfallback>
-	<propertyfallback property="widgetAspect.6" attribute="widget.6" value="pvr">square</propertyfallback>
-	<propertyfallback property="widgetAspect.6" attribute="widget.6" value="addon">square</propertyfallback>
-	<propertyfallback property="widgetAspect.6" attribute="widget.6" value="info">square</propertyfallback>
-	<propertyfallback property="widgetAspect.6" attribute="widgetType.6" value="picture">landscape</propertyfallback>
-	<propertyfallback property="widgetAspect.6">portrait</propertyfallback>
 	<!-- Infolines -->
 	<property property="InfoLine" label="$LOCALIZE[20342]">movies</property>
 	<property property="InfoLine" label="$LOCALIZE[20343]">tvshows</property>
@@ -467,7 +399,7 @@
 		<action>Action(Close)</action>
 		<action>::ACTION::</action>
 	</override>
-	
+	<!-- Onback - prevents the shortcut dialog closing for widgets -->
 	<onback to="501">801</onback>
 	<onback to="501">8011</onback>
 	<onback to="501">8012</onback>
@@ -475,6 +407,9 @@
 	<onback to="501">8014</onback>
 	<onback to="501">8015</onback>
 	<onback to="501">8016</onback>
+	<onback to="501">8017</onback>
+	<onback to="501">8018</onback>
+	<onback to="501">8019</onback>
 	<onback to="502">802</onback>
 	<onback to="502">8021</onback>
 	<onback to="502">8022</onback>
@@ -482,6 +417,9 @@
 	<onback to="502">8024</onback>
 	<onback to="502">8025</onback>
 	<onback to="502">8026</onback>
+	<onback to="502">8027</onback>
+	<onback to="502">8028</onback>
+	<onback to="502">8029</onback>
 	<onback to="503">803</onback>
 	<onback to="503">8031</onback>
 	<onback to="503">8032</onback>
@@ -489,6 +427,9 @@
 	<onback to="503">8034</onback>
 	<onback to="503">8035</onback>
 	<onback to="503">8036</onback>
+	<onback to="503">8037</onback>
+	<onback to="503">8038</onback>
+	<onback to="503">8039</onback>
 	<onback to="504">804</onback>
 	<onback to="504">8041</onback>
 	<onback to="504">8042</onback>
@@ -496,6 +437,9 @@
 	<onback to="504">8044</onback>
 	<onback to="504">8045</onback>
 	<onback to="504">8046</onback>
+	<onback to="504">8047</onback>
+	<onback to="504">8048</onback>
+	<onback to="504">8049</onback>
 	<onback to="505">805</onback>
 	<onback to="505">8051</onback>
 	<onback to="505">8052</onback>
@@ -503,6 +447,9 @@
 	<onback to="505">8054</onback>
 	<onback to="505">8055</onback>
 	<onback to="505">8056</onback>
+	<onback to="505">8057</onback>
+	<onback to="505">8058</onback>
+	<onback to="505">8059</onback>
 	<onback to="506">806</onback>
 	<onback to="506">8061</onback>
 	<onback to="506">8062</onback>
@@ -510,7 +457,11 @@
 	<onback to="506">8064</onback>
 	<onback to="506">8065</onback>
 	<onback to="506">8066</onback>
+	<onback to="506">8067</onback>
+	<onback to="506">8068</onback>
+	<onback to="506">8069</onback>
 	<!-- Remove any default menu item properties that we don't need -->
+	<!-- widgetName must be built as it is required for onup condition for main menu -->
 	<propertySettings property="widget.1" templateonly="true" />
 	<propertySettings property="widgetPath.1" templateonly="true" />
 	<propertySettings property="widgetType.1" templateonly="true" />
@@ -518,9 +469,41 @@
 	<propertySettings property="widgetTarget.1" templateonly="true" />
 	<propertySettings property="widgetCaseMusic.1" templateonly="true" />
 	<propertySettings property="widgetCaseVideo.1" templateonly="true" />
-	
-
-
+	<propertySettings property="widget.2" templateonly="true" />
+	<propertySettings property="widgetPath.2" templateonly="true" />
+	<propertySettings property="widgetType.2" templateonly="true" />
+	<propertySettings property="widgetLabel.2" templateonly="true" />
+	<propertySettings property="widgetTarget.2" templateonly="true" />
+	<propertySettings property="widgetCaseMusic.2" templateonly="true" />
+	<propertySettings property="widgetCaseVideo.2" templateonly="true" />
+	<propertySettings property="widget.3" templateonly="true" />
+	<propertySettings property="widgetPath.3" templateonly="true" />
+	<propertySettings property="widgetType.3" templateonly="true" />
+	<propertySettings property="widgetLabel.3" templateonly="true" />
+	<propertySettings property="widgetTarget.3" templateonly="true" />
+	<propertySettings property="widgetCaseMusic.3" templateonly="true" />
+	<propertySettings property="widgetCaseVideo.3" templateonly="true" />
+	<propertySettings property="widget.4" templateonly="true" />
+	<propertySettings property="widgetPath.4" templateonly="true" />
+	<propertySettings property="widgetType.4" templateonly="true" />
+	<propertySettings property="widgetLabel.4" templateonly="true" />
+	<propertySettings property="widgetTarget.4" templateonly="true" />
+	<propertySettings property="widgetCaseMusic.4" templateonly="true" />
+	<propertySettings property="widgetCaseVideo.4" templateonly="true" />
+	<propertySettings property="widget.5" templateonly="true" />
+	<propertySettings property="widgetPath.5" templateonly="true" />
+	<propertySettings property="widgetType.5" templateonly="true" />
+	<propertySettings property="widgetLabel.5" templateonly="true" />
+	<propertySettings property="widgetTarget.5" templateonly="true" />
+	<propertySettings property="widgetCaseMusic.5" templateonly="true" />
+	<propertySettings property="widgetCaseVideo.5" templateonly="true" />
+	<propertySettings property="widget.6" templateonly="true" />
+	<propertySettings property="widgetPath.6" templateonly="true" />
+	<propertySettings property="widgetType.6" templateonly="true" />
+	<propertySettings property="widgetLabel.6" templateonly="true" />
+	<propertySettings property="widgetTarget.6" templateonly="true" />
+	<propertySettings property="widgetCaseMusic.6" templateonly="true" />
+	<propertySettings property="widgetCaseVideo.6" templateonly="true" />
 	<!-- <propertySettings property="widget" templateonly="True" />
 	<propertySettings property="widgetTarget" templateonly="True" />
 	<propertySettings property="widgetPath" templateonly="True" />

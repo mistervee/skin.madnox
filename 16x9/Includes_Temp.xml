@@ -1276,5 +1276,89 @@
 			</control>
 		</control>
 	</include>
-	
+	<include name="WidgetSelect">
+		<param name="id">1</param>
+		<definition>
+			<control type="button" id="80$PARAM[id]">
+				<left>425</left>
+				<width>1395</width>
+				<height>100%</height>
+				<onclick>back</onclick>
+				<texturefocus />
+				<texturenofocus />
+			</control>
+			<control type="grouplist" id="80$PARAM[id]1">
+				<top>200</top>
+				<left>425</left>
+				<width>1395</width>
+				<height>670</height>
+				<onleft>211</onleft>
+				<onright>60</onright>
+				<pagecontrol>60</pagecontrol>
+				<control type="button" id="80$PARAM[id]2">
+					<label>$LOCALIZE[31289] $PARAM[id]</label>
+					<label2>$INFO[Container(211).ListItem.Property(widgetName.$PARAM[id])]</label2>
+					<onclick>SetProperty(customProperty,widgetArtwork.$PARAM[id])</onclick>
+					<onclick>SendClick(404)</onclick>
+					<onclick>SetProperty(widgetID,$PARAM[id])</onclick>
+					<onclick>SendClick(312)</onclick>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="80$PARAM[id]3">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.$PARAM[id]))</visible>
+					<label>$LOCALIZE[736]</label>
+					<label2>$VAR[Widget1StyleLabelVar]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="80$PARAM[id]4">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.$PARAM[id]))</visible>
+					<label>$LOCALIZE[31044]</label>
+					<label2>$VAR[Widget1ArtworkLabelVar]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="radiobutton" id="80$PARAM[id]6">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.$PARAM[id])) + !String.IsEqual(Container(211).ListItem.Property(widget.$PARAM[id]),info)</visible>
+					<label>$LOCALIZE[21899]</label>
+					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetLabel.$PARAM[id]))">SetProperty(customProperty,widgetLabel.$PARAM[id])</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel.$PARAM[id]))">SetProperty(customProperty,widgetLabel.$PARAM[id])</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel.$PARAM[id]))">SetProperty(customValue,true)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetLabel.$PARAM[id]))</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+				<control type="radiobutton" id="80$PARAM[id]7">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.$PARAM[id])) + String.IsEqual(Container(211).ListItem.Property(widgetArtwork.$PARAM[id]),portraiticon) + [String.IsEqual(Container(211).ListItem.Property(widgetType.$PARAM[id]),movies) | String.IsEqual(Container(211).ListItem.Property(widgetType.$PARAM[id]),episodes) | String.IsEqual(Container(211).ListItem.Property(widgetType.$PARAM[id]),tvshows)]</visible>
+					<label>$LOCALIZE[31237]</label>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.$PARAM[id]),false)">SetProperty(customProperty,widgetCaseVideo.$PARAM[id])</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.$PARAM[id]),false)">SetProperty(customValue,true)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.$PARAM[id]),true)">SetProperty(customProperty,widgetCaseVideo.$PARAM[id])</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.$PARAM[id]),true)">SetProperty(customValue,false)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.$PARAM[id]),true)</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+				<control type="radiobutton" id="80$PARAM[id]8">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.$PARAM[id])) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.$PARAM[id])) + String.IsEqual(Container(211).ListItem.Property(widgetArtwork.$PARAM[id]),squareicon) + [String.IsEqual(Container(211).ListItem.Property(widgetType.$PARAM[id]),albums) | String.IsEqual(Container(211).ListItem.Property(widgetType.$PARAM[id]),songs) | String.IsEqual(Container(211).ListItem.Property(widgetType.$PARAM[id]),musicvideos)]</visible>
+					<label>$LOCALIZE[31291]</label>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.$PARAM[id]),false)">SetProperty(customProperty,widgetCaseMusic.$PARAM[id])</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.$PARAM[id]),false)">SetProperty(customValue,true)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.$PARAM[id]),true)">SetProperty(customProperty,widgetCaseMusic.$PARAM[id])</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.$PARAM[id]),true)">SetProperty(customValue,false)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.$PARAM[id]),true)</selected>
+					<include>SettingsRadioButton</include>
+				</control>
+				<!-- <control type="radiobutton" id="80$PARAM[id]9">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle.$PARAM[id])) + !String.IsEqual(Container(211).ListItem.Property(widget.$PARAM[id]),info)</visible>
+					<label>$LOCALIZE[29915]</label>
+					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetInfo.$PARAM[id]))">SetProperty(customProperty,widgetInfo.$PARAM[id])</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetInfo.$PARAM[id]))">SetProperty(customProperty,widgetInfo.$PARAM[id])</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetInfo.$PARAM[id]))">SetProperty(customValue,true)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetInfo.$PARAM[id]))</selected>
+					<include>SettingsRadioButton</include>
+				</control> -->
+			</control>
+		</definition>
+	</include>
 </includes>

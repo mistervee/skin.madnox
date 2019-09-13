@@ -84,10 +84,13 @@
 				<visible>Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(musicinformation) | Window.IsVisible(songinformation)</visible>
 				<include>FullScreenDimensions</include>
 				<include>AnimationVisibleFade</include>
-				<control type ="image">
-					<include>AnimationVisibleFade</include>
-					<texture background="true">$INFO[Window(Home).Property(DialogInfo.ImageFilter)]</texture>
-					<visible>Skin.HasSetting(VideoInfoBlurBackground) + !String.IsEmpty(Window(home).Property(DialogInfo.ImageFilter))</visible>
+				<control type="image">
+					<visible>Skin.HasSetting(BlurEnabled)</visible>
+					<width>1920</width>
+					<height>1080</height>
+					<aspectratio>scale</aspectratio>
+					<colordiffuse>$INFO[Window(home).Property(listitem_color)]</colordiffuse>
+					<texture>$INFO[Window(home).Property(listitem_blurred)]</texture>
 				</control>
 				<control type ="image">
 					<texture>colors/black80.png</texture>
