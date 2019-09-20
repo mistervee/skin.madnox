@@ -17,27 +17,30 @@
 				<orientation>horizontal</orientation>
 				<usecontrolcoords>true</usecontrolcoords>
 				<control type="label">
+					<visible>!String.IsEmpty(Window(Home).Property(NextAired.NextDay)) | !String.IsEmpty(Window(Home).Property(NextAired.LatestDay))</visible>
 					<include>MediaFlagLabelFull</include>
 					<label>$VAR[TVShowAirDateLabelVar]</label>
 				</control>
 				<control type="label">
+					<visible>!String.IsEmpty(Window(Home).Property(NextAired.StatusID))</visible>
 					<width>135.5</width>
 					<include>MediaFlagLabel</include>
 					<label>$VAR[NextAiredStausLabelVar]</label>
 				</control>
 				<control type="image">
+					<visible>!String.IsEmpty(Window(Home).Property(NextAired.StatusID))</visible>
 					<left>-145.5</left>
 					<width>135.5</width>
 					<include>MediaFlagImage</include>
 					<texture>$VAR[MediaFlagsPathVar]nextaired/$INFO[Window(Home).Property(NextAired.StatusID)].png</texture>
 				</control>
 				<control type="image">
+					<visible>!String.IsEmpty(ListItem.FolderName)</visible>
 					<texture>$VAR[MediaFlagsPathVar]mpaa/$VAR[RatingFlagVar]</texture>
 					<include>MediaFlagImage</include>
-					<visible>!String.IsEmpty(ListItem.FolderName)</visible>
 				</control>
 				<control type="image">
-					<visible>[Container.Content(tvshows) | Container.Content(seasons)] + ![Control.IsVisible(50) | Control.IsVisible(55)]</visible>
+					<visible>!String.IsEqual(Control.GetLabel(811112),none) + ![Control.IsVisible(50) | Control.IsVisible(55)]</visible>
 					<bordersize>0,10,0,10</bordersize>
 					<texture>$VAR[StudioIconsVar]</texture>
 					<include>MediaFlagImage</include>
@@ -62,28 +65,31 @@
 				<orientation>horizontal</orientation>
 				<usecontrolcoords>true</usecontrolcoords>
 				<control type="image">
+					<visible>!String.IsEmpty(ListItem.FolderName)</visible>
 					<texture>$VAR[MediaFlagsPathVar]mpaa/$VAR[RatingFlagVar]</texture>
 					<include>MediaFlagImage</include>
-					<visible>!String.IsEmpty(ListItem.FolderName)</visible>
 				</control>
 				<control type="image">
-					<visible>[Container.Content(tvshows) | Container.Content(seasons)] + ![Control.IsVisible(50) | Control.IsVisible(55)]</visible>
+					<visible>!String.IsEqual(Control.GetLabel(811112),none)</visible>
 					<bordersize>0,10,0,10</bordersize>
 					<texture>$VAR[StudioIconsVar]</texture>
 					<include>MediaFlagImage</include>
 				</control>
 				<control type="label">
+					<visible>!String.IsEmpty(Window(Home).Property(NextAired.NextDay)) | !String.IsEmpty(Window(Home).Property(NextAired.LatestDay))</visible>
 					<width>135.5</width>
 					<include>MediaFlagLabel</include>
 					<label>$VAR[NextAiredStausLabelVar]</label>
 				</control>
 				<control type="image">
+					<visible>!String.IsEmpty(Window(Home).Property(NextAired.StatusID))</visible>
 					<left>-145.5</left>
 					<width>135.5</width>
 					<include>MediaFlagImage</include>
 					<texture>$VAR[MediaFlagsPathVar]nextaired/$INFO[Window(Home).Property(NextAired.StatusID)].png</texture>
 				</control>
 				<control type="label">
+					<visible>!String.IsEmpty(Window(Home).Property(NextAired.StatusID))</visible>
 					<align>left</align>
 					<include>MediaFlagLabelFull</include>
 					<label>$VAR[TVShowAirDateLabelVar]</label>
@@ -108,24 +114,24 @@
 				<orientation>horizontal</orientation>
 				<usecontrolcoords>true</usecontrolcoords>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]videocodec/$VAR[VideoCodecFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.VideoCodec)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoCodec,videocodec/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]videoresolution/$VAR[VideoResolutionFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoResolution,videoresolution/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]audiocodec/$VAR[AudioCodecFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioCodec,audiocodec/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]audiochannels/$VAR[AudioChannelsFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.AudioChannels)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioChannels,audiochannels/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<include>LanguageFlags</include>
 				<control type="image">
@@ -164,29 +170,29 @@
 				<orientation>horizontal</orientation>
 				<usecontrolcoords>true</usecontrolcoords>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]videoaspect/$VAR[VideoAspectFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.VideoAspect)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoAspect,videoaspect/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]videocodec/$VAR[VideoCodecFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.VideoCodec)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoCodec,videocodec/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]videoresolution/$VAR[VideoResolutionFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoResolution,videoresolution/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]audiocodec/$VAR[AudioCodecFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioCodec,audiocodec/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]audiochannels/$VAR[AudioChannelsFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.AudioChannels)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioChannels,audiochannels/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<include>LanguageFlags</include>
 				<control type="image">
@@ -225,35 +231,35 @@
 				<orientation>horizontal</orientation>
 				<usecontrolcoords>true</usecontrolcoords>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]videoaspect/$VAR[VideoAspectFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.VideoAspect)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoAspect,videoaspect/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]videocodec/$VAR[VideoCodecFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.VideoCodec)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoCodec,videocodec/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]videoresolution/$VAR[VideoResolutionFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoResolution,videoresolution/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]audiocodec/$VAR[AudioCodecFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioCodec,audiocodec/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]audiochannels/$VAR[AudioChannelsFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.AudioChannels)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioChannels,audiochannels/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<include>LanguageFlags</include>
 				<control type="image">
+					<visible>!String.IsEmpty(ListItem.SubtitleLanguage)</visible>
 					<texture>$VAR[MediaFlagsPathVar]cc.png</texture>
 					<include>MediaFlagImage</include>
-					<visible>!String.IsEmpty(ListItem.SubtitleLanguage)</visible>
 				</control>
 				<include>SubtitleFlags</include>
 				<control type="image">
@@ -292,40 +298,40 @@
 				<orientation>horizontal</orientation>
 				<usecontrolcoords>true</usecontrolcoords>
 				<control type="image">
+					<visible>!ListItem.IsCollection</visible>
 					<texture>$VAR[MediaFlagsPathVar]mpaa/$VAR[RatingFlagVar]</texture>
 					<include>MediaFlagImage</include>
-					<visible>!ListItem.IsCollection</visible>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]videoaspect/$VAR[VideoAspectFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.VideoAspect)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoAspect,videoaspect/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]videocodec/$VAR[VideoCodecFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.VideoCodec)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoCodec,videocodec/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]videoresolution/$VAR[VideoResolutionFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoResolution,videoresolution/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]audiocodec/$VAR[AudioCodecFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioCodec,audiocodec/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]audiochannels/$VAR[AudioChannelsFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.AudioChannels)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioChannels,audiochannels/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<include>LanguageFlags</include>
 				<control type="image">
+					<visible>!String.IsEmpty(ListItem.SubtitleLanguage)</visible>
 					<texture>$VAR[MediaFlagsPathVar]cc.png</texture>
 					<include>MediaFlagImage</include>
-					<visible>!String.IsEmpty(ListItem.SubtitleLanguage)</visible>
 				</control>
 				<include>SubtitleFlags</include>
 				<control type="image">
@@ -363,13 +369,8 @@
 				<itemgap>10</itemgap>
 				<orientation>horizontal</orientation>
 				<usecontrolcoords>true</usecontrolcoords>
-				<control type="image" id="1111">
-					<width>0</width>
-					<colordiffuse>00000000</colordiffuse>
-					<texture fallback="none">$VAR[StudioIconsVar]</texture>
-				</control>
 				<control type="image">
-					<visible>!String.IsEqual(Control.GetLabel(1111),none)</visible>
+					<visible>!String.IsEqual(Control.GetLabel(811112),none)</visible>
 					<bordersize>0,10,0,10</bordersize>
 					<texture>$VAR[StudioIconsVar]</texture>
 					<include>MediaFlagImage</include>
@@ -377,38 +378,42 @@
 				<control type="image">
 					<texture>$VAR[MediaFlagsPathVar]mpaa/$VAR[RatingFlagVar]</texture>
 					<include>MediaFlagImage</include>
-					<visible>!ListItem.IsCollection</visible>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]videoaspect/$VAR[VideoAspectFlagVar]</texture>
+					<visible>ListItem.IsCollection</visible>
+					<texture>$VAR[MediaFlagsPathVar]set.png</texture>
 					<include>MediaFlagImage</include>
+				</control>
+				<control type="image">
 					<visible>!String.IsEmpty(ListItem.VideoAspect)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoAspect,videoaspect/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]videocodec/$VAR[VideoCodecFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.VideoCodec)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoCodec,videocodec/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]videoresolution/$VAR[VideoResolutionFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoResolution,videoresolution/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]audiocodec/$VAR[AudioCodecFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoCodec,videocodec/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
-					<texture>$VAR[MediaFlagsPathVar]audiochannels/$VAR[AudioChannelsFlagVar]</texture>
-					<include>MediaFlagImage</include>
 					<visible>!String.IsEmpty(ListItem.AudioChannels)</visible>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioChannels,audiochannels/,.png]</texture>
+					<include>MediaFlagImage</include>
 				</control>
 				<include>LanguageFlags</include>
 				<control type="image">
+					<visible>!String.IsEmpty(ListItem.SubtitleLanguage)</visible>
 					<texture>$VAR[MediaFlagsPathVar]cc.png</texture>
 					<include>MediaFlagImage</include>
-					<visible>!String.IsEmpty(ListItem.SubtitleLanguage)</visible>
 				</control>
 				<include>SubtitleFlags</include>
 				<control type="label">
@@ -429,7 +434,6 @@
 		<param name="bottom">25</param>
 		<param name="right">125</param>
 		<param name="left">125</param>
-		<param name="align">right</param>
 		<definition>
 			<control type="group">
 				<bottom>$PARAM[bottom]</bottom>
@@ -438,7 +442,7 @@
 				<height>80</height>
 				<control type="grouplist">
 					<visible>!ListItem.IsParentFolder + Container.Content(artists)</visible>
-					<align>$PARAM[align]</align>
+					<align>right</align>
 					<itemgap>10</itemgap>
 					<orientation>horizontal</orientation>
 					<usecontrolcoords>true</usecontrolcoords>
@@ -467,14 +471,13 @@
 				</control>
 				<control type="grouplist">
 					<visible>!ListItem.IsParentFolder + Container.Content(albums)</visible>
-					<align>$PARAM[align]</align>
+					<align>right</align>
 					<itemgap>10</itemgap>
 					<orientation>horizontal</orientation>
 					<usecontrolcoords>true</usecontrolcoords>
 					<control type="image">
-						<visible>!String.IsEmpty(ListItem.Property(Album_Label)) + System.HasAddon(resource.images.recordlabels.white)</visible>
 						<bordersize>5</bordersize>
-						<texture fallback="">$INFO[ListItem.Property(Album_Label),resource://resource.images.recordlabels.white/,.png]</texture>
+						<texture>$INFO[ListItem.Property(Album_Label),resource://resource.images.recordlabels.white/,.png]</texture>
 						<include>MediaFlagImage</include>
 					</control>
 					<control type="label">
@@ -489,7 +492,7 @@
 				</control>
 				<control type="grouplist">
 					<visible>!ListItem.IsParentFolder + [Container.Content(songs) | String.IsEqual(ListItem.DBTYPE,song)]</visible>
-					<align>$PARAM[align]</align>
+					<align>right</align>
 					<itemgap>10</itemgap>
 					<orientation>horizontal</orientation>
 					<usecontrolcoords>true</usecontrolcoords>
@@ -505,7 +508,6 @@
 		<param name="bottom">25</param>
 		<param name="right">125</param>
 		<param name="left">125</param>
-		<param name="align">right</param>
 		<definition>
 			<control type="group">
 				<bottom>$PARAM[bottom]</bottom>
@@ -514,7 +516,7 @@
 				<height>80</height>
 				<control type="grouplist">
 					<visible>!ListItem.IsParentFolder + Container.Content(artists)</visible>
-					<align>$PARAM[align]</align>
+					<align>left</align>
 					<itemgap>10</itemgap>
 					<orientation>horizontal</orientation>
 					<usecontrolcoords>true</usecontrolcoords>
@@ -543,7 +545,7 @@
 				</control>
 				<control type="grouplist">
 					<visible>!ListItem.IsParentFolder + Container.Content(albums)</visible>
-					<align>$PARAM[align]</align>
+					<align>left</align>
 					<itemgap>10</itemgap>
 					<orientation>horizontal</orientation>
 					<usecontrolcoords>true</usecontrolcoords>
@@ -557,15 +559,14 @@
 						<label>$INFO[Container(811111).NumItems]</label>
 					</control>
 					<control type="image">
-						<visible>!String.IsEmpty(ListItem.Property(Album_Label)) + System.HasAddon(resource.images.recordlabels.white)</visible>
 						<bordersize>5</bordersize>
-						<texture fallback="">$INFO[ListItem.Property(Album_Label),resource://resource.images.recordlabels.white/,.png]</texture>
+						<texture>$INFO[ListItem.Property(Album_Label),resource://resource.images.recordlabels.white/,.png]</texture>
 						<include>MediaFlagImage</include>
 					</control>
 				</control>
 				<control type="grouplist">
 					<visible>!ListItem.IsParentFolder + [Container.Content(songs) | String.IsEqual(ListItem.DBTYPE,song)]</visible>
-					<align>$PARAM[align]</align>
+					<align>left</align>
 					<itemgap>10</itemgap>
 					<orientation>horizontal</orientation>
 					<usecontrolcoords>true</usecontrolcoords>
@@ -635,7 +636,6 @@
 				<control type="image">
 					<texture>$VAR[MediaFlagsPathVar]mpaa/$VAR[RatingFlagVar]</texture>
 					<include>MediaFlagImage</include>
-					<visible>!String.IsEmpty(ListItem.FolderName)</visible>
 				</control>
 				<control type="image">
 					<bordersize>0,10,0,10</bordersize>
@@ -653,6 +653,7 @@
 				<orientation>horizontal</orientation>
 				<usecontrolcoords>true</usecontrolcoords>
 				<control type="label">
+					<visible>!String.IsEmpty(Window(Home).Property(NextAired.NextDay)) | !String.IsEmpty(Window(Home).Property(NextAired.LatestDay))</visible>
 					<top>-2</top>
 					<width>251</width>
 					<align>right</align>
@@ -660,11 +661,13 @@
 					<label>$VAR[TVShowAirDateLabelVar]</label>
 				</control>
 				<control type="label">
+					<visible>!String.IsEmpty(Window(Home).Property(NextAired.StatusID))</visible>
 					<width>135.5</width>
 					<include>MediaFlagLabel</include>
 					<label>$VAR[NextAiredStausLabelVar]</label>
 				</control>
 				<control type="image">
+					<visible>!String.IsEmpty(Window(Home).Property(NextAired.StatusID))</visible>
 					<left>-145.5</left>
 					<width>135.5</width>
 					<include>MediaFlagImage</include>
@@ -682,12 +685,12 @@
 				<usecontrolcoords>true</usecontrolcoords>
 				<control type="image">
 					<visible>!String.IsEmpty(ListItem.VideoCodec)</visible>
-					<texture>$VAR[MediaFlagsPathVar]videocodec/$VAR[VideoCodecFlagVar]</texture>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoCodec,videocodec/,.png]</texture>
 					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
 					<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
-					<texture>$VAR[MediaFlagsPathVar]videoresolution/$VAR[VideoResolutionFlagVar]</texture>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoResolution,videoresolution/,.png]</texture>
 					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
@@ -718,12 +721,12 @@
 				</control>
 				<control type="image">
 					<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
-					<texture>$VAR[MediaFlagsPathVar]audiocodec/$VAR[AudioCodecFlagVar]</texture>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioCodec,audiocodec/,.png]</texture>
 					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
 					<visible>!String.IsEmpty(ListItem.AudioChannels)</visible>
-					<texture>$VAR[MediaFlagsPathVar]audiochannels/$VAR[AudioChannelsFlagVar]</texture>
+					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioChannels,audiochannels/,.png]</texture>
 					<include>MediaFlagImage</include>
 				</control>
 				<include>LanguageFlags</include>
@@ -817,15 +820,13 @@
 				<orientation>horizontal</orientation>
 				<usecontrolcoords>true</usecontrolcoords>
 				<control type="image">
-					<visible>!String.IsEmpty(ListItem.Property(Album_Label)) + System.HasAddon(resource.images.recordlabels.white)</visible>
 					<bordersize>5</bordersize>
-					<texture fallback="">$INFO[ListItem.Property(Album_Label),resource://resource.images.recordlabels.white/,.png]</texture>
+					<texture>$INFO[ListItem.Property(Album_Label),resource://resource.images.recordlabels.white/,.png]</texture>
 					<include>MediaFlagImage</include>
 				</control>
 			</control>
 		</definition>
 	</include>
-	<!-- Language / Subtitle flags -->
 	<include name="LanguageFlags">
 		<control type="grouplist">
 			<visible>Skin.HasSetting(ShowLanguageFlags)</visible>
@@ -836,13 +837,11 @@
 			<itemgap>6</itemgap>
 			<orientation>vertical</orientation>
 			<control type="image">
-				<height>25</height>
 				<include>LanguageSubtitleFlagImage</include>
 				<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(AudioLanguage.1)].png</texture>
 				<visible>!String.IsEmpty(ListItem.Property(AudioLanguage.1))</visible>
 			</control>
 			<control type="image">
-				<height>25</height>
 				<include>LanguageSubtitleFlagImage</include>
 				<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(AudioLanguage.2)].png</texture>
 				<visible>!String.IsEmpty(ListItem.Property(AudioLanguage.2))</visible>
@@ -882,322 +881,72 @@
 			</control>
 		</control>
 	</include>
-	<include name="LanguageSubtitleFlags">
+	<include name="MediaFlagsVideoFullscreen">
 		<control type="grouplist">
-			<top>11</top>
-			<itemgap>4</itemgap>
-			<orientation>vertical</orientation>
-			<usecontrolcoords>true</usecontrolcoords>
-			<visible>$PARAM[visible]</visible>
-			<control type="grouplist">
-				<width>380</width>
-				<height>30</height>
-				<itemgap>5</itemgap>
-				<orientation>horizontal</orientation>
-				<control type="label">
-					<width>100</width>
-					<height>26</height>
-					<align>right</align>
-					<textcolor>grey</textcolor>
-					<font>Font23_Reg</font>
-					<label>$LOCALIZE[292]</label>
-				</control>
-				<control type="label">
-					<width>100</width>
-					<height>26</height>
-					<textcolor>white2</textcolor>
-					<font>Font23_Reg</font>
-					<label>$LOCALIZE[1446]</label>
-					<visible>String.IsEmpty(ListItem.Property(AudioLanguage.1)) | String.IsEqual(ListItem.Property(AudioLanguage.1),und)</visible>
-				</control>
-				<control type="image">
-					<include>LanguageSubtitleFlagImage</include>
-					<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(AudioLanguage.1)].png</texture>
-				</control>
-				<control type="image">
-					<include>LanguageSubtitleFlagImage</include>
-					<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(AudioLanguage.2)].png</texture>
-				</control>
-				<control type="image">
-					<include>LanguageSubtitleFlagImage</include>
-					<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(AudioLanguage.3)].png</texture>
-				</control>
-				<control type="image">
-					<include>LanguageSubtitleFlagImage</include>
-					<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(AudioLanguage.4)].png</texture>
-				</control>
-				<control type="image">
-					<include>LanguageSubtitleFlagImage</include>
-					<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(AudioLanguage.5)].png</texture>
-				</control>
-				<control type="image">
-					<include>LanguageSubtitleFlagImage</include>
-					<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(AudioLanguage.6)].png</texture>
-				</control>
-				<control type="image">
-					<include>LanguageSubtitleFlagImage</include>
-					<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(AudioLanguage.7)].png</texture>
-				</control>
-				<control type="image">
-					<include>LanguageSubtitleFlagImage</include>
-					<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(AudioLanguage.8)].png</texture>
-				</control>
-			</control>
-			<control type="grouplist">
-				<width>380</width>
-				<height>30</height>
-				<itemgap>5</itemgap>
-				<orientation>horizontal</orientation>
-				<control type="label">
-					<width>100</width>
-					<height>26</height>
-					<align>right</align>
-					<textcolor>grey</textcolor>
-					<font>Font23_Reg</font>
-					<label>$LOCALIZE[287]</label>
-				</control>
-				<control type="label">
-					<width>100</width>
-					<height>26</height>
-					<textcolor>white2</textcolor>
-					<font>Font23_Reg</font>
-					<label>$LOCALIZE[231]</label>
-					<visible>String.IsEmpty(ListItem.SubtitleLanguage)</visible>
-				</control>
-				<control type="image">
-					<include>LanguageSubtitleFlagImage</include>
-					<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(SubtitleLanguage.1)].png</texture>
-					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.1))</visible>
-				</control>
-				<control type="image">
-					<include>LanguageSubtitleFlagImage</include>
-					<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(SubtitleLanguage.2)].png</texture>
-					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.2))</visible>
-					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.1),ListItem.Property(SubtitleLanguage.2))</visible>
-				</control>
-				<control type="image">
-					<include>LanguageSubtitleFlagImage</include>
-					<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(SubtitleLanguage.3)].png</texture>
-					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.3))</visible>
-					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.1),ListItem.Property(SubtitleLanguage.3))</visible>
-					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.2),ListItem.Property(SubtitleLanguage.3))</visible>
-				</control>
-				<control type="image">
-					<include>LanguageSubtitleFlagImage</include>
-					<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(SubtitleLanguage.4)].png</texture>
-					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.4))</visible>
-					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.1),ListItem.Property(SubtitleLanguage.4))</visible>
-					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.2),ListItem.Property(SubtitleLanguage.4))</visible>
-					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.3),ListItem.Property(SubtitleLanguage.4))</visible>
-				</control>
-				<control type="image">
-					<include>LanguageSubtitleFlagImage</include>
-					<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(SubtitleLanguage.5)].png</texture>
-					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.5))</visible>
-					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.1),ListItem.Property(SubtitleLanguage.5))</visible>
-					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.2),ListItem.Property(SubtitleLanguage.5))</visible>
-					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.3),ListItem.Property(SubtitleLanguage.5))</visible>
-					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.4),ListItem.Property(SubtitleLanguage.5))</visible>
-				</control>
-				<control type="image">
-					<include>LanguageSubtitleFlagImage</include>
-					<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(SubtitleLanguage.6)].png</texture>
-					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.6))</visible>
-					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.1),ListItem.Property(SubtitleLanguage.6))</visible>
-					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.2),ListItem.Property(SubtitleLanguage.6))</visible>
-					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.3),ListItem.Property(SubtitleLanguage.6))</visible>
-					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.4),ListItem.Property(SubtitleLanguage.6))</visible>
-					<visible>!String.IsEqual(ListItem.Property(SubtitleLanguage.5),ListItem.Property(SubtitleLanguage.6))</visible>
-				</control>
-				<control type="image">
-					<include>LanguageSubtitleFlagImage</include>
-					<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(SubtitleLanguage.7)].png</texture>
-					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.7))</visible>
-				</control>
-				<control type="image">
-					<include>LanguageSubtitleFlagImage</include>
-					<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(SubtitleLanguage.8)].png</texture>
-					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.8))</visible>
-				</control>
-				<control type="image">
-					<include>LanguageSubtitleFlagImage</include>
-					<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(SubtitleLanguage.9)].png</texture>
-					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.9))</visible>
-				</control>
-				<control type="image">
-					<include>LanguageSubtitleFlagImage</include>
-					<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(SubtitleLanguage.10)].png</texture>
-					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.10))</visible>
-				</control>
-				<control type="image">
-					<include>LanguageSubtitleFlagImage</include>
-					<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(SubtitleLanguage.11)].png</texture>
-					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.11))</visible>
-				</control>
-				<control type="image">
-					<include>LanguageSubtitleFlagImage</include>
-					<texture>resource://resource.images.languageflags.rounded/$INFO[ListItem.Property(SubtitleLanguage.12)].png</texture>
-					<visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.12))</visible>
-				</control>
-			</control>
-		</control>
-	</include>
-	<include name="MediaFlagsFullscreenInfo">
-		<control type="grouplist">
-			<top>11</top>
-			<width>1920</width>
-			<height>106</height>1000
+			<top>10</top>
+			<left>0</left>
+			<right>0</right>
+			<height>80</height>
 			<align>center</align>
-			<itemgap>60</itemgap>
+			<itemgap>30</itemgap>
 			<orientation>horizontal</orientation>
 			<usecontrolcoords>true</usecontrolcoords>
+			<control type="image">
+				<visible>!String.IsEqual(Control.GetLabel(811112),none)</visible>
+				<bordersize>0,10,0,10</bordersize>
+				<texture>$VAR[VideoPlayerStudioIconsVar]</texture>
+				<include>MediaFlagImage</include>
+			</control>
 			<control type="image">
 				<texture>$VAR[MediaFlagsPathVar]mpaa/$VAR[VideoPlayerRatingFlagVar]</texture>
 				<include>MediaFlagImage</include>
 			</control>
 			<control type="image">
-				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
-			</control>
-			<control type="image">
-				<texture>$VAR[VideoPlayerStudioIconsVar]</texture>
-				<include>MediaFlagImage</include>
-			</control>
-			<control type="image">
-				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
-			</control>
-			<!-- <control type="image">
-				<include>MediaFlagSmallImage</include>
-				<texture>$VAR[MediaFlagsPathVar]imdb250.png</texture>
-				<visible>!String.IsEmpty(VideoPlayer.Top250)</visible>
-			</control>
-			<control type="label">
-				<left>-153</left>
-				<include>MediaFlagBigLabel</include>
-				<label>$INFO[VideoPlayer.Top250,#]</label>
-				<visible>!String.IsEmpty(VideoPlayer.Top250)</visible>
-			</control>
-			<control type="image">
-				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
-				<visible>!String.IsEmpty(VideoPlayer.Top250)</visible>
-			</control>
-			<control type="image">
-				<include>MediaFlagSmallImage</include>
-				<texture>$VAR[MediaFlagsPathVar]rt.png</texture>
-				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.RottenTomatoes.Rating.Percent))</visible>
-			</control>
-			<control type="label">
-				<left>-153</left>
-				<include>MediaFlagBigLabel</include>
-				<label>$INFO[Window(Home).Property(SkinHelper.Player.RottenTomatoes.Rating),,%]</label>
-				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.RottenTomatoes.Rating.Percent))</visible>
-			</control>
-			<control type="image">
-				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
-				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.RottenTomatoes.Rating.Percent))</visible>
-			</control>
-			<control type="image">
-				<include>MediaFlagSmallImage</include>
-				<texture>$VAR[MediaFlagsPathVar]mc.png</texture>
-				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.MetaCritic.Rating.Percent))</visible>
-			</control>
-			<control type="label">
-				<left>-153</left>
-				<include>MediaFlagBigLabel</include>
-				<label>$INFO[Window(Home).Property(SkinHelper.Player.MetaCritic.Rating),,%]</label>
-				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.Player.MetaCritic.Rating.Percent))</visible>
-			</control>
-			<control type="image">
-				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
-			</control>
-			<control type="label">
-				<include>MediaFlagLabel</include>
-				<label>$LOCALIZE[563]</label>
-				<visible>!String.IsEmpty(VideoPlayer.Rating) | !String.IsEmpty(VideoPlayer.UserRating)</visible>
-			</control>
-			<control type="label">
-				<left>-153</left>
-				<include>MediaFlagBigLabel</include>
-				<label>$INFO[VideoPlayer.Rating]</label>
-				<visible>!String.IsEmpty(VideoPlayer.Rating) + String.IsEmpty(VideoPlayer.UserRating)</visible>
-			</control>
-			<control type="label">
-				<left>-153</left>
-				<include>MediaFlagBigLabel</include>
-				<label>$INFO[VideoPlayer.UserRating]</label>
-				<visible>!String.IsEmpty(VideoPlayer.UserRating)</visible>
-			</control>
-			<control type="image">
-				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
-			</control> -->
-			<control type="image">
-				<top>2</top>
-				<width>220</width>
-				<height>80</height>
-				<fadetime>TextureFadeTime</fadetime>
-				<colordiffuse>grey</colordiffuse>
-				<aspectratio align="center" aligny="center">keep</aspectratio>
-				<texture fallback="flags/ratingstars/0.png">$INFO[VideoPlayer.UserRating,flags/ratingstars/,.png]</texture>
-				<visible>String.IsEqual(ListItem.DBType,musicvideo)</visible>
-			</control>
-			<control type="image">
-				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
-				<visible>String.IsEqual(ListItem.DBType,musicvideo)</visible>
-			</control>
-			<control type="image">
-				<texture>$VAR[MediaFlagsPathVar]videoaspect/$VAR[VideoPlayerAspectFlagVar]</texture>
-				<include>MediaFlagImage</include>
 				<visible>!String.IsEmpty(VideoPlayer.VideoAspect)</visible>
-			</control>
-			<control type="image">
-				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
-			</control>
-			<control type="image">
-				<texture>$VAR[MediaFlagsPathVar]videoresolution/$VAR[VideoPlayerResolutionFlagVar]</texture>
+				<texture>$VAR[MediaFlagsPathVar]$INFO[VideoPlayer.VideoAspect,videoaspect/,.png]</texture>
 				<include>MediaFlagImage</include>
-				<visible>!String.IsEmpty(VideoPlayer.VideoResolution)</visible>
 			</control>
 			<control type="image">
-				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
-			</control>
-			<control type="image">
-				<texture>$VAR[MediaFlagsPathVar]videocodec/$VAR[VideoPlayerCodecFlagVar]</texture>
-				<include>MediaFlagImage</include>
 				<visible>!String.IsEmpty(VideoPlayer.VideoCodec)</visible>
-			</control>
-			<control type="image">
-				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
-			</control>
-			<control type="image">
-				<texture>$VAR[MediaFlagsPathVar]audiochannels/$VAR[VideoPlayerAudioChannelsFlagVar]</texture>
+				<texture>$VAR[MediaFlagsPathVar]$INFO[VideoPlayer.VideoCodec,videocodec/,.png]</texture>
 				<include>MediaFlagImage</include>
-				<visible>!String.IsEmpty(VideoPlayer.AudioChannels)</visible>
 			</control>
 			<control type="image">
-				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
-			</control>
-			<control type="image">
-				<texture>$VAR[MediaFlagsPathVar]audiocodec/$VAR[VideoPlayerAudioCodecFlagVar]</texture>
+				<visible>!String.IsEmpty(VideoPlayer.VideoResolution)</visible>
+				<texture>$VAR[MediaFlagsPathVar]$INFO[VideoPlayer.VideoResolution,videoresolution/,.png]</texture>
 				<include>MediaFlagImage</include>
+			</control>
+			<control type="image">
 				<visible>!String.IsEmpty(VideoPlayer.AudioCodec)</visible>
+				<texture>$VAR[MediaFlagsPathVar]$INFO[VideoPlayer.AudioCodec,audiocodec/,.png]</texture>
+				<include>MediaFlagImage</include>
 			</control>
-			<!-- <control type="image">
-				<left>-30</left>
+			<control type="image">
+				<visible>!String.IsEmpty(VideoPlayer.AudioChannels)</visible>
+				<texture>$VAR[MediaFlagsPathVar]$INFO[VideoPlayer.AudioChannels,audiochannels/,.png]</texture>
+				<include>MediaFlagImage</include>
+			</control>
+			<control type="image">
+				<visible>Skin.HasSetting(ShowLanguageFlags) + !String.IsEmpty(VideoPlayer.AudioChannels)</visible>
+				<top>12</top>
+				<left>-56</left>
+				<height>25</height>
 				<include>LanguageSubtitleFlagImage</include>
 				<texture>resource://resource.images.languageflags.rounded/$INFO[VideoPlayer.AudioLanguage].png</texture>
-			</control> -->
-			<control type="image">
-				<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertica2l.png</texture>
 			</control>
 			<control type="image">
+				<visible>!String.IsEmpty(VideoPlayer.SubtitlesLanguage)</visible>
 				<texture>$VAR[MediaFlagsPathVar]cc.png</texture>
 				<include>MediaFlagImage</include>
-				<visible>!String.IsEmpty(VideoPlayer.SubtitlesLanguage)</visible>
 			</control>
-			<!-- <control type="image">
-				<left>-30</left>
+			<control type="image">
+				<visible>Skin.HasSetting(ShowLanguageFlags) + !String.IsEmpty(VideoPlayer.SubtitlesLanguage)</visible>
+				<top>12</top>
+				<left>-56</left>
+				<height>25</height>
 				<include>LanguageSubtitleFlagImage</include>
 				<texture>resource://resource.images.languageflags.rounded/$INFO[VideoPlayer.SubtitlesLanguage].png</texture>
-			</control> -->
+			</control>
 		</control>
 	</include>
 	<include name="MediaFlagImage">
@@ -1219,7 +968,7 @@
 	</include>
 	<include name="LanguageSubtitleFlagImage">
 		<width>30</width>
-		<height>30</height>
+		<height>25</height>
 		<fadetime>TextureFadeTime</fadetime>
 		<aspectratio align="center" aligny="center">keep</aspectratio>
 	</include>
@@ -1259,4 +1008,137 @@
 	<include name="MediaFlagColored">
 		<colordiffuse>bbffffff</colordiffuse>
 	</include>
+	<!-- Variables -->
+	<variable name="TVShowAirDateLabelVar">
+		<value condition="!String.IsEmpty(Window(Home).Property(NextAired.NextDay))">$INFO[Window(Home).Property(NextAired.NextNumber),, ]$LOCALIZE[31063][B][CR]$INFO[Window(Home).Property(NextAired.NextDay),, ]$INFO[Window(Home).Property(NextAired.ShortTime)][/B]</value>
+		<value condition="String.IsEmpty(Window(Home).Property(NextAired.NextDay)) + !String.IsEmpty(Window(Home).Property(NextAired.LatestDay))">$INFO[Window(Home).Property(NextAired.LatestNumber),, ]$LOCALIZE[31064][B][CR]$INFO[Window(Home).Property(NextAired.LatestDay)][/B]</value>
+	</variable>
+	<variable name="NextAiredStausLabelVar">
+		<value condition="String.IsEqual(Window(Home).Property(NextAired.Today),True)">$LOCALIZE[33006]</value>
+		<value condition="String.Contains(Window(Home).Property(NextAired.StatusID),0)">$LOCALIZE[31011]</value>
+		<value condition="String.Contains(Window(Home).Property(NextAired.StatusID),1)">$LOCALIZE[31012]</value>
+		<value condition="String.Contains(Window(Home).Property(NextAired.StatusID),2)">$LOCALIZE[31013]</value>
+		<value condition="String.Contains(Window(Home).Property(NextAired.StatusID),4)">$LOCALIZE[31014]</value>
+		<value condition="String.Contains(Window(Home).Property(NextAired.StatusID),6)">$LOCALIZE[31015]</value>
+		<value condition="String.Contains(Window(Home).Property(NextAired.StatusID),-1)">$LOCALIZE[1446]</value>
+	</variable>
+	<variable name="StudioIconsVar">
+		<value condition="!String.IsEmpty(ListItem.Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem.Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem.Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem.Studio,resource://resource.images.studios.coloured/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem.Property(Studio)) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem.Property(Studio),resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem.Property(Studio)) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem.Property(Studio),resource://resource.images.studios.coloured/,.png]</value>
+	</variable>
+	<variable name="RatingFlagVar">
+		<value condition="String.Contains(ListItem.MPAA,NR)">NR.png</value>
+		<value condition="String.Contains(ListItem.MPAA,US:G) | String.Contains(ListItem.MPAA,USA:G) | String.Contains(ListItem.MPAA,Rated G) | String.Contains(ListItem.MPAA,Rated Approved) | String.Contains(ListItem.MPAA,Rated Passed)">G.png</value>
+		<value condition="String.Contains(ListItem.MPAA,PG-13)">PG-13.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Rated PG) | String.IsEqual(ListItem.Mpaa,PG)">PG.png</value>
+		<value condition="String.Contains(ListItem.MPAA,US:R) | String.Contains(ListItem.MPAA,USA:R) | String.Contains(ListItem.MPAA,Rated R) | String.IsEqual(ListItem.MPAA,R)">R.png</value>
+		<value condition="String.Contains(ListItem.MPAA,US:NC-17) | String.Contains(ListItem.MPAA,USA:NC-17) | String.Contains(ListItem.MPAA,Rated NC-17)">NC-17.png</value>
+		<value condition="String.Contains(ListItem.MPAA,UK:U)">BBFC_U_Certificate_UK.png</value>
+		<value condition="String.Contains(ListItem.MPAA,UK:PG)">BBFC_PG_Certificate_UK.png</value>
+		<value condition="String.Contains(ListItem.MPAA,UK:12A)">BBFC_12A_Certificate_UK.png</value>
+		<value condition="String.Contains(ListItem.MPAA,UK:12)">BBFC_12_Certificate_UK.png</value>
+		<value condition="String.Contains(ListItem.MPAA,UK:15)">BBFC_15_Certificate_UK.png</value>
+		<value condition="String.Contains(ListItem.MPAA,UK:18)">BBFC_18_Certificate_UK.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Germany:16) | String.Contains(ListItem.MPAA,ab 16) | String.IsEqual(ListItem.MPAA,16) | String.Contains(ListItem.MPAA,FSK 16) | String.Contains(ListItem.MPAA,Rated 16)">FSK-16.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Germany:0) | String.Contains(ListItem.MPAA,ab 0) | String.IsEqual(ListItem.MPAA,0) | String.Contains(ListItem.MPAA,FSK 0) | String.Contains(ListItem.MPAA,Rated 0)">FSK-0.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Germany:6) | String.Contains(ListItem.MPAA,ab 6) | String.IsEqual(ListItem.MPAA,6) | String.Contains(ListItem.MPAA,FSK 6) | String.Contains(ListItem.MPAA,Rated 6)">FSK-6.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Germany:12) | String.Contains(ListItem.MPAA,ab 12) | String.IsEqual(ListItem.MPAA,12) | String.Contains(ListItem.MPAA,FSK 12) | String.Contains(ListItem.MPAA,Rated 12)">FSK-12.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Germany:18) | String.Contains(ListItem.MPAA,ab 18) | String.IsEqual(ListItem.MPAA,18) | String.Contains(ListItem.MPAA,FSK 18) | String.Contains(ListItem.MPAA,Rated 18)">FSK-18.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Germany) |String.Contains(ListItem.MPAA,FSK) | String.Contains(ListItem.MPAA,o.A) | String.Contains(ListItem.MPAA,Rated 0)">FSK-0.png</value>
+		<value condition="String.Contains(ListItem.MPAA,besorolás alatt)">HU_BA.png</value>
+		<value condition="String.Contains(ListItem.MPAA,korhatárra való tekintett nélkül megtekintetheto)">HU_KN.png</value>
+		<value condition="String.Contains(ListItem.MPAA,12 éven aluliak számára a megtekintése nagykorú felügyelete mellett ajánlott)">HU_12.png</value>
+		<value condition="String.Contains(ListItem.MPAA,16 éven aluliak számára nem ajánlott)">HU_16.png</value>
+		<value condition="String.Contains(ListItem.MPAA,18 éven aluliak számára nem ajánlott)">HU_18.png</value>
+		<value condition="String.Contains(ListItem.MPAA,France:U) | String.Contains(ListItem.MPAA,Tout public) | String.Contains(ListItem.MPAA,partir de 3 ans) | String.Contains(ListItem.MPAA,partir de 6 ans)">csaU.png</value>
+		<value condition="String.Contains(ListItem.MPAA,France:-10) | String.Contains(ListItem.MPAA,Interdit aux moins de 10 ans) | String.Contains(ListItem.MPAA,des propos ou des images peuvent heurter)">csa10.png</value>
+		<value condition="String.Contains(ListItem.MPAA,France:-12) | String.Contains(ListItem.MPAA,Interdit aux moins de 12 ans)">csa12.png</value>
+		<value condition="String.Contains(ListItem.MPAA,France:-16) | String.Contains(ListItem.MPAA,Interdit aux moins de 16 ans)">csa16.png</value>
+		<value condition="String.Contains(ListItem.MPAA,France:-18) | String.Contains(ListItem.MPAA,Interdit aux moins de 18 ans)">csa18.png</value>
+		<value condition="String.Contains(ListItem.MPAA,전체)">KR_Certificate_All.png</value>
+		<value condition="String.Contains(ListItem.MPAA,12세)">KR_Certificate_12.png</value>
+		<value condition="String.Contains(ListItem.MPAA,15세)">KR_Certificate_15.png</value>
+		<value condition="String.Contains(ListItem.MPAA,불가)">KR_Certificate_18.png</value>
+		<value condition="String.Contains(ListItem.MPAA,제한)">KR_Certificate_R.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Brazil:Livre) | String.Contains(ListItem.MPAA,Livre)">MPAA_Brazil_Livre.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Brazil:10) | String.Contains(ListItem.MPAA,10 anos)">MPAA_Brazil_10.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Brazil:12) | String.Contains(ListItem.MPAA,12 anos)">MPAA_Brazil_12.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Brazil:14) | String.Contains(ListItem.MPAA,14 anos)">MPAA_Brazil_14.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Brazil:16) | String.Contains(ListItem.MPAA,16 anos)">MPAA_Brazil_16.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Brazil:18) | String.Contains(ListItem.MPAA,18 anos)">MPAA_Brazil_18.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Australia:)">$INFO[ListItem.MPAA,australia_,.png]</value>
+		<value condition="String.Contains(ListItem.MPAA,NL-AL)">NL-AL.png</value>
+		<value condition="String.Contains(ListItem.MPAA,NL-6)">NL-6.png</value>
+		<value condition="String.Contains(ListItem.MPAA,NL-9)">NL-9.png</value>
+		<value condition="String.Contains(ListItem.MPAA,NL-12)">NL-12.png</value>
+		<value condition="String.Contains(ListItem.MPAA,NL-16)">NL-16.png</value>
+		<value condition="String.Contains(ListItem.MPAA,NL-18)">NL-18.png</value>
+		<value condition="!String.IsEmpty(ListItem.MPAA)">$INFO[ListItem.MPAA,,.png]</value>
+		<value>NR.png</value>
+	</variable>
+	<variable name="FolderPathItemCountVar">
+		<value condition="ListItem.IsCollection">$LOCALIZE[342]</value>
+		<value condition="Container.Content(artists)">$LOCALIZE[132]</value>
+		<value condition="Container.Content(albums)">$LOCALIZE[134]</value>
+	</variable>
+	<variable name="MediaFlagsPathVar">
+		<value condition="Skin.HasSetting(MediaFlagsColored)">flags/colored/</value>
+		<value>flags/default/</value>
+	</variable>
+	<variable name="VideoPlayerStudioIconsVar">
+		<value condition="!String.IsEmpty(VideoPlayer.Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[VideoPlayer.Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(VideoPlayer.Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[VideoPlayer.Studio,resource://resource.images.studios.coloured/,.png]</value>
+	</variable>
+	<variable name="VideoPlayerRatingFlagVar">
+		<value condition="String.Contains(ListItem.MPAA,NR)">NR.png</value>
+		<value condition="String.Contains(ListItem.MPAA,US:G) | String.Contains(ListItem.MPAA,USA:G) | String.Contains(ListItem.MPAA,Rated G) | String.Contains(ListItem.MPAA,Rated Approved) | String.Contains(ListItem.MPAA,Rated Passed)">G.png</value>
+		<value condition="String.Contains(ListItem.MPAA,PG-13)">PG-13.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Rated PG) | String.IsEqual(ListItem.Mpaa,PG)">PG.png</value>
+		<value condition="String.Contains(ListItem.MPAA,US:R) | String.Contains(ListItem.MPAA,USA:R) | String.Contains(ListItem.MPAA,Rated R) | String.IsEqual(ListItem.MPAA,R)">R.png</value>
+		<value condition="String.Contains(ListItem.MPAA,US:NC-17) | String.Contains(ListItem.MPAA,USA:NC-17) | String.Contains(ListItem.MPAA,Rated NC-17)">NC-17.png</value>
+		<value condition="String.Contains(ListItem.MPAA,UK:U)">BBFC_U_Certificate_UK.png</value>
+		<value condition="String.Contains(ListItem.MPAA,UK:PG)">BBFC_PG_Certificate_UK.png</value>
+		<value condition="String.Contains(ListItem.MPAA,UK:12A)">BBFC_12A_Certificate_UK.png</value>
+		<value condition="String.Contains(ListItem.MPAA,UK:12)">BBFC_12_Certificate_UK.png</value>
+		<value condition="String.Contains(ListItem.MPAA,UK:15)">BBFC_15_Certificate_UK.png</value>
+		<value condition="String.Contains(ListItem.MPAA,UK:18)">BBFC_18_Certificate_UK.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Germany:16) | String.Contains(ListItem.MPAA,ab 16) | String.IsEqual(ListItem.MPAA,16) | String.Contains(ListItem.MPAA,FSK 16) | String.Contains(ListItem.MPAA,Rated 16)">FSK-16.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Germany:0) | String.Contains(ListItem.MPAA,ab 0) | String.IsEqual(ListItem.MPAA,0) | String.Contains(ListItem.MPAA,FSK 0) | String.Contains(ListItem.MPAA,Rated 0)">FSK-0.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Germany:6) | String.Contains(ListItem.MPAA,ab 6) | String.IsEqual(ListItem.MPAA,6) | String.Contains(ListItem.MPAA,FSK 6) | String.Contains(ListItem.MPAA,Rated 6)">FSK-6.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Germany:12) | String.Contains(ListItem.MPAA,ab 12) | String.IsEqual(ListItem.MPAA,12) | String.Contains(ListItem.MPAA,FSK 12) | String.Contains(ListItem.MPAA,Rated 12)">FSK-12.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Germany:18) | String.Contains(ListItem.MPAA,ab 18) | String.IsEqual(ListItem.MPAA,18) | String.Contains(ListItem.MPAA,FSK 18) | String.Contains(ListItem.MPAA,Rated 18)">FSK-18.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Germany) |String.Contains(ListItem.MPAA,FSK) | String.Contains(ListItem.MPAA,o.A) | String.Contains(ListItem.MPAA,Rated 0)">FSK-0.png</value>
+		<value condition="String.Contains(ListItem.MPAA,besorolás alatt)">HU_BA.png</value>
+		<value condition="String.Contains(ListItem.MPAA,korhatárra való tekintett nélkül megtekintetheto)">HU_KN.png</value>
+		<value condition="String.Contains(ListItem.MPAA,12 éven aluliak számára a megtekintése nagykorú felügyelete mellett ajánlott)">HU_12.png</value>
+		<value condition="String.Contains(ListItem.MPAA,16 éven aluliak számára nem ajánlott)">HU_16.png</value>
+		<value condition="String.Contains(ListItem.MPAA,18 éven aluliak számára nem ajánlott)">HU_18.png</value>
+		<value condition="String.Contains(ListItem.MPAA,France:U) | String.Contains(ListItem.MPAA,Tout public) | String.Contains(ListItem.MPAA,partir de 3 ans) | String.Contains(ListItem.MPAA,partir de 6 ans)">csaU.png</value>
+		<value condition="String.Contains(ListItem.MPAA,France:-10) | String.Contains(ListItem.MPAA,Interdit aux moins de 10 ans) | String.Contains(ListItem.MPAA,des propos ou des images peuvent heurter)">csa10.png</value>
+		<value condition="String.Contains(ListItem.MPAA,France:-12) | String.Contains(ListItem.MPAA,Interdit aux moins de 12 ans)">csa12.png</value>
+		<value condition="String.Contains(ListItem.MPAA,France:-16) | String.Contains(ListItem.MPAA,Interdit aux moins de 16 ans)">csa16.png</value>
+		<value condition="String.Contains(ListItem.MPAA,France:-18) | String.Contains(ListItem.MPAA,Interdit aux moins de 18 ans)">csa18.png</value>
+		<value condition="String.Contains(ListItem.MPAA,전체)">KR_Certificate_All.png</value>
+		<value condition="String.Contains(ListItem.MPAA,12세)">KR_Certificate_12.png</value>
+		<value condition="String.Contains(ListItem.MPAA,15세)">KR_Certificate_15.png</value>
+		<value condition="String.Contains(ListItem.MPAA,불가)">KR_Certificate_18.png</value>
+		<value condition="String.Contains(ListItem.MPAA,제한)">KR_Certificate_R.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Brazil:Livre) | String.Contains(ListItem.MPAA,Livre)">MPAA_Brazil_Livre.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Brazil:10) | String.Contains(ListItem.MPAA,10 anos)">MPAA_Brazil_10.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Brazil:12) | String.Contains(ListItem.MPAA,12 anos)">MPAA_Brazil_12.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Brazil:14) | String.Contains(ListItem.MPAA,14 anos)">MPAA_Brazil_14.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Brazil:16) | String.Contains(ListItem.MPAA,16 anos)">MPAA_Brazil_16.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Brazil:18) | String.Contains(ListItem.MPAA,18 anos)">MPAA_Brazil_18.png</value>
+		<value condition="String.Contains(ListItem.MPAA,Australia:)">$INFO[ListItem.MPAA,australia_,.png]</value>
+		<value condition="String.Contains(ListItem.MPAA,NL-AL)">NL-AL.png</value>
+		<value condition="String.Contains(ListItem.MPAA,NL-6)">NL-6.png</value>
+		<value condition="String.Contains(ListItem.MPAA,NL-9)">NL-9.png</value>
+		<value condition="String.Contains(ListItem.MPAA,NL-12)">NL-12.png</value>
+		<value condition="String.Contains(ListItem.MPAA,NL-16)">NL-16.png</value>
+		<value condition="String.Contains(ListItem.MPAA,NL-18)">NL-18.png</value>
+		<value condition="!String.IsEmpty(VideoPlayer.MPAA)">$INFO[VideoPlayer.MPAA,,.png]</value>
+		<value>NR.png</value>
+	</variable>
 </includes>

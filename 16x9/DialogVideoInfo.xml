@@ -27,6 +27,11 @@
 			<visible>!Container.Content(musicvideos)</visible>
 			<include>HiddenList</include>
 		</control>
+		<!-- Studio Logo check if image exists -->
+		<control type="image" id="811112">
+			<include>HiddenObject</include>
+			<texture fallback="none">$VAR[StudioIconsVar]</texture>
+		</control>
 		<!-- Info -->
 		<control type="group">
 			<visible>!Window.IsVisible(script-embuary-person.xml)</visible>
@@ -695,13 +700,18 @@
 						</animation>
 					</control>
 					<!-- Flags-->
-					<include content="MediaFlagsVideos8">
+					<include condition="!String.IsEqual(ListItem.DBTYPE,tvshow)" content="MediaFlagsVideos8">
 						<param name="bottom">25</param>
 						<param name="left">0</param>
 						<param name="right">0</param>
 						<param name="align">left</param>
 					</include>
-					
+					<include condition="String.IsEqual(ListItem.DBTYPE,tvshow)" content="MediaFlagsTVShowsLeft">
+						<param name="bottom">25</param>
+						<param name="left">0</param>
+						<param name="right">0</param>
+						<param name="align">left</param>
+					</include>
 				</control>
 				
 				

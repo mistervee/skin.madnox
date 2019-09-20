@@ -12,19 +12,18 @@
 			<visible>!Skin.HasSetting(AddonsHideFloor)</visible>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
-				<param name="opencondition">$EXP[AddonAnimationOpenCondition]</param>
-				<param name="closecondition">$EXP[AddonAnimationCloseCondition]</param>
 			</include>
-			<include content="AnimationSlideBottomVisible">
-				<param name="slide">220</param>
-			</include>
-			<include>Floor</include>
+			<control type="group">
+				<visible>!Skin.HasSetting(View51HideFloor)</visible>
+				<include content="Floor">
+					<param name="highlight">FloorHighlightLeft</param>
+				</include>
+			</control>
 		</control>
 		<!-- Panel -->
 		<control type="group">
 			<visible>!Window.IsActive(addoninformation)</visible>
-			<animation effect="fade" time="400" tween="sine" easing="out">Visible</animation>
-			<animation effect="fade" time="400" tween="sine" easing="out">Hidden</animation>
+			<include>AnimationInfoDialog</include>
 			<!-- Left menu -->
 			<control type="group">
 				<animation type="WindowOpen" reversible="false">
@@ -70,60 +69,61 @@
 					</focusedlayout>
 					<content>
 						<item id="1">
-							<label>$LOCALIZE[31124]</label>
-						</item>
-						<item id="2">
-							<label>$LOCALIZE[31125]</label>
-						</item>
-						<item id="3">
-							<label>$LOCALIZE[31126]</label>
-						</item>
-						<item id="4">
-							<visible>Integer.IsGreater(Container(9060).NumItems,0)</visible>
-							<label>$LOCALIZE[36605]</label>
-							<property name="AppsTarget"></property>
-							<property name="AppsContent">addons://outdated/</property>
-							<onclick>ActivateWindow(AddonBrowser,addons://outdated/,return)</onclick>
-						</item>
-						<item id="5">
-							<label>$LOCALIZE[3]</label>
+							<label>$LOCALIZE[1037]</label>
 							<property name="AppsTarget">videos</property>
 							<property name="AppsContent">addons://sources/video/</property>
+							<property name="AppsSortBy">lastused</property>
 							<onclick>ActivateWindow(Videos,Addons,return)</onclick>
 						</item>
-						<item id="6">
-							<label>$LOCALIZE[2]</label>
+						<item id="2">
+							<label>$LOCALIZE[1038]</label>
 							<property name="AppsTarget">music</property>
 							<property name="AppsContent">addons://sources/audio/</property>
+							<property name="AppsSortBy">lastused</property>
 							<onclick>ActivateWindow(Music,Addons,return)</onclick>
 						</item>
-						<item id="7">
-							<label>$LOCALIZE[1]</label>
+						<item id="3">
+							<label>$LOCALIZE[1039]</label>
 							<property name="AppsTarget">pictures</property>
 							<property name="AppsContent">addons://sources/image/</property>
+							<property name="AppsSortBy">lastused</property>
 							<onclick>ActivateWindow(Pictures,Addons,return)</onclick>
 						</item>
-						<item id="8">
-							<label>$LOCALIZE[0]</label>
-							<icon>DefaultAddonProgram.png</icon>
+						<item id="4">
+							<label>$LOCALIZE[1043]</label>
 							<property name="AppsTarget">programs</property>
 							<property name="AppsContent">addons://sources/executable/</property>
+							<property name="AppsSortBy">lastused</property>
 							<onclick>ActivateWindow(Programs,Addons,return)</onclick>
 						</item>
-						<item id="9">
-							<visible>System.Platform.Android</visible>
-							<label>$LOCALIZE[0]</label>
-							<icon>DefaultAddonAndroid.png</icon>
+						<item id="5">
+							<label>$LOCALIZE[20244]</label>
 							<property name="AppsTarget">programs</property>
 							<property name="AppsContent">androidapp://sources/apps/</property>
+							<property name="AppsSortBy">lastused</property>
 							<onclick>ActivateWindow(Programs,return)</onclick>
+							<visible>System.Platform.Android</visible>
 						</item>
-						<item id="10">
+						<item id="6">
 							<label>$LOCALIZE[10040]</label>
-							<icon>DefaultAddon.png</icon>
-							<property name="AppsTarget"></property>
+							<property name="AppsTarget" />
 							<property name="AppsContent">addons://user/all/</property>
+							<property name="AppsSortBy">lastused</property>
 							<onclick>ActivateWindow(AddonBrowser,return)</onclick>
+						</item>
+						<item id="7">
+							<label>$LOCALIZE[24004]</label>
+							<property name="AppsTarget" />
+							<property name="AppsContent">addons://recently_updated/</property>
+							<property name="AppsSortBy">lastupdated</property>
+							<onclick>ActivateWindow(AddonBrowser,return)</onclick>
+						</item>
+						<item id="8">
+							<label>$LOCALIZE[1036]</label>
+							<property name="AppsTarget" />
+							<property name="AppsContent">favourites://</property>
+							<property name="AppsSortBy" />
+							<onclick>ActivateWindow(Favourites)</onclick>
 						</item>
 					</content>
 				</control>
@@ -250,192 +250,7 @@
 							<label>$INFO[ListItem.AddonVersion,v]</label>
 						</control>
 					</focusedlayout>
-					<content target="$INFO[Container(50).ListItem.Property(AppsTarget)]" sortby="label" sortorder="ascending">$INFO[Container(50).ListItem.Property(AppsContent)]</content>
-					<content>
-						<item>
-							<icon>icons/addons/skinshortcuts.png</icon>
-							<label>Skin shortcuts</label>
-							<label2>$VAR[AddonSkinShortcutsVar]</label2>
-							<onclick condition="!System.HasAddon(script.skinshortcuts)">InstallAddon(script.skinshortcuts)</onclick>
-							<onclick condition="System.HasAddon(script.skinshortcuts)">Addon.OpenSettings(script.skinshortcuts)</onclick>
-							<property name="Description">$LOCALIZE[31900]</property>
-							<visible>Container(50).Row(0)</visible>
-						</item>
-						<item>
-							<icon>icons/addons/skinhelper.png</icon>
-							<label>Skin helper color picker</label>
-							<label2>$VAR[AddonColorPickerVar]</label2>
-							<onclick condition="!System.HasAddon(script.skin.helper.colorpicker)">InstallAddon(script.skin.helper.colorpicker)</onclick>
-							<onclick condition="System.HasAddon(script.skin.helper.colorpicker)">Addon.OpenSettings(script.skin.helper.colorpicker)</onclick>
-							<property name="Description">$LOCALIZE[31904]</property>
-							<visible>Container(50).Row(0)</visible>
-						</item>
-						<item>
-							<icon></icon>
-							<label>Embuary helper</label>
-							<label2></label2>
-							<onclick condition="!System.HasAddon(script.embuary.helper)">InstallAddon(script.embuary.helper)</onclick>
-							<onclick condition="System.HasAddon(script.embuary.helper)">Addon.OpenSettings(script.embuary.helper)</onclick>
-							<property name="Description">$LOCALIZE[31904]</property>
-							<visible>Container(50).Row(0)</visible>
-						</item>
-						<item>
-							<icon>icons/addons/studiowhite.png</icon>
-							<label>White studio icons</label>
-							<label2>$VAR[AddonStudiosVar]</label2>
-							<onclick condition="!System.HasAddon(resource.images.studios.white)">InstallAddon(resource.images.studios.white)</onclick>
-							<property name="Description">$LOCALIZE[31912]</property>
-							<visible>Container(50).Row(0)</visible>
-						</item>
-						<item>
-							<icon>icons/addons/recordlabel.png</icon>
-							<label>White record label icons</label>
-							<label2>$VAR[AddonRecordLabelsVar]</label2>
-							<onclick condition="!System.HasAddon(resource.images.recordlabels.white)">InstallAddon(resource.images.recordlabels.white)</onclick>
-							<property name="Description">$LOCALIZE[31913]</property>
-							<visible>Container(50).Row(0)</visible>
-						</item>
-						<item>
-							<icon>icons/addons/artworkbeef.png</icon>
-							<label>Artwork beef</label>
-							<label2>$VAR[AddonArtworkBeefVar]</label2>
-							<onclick condition="!System.HasAddon(repository.rector.stuff)">Notification(Download beta repo from,github.com/rmrector/repository.rector.stuff)</onclick>
-							<onclick condition="!System.HasAddon(repository.rector.stuff)">ActivateWindow(AddonBrowser,addons://install/)</onclick>
-							<onclick condition="System.HasAddon(repository.rector.stuff) + !System.HasAddon(script.artwork.beef)">InstallAddon(script.artwork.beef)</onclick>
-							<onclick condition="System.HasAddon(repository.rector.stuff) + System.HasAddon(script.artwork.beef)">Addon.OpenSettings(script.artwork.beef)</onclick>
-							<property name="Description">$LOCALIZE[31906]</property>
-							<visible>Container(50).Row(1)</visible>
-						</item>
-						<item>
-							<icon>icons/addons/countryicons.png</icon>
-							<label>Movie country icons</label>
-							<label2>$VAR[AddonCountryIconsVar]</label2>
-							<onclick condition="!System.HasAddon(resource.images.moviecountryicons.flags)">InstallAddon(resource.images.moviecountryicons.flags)</onclick>
-							<property name="Description">$LOCALIZE[31910]</property>
-							<visible>Container(50).Row(1)</visible>
-						</item>
-						<item>
-							<icon>icons/addons/language.png</icon>
-							<label>Language flags</label>
-							<label2>$VAR[AddonLanguageFlagsVar]</label2>
-							<onclick>RunScript(script.skin.helper.service,action=setresourceaddon,skinstring=LanguageFlagIcons,addontype=resource.images.languageflags)</onclick>
-							<property name="Description">$LOCALIZE[31911]</property>
-							<visible>Container(50).Row(1)</visible>
-						</item>
-						<item>
-							<icon>icons/addons/weathericons.png</icon>
-							<label>Weather icons</label>
-							<label2>$VAR[AddonWeatherIconsVar]</label2>
-							<onclick>RunScript(script.skin.helper.service,action=setresourceaddon,skinstring=WeatherIcons,addontype=resource.images.weathericons)</onclick>
-							<property name="Description">$LOCALIZE[31908]</property>
-							<visible>Container(50).Row(1)</visible>
-						</item>
-						<item>
-							<icon>icons/addons/weatherfanart.png</icon>
-							<label>Weather fanart</label>
-							<label2>$VAR[AddonWeatherFanartVar]</label2>
-							<onclick>RunScript(script.skin.helper.service,action=setresourceaddon,skinstring=WeatherFanart,addontype=resource.images.weatherfanart)</onclick>
-							<property name="Description">$LOCALIZE[31909]</property>
-							<visible>Container(50).Row(1)</visible>
-						</item>
-						<item>
-							<icon>icons/addons/studiocoloured.png</icon>
-							<label>Coloured studio icons</label>
-							<label2>$VAR[AddonColouredStudiosVar]</label2>
-							<onclick condition="!System.HasAddon(resource.images.studios.coloured)">InstallAddon(resource.images.studios.coloured)</onclick>
-							<property name="Description">$LOCALIZE[31914]</property>
-							<visible>Container(50).Row(2)</visible>
-						</item>
-						<item>
-							<icon>icons/addons/studiocoloured.png</icon>
-							<label>Music genre icons</label>
-							<label2>$VAR[AdoonMusicGenreIconsVar]</label2>
-							<onclick condition="!System.HasAddon(resource.images.musicgenreicons.text)">InstallAddon(resource.images.musicgenreicons.text)</onclick>
-							<property name="Description">$LOCALIZE[31931]</property>
-							<visible>Container(50).Row(1)</visible>
-						</item>
-						<item>
-							<icon>icons/addons/extendedinfo.png</icon>
-							<label>Extended info</label>
-							<label2>$VAR[AddonExtendedInfoVar]</label2>
-							<onclick condition="!System.HasAddon(script.extendedinfo)">InstallAddon(script.extendedinfo)</onclick>
-							<onclick condition="System.HasAddon(script.extendedinfo)">Addon.OpenSettings(script.extendedinfo)</onclick>
-							<property name="Description">$LOCALIZE[31915]</property>
-							<visible>Container(50).Row(2)</visible>
-						</item>
-						<item>
-							<icon>icons/addons/lyrics.png</icon>
-							<label>Script CU LRC lycics</label>
-							<label2>$VAR[AddonLyricsVar]</label2>
-							<onclick condition="!System.HasAddon(script.cu.lrclyrics)">InstallAddon(script.cu.lrclyrics)</onclick>
-							<onclick condition="System.HasAddon(script.cu.lrclyrics)">Addon.OpenSettings(script.cu.lrclyrics)</onclick>
-							<property name="Description">$LOCALIZE[31916]</property>
-							<visible>Container(50).Row(2)</visible>
-						</item>
-						<item>
-							<icon>icons/addons/nextaired.png</icon>
-							<label>TV show next aired</label>
-							<label2>$VAR[AddonNextAiredVar]</label2>
-							<onclick condition="!System.HasAddon(script.tv.show.next.aired)">InstallAddon(script.cu.lrclyrics)</onclick>
-							<onclick condition="System.HasAddon(script.tv.show.next.aired)">Addon.OpenSettings(script.tv.show.next.aired)</onclick>
-							<property name="Description">$LOCALIZE[31917]</property>
-							<visible>Container(50).Row(2)</visible>
-						</item>
-						<item>
-							<icon>icons/addons/specialfeatures.png</icon>
-							<label>Special features</label>
-							<label2>$VAR[AddonSpecialFeaturesVar]</label2>
-							<onclick condition="!System.HasAddon(plugin.video.specialfeatures)">InstallAddon(plugin.video.specialfeatures)</onclick>
-							<onclick condition="System.HasAddon(plugin.video.specialfeatures)">Addon.OpenSettings(plugin.video.specialfeatures)</onclick>
-							<property name="Description">$LOCALIZE[31918]</property>
-							<visible>Container(50).Row(2)</visible>
-						</item>
-						<item>
-							<icon>icons/addons/autocomplete.png</icon>
-							<label>Auto completion for virtual keyboard</label>
-							<label2>$VAR[AddonAutoCompletionVar]</label2>
-							<onclick condition="!System.HasAddon(script.module.autocompletion)">InstallAddon(script.module.autocompletion)</onclick>
-							<onclick condition="System.HasAddon(script.module.autocompletion)">Addon.OpenSettings(script.module.autocompletion)</onclick>
-							<property name="Description">$LOCALIZE[31919]</property>
-							<visible>Container(50).Row(2)</visible>
-						</item>
-						<item>
-							<icon>icons/addons/trakt.png</icon>
-							<label>Trakt</label>
-							<label2>$VAR[AddonTraktVar]</label2>
-							<onclick condition="!System.HasAddon(script.trakt)">InstallAddon(script.trakt)</onclick>
-							<onclick condition="System.HasAddon(script.trakt)">Addon.OpenSettings(script.trakt)</onclick>
-							<property name="Description">$LOCALIZE[31920]</property>
-							<visible>Container(50).Row(2)</visible>
-						</item>
-						<item>
-							<icon>icons/addons/cinemavision.png</icon>
-							<label>Cinema vision</label>
-							<label2>$VAR[AddonCinemaVisionVar]</label2>
-							<onclick condition="!System.HasAddon(script.cinemavision)">InstallAddon(script.cinemavision)</onclick>
-							<onclick condition="System.HasAddon(script.cinemavision)">Addon.OpenSettings(script.cinemavision)</onclick>
-							<property name="Description">$LOCALIZE[31921]</property>
-							<visible>Container(50).Row(2)</visible>
-						</item>
-						<item>
-							<icon>icons/addons/libraryeditor.png</icon>
-							<label>Library editor</label>
-							<label2>$VAR[AddonLibraryEditorVar]</label2>
-							<onclick condition="!System.HasAddon(script.libraryeditor)">Notification(Download script from,github.com/phil65/script.libraryeditor)</onclick>
-							<onclick condition="System.HasAddon(script.libraryeditor)">Addon.OpenSettings(script.libraryeditor)</onclick>
-							<property name="Description">$LOCALIZE[31922]</property>
-							<visible>Container(50).Row(2)</visible>
-						</item>
-						<item>
-							<icon>icons/addons/spotify.png</icon>
-							<label>Spotify</label>
-							<label2>$VAR[AddonSpotifyVar]</label2>
-							<onclick condition="!System.HasAddon(plugin.audio.spotify)">Notification(Download beta repo from,github.com/marcelveldt/repository.marcelveldt)</onclick>
-							<onclick condition="System.HasAddon(plugin.audio.spotify)">Addon.OpenSettings(plugin.audio.spotify)</onclick>
-							<property name="Description">$LOCALIZE[31930]</property>
-							<visible>Container(50).Row(2)</visible>
-						</item>
-					</content>
+					<content target="$INFO[Container(50).ListItem.Property(AppsTarget)]" sortby="$INFO[Container(50).ListItem.Property(AppsSortBy)]" sortorder="descending">$INFO[Container(50).ListItem.Property(AppsContent)]</content>
 				</control>
 				<control type="scrollbar" id="60">
 					<top>144</top>
@@ -450,8 +265,6 @@
 			<visible>!Skin.HasSetting(AddonsHideTopBar)</visible>
 			<include content="AnimationSlideTopWindow">
 				<param name="slide">90</param>
-				<param name="opencondition">$EXP[AddonAnimationOpenCondition]</param>
-				<param name="closecondition">$EXP[AddonAnimationCloseCondition]</param>
 			</include>
 			<include content="AnimationSlideTopVisible">
 				<param name="slide">90</param>
