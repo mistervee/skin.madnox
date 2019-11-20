@@ -2,10 +2,9 @@
 <includes>
 	<include file="Defaults.xml"/>
 	<include file="Variables.xml"/>
-	<include file="Variables_Themes.xml"/>
-	<include file="Variables_Backgrounds.xml"/>
-	<include file="Variables_Temp.xml"/>
+
 	<include file="Includes_Temp.xml"/>
+	<include file="Includes_Themes.xml"/>
 	<include file="Includes_Dialogs.xml"/>
 	<include file="Includes_InfoDialogs.xml"/>
 	<include file="Includes_CustomSelect.xml"/>
@@ -19,7 +18,8 @@
 	<include file="Includes_MediaFlags.xml"/>
 	<include file="Includes_MediaMenu.xml"/>
 	<include file="Includes_Views.xml"/>
-
+	<include file="Includes_ViewsVariables.xml"/>
+	<include file="Includes_PVR.xml"/>
 	<include file="Includes_Settings.xml"/>
 
 	<include file="View_050_CoverList.xml"/>
@@ -47,6 +47,7 @@
 	<include file="View_521_SquareIcon.xml"/>
 	<include file="View_522_BannerIcon.xml"/>
 	<include file="View_523_LandscapeIcon.xml"/>
+	<include file="View_524_SquareIconAlbums.xml"/>
 	<include file="View_530_PortraitIconInfo.xml"/>
 	<include file="View_531_SquareIconInfo.xml"/>
 	<include file="View_532_BannerIconInfo.xml"/>
@@ -55,12 +56,11 @@
 	<include file="View_541_SquareWall.xml"/>
 	<include file="View_542_BannerWall.xml"/>
 	<include file="View_543_LandscapeWall.xml"/>
-
-	<include file="Custom_Overlay.xml"/>
-	<constant name="TextureFadeTime">300</constant>
+	<!-- <include file="Custom_Overlay.xml"/> -->
+	<constant name="TextureFadeTime">480</constant>
 	<expression name="InfoDialogVisible">Window.IsActive(musicinformation) | Window.IsActive(songinformation) | Window.IsActive(movieinformation) | Window.IsActive(addoninformation) | Window.IsActive(pvrguideinfo) | Window.IsActive(pvrrecordinginfo) | Window.IsActive(pictureinfo) | Window.IsVisible(script-script.extendedinfo-DialogVideoInfo.xml) | Window.IsVisible(script-script.extendedinfo-DialogInfo.xml) | Window.IsVisible(script-script.extendedinfo-VideoList.xml)</expression>
 	<expression name="AreaVisibleHome">Window.IsVisible(home)</expression>
-	<expression name="AreaVisibleVideos">[Window.IsVisible(videos)]</expression>
+	<expression name="AreaVisibleVideos">[Window.IsVisible(videos) | Window.IsVisible(videoplaylist)]</expression>
 	<expression name="AreaVisibleTV">Window.IsVisible(tvchannels) | Window.IsVisible(tvrecordings) | Window.IsVisible(tvguide) | Window.IsVisible(tvtimers) | Window.IsVisible(tvsearch) | Window.IsVisible(tvtimerrules) | Window.IsVisible(fullscreenlivetv)</expression>
 	<expression name="AreaVisibleRadio">Window.IsVisible(radiochannels) | Window.IsVisible(radiorecordings) | Window.IsVisible(radioguide) | Window.IsVisible(radiotimers) | Window.IsVisible(radiosearch) | Window.IsVisible(radiotimerrules) | Window.IsVisible(fullscreenlivetv)</expression>
 	<expression name="AreaVisiblePVR">[Window.IsVisible(MyPVRChannels.xml) | Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRGuide.xml) | Window.IsVisible(MyPVRTimers.xml) | Window.IsVisible(MyPVRSearch.xml)]</expression>
@@ -81,5 +81,43 @@
 	<include name="onunload_SkinSettings">
 		<onunload condition="Window.IsActive(startup) + System.HasAddon(script.tv.show.next.aired)">RunScript(script.tv.show.next.aired,silent=True)</onunload>
 		<onunload condition="!Skin.HasSetting(SmartShortcuts.playlists)">Skin.SetBool(SmartShortcuts.playlists)</onunload>
+	</include>
+	<include name="ContainerScrollTime">
+		<scrolltime tween="sine">480</scrolltime>
+	</include>
+	<include name="FullScreenDimensions">
+		<width>1920</width>
+		<height>1080</height>
+	</include>
+	<include name="HiddenObject">
+		<left>-2000</left>
+		<top>-1100</top>
+		<width>1</width>
+		<height>1</height>
+		<texturefocus />
+		<texturenofocus />
+		<font />
+	</include>
+	<include name="HiddenList">
+		<left>-2000</left>
+		<top>-1100</top>
+		<width>1</width>
+		<height>1</height>
+		<itemlayout />
+		<focusedlayout />
+	</include>
+	<include name="AutoScrollPlot">
+		<autoscroll time="3000" delay="4000" repeat="5000">!Skin.HasSetting(DisableAutoScroll)</autoscroll>
+	</include>
+	<include name="ReloadWindowOnClick">
+		<onclick condition="Window.IsActive(addonbrowser)">SetProperty(ActiveWindow,addons,home)</onclick>
+		<onclick condition="Window.IsActive(music)">SetProperty(ActiveWindow,music,home)</onclick>
+		<onclick condition="Window.IsActive(musicplaylist)">SetProperty(ActiveWindow,musicplaylist,home)</onclick>
+		<onclick condition="Window.IsActive(videoplaylist)">SetProperty(ActiveWindow,videoplaylist,home)</onclick>
+		<onclick condition="Window.IsActive(videos)">SetProperty(ActiveWindow,videos,home)</onclick>
+		<onclick condition="Window.IsActive(programs)">SetProperty(ActiveWindow,programs,home)</onclick>
+		<onclick>SetProperty(ContainerPath,$ESCINFO[Container.FolderPath],home)</onclick>
+		<onclick>Dialog.Close(1115)</onclick>
+		<onclick>ReplaceWindow(1117)</onclick>
 	</include>
 </includes>

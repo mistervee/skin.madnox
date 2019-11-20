@@ -5,24 +5,27 @@
 	<controls>
 		<!-- Backdrop -->
 		<include content="BackgroundDefault">
-			<param name="imagepath">$VAR[WeatherFanartVar]</param>
+			<param name="imagepath">$VAR[WeatherBackgroundVar]</param>
 		</include>
+
 		<!-- Floor -->
 		<control type="group">
-			<visible>!Skin.HasSetting(WeatherHideFloor)</visible>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
 			</include>
-			<include content="AnimationSlideBottomVisible">
-				<param name="slide">220</param>
+			<control type="group">
+				<visible>!Skin.HasSetting(WeatherHideFloor)</visible>
+				<include>Floor</include>
+			</control>
+			<include content="FloorShadow">
+				<param name="visible">Skin.HasSetting(WeatherHideFloor)</param>
 			</include>
-			<include>Floor</include>
 		</control>
 		<!-- Panel -->
 		<control type="group">
 			<include>AnimationZoomWindow</include>
 			<include content="PanelSide">
-				<param name="reflect">!Skin.HasSetting(WeatherHideFloor)</param>
+				<param name="reflect">!Skin.HasSetting(WeatherHideReflect)</param>
 			</include>
 		</control>
 		<!-- Content -->

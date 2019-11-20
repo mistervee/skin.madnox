@@ -1,292 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">9002</defaultcontrol>
+	<include>AnimationDialogPopupWindow</include>
 	<controls>
 		<control type="group">
-			<include>AnimationZoomWindow</include>
-			<!-- Panel -->
-			<include content="PanelDefault">
-				<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
+			<include content="DialogAddonInfo">
+				<param name="infovisible">!Control.HasFocus(101) + !Control.HasFocus(50)</param>
+				<param name="label">$INFO[ListItem.AddonName]</param>
+				<param name="label2">$INFO[ListItem.AddonSummary]</param>
+				<param name="textbox">$INFO[ListItem.AddonDescription]</param>
+				<param name="infocontent">AddonInfoContent</param>
 			</include>
-			<control type="group">
-				<left>130</left>
-				<right>130</right>
-				<!-- Title -->
-				<control type="label">
-					<top>162</top>
-					<height>50</height>
-					<scroll>true</scroll>
-					<font>Font49_Bold_Caps</font>
-					<label>$INFO[ListItem.AddonName]</label>
-					<textcolor>$VAR[PanelTextColorVar]</textcolor>
-				</control>
-				<!-- Subtitle -->
-				<control type="label">
-					<top>213</top>
-					<height>40</height>
-					<scroll>true</scroll>
-					<font>Font36_Reg</font>
-					<label>$INFO[ListItem.AddonSummary]</label>
-					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
-				</control>
-				<!-- Buttons -->
-				<control type="group" id="9000">
-					<control type="grouplist" id="9001">
-						<top>523</top>
-						<left>390</left>
-						<width>240</width>
-						<onleft>6</onleft>
-						<onright>12</onright>
-						<ondown condition="!String.IsEmpty(ListItem.AddonNews)">SetProperty(TextViewerHeader,$LOCALIZE[31141] $INFO[ListItem.AddonVersion,v],home)</ondown>
-						<ondown condition="!String.IsEmpty(ListItem.AddonNews)">SetProperty(TextViewerText,$ESCINFO[ListItem.AddonNews],home)</ondown>
-						<ondown condition="!String.IsEmpty(ListItem.AddonNews)">ActivateWindow(1100)</ondown>
-						<orientation>horizontal</orientation>
-						<control type="button" id="9">
-							<include>DialogButtonInfoIcon</include>
-							<label></label>
-						</control>
-						<control type="button" id="8">
-							<include>DialogButtonInfoIcon</include>
-							<label></label>
-						</control>
-						<control type="button" id="101">
-							<enable>!String.IsEmpty(Container(50).ListItem.Art(Thumb))</enable>
-							<onup>50</onup>
-							<include>DialogButtonInfoIcon</include>
-							<label></label>
-						</control>
-					</control>
-					<control type="grouplist" id="9002">
-						<top>523</top>
-						<left>630</left>
-						<right>-10</right>
-						<onleft>101</onleft>
-						<onright>9</onright>
-						<ondown condition="!String.IsEmpty(ListItem.AddonNews)">SetProperty(TextViewerHeader,$LOCALIZE[31141] $INFO[ListItem.AddonVersion,v],home)</ondown>
-						<ondown condition="!String.IsEmpty(ListItem.AddonNews)">SetProperty(TextViewerText,$ESCINFO[ListItem.AddonNews],home)</ondown>
-						<ondown condition="!String.IsEmpty(ListItem.AddonNews)">ActivateWindow(1100)</ondown>
-						<orientation>horizontal</orientation>
-						<control type="button" id="12">
-							<visible>Control.IsEnabled(12)</visible>
-							<width>260</width>
-							<include>DialogButtonInfo</include>
-							<label>$LOCALIZE[518]</label>
-						</control>
-						<control type="button" id="10">
-							<visible>Control.IsEnabled(10)</visible>
-							<width>260</width>
-							<include>DialogButtonInfo</include>
-							<label>$LOCALIZE[39024]</label>
-						</control>
-						<control type="radiobutton" id="13">
-							<visible>Control.IsEnabled(13)</visible>
-							<width>260</width>
-							<align>left</align>
-							<radioposx>0</radioposx>
-							<textoffsetx>30</textoffsetx>
-							<include>DialogButtonInfo</include>
-							<textureradioonfocus colordiffuse="$VAR[PanelFocusTextColorVar]">icons/mediamenu/ok.png</textureradioonfocus>
-							<textureradioofffocus colordiffuse="$VAR[PanelFocusTextColorVar]">icons/mediamenu/cancel.png</textureradioofffocus>
-							<textureradioonnofocus colordiffuse="$VAR[PanelSubTextColorVar]">icons/mediamenu/ok.png</textureradioonnofocus>
-							<textureradiooffnofocus colordiffuse="$VAR[PanelSubTextColorVar]">icons/mediamenu/cancel.png</textureradiooffnofocus>
-						</control>
-						<control type="button" id="7">
-							<visible>Control.IsEnabled(7)</visible>
-							<width>260</width>
-							<include>DialogButtonInfo</include>
-						</control>
-						<control type="button" id="6">
-							<visible>Control.IsEnabled(6)</visible>
-							<width>260</width>
-							<include>DialogButtonInfo</include>
-						</control>
-					</control>
-				</control>
-				<!-- Info -->
-				<control type="group">
-					<visible>!Control.HasFocus(101) + !Control.HasFocus(50)</visible>
-					<include>AnimationVisibleFade</include>
+			<!-- Preview thumbs -->
+			<control type="panel" id="50">
+				<visible>[Control.HasFocus(101) | Control.HasFocus(50)] + !String.IsEmpty(Container(50).ListItem.Icon)</visible>
+				<include>AnimationVisibleFade</include>
+				<top>147</top>
+				<left>40</left>
+				<right>40</right>
+				<height>266</height>
+				<orientation>horizontal</orientation>
+				<ondown>101</ondown>
+				<include>ContainerScrollTime</include>
+				<itemlayout height="246" width="422">
+					<include content="ViewArtwork">
+						<param name="art">$INFO[ListItem.Icon]</param>
+						<param name="diffuse">diffuse/rounded5-480x270.png</param>
+					</include>
+				</itemlayout>
+				<focusedlayout height="246" width="422">
 					<control type="image">
-						<top>266</top>
-						<width>815</width>
-						<height>4</height>
-						<texture border="1" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
+						<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/panel-select-focus.png</texture>
 					</control>
-					<control type="image">
-						<visible>Integer.IsGreater(Container(9003).NumItems,5)</visible>
-						<top>266</top>
-						<left>845</left>
-						<width>815</width>
-						<height>4</height>
-						<texture border="1" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
+					<include content="ViewArtwork">
+						<param name="art">$INFO[ListItem.Icon]</param>
+						<param name="diffuse">diffuse/rounded5-480x270.png</param>
+					</include>
+				</focusedlayout>
+			</control>
+			<!-- Buttons -->
+			<control type="group" id="9000">
+				<control type="grouplist" id="9001">
+					<top>392</top>
+					<left>40</left>
+					<width>1080</width>
+					<onleft>6</onleft>
+					<onright>12</onright>
+					<orientation>horizontal</orientation>
+					<control type="button" id="9">
+						<include>DialogButtonInfoIcon</include>
+						<label></label>
 					</control>
-					<control type="panel" id="9003">
-						<top>267</top>
-						<height>246</height>
-						<ondown>9000</ondown>
-						<orientation>horizontal</orientation>
-						<itemlayout height="49" width="840">
-							<control type="label">
-								<width>180</width>
-								<font>Font28_Reg</font>
-								<label>$INFO[ListItem.Label2]</label>
-								<textcolor>$VAR[PanelTextColorVar]</textcolor>
-							</control>
-							<control type="image">
-								<top>1</top>
-								<left>200</left>
-								<width>4</width>
-								<height>48</height>
-								<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
-							</control>
-							<control type="label">
-								<left>220</left>
-								<width>605</width>
-								<font>Font28_Reg</font>
-								<label>$INFO[ListItem.Label]</label>
-								<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-							</control>
-							<control type="image">
-								<top>49</top>
-								<width>815</width>
-								<height>4</height>
-								<texture border="1" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
-							</control>
-						</itemlayout>
-						<focusedlayout height="49" width="830">
-							<control type="image">
-								<top>1</top>
-								<left>201</left>
-								<width>605</width>
-								<height>48</height>
-								<texture colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
-							</control>
-							<control type="label">
-								<width>180</width>
-								<font>Font28_Reg</font>
-								<label>$INFO[ListItem.Label2]</label>
-								<textcolor>$VAR[PanelTextColorVar]</textcolor>
-							</control>
-							<control type="image">
-								<top>1</top>
-								<left>200</left>
-								<width>4</width>
-								<height>48</height>
-								<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical.png</texture>
-							</control>
-							<control type="label">
-								<left>220</left>
-								<width>605</width>
-								<font>Font28_Reg</font>
-								<label>$INFO[ListItem.Label]</label>
-								<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
-							</control>
-							<control type="image">
-								<top>49</top>
-								<width>815</width>
-								<height>4</height>
-								<texture border="1" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
-							</control>
-						</focusedlayout>
-						<content>
-							<item>
-								<label>$INFO[ListItem.AddonVersion]</label>
-								<label2>$LOCALIZE[19114]</label2>
-							</item>
-							<item>
-								<label>$INFO[ListItem.AddonCreator]</label>
-								<label2>by</label2>
-							</item>
-							<item>
-								<label>$INFO[ListItem.Property(Addon.ID)]</label>
-								<label2>$LOCALIZE[560]</label2>
-							</item>
-							<item>
-								<label>$INFO[ListItem.AddonType]</label>
-								<label2>$LOCALIZE[467]</label2>
-							</item>
-							<item>
-								<visible>!String.IsEmpty(ListItem.Property(Addon.Status))</visible>
-								<label>$INFO[ListItem.Property(Addon.Status)]</label>
-								<label2>$LOCALIZE[126]</label2>
-							</item>
-							<item>
-								<visible>!String.IsEmpty(ListItem.AddonInstallDate)</visible>
-								<label>$INFO[ListItem.AddonInstallDate]</label>
-								<label2>$LOCALIZE[12013]</label2>
-							</item>
-							<item>
-								<visible>!String.IsEmpty(ListItem.AddonLastUpdated)</visible>
-								<label>$INFO[ListItem.AddonLastUpdated]</label>
-								<label2>$LOCALIZE[12014]</label2>
-							</item>
-							<item>
-								<visible>!String.IsEmpty(ListItem.AddonLastUsed)</visible>
-								<label>$INFO[ListItem.AddonLastUsed]</label>
-								<label2>$LOCALIZE[12012]</label2>
-							</item>
-						</content>
+					<control type="button" id="8">
+						<include>DialogButtonInfoIcon</include>
+						<label></label>
+					</control>
+					<control type="button" id="101">
+						<enable>!String.IsEmpty(Container(50).ListItem.Art(Thumb))</enable>
+						<onup>50</onup>
+						<include>DialogButtonInfoIcon</include>
+						<label></label>
 					</control>
 				</control>
-				<!-- Preview thumbs -->
-				<control type="group">
-					<visible>[Control.HasFocus(101) | Control.HasFocus(50)] + !String.IsEmpty(Container(50).ListItem.Art(Thumb))</visible>
-					<include>AnimationVisibleFade</include>
-					<top>267</top>
-					<right>-8</right>
-					<height>266</height>
-					<control type="panel" id="50">
-						<orientation>horizontal</orientation>
-						<ondown>101</ondown>
-						<itemlayout height="246" width="417">
-							<control type="image">
-								<width>407</width>
-								<texture border="10" colordiffuse="$VAR[PanelSubTextColorVar]">buttons/panel-select-focus.png</texture>
-							</control>
-							<control type="image">
-								<top>10</top>
-								<left>10</left>
-								<width>387</width>
-								<height>226</height>
-								<aspectratio>scale</aspectratio>
-								<texture>$INFO[ListItem.Art(thumb)]</texture>
-							</control>
-						</itemlayout>
-						<focusedlayout height="246" width="417">
-							<control type="image">
-								<width>407</width>
-								<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/panel-select-focus.png</texture>
-							</control>
-							<control type="image">
-								<top>10</top>
-								<left>10</left>
-								<width>387</width>
-								<height>226</height>
-								<aspectratio>scale</aspectratio>
-								<texture>$INFO[ListItem.Art(thumb)]</texture>
-							</control>
-						</focusedlayout>
+				<control type="grouplist" id="9002">
+					<top>392</top>
+					<left>280</left>
+					<right>40</right>
+					<onleft>101</onleft>
+					<onright>9</onright>
+					<orientation>horizontal</orientation>
+					<include>ContainerScrollTime</include>
+					<control type="button" id="12">
+						<visible>Control.IsEnabled(12)</visible>
+						<width>256.5</width>
+						<include>DialogButtonInfo</include>
+						<label>$LOCALIZE[518]</label>
 					</control>
-				</control>
-				<!-- Description -->
-				<control type="textbox">
-					<top>613</top>
-					<left>400</left>
-					<height>297</height>
-					<font>Font30_Reg_94</font>
-					<include>AutoScrollPlot</include>
-					<label>$INFO[ListItem.AddonDescription]</label>
-					<textcolor>$VAR[PanelTextColorVar]</textcolor>
-				</control>
-				<!-- Poster -->
-				<control type="image">
-					<left>-10</left>
-					<top>523</top>
-					<width>397</width>
-					<height>397</height>
-					<bordersize>10</bordersize>
-					<bordertexture>thumbs/border/397x397.png</bordertexture>
-					<texture background="true" fallback="DefaultAddon.png" diffuse="diffuse/rounded5-367x367.png">$INFO[ListItem.Art(thumb)]</texture>
+					<control type="button" id="10">
+						<visible>Control.IsEnabled(10)</visible>
+						<width>256.5</width>
+						<include>DialogButtonInfo</include>
+						<label>$LOCALIZE[39024]</label>
+					</control>
+					<control type="radiobutton" id="13">
+						<visible>Control.IsEnabled(13)</visible>
+						<width>256.5</width>
+						<align>left</align>
+						<radioposx>0</radioposx>
+						<textoffsetx>30</textoffsetx>
+						<include>DialogButtonInfo</include>
+						<textureradioonfocus colordiffuse="$VAR[PanelFocusTextColorVar]">icons/mediamenu/ok.png</textureradioonfocus>
+						<textureradioofffocus colordiffuse="$VAR[PanelFocusTextColorVar]">icons/mediamenu/cancel.png</textureradioofffocus>
+						<textureradioonnofocus colordiffuse="$VAR[PanelSubTextColorVar]">icons/mediamenu/ok.png</textureradioonnofocus>
+						<textureradiooffnofocus colordiffuse="$VAR[PanelSubTextColorVar]">icons/mediamenu/cancel.png</textureradiooffnofocus>
+					</control>
+					<control type="button" id="7">
+						<visible>Control.IsEnabled(7)</visible>
+						<width>256.5</width>
+						<include>DialogButtonInfo</include>
+					</control>
+					<control type="button" id="6">
+						<visible>Control.IsEnabled(6)</visible>
+						<width>256.5</width>
+						<include>DialogButtonInfo</include>
+					</control>
 				</control>
 			</control>
 		</control>

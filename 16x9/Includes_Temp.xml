@@ -1,40 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <includes>
-	<include name="FullScreenDimensions">
-		<width>1920</width>
-		<height>1080</height>
-	</include>
-	<include name="HiddenObject">
-		<left>-2000</left>
-		<top>-1100</top>
-		<width>1</width>
-		<height>1</height>
-		<texturefocus />
-		<texturenofocus />
-		<font />
-	</include>
-	<include name="HiddenList">
-		<left>-2000</left>
-		<top>-1100</top>
-		<width>1</width>
-		<height>1</height>
-		<itemlayout height="1" width="1" />
-		<focusedlayout height="1" width="1" />
-	</include>
-	<include name="AutoScrollPlot">
-		<autoscroll time="3000" delay="4000" repeat="5000">!Skin.HasSetting(DisableAutoScroll)</autoscroll>
-	</include>
-	<include name="ReloadWindowOnClick">
-		<onclick condition="Window.IsActive(addonbrowser)">SetProperty(ActiveWindow,addons,home)</onclick>
-		<onclick condition="Window.IsActive(music)">SetProperty(ActiveWindow,music,home)</onclick>
-		<onclick condition="Window.IsActive(musicplaylist)">SetProperty(ActiveWindow,musicplaylist,home)</onclick>
-		<onclick condition="Window.IsActive(videoplaylist)">SetProperty(ActiveWindow,videoplaylist,home)</onclick>
-		<onclick condition="Window.IsActive(videos)">SetProperty(ActiveWindow,videos,home)</onclick>
-		<onclick condition="Window.IsActive(programs)">SetProperty(ActiveWindow,programs,home)</onclick>
-		<onclick>SetProperty(ContainerPath,$ESCINFO[Container.FolderPath],home)</onclick>
-		<onclick>Dialog.Close(1115)</onclick>
-		<onclick>ReplaceWindow(1117)</onclick>
-	</include>
 	<!--  Topbar -->
 	<include name="TopBar">
 		<param name="icon"></param>
@@ -59,7 +24,7 @@
 					<texture border="1" colordiffuse="$VAR[TopbarShadowTextureColorVar]">panels/mainmenu/shadow-bar.png</texture>
 				</control>
 				<control type="progress">
-					<visible>Player.HasMedia + !Skin.HasSetting(DisableTopbarNowPlayingProgress) + !String.IsEqual(Skin.String(TopbarTexture.texture),shadow)</visible>
+					<visible>!VideoPlayer.HasEpg + Player.HasMedia + !Skin.HasSetting(DisableTopbarNowPlayingProgress) + !String.IsEqual(Skin.String(TopbarTexture.texture),shadow)</visible>
 					<include>AnimationVisibleFade</include>
 					<width>1920</width>
 					<height>41</height>
@@ -71,7 +36,7 @@
 					<overlaytexture />
 				</control>
 				<control type="progress">
-					<visible>Player.HasMedia + !Skin.HasSetting(DisableTopbarNowPlayingProgress) + !String.IsEqual(Skin.String(TopbarTexture.texture),shadow)</visible>
+					<visible>!VideoPlayer.HasEpg + Player.HasMedia + !Skin.HasSetting(DisableTopbarNowPlayingProgress) + !String.IsEqual(Skin.String(TopbarTexture.texture),shadow)</visible>
 					<include>AnimationVisibleFade</include>
 					<width>1920</width>
 					<height>41</height>
@@ -83,7 +48,7 @@
 					<overlaytexture />
 				</control>
 				<control type="progress">
-					<visible>Player.HasMedia + !Skin.HasSetting(DisableTopbarNowPlayingProgress) + String.IsEqual(Skin.String(TopbarTexture.texture),shadow)</visible>
+					<visible>!VideoPlayer.HasEpg + Player.HasMedia + !Skin.HasSetting(DisableTopbarNowPlayingProgress) + String.IsEqual(Skin.String(TopbarTexture.texture),shadow)</visible>
 					<include>AnimationVisibleFade</include>
 					<width>1920</width>
 					<height>87</height>
@@ -95,11 +60,37 @@
 					<overlaytexture />
 				</control>
 				<control type="progress">
-					<visible>Player.HasMedia + !Skin.HasSetting(DisableTopbarNowPlayingProgress) + String.IsEqual(Skin.String(TopbarTexture.texture),shadow)</visible>
+					<visible>!VideoPlayer.HasEpg + Player.HasMedia + !Skin.HasSetting(DisableTopbarNowPlayingProgress) + String.IsEqual(Skin.String(TopbarTexture.texture),shadow)</visible>
 					<include>AnimationVisibleFade</include>
 					<width>1920</width>
 					<height>87</height>
 					<info>Player.Progress</info>
+					<texturebg>panels/mainmenu/shadow-bar-empty.png</texturebg>
+					<lefttexture />
+					<midtexture colordiffuse="$VAR[PanelHighlightColorVar]">panels/mainmenu/shadow-bar20.png</midtexture>
+					<righttexture></righttexture>
+					<overlaytexture />
+				</control>
+
+				
+				<control type="progress">
+					<visible>VideoPlayer.HasEpg + Player.HasMedia + !Skin.HasSetting(DisableTopbarNowPlayingProgress) + !String.IsEqual(Skin.String(TopbarTexture.texture),shadow)</visible>
+					<include>AnimationVisibleFade</include>
+					<width>1920</width>
+					<height>41</height>
+					<info>PVR.EpgEventProgress</info>
+					<texturebg>colors/none.png</texturebg>
+					<lefttexture />
+					<midtexture colordiffuse="$VAR[PanelHighlightColorVar]">colors/white20.png</midtexture>
+					<righttexture></righttexture>
+					<overlaytexture />
+				</control>
+				<control type="progress">
+					<visible>VideoPlayer.HasEpg + Player.HasMedia + !Skin.HasSetting(DisableTopbarNowPlayingProgress) + String.IsEqual(Skin.String(TopbarTexture.texture),shadow)</visible>
+					<include>AnimationVisibleFade</include>
+					<width>1920</width>
+					<height>87</height>
+					<info>PVR.EpgEventProgress</info>
 					<texturebg>panels/mainmenu/shadow-bar-empty.png</texturebg>
 					<lefttexture />
 					<midtexture colordiffuse="$VAR[PanelHighlightColorVar]">panels/mainmenu/shadow-bar20.png</midtexture>
@@ -363,63 +354,6 @@
 			</control>
 		</definition>
 	</include>
-
-	<!-- Settings -->
-	<include name="SettingsLabel">
-		<width>1395</width>
-		<height>67</height>
-		<font>Font28_Bold</font>
-		<textoffsetx>35</textoffsetx>
-		<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
-	</include>
-	<include name="SettingsButton">
-		<width>1395</width>
-		<height>67</height>
-		<textoffsetx>35</textoffsetx>
-		<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-	</include>
-	<include name="SettingsRadioButton">
-		<width>1395</width>
-		<height>67</height>
-		<textoffsetx>35</textoffsetx>
-		<textwidth>930</textwidth>
-		<radioposx>1289</radioposx>
-		<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-	</include>
-	<include name="SettingsLeftLabel">
-		<top>132</top>
-		<left>100</left>
-		<width>324</width>
-		<height>67</height>
-		<textoffsetx>25</textoffsetx>
-		<font>Font33_Bold_Caps</font>
-		<textcolor>$VAR[PanelTextColorVar]</textcolor>
-	</include>
-	<include name="SettingsLeftButton">
-		<width>324</width>
-		<height>67</height>
-		<textoffsetx>25</textoffsetx>
-		<font>Font36_Reg</font>
-		<texturenofocus />
-		<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-	</include>
-	<include name="SettingsRightLabel">
-		<top>132</top>
-		<left>425</left>
-		<width>1395</width>
-		<height>67</height>
-		<textoffsetx>35</textoffsetx>
-		<font>Font33_Bold_Caps</font>
-		<textcolor>$VAR[PanelTextColorVar]</textcolor>
-	</include>
-
-	<include name="SettingsLabelSystemInfo">
-		<width>1384</width>
-		<height>55</height>
-		<textoffsetx>35</textoffsetx>
-		<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-	</include>
-
 	<!--  Floor -->
 	<include name="Floor">
 		<param name="highlight">FloorHighlight</param>
@@ -561,7 +495,7 @@
 				<width>1920</width>
 				<height>$PARAM[heighttexture]</height>
 				<aspectratio align="right" scalediffuse="false">scale</aspectratio>
-				<texture flipy="$PARAM[flipy]" colordiffuse="$VAR[PanelTextureColorVar]" border="1">$VAR[PanelTextureVar]</texture>
+				<texture flipy="$PARAM[flipy]" colordiffuse="$VAR[PanelTextureColorVar]" border="1">$INFO[Skin.String(PanelTexture.texture)]</texture>
 			</control>
 		</definition>
 	</include>
@@ -577,53 +511,57 @@
 		<param name="diffusetexture">diffuse/rounded20-1720x880.png</param>
 		<param name="reflect">true</param>
 		<param name="reflecttop">965</param>
+		<param name="visible">true</param>
 		<definition>
-			<control type="image">
-				<left>$PARAM[left]</left>
-				<right>$PARAM[right]</right>
-				<top>$PARAM[reflecttop]</top>
-				<height>$PARAM[height]</height>
-				<texture flipy="true" diffuse="panels/windows/reflect.png" colordiffuse="$VAR[PanelStyleColorVar]" border="40">$VAR[PanelStyleVar]</texture>
-				<visible>$PARAM[reflect]</visible>
-			</control>
-			<control type="image">
-				<left>$PARAM[left]</left>
-				<right>$PARAM[right]</right>
-				<top>$PARAM[top]</top>
-				<height>$PARAM[height]</height>
-				<texture colordiffuse="$VAR[PanelShadowColorVar]" border="50">$VAR[PanelShadowVar]</texture>
-			</control>
-			<control type="image">
-				<left>$PARAM[left]</left>
-				<right>$PARAM[right]</right>
-				<top>$PARAM[top]</top>
-				<height>$PARAM[height]</height>
-				<texture colordiffuse="$VAR[PanelStyleColorVar]" border="60">$VAR[PanelStyleVar]</texture>
-			</control>
-			<control type="image">
-				<left>$PARAM[lefttexture]</left>
-				<right>$PARAM[righttexture]</right>
-				<top>$PARAM[toptexture]</top>
-				<height>$PARAM[heighttexture]</height>
-				<aspectratio align="right" scalediffuse="false">scale</aspectratio>
-				<texture diffuse="$PARAM[diffusetexture]" colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
-				<visible>!Skin.HasSetting(PanelSquare.texture)</visible>
-			</control>
-			<control type="image">
-				<left>$PARAM[lefttexture]</left>
-				<right>$PARAM[righttexture]</right>
-				<top>$PARAM[toptexture]</top>
-				<height>$PARAM[heighttexture]</height>
-				<aspectratio align="right" scalediffuse="false">scale</aspectratio>
-				<texture colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
-				<visible>Skin.HasSetting(PanelSquare.texture)</visible>
-			</control>
-			<control type="image">
-				<left>$PARAM[left]</left>
-				<right>$PARAM[right]</right>
-				<top>$PARAM[top]</top>
-				<height>$PARAM[height]</height>
-				<texture colordiffuse="$VAR[PanelEmbossColorVar]" border="40">$VAR[PanelEmbossVar]</texture>
+			<control type="group">
+				<visible>$PARAM[visible]</visible>
+				<control type="image">
+					<left>$PARAM[left]</left>
+					<right>$PARAM[right]</right>
+					<top>$PARAM[reflecttop]</top>
+					<height>$PARAM[height]</height>
+					<texture flipy="true" diffuse="panels/windows/reflect.png" colordiffuse="$VAR[PanelStyleColorVar]" border="40">$VAR[PanelStyleVar]</texture>
+					<visible>$PARAM[reflect]</visible>
+				</control>
+				<control type="image">
+					<left>$PARAM[left]</left>
+					<right>$PARAM[right]</right>
+					<top>$PARAM[top]</top>
+					<height>$PARAM[height]</height>
+					<texture colordiffuse="$VAR[PanelShadowColorVar]" border="50">$VAR[PanelShadowVar]</texture>
+				</control>
+				<control type="image">
+					<left>$PARAM[left]</left>
+					<right>$PARAM[right]</right>
+					<top>$PARAM[top]</top>
+					<height>$PARAM[height]</height>
+					<texture colordiffuse="$VAR[PanelStyleColorVar]" border="60">$VAR[PanelStyleVar]</texture>
+				</control>
+				<control type="image">
+					<left>$PARAM[lefttexture]</left>
+					<right>$PARAM[righttexture]</right>
+					<top>$PARAM[toptexture]</top>
+					<height>$PARAM[heighttexture]</height>
+					<aspectratio align="right" scalediffuse="false">scale</aspectratio>
+					<texture diffuse="$PARAM[diffusetexture]" colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
+					<visible>!Skin.HasSetting(PanelSquare.texture)</visible>
+				</control>
+				<control type="image">
+					<left>$PARAM[lefttexture]</left>
+					<right>$PARAM[righttexture]</right>
+					<top>$PARAM[toptexture]</top>
+					<height>$PARAM[heighttexture]</height>
+					<aspectratio align="right" scalediffuse="false">scale</aspectratio>
+					<texture colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
+					<visible>Skin.HasSetting(PanelSquare.texture)</visible>
+				</control>
+				<control type="image">
+					<left>$PARAM[left]</left>
+					<right>$PARAM[right]</right>
+					<top>$PARAM[top]</top>
+					<height>$PARAM[height]</height>
+					<texture colordiffuse="$VAR[PanelEmbossColorVar]" border="40">$VAR[PanelEmbossVar]</texture>
+				</control>
 			</control>
 		</definition>
 	</include>
@@ -702,7 +640,7 @@
 		<param name="heighttexture">880</param>
 		<param name="diffusetexture">diffuse/rounded20-1720x880.png</param>
 		<param name="reflect">true</param>
-		<param name="reflecttop">970</param>
+		<param name="reflecttop">965</param>
 		<param name="visible">true</param>
 		<definition>
 			<control type="group">
@@ -762,79 +700,6 @@
 					<aspectratio>keep</aspectratio>
 					<texture>icons/logo.png</texture>
 				</control>
-			</control>
-		</definition>
-	</include>
-	<!-- File Manager -->
-	<include name="FileManagerList">
-		<param name="id"></param>
-		<param name="left"></param>
-		<param name="onleft"></param>
-		<param name="onright"></param>
-		<param name="scrollbarid"></param>
-		<definition>
-			<control type="list" id="$PARAM[id]">
-				<left>$PARAM[left]</left>
-				<top>141</top>
-				<width>835</width>
-				<height>798</height>
-				<onleft>$PARAM[onleft]</onleft>
-				<onright>$PARAM[onright]</onright>
-				<pagecontrol>$PARAM[scrollbarid]</pagecontrol>
-				<itemlayout height="72.5">
-					<control type="image">
-						<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
-					</control>
-					<control type="label">
-						<left>25</left>
-						<label>$INFO[ListItem.Label]</label>
-						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-					</control>
-					<control type="label">
-						<right>25</right>
-						<align>right</align>
-						<label>$INFO[ListItem.Label2]</label>
-						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-					</control>
-				</itemlayout>
-				<focusedlayout height="72.5">
-					<control type="group">
-						<visible>Control.HasFocus($PARAM[id])</visible>
-						<control type="image">
-							<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
-						</control>
-						<control type="label">
-							<left>25</left>
-							<scroll>true</scroll>
-							<label>$INFO[ListItem.Label]</label>
-							<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
-						</control>
-						<control type="label">
-							<right>25</right>
-							<align>right</align>
-							<label>$INFO[ListItem.Label2]</label>
-							<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
-						</control>
-					</control>
-					<control type="group">
-						<visible>!Control.HasFocus($PARAM[id])</visible>
-						<control type="image">
-							<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
-						</control>
-						<control type="label">
-							<left>25</left>
-							<scroll>true</scroll>
-							<label>$INFO[ListItem.Label]</label>
-							<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-						</control>
-						<control type="label">
-							<right>25</right>
-							<align>right</align>
-							<label>$INFO[ListItem.Label2]</label>
-							<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-						</control>
-					</control>
-				</focusedlayout>
 			</control>
 		</definition>
 	</include>
@@ -1111,254 +976,5 @@
 			</control>
 		</definition>
 	</include>
-	<include name="PVRInfoPanel">
-		<control type="group">
-			<visible>!ListItem.IsFolder | String.IsEqual(ListItem.Comment,$LOCALIZE[305])</visible>
-			<top>155</top>
-			<right>115</right>
-			<width>603</width>
-			<height>796</height>
-			<control type="image">
-				<height>348</height>
-				<texture border="20">thumbs/border/552x552.png</texture>
-			</control>
-			<control type="image">
-				<visible>!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Fanart))</visible>
-				<height>348</height>
-				<bordersize>10</bordersize>
-				<fadetime>TextureFadeTime</fadetime>
-				<texture diffuse="diffuse/rounded5-532x532.png" background="true">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Fanart)]</texture>
-				<aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
-			</control>
-			<control type="image">
-				<visible>String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Fanart))</visible>
-				<height>348</height>
-				<bordersize>10</bordersize>
-				<fadetime>TextureFadeTime</fadetime>
-				<texture diffuse="diffuse/rounded5-532x532.png" background="true">$INFO[ListItem.Icon]</texture>
-				<aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
-			</control>
-			<control type="grouplist">
-				<top>355</top>
-				<left>10</left>
-				<width>583</width>
-				<usecontrolcoords>true</usecontrolcoords>
-				<control type="label">
-					<height>36</height>
-					<font>Font38_Reg</font>
-					<textcolor>$VAR[PanelTextColorVar]</textcolor>
-					<label>$INFO[ListItem.ChannelName]</label>
-				</control>
-				<control type="label">
-					<height>36</height>
-					<font>Font32_Reg</font>
-					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
-					<label>$INFO[ListItem.Title]</label>
-				</control>
-				<control type="label">
-					<height>3</height>
-				</control>
-				<control type="label">
-					<visible>!String.IsEmpty(ListItem.EpisodeName) | [!String.IsEmpty(ListItem.Season) + !String.IsEmpty(ListItem.Episode)]</visible>
-					<height>30</height>
-					<font>Font28_Reg</font>
-					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-					<label>[COLOR $VAR[PanelTextColorVar]]$INFO[ListItem.Season,S]$INFO[ListItem.Episode,E,  ][/COLOR]$INFO[ListItem.EpisodeName]</label>
-				</control>
-				<control type="label">
-					<visible>!String.IsEmpty(ListItem.Genre)</visible>
-					<height>30</height>
-					<font>Font28_Reg</font>
-					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[515][/COLOR]  $INFO[ListItem.Genre]</label>
-				</control>
-				<control type="label">
-					<height>11</height>
-				</control>
-				<control type="textbox">
-					<height>190</height>
-					<font>Font30_Reg_105</font>
-					<label>$INFO[ListItem.Plot]</label>
-					<autoscroll delay="1000" time="3000" repeat="10000">true</autoscroll>
-				</control>
-				<control type="label">
-					<height>10</height>
-				</control>		
-				<!-- <control type="group">
-					<visible>Integer.IsGreater(ListItem.Progress,0)</visible>
-					<top>150</top>
-					<height>262</height>
-					<control type="label">
-						<label>$INFO[ListItem.StartTime]</label>
-					</control>
-					<control type="label">
-						<align>right</align>
-						<label>$INFO[ListItem.EndTime]</label>
-					</control>
-					<control type="progress">
-						<top>50</top>
-						<height>12</height>
-						<colordiffuse>88FFFFFF</colordiffuse>
-						<info>ListItem.Progress</info>
-					</control>
-				</control>
-				<control type="progress">
-					<top>200</top>
-					<height>12</height>
-					<colordiffuse>88FFFFFF</colordiffuse>
-					<info>ListItem.PercentPlayed</info>
-					<visible>Integer.IsGreater(ListItem.PercentPlayed,0)</visible>
-				</control> -->
-			</control>
-			<control type="grouplist">
-				<bottom>15</bottom>
-				<left>10</left>
-				<width>583</width>
-				<height>80</height>
-				<usecontrolcoords>true</usecontrolcoords>
-				<control type="label">
-					<height>32</height>
-					<font>Font28_Reg</font>
-					<textcolor>$VAR[PanelTextColorVar]</textcolor>
-					<label>$INFO[ListItem.Comment]$INFO[ListItem.TimerType, (,)]</label>
-				</control>
-				<control type="label">
-					<height>32</height>
-					<font>Font28_Reg</font>
-					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-					<label>$INFO[ListItem.Date]</label>
-				</control>
-			</control>
-			
-		</control>
-		<control type="group">
-			<visible>ListItem.IsFolder</visible>
-			<!-- <top>143</top>
-			<left>1100</left>
-			<control type="label">
-				<top>10</top>
-				<width>830</width>
-				<height>262</height>
-				<label>$LOCALIZE[19076] ($INFO[Container(5000).NumItems,[B],[/B] $LOCALIZE[31036]])</label>
-				<font>font37</font>
-				<visible>!ListItem.IsParentFolder</visible>
-			</control> -->
-			<control type="group">
-				
-				<visible>!ListItem.IsParentFolder</visible>
-				<control type="panel" id="5000">
-					<top>143</top>
-					<right>100</right>
-					<width>633</width>
-					<height>796</height>
-					<itemlayout height="99.5">
-						<control type="image">
-							<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
-						</control>
-						<control type="label">
-							<textoffsetx>25</textoffsetx>
-							<textcolor>$VAR[PanelTextColorVar]</textcolor>
-							<label>[COLOR $VAR[PanelSubTextColorVar]]$INFO[ListItem.Date][/COLOR][CR]$INFO[ListItem.Label]$INFO[ListItem.EpisodeName, (,)]</label>
-						</control>
-					</itemlayout>
-					<focusedlayout height="99.5">
-						<control type="image">
-							<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
-						</control>
-						<control type="label">
-							<textoffsetx>25</textoffsetx>
-							<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
-							<label>$INFO[ListItem.Date][CR]$INFO[ListItem.Label]$INFO[ListItem.EpisodeName, (,)]</label>
-						</control>
-					</focusedlayout>
-					<content sortby="date" sortorder="$PARAM[folder_sortorder]">$INFO[ListItem.FilenameAndPath]</content>
-				</control>
-			</control>
-		</control>
-	</include>
-	<include name="WidgetSelect">
-		<param name="id">1</param>
-		<definition>
-			<control type="button" id="80$PARAM[id]">
-				<left>425</left>
-				<width>1395</width>
-				<height>100%</height>
-				<onclick>back</onclick>
-				<texturefocus />
-				<texturenofocus />
-			</control>
-			<control type="grouplist" id="80$PARAM[id]1">
-				<top>200</top>
-				<left>425</left>
-				<width>1395</width>
-				<height>670</height>
-				<onleft>211</onleft>
-				<onright>60</onright>
-				<pagecontrol>60</pagecontrol>
-				<control type="button" id="80$PARAM[id]2">
-					<label>$LOCALIZE[31289] $PARAM[id]</label>
-					<label2>$INFO[Container(211).ListItem.Property(widgetName.$PARAM[id])]</label2>
-					<onclick>SetProperty(customProperty,widgetArtwork.$PARAM[id])</onclick>
-					<onclick>SendClick(404)</onclick>
-					<onclick>SetProperty(widgetID,$PARAM[id])</onclick>
-					<onclick>SendClick(312)</onclick>
-					<include>SettingsButton</include>
-				</control>
-				<control type="button" id="80$PARAM[id]3">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.$PARAM[id]))</visible>
-					<label>$LOCALIZE[736]</label>
-					<label2>$VAR[Widget1StyleLabelVar]</label2>
-					<include>SettingsButton</include>
-				</control>
-				<control type="button" id="80$PARAM[id]4">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.$PARAM[id]))</visible>
-					<label>$LOCALIZE[31044]</label>
-					<label2>$VAR[Widget1ArtworkLabelVar]</label2>
-					<include>SettingsButton</include>
-				</control>
-				<control type="radiobutton" id="80$PARAM[id]6">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.$PARAM[id])) + !String.IsEqual(Container(211).ListItem.Property(widget.$PARAM[id]),info)</visible>
-					<label>$LOCALIZE[21899]</label>
-					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetLabel.$PARAM[id]))">SetProperty(customProperty,widgetLabel.$PARAM[id])</onclick>
-					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel.$PARAM[id]))">SetProperty(customProperty,widgetLabel.$PARAM[id])</onclick>
-					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetLabel.$PARAM[id]))">SetProperty(customValue,true)</onclick>
-					<onclick>SendClick(404)</onclick>
-					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetLabel.$PARAM[id]))</selected>
-					<include>SettingsRadioButton</include>
-				</control>
-				<control type="radiobutton" id="80$PARAM[id]7">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.$PARAM[id])) + String.IsEqual(Container(211).ListItem.Property(widgetArtwork.$PARAM[id]),portraiticon) + [String.IsEqual(Container(211).ListItem.Property(widgetType.$PARAM[id]),movies) | String.IsEqual(Container(211).ListItem.Property(widgetType.$PARAM[id]),episodes) | String.IsEqual(Container(211).ListItem.Property(widgetType.$PARAM[id]),tvshows)]</visible>
-					<label>$LOCALIZE[31237]</label>
-					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.$PARAM[id]),false)">SetProperty(customProperty,widgetCaseVideo.$PARAM[id])</onclick>
-					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.$PARAM[id]),false)">SetProperty(customValue,true)</onclick>
-					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.$PARAM[id]),true)">SetProperty(customProperty,widgetCaseVideo.$PARAM[id])</onclick>
-					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.$PARAM[id]),true)">SetProperty(customValue,false)</onclick>
-					<onclick>SendClick(404)</onclick>
-					<selected>String.IsEqual(Container(211).ListItem.Property(widgetCaseVideo.$PARAM[id]),true)</selected>
-					<include>SettingsRadioButton</include>
-				</control>
-				<control type="radiobutton" id="80$PARAM[id]8">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.$PARAM[id])) + !String.IsEmpty(Container(211).ListItem.Property(widgetStyle.$PARAM[id])) + String.IsEqual(Container(211).ListItem.Property(widgetArtwork.$PARAM[id]),squareicon) + [String.IsEqual(Container(211).ListItem.Property(widgetType.$PARAM[id]),albums) | String.IsEqual(Container(211).ListItem.Property(widgetType.$PARAM[id]),songs) | String.IsEqual(Container(211).ListItem.Property(widgetType.$PARAM[id]),musicvideos)]</visible>
-					<label>$LOCALIZE[31291]</label>
-					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.$PARAM[id]),false)">SetProperty(customProperty,widgetCaseMusic.$PARAM[id])</onclick>
-					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.$PARAM[id]),false)">SetProperty(customValue,true)</onclick>
-					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.$PARAM[id]),true)">SetProperty(customProperty,widgetCaseMusic.$PARAM[id])</onclick>
-					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.$PARAM[id]),true)">SetProperty(customValue,false)</onclick>
-					<onclick>SendClick(404)</onclick>
-					<selected>String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.$PARAM[id]),true)</selected>
-					<include>SettingsRadioButton</include>
-				</control>
-				<!-- <control type="radiobutton" id="80$PARAM[id]9">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle.$PARAM[id])) + !String.IsEqual(Container(211).ListItem.Property(widget.$PARAM[id]),info)</visible>
-					<label>$LOCALIZE[29915]</label>
-					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetInfo.$PARAM[id]))">SetProperty(customProperty,widgetInfo.$PARAM[id])</onclick>
-					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetInfo.$PARAM[id]))">SetProperty(customProperty,widgetInfo.$PARAM[id])</onclick>
-					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetInfo.$PARAM[id]))">SetProperty(customValue,true)</onclick>
-					<onclick>SendClick(404)</onclick>
-					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetInfo.$PARAM[id]))</selected>
-					<include>SettingsRadioButton</include>
-				</control> -->
-			</control>
-		</definition>
-	</include>
+	
 </includes>

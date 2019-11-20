@@ -3,9 +3,40 @@
 	<backgroundcolor>FF000000</backgroundcolor>
 	<controls>
 		<!-- Background -->
-		<include>AnimationWindowFade</include>
 		<control type="visualisation" id="2">
 			<include>FullScreenDimensions</include>
+		</control>
+		<control type="fadelabel" id="71111">
+			<visible>Skin.HasSetting(MusicOSDExtraFanart)</visible>
+			<top>-1000</top>
+			<width>1</width>
+			<height>1</height>
+			<scroll>false</scroll>
+			<randomize>true</randomize>
+			<scrollout>false</scrollout>
+			<include>FadeLabelTime</include>
+			<resetonlabelchange>true</resetonlabelchange>
+			<label>$INFO[Player.Art(fanart)]</label>
+			<label>$INFO[Player.Art(artist.fanart1)]</label>
+			<label>$INFO[Player.Art(artist.fanart2)]</label>
+			<label>$INFO[Player.Art(artist.fanart3)]</label>
+			<label>$INFO[Player.Art(artist.fanart4)]</label>
+			<label>$INFO[Player.Art(artist.fanart5)]</label>
+			<label>$INFO[Player.Art(artist.fanart6)]</label>
+			<label>$INFO[Player.Art(artist.fanart7)]</label>
+			<label>$INFO[Player.Art(artist.fanart8)]</label>
+			<label>$INFO[Player.Art(artist.fanart9)]</label>
+			<label>$INFO[Player.Art(artist.fanart10)]</label>
+			<label>$INFO[Player.Art(albumartist.fanart1)]</label>
+			<label>$INFO[Player.Art(albumartist.fanart2)]</label>
+			<label>$INFO[Player.Art(albumartist.fanart3)]</label>
+			<label>$INFO[Player.Art(albumartist.fanart4)]</label>
+			<label>$INFO[Player.Art(albumartist.fanart5)]</label>
+			<label>$INFO[Player.Art(albumartist.fanart6)]</label>
+			<label>$INFO[Player.Art(albumartist.fanart7)]</label>
+			<label>$INFO[Player.Art(albumartist.fanart8)]</label>
+			<label>$INFO[Player.Art(albumartist.fanart9)]</label>
+			<label>$INFO[Player.Art(albumartist.fanart10)]</label>
 		</control>
 		<control type="multiimage">
 			<visible>Visualisation.Enabled</visible>
@@ -17,7 +48,7 @@
 			<randomize>true</randomize>
 			<aspectratio>scale</aspectratio>
 			<fadetime>TextureFadeTime</fadetime>
-			<imagepath background="true" colordiffuse="AAFFFFFF">$VAR[NowPlayingMusicVizFanArtVar]</imagepath>
+			<imagepath background="true" colordiffuse="AAFFFFFF">$VAR[MusicOSDFanArtVar]</imagepath>
 		</control>
 		<control type="multiimage">
 			<visible>!Visualisation.Enabled</visible>
@@ -29,15 +60,17 @@
 			<randomize>true</randomize>
 			<aspectratio>scale</aspectratio>
 			<fadetime>TextureFadeTime</fadetime>
-			<imagepath background="true">$VAR[NowPlayingMusicVizFanArtVar]</imagepath>
+			<imagepath background="true">$VAR[MusicOSDFanArtVar]</imagepath>
 		</control>
 		<control type="image">
-			<visible>Skin.HasSetting(DisableMusicVizAnimatedLyrics) + Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>
+			<visible>Skin.HasSetting(MusicOSDDisableAnimatedLyrics) + Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>
 			<include>FullScreenDimensions</include>
 			<texture>colors/black50.png</texture>
 		</control>
 		<!-- Background scroll labels -->
 		<control type="fadelabel">
+			<visible>Skin.HasSetting(MusicOSDBackgroundInfo)</visible>
+			<include>AnimationWindowFade</include>
 			<top>380</top>
 			<width>1920</width>
 			<height>300</height>
@@ -51,9 +84,11 @@
 			<textcolor>1FFFFFFF</textcolor>
 			<textoffsetx>20</textoffsetx>
 			<resetonlabelchange>true</resetonlabelchange>
-			<visible>Skin.HasSetting(NowPlayingMusicVizBackgroundInfo)</visible>
 		</control>
 		<control type="fadelabel">
+			<visible>Skin.HasSetting(MusicOSDBackgroundInfo)</visible>
+			<animation effect="rotate" center="auto" end="90" condition="true">Conditonal</animation>
+			<include>AnimationWindowFade</include>
 			<left>980</left>
 			<width>1080</width>
 			<scroll>true</scroll>
@@ -66,12 +101,10 @@
 			<textcolor>1FFFFFFF</textcolor>
 			<textoffsetx>20</textoffsetx>
 			<resetonlabelchange>true</resetonlabelchange>
-			<visible>Skin.HasSetting(NowPlayingMusicVizBackgroundInfo)</visible>
-			<animation effect="rotate" center="auto" end="90" condition="true">Conditonal</animation>
 		</control>
 		<!-- Music info -->
 		<control type="image">
-			<visible>[Player.ShowInfo + String.IsEmpty(Skin.String(NowPlayingMusicVizInfo))] | String.IsEqual(Skin.String(NowPlayingMusicVizInfo),persistant)</visible>
+			<visible>[Player.ShowInfo + String.IsEmpty(Skin.String(MusicOSDInfo))] | String.IsEqual(Skin.String(MusicOSDInfo),persistant)</visible>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">440</param>
 			</include>
@@ -84,7 +117,7 @@
 			<texture colordiffuse="FF000000">panels/background-gradient.png</texture>
 		</control>
 		<control type="group">
-			<visible>[Player.ShowInfo + String.IsEmpty(Skin.String(NowPlayingMusicVizInfo))] | String.IsEqual(Skin.String(NowPlayingMusicVizInfo),persistant)</visible>
+			<visible>[Player.ShowInfo + String.IsEmpty(Skin.String(MusicOSDInfo))] | String.IsEqual(Skin.String(MusicOSDInfo),persistant)</visible>
 			<left>15</left>
 			<bottom>15</bottom>
 			<right>15</right>
@@ -96,90 +129,50 @@
 				<param name="slide">440</param>
 			</include>
 			<control type="group">
-				<visible>[String.IsEqual(Skin.String(NowPlayingMusicVizMusicInfo),none) + !Player.IsInternetStream + !Pvr.IsPlayingRadio] | [String.IsEqual(Skin.String(NowPlayingMusicVizAudioInfo),none) + [Player.IsInternetStream | Pvr.IsPlayingRadio]]</visible>
+				<visible>[String.IsEqual(Skin.String(MusicOSDMusicInfo),none) + !Player.IsInternetStream + !Pvr.IsPlayingRadio] | [String.IsEqual(Skin.String(MusicOSDAudioInfo),none) + [Player.IsInternetStream | Pvr.IsPlayingRadio]]</visible>
 				<control type="group">
-					<visible>String.IsEmpty(Skin.String(NowPlayingMusicVizCase))</visible>
+					<visible>!Skin.HasSetting(MusicOSDCase)</visible>
 					<include>AnimationVisibleFade</include>
-					<include content="NowPlayingMusicVizContent">
+					<include content="NowPlayingMusicOSDContent">
 						<param name="left">0</param>
 						<param name="right">52</param>
 						<param name="leftinfo">390</param>
-						<param name="casewidth">400</param>
-						<param name="border">10</param>
-						<param name="discborder">20</param>
 						<param name="slide">125</param>
 						<param name="slidedisc">170</param>
 					</include>
 				</control>
 				<control type="group">
-					<visible>String.IsEqual(Skin.String(NowPlayingMusicVizCase),glass)</visible>
+					<visible>Skin.HasSetting(MusicOSDCase)</visible>
 					<include>AnimationVisibleFade</include>
-					<include content="NowPlayingMusicVizContent">
-						<param name="left">0</param>
-						<param name="right">52</param>
-						<param name="leftinfo">390</param>
-						<param name="casewidth">400</param>
-						<param name="border">20</param>
-						<param name="discborder">20</param>
-						<param name="slide">125</param>
-						<param name="slidedisc">170</param>
-					</include>
-				</control>
-				<control type="group">
-					<visible>String.Contains(Skin.String(NowPlayingMusicVizCase),cd)</visible>
-					<include>AnimationVisibleFade</include>
-					<include content="NowPlayingMusicVizContent">
+					<include content="NowPlayingMusicOSDContent">
 						<param name="left">30</param>
 						<param name="right">52</param>
 						<param name="leftinfo">420</param>
-						<param name="casewidth">430</param>
-						<param name="border">15</param>
-						<param name="discborder">25</param>
 						<param name="slide">120</param>
 						<param name="slidedisc">166</param>
 					</include>
 				</control>
 			</control>
 			<control type="group">
-				<visible>[!String.IsEqual(Skin.String(NowPlayingMusicVizMusicInfo),none) + !Player.IsInternetStream + !Pvr.IsPlayingRadio] | [!String.IsEqual(Skin.String(NowPlayingMusicVizAudioInfo),none) + [Player.IsInternetStream | Pvr.IsPlayingRadio]]</visible>
+				<visible>[!String.IsEqual(Skin.String(MusicOSDMusicInfo),none) + !Player.IsInternetStream + !Pvr.IsPlayingRadio] | [!String.IsEqual(Skin.String(MusicOSDAudioInfo),none) + [Player.IsInternetStream | Pvr.IsPlayingRadio]]</visible>
 				<control type="group">
-					<visible>String.IsEmpty(Skin.String(NowPlayingMusicVizCase))</visible>
+					<visible>!Skin.HasSetting(MusicOSDCase)</visible>
 					<include>AnimationVisibleFade</include>
-					<include content="NowPlayingMusicVizContent">
+					<include content="NowPlayingMusicOSDContent">
 						<param name="left">0</param>
 						<param name="right">660</param>
 						<param name="leftinfo">390</param>
-						<param name="casewidth">400</param>
-						<param name="border">10</param>
-						<param name="discborder">20</param>
 						<param name="slide">125</param>
 						<param name="slidedisc">170</param>
 					</include>
 				</control>
 				<control type="group">
-					<visible>String.IsEqual(Skin.String(NowPlayingMusicVizCase),glass)</visible>
+					<visible>Skin.HasSetting(MusicOSDCase)</visible>
 					<include>AnimationVisibleFade</include>
-					<include content="NowPlayingMusicVizContent">
-						<param name="left">0</param>
-						<param name="right">760</param>
-						<param name="leftinfo">390</param>
-						<param name="casewidth">400</param>
-						<param name="border">20</param>
-						<param name="discborder">20</param>
-						<param name="slide">125</param>
-						<param name="slidedisc">170</param>
-					</include>
-				</control>
-				<control type="group">
-					<visible>String.Contains(Skin.String(NowPlayingMusicVizCase),cd)</visible>
-					<include>AnimationVisibleFade</include>
-					<include content="NowPlayingMusicVizContent">
+					<include content="NowPlayingMusicOSDContent">
 						<param name="left">30</param>
 						<param name="right">760</param>
 						<param name="leftinfo">420</param>
-						<param name="casewidth">430</param>
-						<param name="border">15</param>
-						<param name="discborder">25</param>
 						<param name="slide">120</param>
 						<param name="slidedisc">166</param>
 					</include>
@@ -188,39 +181,31 @@
 			<control type="group">
 				<visible>!Pvr.IsPlayingRadio + !Player.IsInternetStream</visible>
 				<control type="group">
-					<visible>String.IsEmpty(Skin.String(NowPlayingMusicVizMusicInfo)) + MusicPlayer.HasNext</visible>
-					<include>NowPlayingMusicVizNext</include>
+					<visible>String.IsEqual(Skin.String(MusicOSDMusicInfo),next) + MusicPlayer.HasNext</visible>
+					<include>NowPlayingMusicOSDNext</include>
 				</control>
 				<control type="group">
-					<visible>String.IsEqual(Skin.String(NowPlayingMusicVizMusicInfo),tracks) + MusicPlayer.HasNext</visible>
-					<include>NowPlayingMusicVizTracks</include>
-				</control>
-				<control type="group">
-					<visible>String.IsEqual(Skin.String(NowPlayingMusicVizMusicInfo),description) + [!String.IsEmpty(MusicPlayer.Property(Artist_Description)) | !String.IsEmpty(MusicPlayer.Property(Artist_Description)) | !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Plot))]</visible>
-					<include>NowPlayingMusicVizPlot</include>
+					<visible>String.IsEqual(Skin.String(MusicOSDMusicInfo),tracks) + MusicPlayer.HasNext</visible>
+					<include>NowPlayingMusicOSDTracks</include>
 				</control>
 				<control type="grouplist">
-					<visible>String.IsEqual(Skin.String(NowPlayingMusicVizMusicInfo),info)</visible>
-					<include>NowPlayingMusicVizInfo</include>
+					<visible>String.IsEmpty(Skin.String(MusicOSDMusicInfo))</visible>
+					<include>NowPlayingMusicOSDInfo</include>
 				</control>
 			</control>
 			<control type="group">
 				<visible>Pvr.IsPlayingRadio | Player.IsInternetStream</visible>
 				<control type="group">
-					<visible>String.IsEmpty(Skin.String(NowPlayingMusicVizAudioInfo)) + MusicPlayer.HasNext</visible>
-					<include>NowPlayingMusicVizNext</include>
+					<visible>String.IsEqual(Skin.String(MusicOSDAudioInfo),next) + MusicPlayer.HasNext</visible>
+					<include>NowPlayingMusicOSDNext</include>
 				</control>
 				<control type="group">
-					<visible>String.IsEqual(Skin.String(NowPlayingMusicVizAudioInfo),tracks) + MusicPlayer.HasNext</visible>
-					<include>NowPlayingMusicVizTracks</include>
-				</control>
-				<control type="group">
-					<visible>String.IsEqual(Skin.String(NowPlayingMusicVizAudioInfo),description) + [!String.IsEmpty(MusicPlayer.Property(Artist_Description)) | !String.IsEmpty(MusicPlayer.Property(Artist_Description)) | !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Plot))]</visible>
-					<include>NowPlayingMusicVizPlot</include>
+					<visible>String.IsEqual(Skin.String(MusicOSDAudioInfo),tracks) + MusicPlayer.HasNext</visible>
+					<include>NowPlayingMusicOSDTracks</include>
 				</control>
 				<control type="grouplist">
-					<visible>String.IsEqual(Skin.String(NowPlayingMusicVizAudioInfo),info)</visible>
-					<include>NowPlayingMusicVizInfo</include>
+					<visible>String.IsEmpty(Skin.String(MusicOSDAudioInfo))</visible>
+					<include>NowPlayingMusicOSDInfo</include>
 				</control>
 			</control>
 		</control>

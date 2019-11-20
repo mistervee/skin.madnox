@@ -97,45 +97,13 @@
 				<onleft>9050</onleft>
 				<onright>60531</onright>
 				<pagecontrol>60531</pagecontrol>
+				<include>ContainerScrollTime</include>
 				<viewtype label="$LOCALIZE[31261]">icon</viewtype>
-				<itemlayout height="260" width="260" condition="Window.IsVisible(MyPVRChannels.xml)">
-					<control type="group">
-						<visible>!String.IsEmpty(ListItem.Art(Thumb))</visible>
-						<include content="ViewArtwork">
-							<param name="aspect">keep</param>
-							<param name="art">$INFO[ListItem.Art(thumb)]</param>
-						</include>
-					</control>
-					<include content="ViewLogoFallback">
-						<param name="visible">String.IsEmpty(ListItem.Art(Thumb))</param>
-						<param name="font">Font32_Bold</param>
-					</include>
-				</itemlayout>
-				<focusedlayout height="260" width="260" condition="Window.IsVisible(MyPVRChannels.xml)">
-					<control type="image">
-						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
-					</control>
-					<control type="group">
-						<animation  type="Focus" reversible="false">
-							<effect type="zoom" start="95" end="100" time="300" center="auto" />
-						</animation>
-						<control type="group">
-							<visible>!String.IsEmpty(ListItem.Art(Thumb))</visible>
-							<include content="ViewArtwork">
-								<param name="aspect">keep</param>
-								<param name="art">$INFO[ListItem.Art(thumb)]</param>
-							</include>
-						</control>
-						<include content="ViewLogoFallback">
-							<param name="visible">String.IsEmpty(ListItem.Art(Thumb))</param>
-							<param name="font">Font32_Bold</param>
-						</include>
-					</control>
-				</focusedlayout>
 				<itemlayout height="260" width="260" condition="!Container.Content(albums) | [!Skin.HasSetting(View531AlbumCase) + Container.Content(albums)]">
 					<control type="group">
 						<include content="ViewArtwork">
 							<param name="aspect">stretch</param>
+							<param name="texturefadetime">0</param>
 							<param name="diffuse">diffuse/rounded5-240x240.png</param>
 						</include>
 					</control>
@@ -148,10 +116,11 @@
 						</control>
 						<control type="group">
 							<animation  type="Focus" reversible="false">
-								<effect type="zoom" start="95" end="100" time="300" center="auto" />
+								<effect type="zoom" start="95" end="100" time="240" center="auto" />
 							</animation>
 							<include content="ViewArtwork">
 								<param name="aspect">stretch</param>
+								<param name="texturefadetime">0</param>
 								<param name="diffuse">diffuse/rounded5-240x240.png</param>
 							</include>
 						</control>
@@ -159,6 +128,7 @@
 				</focusedlayout>
 				<itemlayout height="260" width="277" condition="Skin.HasSetting(View531AlbumCase) + Container.Content(albums)">
 					<include content="ViewArtworkAudioCase">
+						<param name="texturefadetime">0</param>
 						<param name="bordersize">29,14,14,14</param>
 					</include>
 				</itemlayout>
@@ -168,9 +138,10 @@
 					</control>
 					<control type="group">
 						<animation  type="Focus" reversible="false">
-							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+							<effect type="zoom" start="95" end="100" time="240" center="auto" />
 						</animation>
 						<include content="ViewArtworkAudioCase">
+							<param name="texturefadetime">0</param>
 							<param name="bordersize">29,14,14,14</param>
 						</include>
 					</control>
@@ -191,7 +162,6 @@
 				<param name="slide">220</param>
 			</include>
 			<include condition="Window.IsVisible(MyMusicNav.xml)">MediaFlagsAudio</include>
-			<include condition="Window.IsVisible(MyPVRChannels.xml)">MediaFlagsPVR</include>
 		</control>
 	</include>
 </includes>

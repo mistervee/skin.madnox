@@ -215,10 +215,6 @@
 				<param name="id">113</param>
 				<param name="content">plugin://script.extendedinfo?info=mostlovedtracks&amp;&amp;artistname=$INFO[ListItem.Artist]</param>
 			</include>
-			<!-- Similar -->
-			<include content="DialogInfoSkinHelperSimilarMusic">
-				<param name="id">116</param>
-			</include>
 		</control>
 	</include>
 	<include name="DialogExtraInfo">
@@ -785,92 +781,215 @@
 			</control>
 		</definition>
 	</include>
-
-<!-- 	<include name="DialogInfoSkinHelperSimilarMusic">
-		<param name="id"></param>
-		
+	<include name="DialogAddonInfo">
+		<param name="infovisible">true</param>
+		<param name="label"></param>
+		<param name="label2"></param>
+		<param name="textbox"></param>
+		<param name="infocontent"></param>
 		<definition>
-			<control type="group">
-				<visible>Control.HasFocus(9$PARAM[id]) | Control.HasFocus($PARAM[id])</visible>
+			<include>DialogBackgroundFade</include>
+			<centertop>50%</centertop>
+			<centerleft>50%</centerleft>
+			<width>1346</width>
+			<height>752</height>
+			<control type="image">
+				<texture colordiffuse="$VAR[PanelShadowColorVar]" border="50">$VAR[DialogShadowVar]</texture>
+			</control>
+			<control type="image">
+				<texture colordiffuse="$VAR[PanelStyleColorVar]" border="40">$VAR[DialogStyleVar]</texture>
+			</control>
+			<control type="image">
+				<visible>!Skin.HasSetting(DialogSquare.texture)</visible>
+				<top>20</top>
+				<left>20</left>
+				<right>20</right>
+				<bottom>20</bottom>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<texture diffuse="$PARAM[diffusetexture]" colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
+			</control>
+			<control type="image">
+				<visible>Skin.HasSetting(DialogSquare.texture)</visible>
+				<top>20</top>
+				<left>20</left>
+				<right>20</right>
+				<bottom>20</bottom>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<texture colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
+			</control>
+			<control type="image">
+				<texture colordiffuse="$VAR[PanelEmbossColorVar]" border="40">$VAR[DialogEmbossVar]</texture>
+			</control>
+			<control type="label">
+				<top>27</top>
+				<left>50</left>
+				<right>60</right>
+				<height>70</height>
+				<font>Font36_Bold_Caps</font>
+				<label>$PARAM[label]</label>
+				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+			</control>
+			<control type="label">
+				<top>68</top>
+				<left>50</left>
+				<right>60</right>
+				<height>70</height>
+				<font>Font32_Reg</font>
+				<label>$PARAM[label2]</label>
+				<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+			</control>
+			<control type="image">
+				<top>136</top>
+				<left>50</left>
+				<right>50</right>
+				<height>4</height>
+				<texture border="1" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
+			</control>
+			<control type="panel" id="9003">
+				<visible>$PARAM[infovisible]</visible>
 				<include>AnimationVisibleFade</include>
-				<control type="panel" id="9$PARAM[id]">
-					<orientation>horizontal</orientation>
-					<ondown>9000</ondown>
-					<itemlayout height="284" width="293">
-						<control type="image">
-							<width>280</width>
-							<texture border="10" colordiffuse="$VAR[PanelSubTextColorVar]">buttons/panel-select-focus.png</texture>
-						</control>
-						<control type="image">
-							<top>10</top>
-							<left>10</left>
-							<width>260</width>
-							<height>264</height>
-							<aspectratio>scale</aspectratio>
-							<texture>$INFO[ListItem.Icon]</texture>
-						</control>
-					</itemlayout>
-					<focusedlayout height="284" width="283">
-						<control type="image">
-							<width>280</width>
-							<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/panel-select-focus.png</texture>
-						</control>
-						<control type="image">
-							<top>10</top>
-							<left>10</left>
-							<width>260</width>
-							<height>264</height>
-							<aspectratio>scale</aspectratio>
-							<texture>$INFO[ListItem.Icon]</texture>
-						</control>
-					</focusedlayout>
-					<content>
-						<item>
-							<label>$INFO[Window(Home).Property(SkinHelper.ListItem.LastFM.similarartists.0.name)]</label>
-							<icon>$INFO[Window(Home).Property(SkinHelper.ListItem.LastFM.similarartists.0.thumb)]</icon>
-						</item>
-						<item>
-							<label>$INFO[Window(Home).Property(SkinHelper.ListItem.LastFM.similarartists.1.name)]</label>
-							<icon>$INFO[Window(Home).Property(SkinHelper.ListItem.LastFM.similarartists.1.thumb)]</icon>
-						</item>
-						<item>
-							<label>$INFO[Window(Home).Property(SkinHelper.ListItem.LastFM.similarartists.2.name)]</label>
-							<icon>$INFO[Window(Home).Property(SkinHelper.ListItem.LastFM.similarartists.2.thumb)]</icon>
-						</item>
-						<item>
-							<label>$INFO[Window(Home).Property(SkinHelper.ListItem.LastFM.similarartists.3.name)]</label>
-							<icon>$INFO[Window(Home).Property(SkinHelper.ListItem.LastFM.similarartists.3.thumb)]</icon>
-						</item>
-						<item>
-							<label>$INFO[Window(Home).Property(SkinHelper.ListItem.LastFM.similarartists.4.name)]</label>
-							<icon>$INFO[Window(Home).Property(SkinHelper.ListItem.LastFM.similarartists.4.thumb)]</icon>
-						</item>
-					</content>
-				</control>
-				<control type="label">
-					<visible>!Control.HasFocus(9$PARAM[id])</visible>
-					<top>283</top>
-					<height>49</height>
-					<font>Font28_Reg</font>
-					<label>$INFO[Container(9$PARAM[id]).ListItem.Label]</label>
-					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-				</control>
-				<control type="label">
-					<visible>Control.HasFocus(9$PARAM[id])</visible>
-					<top>283</top>
-					<height>49</height>
-					<font>Font28_Reg</font>
-					<label>$INFO[Container(9$PARAM[id]).ListItem.Label]</label>
-					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				<top>136</top>
+				<left>50</left>
+				<right>50</right>
+				<height>246</height>
+				<ondown>9000</ondown>
+				<orientation>horizontal</orientation>
+				<itemlayout height="49">
+					<control type="label">
+						<width>180</width>
+						<font>Font28_Reg</font>
+						<label>$INFO[ListItem.Label2]</label>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					</control>
+					<control type="image">
+						<top>1</top>
+						<left>200</left>
+						<width>4</width>
+						<height>48</height>
+						<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical-white.png</texture>
+					</control>
+					<control type="label">
+						<left>220</left>
+						<width>605</width>
+						<font>Font28_Reg</font>
+						<label>$INFO[ListItem.Label]</label>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					</control>
+					<control type="image">
+						<top>49</top>
+						<height>4</height>
+						<texture border="0,0,220,0" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
+					</control>
+				</itemlayout>
+				<focusedlayout height="49">
+					<control type="label">
+						<width>180</width>
+						<font>Font28_Reg</font>
+						<label>$INFO[ListItem.Label2]</label>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					</control>
+					<control type="image">
+						<top>1</top>
+						<left>200</left>
+						<width>4</width>
+						<height>48</height>
+						<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical-white.png</texture>
+					</control>
+					<control type="label">
+						<left>220</left>
+						<width>605</width>
+						<font>Font28_Reg</font>
+						<label>$INFO[ListItem.Label]</label>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					</control>
+					<control type="image">
+						<top>49</top>
+						<height>4</height>
+						<texture border="0,0,220,0" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
+					</control>
+				</focusedlayout>
+				<include>$PARAM[infocontent]</include>
+			</control>
+			<control type="group">
+				<top>472</top>
+				<left>40</left>
+				<width>240</width>
+				<height>240</height>
+				<control type="image">
+					<bordersize>10</bordersize>
+					<fadetime>TextureFadeTime</fadetime>
+					<aspectratio align="center" aligny="center">keep</aspectratio>
+					<texture diffuse="diffuse/rounded5-220x220.png" fallback="DefaultTVShows.png">$INFO[ListItem.Icon]</texture>
 				</control>
 				<control type="image">
-					<top>275</top>
-					<height>58</height>
-					<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+					<texture border="20">thumbs/overlay.png</texture>
 				</control>
 			</control>
+			<control type="textbox">
+				<top>482</top>
+				<left>285</left>
+				<right>50</right>
+				<height>220</height>
+				<font>Font30_Reg_105</font>
+				<include>AutoScrollPlot</include>
+				<label>$PARAM[textbox]</label>
+				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+			</control>
 		</definition>
-	</include> -->
+	</include>
+	<include name="PVRInfoContent">
+		<content>
+			<item>
+				<label>$INFO[ListItem.ChannelName]</label>
+				<label2>$LOCALIZE[19029]</label2>
+				<visible>!String.IsEmpty(ListItem.ChannelName)</visible>
+			</item>
+			<item>
+				<label>$INFO[ListItem.StartDate]</label>
+				<label2>$LOCALIZE[552]</label2>
+				<visible>!String.IsEmpty(ListItem.StartDate)</visible>
+			</item>
+			<item>
+				<label>$INFO[ListItem.StartTime]$INFO[ListItem.EndTime, - ]</label>
+				<label2>$LOCALIZE[555]</label2>
+				<visible>!String.IsEmpty(ListItem.StartTime)</visible>
+			</item>
+			<item>
+				<label>$INFO[ListItem.Duration]</label>
+				<label2>$LOCALIZE[180]</label2>
+				<visible>!String.IsEmpty(ListItem.Duration)</visible>
+			</item>
+			<item>
+				<label>$INFO[PVR.BackendName]</label>
+				<label2>$LOCALIZE[19210]</label2>
+				<visible>!String.IsEmpty(PVR.BackendName)</visible>
+			</item>
+		</content>
+	</include>
+	<include name="AddonInfoContent">
+		<content>
+			<item>
+				<label>$INFO[ListItem.AddonVersion]</label>
+				<label2>$LOCALIZE[19114]</label2>
+			</item>
+			<item>
+				<label>$INFO[ListItem.AddonCreator]</label>
+				<label2>by</label2>
+			</item>
+			<item>
+				<label>$INFO[ListItem.Property(Addon.ID)]</label>
+				<label2>$LOCALIZE[560]</label2>
+			</item>
+			<item>
+				<label>$INFO[ListItem.AddonType]</label>
+				<label2>$LOCALIZE[467]</label2>
+			</item>
+			<item>
+				<label>$INFO[ListItem.AddonOrigin]</label>
+				<label2>$LOCALIZE[31303]</label2>
+			</item>
+		</content>
+	</include>
 
 	<variable name="TMDBInfoID">
 		<value condition="Container.Content(movies) + !String.IsEmpty(ListItem.Property(imdb_id))">imdb_id=$INFO[ListItem.Property(imdb_id)]</value>

@@ -10,123 +10,51 @@
 		</include>
 		<!-- Floor -->
 		<control type="group">
-			<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
 				<param name="opencondition">$EXP[SystemAnimationOpenCondition]</param>
 				<param name="closecondition">$EXP[SystemAnimationCloseCondition]</param>
 			</include>
-			<include content="AnimationSlideBottomVisible">
-				<param name="slide">220</param>
+			<control type="group">
+				<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
+				<include>Floor</include>
+			</control>
+			<include content="FloorShadow">
+				<param name="visible">Skin.HasSetting(SettingsHideFloor)</param>
 			</include>
-			<include>Floor</include>
 		</control>
 		<!-- Panel -->
 		<control type="group">
 			<include>AnimationZoomWindow</include>
 			<include content="PanelDefault">
-				<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
+				<param name="reflect">!Skin.HasSetting(SettingsHideReflect)</param>
 			</include>
 		</control>
 		<!-- Content -->
 		<control type="group">
 			<include>AnimationZoomWindow</include>
 			<control type="list" id="7000">
-				<top>145</top>
+				<top>141</top>
 				<left>100</left>
 				<width>1720</width>
-				<height>791</height>
+				<height>800</height>
 				<onleft>9050</onleft>
 				<onright>60</onright>
 				<pagecontrol>60</pagecontrol>
 				<viewtype label="">list</viewtype>
-				<itemlayout height="113">
-					<control type="image">
-						<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
-					</control>
-					<control type="image">
-						<top>10</top>
-						<left>30</left>
-						<width>93</width>
-						<height>93</height>
-						<bordersize>5</bordersize>
-						<bordertexture border="5">thumbs/frame-listicon.png</bordertexture>
-						<texture diffuse="diffuse/rounded5-96x96.png" fallback="DefaultAddon.png">$INFO[ListItem.Icon]</texture>
-						<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-					</control>
-					<control type="label">
-						<top>15</top>
-						<left>134</left>
-						<right>455</right>
-						<height>42</height>
-						<font>Font32_Reg</font>
-						<textcolor>$VAR[PanelTextColorVar]</textcolor>
-						<label>$INFO[ListItem.Label]</label>
-					</control>
-					<control type="label">
-						<top>57</top>
-						<left>134</left>
-						<right>35</right>
-						<height>42</height>
-						<font>Font29_Cond</font>
-						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-						<label>$INFO[ListItem.Property(Event.Description)]</label>
-					</control>
-					<control type="label">
-						<top>15</top>
-						<right>35</right>
-						<width>400</width>
-						<height>42</height>
-						<align>right</align>
-						<font>Font32_Reg</font>
-						<textcolor>$VAR[PanelTextColorVar]</textcolor>
-						<label>$INFO[ListItem.Label2]</label>
-					</control>
-				</itemlayout>
-				<focusedlayout height="113">
-					<control type="image">
-						<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
-						<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus(7000)">Conditional</animation>
-					</control>
-					<control type="image">
-						<top>10</top>
-						<left>30</left>
-						<width>93</width>
-						<height>93</height>
-						<bordersize>5</bordersize>
-						<bordertexture border="5">thumbs/frame-listicon.png</bordertexture>
-						<texture diffuse="diffuse/rounded5-96x96.png" fallback="DefaultAddon.png">$INFO[ListItem.Icon]</texture>
-						<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-					</control>
-					<control type="label">
-						<top>15</top>
-						<left>134</left>
-						<right>455</right>
-						<height>42</height>
-						<font>Font32_Reg</font>
-						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
-						<label>$INFO[ListItem.Label]</label>
-					</control>
-					<control type="label">
-						<top>57</top>
-						<left>134</left>
-						<right>35</right>
-						<height>42</height>
-						<font>Font29_Cond</font>
-						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
-						<label>$INFO[ListItem.Property(Event.Description)]</label>
-					</control>
-					<control type="label">
-						<top>15</top>
-						<right>35</right>
-						<width>400</width>
-						<height>42</height>
-						<align>right</align>
-						<font>Font32_Reg</font>
-						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
-						<label>$INFO[ListItem.Label2]</label>
-					</control>
-				</focusedlayout>
+				<include>ContainerScrollTime</include>
+				<include content="ViewBigListLayout">
+					<param name="visible">true</param>
+					<param name="id">7000</param>
+					<param name="iconvisible">true</param>
+					<param name="icon">$INFO[ListItem.Icon]</param>
+					<param name="label">$INFO[ListItem.Label]</param>
+					<param name="sublabelvisible">true</param>
+					<param name="sublabel">$INFO[ListItem.Property(Event.Description)]</param>
+					<param name="rightlabelvisible">true</param>
+					<param name="rightlabel">$INFO[ListItem.Label2]</param>
+					<param name="biglistvisible">true</param>
+				</include>
 			</control>
 			<control type="scrollbar" id="60">
 				<right>80</right>

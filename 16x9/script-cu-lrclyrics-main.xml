@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
 	<defaultcontrol always="true">110</defaultcontrol>
+	<zorder>0</zorder>
 	<controls>
 		<!-- Default lyrics -->
 		<control type="group">
-			<animation effect="slide" end="0,202" time="200" condition="[!Player.ShowInfo + String.IsEmpty(Skin.String(NowPlayingMusicVizInfo))] | String.IsEqual(Skin.String(NowPlayingMusicVizInfo),off)">conditional</animation>
+			<visible>Player.HasAudio</visible>
+			<animation effect="slide" end="0,202" time="480" tween="cubic" easing="out" condition="!Player.ShowInfo + !String.IsEqual(Skin.String(MusicOSDInfo),persistant)">conditional</animation>
 			<include>AnimationVisibleFade</include>
 			<control type="list" id="110">
 				<top>50</top>
@@ -51,9 +53,9 @@
 		</control>
 		<!-- Animated lyrics -->
 		<control type="group">
-			<visible>!String.IsEmpty(Container(110).ListItem.Label) + !Skin.HasSetting(DisableMusicVizAnimatedLyrics)</visible>
+			<visible>Player.HasAudio + !Skin.HasSetting(MusicOSDDisableAnimatedLyrics)</visible>
 			<include>AnimationVisibleFade</include>
-			<animation effect="slide" end="0,202" time="200" condition="[!Player.ShowInfo + String.IsEmpty(Skin.String(NowPlayingMusicVizInfo))] | String.IsEqual(Skin.String(NowPlayingMusicVizInfo),off)">conditional</animation>
+			<animation effect="slide" end="0,202"  time="480" tween="cubic" easing="out" condition="!Player.ShowInfo + !String.IsEqual(Skin.String(MusicOSDInfo),persistant)">conditional</animation>
 			<!-- Line 1 -->
 			<control type="group">
 				<visible>String.IsEqual(Container(110).Currentitem,1) | String.EndsWith(Container(110).Currentitem,16) | String.EndsWith(Container(110).Currentitem,31) | String.EndsWith(Container(110).Currentitem,46) | String.EndsWith(Container(110).Currentitem,61) | String.EndsWith(Container(110).Currentitem,76) | String.EndsWith(Container(110).Currentitem,91) | String.EndsWith(Container(110).Currentitem,06)</visible>

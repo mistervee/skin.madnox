@@ -10,23 +10,31 @@
 		</include>
 		<!-- Floor -->
 		<control type="group">
-			<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
 				<param name="opencondition">$EXP[SystemAnimationOpenCondition]</param>
 				<param name="closecondition">$EXP[SystemAnimationCloseCondition]</param>
 			</include>
-			<include content="AnimationSlideBottomVisible">
-				<param name="slide">220</param>
+			<control type="group">
+				<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
+				<include>Floor</include>
+			</control>
+			<include content="FloorShadow">
+				<param name="visible">Skin.HasSetting(SettingsHideFloor)</param>
 			</include>
-			<include>Floor</include>
 		</control>
 		<!-- Panel -->
 		<control type="group">
 			<include>AnimationZoomWindow</include>
 			<include content="PanelSide">
-				<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
+				<param name="reflect">!Skin.HasSetting(SettingsHideReflect)</param>
 			</include>
+			<control type="image">
+				<left>425</left>
+				<width>1395</width>
+				<bottom>210</bottom>
+				<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+			</control>
 		</control>
 		<!-- Content -->
 		<control type="group">
@@ -42,6 +50,7 @@
 				<height>603</height>
 				<onleft>9050</onleft>
 				<onright>5</onright>
+				<include>ContainerScrollTime</include>
 			</control>
 			<control type="button" id="10">
 				<include>SettingsLeftButton</include>
@@ -55,19 +64,20 @@
 				<top>200</top>
 				<left>425</left>
 				<width>1395</width>
-				<height>615</height>
+				<height>670</height>
 				<onleft>3</onleft>
 				<onright>60</onright>
 				<pagecontrol>60</pagecontrol>
+				<include>ContainerScrollTime</include>
 			</control>
 			<control type="textbox" id="6">
 				<description>description area</description>
 				<left>460</left>
-				<bottom>120</bottom>
+				<bottom>115</bottom>
 				<width>1325</width>
-				<height>130</height>
+				<height>80</height>
 				<font>Font28_Reg</font>
-				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+				<textcolor>$VAR[PanelTextColorVar]</textcolor>
 			</control>
 			<control type="label" id="14">
 				<description>Default Label</description>

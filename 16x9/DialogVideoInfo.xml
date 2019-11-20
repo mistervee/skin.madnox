@@ -1,301 +1,327 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">8</defaultcontrol>
-	<animation type="WindowOpen" reversible="false">
-		<effect type="zoom" start="80" end="100" center="50%,50%" time="400" tween="cubic" easing="out"/>
-		<effect type="fade" time="400" tween="sine" easing="out" />
-	</animation>
-	<animation type="WindowClose" reversible="false">
-		<effect type="zoom" start="100" end="80" center="50%,50%" delay="0" time="200" tween="cubic" easing="out"/>
-		<effect type="fade" end="0" time="200" tween="sine" easing="out" />
-	</animation>
+	
+
+	
+	
 	<controls>
-		<!-- Background blur -->
-		<control type="image" id="100000">
+		<control type="image">
 			<visible>Skin.HasSetting(BlurEnabled)</visible>
-			<include>HiddenObject</include>
-			<texture background="true">$INFO[ListItem.Art(fanart)]</texture>
+			<include>AnimationVisibleFade</include>
+			<include>AnimationWindowFade</include>
+			<aspectratio>scale</aspectratio>
+			<colordiffuse>$INFO[Window(home).Property(listitem_color)]</colordiffuse>
+			<texture>$INFO[Window(home).Property(listitem_blurred)]</texture>
 		</control>
-		<!-- TMDB Info -->
-		<control type="list" id="500">
-			<visible>System.HasAddon(plugin.video.themoviedb.helper) + !Container.Content(musicvideos)</visible>
-			<include>HiddenList</include>
-			<content>plugin://plugin.video.themoviedb.helper/?info=find&amp;$VAR[TMDBInfoType]&amp;$VAR[TMDBInfoID]</content>
+		<control type ="image">
+			<include>AnimationVisibleFade</include>
+			<include>AnimationWindowFade</include>
+			<texture>colors/black80.png</texture>
+			<visible>!Skin.HasSetting(BlurEnabled)</visible>
 		</control>
-		<!-- Cast -->
-		<control type="list" id="50">
-			<visible>!Container.Content(musicvideos)</visible>
-			<include>HiddenList</include>
+		<control type ="image">
+			<include>AnimationVisibleFade</include>
+			<include>AnimationWindowFade</include>
+			<texture>colors/black50.png</texture>
+			<visible>Skin.HasSetting(BlurEnabled)</visible>
 		</control>
-		<!-- Studio Logo check if image exists -->
-		<control type="image" id="811112">
-			<include>HiddenObject</include>
-			<texture fallback="none">$VAR[StudioIconsVar]</texture>
-		</control>
-		<!-- Info -->
+		<!-- Background blur -->
+			<control type="image" id="100000">
+				<visible>Skin.HasSetting(BlurEnabled)</visible>
+				<include>HiddenObject</include>
+				<texture background="true">$INFO[ListItem.Icon]</texture>
+			</control>
 		<control type="group">
-			<visible>!Window.IsVisible(script-embuary-person.xml)</visible>
+			<animation type="WindowOpen" reversible="false">
+				<effect type="zoom" start="80" end="100" center="50%,50%" time="480" tween="cubic" easing="out"/>
+				<effect type="fade" time="400" tween="sine" easing="out" />
+			</animation>
+			<animation type="WindowClose" reversible="false">
+				<effect type="zoom" start="100" end="80" center="50%,50%" delay="0" time="480" tween="cubic" easing="out"/>
+				<effect type="fade" end="0" time="400" tween="sine" easing="out" />
+			</animation>
+
+			<!-- TMDB Info -->
+			<control type="list" id="500">
+				<visible>System.HasAddon(plugin.video.themoviedb.helper) + !Container.Content(musicvideos)</visible>
+				<include>HiddenList</include>
+				<content>plugin://plugin.video.themoviedb.helper/?info=find&amp;$VAR[TMDBInfoType]&amp;$VAR[TMDBInfoID]</content>
+			</control>
+			<!-- Cast -->
+			<control type="list" id="50">
+				<visible>!Container.Content(musicvideos)</visible>
+				<include>HiddenList</include>
+			</control>
+			<!-- Studio Logo check if image exists -->
+			<control type="image" id="811112">
+				<include>HiddenObject</include>
+				<texture fallback="none">$VAR[StudioIconsVar]</texture>
+			</control>
+			<!-- Info -->
 			<control type="group">
-				<left>736</left>
+				<visible>!Window.IsVisible(script-embuary-person.xml)</visible>
 				<control type="group">
-					<top>16</top>
-					<right>25</right>
-					<!-- Title -->
-					<control type="label">
-						<height>50</height>
-						<font>Font49_Bold_Caps</font>
-						<label>$VAR[VideoDialogTitleVar]</label>
-						<textcolor>$VAR[PanelTextColorVar]</textcolor>
-						<scroll>true</scroll>
-					</control>
-					<!-- Subtitle -->
-					<control type="label">
-						<top>52</top>
-						<height>40</height>
-						<font>Font36_Reg</font>
-						<label>$VAR[VideoDialogSubtitleVar]</label>
-						<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
-						<scroll>true</scroll>
-					</control>
-					<!-- Container Info -->
-					<control type="grouplist">
-						<visible>ControlGroup(9005).HasFocus | ControlGroup(9006).HasFocus</visible>
-						<top>105</top>
-						<height>30</height>
-						<usecontrolcoords>true</usecontrolcoords>
-						<orientation>horizontal</orientation>
-						<control type="image">
-							<visible>!String.IsEmpty(Control.GetLabel(5301))</visible>
-							<top>3</top>
-							<width>30</width>
-							<aspectratio>keep</aspectratio>
-							<texture>$VAR[VideoInfoContainerIcon]</texture>
-						</control>
+					<left>736</left>
+					<control type="group">
+						<top>16</top>
+						<right>25</right>
+						<!-- Title -->
 						<control type="label">
-							<width>auto</width>
-							<font>Font30_Reg</font>
-							<label>$VAR[VideoInfoContainerLabel, ]</label>
+							<height>50</height>
+							<font>Font49_Bold_Caps</font>
+							<label>$VAR[VideoDialogTitleVar]</label>
 							<textcolor>$VAR[PanelTextColorVar]</textcolor>
+							<scroll>true</scroll>
 						</control>
+						<!-- Subtitle -->
 						<control type="label">
-							<width>auto</width>
-							<font>Font30_Reg</font>
-							<label>$VAR[VideoInfoContainerLabel2, ]</label>
-							<textcolor>$VAR[PanelTextColorVar]</textcolor>
+							<top>52</top>
+							<height>40</height>
+							<font>Font36_Reg</font>
+							<label>$VAR[VideoDialogSubtitleVar]</label>
+							<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+							<scroll>true</scroll>
 						</control>
-					</control>
-					<!-- Info line -->
-					<control type="grouplist">
-						<visible>!ControlGroup(9005).HasFocus + !ControlGroup(9006).HasFocus</visible>
-						<top>105</top>
-						<height>30</height>
-						<usecontrolcoords>true</usecontrolcoords>
-						<orientation>horizontal</orientation>
+						<!-- Container Info -->
+						<control type="grouplist">
+							<visible>ControlGroup(9005).HasFocus | ControlGroup(9006).HasFocus</visible>
+							<top>105</top>
+							<height>30</height>
+							<usecontrolcoords>true</usecontrolcoords>
+							<orientation>horizontal</orientation>
+							<control type="image">
+								<visible>!String.IsEmpty(Control.GetLabel(5301))</visible>
+								<top>3</top>
+								<width>30</width>
+								<aspectratio>keep</aspectratio>
+								<texture>$VAR[VideoInfoContainerIcon]</texture>
+							</control>
+							<control type="label">
+								<width>auto</width>
+								<font>Font30_Reg</font>
+								<label>$VAR[VideoInfoContainerLabel, ]</label>
+								<textcolor>$VAR[PanelTextColorVar]</textcolor>
+							</control>
+							<control type="label">
+								<width>auto</width>
+								<font>Font30_Reg</font>
+								<label>$VAR[VideoInfoContainerLabel2, ]</label>
+								<textcolor>$VAR[PanelTextColorVar]</textcolor>
+							</control>
+						</control>
+						<!-- Info line -->
+						<control type="grouplist">
+							<visible>!ControlGroup(9005).HasFocus + !ControlGroup(9006).HasFocus</visible>
+							<top>105</top>
+							<height>30</height>
+							<usecontrolcoords>true</usecontrolcoords>
+							<orientation>horizontal</orientation>
+							<control type="image">
+								<visible>!String.IsEmpty(Control.GetLabel(5301))</visible>
+								<top>3</top>
+								<width>30</width>
+								<aspectratio>keep</aspectratio>
+								<texture>$VAR[ListViewIcon1Var]</texture>
+							</control>
+							<control type="label" id="5301">
+								<width>auto</width>
+								<font>Font30_Reg</font>
+								<textcolor>$VAR[PanelTextColorVar]</textcolor>
+								<label>$VAR[ListViewInfo1Var]</label>
+							</control>
+							<control type="image">
+								<visible>!String.IsEmpty(Control.GetLabel(5302))</visible>
+								<top>3</top>
+								<width>30</width>
+								<aspectratio>keep</aspectratio>
+								<texture>$VAR[ListViewIcon2Var]</texture>
+							</control>
+							<control type="label" id="5302">
+								<width>auto</width>
+								<font>Font30_Reg</font>
+								<textcolor>$VAR[PanelTextColorVar]</textcolor>
+								<label>$VAR[ListViewInfo2Var]</label>
+							</control>
+							<control type="image">
+								<visible>!String.IsEmpty(ListItem.UserRating)</visible>
+								<top>3</top>
+								<width>30</width>
+								<aspectratio>keep</aspectratio>
+								<texture>$VAR[ListViewIcon3Var]</texture>
+							</control>
+							<control type="label" id="5303">
+								<visible>!String.IsEmpty(ListItem.UserRating)</visible>
+								<width>auto</width>
+								<font>Font30_Reg</font>
+								<textcolor>$VAR[PanelTextColorVar]</textcolor>
+								<label>$INFO[ListItem.UserRating, ,.0  ]</label>
+							</control>
+							<control type="image">
+								<visible>!String.IsEmpty(ListItem.Rating(tvdb))</visible>
+								<width>50</width>
+								<height>35</height>
+								<aspectratio>keep</aspectratio>
+								<texture>flags/ratings/tvdb.png</texture>
+							</control>
+							<control type="label">
+								<visible>!String.IsEmpty(ListItem.Rating(tvdb))</visible>
+								<width>auto</width>
+								<font>Font30_Reg</font>
+								<textcolor>$VAR[PanelTextColorVar]</textcolor>
+								<label>$INFO[ListItem.Rating(tvdb), ,  ]</label>
+							</control>
+							<control type="image">
+								<visible>!String.IsEmpty(ListItem.Rating(imdb))</visible>
+								<width>50</width>
+								<height>35</height>
+								<aspectratio>keep</aspectratio>
+								<texture>flags/ratings/imdb.png</texture>
+							</control>
+							<control type="label">
+								<visible>!String.IsEmpty(ListItem.Rating(imdb))</visible>
+								<width>auto</width>
+								<font>Font30_Reg</font>
+								<textcolor>$VAR[PanelTextColorVar]</textcolor>
+								<label>$INFO[ListItem.Rating(imdb), ,  ]</label>
+							</control>
+							<control type="image">
+								<visible>!String.IsEmpty(ListItem.Rating(tomatometerallcritics))</visible>
+								<top>3</top>
+								<width>30</width>
+								<aspectratio>keep</aspectratio>
+								<texture>$VAR[RTAllCriticsIconVar]</texture>
+							</control>
+							<control type="label">
+								<visible>!String.IsEmpty(ListItem.Rating(tomatometerallcritics))</visible>
+								<width>auto</width>
+								<font>Font30_Reg</font>
+								<textcolor>$VAR[PanelTextColorVar]</textcolor>
+								<label>$VAR[RTAllCriticsLabelVar, ]$VAR[RTAllCriticsLabel2Var]%  </label>
+							</control>
+							<control type="image">
+								<visible>!String.IsEmpty(ListItem.Rating(tomatometerallaudience)) + Integer.IsLess(ListItem.Rating(tomatometerallaudience),6.0)</visible>
+								<top>3</top>
+								<width>40</width>
+								<aspectratio>keep</aspectratio>
+								<texture>flags/ratings/popcorn2.png</texture>
+							</control>
+							<control type="image">
+								<visible>!String.IsEmpty(ListItem.Rating(tomatometerallaudience)) + !Integer.IsLess(ListItem.Rating(tomatometerallaudience),6.0)</visible>
+								<top>3</top>
+								<width>30</width>
+								<aspectratio>keep</aspectratio>
+								<texture>flags/ratings/popcorn.png</texture>
+							</control>
+							<control type="label">
+								<visible>!String.IsEmpty(ListItem.Rating(tomatometerallaudience))</visible>
+								<width>auto</width>
+								<font>Font30_Reg</font>
+								<textcolor>$VAR[PanelTextColorVar]</textcolor>
+								<label>$VAR[RTAllAudienceLabelVar, ]$VAR[RTAllAudienceLabel2Var]%  </label>
+							</control>
+							<control type="image">
+								<visible>!String.IsEmpty(ListItem.Rating(metacritic))</visible>
+								<top>3</top>
+								<width>30</width>
+								<aspectratio>keep</aspectratio>
+								<texture>flags/ratings/metacritic.png</texture>
+							</control>
+							<control type="label">
+								<visible>!String.IsEmpty(ListItem.Rating(metacritic))</visible>
+								<width>auto</width>
+								<font>Font30_Reg</font>
+								<textcolor>$VAR[PanelTextColorVar]</textcolor>
+								<label>$VAR[MetacriticLabelVar, ]$VAR[MetacriticLabel2Var]%  </label>
+							</control>
+							<control type="image">
+								<visible>!String.IsEmpty(ListItem.Top250)</visible>
+								<width>90</width>
+								<height>35</height>
+								<aspectratio>keep</aspectratio>
+								<texture>flags/ratings/imdb250.png</texture>
+							</control>
+							<control type="label">
+								<visible>!String.IsEmpty(ListItem.Top250)</visible>
+								<width>auto</width>
+								<font>Font30_Reg</font>
+								<textcolor>$VAR[PanelTextColorVar]</textcolor>
+								<label>$INFO[ListItem.Top250, #,]</label>
+							</control>
+						</control>
 						<control type="image">
-							<visible>!String.IsEmpty(Control.GetLabel(5301))</visible>
-							<top>3</top>
-							<width>30</width>
-							<aspectratio>keep</aspectratio>
-							<texture>$VAR[ListViewIcon1Var]</texture>
+							<top>152</top>
+							<height>4</height>
+							<texture border="0,0,220,0" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
 						</control>
-						<control type="label" id="5301">
-							<width>auto</width>
-							<font>Font30_Reg</font>
-							<textcolor>$VAR[PanelTextColorVar]</textcolor>
-							<label>$VAR[ListViewInfo1Var]</label>
-						</control>
-						<control type="image">
-							<visible>!String.IsEmpty(Control.GetLabel(5302))</visible>
-							<top>3</top>
-							<width>30</width>
-							<aspectratio>keep</aspectratio>
-							<texture>$VAR[ListViewIcon2Var]</texture>
-						</control>
-						<control type="label" id="5302">
-							<width>auto</width>
-							<font>Font30_Reg</font>
-							<textcolor>$VAR[PanelTextColorVar]</textcolor>
-							<label>$VAR[ListViewInfo2Var]</label>
-						</control>
-						<control type="image">
-							<visible>!String.IsEmpty(ListItem.UserRating)</visible>
-							<top>3</top>
-							<width>30</width>
-							<aspectratio>keep</aspectratio>
-							<texture>$VAR[ListViewIcon3Var]</texture>
-						</control>
-						<control type="label" id="5303">
-							<visible>!String.IsEmpty(ListItem.UserRating)</visible>
-							<width>auto</width>
-							<font>Font30_Reg</font>
-							<textcolor>$VAR[PanelTextColorVar]</textcolor>
-							<label>$INFO[ListItem.UserRating, ,.0  ]</label>
-						</control>
-						<control type="image">
-							<visible>!String.IsEmpty(ListItem.Rating(tvdb))</visible>
-							<width>50</width>
-							<height>35</height>
-							<aspectratio>keep</aspectratio>
-							<texture>flags/ratings/tvdb.png</texture>
-						</control>
-						<control type="label">
-							<visible>!String.IsEmpty(ListItem.Rating(tvdb))</visible>
-							<width>auto</width>
-							<font>Font30_Reg</font>
-							<textcolor>$VAR[PanelTextColorVar]</textcolor>
-							<label>$INFO[ListItem.Rating(tvdb), ,  ]</label>
-						</control>
-						<control type="image">
-							<visible>!String.IsEmpty(ListItem.Rating(imdb))</visible>
-							<width>50</width>
-							<height>35</height>
-							<aspectratio>keep</aspectratio>
-							<texture>flags/ratings/imdb.png</texture>
-						</control>
-						<control type="label">
-							<visible>!String.IsEmpty(ListItem.Rating(imdb))</visible>
-							<width>auto</width>
-							<font>Font30_Reg</font>
-							<textcolor>$VAR[PanelTextColorVar]</textcolor>
-							<label>$INFO[ListItem.Rating(imdb), ,  ]</label>
-						</control>
-						<control type="image">
-							<visible>!String.IsEmpty(ListItem.Rating(tomatometerallcritics))</visible>
-							<top>3</top>
-							<width>30</width>
-							<aspectratio>keep</aspectratio>
-							<texture>$VAR[RTAllCriticsIconVar]</texture>
-						</control>
-						<control type="label">
-							<visible>!String.IsEmpty(ListItem.Rating(tomatometerallcritics))</visible>
-							<width>auto</width>
-							<font>Font30_Reg</font>
-							<textcolor>$VAR[PanelTextColorVar]</textcolor>
-							<label>$VAR[RTAllCriticsLabelVar, ]$VAR[RTAllCriticsLabel2Var]%  </label>
-						</control>
-						<control type="image">
-							<visible>!String.IsEmpty(ListItem.Rating(tomatometerallaudience)) + Integer.IsLess(ListItem.Rating(tomatometerallaudience),6.0)</visible>
-							<top>3</top>
-							<width>40</width>
-							<aspectratio>keep</aspectratio>
-							<texture>flags/ratings/popcorn2.png</texture>
-						</control>
-						<control type="image">
-							<visible>!String.IsEmpty(ListItem.Rating(tomatometerallaudience)) + !Integer.IsLess(ListItem.Rating(tomatometerallaudience),6.0)</visible>
-							<top>3</top>
-							<width>30</width>
-							<aspectratio>keep</aspectratio>
-							<texture>flags/ratings/popcorn.png</texture>
-						</control>
-						<control type="label">
-							<visible>!String.IsEmpty(ListItem.Rating(tomatometerallaudience))</visible>
-							<width>auto</width>
-							<font>Font30_Reg</font>
-							<textcolor>$VAR[PanelTextColorVar]</textcolor>
-							<label>$VAR[RTAllAudienceLabelVar, ]$VAR[RTAllAudienceLabel2Var]%  </label>
-						</control>
-						<control type="image">
-							<visible>!String.IsEmpty(ListItem.Rating(metacritic))</visible>
-							<top>3</top>
-							<width>30</width>
-							<aspectratio>keep</aspectratio>
-							<texture>flags/ratings/metacritic.png</texture>
-						</control>
-						<control type="label">
-							<visible>!String.IsEmpty(ListItem.Rating(metacritic))</visible>
-							<width>auto</width>
-							<font>Font30_Reg</font>
-							<textcolor>$VAR[PanelTextColorVar]</textcolor>
-							<label>$VAR[MetacriticLabelVar, ]$VAR[MetacriticLabel2Var]%  </label>
-						</control>
-						<control type="image">
-							<visible>!String.IsEmpty(ListItem.Top250)</visible>
-							<width>90</width>
-							<height>35</height>
-							<aspectratio>keep</aspectratio>
-							<texture>flags/ratings/imdb250.png</texture>
-						</control>
-						<control type="label">
-							<visible>!String.IsEmpty(ListItem.Top250)</visible>
-							<width>auto</width>
-							<font>Font30_Reg</font>
-							<textcolor>$VAR[PanelTextColorVar]</textcolor>
-							<label>$INFO[ListItem.Top250, #,]</label>
-						</control>
-					</control>
-					<control type="image">
-						<top>152</top>
-						<height>4</height>
-						<texture border="0,0,220,0" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
-					</control>
-					<!-- Containers -->
-					<control type="group" id="9006">
-						<control type="panel" id="501">
-							<onclick condition="System.HasAddon(script.embuary.info)">RunScript(script.embuary.info,call=person,query=$INFO[ListItem.Label])</onclick>
-							<include content="DialogExtraInfo">
-								<param name="id">501</param>
-								<param name="buttonid">111</param>
-								<param name="label">true</param>
-							</include>
-							<content>
-								<include>CastListContent</include>
-							</content>
-						</control>
-						<control type="panel" id="502">
-							<onclick condition="System.HasAddon(script.embuary.info)">RunScript(script.embuary.info,call=person,query=$INFO[ListItem.Label])</onclick>
-							<include content="DialogExtraInfo">
-								<param name="id">502</param>
-								<param name="buttonid">112</param>
-								<param name="label">true</param>
-							</include>
-							<content>
-								<include>TMDBCastListContent</include>
-							</content>
-						</control>
-						<control type="panel" id="503">
-							<onclick condition="System.HasAddon(script.embuary.info)">RunScript(script.embuary.info,call=person,query=$INFO[ListItem.Label])</onclick>
-							<include content="DialogExtraInfo">
-								<param name="id">503</param>
-								<param name="buttonid">113</param>
-								<param name="label">true</param>
-							</include>
-							<content>plugin://plugin.video.themoviedb.helper/?info=crew&amp;$VAR[TMDBInfoType]&amp;$VAR[TMDBInfoID]</content>
-						</control>
-						<control type="panel" id="504">
-							<include content="DialogExtraInfo">
-								<param name="id">504</param>
-								<param name="buttonid">114</param>
-								<param name="label">true</param>
-							</include>
-							<content>$VAR[VideoInfoSets]</content>
-						</control>
-						<control type="panel" id="505">
-							<include content="DialogExtraInfo">
-								<param name="id">505</param>
-								<param name="buttonid">115</param>
-								<param name="label">true</param>
-							</include>
-							<content>plugin://plugin.video.themoviedb.helper/?info=crew_in_movies&amp;type=person&amp;filter_key=job&amp;filter_value=Director&amp;query=$INFO[ListItem.Director]</content>
-							<content>plugin://plugin.video.themoviedb.helper/?info=crew_in_tvshows&amp;type=person&amp;filter_key=job&amp;filter_value=Director&amp;query=$INFO[ListItem.Director]</content>
-						</control>
-						<control type="panel" id="506">
-							<onclick condition="System.HasAddon(script.embuary.info)">RunScript(script.embuary.info,call=movie,query=$INFO[ListItem.Label])</onclick>
-							<include content="DialogExtraInfo">
-								<param name="id">506</param>
-								<param name="buttonid">116</param>
-								<param name="label">true</param>
-							</include>
-							<content>plugin://plugin.video.themoviedb.helper/?info=crew_in_movies&amp;type=person&amp;filter_key=job&amp;filter_value=Writer&amp;query=$INFO[ListItem.Writer]</content>
-							<content>plugin://plugin.video.themoviedb.helper/?info=crew_in_tvshows&amp;type=person&amp;filter_key=job&amp;filter_value=Writer&amp;query=$INFO[ListItem.Writer]</content>
-						</control>
-						<control type="panel" id="507">
-							<include content="DialogExtraInfo">
-								<param name="id">507</param>
-								<param name="buttonid">117</param>
-								<param name="label">true</param>
-							</include>
-							<content>plugin://plugin.video.themoviedb.helper/?info=similar&amp;type=movie&amp;imdb_id=$INFO[ListItem.IMDBNumber]</content>
-						</control>
+						<!-- Containers -->
+						<control type="group" id="9006">
+							<control type="panel" id="501">
+								<onclick condition="System.HasAddon(script.embuary.info)">RunScript(script.embuary.info,call=person,query=$INFO[ListItem.Label])</onclick>
+								<include content="DialogExtraInfo">
+									<param name="id">501</param>
+									<param name="buttonid">111</param>
+									<param name="label">true</param>
+								</include>
+								<content>
+									<include>CastListContent</include>
+								</content>
+							</control>
+							<control type="panel" id="502">
+								<onclick condition="System.HasAddon(script.embuary.info)">RunScript(script.embuary.info,call=person,query=$INFO[ListItem.Label])</onclick>
+								<include content="DialogExtraInfo">
+									<param name="id">502</param>
+									<param name="buttonid">112</param>
+									<param name="label">true</param>
+								</include>
+								<content>
+									<include>TMDBCastListContent</include>
+								</content>
+							</control>
+							<control type="panel" id="503">
+								<onclick condition="System.HasAddon(script.embuary.info)">RunScript(script.embuary.info,call=person,query=$INFO[ListItem.Label])</onclick>
+								<include content="DialogExtraInfo">
+									<param name="id">503</param>
+									<param name="buttonid">113</param>
+									<param name="label">true</param>
+								</include>
+								<content>plugin://plugin.video.themoviedb.helper/?info=crew&amp;$VAR[TMDBInfoType]&amp;$VAR[TMDBInfoID]</content>
+							</control>
+							<control type="panel" id="504">
+								<include content="DialogExtraInfo">
+									<param name="id">504</param>
+									<param name="buttonid">114</param>
+									<param name="label">true</param>
+								</include>
+								<content>$VAR[VideoInfoSets]</content>
+							</control>
+							<control type="panel" id="505">
+								<include content="DialogExtraInfo">
+									<param name="id">505</param>
+									<param name="buttonid">115</param>
+									<param name="label">true</param>
+								</include>
+								<content>plugin://plugin.video.themoviedb.helper/?info=crew_in_movies&amp;type=person&amp;filter_key=job&amp;filter_value=Director&amp;query=$INFO[ListItem.Director]</content>
+								<content>plugin://plugin.video.themoviedb.helper/?info=crew_in_tvshows&amp;type=person&amp;filter_key=job&amp;filter_value=Director&amp;query=$INFO[ListItem.Director]</content>
+							</control>
+							<control type="panel" id="506">
+								<onclick condition="System.HasAddon(script.embuary.info)">RunScript(script.embuary.info,call=movie,query=$INFO[ListItem.Label])</onclick>
+								<include content="DialogExtraInfo">
+									<param name="id">506</param>
+									<param name="buttonid">116</param>
+									<param name="label">true</param>
+								</include>
+								<content>plugin://plugin.video.themoviedb.helper/?info=crew_in_movies&amp;type=person&amp;filter_key=job&amp;filter_value=Writer&amp;query=$INFO[ListItem.Writer]</content>
+								<content>plugin://plugin.video.themoviedb.helper/?info=crew_in_tvshows&amp;type=person&amp;filter_key=job&amp;filter_value=Writer&amp;query=$INFO[ListItem.Writer]</content>
+							</control>
+							<control type="panel" id="507">
+								<include content="DialogExtraInfo">
+									<param name="id">507</param>
+									<param name="buttonid">117</param>
+									<param name="label">true</param>
+								</include>
+								<content>plugin://plugin.video.themoviedb.helper/?info=similar&amp;type=movie&amp;imdb_id=$INFO[ListItem.IMDBNumber]</content>
+							</control>
 						<!-- <control type="panel" id="508">
 							<include content="DialogExtraInfo">
 								<param name="id">508</param>
@@ -473,16 +499,6 @@
 								<label>$INFO[ListItem.OriginalTitle]</label>
 								<label2>$LOCALIZE[20376]</label2>
 							</item>
-							<!-- <item>
-								<visible>!String.IsEqual(ListItem.DBType,musicvideo) + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Premiered.formatted))</visible>
-								<label>$INFO[Window(Home).Property(SkinHelper.ListItem.Premiered.formatted)]</label>
-								<label2>Premiered</label2>
-							</item>
-							<item>
-								<label>$INFO[Window(Home).Property(SkinHelper.ListItem.DVDRelease.formatted)]</label>
-								<label2>DVD release</label2>
-								<visible>String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.DVDRelease.formatted))</visible>
-							</item> -->
 							<item>
 								<visible>String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(Window(Home).Property(NextAired.Status))</visible>
 								<label>$INFO[Window(Home).Property(NextAired.Status)]</label>
@@ -746,5 +762,6 @@
 				</control>
 			</control>
 		</control>
-	</controls>
+	</control>
+</controls>
 </window>

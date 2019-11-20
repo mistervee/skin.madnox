@@ -578,47 +578,6 @@
 			</control>
 		</definition>
 	</include>
-	<include name="MediaFlagsPVR">
-		<param name="bottom">25</param>
-		<param name="left">125</param>
-		<param name="right">125</param>
-		<definition>
-			<control type="grouplist">
-				<bottom>$PARAM[bottom]</bottom>
-				<left>125</left>
-				<right>$PARAM[right]</right>
-				<height>80</height>
-				<align>right</align>
-				<itemgap>10</itemgap>
-				<orientation>horizontal</orientation>
-				<usecontrolcoords>true</usecontrolcoords>
-				<control type="label">
-					<visible>!String.IsEmpty(PVR.TVNextRecordingTitle) + String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
-					<width>532</width>
-					<include>MediaFlagLabelFull</include>
-					<label>$LOCALIZE[19157]$INFO[PVR.TVNextRecordingDateTime, - ,][B][CR]$INFO[PVR.TVNextRecordingTitle][/B]</label>
-				</control>
-				<control type="label">
-					<visible>!String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
-					<width>532</width>
-					<include>MediaFlagLabelFull</include>
-					<label>$LOCALIZE[19162]$INFO[PVR.TVNowRecordingDateTime, - ,][B][CR]$INFO[PVR.TVNowRecordingTitle, ][/B]</label>
-				</control>
-				<control type="label">
-					<visible>Window.IsActive(MyPVRRecordings.xml) + Container.HasFolders + !String.IsEqual(Container.ViewMode,$LOCALIZE[31213]) + !String.IsEqual(Container.ViewMode,$LOCALIZE[31214])</visible>
-					<width>135.5</width>
-					<include>MediaFlagLabel</include>
-					<label>$LOCALIZE[19017]</label>
-				</control>
-				<control type="label">
-					<visible>Window.IsActive(MyPVRRecordings.xml) + Container.HasFolders + !String.IsEqual(Container.ViewMode,$LOCALIZE[31213]) + !String.IsEqual(Container.ViewMode,$LOCALIZE[31214])</visible>
-					<left>-145.5</left>
-					<include>MediaFlagBigLabel</include>
-					<label>$INFO[Container(811111).NumItems]</label>
-				</control>
-			</control>
-		</definition>
-	</include>
 	<include name="MediaFlagsPanelVideos">
 		<param name="left">100</param>
 		<param name="right">100</param>
@@ -892,12 +851,13 @@
 			<orientation>horizontal</orientation>
 			<usecontrolcoords>true</usecontrolcoords>
 			<control type="image">
-				<visible>!String.IsEqual(Control.GetLabel(811112),none)</visible>
+				<visible>!String.IsEqual(Control.GetLabel(811112),none) + !VideoPlayer.HasEpg</visible>
 				<bordersize>0,10,0,10</bordersize>
 				<texture>$VAR[VideoPlayerStudioIconsVar]</texture>
 				<include>MediaFlagImage</include>
 			</control>
 			<control type="image">
+				<visible>!VideoPlayer.HasEpg</visible>
 				<texture>$VAR[MediaFlagsPathVar]mpaa/$VAR[VideoPlayerRatingFlagVar]</texture>
 				<include>MediaFlagImage</include>
 			</control>

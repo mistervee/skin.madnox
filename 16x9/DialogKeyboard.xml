@@ -5,7 +5,6 @@
 	<controls>
 		<control type="group">
 			<visible>!Window.IsVisible(numericinput)</visible>
-			<animation effect="slide" end="0,-98" time="200" condition="Control.IsVisible(313) | !String.IsEmpty(Container(8010).ListItem.Label)">Conditional</animation>
 			<include>AnimationDialogPopupVisible</include>
 			<include content="DialogBackground">
 				<param name="width" value="1160" />
@@ -439,7 +438,7 @@
 						<width>155</width>
 						<onup>166</onup>
 						<ondown>312</ondown>
-						<label></label>
+						<label></label>
 						<font>Font40_Icon</font>
 						<include>DialogKeyboardButton</include>
 					</control>
@@ -448,7 +447,7 @@
 						<width>155</width>
 						<onup>167</onup>
 						<ondown>312</ondown>
-						<label></label>
+						<label></label>
 						<font>Font40_Icon</font>
 						<include>DialogKeyboardButton</include>
 					</control>
@@ -470,137 +469,12 @@
 				<height>60</height>
 				<bottom>23</bottom>
 				<onup>515</onup>
-				<ondown condition="!Control.IsVisible(8010)">511</ondown>
-				<ondown condition="Control.IsVisible(8010)">8010</ondown>
 				<texturefocus />
 				<texturenofocus />
 				<align>center</align>
 				<font>Font36_Reg</font>
 				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 				<focusedcolor>$VAR[PanelHighlightColorVar]</focusedcolor>
-			</control>
-			<control type="group">
-				<visible>Control.IsVisible(313) | [Control.IsVisible(8010) + Integer.IsGreater(Container(8010).NumItems,0)]</visible>
-				<include>AnimationVisibleFade</include>
-				<top>553</top>
-				<width>1160</width>
-				<height>205</height>
-				<control type="image">
-					<texture colordiffuse="$VAR[PanelShadowColorVar]" border="50">$VAR[DialogShadowVar]</texture>
-				</control>
-				<control type="image">
-					<texture colordiffuse="$VAR[PanelStyleColorVar]" border="40">$VAR[DialogStyleVar]</texture>
-				</control>
-				<control type="image">
-					<visible>!Skin.HasSetting(DialogSquare.texture)</visible>
-					<top>20</top>
-					<left>20</left>
-					<right>20</right>
-					<bottom>20</bottom>
-					<aspectratio scalediffuse="false">scale</aspectratio>
-					<texture diffuse="diffuse/rounded10-1120x165.png" colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
-				</control>
-				<control type="image">
-					<visible>Skin.HasSetting(DialogSquare.texture)</visible>
-					<top>20</top>
-					<left>20</left>
-					<right>20</right>
-					<bottom>20</bottom>
-					<aspectratio scalediffuse="false">scale</aspectratio>
-					<texture colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
-				</control>
-				<control type="image">
-					<texture colordiffuse="$VAR[PanelEmbossColorVar]" border="40">$VAR[DialogEmbossVar]</texture>
-				</control>
-			</control>
-			<control type="panel" id="8010">
-				<visible>!Control.IsVisible(313) + !Window.IsActive(script-skin_helper_service-ColorPicker.xml) + Skin.HasSetting(PredictiveText)</visible>
-				<include>AnimationVisibleFade</include>
-				<top>553</top>
-				<width>1200</width>
-				<height>200</height>
-				<onup>312</onup>
-				<ondown>511</ondown>
-				<orientation>horizontal</orientation>
-				<itemlayout width="368" height="75">
-					<control type="image">
-						<top>25</top>
-						<left>25</left>
-						<width>373</width>
-						<height>80</height>
-						<texture border="20" colordiffuse="$VAR[PanelSubTextColorVar]">buttons/button.png</texture>
-					</control>
-					<control type="label">
-						<top>25</top>
-						<left>25</left>
-						<width>373</width>
-						<height>80</height>
-						<align>center</align>
-						<font>Font29_Cond</font>
-						<textoffsetx>30</textoffsetx>
-						<label>$INFO[ListItem.Label]</label>
-						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-					</control>
-				</itemlayout>
-				<focusedlayout width="368" height="75">
-					<control type="group">
-						<control type="image">
-							<top>25</top>
-							<left>25</left>
-							<width>373</width>
-							<height>80</height>
-							<texture border="20" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/button.png</texture>
-						</control>
-						<control type="label">
-							<top>25</top>
-							<left>25</left>
-							<width>373</width>
-							<height>80</height>
-							<font>Font29_Cond</font>
-							<align>center</align>
-							<textoffsetx>30</textoffsetx>
-							<label>$INFO[ListItem.Label]</label>
-							<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
-						</control>
-					</control>
-				</focusedlayout>
-				<content>$VAR[AutoCompletionContentVar]</content>
-			</control>
-			<control type="group">
-				<visible>Control.IsVisible(313)</visible>
-				<include>AnimationVisibleFade</include>
-				<top>578</top>
-				<left>25</left>
-				<control type="image">
-					<width>1110</width>
-					<height>80</height>
-					<texture border="20" colordiffuse="$VAR[PanelSubTextColorVar]">buttons/button.png</texture>
-				</control>
-				<control type="image">
-					<top>75</top>
-					<width>1110</width>
-					<height>80</height>
-					<texture border="20" colordiffuse="$VAR[PanelSubTextColorVar]">buttons/button.png</texture>
-				</control>
-				<control type="label" id="314">
-					<top>75</top>
-					<width>1110</width>
-					<height>80</height>
-					<align>center</align>
-					<font>Font29_Cond</font>
-					<textoffsetx>30</textoffsetx>
-					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-				</control>
-			</control>
-			<control type="label" id="313">
-				<top>578</top>
-				<left>25</left>
-				<width>1110</width>
-				<height>80</height>
-				<align>center</align>
-				<font>Font29_Cond</font>
-				<textoffsetx>30</textoffsetx>
-				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 			</control>
 		</control>
 	</controls>

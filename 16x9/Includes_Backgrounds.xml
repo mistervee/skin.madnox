@@ -3,27 +3,53 @@
 	<include name="BackgroundDefault">
 		<param name="imagepath"></param>
 		<definition>
-			<!-- Main menu hidden background list -->
-			<control type="wraplist" id="9034">
-				<visible>Window.IsVisible(Home) + String.StartsWith(Container(9000).ListItem.Property(background),s:playlist)</visible>
-				<include>HiddenList</include>
-				<content sortby="random">$INFO[Container(9000).ListItem.Property(backgroundPlaylist)]</content>
-				<autoscroll time="7000" delay="7000" repeat="7000">True</autoscroll>
-			</control>
 			<!-- Now Playing -->
 			<control type="videowindow">
-				<visible>Player.HasVideo + !Skin.HasSetting(NowplayingDisableVideoBackground)</visible>
+				<visible>Player.HasVideo + Skin.HasSetting(NowplayingVideoBackground)</visible>
 				<include>FullScreenDimensions</include>
 			</control>
 			<control type="visualisation">
-				<visible>Player.HasAudio + Visualisation.Enabled + !Skin.HasSetting(NowplayingDisableVizBackground)</visible>
+				<visible>Player.HasAudio + Visualisation.Enabled + Skin.HasSetting(NowplayingVizBackground)</visible>
 				<include>FullScreenDimensions</include>
 			</control>
 			<control type="group">
-				<visible>Player.HasAudio + !Skin.String(NowPlayingMusicBackground,none)</visible>
+				<visible>Player.HasAudio + [Skin.String(NowPlayingMusicBackground,fanart) | Skin.String(NowPlayingMusicBackground,extra)]</visible>
 				<include>AnimationWindowFade</include>
+				<!-- Extra fanart -->
+				<control type="fadelabel" id="71111">
+					<visible>Skin.String(NowPlayingMusicBackground,extra)</visible>
+					<top>-1000</top>
+					<width>1</width>
+					<height>1</height>
+					<scroll>false</scroll>
+					<randomize>true</randomize>
+					<scrollout>false</scrollout>
+					<include>FadeLabelTime</include>
+					<resetonlabelchange>true</resetonlabelchange>
+					<label>$INFO[Player.Art(fanart)]</label>
+					<label>$INFO[Player.Art(artist.fanart1)]</label>
+					<label>$INFO[Player.Art(artist.fanart2)]</label>
+					<label>$INFO[Player.Art(artist.fanart3)]</label>
+					<label>$INFO[Player.Art(artist.fanart4)]</label>
+					<label>$INFO[Player.Art(artist.fanart5)]</label>
+					<label>$INFO[Player.Art(artist.fanart6)]</label>
+					<label>$INFO[Player.Art(artist.fanart7)]</label>
+					<label>$INFO[Player.Art(artist.fanart8)]</label>
+					<label>$INFO[Player.Art(artist.fanart9)]</label>
+					<label>$INFO[Player.Art(artist.fanart10)]</label>
+					<label>$INFO[Player.Art(albumartist.fanart1)]</label>
+					<label>$INFO[Player.Art(albumartist.fanart2)]</label>
+					<label>$INFO[Player.Art(albumartist.fanart3)]</label>
+					<label>$INFO[Player.Art(albumartist.fanart4)]</label>
+					<label>$INFO[Player.Art(albumartist.fanart5)]</label>
+					<label>$INFO[Player.Art(albumartist.fanart6)]</label>
+					<label>$INFO[Player.Art(albumartist.fanart7)]</label>
+					<label>$INFO[Player.Art(albumartist.fanart8)]</label>
+					<label>$INFO[Player.Art(albumartist.fanart9)]</label>
+					<label>$INFO[Player.Art(albumartist.fanart10)]</label>
+				</control>
 				<control type="multiimage">
-					<visible>!Visualisation.Enabled | Skin.HasSetting(NowplayingDisableVizBackground)</visible>
+					<visible>!Visualisation.Enabled | !Skin.HasSetting(NowplayingVizBackground)</visible>
 					<include>FullScreenDimensions</include>
 					<aspectratio>scale</aspectratio>
 					<imagepath background="true">$VAR[NowPlayingMusicBackgroundVar]</imagepath>
@@ -31,7 +57,7 @@
 					<fadetime>TextureFadeTime</fadetime>
 				</control>
 				<control type="multiimage">
-					<visible>Visualisation.Enabled + !Skin.HasSetting(NowplayingDisableVizBackground)</visible>
+					<visible>Visualisation.Enabled + Skin.HasSetting(NowplayingVizBackground)</visible>
 					<include>FullScreenDimensions</include>
 					<aspectratio>scale</aspectratio>
 					<imagepath background="true" colordiffuse="AAFFFFFF">$VAR[NowPlayingMusicBackgroundVar]</imagepath>
@@ -41,25 +67,30 @@
 			</control>
 			<!-- Skin background -->
 			<control type="group">
-				<visible>!Player.HasMedia | [Player.HasAudio + Skin.String(NowPlayingMusicBackground,none)] | [Player.HasVideo + Skin.HasSetting(NowplayingDisableVideoBackground)]</visible>
+				<visible>!Player.HasMedia | [Player.HasAudio + String.IsEmpty(Skin.String(NowPlayingMusicBackground))] | [Player.HasVideo + !Skin.HasSetting(NowplayingVideoBackground)]</visible>
 				<include>AnimationWindowFade</include>
 				<control type="multiimage">
-					<visible>!Visualisation.Enabled</visible>
+					<visible>!Visualisation.Enabled | !Skin.HasSetting(NowplayingVizBackground)</visible>
 					<include>FullScreenDimensions</include>
 					<aspectratio>scale</aspectratio>
 					<imagepath background="true">$PARAM[imagepath]</imagepath>
 					<randomize>true</randomize>
+					<include>MultiImageTime</include>
 					<fadetime>TextureFadeTime</fadetime>
 				</control>
 				<control type="multiimage">
-					<visible>Visualisation.Enabled</visible>
+					<visible>Visualisation.Enabled + Skin.HasSetting(NowplayingVizBackground)</visible>
 					<include>FullScreenDimensions</include>
 					<aspectratio>scale</aspectratio>
 					<imagepath background="true" colordiffuse="AAFFFFFF">$PARAM[imagepath]</imagepath>
 					<randomize>true</randomize>
+					<include>MultiImageTime</include>
 					<fadetime>TextureFadeTime</fadetime>
 				</control>
-				<!-- <include condition="Window.IsActive(Home)">skinshortcuts-template-LiveBackgroundHome</include> -->
+				<!-- Cover backgrounds -->
+				<include condition="Window.IsActive(Home)">skinshortcuts-template-coverBackground</include>
+				<include condition="Window.IsActive(videos)">CoverBackgroundVideos</include>
+				<include condition="Window.IsActive(music)">CoverBackgroundMusic</include>
 			</control>
 			<!-- Background theme textures -->
 			<control type="image">
@@ -72,76 +103,7 @@
 				<texture colordiffuse="$VAR[BackgroundShadowColorVar]">panels/patterns/shadow.png</texture>
 				<visible>Skin.HasSetting(BackgroundShadow)</visible>
 			</control>
-			<!-- Widget info overlay -->
-			<control type="image">
-				<visible>Window.IsVisible(Home) + ControlGroup(90010).HasFocus</visible>
-				<include>AnimationVisibleFade</include>
-				<width>1300</width>
-				<texture colordiffuse="eeffffff">panels/kodiflix-gradient.png</texture>
-			</control>
-			<!-- Media info overlay -->
-			<control type="group">
-				<visible>Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(musicinformation) | Window.IsVisible(songinformation)</visible>
-				<include>FullScreenDimensions</include>
-				<include>AnimationVisibleFade</include>
-				<control type="image">
-					<visible>Skin.HasSetting(BlurEnabled)</visible>
-					<width>1920</width>
-					<height>1080</height>
-					<aspectratio>scale</aspectratio>
-					<colordiffuse>$INFO[Window(home).Property(listitem_color)]</colordiffuse>
-					<texture>$INFO[Window(home).Property(listitem_blurred)]</texture>
-				</control>
-				<control type ="image">
-					<texture>colors/black80.png</texture>
-					<visible>!Skin.HasSetting(BlurEnabled)</visible>
-				</control>
-				<control type ="image">
-					<texture>colors/black50.png</texture>
-					<visible>Skin.HasSetting(BlurEnabled)</visible>
-				</control>
-			</control>
-			<!-- Widget background -->
-			<!-- <control type="image">
-				<visible>Window.IsActive(home) + !Skin.HasSetting(WidgetHigh) + ControlGroup(90010).HasFocus</visible>
-				<animation effect="slide" end="0,$PARAM[infotopposition]" condition="true">Conditional</animation>
-				<animation effect="slide" end="0,91" condition="Skin.String(MainMenuPosition,bottom)">Conditional</animation>
-				<animation effect="slide" end="0,274" condition="Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)">Conditional</animation>
-				<animation effect="slide" end="0,-42" condition="system.getbool(lookandfeel.enablerssfeeds)">Conditional</animation>
-				<animation effect="slide" end="0,42" condition="[String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)] + Skin.HasSetting(InfoBarTop)">Conditional</animation>
-				<include>AnimationVisibleFade</include>
-				<bottom>0</bottom>
-				<width>1920</width>
-				<height>1122</height>
-				<texture>panels/widget-gradient.png</texture>
-			</control>
-			<control type="image">
-				<visible>Window.IsActive(home) + Skin.HasSetting(WidgetHigh) + ControlGroup(90010).HasFocus</visible>
-				<animation effect="slide" end="0,-$PARAM[infotopposition]" condition="true">Conditional</animation>
-				<animation effect="slide" end="0,-91" condition="Skin.String(MainMenuPosition,top)">Conditional</animation>
-				<animation effect="slide" end="0,-274" condition="String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)">Conditional</animation>
-				<animation effect="slide" end="0,42" condition="[String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)] + Skin.HasSetting(InfoBarTop)">Conditional</animation>
-				<include>AnimationVisibleFade</include>
-				<bottom>-49</bottom>
-				<width>1920</width>
-				<height>1122</height>
-				<texture flipy="true">panels/widget-gradient.png</texture>
-			</control> -->
-			<!-- Effects -->
-			<control type="multiimage">
-				<left>-100</left>
-				<top>-100</top>
-				<width>2120</width>
-				<height>1280</height>
-				<imagepath background="true">effects/smoke</imagepath>
-				<fadetime>1</fadetime>
-				<pauseatend>1</pauseatend>
-				<fadetime>0</fadetime>
-				<timeperimage>20</timeperimage>
-				<randomize>false</randomize>
-				<loop>true</loop>
-				<visible>Skin.HasSetting(BackgroundSmoke)</visible>
-			</control>
+			<!-- Background effects -->
 			<control type="group">
 				<visible>!String.IsEmpty(Skin.String(BackgroundEffect.texture))</visible>
 				<include content="EffectBackgroundXY">
@@ -167,566 +129,379 @@
 			</control>
 		</definition>
 	</include>
-	<include name="LiveBackgroundHome">
-		<animation effect="fade" time="240" tween="cubic">VisibleChange</animation>
-		<control type="group">
-			<description>Case 1</description>
-			<visible>!String.IsEmpty(Container($PARAM[id]).ListItem(9).Art($PARAM[art]))</visible>
-			<left>900</left>
-			<top>800</top>
-			<animation effect="rotate" center="auto" start="-65" end="-65" time="0" condition="true">Conditional</animation>
-			<control type="image">
-				<include>$PARAM[postersize]</include>
-				<texture background="true" diffuse="thumbs/poster-mask.png">$INFO[Container($PARAM[id]).ListItem(9).Art($PARAM[art])]</texture>
-			</control>
-			<control type="image">
-				<include>$PARAM[casesize]</include>
-				<texture background="true" border="100">$PARAM[case]$INFO[Container($PARAM[id]).ListItem(9).VideoResolution]p.png</texture>
-				<visible>String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),case) | String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),clear)</visible>
-			</control>
-			<control type="image">
-				<include>$PARAM[casesize]</include>
-				<texture background="true" border="40">$PARAM[case]</texture>
-				<visible>!String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),case) + !String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),clear)</visible>
-			</control>
+	<include name="CoverBackgroundPoster">
+		<visible>!String.IsEmpty(Container($PARAM[id]).ListItemAbsolute($PARAM[item]).Art(poster)) | !String.IsEmpty(Container($PARAM[id]).ListItemAbsolute($PARAM[item]).Art(tvshow.poster)) | !String.IsEmpty(Container($PARAM[id]).ListItemAbsolute($PARAM[item]).Art(season.poster))</visible>
+		<width>340</width>
+		<height>500</height>
+		<control type="image">
+			<visible>!String.IsEmpty(Container($PARAM[id]).ListItemAbsolute($PARAM[item]).Art(poster))</visible>
+			<bordersize>10</bordersize>
+			<fadetime>TextureFadeTime</fadetime>
+			<aspectratio scalediffuse="false">scale</aspectratio>
+			<texture background="true" diffuse="$PARAM[diffuse]">$INFO[Container($PARAM[id]).ListItemAbsolute($PARAM[item]).Art(poster)]</texture>
 		</control>
-		<control type="group">
-			<description>Case 2</description>
-			<visible>!String.IsEmpty(Container($PARAM[id]).ListItem(8).Art($PARAM[art]))</visible>
-			<left>80</left>
-			<top>-160</top>
-			<animation effect="rotate" center="auto" start="65" end="65" time="0" condition="true">Conditional</animation>
-			<control type="image">
-				<include>$PARAM[postersize]</include>
-				<texture background="true" diffuse="thumbs/poster-mask.png">$INFO[Container($PARAM[id]).ListItem(8).Art($PARAM[art])]</texture>
-			</control>
-			<control type="image">
-				<include>$PARAM[casesize]</include>
-				<texture background="true" border="100">$PARAM[case]$INFO[Container($PARAM[id]).ListItem(8).VideoResolution]p.png</texture>
-				<visible>String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),case) | String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),clear)</visible>
-			</control>
-			<control type="image">
-				<include>$PARAM[casesize]</include>
-				<texture background="true" border="40">$PARAM[case]</texture>
-				<visible>!String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),case) + !String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),clear)</visible>
-			</control>
+		<control type="image">
+			<visible>String.IsEmpty(Container($PARAM[id]).ListItemAbsolute($PARAM[item]).Art(poster)) + !String.IsEmpty(Container($PARAM[id]).ListItemAbsolute($PARAM[item]).Art(season.poster))</visible>
+			<bordersize>10</bordersize>
+			<fadetime>TextureFadeTime</fadetime>
+			<aspectratio scalediffuse="false">scale</aspectratio>
+			<texture background="true" diffuse="$PARAM[diffuse]">$INFO[Container($PARAM[id]).ListItemAbsolute($PARAM[item]).Art(season.poster)]</texture>
 		</control>
-		<control type="group">
-			<description>Case 3</description>
-			<visible>!String.IsEmpty(Container($PARAM[id]).ListItem(7).Art($PARAM[art]))</visible>
-			<left>-110</left>
-			<top>-170</top>
-			<animation effect="rotate" center="auto" start="10" end="10" time="0" condition="true">Conditional</animation>
-			<control type="image">
-				<include>$PARAM[postersize]</include>
-				<texture background="true" diffuse="thumbs/poster-mask.png">$INFO[Container($PARAM[id]).ListItem(7).Art($PARAM[art])]</texture>
-			</control>
-			<control type="image">
-				<include>$PARAM[casesize]</include>
-				<texture background="true" border="100">$PARAM[case]$INFO[Container($PARAM[id]).ListItem(7).VideoResolution]p.png</texture>
-				<visible>String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),case) | String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),clear)</visible>
-			</control>
-			<control type="image">
-				<include>$PARAM[casesize]</include>
-				<texture background="true" border="40">$PARAM[case]</texture>
-				<visible>!String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),case) + !String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),clear)</visible>
-			</control>
+		<control type="image">
+			<visible>String.IsEmpty(Container($PARAM[id]).ListItemAbsolute($PARAM[item]).Art(poster)) + String.IsEmpty(Container($PARAM[id]).ListItemAbsolute($PARAM[item]).Art(season.poster))</visible>
+			<bordersize>10</bordersize>
+			<fadetime>TextureFadeTime</fadetime>
+			<aspectratio scalediffuse="false">scale</aspectratio>
+			<texture background="true" diffuse="$PARAM[diffuse]">$INFO[Container($PARAM[id]).ListItemAbsolute($PARAM[item]).Art(tvshow.poster)]</texture>
 		</control>
-		<control type="group">
-			<description>Case 4</description>
-			<visible>!String.IsEmpty(Container($PARAM[id]).ListItem(6).Art($PARAM[art]))</visible>
-			<left>1460</left>
-			<top>-30</top>
-			<animation effect="rotate" center="auto" start="-20" end="-20" time="0" condition="true">Conditional</animation>
-			<control type="image">
-				<include>$PARAM[postersize]</include>
-				<texture background="true" diffuse="thumbs/poster-mask.png">$INFO[Container($PARAM[id]).ListItem(6).Art($PARAM[art])]</texture>
-			</control>
-			<control type="image">
-				<include>$PARAM[casesize]</include>
-				<texture background="true" border="100">$PARAM[case]$INFO[Container($PARAM[id]).ListItem(6).VideoResolution]p.png</texture>
-				<visible>String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),case) | String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),clear)</visible>
-			</control>
-			<control type="image">
-				<include>$PARAM[casesize]</include>
-				<texture background="true" border="40">$PARAM[case]</texture>
-				<visible>!String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),case) + !String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),clear)</visible>
-			</control>
+		<control type="image">
+			<visible>!$PARAM[casevisible]</visible>
+			<texture border="20">thumbs/overlay.png</texture>
 		</control>
-		<control type="group">
-			<description>Case 5</description>
-			<visible>!String.IsEmpty(Container($PARAM[id]).ListItem(5).Art($PARAM[art]))</visible>
-			<left>550</left>
-			<top>-110</top>
-			<animation effect="rotate" center="auto" start="25" end="25" time="0" condition="true">Conditional</animation>
-			<control type="image">
-				<include>$PARAM[postersize]</include>
-				<texture background="true" diffuse="thumbs/poster-mask.png">$INFO[Container($PARAM[id]).ListItem(5).Art($PARAM[art])]</texture>
-			</control>
-			<control type="image">
-				<include>$PARAM[casesize]</include>
-				<texture background="true" border="100">$PARAM[case]$INFO[Container($PARAM[id]).ListItem(5).VideoResolution]p.png</texture>
-				<visible>String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),case) | String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),clear)</visible>
-			</control>
-			<control type="image">
-				<include>$PARAM[casesize]</include>
-				<texture background="true" border="40">$PARAM[case]</texture>
-				<visible>!String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),case) + !String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),clear)</visible>
-			</control>
+		<control type="image">
+			<visible>$PARAM[casevisible] + ![String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,tvshow) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,season)]</visible>
+			<bordersize>-5,-36,-5,-10</bordersize>
+			<texture background="true" border="15">thumbs\case\portrait\$INFO[Container($PARAM[id]).ListItemAbsolute($PARAM[item]).VideoResolution]p.png</texture>
 		</control>
-		<control type="group">
-			<description>Case 6</description>
-			<visible>!String.IsEmpty(Container($PARAM[id]).ListItem(4).Art($PARAM[art]))</visible>
-			<left>1470</left>
-			<top>-550</top>
-			<animation effect="rotate" center="auto" start="75" end="75" time="0" condition="true">Conditional</animation>
-			<control type="image">
-				<include>$PARAM[postersize]</include>
-				<texture background="true" diffuse="thumbs/poster-mask.png">$INFO[Container($PARAM[id]).ListItem(4).Art($PARAM[art])]</texture>
-			</control>
-			<control type="image">
-				<include>$PARAM[casesize]</include>
-				<texture background="true" border="100">$PARAM[case]$INFO[Container($PARAM[id]).ListItem(4).VideoResolution]p.png</texture>
-				<visible>String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),case) | String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),clear)</visible>
-			</control>
-			<control type="image">
-				<include>$PARAM[casesize]</include>
-				<texture background="true" border="40">$PARAM[case]</texture>
-				<visible>!String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),case) + !String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),clear)</visible>
-			</control>
+		<control type="image">
+			<visible>$PARAM[casevisible] + [String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,tvshow) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,season)]</visible>
+			<bordersize>-5,-36,-5,-10</bordersize>
+			<texture background="true" border="15">thumbs\case\portrait\tvshow.png</texture>
 		</control>
-		<control type="group">
-			<description>Case 7</description>
-			<visible>!String.IsEmpty(Container($PARAM[id]).ListItem(3).Art($PARAM[art]))</visible>
-			<left>1270</left>
-			<top>740</top>
-			<animation effect="rotate" center="auto" start="45" end="45" time="0" condition="true">Conditional</animation>
-			<control type="image">
-				<include>$PARAM[postersize]</include>
-				<texture background="true" diffuse="thumbs/poster-mask.png">$INFO[Container($PARAM[id]).ListItem(3).Art($PARAM[art])]</texture>
-			</control>
-			<control type="image">
-				<include>$PARAM[casesize]</include>
-				<texture background="true" border="100">$PARAM[case]$INFO[Container($PARAM[id]).ListItem(3).VideoResolution]p.png</texture>
-				<visible>String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),case) | String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),clear)</visible>
-			</control>
-			<control type="image">
-				<include>$PARAM[casesize]</include>
-				<texture background="true" border="40">$PARAM[case]</texture>
-				<visible>!String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),case) + !String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),clear)</visible>
-			</control>
+		<control type="image">
+			<visible>$PARAM[casevisible] + !Skin.HasSetting(MediaFlagsColored) + [String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,tvshow) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,season)]</visible>
+			<top>-25</top>
+			<height>36</height>
+			<align>center</align>
+			<aspectratio>keep</aspectratio>
+			<fadetime>TextureFadeTime</fadetime>
+			<texture background="true">$INFO[Container($PARAM[id]).ListItem($PARAM[item]).Studio,resource://resource.images.studios.white/,.png]</texture>
 		</control>
-		<control type="group">
-			<description>Case 8</description>
-			<visible>!String.IsEmpty(Container($PARAM[id]).ListItem(2).Art($PARAM[art]))</visible>
-			<left>1320</left>
-			<top>450</top>
-			<animation effect="rotate" center="auto" start="-35" end="-35" time="0" condition="true">Conditional</animation>
-			<control type="image">
-				<include>$PARAM[postersize]</include>
-				<texture background="true" diffuse="thumbs/poster-mask.png">$INFO[Container($PARAM[id]).ListItem(3).Art($PARAM[art])]</texture>
-			</control>
-			<control type="image">
-				<include>$PARAM[casesize]</include>
-				<texture background="true" border="100">$PARAM[case]$INFO[Container($PARAM[id]).ListItem(2).VideoResolution]p.png</texture>
-				<visible>String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),case) | String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),clear)</visible>
-			</control>
-			<control type="image">
-				<include>$PARAM[casesize]</include>
-				<texture background="true" border="40">$PARAM[case]</texture>
-				<visible>!String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),case) + !String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),clear)</visible>
-			</control>
+		<control type="image">
+			<visible>$PARAM[casevisible] + Skin.HasSetting(MediaFlagsColored) + [String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,tvshow) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,season)]</visible>
+			<top>-25</top>
+			<height>36</height>
+			<align>center</align>
+			<aspectratio>keep</aspectratio>
+			<fadetime>TextureFadeTime</fadetime>
+			<texture background="true">$INFO[Container($PARAM[id]).ListItem($PARAM[item]).Studio,resource://resource.images.studios.coloured/,.png]</texture>
 		</control>
-		<control type="group">
-			<description>Case 9</description>
-			<visible>!String.IsEmpty(Container($PARAM[id]).ListItem(1).Art($PARAM[art]))</visible>
-			<left>790</left>
-			<top>110</top>
-			<animation effect="rotate" center="auto" start="-10" end="-10" time="0" condition="true">Conditional</animation>
-			<control type="image">
-				<include>$PARAM[postersize]</include>
-				<texture background="true" diffuse="thumbs/poster-mask.png">$INFO[Container($PARAM[id]).ListItem(1).Art($PARAM[art])]</texture>
-			</control>
-			<control type="image">
-				<include>$PARAM[casesize]</include>
-				<texture background="true" border="100">$PARAM[case]$INFO[Container($PARAM[id]).ListItem(1).VideoResolution]p.png</texture>
-				<visible>String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),case) | String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),clear)</visible>
-			</control>
-			<control type="image">
-				<include>$PARAM[casesize]</include>
-				<texture background="true" border="40">$PARAM[case]</texture>
-				<visible>!String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),case) + !String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),clear)</visible>
-			</control>
-		</control>
-		<control type="group">
-			<description>Case 10</description>
-			<visible>!String.IsEmpty(Container($PARAM[id]).ListItem(0).Art($PARAM[art]))</visible>
-			<left>210</left>
-			<top>130</top>
-			<animation effect="rotate" center="auto" start="3" end="3" time="0" condition="true">Conditional</animation>
-			<control type="image">
-				<include>$PARAM[postersize]</include>
-				<texture background="true" diffuse="thumbs/poster-mask.png">$INFO[Container($PARAM[id]).ListItem(0).Art($PARAM[art])]</texture>
-			</control>
-			<control type="image">
-				<include>$PARAM[casesize]</include>
-				<texture background="true" border="100">$PARAM[case]$INFO[Container($PARAM[id]).ListItem(0).VideoResolution]p.png</texture>
-				<visible>String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),case) | String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),clear)</visible>
-			</control>
-			<control type="image">
-				<include>$PARAM[casesize]</include>
-				<texture background="true" border="60">$PARAM[case]</texture>
-				<visible>!String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),case) + !String.IsEqual(Container(9000).ListItem.Property(liveBackgroundCase),clear)</visible>
-			</control>
-		</control>
-		<!-- <control type="group">
-			<visible>Integer.IsGreaterOrEqual(Container($PARAM[id]).NumItems,8)</visible>
-			<left>750</left>
-			<top>650</top>
-			<animation effect="rotate" center="auto" start="9" end="9" time="0" condition="true">Conditional</animation>
-			<control type="image">
-				<include>posterbackgroundSquareCover</include>
-				<texture background="true" diffuse="thumbs/square-mask.png" fallback="DefaultAudio.png">$PARAM[poster10]</texture>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareCase</include>
-				<texture background="true" border="100">thumbs/case/square/cd.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),Case)</visible>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareCase</include>
-				<texture background="true" border="100">thumbs/clearcase/square/cd.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),ClearCase)</visible>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareGlass</include>
-				<texture background="true" border="40">thumbs/glass/square.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),Glass)</visible>
-			</control>
-		</control>
-		<control type="group">
-			<visible>Integer.IsGreater(Container($PARAM[id]).NumItems,7)</visible>
-			<left>90</left>
-			<top>-90</top>
-			<animation effect="rotate" center="auto" start="65" end="65" time="0" condition="true">Conditional</animation>
-			<control type="image">
-				<include>posterbackgroundSquareCover</include>
-				<texture background="true" diffuse="thumbs/square-mask.png" fallback="DefaultAudio.png">$PARAM[poster9]</texture>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareCase</include>
-				<texture background="true" border="100">thumbs/case/square/cd.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),Case)</visible>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareCase</include>
-				<texture background="true" border="100">thumbs/clearcase/square/cd.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),ClearCase)</visible>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareGlass</include>
-				<texture background="true" border="40">thumbs/glass/square.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),Glass)</visible>
-			</control>
-		</control>
-		<control type="group">
-			<visible>Integer.IsGreater(Container($PARAM[id]).NumItems,6)</visible>
-			<left>-130</left>
-			<top>-90</top>
-			<animation effect="rotate" center="auto" start="10" end="10" time="0" condition="true">Conditional</animation>
-			<control type="image">
-				<include>posterbackgroundSquareCover</include>
-				<texture background="true" diffuse="thumbs/square-mask.png" fallback="DefaultAudio.png">$PARAM[poster8]</texture>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareCase</include>
-				<texture background="true" border="100">thumbs/case/square/cd.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),Case)</visible>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareCase</include>
-				<texture background="true" border="100">thumbs/clearcase/square/cd.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),ClearCase)</visible>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareGlass</include>
-				<texture background="true" border="40">thumbs/glass/square.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),Glass)</visible>
-			</control>
-		</control>
-		<control type="group">
-			<visible>Integer.IsGreater(Container($PARAM[id]).NumItems,5)</visible>
-			<left>1390</left>
-			<top>0</top>
-			<animation effect="rotate" center="auto" start="-20" end="-20" time="0" condition="true">Conditional</animation>
-			<control type="image">
-				<include>posterbackgroundSquareCover</include>
-				<texture background="true" diffuse="thumbs/square-mask.png" fallback="DefaultAudio.png">$PARAM[poster7]</texture>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareCase</include>
-				<texture background="true" border="100">thumbs/case/square/cd.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),Case)</visible>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareCase</include>
-				<texture background="true" border="100">thumbs/clearcase/square/cd.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),ClearCase)</visible>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareGlass</include>
-				<texture background="true" border="40">thumbs/glass/square.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),Glass)</visible>
-			</control>
-		</control>
-		<control type="group">
-			<visible>Integer.IsGreater(Container($PARAM[id]).NumItems,4)</visible>
-			<left>550</left>
-			<top>-135</top>
-			<animation effect="rotate" center="auto" start="25" end="25" time="0" condition="true">Conditional</animation>
-			<control type="image">
-				<include>posterbackgroundSquareCover</include>
-				<texture background="true" diffuse="thumbs/square-mask.png" fallback="DefaultAudio.png">$PARAM[poster6]</texture>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareCase</include>
-				<texture background="true" border="100">thumbs/case/square/cd.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),Case)</visible>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareCase</include>
-				<texture background="true" border="100">thumbs/clearcase/square/cd.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),ClearCase)</visible>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareGlass</include>
-				<texture background="true" border="40">thumbs/glass/square.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),Glass)</visible>
-			</control>
-		</control>
-		<control type="group">
-			<visible>Integer.IsGreater(Container($PARAM[id]).NumItems,3)</visible>
-			<left>1580</left>
-			<top>-395</top>
-			<animation effect="rotate" center="auto" start="75" end="75" time="0" condition="true">Conditional</animation>
-			<control type="image">
-				<include>posterbackgroundSquareCover</include>
-				<texture background="true" diffuse="thumbs/square-mask.png" fallback="DefaultAudio.png">$PARAM[poster5]</texture>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareCase</include>
-				<texture background="true" border="100">thumbs/case/square/cd.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),Case)</visible>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareCase</include>
-				<texture background="true" border="100">thumbs/clearcase/square/cd.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),ClearCase)</visible>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareGlass</include>
-				<texture background="true" border="40">thumbs/glass/square.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),Glass)</visible>
-			</control>
-		</control>
-		<control type="group">
-			<visible>Integer.IsGreater(Container($PARAM[id]).NumItems,2)</visible>
-			<left>1460</left>
-			<top>770</top>
-			<animation effect="rotate" center="auto" start="45" end="45" time="0" condition="true">Conditional</animation>
-			<control type="image">
-				<include>posterbackgroundSquareCover</include>
-				<texture background="true" diffuse="thumbs/square-mask.png" fallback="DefaultAudio.png">$PARAM[poster4]</texture>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareCase</include>
-				<texture background="true" border="100">thumbs/case/square/cd.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),Case)</visible>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareCase</include>
-				<texture background="true" border="100">thumbs/clearcase/square/cd.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),ClearCase)</visible>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareGlass</include>
-				<texture background="true" border="40">thumbs/glass/square.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),Glass)</visible>
-			</control>
-		</control>
-		<control type="group">
-			<visible>Integer.IsGreater(Container($PARAM[id]).NumItems,1)</visible>
-			<left>1205</left>
-			<top>385</top>
-			<animation effect="rotate" center="auto" start="-15" end="-15" time="0" condition="true">Conditional</animation>
-			<control type="image">
-				<include>posterbackgroundSquareCover</include>
-				<texture background="true" diffuse="thumbs/square-mask.png" fallback="DefaultAudio.png">$PARAM[poster3]</texture>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareCase</include>
-				<texture background="true" border="100">thumbs/case/square/cd.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),Case)</visible>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareCase</include>
-				<texture background="true" border="100">thumbs/clearcase/square/cd.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),ClearCase)</visible>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareGlass</include>
-				<texture background="true" border="40">thumbs/glass/square.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),Glass)</visible>
-			</control>
-		</control>
-		<control type="group">
-			<visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0)</visible>
-			<left>640</left>
-			<top>265</top>
-			<animation effect="rotate" center="auto" start="-10" end="-10" time="0" condition="true">Conditional</animation>
-			<control type="image">
-				<include>posterbackgroundSquareCover</include>
-				<texture background="true" diffuse="thumbs/square-mask.png" fallback="DefaultAudio.png">$PARAM[poster2]</texture>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareCase</include>
-				<texture background="true" border="100">thumbs/case/square/cd.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),Case)</visible>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareCase</include>
-				<texture background="true" border="100">thumbs/clearcase/square/cd.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),ClearCase)</visible>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareGlass</include>
-				<texture background="true" border="40">thumbs/glass/square.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),Glass)</visible>
-			</control>
-		</control>
-		<control type="group">
-			<visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0)</visible>
-			<left>100</left>
-			<top>265</top>
-			<animation effect="rotate" center="auto" start="3" end="3" time="0" condition="true">Conditional</animation>
-			<control type="image">
-				<include>posterbackgroundSquareCover</include>
-				<texture background="true" diffuse="thumbs/square-mask.png" fallback="DefaultAudio.png">$PARAM[poster1]</texture>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareCase</include>
-				<texture background="true" border="100">thumbs/case/square/cd.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),Case)</visible>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareCase</include>
-				<texture background="true" border="100">thumbs/clearcase/square/cd.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),ClearCase)</visible>
-			</control>
-			<control type="image">
-				<include>posterbackgroundSquareGlass</include>
-				<texture background="true" border="40">thumbs/glass/square.png</texture>
-				<visible>String.IsEqual(Skin.String($PARAM[posterbackgroundcase]),Glass)</visible>
-			</control>
-		</control> -->
 	</include>
-	<include name="LiveBackgroundPortrait">
-		<width>400</width>
-		<height>600</height>
-		<fadetime>240</fadetime>
-		<aspectratio scalediffuse="false">scale</aspectratio>
+	<include name="CoverBackgroundSquare">
+		<visible>!String.IsEmpty(Container($PARAM[id]).ListItemAbsolute($PARAM[item]).Art(thumb))</visible>
+		<width>390</width>
+		<height>390</height>
+		<control type="image">
+			<bordersize>10</bordersize>
+			<fadetime>TextureFadeTime</fadetime>
+			<aspectratio scalediffuse="false">scale</aspectratio>
+			<texture background="true" diffuse="$PARAM[diffuse]">$INFO[Container($PARAM[id]).ListItemAbsolute($PARAM[item]).Art(thumb)]</texture>
+		</control>
+		<control type="image">
+			<visible>!$PARAM[casevisible]</visible>
+			<texture border="20">thumbs/overlay.png</texture>
+		</control>
+		<control type="image">
+			<visible>$PARAM[casevisible]</visible>
+			<bordersize>-34,-4,-4,-4</bordersize>
+			<texture background="true" border="15">thumbs\case\cd.png</texture>
+		</control>
 	</include>
-	<include name="LiveBackgroundSquare">
-		<top>80</top>
-		<width>450</width>
-		<height>450</height>
-		<fadetime>240</fadetime>
-		<aspectratio scalediffuse="false">scale</aspectratio>
+	<include name="CoverBackground">
+		<param name="id"></param>
+		<param name="diffuse">false</param>
+		<param name="casevisible">false</param>
+		<param name="portraitvisible">false</param>
+		<param name="squarevisible">false</param>
+		<definition>
+			<control type="group">
+				<visible>$PARAM[portraitvisible]</visible>
+				<include>AnimationWindowFade</include>
+				<include>AnimationVisibleFade</include>
+				<top>-50</top>
+				<left>30</left>
+				<control type="group">
+					<description>Case 10</description>
+					<animation effect="rotate" center="auto" start="-25" end="-25" time="0" condition="true">Conditional</animation>
+					<top>490</top>
+					<left>1590</left>
+					<include content="CoverBackgroundPoster">
+						<param name="id">$PARAM[id]</param>
+						<param name="item">9</param>
+						<param name="diffuse">$PARAM[diffuseportrait]</param>
+						<param name="casevisible">$PARAM[casevisible]</param>
+					</include>
+				</control>
+				<control type="group">
+					<description>Case 9</description>
+					<animation effect="rotate" center="auto" start="20" end="20" time="0" condition="true">Conditional</animation>
+					<top>720</top>
+					<left>1230</left>
+					<include content="CoverBackgroundPoster">
+						<param name="id">$PARAM[id]</param>
+						<param name="item">8</param>
+						<param name="diffuse">$PARAM[diffuseportrait]</param>
+						<param name="casevisible">$PARAM[casevisible]</param>
+					</include>
+				</control>
+				<control type="group">
+					<description>Case 8</description>
+					<animation effect="rotate" center="auto" start="-20" end="-20" time="0" condition="true">Conditional</animation>
+					<top>610</top>
+					<left>760</left>
+					<include content="CoverBackgroundPoster">
+						<param name="id">$PARAM[id]</param>
+						<param name="item">7</param>
+						<param name="diffuse">$PARAM[diffuseportrait]</param>
+						<param name="casevisible">$PARAM[casevisible]</param>
+					</include>
+				</control>
+				<control type="group">
+					<description>Case 7</description>
+					<animation effect="rotate" center="auto" start="10" end="10" time="0" condition="true">Conditional</animation>
+					<top>630</top>
+					<left>400</left>
+					<include content="CoverBackgroundPoster">
+						<param name="id">$PARAM[id]</param>
+						<param name="item">6</param>
+						<param name="diffuse">$PARAM[diffuseportrait]</param>
+						<param name="casevisible">$PARAM[casevisible]</param>
+					</include>
+				</control>
+				<control type="group">
+					<description>Case 6</description>
+					<animation effect="rotate" center="auto" start="-10" end="-10" time="0" condition="true">Conditional</animation>
+					<top>550</top>
+					<left>30</left>
+					<include content="CoverBackgroundPoster">
+						<param name="id">$PARAM[id]</param>
+						<param name="item">5</param>
+						<param name="diffuse">$PARAM[diffuseportrait]</param>
+						<param name="casevisible">$PARAM[casevisible]</param>
+					</include>
+				</control>
+				<control type="group">
+					<description>Case 5</description>
+					<animation effect="rotate" center="auto" start="25" end="25" time="0" condition="true">Conditional</animation>
+					<top>20</top>
+					<left>1400</left>
+					<include content="CoverBackgroundPoster">
+						<param name="id">$PARAM[id]</param>
+						<param name="item">4</param>
+						<param name="diffuse">$PARAM[diffuseportrait]</param>
+						<param name="casevisible">$PARAM[casevisible]</param>
+					</include>
+				</control>
+				<control type="group">
+					<description>Case 4</description>
+					<animation effect="rotate" center="auto" start="10" end="10" time="0" condition="true">Conditional</animation>
+					<top>240</top>
+					<left>1150</left>
+					<include content="CoverBackgroundPoster">
+						<param name="id">$PARAM[id]</param>
+						<param name="item">3</param>
+						<param name="diffuse">$PARAM[diffuseportrait]</param>
+						<param name="casevisible">$PARAM[casevisible]</param>
+					</include>
+				</control>
+				<control type="group">
+					<description>Case 3</description>
+					<animation effect="rotate" center="auto" start="-10" end="-10" time="0" condition="true">Conditional</animation>
+					<top>120</top>
+					<left>800</left>
+					<include content="CoverBackgroundPoster">
+						<param name="id">$PARAM[id]</param>
+						<param name="item">2</param>
+						<param name="diffuse">$PARAM[diffuseportrait]</param>
+						<param name="casevisible">$PARAM[casevisible]</param>
+					</include>
+				</control>
+				<control type="group">
+					<description>Case 2</description>
+					<animation effect="rotate" center="auto" start="3" end="3" time="0" condition="true">Conditional</animation>
+					<top>120</top>
+					<left>400</left>
+					<include content="CoverBackgroundPoster">
+						<param name="id">$PARAM[id]</param>
+						<param name="item">1</param>
+						<param name="diffuse">$PARAM[diffuseportrait]</param>
+						<param name="casevisible">$PARAM[casevisible]</param>
+					</include>
+				</control>
+				<control type="group">
+					<description>Case 1</description>
+					<animation effect="rotate" center="auto" start="15" end="15" time="0" condition="true">Conditional</animation>
+					<top>40</top>
+					<left>90</left>
+					<include content="CoverBackgroundPoster">
+						<param name="id">$PARAM[id]</param>
+						<param name="item">0</param>
+						<param name="diffuse">$PARAM[diffuseportrait]</param>
+						<param name="casevisible">$PARAM[casevisible]</param>
+					</include>
+				</control>
+			</control>
+			<control type="group">
+				<visible>$PARAM[squarevisible]</visible>
+				<include>AnimationWindowFade</include>
+				<include>AnimationVisibleFade</include>
+				<top>0</top>
+				<left>0</left>
+				<control type="group">
+					<description>Case 10</description>
+					<animation effect="rotate" center="auto" start="-25" end="-25" time="0" condition="true">Conditional</animation>
+					<top>490</top>
+					<left>1590</left>
+					<include content="CoverBackgroundSquare">
+						<param name="id">$PARAM[id]</param>
+						<param name="item">9</param>
+						<param name="diffuse">$PARAM[diffusesquare]</param>
+						<param name="casevisible">$PARAM[casevisible]</param>
+					</include>
+				</control>
+				<control type="group">
+					<description>Case 9</description>
+					<animation effect="rotate" center="auto" start="20" end="20" time="0" condition="true">Conditional</animation>
+					<top>720</top>
+					<left>1230</left>
+					<include content="CoverBackgroundSquare">
+						<param name="id">$PARAM[id]</param>
+						<param name="item">8</param>
+						<param name="diffuse">$PARAM[diffusesquare]</param>
+						<param name="casevisible">$PARAM[casevisible]</param>
+					</include>
+				</control>
+				<control type="group">
+					<description>Case 8</description>
+					<animation effect="rotate" center="auto" start="-20" end="-20" time="0" condition="true">Conditional</animation>
+					<top>610</top>
+					<left>760</left>
+					<include content="CoverBackgroundSquare">
+						<param name="id">$PARAM[id]</param>
+						<param name="item">7</param>
+						<param name="diffuse">$PARAM[diffusesquare]</param>
+						<param name="casevisible">$PARAM[casevisible]</param>
+					</include>
+				</control>
+				<control type="group">
+					<description>Case 7</description>
+					<animation effect="rotate" center="auto" start="10" end="10" time="0" condition="true">Conditional</animation>
+					<top>630</top>
+					<left>400</left>
+					<include content="CoverBackgroundSquare">
+						<param name="id">$PARAM[id]</param>
+						<param name="item">6</param>
+						<param name="diffuse">$PARAM[diffusesquare]</param>
+						<param name="casevisible">$PARAM[casevisible]</param>
+					</include>
+				</control>
+				<control type="group">
+					<description>Case 6</description>
+					<animation effect="rotate" center="auto" start="-10" end="-10" time="0" condition="true">Conditional</animation>
+					<top>550</top>
+					<left>30</left>
+					<include content="CoverBackgroundSquare">
+						<param name="id">$PARAM[id]</param>
+						<param name="item">5</param>
+						<param name="diffuse">$PARAM[diffusesquare]</param>
+						<param name="casevisible">$PARAM[casevisible]</param>
+					</include>
+				</control>
+				<control type="group">
+					<description>Case 5</description>
+					<animation effect="rotate" center="auto" start="25" end="25" time="0" condition="true">Conditional</animation>
+					<top>20</top>
+					<left>1400</left>
+					<include content="CoverBackgroundSquare">
+						<param name="id">$PARAM[id]</param>
+						<param name="item">4</param>
+						<param name="diffuse">$PARAM[diffusesquare]</param>
+						<param name="casevisible">$PARAM[casevisible]</param>
+					</include>
+				</control>
+				<control type="group">
+					<description>Case 4</description>
+					<animation effect="rotate" center="auto" start="10" end="10" time="0" condition="true">Conditional</animation>
+					<top>240</top>
+					<left>1150</left>
+					<include content="CoverBackgroundSquare">
+						<param name="id">$PARAM[id]</param>
+						<param name="item">3</param>
+						<param name="diffuse">$PARAM[diffusesquare]</param>
+						<param name="casevisible">$PARAM[casevisible]</param>
+					</include>
+				</control>
+				<control type="group">
+					<description>Case 3</description>
+					<animation effect="rotate" center="auto" start="-10" end="-10" time="0" condition="true">Conditional</animation>
+					<top>120</top>
+					<left>800</left>
+					<include content="CoverBackgroundSquare">
+						<param name="id">$PARAM[id]</param>
+						<param name="item">2</param>
+						<param name="diffuse">$PARAM[diffusesquare]</param>
+						<param name="casevisible">$PARAM[casevisible]</param>
+					</include>
+				</control>
+				<control type="group">
+					<description>Case 2</description>
+					<animation effect="rotate" center="auto" start="3" end="3" time="0" condition="true">Conditional</animation>
+					<top>120</top>
+					<left>400</left>
+					<include content="CoverBackgroundSquare">
+						<param name="id">$PARAM[id]</param>
+						<param name="item">1</param>
+						<param name="diffuse">$PARAM[diffusesquare]</param>
+						<param name="casevisible">$PARAM[casevisible]</param>
+					</include>
+				</control>
+				<control type="group">
+					<description>Case 1</description>
+					<animation effect="rotate" center="auto" start="15" end="15" time="0" condition="true">Conditional</animation>
+					<top>40</top>
+					<left>90</left>
+					<include content="CoverBackgroundSquare">
+						<param name="id">$PARAM[id]</param>
+						<param name="item">0</param>
+						<param name="diffuse">$PARAM[diffusesquare]</param>
+						<param name="casevisible">$PARAM[casevisible]</param>
+					</include>
+				</control>
+			</control>
+		</definition>
 	</include>
-	<include name="LiveBackgroundLandscape">
-		<top>150</top>
-		<width>600</width>
-		<height>337</height>
-		<fadetime>240</fadetime>
-		<aspectratio scalediffuse="false">scale</aspectratio>
+	<include name="CoverBackgroundVideos">
+		<include content="CoverBackground">
+			<param name="id">7001</param>
+			<param name="diffuse">diffuse/rounded5-330x495.png</param>
+			<param name="casevisible">Skin.HasSetting(VideoSetCoverCase)</param>
+			<param name="portraitvisible">Skin.HasSetting(VideoSetCover) + String.IsEqual(ListItem.DBTYPE,set)</param>
+		</include>
+		<include content="CoverBackground">
+			<param name="id">7001</param>
+			<param name="diffuse">diffuse/rounded5-330x495.png</param>
+			<param name="casevisible">Skin.HasSetting(VideoSeasonCoverCase)</param>
+			<param name="portraitvisible">Skin.HasSetting(VideoSeasonCover) + String.IsEqual(ListItem.DBTYPE,tvshow)</param>
+		</include>
+		<include content="CoverBackground">
+			<param name="id">7002</param>
+			<param name="diffuse">diffuse/rounded5-330x495.png</param>
+			<param name="casevisible">Skin.HasSetting(VideoGenreCoverCase)</param>
+			<param name="portraitvisible">!String.Contains(ListItem(1).FolderPath,music) + Skin.HasSetting(VideoGenreCover) + String.IsEqual(ListItem.DBTYPE,genre)</param>
+		</include>
 	</include>
-	<include name="LiveBackgroundPortraitCase">
-		<top>-55</top>
-		<left>-76</left>
-		<width>505</width>
-		<height>690</height>
-	</include>
-	<include name="LiveBackgroundPortraitClear">
-		<top>-55</top>
-		<left>-76</left>
-		<width>505</width>
-		<height>690</height>
-	</include>
-	<include name="LiveBackgroundPortraitGlass">
-		<top>-15</top>
-		<left>-20</left>
-		<width>440</width>
-		<height>645</height>
-	</include>
-	<include name="LiveBackgroundPortraitCD">
-		<top>-10</top>
-		<left>-46</left>
-		<width>455</width>
-		<height>620</height>
-	</include>
-	<include name="LiveBackgroundPortraitPolaroid">
-		<top>-50</top>
-		<left>-50</left>
-		<width>500</width>
-		<height>810</height>
-	</include>
-	<include name="LiveBackgroundSquareCase">
-		<top>72</top>
-		<left>-7</left>
-		<width>466</width>
-		<height>466</height>
-	</include>
-	<include name="LiveBackgroundSquareGlass">
-		<top>65</top>
-		<left>-24</left>
-		<width>497</width>
-		<height>497</height>
-	</include>
-	<include name="LiveBackgroundSquareCD">
-		<top>72</top>
-		<left>-46</left>
-		<width>502</width>
-		<height>466</height>
-	</include>
-	<include name="LiveBackgroundSquarePolaroid">
-		<top>30</top>
-		<left>-50</left>
-		<width>550</width>
-		<height>650</height>
-	</include>
-	<include name="LiveBackgroundLandscapeCase">
-		<top>142</top>
-		<left>-7</left>
-		<width>614</width>
-		<height>352</height>
-	</include>
-	<include name="LiveBackgroundLandscapeGlass">
-		<top>135</top>
-		<left>-22</left>
-		<width>645</width>
-		<height>385</height>
-	</include>
-	<include name="LiveBackgroundLandscapeCD">
-		<top>144</top>
-		<left>-46</left>
-		<width>652</width>
-		<height>352</height>
-	</include>
-	<include name="LiveBackgroundLandscapePolaroid">
-		<top>105</top>
-		<left>-50</left>
-		<width>708</width>
-		<height>505</height>
+	<include name="CoverBackgroundMusic">
+		<include content="CoverBackground">
+			<param name="id">7001</param>
+			<param name="diffuse">diffuse/rounded5-330x495.png</param>
+			<param name="casevisible">Skin.HasSetting(MusicAlbumCoverCase)</param>
+			<param name="squarevisible">Skin.HasSetting(MusicAlbumCover) + String.IsEqual(ListItem.DBTYPE,artist)</param>
+		</include>
+		<include content="CoverBackground">
+			<param name="id">7002</param>
+			<param name="diffuse">diffuse/rounded5-330x495.png</param>
+			<param name="squarevisible">!String.Contains(ListItem(1).FolderPath,musicvideos) + Skin.HasSetting(MusicGenreCover) + String.IsEqual(ListItem.DBTYPE,genre)</param>
+		</include>
 	</include>
 	<include name="EffectBackgroundXY">
 		<param name="visible">false</param>
@@ -1197,4 +972,234 @@
 			</control>
 		</definition>
 	</include>
+	<include name="MultiImageTime">
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),5)">FanartTimePerImage5</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),6)">FanartTimePerImage6</include>
+		<include condition="String.IsEmpty(Skin.String(FanartTimePerImage))">FanartTimePerImage7</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),8)">FanartTimePerImage8</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),9)">FanartTimePerImage9</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),10)">FanartTimePerImage10</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),15)">FanartTimePerImage15</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),20)">FanartTimePerImage20</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),30)">FanartTimePerImage30</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),60)">FanartTimePerImage60</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),90)">FanartTimePerImage90</include>
+	</include>
+	<include name="FadeLabelTime">
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),5)">FadelabelPauseAtEnd5</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),6)">FadelabelPauseAtEnd6</include>
+		<include condition="String.IsEmpty(Skin.String(FanartTimePerImage))">FadelabelPauseAtEnd7</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),8)">FadelabelPauseAtEnd8</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),9)">FadelabelPauseAtEnd9</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),10)">FadelabelPauseAtEnd10</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),15)">FadelabelPauseAtEnd15</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),20)">FadelabelPauseAtEnd20</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),30)">FadelabelPauseAtEnd30</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),60)">FadelabelPauseAtEnd60</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),90)">FadelabelPauseAtEnd90</include>
+	</include>
+	<include name="ListAutoscrollTime">
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),5)">ListAutoscroll5</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),6)">ListAutoscroll6</include>
+		<include condition="String.IsEmpty(Skin.String(FanartTimePerImage))">ListAutoscroll7</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),8)">ListAutoscroll8</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),9)">ListAutoscroll9</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),10)">ListAutoscroll10</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),15)">ListAutoscroll15</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),20)">ListAutoscroll20</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),30)">ListAutoscroll30</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),60)">ListAutoscroll60</include>
+		<include condition="String.IsEqual(Skin.String(FanartTimePerImage),90)">ListAutoscroll90</include>
+	</include>
+	<!-- Fanart Time Per Image -->
+	<include name="FanartTimePerImage2">
+		<timeperimage>2000</timeperimage>
+	</include>
+	<include name="FanartTimePerImage3">
+		<timeperimage>3000</timeperimage>
+	</include>
+	<include name="FanartTimePerImage4">
+		<timeperimage>4000</timeperimage>
+	</include>
+	<include name="FanartTimePerImage5">
+		<timeperimage>5000</timeperimage>
+	</include>
+	<include name="FanartTimePerImage6">
+		<timeperimage>6000</timeperimage>
+	</include>
+	<include name="FanartTimePerImage7">
+		<timeperimage>7000</timeperimage>
+	</include>
+	<include name="FanartTimePerImage8">
+		<timeperimage>8000</timeperimage>
+	</include>
+	<include name="FanartTimePerImage9">
+		<timeperimage>9000</timeperimage>
+	</include>
+	<include name="FanartTimePerImage10">
+		<timeperimage>10000</timeperimage>
+	</include>
+	<include name="FanartTimePerImage15">
+		<timeperimage>15000</timeperimage>
+	</include>
+	<include name="FanartTimePerImage20">
+		<timeperimage>20000</timeperimage>
+	</include>
+	<include name="FanartTimePerImage30">
+		<timeperimage>30000</timeperimage>
+	</include>
+	<include name="FanartTimePerImage60">
+		<timeperimage>60000</timeperimage>
+	</include>
+	<include name="FanartTimePerImage90">
+		<timeperimage>90000</timeperimage>
+	</include>
+	<!-- Extrafanart Fadelabel Pause -->
+	<include name="FadelabelPauseAtEnd2">
+		<pauseatend>2000</pauseatend>
+	</include>
+	<include name="FadelabelPauseAtEnd3">
+		<pauseatend>3000</pauseatend>
+	</include>
+	<include name="FadelabelPauseAtEnd4">
+		<pauseatend>4000</pauseatend>
+	</include>
+	<include name="FadelabelPauseAtEnd5">
+		<pauseatend>5000</pauseatend>
+	</include>
+	<include name="FadelabelPauseAtEnd6">
+		<pauseatend>6000</pauseatend>
+	</include>
+	<include name="FadelabelPauseAtEnd7">
+		<pauseatend>7000</pauseatend>
+	</include>
+	<include name="FadelabelPauseAtEnd8">
+		<pauseatend>8000</pauseatend>
+	</include>
+	<include name="FadelabelPauseAtEnd9">
+		<pauseatend>9000</pauseatend>
+	</include>
+	<include name="FadelabelPauseAtEnd10">
+		<pauseatend>10000</pauseatend>
+	</include>
+	<include name="FadelabelPauseAtEnd15">
+		<pauseatend>15000</pauseatend>
+	</include>
+	<include name="FadelabelPauseAtEnd20">
+		<pauseatend>20000</pauseatend>
+	</include>
+	<include name="FadelabelPauseAtEnd30">
+		<pauseatend>30000</pauseatend>
+	</include>
+	<include name="FadelabelPauseAtEnd60">
+		<pauseatend>60000</pauseatend>
+	</include>
+	<include name="FadelabelPauseAtEnd90">
+		<pauseatend>90000</pauseatend>
+	</include>
+	<!-- Home Random Fanart List Autoscroll -->
+	<include name="ListAutoscroll2">
+		<autoscroll time="2000">true</autoscroll>
+	</include>
+	<include name="ListAutoscroll3">
+		<autoscroll time="3000">true</autoscroll>
+	</include>
+	<include name="ListAutoscroll4">
+		<autoscroll time="4000">true</autoscroll>
+	</include>
+	<include name="ListAutoscroll5">
+		<autoscroll time="5000">true</autoscroll>
+	</include>
+	<include name="ListAutoscroll6">
+		<autoscroll time="6000">true</autoscroll>
+	</include>
+	<include name="ListAutoscroll7">
+		<autoscroll time="7000">true</autoscroll>
+	</include>
+	<include name="ListAutoscroll8">
+		<autoscroll time="8000">true</autoscroll>
+	</include>
+	<include name="ListAutoscroll9">
+		<autoscroll time="9000">true</autoscroll>
+	</include>
+	<include name="ListAutoscroll10">
+		<autoscroll time="10000">true</autoscroll>
+	</include>
+	<include name="ListAutoscroll15">
+		<autoscroll time="15000">true</autoscroll>
+	</include>
+	<include name="ListAutoscroll20">
+		<autoscroll time="20000">true</autoscroll>
+	</include>
+	<include name="ListAutoscroll30">
+		<autoscroll time="30000">true</autoscroll>
+	</include>
+	<include name="ListAutoscroll60">
+		<autoscroll time="60000">true</autoscroll>
+	</include>
+	<include name="ListAutoscroll90">
+		<autoscroll time="90000">true</autoscroll>
+	</include>
+	<!-- Variables -->
+	<variable name="NowPlayingMusicBackgroundVar">
+		<value condition="String.IsEqual(Skin.String(NowPlayingMusicBackground),fanart) + !String.IsEmpty(Player.Art(fanart))">$INFO[Player.Art(fanart)]</value>
+		<value condition="String.IsEqual(Skin.String(NowPlayingMusicBackground),extra)">$INFO[Control.GetLabel(71111)]</value>
+		<value>special://skin/extras/backgrounds/music.jpg</value>
+	</variable>
+	<variable name="HomeFanartVar">
+		<value condition="ControlGroup(90010).HasFocus + !String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+		<value condition="String.IsEqual(Container(9000).ListItem.Property(background),playlist) | String.IsEqual(Container(9000).ListItem.Property(coverBackground),fanart)">$INFO[Control.GetLabel(7002)]</value>
+		<value condition="String.IsEqual(Container(9000).ListItem.Property(background),cover) + !String.IsEmpty(Container(9000).ListItem.Property(coverBackground))">$INFO[Container(9000).ListItem.Property(coverBackground)]</value>
+		<value condition="String.IsEqual(Container(9000).ListItem.Property(background),cover)">thumbs/coverbackground.jpg</value>
+		<value condition="!String.IsEmpty(Container(9000).ListItem.Property(background))">$INFO[Container(9000).ListItem.Property(background)]</value>
+	</variable>
+	<variable name="VideoBackgroundVar">
+		<value condition="!Skin.HasSetting(VideoSetCoverFanart) + Skin.HasSetting(VideoSetCover) + String.IsEqual(ListItem.DBTYPE,set)">thumbs/coverbackground.jpg</value>
+		<value condition="!Skin.HasSetting(VideoSeasonCoverFanart) + Skin.HasSetting(VideoSeasonCover) + String.IsEqual(ListItem.DBTYPE,tvshow)">thumbs/coverbackground.jpg</value>
+		<value condition="!String.Contains(ListItem(1).FolderPath,music) + !Skin.HasSetting(VideoGenreCoverFanart) + Skin.HasSetting(VideoGenreCover) + String.IsEqual(ListItem.DBTYPE,genre)">thumbs/coverbackground.jpg</value>
+		<value condition="!Skin.HasSetting(DisableVideoExtraFanart) + !String.IsEmpty(Control.GetLabel(7004))">$INFO[Control.GetLabel(7004)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+		<value condition="!ListItem.IsParentFolder + !String.IsEmpty(Container.Content) + !String.IsEmpty(Control.GetLabel(7003))">$INFO[Control.GetLabel(7003)]</value>
+		<value condition="!String.IsEmpty(Skin.String(VideoFallbackBackground))">$INFO[Skin.String(VideoFallbackBackground)]</value>
+		<value>special://skin/extras/backgrounds/videos.jpg</value>
+	</variable>
+	<variable name="MusicBackgroundVar">
+		<value condition="!Skin.HasSetting(MusicAlbumCoverFanart) + Skin.HasSetting(MusicAlbumCover) + String.IsEqual(ListItem.DBTYPE,artist)">thumbs/coverbackground.jpg</value>
+		<value condition="String.Contains(ListItem(1).FolderPath,music) + !Skin.HasSetting(MusicGenreCoverFanart) + Skin.HasSetting(MusicGenreCover) + String.IsEqual(ListItem.DBTYPE,genre)">thumbs/coverbackground.jpg</value>
+		<value condition="!Skin.HasSetting(DisableMusicExtraFanart) + !String.IsEmpty(Control.GetLabel(7004))">$INFO[Control.GetLabel(7004)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+		<value condition="!ListItem.IsParentFolder + !String.IsEmpty(Container.Content) + !String.IsEmpty(Control.GetLabel(7003))">$INFO[Control.GetLabel(7003)]</value>
+		<value condition="!String.IsEmpty(Skin.String(MusicFallbackBackground))">$INFO[Skin.String(MusicFallbackBackground)]</value>
+		<value>special://skin/extras/backgrounds/music.jpg</value>
+	</variable>
+	<variable name="AddonBackgroundVar">
+		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+		<value condition="!String.IsEmpty(Skin.String(AddonBackground))">$INFO[Skin.String(AddonBackground)]</value>
+		<value>special://skin/extras/backgrounds/addons.jpg</value>
+	</variable>
+	<variable name="PVRBackgroundVar">
+		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+		<value condition="!String.IsEmpty(Skin.String(PVRBackground))">$INFO[Skin.String(PVRBackground)]</value>
+		<value>special://skin/extras/backgrounds/tv.jpg</value>
+	</variable>
+	<variable name="GamesBackgroundVar">
+		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+		<value condition="!String.IsEmpty(Skin.String(GamesBackground))">$INFO[Skin.String(GamesBackground)]</value>
+		<value>special://skin/extras/backgrounds/games.jpg</value>
+	</variable>
+	<variable name="PicturesBackgroundVar">
+		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+		<value condition="!String.IsEmpty(Skin.String(PicturesBackground))">$INFO[Skin.String(PicturesBackground)]</value>
+		<value>special://skin/extras/backgrounds/pictures.jpg</value>
+	</variable>
+	<variable name="WeatherBackgroundVar">
+		<value condition="String.IsEqual(Skin.String(WeatherBackground),resource) + !String.IsEmpty(Skin.String(WeatherFanart.path))">$INFO[Skin.String(WeatherFanart.path)]$INFO[Weather.fanartcode]$INFO[Skin.String(WeatherFanart.ext)]</value>
+		<value condition="!String.IsEqual(Skin.String(WeatherBackground),resource) + !String.IsEmpty(Skin.String(WeatherBackground))">$INFO[Skin.String(WeatherBackground)]</value>
+		<value>special://skin/extras/backgrounds/weather.jpg</value>
+	</variable>
+	<variable name="SystemBackgroundVar">
+		<value condition="!String.IsEmpty(Skin.String(SystemBackground))">$INFO[Skin.String(SystemBackground)]</value>
+		<value condition="Window.IsVisible(filemanager)">special://skin/extras/backgrounds/filemanager.jpg</value>
+		<value>special://skin/extras/backgrounds/system.jpg</value>
+	</variable>
 </includes>

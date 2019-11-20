@@ -20,6 +20,7 @@
 				<pagecontrol>60</pagecontrol>
 				<onright>Dialog.Close(1116)</onright>
 				<onback>Dialog.Close(1116)</onback>
+				<include>ContainerScrollTime</include>
 				<!-- List -->
 				<control type="label" id="101">
 					<label>$LOCALIZE[535]</label>
@@ -36,7 +37,7 @@
 					<include>MediaMenuButtonViewType</include>
 				</control>
 				<control type="button" id="153">
-					<visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(addons) | Container.Content(musicvideos) | $EXP[AreaVisiblePVR] | Window.IsVisible(MyPlaylist.xml)</visible>
+					<visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(addons) | Container.Content(musicvideos) | Window.IsVisible(MyPlaylist.xml)</visible>
 					<visible>!Skin.HasSetting(DisableViewInfo1)</visible>
 					<label>$LOCALIZE[31267]</label>
 					<onclick>Container.SetViewMode(53)</onclick>
@@ -72,7 +73,7 @@
 				</control>
 				<control type="button" id="158">
 					<visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos)</visible>
-					<visible>!Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableRightList)</visible>
+					<visible>!Window.IsVisible(MyPlaylist.xml) + !Skin.HasSetting(DisableViewRightList)</visible>
 					<label>$LOCALIZE[31279]</label>
 					<onclick>Container.SetViewMode(58)</onclick>
 					<include>MediaMenuButtonViewType</include>
@@ -176,7 +177,7 @@
 				</control>
 				<!-- Icon -->
 				<control type="label" id="103">
-					<visible>Control.IsVisible(1520) | Control.IsVisible(1521) | Control.IsVisible(1522) | Control.IsVisible(1523)</visible>
+					<visible>Control.IsVisible(1520) | Control.IsVisible(1521) | Control.IsVisible(1522) | Control.IsVisible(1523) | Control.IsVisible(1524)</visible>
 					<label>$LOCALIZE[31061]</label>
 					<include>MediaMenuLabelViewType</include>
 				</control>
@@ -188,10 +189,17 @@
 					<include>MediaMenuButtonViewType</include>
 				</control>
 				<control type="button" id="1521">
-					<visible>![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(musicvideos) | Container.Content(genres) | Container.Content(years) | Container.Content(directors) | Container.Content(studios) | Container.Content(countries) | Container.Content(tags) | $EXP[AreaVisiblePVR]] | [Container.Content(genres) + String.Contains(ListItem.FolderPath,music)]</visible>
+					<visible>![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(musicvideos) | Container.Content(genres) | Container.Content(years) | Container.Content(directors) | Container.Content(studios) | Container.Content(countries) | Container.Content(tags) | Container.Content(albums)] | [Container.Content(genres) + String.Contains(ListItem.FolderPath,music)]</visible>
 					<visible>!Skin.HasSetting(DisableViewSquareIcon)</visible>
 					<label>$LOCALIZE[31130]</label>
 					<onclick>Container.SetViewMode(521)</onclick>
+					<include>MediaMenuButtonViewType</include>
+				</control>
+				<control type="button" id="1524">
+					<visible>Container.Content(albums)</visible>
+					<visible>!Skin.HasSetting(DisableViewSquareIcon)</visible>
+					<label>$LOCALIZE[31130]</label>
+					<onclick>Container.SetViewMode(524)</onclick>
 					<include>MediaMenuButtonViewType</include>
 				</control>
 				<control type="button" id="1522">
@@ -222,7 +230,7 @@
 					<include>MediaMenuButtonViewType</include>
 				</control>
 				<control type="button" id="1531">
-					<visible>Container.Content(artists) | Container.Content(albums) | Container.Content(addons) | Window.IsVisible(MyPVRChannels.xml)</visible>
+					<visible>Container.Content(artists) | Container.Content(albums) | Container.Content(addons)</visible>
 					<visible>!Skin.HasSetting(DisableViewSquareIconInfo)</visible>
 					<label>$LOCALIZE[31130]</label>
 					<onclick>Container.SetViewMode(531)</onclick>
@@ -236,7 +244,7 @@
 					<include>MediaMenuButtonViewType</include>
 				</control>
 				<control type="button" id="1533">
-					<visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists) | Window.IsVisible(MyPVRChannels.xml)</visible>
+					<visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists)</visible>
 					<visible>!Skin.HasSetting(DisableViewLandscapeIconInfo)</visible>
 					<label>$LOCALIZE[31201]</label>
 					<onclick>Container.SetViewMode(533)</onclick>
@@ -256,7 +264,7 @@
 					<include>MediaMenuButtonViewType</include>
 				</control>
 				<control type="button" id="1541">
-					<visible>![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(musicvideos) | Container.Content(genres) | Container.Content(years) | Container.Content(directors) | Container.Content(studios) | Container.Content(countries) | Container.Content(tags) | $EXP[AreaVisiblePVR]] | [Container.Content(genres) + String.Contains(ListItem.FolderPath,music)]</visible>
+					<visible>![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(musicvideos) | Container.Content(genres) | Container.Content(years) | Container.Content(directors) | Container.Content(studios) | Container.Content(countries) | Container.Content(tags)] | [Container.Content(genres) + String.Contains(ListItem.FolderPath,music)]</visible>
 					<visible>!Skin.HasSetting(DisableViewSquareWall)</visible>
 					<label>$LOCALIZE[31130]</label>
 					<onclick>Container.SetViewMode(541)</onclick>

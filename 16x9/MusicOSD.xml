@@ -32,30 +32,43 @@
 					<include content="DialogButtonOSD">
 						<param name="texture" value="buttons/player/settings.png"/>
 					</include>
-					<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[10120],home)</onclick>
+					<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[31312],home)</onclick>
 					<onclick>ActivateWindow(1111)</onclick>
 					<visible>!String.Contains(Skin.String(KioskMode),HideOptions) + !String.IsEqual(Skin.String(KioskMode),HideMenu)</visible>
 				</control>
 				<control type="radiobutton" id="102">
 					<include content="DialogButtonOSD">
-						<param name="texture" value="buttons/player/rating.png"/>
+						<param name="texture" value="buttons/player/visualisationpreset.png"/>
 					</include>
-					<onclick>SetRating</onclick>
+					<onclick>ActivateWindow(visualisationpresetlist)</onclick>
+					<visible>Visualisation.HasPresets</visible>
 				</control>
 				<control type="radiobutton" id="103">
 					<include content="DialogButtonOSD">
+						<param name="texture" value="buttons/player/visualisationsettings.png"/>
+					</include>
+					<onclick>Addon.Default.OpenSettings(xbmc.player.musicviz)</onclick>
+					<visible>Visualisation.Enabled</visible>
+				</control>
+				<control type="radiobutton" id="500">
+					<include content="DialogButtonOSD">
+						<param name="texture" value="buttons/player/visualisation.png"/>
+					</include>
+				</control>
+				<!-- <control type="radiobutton" id="102">
+					<include content="DialogButtonOSD">
 						<param name="texture" value="buttons/player/list.png"/>
 					</include>
-					<onclick>Close</onclick>
+					<onclick>close</onclick>
 					<onclick>ActivateWindow(MusicPlaylist)</onclick>
 					<visible>!MusicPlayer.Content(LiveTV)</visible>
-				</control>
+				</control> -->
 			</control>
 			<control type="grouplist">
 				<top>-5</top>
 				<height>120</height>
 				<onright>301</onright>
-				<onleft>103</onleft>
+				<onleft>500</onleft>
 				<ondown>close</ondown>
 				<align>center</align>
 				<itemgap>-10</itemgap>
@@ -155,28 +168,35 @@
 				<control type="radiobutton" id="302">
 					<include>DialogButtonOSD</include>
 					<onclick>PlayerControl(Repeat)</onclick>
-					<visible>!MusicPlayer.Content(LiveTV)</visible>
+					<visible>![MusicPlayer.Content(LiveTV) | MusicPartyMode.Enabled]</visible>
 				</control>
 				<control type="image" id="303">
 					<left>-110</left>
 					<width>120</width>
 					<height>120</height>
 					<texture>$VAR[OSDRepeatButtonVar]</texture>
-					<visible>!MusicPlayer.Content(LiveTV)</visible>
+					<visible>![MusicPlayer.Content(LiveTV) | MusicPartyMode.Enabled]</visible>
 				</control>
 				<control type="radiobutton" id="304">
 					<include>DialogButtonOSD</include>
 					<onclick>PlayerControl(Random)</onclick>
-					<visible>!MusicPlayer.Content(LiveTV)</visible>
+					<visible>![MusicPlayer.Content(LiveTV) | MusicPartyMode.Enabled]</visible>
 				</control>
 				<control type="image" id="305">
 					<left>-110</left>
 					<width>120</width>
 					<height>120</height>
 					<texture>$VAR[OSDRandomButtonVar]</texture>
-					<visible>!MusicPlayer.Content(LiveTV)</visible>
+					<visible>![MusicPlayer.Content(LiveTV) | MusicPartyMode.Enabled]</visible>
 				</control>
 				<control type="radiobutton" id="306">
+					<include content="DialogButtonOSD">
+						<param name="texture" value="buttons/player/rating.png"/>
+					</include>
+					<onclick>SetRating</onclick>
+					<visible>!Pvr.IsPlayingRadio + !Player.IsInternetStream</visible>
+				</control>
+				<control type="radiobutton" id="307">
 					<include content="DialogButtonOSD">
 						<param name="texture" value="buttons/player/lyrics.png"/>
 					</include>
@@ -185,7 +205,7 @@
 					<onclick>Close</onclick>
 					<visible>!MusicPlayer.Content(LiveTV)</visible>
 				</control>
-				<control type="radiobutton" id="307">
+				<control type="radiobutton" id="308">
 					<include content="DialogButtonOSD">
 						<param name="texture" value="buttons/player/channels.png"/>
 					</include>
@@ -193,7 +213,7 @@
 					<visible>VideoPlayer.HasEpg</visible>
 					<visible>MusicPlayer.Content(LiveTV)</visible>
 				</control>
-				<control type="radiobutton" id="308">
+				<control type="radiobutton" id="309">
 					<include content="DialogButtonOSD">
 						<param name="texture" value="buttons/player/guide.png"/>
 					</include>

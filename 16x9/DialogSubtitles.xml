@@ -4,11 +4,9 @@
 	<include>AnimationDialogPopupWindow</include>
 	<controls>
 		<control type="group">
-			<visible>!Window.IsVisible(virtualkeyboard) + !Window.IsVisible(numericinput)</visible>
-			<include>AnimationDialogPopupVisible</include>
 			<include content="DialogBackground">
 				<param name="width" value="1684" />
-				<param name="height" value="790" />
+				<param name="height" value="760" />
 				<param name="label" value="$LOCALIZE[24012]" />
 				<param name="diffusetexture">diffuse/rounded10-1643x750.png</param>
 			</include>
@@ -27,7 +25,7 @@
 				<left>20</left>
 				<top>90</top>
 				<width>360</width>
-				<height>630</height>
+				<height>600</height>
 				<onright>120</onright>
 				<include content="DialogListDefault">
 					<param name="id" value="150" />
@@ -42,11 +40,12 @@
 				<top>90</top>
 				<left>382</left>
 				<width>960</width>
-				<height>630</height>
+				<height>600</height>
 				<onleft>150</onleft>
 				<onright>60</onright>
 				<pagecontrol>60</pagecontrol>
-				<itemlayout height="126">
+				<include>ContainerScrollTime</include>
+				<itemlayout height="120">
 					<control type="image">
 						<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
 					</control>
@@ -100,7 +99,7 @@
 						<label>$INFO[ListItem.Label2]</label>
 					</control>
 				</itemlayout>
-				<focusedlayout height="126">
+				<focusedlayout height="120">
 					<control type="image">
 						<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
 						<animation effect="fade" start="100" end="30" time="40" condition="!Control.HasFocus(120)">Conditional</animation>

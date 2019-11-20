@@ -1,308 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">9000</defaultcontrol>
+	<include>AnimationDialogPopupWindow</include>
 	<controls>
 		<control type="group">
-			<include>AnimationZoomWindow</include>
-			<!-- Panel -->
-			<include content="PanelDefault">
-				<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
+			<include content="DialogAddonInfo">
+				<param name="iconfallback">DefaultAddon.png</param>
+				<param name="label">$INFO[ListItem.Title]</param>
+				<param name="label2">$INFO[ListItem.Genre]</param>
+				<param name="textbox">$INFO[ListItem.Plot]</param>
+				<param name="infocontent">PVRInfoContent</param>
 			</include>
-			<control type="group">
-				<left>130</left>
-				<right>130</right>
-				<!-- Title -->
-				<control type="label">
-					<top>162</top>
-					<height>50</height>
-					<scroll>true</scroll>
-					<font>Font49_Bold_Caps</font>
-					<label>$INFO[ListItem.Title]</label>
-					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+			<!-- Buttons -->
+			<control type="grouplist" id="9000">
+				<top>392</top>
+				<left>40</left>
+				<width>1306</width>
+				<align>left</align>
+				<orientation>horizontal</orientation>
+				<control type="button" id="5">
+					<visible>Window.IsActive(PVRGuideInfo)</visible>
+					<width>253.2</width>
+					<include>DialogButtonInfo</include>
+					<label>$LOCALIZE[19165]</label>
 				</control>
-				<!-- Subtitle -->
-				<control type="label">
-					<top>213</top>
-					<height>40</height>
-					<scroll>true</scroll>
-					<font>Font36_Reg</font>
-					<label>$INFO[ListItem.Genre]</label>
-					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+				<control type="button" id="10">
+					<visible>Window.IsActive(PVRGuideInfo)</visible>
+					<width>253.2</width>
+					<include>DialogButtonInfo</include>
+					<label>$LOCALIZE[19190]</label>
 				</control>
-				<!-- Buttons -->
-				<control type="grouplist" id="9000">
-					<top>523</top>
-					<left>390</left>
-					<width>1500</width>
-					<onup condition="System.HasAddon(script.extendedinfo)">51</onup>
-					<ondown condition="!String.IsEmpty(ListItem.Plot)">SetProperty(TextViewerHeader,$INFO[ListItem.Title],home)</ondown>
-					<ondown condition="!String.IsEmpty(ListItem.Plot)">SetProperty(TextViewerText,$ESCINFO[ListItem.Plot],home)</ondown>
-					<ondown condition="!String.IsEmpty(ListItem.Plot)">ActivateWindow(1100)</ondown>
-					<orientation>horizontal</orientation>
-					<control type="button" id="8">
-						<visible>Window.IsActive(PVRGuideInfo) | Window.IsActive(PVRRecordingInfo)</visible>
-						<width>257</width>
-						<include>DialogButtonInfo</include>
-						<label>$LOCALIZE[208]</label>
-					</control>
-					<control type="button" id="5">
-						<visible>Window.IsActive(PVRGuideInfo)</visible>
-						<width>257</width>
-						<include>DialogButtonInfo</include>
-						<label>$LOCALIZE[19165]</label>
-					</control>
-					<control type="button" id="6">
-						<visible>Window.IsActive(PVRGuideInfo)</visible>
-						<width>257</width>
-						<include>DialogButtonInfo</include>
-						<label>$LOCALIZE[264]</label>
-					</control>
-					<control type="button" id="4">
-						<visible>Window.IsActive(PVRGuideInfo)</visible>
-						<width>257</width>
-						<include>DialogButtonInfo</include>
-						<label>$LOCALIZE[137]</label>
-					</control>
-					<control type="button" id="9">
-						<visible>Window.IsActive(PVRGuideInfo)</visible>
-						<width>257</width>
-						<include>DialogButtonInfo</include>
-						<label>$LOCALIZE[19061]</label>
-					</control>
-					<control type="button" id="440">
-						<visible>System.HasAddon(script.extendedinfo) + [Control.IsVisible(8) | Control.IsVisible(5)]</visible>
-						<width>257</width>
-						<include>DialogButtonInfo</include>
-						<label>YouTube</label>
-					</control>
+				<control type="button" id="8">
+					<visible>Window.IsActive(PVRGuideInfo) | Window.IsActive(PVRRecordingInfo)</visible>
+					<width>253.2</width>
+					<include>DialogButtonInfo</include>
+					<label>$LOCALIZE[208]</label>
 				</control>
-				<!-- Info -->
-				<control type="group">
-					<visible>!Control.HasFocus(101) + !Control.HasFocus(50) + !Control.HasFocus(440) + !Control.HasFocus(51)</visible>
-					<include>AnimationVisibleFade</include>
-					<control type="image">
-						<top>266</top>
-						<width>815</width>
-						<height>4</height>
-						<texture border="1" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
-					</control>
-					<control type="image">
-						<visible>Integer.IsGreater(Container(9003).NumItems,5)</visible>
-						<top>266</top>
-						<left>845</left>
-						<width>815</width>
-						<height>4</height>
-						<texture border="1" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
-					</control>
-					<control type="panel" id="9003">
-						<top>267</top>
-						<height>246</height>
-						<ondown>9000</ondown>
-						<orientation>horizontal</orientation>
-						<itemlayout height="49" width="840">
-							<control type="label">
-								<width>180</width>
-								<font>Font28_Reg</font>
-								<label>$INFO[ListItem.Label2]</label>
-								<textcolor>$VAR[PanelTextColorVar]</textcolor>
-							</control>
-							<control type="image">
-								<top>1</top>
-								<left>200</left>
-								<width>4</width>
-								<height>48</height>
-								<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical-white.png</texture>
-							</control>
-							<control type="label">
-								<left>220</left>
-								<width>605</width>
-								<font>Font28_Reg</font>
-								<label>$INFO[ListItem.Label]</label>
-								<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-							</control>
-							<control type="image">
-								<top>49</top>
-								<width>815</width>
-								<height>4</height>
-								<texture border="1" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
-							</control>
-						</itemlayout>
-						<focusedlayout height="49" width="830">
-							<control type="image">
-								<top>1</top>
-								<left>201</left>
-								<width>605</width>
-								<height>48</height>
-								<texture colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
-							</control>
-							<control type="label">
-								<width>180</width>
-								<font>Font28_Reg</font>
-								<label>$INFO[ListItem.Label2]</label>
-								<textcolor>$VAR[PanelTextColorVar]</textcolor>
-							</control>
-							<control type="image">
-								<top>1</top>
-								<left>200</left>
-								<width>4</width>
-								<height>48</height>
-								<texture colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/line-vertical-white.png</texture>
-							</control>
-							<control type="label">
-								<left>220</left>
-								<width>605</width>
-								<font>Font28_Reg</font>
-								<label>$INFO[ListItem.Label]</label>
-								<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
-							</control>
-							<control type="image">
-								<top>49</top>
-								<width>815</width>
-								<height>4</height>
-								<texture border="1" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
-							</control>
-						</focusedlayout>
-						<content>
-							<item>
-								<label>$INFO[ListItem.ChannelName]</label>
-								<label2>$LOCALIZE[19029]</label2>
-								<visible>!String.IsEmpty(ListItem.ChannelName)</visible>
-							</item>
-							<item>
-								<label>$INFO[ListItem.StartDate]</label>
-								<label2>$LOCALIZE[552]</label2>
-								<visible>!String.IsEmpty(ListItem.StartDate)</visible>
-							</item>
-							<item>
-								<label>$INFO[ListItem.StartTime]</label>
-								<label2>$LOCALIZE[335]</label2>
-								<visible>!String.IsEmpty(ListItem.StartTime)</visible>
-							</item>
-							<item>
-								<label>$INFO[ListItem.EndTime]</label>
-								<label2>$LOCALIZE[19081]</label2>
-								<visible>!String.IsEmpty(ListItem.StartTime)</visible>
-							</item>
-							<item>
-								<label>$INFO[ListItem.Duration]</label>
-								<label2>$LOCALIZE[180]</label2>
-								<visible>!String.IsEmpty(ListItem.Duration)</visible>
-							</item>
-							<item>
-								<label>$INFO[PVR.BackendName]</label>
-								<label2>$LOCALIZE[19210]</label2>
-								<visible>!String.IsEmpty(PVR.BackendName)</visible>
-							</item>
-							<item>
-								<label>$INFO[PVR.BackendVersion]</label>
-								<label2>$LOCALIZE[19114]</label2>
-							</item>
-							<item>
-								<label>$INFO[ListItem.DateAdded]</label>
-								<label2>$LOCALIZE[570]</label2>
-								<visible>!String.IsEmpty(ListItem.DateAdded)</visible>
-							</item>
-							<item>
-								<label>$INFO[ListItem.PlayCount]</label>
-								<label2>$LOCALIZE[567]</label2>
-								<visible>!String.IsEmpty(ListItem.PlayCount)</visible>
-							</item>
-							<item>
-								<label>$INFO[ListItem.LastPlayed]</label>
-								<label2>$LOCALIZE[568]</label2>
-								<visible>!String.IsEmpty(ListItem.LastPlayed)</visible>
-							</item>
-						</content>
-					</control>
+				<control type="button" id="6">
+					<visible>Window.IsActive(PVRGuideInfo)</visible>
+					<width>253.2</width>
+					<include>DialogButtonInfo</include>
+					<label>$LOCALIZE[264]</label>
 				</control>
-				<!-- Youtube -->
-				<control type="group">
-					<visible>Control.HasFocus(440) | Control.HasFocus(51)</visible>
-					<include>AnimationVisibleFade</include>
-					<top>267</top>
-					<right>-8</right>
-					<height>266</height>
-					<control type="panel" id="51">
-						<orientation>horizontal</orientation>
-						<ondown>9000</ondown>
-						<itemlayout height="197" width="335">
-							<control type="image">
-								<width>325</width>
-								<texture border="10" colordiffuse="$VAR[PanelSubTextColorVar]">buttons/panel-select-focus.png</texture>
-							</control>
-							<control type="image">
-								<top>10</top>
-								<left>10</left>
-								<width>305</width>
-								<height>177</height>
-								<aspectratio>scale</aspectratio>
-								<texture>$INFO[ListItem.Art(thumb)]</texture>
-							</control>
-						</itemlayout>
-						<focusedlayout height="197" width="335">
-							<control type="image">
-								<width>325</width>
-								<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/panel-select-focus.png</texture>
-							</control>
-							<control type="image">
-								<top>10</top>
-								<left>10</left>
-								<width>305</width>
-								<height>177</height>
-								<aspectratio>scale</aspectratio>
-								<texture>$INFO[ListItem.Art(thumb)]</texture>
-							</control>
-						</focusedlayout>
-						<content>plugin://script.extendedinfo?info=youtubesearchvideos&amp;&amp;id=$ESCINFO[ListItem.Title]</content>
-					</control>
-					<control type="label">
-						<visible>!Control.HasFocus(51)</visible>
-						<top>196</top>
-						<height>49</height>
-						<font>Font28_Reg</font>
-						<label>$INFO[Container(51).ListItem.Label]</label>
-						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-					</control>
-					<control type="label">
-						<visible>Control.HasFocus(51)</visible>
-						<top>196</top>
-						<height>49</height>
-						<font>Font28_Reg</font>
-						<label>$INFO[Container(51).ListItem.Label]</label>
-						<textcolor>$VAR[PanelTextColorVar]</textcolor>
-					</control>
-					<control type="image">
-						<top>245</top>
-						<height>4</height>
-						<texture border="1" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
-					</control>
+				<control type="button" id="9">
+					<visible>Window.IsActive(PVRGuideInfo)</visible>
+					<width>253.2</width>
+					<include>DialogButtonInfo</include>
+					<label>$LOCALIZE[19061]</label>
 				</control>
-				<!-- Description -->
-				<control type="textbox">
-					<top>613</top>
-					<left>400</left>
-					<height>297</height>
-					<font>Font30_Reg_94</font>
-					<include>AutoScrollPlot</include>
-					<label>$INFO[ListItem.Plot]</label>
-					<textcolor>$VAR[PanelTextColorVar]</textcolor>
-				</control>
-				<!-- Poster -->
-				<control type="image">
-					<left>-10</left>
-					<top>523</top>
-					<width>397</width>
-					<height>397</height>
-					<texture border="15">thumbs/thumb-frame.png</texture>
-				</control>
-				<control type="image">
-					<left>-10</left>
-					<top>523</top>
-					<width>397</width>
-					<height>397</height>
-					<bordersize>10</bordersize>
-					<aspectratio align="center" aligny="center">keep</aspectratio>
-					<texture fallback="DefaultAddonPVRClient.png" diffuse="diffuse/rounded5-367x367.png">$INFO[ListItem.Icon]</texture>
+				<control type="button" id="4">
+					<visible>Window.IsActive(PVRGuideInfo)</visible>
+					<width>253.2</width>
+					<include>DialogButtonInfo</include>
+					<label>$LOCALIZE[31110]</label>
 				</control>
 			</control>
 		</control>

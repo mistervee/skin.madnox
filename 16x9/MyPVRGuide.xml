@@ -10,32 +10,31 @@
 		</include>
 		<!-- Floor -->
 		<control type="group">
-			<visible>!Skin.HasSetting(ViewsFloor)</visible>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
 				<param name="opencondition">$EXP[PVRAnimationOpenCondition]</param>
 				<param name="closecondition">$EXP[PVRAnimationCloseCondition]</param>
 			</include>
-			<top>50</top>
-			<include content="AnimationSlideBottomVisible">
-				<param name="slide">220</param>
+			<control type="group">
+				<visible>!Skin.HasSetting(PVRHideFloor)</visible>
+				<include content="Floor">
+					<param name="highlight">FloorHighlightRight</param>
+				</include>
+			</control>
+			<include content="FloorShadow">
+				<param name="visible">Skin.HasSetting(PVRHideFloor)</param>
 			</include>
-			<include>FloorRight</include>
+			<include>ViewPVRNextInfo2</include>
 		</control>
 		<!-- Panel -->
 		<control type="group">
 			<include>AnimationZoomWindow</include>
 			<include content="PanelDefault">
-				<param name="reflect">!Skin.HasSetting(ViewsHideFloor)</param>
+				<param name="reflect">!Skin.HasSetting(PVRHideReflect)</param>
 			</include>
-		</control>
-		<!-- Content -->
-		<control type="group">
-			<visible>!Window.IsActive(pvrguideinfo)</visible>
-			<include>AnimationInfoDialog</include>
-			<include>AnimationZoomWindow</include>
+			<!-- Content -->
 			<control type="image">
-				<top>110</top>
+				<top>104</top>
 				<left>100</left>
 				<right>100</right>
 				<height>90</height>
@@ -45,17 +44,17 @@
 				<top>140</top>
 				<left>100</left>
 				<width>1720</width>
-				<height>540</height>
+				<height>606</height>
 				<pagecontrol>6050</pagecontrol>
 				<scrolltime tween="quadratic" easing="out">300</scrolltime>
 				<timeblocks>20</timeblocks>
 				<rulerunit>6</rulerunit>
-				<onup>9050</onup>
-				<onleft>9050</onleft>
+				<onup>9070</onup>
+				<onleft>9070</onleft>
 				<onright>6050</onright>
 				<viewtype label="">list</viewtype>
 				<progresstexture border="0,15,15,15" colordiffuse="$VAR[PanelHighlightColorVar]">pvr/PVR-EpgProgressIndicator.png</progresstexture>
-				<rulerlayout height="60" width="60">
+				<rulerlayout height="54" width="60">
 					<control type="image">
 						<left>400</left>
 						<width>4</width>
@@ -69,32 +68,65 @@
 						<selectedcolor>$VAR[PanelTextColorVar]</selectedcolor>
 					</control>
 				</rulerlayout>
-				<channellayout height="60" width="400">
+				<channellayout height="69" width="400">
 					<control type="image">
 						<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
 					</control>
+					<control type="image">
+						<visible>!Skin.HasSetting(View50EPGDisableIcons)</visible>
+						<top>10</top>
+						<left>20</left>
+						<width>53</width>
+						<height>49</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$INFO[ListItem.Icon]</texture>
+					</control>
 					<control type="label">
+						<visible>!Skin.HasSetting(View50EPGDisableIcons)</visible>
+						<left>90</left>
+						<right>25</right>
+						<label>$VAR[EPGChannelLabelVar]</label>
+						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					</control>
+					<control type="label">
+						<visible>Skin.HasSetting(View50EPGDisableIcons)</visible>
 						<textoffsetx>25</textoffsetx>
-						<label>[COLOR $VAR[PanelTextColorVar]]$INFO[ListItem.ChannelNumberLabel,,. ][/COLOR]$INFO[ListItem.ChannelName]</label>
+						<label>$VAR[EPGChannelLabelVar]</label>
 						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 					</control>
 				</channellayout>
-				<focusedchannellayout height="60" width="400">
+				<focusedchannellayout height="69" width="400">
 					<control type="image">
-						<height>58</height>
+						<height>67</height>
 						<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
 					</control>
 					<control type="image">
 						<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
 					</control>
+					<control type="image">
+						<visible>!Skin.HasSetting(View50EPGDisableIcons)</visible>
+						<top>10</top>
+						<left>20</left>
+						<width>53</width>
+						<height>49</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$INFO[ListItem.Icon]</texture>
+					</control>
 					<control type="label">
-						<scroll>true</scroll>
+						<visible>!Skin.HasSetting(View50EPGDisableIcons)</visible>
+						<left>90</left>
+						<right>25</right>
+						<label>$VAR[EPGChannelLabelVar]</label>
+						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
+					</control>
+					<control type="label">
+						<visible>Skin.HasSetting(View50EPGDisableIcons)</visible>
 						<textoffsetx>25</textoffsetx>
-						<label>[COLOR $VAR[PanelTextColorVar]]$INFO[ListItem.ChannelNumberLabel,,. ][/COLOR]$INFO[ListItem.ChannelName]</label>
-						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<label>$VAR[EPGChannelLabelVar]</label>
+						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
 					</control>
 				</focusedchannellayout>
-				<itemlayout width="60" height="60">
+				<itemlayout width="60" height="69">
 					<control type="image" id="14">
 						<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
 					</control>
@@ -105,9 +137,16 @@
 					<control type="image" id="2">
 						<texture border="3" fallback="pvr/epg-genres/0.png">$INFO[ListItem.Property(GenreType),pvr/epg-genres/,.png]</texture>
 					</control>
+					<control type="label">
+						<width>100</width>
+						<font>Font32_Icon</font>
+						<textoffsetx>25</textoffsetx>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<label>$VAR[PVRTimerIconVar]</label>
+					</control>
 					<control type="label" id="1">
 						<visible>ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasRecording</visible>
-						<left>40</left>
+						<left>35</left>
 						<textoffsetx>25</textoffsetx>
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
 						<label>$INFO[ListItem.Label]</label>
@@ -118,11 +157,8 @@
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
 						<label>$INFO[ListItem.Label]</label>
 					</control>
-					<control type="label">
-						<texture>$VAR[PVRTimerIconVar]</texture>
-					</control>
 				</itemlayout>
-				<focusedlayout width="60" height="60">
+				<focusedlayout width="60" height="69">
 					<control type="image" id="2">
 						<texture border="3" colordiffuse="66FFFFFF" fallback="pvr/epg-genres/0.png">$INFO[ListItem.Property(GenreType),pvr/epg-genres/,.png]</texture>
 					</control>
@@ -132,93 +168,41 @@
 					</control>
 					<control type="image" id="14">
 						<left>2</left>
-						<height>58</height>
+						<height>67</height>
 						<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
 					</control>
 					<control type="image" id="14">
 						<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
 					</control>
-					<control type="label" id="12345">
+					<control type="label">
 						<width>100</width>
-						<font>Font36_Icon</font>
+						<font>Font32_Icon</font>
 						<textoffsetx>25</textoffsetx>
-						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
 						<label>$VAR[PVRTimerIconVar]</label>
 					</control>
 					<control type="label" id="1">
 						<visible>ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasRecording</visible>
-						<left>40</left>
+						<left>35</left>
 						<textoffsetx>25</textoffsetx>
-						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
 						<label>$INFO[ListItem.Label]</label>
 					</control>
 					<control type="label" id="1">
 						<visible>!ListItem.IsRecording + !ListItem.HasTimerSchedule + !ListItem.HasTimer + !ListItem.HasRecording</visible>
 						<textoffsetx>25</textoffsetx>
-						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
 						<label>$INFO[ListItem.Label]</label>
-					</control>
-					<control type="label">
-						<texture>$VAR[PVRTimerIconVar]</texture>
 					</control>
 				</focusedlayout>
 			</control>
-			<control type="group">
-				<top>685</top>
-				<left>115</left>
-				<height>250</height>
-				<control type="image">
-					<width>250</width>
-					<height>250</height>
-					<texture border="15">thumbs/thumb-frame.png</texture>
-				</control>
-				<control type="image">
-					<width>250</width>
-					<height>250</height>
-					<bordersize>10</bordersize>
-					<fadetime>TextureFadeTime</fadetime>
-					<aspectratio align="center" aligny="center">keep</aspectratio>
-					<texture fallback="DefaultAddonPVRClient.png">$INFO[ListItem.Icon]</texture>
-				</control>
-				<control type="grouplist">
-					<top>1</top>
-					<left>260</left>
-					<width>1420</width>
-					<usecontrolcoords>true</usecontrolcoords>
-					<control type="label">
-						<height>40</height>
-						<font>Font34_Reg</font>
-						<label>$INFO[ListItem.EpgEventTitle]</label>
-						<textcolor>$VAR[PanelTextColorVar]</textcolor>
-					</control>
-					<control type="label">
-						<height>36</height>
-						<font>Font28_Reg</font>
-						<label>$INFO[ListItem.Genre]</label>
-						<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
-					</control>
-					<control type="label">
-						<height>35</height>
-						<font>Font28_Reg</font>
-						<label>$INFO[ListItem.StartTime] - $INFO[ListItem.EndTime]</label>
-						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-					</control>
-					<control type="textbox">
-						<top>5</top>
-						<height>123</height>
-						<label>$INFO[ListItem.Plot]</label>
-						<include>AutoScrollPlot</include>
-					</control>
-				</control>
-			</control>
+			<include>ViewPVRInfo</include>
 			<control type="scrollbar" id="6050">
 				<right>79</right>
 				<top>200</top>
 				<bottom>400</bottom>
 				<onleft>50</onleft>
 			</control>
-			<!-- Media flags -->
-			<include>ViewsMediaFlagsPVR</include>
 		</control>
 		<!-- Topbar -->
 		<control type="label" id="29">

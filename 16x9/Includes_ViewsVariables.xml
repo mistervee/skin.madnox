@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+	<!-- List labels -->
+	<variable name="ListTitleVar">
+		<value condition="Container.Content(musicvideos) + !String.IsEmpty(ListItem.Artist) + ![String.IsEqual(Container.SortMethod,$LOCALIZE[554]) | String.IsEqual(Container.SortMethod,$LOCALIZE[557]) | String.IsEqual(Container.SortMethod,$LOCALIZE[558])]">$INFO[ListItem.Label,, - ]$INFO[ListItem.Artist]</value>
+		<value condition="Window.IsActive(videoplaylist) + !String.IsEmpty(ListItem.Episode)">$INFO[ListItem.Season,,x]$INFO[ListItem.Episode,,. ]$INFO[ListItem.TVShowTitle,, - ]$INFO[ListItem.Title]</value>
+		<value condition="Window.IsActive(MyPlaylist.xml) + !String.IsEmpty(ListItem.Artist)">$INFO[ListItem.Artist,, - ]$INFO[ListItem.Title]</value>
+		<value>$INFO[ListItem.Label]</value>
+	</variable>
+	<variable name="ListLabel2Var">
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[567]) + !String.IsEmpty(ListItem.Label2)">$LOCALIZE[567]$INFO[ListItem.Label2, ]</value>
+		<value condition="!String.IsEmpty(ListItem.Appearances)">$LOCALIZE[38026] $INFO[ListItem.Appearances]</value>
+		<value condition="Window.IsActive(MyPlaylist.xml)">$INFO[ListItem.Duration]</value>
+		<value>$INFO[ListItem.Label2]</value>
+	</variable>
+	<variable name="ListLabel2VideoVar">
+		<value condition="Container.Content(movies) + [String.IsEqual(Container.SortMethod,$LOCALIZE[556]) | String.Contains(ListItem.FolderPath,recent)]"></value>
+		<value condition="Container.Content(sets) + String.IsEqual(Container.SortMethod,$LOCALIZE[551])">$INFO[ListItem.Year]</value>
+		<value condition="Container.Content(tvshows) + [String.IsEqual(Container.SortMethod,$LOCALIZE[556]) | String.IsEqual(Container.SortMethod,$LOCALIZE[20360])]">$INFO[ListItem.Property(WatchedEpisodes),,/]$INFO[ListItem.Property(TotalEpisodes)]</value>
+		<value condition="Container.Content(seasons)">$INFO[ListItem.Property(WatchedEpisodes),,/]$INFO[ListItem.Property(TotalEpisodes)]</value>
+		<value condition="Container.Content(episodes) + [String.Contains(ListItem.FolderPath,recent) | String.IsEqual(Container.SortMethod,$LOCALIZE[20359]) | String.IsEqual(Container.SortMethod,$LOCALIZE[551])]"></value>
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[567]) + !String.IsEmpty(ListItem.Label2)">$LOCALIZE[567]$INFO[ListItem.Label2, ]</value>
+		<value condition="Container.Content(musicvideos) + [String.IsEqual(Container.SortMethod,$LOCALIZE[554]) | String.IsEqual(Container.SortMethod,$LOCALIZE[557]) | String.IsEqual(Container.SortMethod,$LOCALIZE[558]) | String.IsEqual(Container.SortMethod,$LOCALIZE[551])]"></value>
+		<value>$INFO[ListItem.Label2]</value>
+	</variable>
+	
+	<!-- Big list labels -->
+	<variable name="BigListSubTitleMoviesVar">
+		<value condition="String.Contains(ListItem.FolderPath,recent)">$INFO[ListItem.Genre]</value>
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[567])">$INFO[ListItem.Label2,$LOCALIZE[567] ]</value>
+		<value condition="!String.IsEqual(Container.SortMethod,$LOCALIZE[556])">$INFO[ListItem.Label2]</value>
+		<value>$INFO[ListItem.Genre]</value>
+	</variable>
+	<variable name="BigList2SubTitleMoviesVar">
+		<value condition="String.Contains(ListItem.FolderPath,recent)">$INFO[ListItem.Genre]</value>
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[567])">$INFO[ListItem.Label2,$LOCALIZE[567] ]</value>
+		<value condition="![String.IsEqual(Container.SortMethod,$LOCALIZE[556]) | String.IsEqual(Container.SortMethod,$LOCALIZE[562])]">$INFO[ListItem.Label2]</value>
+		<value>$INFO[ListItem.Genre]</value>
+	</variable>
+	<variable name="BigListSubTitleTVShowsVar">
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[556]) | String.IsEqual(Container.SortMethod,$LOCALIZE[20360])">$INFO[ListItem.Property(WatchedEpisodes),,/]$INFO[ListItem.Property(TotalEpisodes)]</value>
+		<value>$INFO[ListItem.Label2]</value>
+	</variable>
+	<variable name="BigList2SubTitleTVShowsVar">
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[562]) | String.IsEqual(Container.SortMethod,$LOCALIZE[556]) | String.IsEqual(Container.SortMethod,$LOCALIZE[20360])">$INFO[ListItem.Property(WatchedEpisodes),,/]$INFO[ListItem.Property(TotalEpisodes)]</value>
+		<value>$INFO[ListItem.Label2]</value>
+	</variable>
+	<variable name="BigListEpisodeNumberLabelVar">
+		<value condition="String.Contains(ListItem.Episode,S)">$INFO[ListItem.Episode]</value>
+		<value condition="Integer.IsLess(ListItem.Episode,10)">$INFO[ListItem.Episode,0]</value>
+		<value>$INFO[ListItem.Episode]</value>
+	</variable>
+	<variable name="BigListSubTitleEpisodesVar">
+		<value condition="String.Contains(ListItem.FolderPath,recent)">$INFO[ListItem.TVShowTitle]</value>
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[567])">$INFO[ListItem.Label2,$LOCALIZE[567] ]</value>
+		<value condition="![String.IsEqual(Container.SortMethod,$LOCALIZE[20359]) | String.IsEqual(Container.SortMethod,$LOCALIZE[551])]">$INFO[ListItem.Label2]</value>
+		<value>$INFO[ListItem.Premiered]</value>
+	</variable>
+	<variable name="BigList2SubTitleEpisodesVar">
+		<value condition="String.Contains(ListItem.FolderPath,recent)">$INFO[ListItem.TVShowTitle]</value>
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[567])">$INFO[ListItem.Label2,$LOCALIZE[567] ]</value>
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[563])">$INFO[ListItem.Premiered]</value>
+		<value condition="![String.IsEqual(Container.SortMethod,$LOCALIZE[20359]) | String.IsEqual(Container.SortMethod,$LOCALIZE[551])]">$INFO[ListItem.Label2]</value>
+		<value>$INFO[ListItem.Premiered]</value>
+	</variable>
+	<variable name="BigListSubTitleArtistsVar">
+		<value condition="!String.IsEmpty(ListItem.Label2)">$INFO[ListItem.Label2]</value>
+		<value condition="!String.IsEmpty(ListItem.Genre)">$INFO[ListItem.Genre]</value>
+		<value>$INFO[Listitem.Property(Artist_Disambiguation)]</value>
+	</variable>
+	<variable name="BigListSubTitleAlbumsVar">
+		<value condition="String.Contains(ListItem.FolderPath,recent)">$INFO[ListItem.Artist]</value>
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[567])">$INFO[ListItem.Label2,$LOCALIZE[567] ]</value>
+		<value>$INFO[ListItem.Label2]</value>
+	</variable>
+	<variable name="BigList2SubTitleAlbumsVar">
+		<value condition="String.Contains(ListItem.FolderPath,recent)">$INFO[ListItem.Artist]</value>
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[567])">$INFO[ListItem.Label2,$LOCALIZE[567] ]</value>
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[562]) | String.IsEqual(Container.SortMethod,$LOCALIZE[578])">$INFO[ListItem.Artist]</value>
+		<value>$INFO[ListItem.Label2]</value>
+	</variable>
+	<variable name="BigListSubTitleSongsVar">
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[558])">$INFO[ListItem.Album]</value>
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[578])">$INFO[ListItem.Artist,, / ]$INFO[ListItem.Year]</value>
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[562])">$INFO[ListItem.Year]</value>
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">$INFO[ListItem.UserRating,,.0]</value>
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[570])">$INFO[ListItem.Label2]</value>
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[567])">$INFO[ListItem.Label2,$LOCALIZE[567] ]</value>
+		<value>$INFO[ListItem.Artist]</value>
+	</variable>
+	<variable name="BigListSubTitleMusicVideosVar">
+		<value condition="String.Contains(ListItem.FolderPath,recent)">$INFO[ListItem.Artist]</value>
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[567])">$INFO[ListItem.Label2,$LOCALIZE[567] ]</value>
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[562]) | String.IsEqual(Container.SortMethod,$LOCALIZE[570])">$INFO[ListItem.Label2]</value>
+		<value>$INFO[ListItem.Artist]</value>
+	</variable>
+	<variable name="BigList2SubTitleMusicVideosVar">
+		<value condition="String.Contains(ListItem.FolderPath,recent)">$INFO[ListItem.Artist]</value>
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[567])">$INFO[ListItem.Label2,$LOCALIZE[567] ]</value>
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[570])">$INFO[ListItem.Label2]</value>
+		<value>$INFO[ListItem.Artist]</value>
+	</variable>
+	<variable name="BigListSubTitleSetsVar">
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[567])">$INFO[ListItem.Label2,$LOCALIZE[567] ]</value>
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[551])">$INFO[ListItem.Year]</value>
+		<value>$INFO[ListItem.Label2]</value>
+	</variable>
+	<variable name="BigList2SubTitleSetsVar">
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[567])">$INFO[ListItem.Label2,$LOCALIZE[567] ]</value>
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[562])">$INFO[ListItem.Rating,]</value>
+		<value>$INFO[ListItem.Label2]</value>
+	</variable>
+	<variable name="BigListSubTitleAddonsVar">
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[551]) + !String.IsEmpty(ListItem.Property(Addon.Status))">$INFO[ListItem.Property(Addon.Status)]</value>
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[551]) + String.IsEmpty(ListItem.Property(Addon.Status))">$INFO[ListItem.AddonVersion,v]</value>
+		<value>$INFO[ListItem.Label2]</value>
+	</variable>
+	<variable name="BigList2SubTitleAddonsVar">
+		<value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[551])">$INFO[ListItem.AddonSummary]</value>
+		<value>$INFO[ListItem.Label2]</value>
+	</variable>
+	<variable name="BigList2RightLabelAddonsVar">
+		<value condition="!String.IsEmpty(ListItem.Property(Addon.Status))">$INFO[ListItem.Property(Addon.Status)]</value>
+		<value>$INFO[ListItem.AddonVersion,v]</value>
+	</variable>
+	<variable name="ListTitlePlaylistVar">
+		<value condition="Window.IsActive(videoplaylist) + !String.IsEmpty(ListItem.Episode)">$INFO[ListItem.Season,,x]$INFO[ListItem.Episode,,. ]$INFO[ListItem.Title]</value>
+		<value condition="Window.IsActive(musicplaylist)">$INFO[ListItem.Title]</value>
+		<value>$INFO[ListItem.Label]</value>
+	</variable>
+	<variable name="BigListSubTitlePlaylistVar">
+		<value condition="!String.IsEmpty(ListItem.Artist)">$INFO[ListItem.Artist]</value>
+		<value condition="!String.IsEmpty(ListItem.TVShowTitle)">$INFO[ListItem.TVShowTitle]</value>
+		<value>$INFO[ListItem.Genre]</value>
+	</variable>
+	<!-- Artwork -->
+	<variable name="StudioIconVar">
+		<value condition="!Skin.HasSetting(MediaFlagsColored) + System.HasAddon(resource.images.studios.white)">$INFO[ListItem.Label,resource://resource.images.studios.white/,.png]</value>
+		<value condition="Skin.HasSetting(MediaFlagsColored) + System.HasAddon(resource.images.studios.coloured)">$INFO[ListItem.Label,resource://resource.images.studios.coloured/,.png]</value>
+		<value>$INFO[ListItem.Icon]</value>
+	</variable>
+	<variable name="GenreIconVar">
+		<value condition="!Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem.Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem.Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value>$INFO[ListItem.Icon]</value>
+	</variable>
+	<variable name="CountryIconVar">
+		<value condition="System.HasAddon(resource.images.moviecountryicons.flags)">$INFO[ListItem.Label,resource://resource.images.moviecountryicons.flags/,.png]</value>
+		<value>$INFO[ListItem.Icon]</value>
+	</variable>
+
+	<variable name="ShowcaseItem-1Var">
+		<value condition="!ListItem(-1).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-1).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(-1).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(-1).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(-1).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(-1).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!String.IsEmpty(ListItem(-1).Art(poster))">$INFO[ListItem(-1).Art(poster)]</value>
+		<value condition="!String.IsEmpty(ListItem(-1).Thumb)">$INFO[ListItem(-1).Thumb]</value>
+		<value>$INFO[ListItem(-1).Icon]</value>
+	</variable>
+	<variable name="ShowcaseItem-2Var">
+		<value condition="!ListItem(-2).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-2).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(-2).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(-2).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(-2).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(-2).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!String.IsEmpty(ListItem(-2).Art(poster))">$INFO[ListItem(-2).Art(poster)]</value>
+		<value condition="!String.IsEmpty(ListItem(-2).Thumb)">$INFO[ListItem(-2).Thumb]</value>
+		<value>$INFO[ListItem(-2).Icon]</value>
+	</variable>
+	<variable name="ShowcaseItem-3Var">
+		<value condition="!ListItem(-3).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-3).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(-3).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(-3).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(-3).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(-3).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!String.IsEmpty(ListItem(-3).Art(poster))">$INFO[ListItem(-3).Art(poster)]</value>
+		<value condition="!String.IsEmpty(ListItem(-3).Thumb)">$INFO[ListItem(-3).Thumb]</value>
+		<value>$INFO[ListItem(-3).Icon]</value>
+	</variable>
+	<variable name="ShowcaseItem-4Var">
+		<value condition="!ListItem(-4).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-4).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(-4).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(-4).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(-4).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(-4).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!String.IsEmpty(ListItem(-4).Art(poster))">$INFO[ListItem(-4).Art(poster)]</value>
+		<value condition="!String.IsEmpty(ListItem(-4).Thumb)">$INFO[ListItem(-4).Thumb]</value>
+		<value>$INFO[ListItem(-4).Icon]</value>
+	</variable>
+	<variable name="ShowcaseItem-5Var">
+		<value condition="!ListItem(-5).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-5).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(-5).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(-5).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(-5).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(-5).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!String.IsEmpty(ListItem(-5).Art(poster))">$INFO[ListItem(-5).Art(poster)]</value>
+		<value condition="!String.IsEmpty(ListItem(-5).Thumb)">$INFO[ListItem(-5).Thumb]</value>
+		<value>$INFO[ListItem(-5).Icon]</value>
+	</variable>
+	<variable name="ShowcaseItem-6Var">
+		<value condition="!ListItem(-6).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-6).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(-6).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(-6).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(-6).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(-6).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!String.IsEmpty(ListItem(-6).Art(poster))">$INFO[ListItem(-6).Art(poster)]</value>
+		<value condition="!String.IsEmpty(ListItem(-6).Thumb)">$INFO[ListItem(-6).Thumb]</value>
+		<value>$INFO[ListItem(-6).Icon]</value>
+	</variable>
+	<variable name="ShowcaseItem-7Var">
+		<value condition="!ListItem(-7).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-7).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(-7).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(-7).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(-7).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(-7).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!String.IsEmpty(ListItem(-7).Art(poster))">$INFO[ListItem(-7).Art(poster)]</value>
+		<value condition="!String.IsEmpty(ListItem(-7).Thumb)">$INFO[ListItem(-7).Thumb]</value>
+		<value>$INFO[ListItem(-7).Icon]</value>
+	</variable>
+	<variable name="ShowcaseItem0Var">
+		<value condition="!ListItem(0).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(0).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(0).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(0).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(0).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(0).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!String.IsEmpty(ListItem(0).Art(poster))">$INFO[ListItem(0).Art(poster)]</value>
+		<value condition="!String.IsEmpty(ListItem(0).Thumb)">$INFO[ListItem(0).Thumb]</value>
+		<value>$INFO[ListItem(0).Icon]</value>
+	</variable>
+	<variable name="ShowcaseItem1Var">
+		<value condition="!ListItem(1).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(1).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(1).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(1).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(1).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(1).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!String.IsEmpty(ListItem(1).Art(poster))">$INFO[ListItem(1).Art(poster)]</value>
+		<value condition="!String.IsEmpty(ListItem(1).Thumb)">$INFO[ListItem(1).Thumb]</value>
+		<value>$INFO[ListItem(1).Icon]</value>
+	</variable>
+	<variable name="ShowcaseItem2Var">
+		<value condition="!ListItem(2).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(2).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(2).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(2).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(2).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(2).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!String.IsEmpty(ListItem(2).Art(poster))">$INFO[ListItem(2).Art(poster)]</value>
+		<value condition="!String.IsEmpty(ListItem(2).Thumb)">$INFO[ListItem(2).Thumb]</value>
+		<value>$INFO[ListItem(2).Icon]</value>
+	</variable>
+	<variable name="ShowcaseItem3Var">
+		<value condition="!ListItem(3).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(3).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(3).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(3).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(3).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(3).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!String.IsEmpty(ListItem(3).Art(poster))">$INFO[ListItem(3).Art(poster)]</value>
+		<value condition="!String.IsEmpty(ListItem(3).Thumb)">$INFO[ListItem(3).Thumb]</value>
+		<value>$INFO[ListItem(3).Icon]</value>
+	</variable>
+	<variable name="ShowcaseItem4Var">
+		<value condition="!ListItem(4).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(4).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(4).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(4).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(4).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(4).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!String.IsEmpty(ListItem(4).Art(poster))">$INFO[ListItem(4).Art(poster)]</value>
+		<value condition="!String.IsEmpty(ListItem(4).Thumb)">$INFO[ListItem(4).Thumb]</value>
+		<value>$INFO[ListItem(4).Icon]</value>
+	</variable>
+	<variable name="ShowcaseItem5Var">
+		<value condition="!ListItem(5).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(5).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(5).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(5).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(5).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(5).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!String.IsEmpty(ListItem(5).Art(poster))">$INFO[ListItem(5).Art(poster)]</value>
+		<value condition="!String.IsEmpty(ListItem(5).Thumb)">$INFO[ListItem(5).Thumb]</value>
+		<value>$INFO[ListItem(5).Icon]</value>
+	</variable>
+	<variable name="ShowcaseItem6Var">
+		<value condition="!ListItem(6).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(6).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(6).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(6).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(6).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(6).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!String.IsEmpty(ListItem(6).Art(poster))">$INFO[ListItem(6).Art(poster)]</value>
+		<value condition="!String.IsEmpty(ListItem(6).Thumb)">$INFO[ListItem(6).Thumb]</value>
+		<value>$INFO[ListItem(6).Icon]</value>
+	</variable>
+	<variable name="ShowcaseItem7Var">
+		<value condition="!ListItem(7).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(7).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(7).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(7).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(7).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(7).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!String.IsEmpty(ListItem(7).Art(poster))">$INFO[ListItem(7).Art(poster)]</value>
+		<value condition="!String.IsEmpty(ListItem(7).Thumb)">$INFO[ListItem(7).Thumb]</value>
+		<value>$INFO[ListItem(7).Icon]</value>
+	</variable>
+	<variable name="ShowcaseItem8Var">
+		<value condition="!ListItem(8).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(8).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(8).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(8).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(8).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(8).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!String.IsEmpty(ListItem(8).Art(poster))">$INFO[ListItem(8).Art(poster)]</value>
+		<value condition="!String.IsEmpty(ListItem(8).Thumb)">$INFO[ListItem(8).Thumb]</value>
+		<value>$INFO[ListItem(8).Icon]</value>
+	</variable>
+	<variable name="ShowcaseItem9Var">
+		<value condition="!ListItem(9).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(9).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
+		<value condition="!ListItem(9).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + !Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)">$INFO[ListItem(9).Label,resource://resource.images.moviegenreicons.filmstrip-hd.colour/,.jpg]</value>
+		<value condition="!ListItem(9).IsParentFolder + Container.Content(genres) + [String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + Skin.HasSetting(BWGenreIcons) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)">$INFO[ListItem(9).Label,resource://resource.images.moviegenreicons.filmstrip-hd.bw/,.jpg]</value>
+		<value condition="!String.IsEmpty(ListItem(9).Art(poster))">$INFO[ListItem(9).Art(poster)]</value>
+		<value condition="!String.IsEmpty(ListItem(9).Thumb)">$INFO[ListItem(9).Thumb]</value>
+		<value>$INFO[ListItem(9).Icon]</value>
+	</variable>
+	<variable name="ShowcaseCase-9Var">
+		<value condition="String.IsEqual(ListItem(-9).DBTYPE,tvshow) | String.IsEqual(ListItem(-9).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
+		<value condition="ListItem(-9).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(-9).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="!String.IsEmpty(ListItem(-9).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-9).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCase-8Var">
+		<value condition="String.IsEqual(ListItem(-8).DBTYPE,tvshow) | String.IsEqual(ListItem(-8).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
+		<value condition="ListItem(-8).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(-8).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="!String.IsEmpty(ListItem(-8).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-8).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCase-7Var">
+		<value condition="String.IsEqual(ListItem(-7).DBTYPE,tvshow) | String.IsEqual(ListItem(-7).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
+		<value condition="ListItem(-7).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(-7).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="!String.IsEmpty(ListItem(-7).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-7).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCase-6Var">
+		<value condition="String.IsEqual(ListItem(-6).DBTYPE,tvshow) | String.IsEqual(ListItem(-6).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
+		<value condition="ListItem(-6).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(-6).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="!String.IsEmpty(ListItem(-6).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-6).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCase-5Var">
+		<value condition="String.IsEqual(ListItem(-5).DBTYPE,tvshow) | String.IsEqual(ListItem(-5).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
+		<value condition="ListItem(-5).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(-5).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="!String.IsEmpty(ListItem(-5).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-5).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCase-4Var">
+		<value condition="String.IsEqual(ListItem(-4).DBTYPE,tvshow) | String.IsEqual(ListItem(-4).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
+		<value condition="ListItem(-4).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(-4).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="!String.IsEmpty(ListItem(-4).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-4).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCase-3Var">
+		<value condition="String.IsEqual(ListItem(-3).DBTYPE,tvshow) | String.IsEqual(ListItem(-3).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
+		<value condition="ListItem(-3).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(-3).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="!String.IsEmpty(ListItem(-3).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-3).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCase-2Var">
+		<value condition="String.IsEqual(ListItem(-2).DBTYPE,tvshow) | String.IsEqual(ListItem(-2).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
+		<value condition="ListItem(-2).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(-2).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="!String.IsEmpty(ListItem(-2).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-2).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCase-1Var">
+		<value condition="String.IsEqual(ListItem(-1).DBTYPE,tvshow) | String.IsEqual(ListItem(-1).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
+		<value condition="ListItem(-1).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(-1).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="!String.IsEmpty(ListItem(-1).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-1).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCase0Var">
+		<value condition="String.IsEqual(ListItem(0).DBTYPE,tvshow) | String.IsEqual(ListItem(0).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
+		<value condition="ListItem(0).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(0).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="!String.IsEmpty(ListItem(0).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(0).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCase1Var">
+		<value condition="String.IsEqual(ListItem(1).DBTYPE,tvshow) | String.IsEqual(ListItem(1).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
+		<value condition="ListItem(1).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(1).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="!String.IsEmpty(ListItem(1).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(1).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCase2Var">
+		<value condition="String.IsEqual(ListItem(2).DBTYPE,tvshow) | String.IsEqual(ListItem(2).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
+		<value condition="ListItem(2).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(2).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="!String.IsEmpty(ListItem(2).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(2).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCase3Var">
+		<value condition="String.IsEqual(ListItem(3).DBTYPE,tvshow) | String.IsEqual(ListItem(3).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
+		<value condition="ListItem(3).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(3).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="!String.IsEmpty(ListItem(3).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(3).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCase4Var">
+		<value condition="String.IsEqual(ListItem(4).DBTYPE,tvshow) | String.IsEqual(ListItem(4).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
+		<value condition="ListItem(4).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(4).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="!String.IsEmpty(ListItem(4).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(4).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCase5Var">
+		<value condition="String.IsEqual(ListItem(5).DBTYPE,tvshow) | String.IsEqual(ListItem(5).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
+		<value condition="ListItem(5).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(5).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="!String.IsEmpty(ListItem(5).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(5).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCase6Var">
+		<value condition="String.IsEqual(ListItem(6).DBTYPE,tvshow) | String.IsEqual(ListItem(6).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
+		<value condition="ListItem(6).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(6).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="!String.IsEmpty(ListItem(6).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(6).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCase7Var">
+		<value condition="String.IsEqual(ListItem(7).DBTYPE,tvshow) | String.IsEqual(ListItem(7).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
+		<value condition="ListItem(7).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(7).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="!String.IsEmpty(ListItem(7).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(7).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCase8Var">
+		<value condition="String.IsEqual(ListItem(8).DBTYPE,tvshow) | String.IsEqual(ListItem(8).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
+		<value condition="ListItem(8).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(8).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="!String.IsEmpty(ListItem(8).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(8).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCase9Var">
+		<value condition="String.IsEqual(ListItem(9).DBTYPE,tvshow) | String.IsEqual(ListItem(9).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
+		<value condition="ListItem(9).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(9).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="!String.IsEmpty(ListItem(9).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(9).VideoResolution]p.png</value>
+	</variable>
+
+	<variable name="ShowcaseCaseBack-1Var">
+		<value condition="ListItem(-1).IsStereoscopic">thumbs/case/portrait/back/1080p.png</value>
+		<value condition="!String.IsEmpty(ListItem(-1).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(-1).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCaseBack-2Var">
+		<value condition="ListItem(-2).IsStereoscopic">thumbs/case/portrait/back/1081p.png</value>
+		<value condition="!String.IsEmpty(ListItem(-2).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(-2).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCaseBack-3Var">
+		<value condition="ListItem(-3).IsStereoscopic">thumbs/case/portrait/back/1082p.png</value>
+		<value condition="!String.IsEmpty(ListItem(-3).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(-3).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCaseBack-4Var">
+		<value condition="ListItem(-4).IsStereoscopic">thumbs/case/portrait/back/1083p.png</value>
+		<value condition="!String.IsEmpty(ListItem(-4).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(-4).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCaseBack-5Var">
+		<value condition="ListItem(-5).IsStereoscopic">thumbs/case/portrait/back/1084p.png</value>
+		<value condition="!String.IsEmpty(ListItem(-5).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(-5).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCaseBack-6Var">
+		<value condition="ListItem(-6).IsStereoscopic">thumbs/case/portrait/back/1085p.png</value>
+		<value condition="!String.IsEmpty(ListItem(-6).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(-6).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCaseBack-7Var">
+		<value condition="ListItem(-7).IsStereoscopic">thumbs/case/portrait/back/1086p.png</value>
+		<value condition="!String.IsEmpty(ListItem(-7).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(-7).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCaseBack0Var">
+		<value condition="ListItem(0).IsStereoscopic">thumbs/case/portrait/back/1080p.png</value>
+		<value condition="!String.IsEmpty(ListItem(0).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(0).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCaseBack1Var">
+		<value condition="ListItem(1).IsStereoscopic">thumbs/case/portrait/back/1081p.png</value>
+		<value condition="!String.IsEmpty(ListItem(1).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(1).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCaseBack2Var">
+		<value condition="ListItem(2).IsStereoscopic">thumbs/case/portrait/back/1082p.png</value>
+		<value condition="!String.IsEmpty(ListItem(2).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(2).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCaseBack3Var">
+		<value condition="ListItem(3).IsStereoscopic">thumbs/case/portrait/back/1083p.png</value>
+		<value condition="!String.IsEmpty(ListItem(3).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(3).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCaseBack4Var">
+		<value condition="ListItem(4).IsStereoscopic">thumbs/case/portrait/back/1084p.png</value>
+		<value condition="!String.IsEmpty(ListItem(4).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(4).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCaseBack5Var">
+		<value condition="ListItem(5).IsStereoscopic">thumbs/case/portrait/back/1085p.png</value>
+		<value condition="!String.IsEmpty(ListItem(5).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(5).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCaseBack6Var">
+		<value condition="ListItem(6).IsStereoscopic">thumbs/case/portrait/back/1086p.png</value>
+		<value condition="!String.IsEmpty(ListItem(6).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(6).VideoResolution]p.png</value>
+	</variable>
+	<variable name="ShowcaseCaseBack7Var">
+		<value condition="ListItem(7).IsStereoscopic">thumbs/case/portrait/back/1087p.png</value>
+		<value condition="!String.IsEmpty(ListItem(7).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(7).VideoResolution]p.png</value>
+	</variable>
+	<variable name="Showcase-7StudioIconsVar">
+		<value condition="!String.IsEmpty(ListItem(-7).Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(-7).Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem(-7).Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(-7).Studio,resource://resource.images.studios.coloured/,.png]</value>
+	</variable>
+	<variable name="Showcase-6StudioIconsVar">
+		<value condition="!String.IsEmpty(ListItem(-6).Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(-6).Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem(-6).Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(-6).Studio,resource://resource.images.studios.coloured/,.png]</value>
+	</variable>
+	<variable name="Showcase-5StudioIconsVar">
+		<value condition="!String.IsEmpty(ListItem(-5).Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(-5).Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem(-5).Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(-5).Studio,resource://resource.images.studios.coloured/,.png]</value>
+	</variable>
+	<variable name="Showcase-4StudioIconsVar">
+		<value condition="!String.IsEmpty(ListItem(-4).Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(-4).Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem(-4).Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(-4).Studio,resource://resource.images.studios.coloured/,.png]</value>
+	</variable>
+	<variable name="Showcase-3StudioIconsVar">
+		<value condition="!String.IsEmpty(ListItem(-3).Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(-3).Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem(-3).Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(-3).Studio,resource://resource.images.studios.coloured/,.png]</value>
+	</variable>
+	<variable name="Showcase-2StudioIconsVar">
+		<value condition="!String.IsEmpty(ListItem(-2).Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(-2).Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem(-2).Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(-2).Studio,resource://resource.images.studios.coloured/,.png]</value>
+	</variable>
+	<variable name="Showcase-1StudioIconsVar">
+		<value condition="!String.IsEmpty(ListItem(-1).Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(-1).Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem(-1).Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(-1).Studio,resource://resource.images.studios.coloured/,.png]</value>
+	</variable>
+	<variable name="Showcase0StudioIconsVar">
+		<value condition="!String.IsEmpty(ListItem(0).Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(0).Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem(0).Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(0).Studio,resource://resource.images.studios.coloured/,.png]</value>
+	</variable>
+	<variable name="Showcase1StudioIconsVar">
+		<value condition="!String.IsEmpty(ListItem(1).Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(1).Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem(1).Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(1).Studio,resource://resource.images.studios.coloured/,.png]</value>
+	</variable>
+	<variable name="Showcase2StudioIconsVar">
+		<value condition="!String.IsEmpty(ListItem(2).Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(2).Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem(2).Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(2).Studio,resource://resource.images.studios.coloured/,.png]</value>
+	</variable>
+	<variable name="Showcase3StudioIconsVar">
+		<value condition="!String.IsEmpty(ListItem(3).Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(3).Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem(3).Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(3).Studio,resource://resource.images.studios.coloured/,.png]</value>
+	</variable>
+	<variable name="Showcase4StudioIconsVar">
+		<value condition="!String.IsEmpty(ListItem(4).Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(4).Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem(4).Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(4).Studio,resource://resource.images.studios.coloured/,.png]</value>
+	</variable>
+	<variable name="Showcase5StudioIconsVar">
+		<value condition="!String.IsEmpty(ListItem(5).Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(5).Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem(5).Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(5).Studio,resource://resource.images.studios.coloured/,.png]</value>
+	</variable>
+	<variable name="Showcase6StudioIconsVar">
+		<value condition="!String.IsEmpty(ListItem(6).Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(6).Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem(6).Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(6).Studio,resource://resource.images.studios.coloured/,.png]</value>
+	</variable>
+	<variable name="Showcase7StudioIconsVar">
+		<value condition="!String.IsEmpty(ListItem(7).Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(7).Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem(7).Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(7).Studio,resource://resource.images.studios.coloured/,.png]</value>
+	</variable>
+
+
+	<variable name="ShowcaseOverlay-7Var">
+		<value condition="ListItem(-7).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(-7).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(-7).Property(WatchedEpisodes),ListItem(-7).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(-7).Property(WatchedEpisodes),ListItem(-7).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(-7).Overlay)">overlays/poster/$INFO[ListItem(-7).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay-6Var">
+		<value condition="ListItem(-6).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(-6).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(-6).Property(WatchedEpisodes),ListItem(-6).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(-6).Property(WatchedEpisodes),ListItem(-6).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(-6).Overlay)">overlays/poster/$INFO[ListItem(-6).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay-5Var">
+		<value condition="ListItem(-5).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(-5).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(-5).Property(WatchedEpisodes),ListItem(-5).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(-5).Property(WatchedEpisodes),ListItem(-5).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(-5).Overlay)">overlays/poster/$INFO[ListItem(-5).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay-4Var">
+		<value condition="ListItem(-4).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(-4).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(-4).Property(WatchedEpisodes),ListItem(-4).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(-4).Property(WatchedEpisodes),ListItem(-4).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(-4).Overlay)">overlays/poster/$INFO[ListItem(-4).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay-3Var">
+		<value condition="ListItem(-3).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(-3).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(-3).Property(WatchedEpisodes),ListItem(-3).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(-3).Property(WatchedEpisodes),ListItem(-3).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(-3).Overlay)">overlays/poster/$INFO[ListItem(-3).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay-2Var">
+		<value condition="ListItem(-2).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(-2).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(-2).Property(WatchedEpisodes),ListItem(-2).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(-2).Property(WatchedEpisodes),ListItem(-2).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(-2).Overlay)">overlays/poster/$INFO[ListItem(-2).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay-1Var">
+		<value condition="ListItem(-1).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(-1).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(-1).Property(WatchedEpisodes),ListItem(-1).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(-1).Property(WatchedEpisodes),ListItem(-1).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(-1).Overlay)">overlays/poster/$INFO[ListItem(-1).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay0Var">
+		<value condition="ListItem(0).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(0).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(0).Property(WatchedEpisodes),ListItem(0).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(0).Property(WatchedEpisodes),ListItem(0).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(0).Overlay)">overlays/poster/$INFO[ListItem(0).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay1Var">
+		<value condition="ListItem(1).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(1).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(1).Property(WatchedEpisodes),ListItem(1).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(1).Property(WatchedEpisodes),ListItem(1).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(1).Overlay)">overlays/poster/$INFO[ListItem(1).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay2Var">
+		<value condition="ListItem(2).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(2).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(2).Property(WatchedEpisodes),ListItem(2).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(2).Property(WatchedEpisodes),ListItem(2).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(2).Overlay)">overlays/poster/$INFO[ListItem(2).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay3Var">
+		<value condition="ListItem(3).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(3).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(3).Property(WatchedEpisodes),ListItem(3).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(3).Property(WatchedEpisodes),ListItem(3).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(3).Overlay)">overlays/poster/$INFO[ListItem(3).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay4Var">
+		<value condition="ListItem(4).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(4).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(4).Property(WatchedEpisodes),ListItem(4).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(4).Property(WatchedEpisodes),ListItem(4).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(4).Overlay)">overlays/poster/$INFO[ListItem(4).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay5Var">
+		<value condition="ListItem(5).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(5).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(5).Property(WatchedEpisodes),ListItem(5).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(5).Property(WatchedEpisodes),ListItem(5).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(5).Overlay)">overlays/poster/$INFO[ListItem(5).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay6Var">
+		<value condition="ListItem(6).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(6).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(6).Property(WatchedEpisodes),ListItem(6).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(6).Property(WatchedEpisodes),ListItem(6).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(6).Overlay)">overlays/poster/$INFO[ListItem(6).Overlay]</value>
+	</variable>
+	<variable name="ShowcaseOverlay7Var">
+		<value condition="ListItem(7).IsPlaying">overlays/poster/OverlayPlay.png</value>
+		<value condition="ListItem(7).IsResumable">overlays/poster/OverlayResume.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(7).Property(WatchedEpisodes),ListItem(7).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(7).Property(WatchedEpisodes),ListItem(7).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
+		<value condition="!String.IsEmpty(ListItem(7).Overlay)">overlays/poster/$INFO[ListItem(7).Overlay]</value>
+	</variable>
+</includes>

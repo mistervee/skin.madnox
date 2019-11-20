@@ -14,7 +14,7 @@
 		<!-- Panel -->
 		<control type="group">
 			<visible>Control.IsVisible(540)</visible>
-			<animation effect="slide" end="0,-40" time="240" condition="Skin.HasSetting(ViewsHideTopBar)">Conditional</animation>
+			<animation effect="slide" end="0,-40" time="240" condition="Skin.HasSetting(VideosHideTopBar)">Conditional</animation>
 			<include>AnimationZoomWindow</include>
 			<include>AnimationZoomVisible</include>
 			<control type="panel" id="540">
@@ -25,11 +25,13 @@
 				<onleft>9050</onleft>
 				<onright>60540</onright>
 				<pagecontrol>60540</pagecontrol>
+				<include>ContainerScrollTime</include>
 				<viewtype label="$LOCALIZE[31254]">bigicon</viewtype>
 				<itemlayout height="384" width="262.8" condition="!Skin.HasSetting(View540SmallIcons)">
 					<control type="group">
 						<visible>!Skin.HasSetting(View540VideoCase)</visible>
 						<include content="ViewArtwork">
+							<param name="texturefadetime">0</param>
 							<param name="diffuse">diffuse/rounded5-243x364.png</param>
 						</include>
 					</control>
@@ -37,20 +39,22 @@
 						<visible>Skin.HasSetting(View540VideoCase)</visible>
 						<include content="ViewArtworkVideoCase">
 							<param name="logoheight">27</param>
+							<param name="texturefadetime">0</param>
 							<param name="bordersize">16,35,16,18</param>
 						</include>
 					</control>
 				</itemlayout>
 				<focusedlayout height="384" width="262.8" condition="!Skin.HasSetting(View540SmallIcons)">
 					<control type="group">
-						<animation effect="zoom" start="100" end="115" center="auto" time="160">focus</animation>
-						<animation effect="zoom" start="115" end="100" center="auto" time="160">unfocus</animation>
+						<animation effect="zoom" start="100" end="115" center="auto" time="240">focus</animation>
+						<animation effect="zoom" start="115" end="100" center="auto" time="240">unfocus</animation>
 						<control type="image">
 							<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
 						</control>
 						<control type="group">
 							<visible>!Skin.HasSetting(View540VideoCase)</visible>
 							<include content="ViewArtwork">
+								<param name="texturefadetime">0</param>
 								<param name="diffuse">diffuse/rounded5-243x364.png</param>
 							</include>
 						</control>
@@ -58,6 +62,7 @@
 							<visible>Skin.HasSetting(View540VideoCase)</visible>
 							<include content="ViewArtworkVideoCase">
 								<param name="logoheight">27</param>
+								<param name="texturefadetime">0</param>
 								<param name="bordersize">16,36,16,18</param>
 							</include>
 						</control>
@@ -67,6 +72,7 @@
 					<control type="group">
 						<visible>!Skin.HasSetting(View540VideoCase)</visible>
 						<include content="ViewArtwork">
+							<param name="texturefadetime">0</param>
 							<param name="diffuse">diffuse/rounded5-210x315.png</param>
 						</include>
 					</control>
@@ -74,20 +80,22 @@
 						<visible>Skin.HasSetting(View540VideoCase)</visible>
 						<include content="ViewArtworkVideoCase">
 							<param name="logoheight">23</param>
+							<param name="texturefadetime">0</param>
 							<param name="bordersize">16,33,16,17</param>
 						</include>
 					</control>
 				</itemlayout>
 				<focusedlayout height="335" width="230" condition="Skin.HasSetting(View540SmallIcons)">
 					<control type="group">
-						<animation effect="zoom" start="100" end="115" center="auto" time="160">focus</animation>
-						<animation effect="zoom" start="115" end="100" center="auto" time="160">unfocus</animation>
+						<animation effect="zoom" start="100" end="115" center="auto" time="240">focus</animation>
+						<animation effect="zoom" start="115" end="100" center="auto" time="240">unfocus</animation>
 						<control type="image">
 							<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
 						</control>
 						<control type="group">
 							<visible>!Skin.HasSetting(View540VideoCase)</visible>
 							<include content="ViewArtwork">
+								<param name="texturefadetime">0</param>
 								<param name="diffuse">diffuse/rounded5-210x315.png</param>
 							</include>
 						</control>
@@ -95,20 +103,16 @@
 							<visible>Skin.HasSetting(View540VideoCase)</visible>
 							<include content="ViewArtworkVideoCase">
 								<param name="logoheight">24</param>
+								<param name="texturefadetime">0</param>
 								<param name="bordersize">16,33,16,17</param>
 							</include>
 						</control>
 					</control>
 				</focusedlayout>
 			</control>
-			<control type="scrollbar" id="60540">
-				<animation effect="slide" end="-15" time="200" condition="Control.HasFocus(60540)">Conditional</animation>
-				<right>-20</right>
-				<top>90</top>
-				<bottom>0</bottom>
-				<onleft>540</onleft>
-				<texturesliderbackground border="2">buttons/scrollbar-nib-back-vertical.png</texturesliderbackground>
-			</control>
+			<include content="ViewWallScrollBar">
+				<param name="id">540</param>
+			</include>
 		</control>
 		<!-- Bottom info/Media flags -->
 		<control type="group">

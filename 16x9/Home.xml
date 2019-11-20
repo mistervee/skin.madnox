@@ -11,37 +11,82 @@
 		<include content="BackgroundDefault">
 			<param name="imagepath">$VAR[HomeFanartVar]</param>
 		</include>
+		<!-- Playlist fanart -->
+		<control type="wraplist" id="7001">
+			<visible>String.IsEqual(Container(9000).ListItem.Property(background),playlist) | String.IsEqual(Container(9000).ListItem.Property(coverBackground),fanart)</visible>
+			<include>HiddenList</include>
+			<content limit="10">$INFO[Container(9000).ListItem.Property(backgroundPlaylist)]</content>
+		</control>
+		<control type="fadelabel" id="7002">
+			<visible>String.IsEqual(Container(9000).ListItem.Property(background),playlist) | String.IsEqual(Container(9000).ListItem.Property(coverBackground),fanart)</visible>
+			<top>-2000</top>
+			<width>1</width>
+			<height>1</height>
+			<scroll>false</scroll>
+			<randomize>true</randomize>
+			<scrollout>false</scrollout>
+			<include>FadeLabelTime</include>
+			<resetonlabelchange>true</resetonlabelchange>
+			<label>$INFO[Container(7001).ListItem(0).Art(fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(1).Art(fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(2).Art(fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(3).Art(fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(4).Art(fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(5).Art(fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(6).Art(fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(7).Art(fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(8).Art(fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(9).Art(fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(0).Art(tvshow.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(1).Art(tvshow.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(2).Art(tvshow.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(3).Art(tvshow.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(4).Art(tvshow.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(5).Art(tvshow.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(6).Art(tvshow.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(7).Art(tvshow.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(8).Art(tvshow.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(9).Art(tvshow.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(0).Art(artist.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(1).Art(artist.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(2).Art(artist.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(3).Art(artist.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(4).Art(artist.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(5).Art(artist.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(6).Art(artist.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(7).Art(artist.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(8).Art(artist.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(9).Art(artist.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(0).Art(albumartist.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(1).Art(albumartist.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(2).Art(albumartist.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(3).Art(albumartist.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(4).Art(albumartist.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(5).Art(albumartist.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(6).Art(albumartist.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(7).Art(albumartist.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(8).Art(albumartist.fanart)]</label>
+			<label>$INFO[Container(7001).ListItem(9).Art(albumartist.fanart)]</label>
+		</control>
+		<!-- Home -->
 		<control type="group">
-			<visible>!Window.IsActive(movieinformation) + !Window.IsActive(musicinformation) + !Window.IsActive(songinformation) + !Window.IsActive(addoninformation)</visible>
+			<visible>!Window.IsActive(movieinformation) + !Window.IsActive(musicinformation) + !Window.IsActive(songinformation)</visible>
 			<include>AnimationVisibleFade</include>
 			<!-- Now playing -->
 			<control type="group">
 				<visible>[Player.HasAudio + !Skin.HasSetting(NowplayingHomeDisableAudio)] | [Player.HasVideo + !Skin.HasSetting(NowplayingHomeDisableVideo)]</visible>
 				<include>AnimationVisibleFade</include>
-				<include content="AnimationSlideTopWindow">
-					<param name="opencondition">Skin.HasSetting(WidgetHigh)</param>
-					<param name="closecondition">Skin.HasSetting(WidgetHigh)</param>
-				</include>
 				<include content="AnimationSlideBottomWindow">
-					<param name="opencondition">!Skin.HasSetting(WidgetHigh)</param>
-					<param name="closecondition">!Skin.HasSetting(WidgetHigh)</param>
+					<param name="slide">540</param>
 				</include>
 				<include>HomeNowPlaying</include>
 			</control>
 			<!-- Widgets -->
 			<control type="group" id="90010">
-				<include content="AnimationSlideTopWindow">
-					<param name="opencondition">Skin.HasSetting(WidgetHigh)</param>
-					<param name="closecondition">Skin.HasSetting(WidgetHigh)</param>
-				</include>
 				<include content="AnimationSlideBottomWindow">
-					<param name="opencondition">!Skin.HasSetting(WidgetHigh)</param>
-					<param name="closecondition">!Skin.HasSetting(WidgetHigh)</param>
+					<param name="slide">540</param>
 				</include>
-				<animation effect="fade" start="100" end="0" time="200" condition="[!Skin.HasSetting(NowplayingHomeDisableAudio) + Player.HasAudio + !ControlGroup(90010).HasFocus] | [Player.HasVideo + !Skin.HasSetting(NowplayingHomeDisableVideo) + !ControlGroup(90010).HasFocus] | [Skin.HasSetting(WidgetHide) + !ControlGroup(90010).HasFocus]">Conditional</animation>
-				<!-- The visibility condition causes a quick flash of the widgets between menu items but is required for navigation -->
-				<!-- <visible>!String.IsEmpty(Container(9000).ListItem.Property(widgetPath.1))</visible> -->
-				
+				<animation effect="fade" start="100" end="0" time="480" condition="[!Skin.HasSetting(NowplayingHomeDisableAudio) + Player.HasAudio + !ControlGroup(90010).HasFocus] | [Player.HasVideo + !Skin.HasSetting(NowplayingHomeDisableVideo) + !ControlGroup(90010).HasFocus] | [Skin.HasSetting(WidgetHide) + !ControlGroup(90010).HasFocus]">Conditional</animation>
 				<include>skinshortcuts-template-widget1</include>
 				<include>skinshortcuts-template-widget2</include>
 				<include>skinshortcuts-template-widget3</include>
@@ -49,20 +94,16 @@
 				<include>skinshortcuts-template-widget5</include>
 				<include>skinshortcuts-template-widget6</include>
 			</control>
-			<!-- System/RSS/Time bar and Shortcuts -->
+			<!-- System/Time bar and Shortcuts -->
 			<include>InfoTimeBar</include>
 			<!-- Menu -->
 			<include condition="!Skin.HasSetting(MainMenuFixedList)">MainMenu</include>
 			<include condition="Skin.HasSetting(MainMenuFixedList)" content="MainMenu">
 				<param name="listtype">fixedlist</param>
 			</include>
-
+			<!-- RSS -->
 			<include>RSSShortcuts</include>
 		</control>
-
-
-
-
 		<!-- Media Menu -->
 		<include>MediaMenuMouseOverlay</include>
 		<control type="group">
@@ -72,7 +113,6 @@
 				<usecontrolcoords>true</usecontrolcoords>
 				<onright>9000</onright>
 				<onback>9000</onback>
-				<!-- Menu -->
 				<control type="radiobutton" id="9051">
 					<include content="MediaMenuIconButton">
 						<param name="iconon" value="icons/mediamenu/menu.png" />

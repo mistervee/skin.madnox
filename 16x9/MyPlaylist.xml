@@ -4,85 +4,86 @@
 	<views>50,51,53</views>
 	<menucontrol>9050</menucontrol>
 	<controls>
-		<!-- Backdrop -->
 		<control type="group">
-			<visible>Window.IsVisible(musicplaylist)</visible>
-			<include content="BackgroundDefault">
-				<param name="imagepath">$VAR[MusicBackgroundVar]</param>
-			</include>
-		</control>
-		<control type="group">
-			<visible>Window.IsVisible(videoplaylist)</visible>
-			<include content="BackgroundDefault">
-				<param name="imagepath">$VAR[VideoBackgroundVar]</param>
-			</include>
-		</control>
-		<control type="group">
-			<visible>!Window.IsActive(movieinformation) + !Window.IsActive(songinformation)</visible>
-			<include>AnimationInfoDialog</include>
-			<!-- Views -->
-			<include>View50CoverList</include>
-			<include>View51SimpleList</include>
-			<include condition="!Skin.HasSetting(DisableViewInfo1)">View53InfoList1</include>
-			<!-- Topbar -->
 			<control type="group">
-				<visible>!Skin.HasSetting(VideoHideTopBar)</visible>
-				<include content="AnimationSlideTopWindow">
-					<param name="slide">90</param>
-				</include>
-				<include content="AnimationSlideTopVisible">
-					<param name="slide">90</param>
-				</include>
-				<include content="TopBar">
-					<param name="label">$VAR[BreadcrumbsVideoVar]</param>
-					<param name="icon">playlist.png</param>
+				<visible>Window.IsVisible(musicplaylist)</visible>
+				<include content="BackgroundDefault">
+					<param name="imagepath">$VAR[MusicBackgroundVar]</param>
 				</include>
 			</control>
-		</control>
-		<!-- Media Menu -->
-		<include>MediaMenuMouseOverlay</include>
-		<control type="group">
-			<include>MediaMenuCommon</include>
-			<control type="grouplist" id="9050">
-				<onright>50</onright>
-				<onback>50</onback>
-				<include>MediaMenuCommonTop</include>
-				<!-- Shuffle -->
-				<control type="radiobutton" id="20">
-					<include content="MediaMenuIconButton">
-						<param name="iconon">icons/mediamenu/random.png</param>
-						<param name="iconoff">icons/mediamenu/randomoff.png</param>
+			<control type="group">
+				<visible>Window.IsVisible(videoplaylist)</visible>
+				<include content="BackgroundDefault">
+					<param name="imagepath">$VAR[VideoBackgroundVar]</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>!Window.IsActive(movieinformation) + !Window.IsActive(songinformation)</visible>
+				<include>AnimationInfoDialog</include>
+				<!-- Views -->
+				<include>View50CoverList</include>
+				<include>View51SimpleList</include>
+				<include condition="!Skin.HasSetting(DisableViewInfo1)">View53InfoList1</include>
+				<!-- Topbar -->
+				<control type="group">
+					<visible>[Window.IsVisible(videoplaylist) + !Skin.HasSetting(VideosHideTopBar)] | [Window.IsVisible(musicplaylist) + !Skin.HasSetting(MusicHideTopBar)]</visible>
+					<include content="AnimationSlideTopWindow">
+						<param name="slide">90</param>
 					</include>
-					<label>$LOCALIZE[590]</label>
-					<visible>Control.IsEnabled(20)</visible>
-				</control>
-				<!-- Repeat -->
-				<control type="radiobutton" id="26">
-					<include content="MediaMenuIconButton">
-						<param name="iconon">icons/mediamenu/repeat.png</param>
-						<param name="iconoff">icons/mediamenu/repeat.png</param>
+					<include content="AnimationSlideTopVisible">
+						<param name="slide">90</param>
 					</include>
-					<visible>Control.IsEnabled(26)</visible>
-				</control>
-				<!-- Save -->
-				<control type="radiobutton" id="21">
-					<include content="MediaMenuIconButton">
-						<param name="iconon">icons/mediamenu/save.png</param>
-						<param name="iconoff">icons/mediamenu/save.png</param>
+					<include content="TopBar">
+						<param name="label">$VAR[BreadcrumbsVideoVar]</param>
+						<param name="icon">playlist.png</param>
 					</include>
-					<label>$LOCALIZE[190]</label>
-					<visible>Control.IsEnabled(21)</visible>
 				</control>
-				<!-- Clear -->
-				<control type="radiobutton" id="22">
-					<include content="MediaMenuIconButton">
-						<param name="iconon">icons/mediamenu/clear.png</param>
-						<param name="iconoff">icons/mediamenu/clear.png</param>
-					</include>
-					<label>$LOCALIZE[192]</label>
-					<visible>Control.IsEnabled(22)</visible>
+			</control>
+			<!-- Media Menu -->
+			<include>MediaMenuMouseOverlay</include>
+			<control type="group">
+				<include>MediaMenuCommon</include>
+				<control type="grouplist" id="9050">
+					<onright>50</onright>
+					<onback>50</onback>
+					<include>MediaMenuCommonTop</include>
+					<!-- Shuffle -->
+					<control type="radiobutton" id="20">
+						<include content="MediaMenuIconButton">
+							<param name="iconon">icons/mediamenu/random.png</param>
+							<param name="iconoff">icons/mediamenu/randomoff.png</param>
+						</include>
+						<label>$LOCALIZE[590]</label>
+						<visible>Control.IsEnabled(20)</visible>
+					</control>
+					<!-- Repeat -->
+					<control type="radiobutton" id="26">
+						<include content="MediaMenuIconButton">
+							<param name="iconon">icons/mediamenu/repeat.png</param>
+							<param name="iconoff">icons/mediamenu/repeat.png</param>
+						</include>
+						<visible>Control.IsEnabled(26)</visible>
+					</control>
+					<!-- Save -->
+					<control type="radiobutton" id="21">
+						<include content="MediaMenuIconButton">
+							<param name="iconon">icons/mediamenu/save.png</param>
+							<param name="iconoff">icons/mediamenu/save.png</param>
+						</include>
+						<label>$LOCALIZE[190]</label>
+						<visible>Control.IsEnabled(21)</visible>
+					</control>
+					<!-- Clear -->
+					<control type="radiobutton" id="22">
+						<include content="MediaMenuIconButton">
+							<param name="iconon">icons/mediamenu/clear.png</param>
+							<param name="iconoff">icons/mediamenu/clear.png</param>
+						</include>
+						<label>$LOCALIZE[192]</label>
+						<visible>Control.IsEnabled(22)</visible>
+					</control>
+					<include>MediaMenuCommonBottom</include>
 				</control>
-				<include>MediaMenuCommonBottom</include>
 			</control>
 		</control>
 	</controls>

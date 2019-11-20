@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<visible>Player.Seeking | Player.DisplayAfterSeek | [Player.Paused + !Player.Caching] | Player.Forwarding | Player.Rewinding | Player.ShowInfo | Window.IsActive(videoosd) | Window.IsActive(playerprocessinfo) | !String.IsEmpty(Player.SeekNumeric) | !String.IsEmpty(PVR.ChannelNumberInput)</visible>
-	<visible>![Window.IsActive(sliderdialog) | Window.IsActive(pvrosdchannels) | Window.IsActive(visualisation)]</visible>
+	<visible>![Window.IsActive(sliderdialog) | Window.IsActive(pvrosdchannels) | Window.IsActive(pvrchannelguide) | Window.IsActive(visualisation)]</visible>
 	<visible>Window.IsActive(fullscreenvideo) | Window.IsActive(visualisation)</visible>
 	<zorder>0</zorder>
 	<controls>
@@ -11,7 +11,7 @@
 			<include>AnimationSlideBottomWindow</include>
 			<control type="image">
 				<visible>Player.ShowInfo + Window.IsActive(fullscreenvideo)</visible>
-				<animation effect="slide" end="0,-84" time="300" condition="Window.IsActive(videoosd)">Conditional</animation>
+				<animation effect="slide" end="0,-84" time="480" condition="Window.IsActive(videoosd)">Conditional</animation>
 				<include>AnimationVisibleFade</include>
 				<bottom>106</bottom>
 				<width>1920</width>
@@ -146,8 +146,10 @@
 		<!-- Info -->
 		<control type="group">
 			<visible>Player.ShowInfo + Window.IsActive(fullscreenvideo)</visible>
+			<include>AnimationSlideLeftWindow</include>
+			<include>AnimationSlideLeftVisible</include>
 			<left>15</left>
-			<top>571</top>
+			<top>612</top>
 			<animation effect="slide" end="0,-84" time="300" condition="Window.IsActive(videoosd)">Conditional</animation>
 			<!-- <control type="image">
 				<include>AnimationVisibleFade</include>
@@ -184,20 +186,10 @@
 				</include>
 			</control>
 			<control type="group">
-				<visible>[Pvr.IsPlayingTV | [!VideoPlayer.Content(movies) + !VideoPlayer.Content(episodes) + !VideoPlayer.Content(musicvideos)]] + String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.Poster))</visible>
+				<visible>Pvr.IsPlayingTV | [!VideoPlayer.Content(movies) + !VideoPlayer.Content(episodes) + !VideoPlayer.Content(musicvideos)]</visible>
 				<include>AnimationVisibleFade</include>
 				<include content="NowPlayingHomeSquareContent">
 					<param name="aspect">keep</param>
-					<param name="right">52</param>
-					<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-					<param name="discart">false</param>
-				</include>
-			</control>
-			<control type="group">
-				<visible>[Pvr.IsPlayingTV | [!VideoPlayer.Content(movies) + !VideoPlayer.Content(episodes) + !VideoPlayer.Content(musicvideos)]] + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.Poster))</visible>
-				<animation effect="slide" end="0,-41" time="200" condition="!Skin.HasSetting(WidgetHigh)">Conditional</animation>
-				<include>AnimationVisibleFade</include>
-				<include content="NowPlayingHomePortraitContent">
 					<param name="right">52</param>
 					<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
 					<param name="discart">false</param>
@@ -225,11 +217,7 @@
 			<control type="group">
 				<visible>[!VideoPlayer.Content(movies) + !VideoPlayer.Content(episodes)] | Player.IsInternetStream</visible>
 				<control type="group">
-					<visible>String.IsEqual(Skin.String(NowPlayingHomeVideoInfo),description) + !VideoPlayer.Content(musicvideos) + !String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.Poster))</visible>
-					<include>HomeNowPlayingPlot</include>
-				</control>
-				<control type="group">
-					<visible>String.IsEqual(Skin.String(NowPlayingHomeVideoInfo),description) + [VideoPlayer.Content(musicvideos) | String.IsEmpty(Window(Home).Property(SkinHelper.Player.Art.Poster))]</visible>
+					<visible>String.IsEqual(Skin.String(NowPlayingHomeVideoInfo),description) + VideoPlayer.Content(musicvideos)</visible>
 					<include>HomeNowPlayingPlotSquare</include>
 				</control>
 				<control type="grouplist">

@@ -96,77 +96,11 @@
 				<onleft>9050</onleft>
 				<onright>60533</onright>
 				<pagecontrol>60533</pagecontrol>
+				<include>ContainerScrollTime</include>
 				<viewtype label="$LOCALIZE[31253]">icon</viewtype>
-				<itemlayout height="260" width="447" condition="!Skin.HasSetting(View533SmallIcons) + Window.IsVisible(MyPVRChannels.xml)">
-					<control type="group">
-						<visible>!String.IsEmpty(ListItem.Art(Thumb))</visible>
-						<include content="ViewArtwork">
-							<param name="aspect">keep</param>
-							<param name="art">$INFO[ListItem.Art(thumb)]</param>
-						</include>
-					</control>
-					<include content="ViewLogoFallback">
-						<param name="visible">String.IsEmpty(ListItem.Art(Thumb))</param>
-						<param name="font">Font38_Bold</param>
-					</include>
-				</itemlayout>
-				<focusedlayout height="260" width="447" condition="!Skin.HasSetting(View533SmallIcons) + Window.IsVisible(MyPVRChannels.xml)">
-					<control type="image">
-						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
-					</control>
-					<control type="group">
-						<animation  type="Focus" reversible="false">
-							<effect type="zoom" start="95" end="100" time="300" center="auto" />
-						</animation>
-						<control type="group">
-							<visible>!String.IsEmpty(ListItem.Art(Thumb))</visible>
-							<include content="ViewArtwork">
-								<param name="aspect">keep</param>
-								<param name="art">$INFO[ListItem.Art(thumb)]</param>
-							</include>
-						</control>
-						<include content="ViewLogoFallback">
-							<param name="visible">String.IsEmpty(ListItem.Art(Thumb))</param>
-							<param name="font">Font38_Bold</param>
-						</include>
-					</control>
-				</focusedlayout>
-				<itemlayout height="195" width="330" condition="Skin.HasSetting(View533SmallIcons) + Window.IsVisible(MyPVRChannels.xml)">
-					<control type="group">
-						<visible>!String.IsEmpty(ListItem.Art(Thumb))</visible>
-						<include content="ViewArtwork">
-							<param name="aspect">keep</param>
-							<param name="art">$INFO[ListItem.Art(thumb)]</param>
-						</include>
-					</control>
-					<include content="ViewLogoFallback">
-						<param name="visible">String.IsEmpty(ListItem.Art(Thumb))</param>
-						<param name="font">Font33_Bold</param>
-					</include>
-				</itemlayout>
-				<focusedlayout height="195" width="330" condition="Skin.HasSetting(View533SmallIcons) + Window.IsVisible(MyPVRChannels.xml)">
-					<control type="image">
-						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
-					</control>
-					<control type="group">
-						<animation  type="Focus" reversible="false">
-							<effect type="zoom" start="95" end="100" time="300" center="auto" />
-						</animation>
-						<control type="group">
-							<visible>!String.IsEmpty(ListItem.Art(Thumb))</visible>
-							<include content="ViewArtwork">
-								<param name="aspect">keep</param>
-								<param name="art">$INFO[ListItem.Art(thumb)]</param>
-							</include>
-						</control>
-						<include content="ViewLogoFallback">
-							<param name="visible">String.IsEmpty(ListItem.Art(Thumb))</param>
-							<param name="font">Font33_Bold</param>
-						</include>
-					</control>
-				</focusedlayout>
 				<itemlayout height="260" width="447" condition="!Skin.HasSetting(View533SmallIcons) + String.IsEmpty(Skin.String(View533Art))">
 					<include content="ViewArtwork">
+						<param name="texturefadetime">0</param>
 						<param name="art">$VAR[LandscapeVar]</param>
 						<param name="diffuse">diffuse/rounded5-427x240.png</param>
 					</include>
@@ -177,9 +111,10 @@
 					</control>
 					<control type="group">
 						<animation  type="Focus" reversible="false">
-							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+							<effect type="zoom" start="95" end="100" time="240" center="auto" />
 						</animation>
 						<include content="ViewArtwork">
+							<param name="texturefadetime">0</param>
 							<param name="art">$VAR[LandscapeVar]</param>
 							<param name="diffuse">diffuse/rounded5-427x240.png</param>
 						</include>
@@ -189,6 +124,7 @@
 					<control type="group">
 						<visible>!String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo))</visible>
 						<include content="ViewArtwork">
+							<param name="texturefadetime">0</param>
 							<param name="aspect">keep</param>
 							<param name="art">$VAR[ClearLogoVar]</param>
 						</include>
@@ -204,11 +140,12 @@
 					</control>
 					<control type="group">
 						<animation  type="Focus" reversible="false">
-							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+							<effect type="zoom" start="95" end="100" time="240" center="auto" />
 						</animation>
 						<control type="group">
 							<visible>!String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo))</visible>
 							<include content="ViewArtwork">
+								<param name="texturefadetime">0</param>
 								<param name="aspect">keep</param>
 								<param name="art">$VAR[ClearLogoVar]</param>
 							</include>
@@ -224,6 +161,7 @@
 						<visible>!String.IsEmpty(ListItem.Art(clearart)) | !String.IsEmpty(ListItem.Art(tvshow.clearart)) | !String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearart)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo))</visible>
 						<include content="ViewArtwork">
 							<param name="aspect">keep</param>
+							<param name="texturefadetime">0</param>
 							<param name="art">$VAR[ClearArtVar]</param>
 						</include>
 					</control>
@@ -238,12 +176,13 @@
 					</control>
 					<control type="group">
 						<animation  type="Focus" reversible="false">
-							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+							<effect type="zoom" start="95" end="100" time="240" center="auto" />
 						</animation>
 						<control type="group">
 							<visible>!String.IsEmpty(ListItem.Art(clearart)) | !String.IsEmpty(ListItem.Art(tvshow.clearart)) | !String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearart)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo))</visible>
 							<include content="ViewArtwork">
 								<param name="aspect">keep</param>
+								<param name="texturefadetime">0</param>
 								<param name="art">$VAR[ClearArtVar]</param>
 							</include>
 						</control>
@@ -255,6 +194,7 @@
 				</focusedlayout>
 				<itemlayout height="195" width="330" condition="Skin.HasSetting(View533SmallIcons) + String.IsEmpty(Skin.String(View533Art))">
 					<include content="ViewArtwork">
+						<param name="texturefadetime">0</param>
 						<param name="art">$VAR[LandscapeVar]</param>
 						<param name="diffuse">diffuse/rounded5-310x175.png</param>
 					</include>
@@ -265,9 +205,10 @@
 					</control>
 					<control type="group">
 						<animation  type="Focus" reversible="false">
-							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+							<effect type="zoom" start="95" end="100" time="240" center="auto" />
 						</animation>
 						<include content="ViewArtwork">
+							<param name="texturefadetime">0</param>
 							<param name="art">$VAR[LandscapeVar]</param>
 							<param name="diffuse">diffuse/rounded5-310x175.png</param>
 						</include>
@@ -278,6 +219,7 @@
 						<visible>!String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo))</visible>
 						<include content="ViewArtwork">
 							<param name="aspect">keep</param>
+							<param name="texturefadetime">0</param>
 							<param name="art">$VAR[ClearLogoVar]</param>
 						</include>
 					</control>
@@ -292,12 +234,13 @@
 					</control>
 					<control type="group">
 						<animation  type="Focus" reversible="false">
-							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+							<effect type="zoom" start="95" end="100" time="240" center="auto" />
 						</animation>
 						<control type="group">
 							<visible>!String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo))</visible>
 							<include content="ViewArtwork">
 								<param name="aspect">keep</param>
+								<param name="texturefadetime">0</param>
 								<param name="art">$VAR[ClearLogoVar]</param>
 							</include>
 						</control>
@@ -312,6 +255,7 @@
 						<visible>!String.IsEmpty(ListItem.Art(clearart)) | !String.IsEmpty(ListItem.Art(tvshow.clearart)) | !String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearart)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo))</visible>
 						<include content="ViewArtwork">
 							<param name="aspect">keep</param>
+							<param name="texturefadetime">0</param>
 							<param name="art">$VAR[ClearArtVar]</param>
 						</include>
 					</control>
@@ -326,12 +270,13 @@
 					</control>
 					<control type="group">
 						<animation  type="Focus" reversible="false">
-							<effect type="zoom" start="95" end="100" time="300" center="auto" />
+							<effect type="zoom" start="95" end="100" time="240" center="auto" />
 						</animation>
 						<control type="group">
 							<visible>!String.IsEmpty(ListItem.Art(clearart)) | !String.IsEmpty(ListItem.Art(tvshow.clearart)) | !String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearart)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(clearlogo))</visible>
 							<include content="ViewArtwork">
 								<param name="aspect">keep</param>
+								<param name="texturefadetime">0</param>
 								<param name="art">$VAR[ClearArtVar]</param>
 							</include>
 						</control>
@@ -360,7 +305,6 @@
 			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsTVShows</include>
 			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsVideos5</include>
 			<include condition="Window.IsVisible(MyMusicNav.xml)">MediaFlagsAudio</include>
-			<include condition="Window.IsVisible(MyPVRChannels.xml)">MediaFlagsPVR</include>
 		</control>
 	</include>
 </includes>

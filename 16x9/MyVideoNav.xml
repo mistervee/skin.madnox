@@ -4,48 +4,53 @@
 	<views>50,51,53,54,55,56,57,58,500,501,502,503,504,505,506,507,508,509,510,511,512,520,521,522,523,530,531,532,533,540,541,542,543</views>
 	<menucontrol>9050</menucontrol>
 	<onload condition="System.HasAddon(script.tv.show.next.aired)">RunScript(script.tv.show.next.aired,backend=True)</onload>
-	<!-- <onload condition="!Skin.HasSetting(BlurEnabled)">Skin.ToggleSetting(BlurEnabled)</onload>
-	<onload condition="!Skin.HasSetting(BlurEnabled)">RunScript(script.embuary.helper,action=restartservice)</onload>
-	<onload>Skin.String(BlurRadius,10)</onload>
-	<onload>RunScript(script.embuary.helper,action=restartservice)</onload> -->
 	<controls>
-		<!-- <control type="image" id="100000">
-			<include>HiddenObject</include>
-			<texture background="true">$INFO[ListItem.Icon]</texture>
-		</control> -->
-		<!-- Backdrop -->
+		<!-- Background -->
 		<include content="BackgroundDefault">
 			<param name="imagepath">$VAR[VideoBackgroundVar]</param>
 		</include>
-		<control type="fadelabel" id="398046">
-			<top>-1000</top>
-			<width>1</width>
-			<height>1</height>
-			<scroll>false</scroll>
-			<randomize>true</randomize>
-			<scrollout>false</scrollout>
-			<pauseatend>5000</pauseatend>
-			<resetonlabelchange>true</resetonlabelchange>
-			<label>$INFO[Container(811111).ListItem(0).Art(fanart)]</label>
-			<label>$INFO[Container(811111).ListItem(1).Art(fanart)]</label>
-			<label>$INFO[Container(811111).ListItem(2).Art(fanart)]</label>
-			<label>$INFO[Container(811111).ListItem(3).Art(fanart)]</label>
-			<label>$INFO[Container(811111).ListItem(4).Art(fanart)]</label>
-			<label>$INFO[Container(811111).ListItem(5).Art(fanart)]</label>
-			<label>$INFO[Container(811111).ListItem(6).Art(fanart)]</label>
-			<label>$INFO[Container(811111).ListItem(7).Art(fanart)]</label>
-			<label>$INFO[Container(811111).ListItem(8).Art(fanart)]</label>
-			<label>$INFO[Container(811111).ListItem(9).Art(fanart)]</label>
+		<!-- Movie set / TV show season cover background -->
+		<control type="list" id="7001">
+			<visible>[Skin.HasSetting(VideoSetCover) + String.IsEqual(ListItem.DBTYPE,set)] | [Skin.HasSetting(SeasonCover) + String.IsEqual(ListItem.DBTYPE,tvshow)]</visible>
+			<include>HiddenList</include>
+			<content limit="10" sortby="year">$INFO[ListItem.FolderPath]</content>
 		</control>
-		<control type="fadelabel" id="398045">
-			<visible>Skin.HasSetting(VideoExtraFanart)</visible>
+		<!-- Genre cover background / Subfolder fanart / Item counts -->
+		<control type="list" id="7002">
+			<include>HiddenList</include>
+			<content>$INFO[ListItem.FolderPath]</content>
+		</control>
+		<!-- Subfolder fanart -->
+		<control type="fadelabel" id="7003">
 			<top>-1000</top>
 			<width>1</width>
 			<height>1</height>
 			<scroll>false</scroll>
 			<randomize>true</randomize>
 			<scrollout>false</scrollout>
-			<pauseatend>5000</pauseatend>
+			<include>FadeLabelTime</include>
+			<resetonlabelchange>true</resetonlabelchange>
+			<label>$INFO[Container(7002).ListItem(0).Art(fanart)]</label>
+			<label>$INFO[Container(7002).ListItem(1).Art(fanart)]</label>
+			<label>$INFO[Container(7002).ListItem(2).Art(fanart)]</label>
+			<label>$INFO[Container(7002).ListItem(3).Art(fanart)]</label>
+			<label>$INFO[Container(7002).ListItem(4).Art(fanart)]</label>
+			<label>$INFO[Container(7002).ListItem(5).Art(fanart)]</label>
+			<label>$INFO[Container(7002).ListItem(6).Art(fanart)]</label>
+			<label>$INFO[Container(7002).ListItem(7).Art(fanart)]</label>
+			<label>$INFO[Container(7002).ListItem(8).Art(fanart)]</label>
+			<label>$INFO[Container(7002).ListItem(9).Art(fanart)]</label>
+		</control>
+		<!-- Extra fanart -->
+		<control type="fadelabel" id="7004">
+			<visible>!Skin.HasSetting(DisableVideoExtraFanart)</visible>
+			<top>-1000</top>
+			<width>1</width>
+			<height>1</height>
+			<scroll>false</scroll>
+			<randomize>true</randomize>
+			<scrollout>false</scrollout>
+			<include>FadeLabelTime</include>
 			<resetonlabelchange>true</resetonlabelchange>
 			<label>$INFO[ListItem.Art(fanart)]</label>
 			<label>$INFO[ListItem.Art(fanart1)]</label>
@@ -58,16 +63,7 @@
 			<label>$INFO[ListItem.Art(fanart8)]</label>
 			<label>$INFO[ListItem.Art(fanart9)]</label>
 			<label>$INFO[ListItem.Art(fanart10)]</label>
-			<label>$INFO[ListItem.Art(fanart11)]</label>
-			<label>$INFO[ListItem.Art(fanart12)]</label>
-			<label>$INFO[ListItem.Art(fanart13)]</label>
-			<label>$INFO[ListItem.Art(fanart14)]</label>
-			<label>$INFO[ListItem.Art(fanart15)]</label>
-			<label>$INFO[ListItem.Art(fanart16)]</label>
-			<label>$INFO[ListItem.Art(fanart17)]</label>
-			<label>$INFO[ListItem.Art(fanart18)]</label>
-			<label>$INFO[ListItem.Art(fanart19)]</label>
-			<label>$INFO[ListItem.Art(fanart20)]</label>
+			<label>$INFO[ListItem.Art(tvshow.fanart)]</label>
 			<label>$INFO[ListItem.Art(tvshow.fanart1)]</label>
 			<label>$INFO[ListItem.Art(tvshow.fanart2)]</label>
 			<label>$INFO[ListItem.Art(tvshow.fanart3)]</label>
@@ -78,69 +74,48 @@
 			<label>$INFO[ListItem.Art(tvshow.fanart8)]</label>
 			<label>$INFO[ListItem.Art(tvshow.fanart9)]</label>
 			<label>$INFO[ListItem.Art(tvshow.fanart10)]</label>
-			<label>$INFO[ListItem.Art(tvshow.fanart11)]</label>
-			<label>$INFO[ListItem.Art(tvshow.fanart12)]</label>
-			<label>$INFO[ListItem.Art(tvshow.fanart13)]</label>
-			<label>$INFO[ListItem.Art(tvshow.fanart14)]</label>
-			<label>$INFO[ListItem.Art(tvshow.fanart15)]</label>
-			<label>$INFO[ListItem.Art(tvshow.fanart16)]</label>
-			<label>$INFO[ListItem.Art(tvshow.fanart17)]</label>
-			<label>$INFO[ListItem.Art(tvshow.fanart18)]</label>
-			<label>$INFO[ListItem.Art(tvshow.fanart19)]</label>
-			<label>$INFO[ListItem.Art(tvshow.fanart20)]</label>
 		</control>
 		<control type="group">
 			<visible>!Window.IsActive(movieinformation)</visible>
 			<include>AnimationInfoDialog</include>
-			<!-- Views -->
-			<control type="group">
-				<visible>!Window.IsActive(addoninformation)</visible>
-				<include>AnimationInfoDialog</include>
-				<!-- List -->
-				<include>View50CoverList</include>
-				<include>View51SimpleList</include>
-				<include condition="!Skin.HasSetting(DisableViewInfo1)">View53InfoList1</include>
-				<include condition="!Skin.HasSetting(DisableViewInfo2)">View54InfoList2</include>
-				<include condition="!Skin.HasSetting(DisableViewLow)">View55LowList</include>
-				<include condition="!Skin.HasSetting(DisableView3Panel)">View563Panel</include>
-				<include condition="!Skin.HasSetting(DisableView3PanelSquare)">View573PanelSquare</include>
-				<include condition="!Skin.HasSetting(DisableViewRightList)">View58RightList</include>
-				<!-- Cover flow -->
-				<include condition="!Skin.HasSetting(DisableViewPortrait)">View500Portrait</include>
-				<include condition="!Skin.HasSetting(DisableViewSquare)">View501Square</include>
-				<include condition="!Skin.HasSetting(DisableViewBanner)">View502Banner</include>
-				<include condition="!Skin.HasSetting(DisableViewLandscape)">View503Landscape</include>
-				<include condition="!Skin.HasSetting(DisableViewFocus)">View504Focus</include>
-				<include condition="!Skin.HasSetting(DisableViewFocusSquare)">View505FocusSquare</include>
-				<include condition="!Skin.HasSetting(DisableViewCascade)">View506Cascade</include>
-				<include condition="!Skin.HasSetting(DisableViewCascadeSquare)">View507CascadeSquare</include>
-				<include condition="!Skin.HasSetting(DisableViewShowCase)">View508Showcase</include>
-				<include condition="!Skin.HasSetting(DisableViewShowCaseSquare)">View509ShowcaseSquare</include>
-				<include condition="!Skin.HasSetting(DisableViewKodiflix)">View510KodiFlix</include>
-				<include condition="!Skin.HasSetting(DisableViewKodiflixSquare)">View511KodiFlixSquare</include>
-				<include condition="!Skin.HasSetting(DisableViewKodiflixLandscape)">View512KodiFlixLandscape</include>
-				<!-- Icon -->
-				<include condition="!Skin.HasSetting(DisableViewPortraitIcon)">View520PortraitIcon</include>
-				<include condition="!Skin.HasSetting(DisableViewSquareIcon)">View521SquareIcon</include>
-				<include condition="!Skin.HasSetting(DisableViewBannerIcon)">View522BannerIcon</include>
-				<include condition="!Skin.HasSetting(DisableViewLandscapeIcon)">View523LandscapeIcon</include>
-				<!-- Icon info-->
-				<include condition="!Skin.HasSetting(DisableViewPortraitIconInfo)">View530PortraitIconInfo</include>
-				<include condition="!Skin.HasSetting(DisableViewSquareIconInfo)">View531SquareIconInfo</include>
-				<include condition="!Skin.HasSetting(DisableViewBannerIconInfo)">View532BannerIconInfo</include>
-				<include condition="!Skin.HasSetting(DisableViewLandscapeIconInfo)">View533LandscapeIconInfo</include>
-				<!-- Wall -->
-				<include condition="!Skin.HasSetting(DisableViewPortraitWall)">View540PortraitWall</include>
-				<include condition="!Skin.HasSetting(DisableViewSquareWall)">View541SquareWall</include>
-				<include condition="!Skin.HasSetting(DisableViewBannerWall)">View542BannerWall</include>
-				<include condition="!Skin.HasSetting(DisableViewLandscapeWall)">View543LandscapeWall</include>
-			</control>
-			<!-- Hidden - Set/Artist/Album count -->
-			<control type="list" id="811111">
-				<visible>String.StartsWith(ListItem.FolderPath,videodb) + [String.IsEqual(ListItem.DBTYPE,set) | Container.Content(artists) | Container.Content(albums)]</visible>
-				<include>HiddenList</include>
-				<content>$INFO[ListItem.FolderPath]</content>
-			</control>
+			<!-- List -->
+			<include>View50CoverList</include>
+			<include>View51SimpleList</include>
+			<include condition="!Skin.HasSetting(DisableViewInfo1)">View53InfoList1</include>
+			<include condition="!Skin.HasSetting(DisableViewInfo2)">View54InfoList2</include>
+			<include condition="!Skin.HasSetting(DisableViewLow)">View55LowList</include>
+			<include condition="!Skin.HasSetting(DisableView3Panel)">View563Panel</include>
+			<include condition="!Skin.HasSetting(DisableView3PanelSquare)">View573PanelSquare</include>
+			<include condition="!Skin.HasSetting(DisableViewRightList)">View58RightList</include>
+			<!-- Cover flow -->
+			<include condition="!Skin.HasSetting(DisableViewPortrait)">View500Portrait</include>
+			<include condition="!Skin.HasSetting(DisableViewSquare)">View501Square</include>
+			<include condition="!Skin.HasSetting(DisableViewBanner)">View502Banner</include>
+			<include condition="!Skin.HasSetting(DisableViewLandscape)">View503Landscape</include>
+			<include condition="!Skin.HasSetting(DisableViewFocus)">View504Focus</include>
+			<include condition="!Skin.HasSetting(DisableViewFocusSquare)">View505FocusSquare</include>
+			<include condition="!Skin.HasSetting(DisableViewCascade)">View506Cascade</include>
+			<include condition="!Skin.HasSetting(DisableViewCascadeSquare)">View507CascadeSquare</include>
+			<include condition="!Skin.HasSetting(DisableViewShowCase)">View508Showcase</include>
+			<include condition="!Skin.HasSetting(DisableViewShowCaseSquare)">View509ShowcaseSquare</include>
+			<include condition="!Skin.HasSetting(DisableViewKodiflix)">View510KodiFlix</include>
+			<include condition="!Skin.HasSetting(DisableViewKodiflixSquare)">View511KodiFlixSquare</include>
+			<include condition="!Skin.HasSetting(DisableViewKodiflixLandscape)">View512KodiFlixLandscape</include>
+			<!-- Icon -->
+			<include condition="!Skin.HasSetting(DisableViewPortraitIcon)">View520PortraitIcon</include>
+			<include condition="!Skin.HasSetting(DisableViewSquareIcon)">View521SquareIcon</include>
+			<include condition="!Skin.HasSetting(DisableViewBannerIcon)">View522BannerIcon</include>
+			<include condition="!Skin.HasSetting(DisableViewLandscapeIcon)">View523LandscapeIcon</include>
+			<!-- Icon info-->
+			<include condition="!Skin.HasSetting(DisableViewPortraitIconInfo)">View530PortraitIconInfo</include>
+			<include condition="!Skin.HasSetting(DisableViewSquareIconInfo)">View531SquareIconInfo</include>
+			<include condition="!Skin.HasSetting(DisableViewBannerIconInfo)">View532BannerIconInfo</include>
+			<include condition="!Skin.HasSetting(DisableViewLandscapeIconInfo)">View533LandscapeIconInfo</include>
+			<!-- Wall -->
+			<include condition="!Skin.HasSetting(DisableViewPortraitWall)">View540PortraitWall</include>
+			<include condition="!Skin.HasSetting(DisableViewSquareWall)">View541SquareWall</include>
+			<include condition="!Skin.HasSetting(DisableViewBannerWall)">View542BannerWall</include>
+			<include condition="!Skin.HasSetting(DisableViewLandscapeWall)">View543LandscapeWall</include>
 			<!-- Studio Logo check if image exists -->
 			<control type="image" id="811112">
 				<include>HiddenObject</include>
@@ -148,7 +123,7 @@
 			</control>
 			<!-- Topbar -->
 			<control type="group">
-				<visible>!Skin.HasSetting(ViewsHideTopBar)</visible>
+				<visible>!Skin.HasSetting(VideosHideTopBar)</visible>
 				<include content="AnimationSlideTopWindow">
 					<param name="slide">90</param>
 				</include>
@@ -161,6 +136,8 @@
 				</include>
 			</control>
 		</control>
+		<!-- Jump to Letter -->
+		<include>JumptoLetter</include>
 		<!-- Media Menu -->
 		<include>MediaMenuMouseOverlay</include>
 		<control type="group">

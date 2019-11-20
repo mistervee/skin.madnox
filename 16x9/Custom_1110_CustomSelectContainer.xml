@@ -8,21 +8,15 @@
 			<visible>!Window.IsActive(DialogSelect.xml)</visible>
 			<include>AnimationDialogPopupVisible</include>
 			<include content="DialogBackground">
-				<param name="width" value="1030" />
-				<param name="height" value="580" />
+				<param name="width" value="1220" />
+				<param name="height" value="760" />
 				<param name="label">$INFO[Window(home).Property(CustomSelect)]</param>
-				<param name="diffusetexture">diffuse/rounded10-990x540.png</param>
 			</include>
-			<control type="button" id="8000">
-				<onleft>100</onleft>
-				<ondown>100</ondown>
-				<include>DialogButtonClose</include>
-			</control>
 			<control type="list" id="100">
-				<top>90</top>
 				<left>20</left>
-				<width>990</width>
-				<height>420</height>
+				<top>90</top>
+				<width>858</width>
+				<height>600</height>
 				<onleft>60</onleft>
 				<onright>8000</onright>
 				<pagecontrol>60</pagecontrol>
@@ -30,19 +24,10 @@
 					<param name="id">100</param>
 				</include>
 				<content>
-					<!-- Backgrounds -->
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),homeicons)">SelectHomeIcons</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[3] $LOCALIZE[31107])">SelectVideoBackground</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[14204] $LOCALIZE[31107])">SelectPVRBackground</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[2] $LOCALIZE[31107])">SelectMusicBackground</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[15016] $LOCALIZE[31107])">SelectGamesBackground</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[1] $LOCALIZE[31107])">SelectPicturesBackground</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[24001] $LOCALIZE[31107])">SelectAddonBackground</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[8] $LOCALIZE[31107])">SelectWeatherBackground</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[13000] $LOCALIZE[31107])">SelectSystemBackground</include>
 
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31030])">SelectNowPlayingMusicBackground</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31029])">SelectNowPlayingVideoBackground</include>
+					<onclick>SetProperty(CustomSelect,$LOCALIZE[31310],home)</onclick>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31310])">SelectFanartRotationSpeed</include>
+
 					<!-- Main menu -->
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31041] $LOCALIZE[31144])">SelectMainMenuLayout</include>
 
@@ -75,6 +60,21 @@
 					<!-- Theme -->
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[15111])">SelectCustomTheme</include>
 				</content>
+			</control>
+			<control type="image">
+				<right>338</right>
+				<include>DialogVerticalSeparator</include>
+			</control>
+			<control type="grouplist" id="8000">
+				<right>50</right>
+				<top>100</top>
+				<width>281</width>
+				<onleft>100</onleft>
+				<include content="DialogButtonAction">
+					<param name="id">8001</param>
+					<param name="label" value="$LOCALIZE[15067]"/>
+					<param name="onclick" value="Action(close)"/>
+				</include>
 			</control>
 			<control type="image">
 				<include>DialogHorizontalSeparator</include>

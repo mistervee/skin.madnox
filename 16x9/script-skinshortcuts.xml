@@ -2,7 +2,9 @@
 <window>
 	<defaultcontrol always="true">90001</defaultcontrol>
 	<onload>ClearProperty(skinshortcuts-Widget,Home)</onload>
+	<onload>ClearProperty(skinshortcuts-CoverBackground,Home)</onload>
 	<onunload>ClearProperty(skinshortcuts-Widget,Home)</onunload>
+	<onunload>ClearProperty(skinshortcuts-CoverBackground,Home)</onunload>
 	<onunload>ClearProperty(skinshortcuts-management-widget,10000)</onunload>
 	<onunload condition="String.IsEmpty(Window.Property(additionalDialog))">RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;levels=2&amp;group=mainmenu|quicknav)</onunload>
 	<onunload>ClearProperty(WidgetFocus1,Home)</onunload>
@@ -141,7 +143,7 @@
 				<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
 			</control>
 			<control type="grouplist" id="90000">
-				<visible>String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
+				<visible>String.IsEmpty(Window(Home).Property(skinshortcuts-Widget)) + String.IsEmpty(Window(Home).Property(skinshortcuts-CoverBackground))</visible>
 				<top>200</top>
 				<left>445</left>
 				<width>1335</width>
@@ -187,6 +189,15 @@
 					<font>Font40_Icon</font>
 					<label></label>
 				</control>
+				<control type="button" id="308">
+					<description>Reset/Restore</description>
+					<texturefocus />
+					<texturenofocus />
+					<width>67</width>
+					<align>center</align>
+					<font>Font40_Icon</font>
+					<label></label>
+				</control>
 				<control type="label">
 					<width>16</width>
 				</control>
@@ -196,7 +207,7 @@
 				</control>
 			</control>
 			<control type="grouplist" id="90001">
-				<visible>String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
+				<visible>String.IsEmpty(Window(Home).Property(skinshortcuts-Widget)) + String.IsEmpty(Window(Home).Property(skinshortcuts-CoverBackground))</visible>
 				<top>267</top>
 				<left>425</left>
 				<width>1395</width>
@@ -232,8 +243,17 @@
 				<control type="button" id="310">
 					<description>Background</description>
 					<label>$ADDON[script.skinshortcuts 32045]</label>
-					<label2>$INFO[Container(211).ListItem.Property(background)]</label2>
+					<label2>$INFO[Container(211).ListItem.Property(backgroundName)]</label2>
 					<visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="509">
+					<visible>String.IsEqual(Window.Property(groupname),mainmenu) + String.IsEqual(Container(211).ListItem.Property(background),cover)</visible>
+					<description>Cover background settings</description>
+					<label>Cover background settings</label>
+					<onfocus condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-CoverBackground))">ClearProperty(skinshortcuts-CoverBackground,Home)</onfocus>
+					<onclick>SetProperty(skinshortcuts-CoverBackground,1,Home)</onclick>
+					<onclick>Control.SetFocus(8092)</onclick>
 					<include>SettingsButton</include>
 				</control>
 				<control type="button" id="500">
@@ -314,9 +334,44 @@
 					<onclick>Control.SetFocus(8062)</onclick>
 					<include>SettingsButton</include>
 				</control>
-				<control type="button" id="308">
-					<description>Restore shortcuts</description>
-					<label>$ADDON[script.skinshortcuts 32028]</label>
+			</control>
+		</control>
+		<!-- Cover background settings -->
+		<control type="group">
+			<visible>String.IsEqual(Window(Home).Property(skinshortcuts-CoverBackground),1)</visible>
+			<control type="button" id="809">
+				<include>FullScreenDimensions</include>
+				<onclick>back</onclick>
+				<texturefocus />
+				<texturenofocus />
+			</control>
+			<control type="grouplist" id="8091">
+				<top>200</top>
+				<left>425</left>
+				<width>1395</width>
+				<height>670</height>
+				<control type="radiobutton" id="8092">
+					<label>$LOCALIZE[31084]</label>
+					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(covercase))">SetProperty(customProperty,covercase)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(covercase))">SetProperty(customProperty,covercase)</onclick>
+					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(covercase))">SetProperty(customValue,true)</onclick>
+					<onclick>SendClick(404)</onclick>
+					<selected>!String.IsEmpty(Container(211).ListItem.Property(covercase))</selected>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8093">
+					<label>$LOCALIZE[33068]</label>
+					<label2>$VAR[BackgroundCoverLabelVar]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8094">
+					<label>$LOCALIZE[580]</label>
+					<label2>$VAR[BackgroundSortDirectionLabelVar]</label2>
+					<include>SettingsButton</include>
+				</control>
+				<control type="button" id="8095">
+					<label>$LOCALIZE[581]</label>
+					<label2>$VAR[BackgroundSortOrderLabelVar]</label2>
 					<include>SettingsButton</include>
 				</control>
 			</control>

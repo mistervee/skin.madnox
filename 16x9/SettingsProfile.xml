@@ -9,22 +9,24 @@
 		</include>
 		<!-- Floor -->
 		<control type="group">
-			<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
 				<param name="opencondition">$EXP[SystemAnimationOpenCondition]</param>
 				<param name="closecondition">$EXP[SystemAnimationCloseCondition]</param>
 			</include>
-			<include content="AnimationSlideBottomVisible">
-				<param name="slide">220</param>
+			<control type="group">
+				<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
+				<include>Floor</include>
+			</control>
+			<include content="FloorShadow">
+				<param name="visible">Skin.HasSetting(SettingsHideFloor)</param>
 			</include>
-			<include>Floor</include>
 		</control>
 		<!-- Panel -->
 		<control type="group">
 			<include>AnimationZoomWindow</include>
 			<include content="PanelSide">
-				<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
+				<param name="reflect">!Skin.HasSetting(SettingsHideReflect)</param>
 			</include>
 		</control>
 		<!-- Content -->
@@ -42,6 +44,7 @@
 				<height>612</height>
 				<onleft>9050</onleft>
 				<onright>8010</onright>
+				<include>ContainerScrollTime</include>
 				<itemlayout height="67">
 					<control type="label">
 						<label>$INFO[ListItem.Label]</label>
@@ -81,6 +84,7 @@
 					<width>1395</width>
 					<height>737</height>
 					<onleft>8000</onleft>
+					<include>ContainerScrollTime</include>
 					<control type="radiobutton" id="4">
 						<label>$LOCALIZE[20096]</label>
 						<include>SettingsRadioButton</include>
@@ -101,6 +105,7 @@
 					<onleft>8000</onleft>
 					<onright>60</onright>
 					<pagecontrol>60</pagecontrol>
+					<include>ContainerScrollTime</include>
 					<itemlayout height="67">
 						<control type="image">
 							<texture border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>

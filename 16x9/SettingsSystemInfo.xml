@@ -9,22 +9,24 @@
 		</include>
 		<!-- Floor -->
 		<control type="group">
-			<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
 				<param name="opencondition">$EXP[SystemAnimationOpenCondition]</param>
 				<param name="closecondition">$EXP[SystemAnimationCloseCondition]</param>
 			</include>
-			<include content="AnimationSlideBottomVisible">
-				<param name="slide">220</param>
+			<control type="group">
+				<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
+				<include>Floor</include>
+			</control>
+			<include content="FloorShadow">
+				<param name="visible">Skin.HasSetting(SettingsHideFloor)</param>
 			</include>
-			<include>Floor</include>
 		</control>
 		<!-- Panel -->
 		<control type="group">
 			<include>AnimationZoomWindow</include>
 			<include content="PanelSide">
-				<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
+				<param name="reflect">!Skin.HasSetting(SettingsHideReflect)</param>
 			</include>
 		</control>
 		<!-- Content -->
@@ -150,6 +152,7 @@
 				<pagecontrol>60</pagecontrol>
 				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 				<autoscroll delay="5000" repeat="7500" time="5000">!Control.HasFocus(60)</autoscroll>
+				<include>ContainerScrollTime</include>
 			</control>
 			<control type="grouplist">
 				<left>460</left>

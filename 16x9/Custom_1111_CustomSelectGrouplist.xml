@@ -8,35 +8,55 @@
 			<visible>!Window.IsActive(DialogSelect.xml) + !Window.IsActive(1110) + !Window.IsActive(addonsettings)</visible>
 			<include>AnimationDialogPopupVisible</include>
 			<include content="DialogBackground">
-				<param name="width" value="1030" />
-				<param name="height" value="580" />
-				<param name="label">$INFO[Window(home).Property(CustomSelectGroup)]</param>
+				<param name="width" value="1220" />
+				<param name="height" value="760" />
+				<param name="label" value="$INFO[Window(home).Property(CustomSelectGroup)]" />
 			</include>
-			<control type="button" id="8000">
-				<onleft>100</onleft>
-				<ondown>100</ondown>
-				<include>DialogButtonClose</include>
-			</control>
 			<control type="grouplist" id="100">
-				<top>90</top>
 				<left>20</left>
-				<width>990</width>
-				<height>420</height>
+				<top>90</top>
+				<width>858</width>
+				<height>600</height>
 				<onleft>60</onleft>
 				<onright>8000</onright>
 				<pagecontrol>60</pagecontrol>
+				<include>ContainerScrollTime</include>
 				<!-- Enable/Disable views -->
 				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[31270])">DisableViewsSettings</include>
 				<!-- Top bar -->
 				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[31042])">TopbarSettings</include>
 				<!-- MusicOSD -->
-				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[10120])">MusicOSDSettings</include>
+				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[31312])">MusicOSDSettings</include>
 				<!-- VideoOSD -->
-				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[10123])">VideoOSDSettings</include>
+				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[12005])">VideoOSDSettings</include>
 				<!-- Live Background -->
 				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[31103])">LiveBackgroundSettings</include>
 				<!-- Video info -->
 				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[12003])">VideoInfoSettings</include>
+				<!-- Backgrounds -->
+				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[3] $LOCALIZE[31107])">SelectVideoBackground</include>
+				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[2] $LOCALIZE[31107])">SelectMusicBackground</include>
+				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[24001] $LOCALIZE[31107])">SelectAddonBackground</include>
+				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[14204] $LOCALIZE[31107])">SelectPVRBackground</include>
+				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[15016] $LOCALIZE[31107])">SelectGamesBackground</include>
+				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[1] $LOCALIZE[31107])">SelectPicturesBackground</include>
+				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[8] $LOCALIZE[31107])">SelectWeatherBackground</include>
+				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[13000] $LOCALIZE[31107])">SelectSystemBackground</include>
+			</control>
+			<control type="image">
+				<right>338</right>
+				<include>DialogVerticalSeparator</include>
+			</control>
+			<control type="grouplist" id="8000">
+				<right>50</right>
+				<top>100</top>
+				<width>281</width>
+				<onleft>100</onleft>
+				<include content="DialogButtonAction">
+					<param name="id">8001</param>
+					<param name="label" value="$LOCALIZE[15067]"/>
+					<param name="onclick" value="Action(close)"/>
+				</include>
 			</control>
 			<control type="image">
 				<include>DialogHorizontalSeparator</include>

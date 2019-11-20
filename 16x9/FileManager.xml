@@ -9,16 +9,18 @@
 		</include>
 		<!-- Floor -->
 		<control type="group">
-			<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
 				<param name="opencondition">$EXP[SystemAnimationOpenCondition]</param>
 				<param name="closecondition">$EXP[SystemAnimationCloseCondition]</param>
 			</include>
-			<include content="AnimationSlideBottomVisible">
-				<param name="slide">220</param>
+			<control type="group">
+				<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
+				<include>Floor</include>
+			</control>
+			<include content="FloorShadow">
+				<param name="visible">Skin.HasSetting(SettingsHideFloor)</param>
 			</include>
-			<include>Floor</include>
 		</control>
 		<!-- Panel -->
 		<control type="group">
@@ -27,7 +29,7 @@
 				<param name="right">965</param>
 				<param name="righttexture">985</param>
 				<param name="diffusetexture">diffuse/rounded20-835x880.png</param>
-				<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
+				<param name="reflect">!Skin.HasSetting(SettingsHideReflect)</param>
 			</include>
 		</control>
 		<control type="group">
@@ -36,7 +38,7 @@
 				<param name="left">965</param>
 				<param name="lefttexture">985</param>
 				<param name="diffusetexture">diffuse/rounded20-835x880.png</param>
-				<param name="reflect">!Skin.HasSetting(SettingsHideFloor)</param>
+				<param name="reflect">!Skin.HasSetting(SettingsHideReflect)</param>
 			</include>
 		</control>
 		<!-- Content -->
@@ -59,12 +61,12 @@
 					<onright>21</onright>
 				</control>
 				<control type="label" id="101">
-					<bottom>102</bottom>
+					<bottom>10</bottom>
 					<left>125</left>
 					<width>785</width>
-					<height>40</height>
-					<font>Font22_Reg</font>
-					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					<height>80</height>
+					<font>Font26_Reg</font>
+					<textcolor>55ffffff</textcolor>
 					<haspath>true</haspath>
 				</control>
 			</control>
@@ -85,12 +87,12 @@
 					<onleft>21</onleft>
 				</control>
 				<control type="label" id="102">
-					<bottom>102</bottom>
+					<bottom>10</bottom>
 					<left>1010</left>
 					<width>785</width>
-					<height>40</height>
-					<font>Font22_Reg</font>
-					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					<height>80</height>
+					<font>Font26_Reg</font>
+					<textcolor>55ffffff</textcolor>
 					<haspath>true</haspath>
 				</control>
 			</control>

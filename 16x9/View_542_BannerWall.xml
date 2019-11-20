@@ -13,8 +13,8 @@
 		</control>
 		<!-- Panel -->
 		<control type="group">
-			<visible>Control.IsVisible(542)</visible>$INFO[Container(542).CurrentItem]
-			<animation effect="slide" end="0,-40" time="240" condition="Skin.HasSetting(ViewsHideTopBar)">Conditional</animation>
+			<visible>Control.IsVisible(542)</visible>
+			<animation effect="slide" end="0,-40" time="240" condition="[$EXP[AreaVisibleVideos] + Skin.HasSetting(VideosHideTopBar)] | [$EXP[AreaVisibleMusic] + Skin.HasSetting(MusicHideTopBar)]">Conditional</animation>
 			<include>AnimationZoomWindow</include>
 			<include>AnimationZoomVisible</include>
 			<control type="panel" id="542">
@@ -25,21 +25,24 @@
 				<onleft>9050</onleft>
 				<onright>60542</onright>
 				<pagecontrol>60542</pagecontrol>
+				<include>ContainerScrollTime</include>
 				<viewtype label="$LOCALIZE[31256]">bigicon</viewtype>
 				<itemlayout height="130" width="613.3" condition="!Skin.HasSetting(View542SmallIcons)">
 					<include content="ViewArtwork">
+						<param name="texturefadetime">0</param>
 						<param name="art">$VAR[BannerVar]</param>
 						<param name="diffuse">diffuse/rounded5-593x110.png</param>
 					</include>
 				</itemlayout>
 				<focusedlayout height="130" width="613.3" condition="!Skin.HasSetting(View542SmallIcons)">
 					<control type="group">
-						<animation effect="zoom" start="100" end="110" center="auto" time="160">focus</animation>
-						<animation effect="zoom" start="110" end="100" center="auto" time="160">unfocus</animation>
+						<animation effect="zoom" start="100" end="110" center="auto" time="240">focus</animation>
+						<animation effect="zoom" start="110" end="100" center="auto" time="240">unfocus</animation>
 						<control type="image">
 							<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
 						</control>
 						<include content="ViewArtwork">
+							<param name="texturefadetime">0</param>
 							<param name="art">$VAR[BannerVar]</param>
 							<param name="diffuse">diffuse/rounded5-593x110.png</param>
 						</include>
@@ -47,18 +50,20 @@
 				</focusedlayout>
 				<itemlayout height="100" width="460" condition="Skin.HasSetting(View542SmallIcons)">
 					<include content="ViewArtwork">
+						<param name="texturefadetime">0</param>
 						<param name="art">$VAR[BannerVar]</param>
 						<param name="diffuse">diffuse/rounded5-440x81.png</param>
 					</include>
 				</itemlayout>
 				<focusedlayout height="100" width="460" condition="Skin.HasSetting(View542SmallIcons)">
 					<control type="group">
-						<animation effect="zoom" start="100" end="115" center="auto" time="160">focus</animation>
-						<animation effect="zoom" start="115" end="100" center="auto" time="160">unfocus</animation>
+						<animation effect="zoom" start="100" end="115" center="auto" time="240">focus</animation>
+						<animation effect="zoom" start="115" end="100" center="auto" time="240">unfocus</animation>
 						<control type="image">
 							<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
 						</control>
 						<include content="ViewArtwork">
+							<param name="texturefadetime">0</param>
 							<param name="art">$VAR[BannerVar]</param>
 							<param name="diffuse">diffuse/rounded5-440x81.png</param>
 						</include>

@@ -4,11 +4,9 @@
 	<include>AnimationDialogPopupWindow</include>
 	<controls>
 		<control type="group">
-			<visible>!Window.IsVisible(virtualkeyboard) + !Window.IsVisible(filebrowser) + !Window.IsVisible(okdialog)</visible>
-			<include>AnimationDialogPopup_Visible</include>
 			<include content="DialogBackground">
-				<param name="width" value="1741" />
-				<param name="height" value="790" />
+				<param name="width" value="1742" />
+				<param name="height" value="760" />
 				<param name="id" value="2" />
 				<param name="diffusetexture">diffuse/rounded10-1701x750.png</param>
 			</include>
@@ -17,8 +15,9 @@
 				<left>20</left>
 				<top>90</top>
 				<width>340</width>
-				<height>630</height>
+				<height>600</height>
 				<onright>5</onright>
+				<include>ContainerScrollTime</include>
 			</control>
 			<control type="button" id="10">
 				<width>340</width>
@@ -30,14 +29,15 @@
 			</control>
 			<!-- Middle -->
 			<control type="grouplist" id="5">
-				<left>361</left>
+				<left>362</left>
 				<top>90</top>
 				<width>1038</width>
-				<height>630</height>
+				<height>600</height>
 				<pagecontrol>60</pagecontrol>
 				<onleft>3</onleft>
 				<onright condition="Control.IsVisible(60)">60</onright>
 				<onright condition="!Control.IsVisible(60)">8000</onright>
+				<include>ContainerScrollTime</include>
 			</control>
 			<control type="label" id="14">
 				<width>1038</width>
@@ -49,7 +49,9 @@
 			</control>
 			<control type="radiobutton" id="8">
 				<width>1038</width>
-				<include>DialogRadioButtonAddonSettings</include>
+				<textwidth>870</textwidth>
+				<radioposx>930</radioposx>
+				<include>DialogRadioButton</include>
 			</control>
 			<control type="spincontrolex" id="9">
 				<width>1038</width>
@@ -64,14 +66,14 @@
 				<include>DialogButton</include>
 			</control>
 			<control type="image">
-				<left>1399</left>
+				<left>1400</left>
 				<include>DialogVerticalSeparator</include>
 			</control>
 			<!-- Buttons -->
 			<control type="grouplist" id="8000">
 				<right>50</right>
 				<top>100</top>
-				<width>281</width>
+				<width>280</width>
 				<onleft condition="Control.IsVisible(60)">60</onleft>
 				<onleft condition="!Control.IsVisible(60)">5</onleft>
 				<include content="DialogButtonAction">

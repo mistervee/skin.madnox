@@ -2,14 +2,13 @@
 <window>
 	<controls>
 		<control type="group">
-			<animation effect="zoom" end="80" center="auto" time="240" tween="cubic" easing="inout" condition="Skin.HasSetting(SmallerNotifications)">Conditional</animation>
-			<animation effect="slide" end="0,-11" time="240" tween="cubic" easing="inout" condition="Skin.HasSetting(SmallerNotifications)">Conditional</animation>
+			<animation effect="zoom" end="80" center="auto" time="480" tween="cubic" easing="inout" condition="Skin.HasSetting(SmallerNotifications)">Conditional</animation>
+			<include>AnimationDialogPopupNotification</include>
 			<top>49</top>
-			<centerleft>50%</centerleft>
+			<left>595</left>
 			<height>134</height>
 			<width>730</width>
 			<control type="group">
-				<include>AnimationDialogPopupWindow</include>
 				<control type="image">
 					<texture colordiffuse="$VAR[PanelShadowColorVar]" border="20">$VAR[DialogShadowScanVar]</texture>
 				</control>
@@ -23,7 +22,7 @@
 					<bottom>10</bottom>
 					<aspectratio scalediffuse="false">center</aspectratio>
 					<texture diffuse="diffuse/rounded10-710x104.png" colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
-					<visible>!Skin.HasSetting(DialogSquare.texture)</visible>
+					<visible>!Skin.HasSetting(PanelSquare.texture)</visible>
 				</control>
 				<control type="image">
 					<top>10</top>
@@ -32,7 +31,7 @@
 					<bottom>10</bottom>
 					<aspectratio scalediffuse="false">center</aspectratio>
 					<texture colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
-					<visible>Skin.HasSetting(DialogSquare.texture)</visible>
+					<visible>Skin.HasSetting(PanelSquare.texture)</visible>
 				</control>
 				<control type="image">
 					<texture colordiffuse="$VAR[PanelEmbossColorVar]" border="40">$VAR[DialogEmbossScanVar]</texture>
@@ -49,7 +48,7 @@
 					<left>26</left>
 					<width>90</width>
 					<height>90</height>
-					<texture colordiffuse="$VAR[PanelHighlightColorVar]">icons/exclamation.png</texture>
+					<texture colordiffuse="$VAR[PanelHighlightColorVar]">DefaultIconInfo.png</texture>
 					<animation effect="fade" start="50" time="800" condition="true" pulse="true">Conditional</animation>
 					<visible>String.IsEmpty(Control.GetLabel(400))</visible>
 				</control>

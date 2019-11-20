@@ -2579,4 +2579,39 @@
 		<property name="studioiconvisible" tag="property" attribute="name|widgetType.6" value="tvshows|seasons">true</property>
 		<property name="studioiconvisible">false</property>
 	</propertyGroup>
+	<other include="coverBackground">
+		<!-- Build include if background is set cover -->
+		<condition tag="property" attribute="name|background">cover</condition>
+		<!-- Retrieve properties -->
+		<property name="id" tag="mainmenuid" />
+		<property name="path" tag="property" attribute="name|backgroundPlaylist" />
+		<property name="coversortby" tag="property" attribute="name|coverSortBy" />
+		<property name="coversortorder" tag="property" attribute="name|coverSortOrder" />
+		<!-- Case -->
+		<property name="casevisible" tag="property" attribute="name|covercase" value="true">true</property>
+		<property name="casevisible">false</property>
+		<!-- Diffuse -->
+		<property name="diffuseportrait" tag="property" attribute="name|covercase" value="true">noop</property>
+		<property name="diffuseportrait">diffuse/rounded5-330x495.png</property>
+		<property name="diffusesquare" tag="property" attribute="name|covercase" value="true">noop</property>
+		<property name="diffusesquare">diffuse/rounded5-376x376.png</property>
+		<controls>
+			<control type="group">
+				<skinshortcuts>visibility</skinshortcuts>
+				<include>AnimationVisibleFade</include>
+				<control type="wraplist" id="7000$SKINSHORTCUTS[id]">
+					<include>HiddenList</include>
+					<content limit="10" sortby="$SKINSHORTCUTS[coversortby]" sortorder="$SKINSHORTCUTS[coversortorder]">$SKINSHORTCUTS[path]</content>
+				</control>
+				<include content="CoverBackground">
+					<param name="id">7000$SKINSHORTCUTS[id]</param>
+					<param name="casevisible">$SKINSHORTCUTS[casevisible]</param>
+					<param name="diffuseportrait">$SKINSHORTCUTS[diffuseportrait]</param>
+					<param name="diffusesquare">$SKINSHORTCUTS[diffusesquare]</param>
+					<param name="portraitvisible">!ControlGroup(90010).HasFocus + [String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,movie) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,set) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,tvshow) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,season) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,episode)]</param>
+					<param name="squarevisible">!ControlGroup(90010).HasFocus + ![String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,movie) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,set) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,tvshow) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,season) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,episode)]</param>
+				</include>
+			</control>
+		</controls>
+	</other>
 </template>

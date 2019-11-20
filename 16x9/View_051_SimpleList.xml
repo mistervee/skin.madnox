@@ -33,16 +33,13 @@
 				<onleft>9050</onleft>
 				<onright>6051</onright>
 				<pagecontrol>6051</pagecontrol>
+				<include>ContainerScrollTime</include>
 				<viewtype label="$LOCALIZE[31215]">list</viewtype>
-				<include condition="!Window.IsVisible(MyPlaylist.xml) + !$EXP[AreaVisiblePVR]" content="ViewContainerList2">
+				<include condition="!Window.IsVisible(MyPlaylist.xml)" content="ViewContainerList2">
 					<param name="id">51</param>
 					<param name="biglistvisible">Skin.HasSetting(View51BigList)</param>
 				</include>
-				<include condition="$EXP[AreaVisiblePVR]" content="ViewContainerPVRList2">
-					<param name="id">51</param>
-					<param name="biglistvisible">Skin.HasSetting(View51BigList)</param>
-				</include>
-				<include condition="Window.IsVisible(MyPlaylist.xml)" content="ViewContainerPlaylistList">
+				<include condition="Window.IsVisible(MyPlaylist.xml)" content="ViewContainerPlaylist">
 					<param name="id">51</param>
 					<param name="biglistvisible">Skin.HasSetting(View51BigList)</param>
 				</include>
@@ -52,6 +49,7 @@
 				<right>80</right>
 				<bottom>140</bottom>
 				<onleft>51</onleft>
+				<onright condition="Control.IsVisible(61300)">61300</onright>
 			</control>
 		</control>
 		<!-- Media flags -->
@@ -67,9 +65,6 @@
 				<param name="bottom">10</param>
 			</include>
 			<include condition="Window.IsVisible(MyMusicNav.xml) | Window.IsVisible(musicplaylist)" content="MediaFlagsAudio">
-				<param name="bottom">10</param>
-			</include>
-			<include condition="$EXP[AreaVisiblePVR]" content="MediaFlagsPVR">
 				<param name="bottom">10</param>
 			</include>
 		</control>

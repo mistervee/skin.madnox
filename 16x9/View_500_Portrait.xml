@@ -67,6 +67,7 @@
 					<pagecontrol>60500</pagecontrol>
 					<focusposition>4</focusposition>
 					<orientation>horizontal</orientation>
+					<include>ContainerScrollTime</include>
 					<viewtype label="$LOCALIZE[31239]">icon</viewtype>
 					<itemlayout width="229" height="334">
 						<control type="group">
@@ -75,9 +76,12 @@
 								<visible>!Skin.HasSetting(View500HideReflect)</visible>
 								<top>319</top>
 								<height>334</height>
-								<include>ViewArtworkReflect</include>
+								<include content="ViewArtworkReflect">
+									<param name="texturefadetime">0</param>
+								</include>
 							</control>
 							<include content="ViewArtwork">
+								<param name="texturefadetime">0</param>
 								<param name="diffuse">diffuse/rounded5-209x314.png</param>
 							</include>
 						</control>
@@ -88,28 +92,33 @@
 								<top>319</top>
 								<height>334</height>
 								<include content="ViewArtworkVideoCaseReflect">
+									<param name="texturefadetime">0</param>
 									<param name="bordersize">15,17,15,33</param>
 								</include>
 							</control>
 							<include content="ViewArtworkVideoCase">
 								<param name="logoheight">27</param>
+								<param name="texturefadetime">0</param>
 								<param name="bordersize">15,33,15,17</param>
 							</include>
 						</control>
 					</itemlayout>
 					<focusedlayout width="229" height="334">
 						<control type="group">
-							<animation effect="zoom" start="100" end="120" center="auto" time="160">focus</animation>
-							<animation effect="zoom" start="120" end="100" center="auto" time="160">unfocus</animation>
+							<animation effect="zoom" start="100" end="120" center="auto" time="240">focus</animation>
+							<animation effect="zoom" start="120" end="100" center="auto" time="240">unfocus</animation>
 							<control type="group">
 								<visible>!Skin.HasSetting(View500VideoCase) | Container.Content(genres)</visible>
 								<control type="group">
 									<visible>!Skin.HasSetting(View500HideReflect)</visible>
 									<top>319</top>
 									<height>334</height>
-									<include>ViewArtworkReflect</include>
+									<include content="ViewArtworkReflect">
+										<param name="texturefadetime">0</param>
+									</include>
 								</control>
 								<include content="ViewArtwork">
+									<param name="texturefadetime">0</param>
 									<param name="diffuse">diffuse/rounded5-209x314.png</param>
 								</include>
 							</control>
@@ -120,11 +129,13 @@
 									<top>319</top>
 									<height>334</height>
 									<include content="ViewArtworkVideoCaseReflect">
+										<param name="texturefadetime">0</param>
 										<param name="bordersize">15,17,15,33</param>
 									</include>
 								</control>
 								<include content="ViewArtworkVideoCase">
 									<param name="logoheight">27</param>
+									<param name="texturefadetime">0</param>
 									<param name="bordersize">15,33,15,17</param>
 								</include>
 							</control>
