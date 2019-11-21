@@ -311,7 +311,13 @@
 	</include>
 	<include name="SelectVideoBackground">
 		<control type="radiobutton" id="101">
-			<visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos) | Window.IsVisible(skinsettings)</visible>
+			<label>$LOCALIZE[31314]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(VideoDisableFanart)</onclick>
+			<selected>Skin.HasSetting(VideoDisableFanart)</selected>
+		</control>
+		<control type="radiobutton" id="102">
+			<visible>!Skin.HasSetting(VideoDisableFanart) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos) | Window.IsVisible(skinsettings)]</visible>
 			<label>$LOCALIZE[31035]</label>
 			<include>DialogRadioButton</include>
 			<onclick>Skin.ToggleSetting(DisableVideoExtraFanart)</onclick>
@@ -421,7 +427,13 @@
 	</include>
 	<include name="SelectMusicBackground">
 		<control type="radiobutton" id="101">
-			<visible>Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos) | Window.IsVisible(skinsettings)</visible>
+			<label>$LOCALIZE[31314]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(MusicDisableFanart)</onclick>
+			<selected>Skin.HasSetting(MusicDisableFanart)</selected>
+		</control>
+		<control type="radiobutton" id="102">
+			<visible>!Skin.HasSetting(MusicDisableFanart) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos) | Window.IsVisible(skinsettings)]</visible>
 			<label>$LOCALIZE[31035]</label>
 			<include>DialogRadioButton</include>
 			<onclick>Skin.ToggleSetting(DisableMusicExtraFanart)</onclick>
@@ -497,19 +509,25 @@
 		</control>
 	</include>
 	<include name="SelectAddonBackground">
-		<control type="button" id="101">
+		<control type="radiobutton" id="101">
+			<label>$LOCALIZE[31314]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(AddonDisableFanart)</onclick>
+			<selected>Skin.HasSetting(AddonDisableFanart)</selected>
+		</control>
+		<control type="button" id="102">
 			<label>$LOCALIZE[571]</label>
 			<include>DialogButton</include>
 			<onclick>Dialog.Close(1111)</onclick>
 			<onclick>Skin.Reset(AddonBackground)</onclick>
 		</control>
-		<control type="button" id="102">
+		<control type="button" id="103">
 			<label>$LOCALIZE[31007]</label>
 			<include>DialogButton</include>
 			<onclick>Dialog.Close(1111)</onclick>
 			<onclick>Skin.SetImage(AddonBackground)</onclick>
 		</control>
-		<control type="button" id="103">
+		<control type="button" id="104">
 			<label>$LOCALIZE[31008]</label>
 			<include>DialogButton</include>
 			<onclick>Dialog.Close(1111)</onclick>

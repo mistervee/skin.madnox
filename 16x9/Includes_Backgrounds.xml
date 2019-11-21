@@ -1157,6 +1157,8 @@
 		<value condition="!Skin.HasSetting(VideoSetCoverFanart) + Skin.HasSetting(VideoSetCover) + String.IsEqual(ListItem.DBTYPE,set)">thumbs/coverbackground.jpg</value>
 		<value condition="!Skin.HasSetting(VideoSeasonCoverFanart) + Skin.HasSetting(VideoSeasonCover) + String.IsEqual(ListItem.DBTYPE,tvshow)">thumbs/coverbackground.jpg</value>
 		<value condition="!String.Contains(ListItem(1).FolderPath,music) + !Skin.HasSetting(VideoGenreCoverFanart) + Skin.HasSetting(VideoGenreCover) + String.IsEqual(ListItem.DBTYPE,genre)">thumbs/coverbackground.jpg</value>
+		<value condition="Skin.HasSetting(VideoDisableFanart) + !String.IsEmpty(Skin.String(VideoFallbackBackground))">$INFO[Skin.String(VideoFallbackBackground)]</value>
+		<value condition="Skin.HasSetting(VideoDisableFanart)">special://skin/extras/backgrounds/videos.jpg</value>
 		<value condition="!Skin.HasSetting(DisableVideoExtraFanart) + !String.IsEmpty(Control.GetLabel(7004))">$INFO[Control.GetLabel(7004)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
 		<value condition="!ListItem.IsParentFolder + !String.IsEmpty(Container.Content) + !String.IsEmpty(Control.GetLabel(7003))">$INFO[Control.GetLabel(7003)]</value>
@@ -1166,6 +1168,8 @@
 	<variable name="MusicBackgroundVar">
 		<value condition="!Skin.HasSetting(MusicAlbumCoverFanart) + Skin.HasSetting(MusicAlbumCover) + String.IsEqual(ListItem.DBTYPE,artist)">thumbs/coverbackground.jpg</value>
 		<value condition="String.Contains(ListItem(1).FolderPath,music) + !Skin.HasSetting(MusicGenreCoverFanart) + Skin.HasSetting(MusicGenreCover) + String.IsEqual(ListItem.DBTYPE,genre)">thumbs/coverbackground.jpg</value>
+		<value condition="Skin.HasSetting(MusicDisableFanart) + !String.IsEmpty(Skin.String(MusicFallbackBackground))">$INFO[Skin.String(MusicFallbackBackground)]</value>
+		<value condition="Skin.HasSetting(MusicDisableFanart)">special://skin/extras/backgrounds/music.jpg</value>
 		<value condition="!Skin.HasSetting(DisableMusicExtraFanart) + !String.IsEmpty(Control.GetLabel(7004))">$INFO[Control.GetLabel(7004)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
 		<value condition="!ListItem.IsParentFolder + !String.IsEmpty(Container.Content) + !String.IsEmpty(Control.GetLabel(7003))">$INFO[Control.GetLabel(7003)]</value>
@@ -1173,6 +1177,8 @@
 		<value>special://skin/extras/backgrounds/music.jpg</value>
 	</variable>
 	<variable name="AddonBackgroundVar">
+		<value condition="Skin.HasSetting(AddonDisableFanart) + !String.IsEmpty(Skin.String(AddonBackground))">$INFO[Skin.String(AddonBackground)]</value>
+		<value condition="Skin.HasSetting(AddonDisableFanart)">special://skin/extras/backgrounds/addons.jpg</value>
 		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
 		<value condition="!String.IsEmpty(Skin.String(AddonBackground))">$INFO[Skin.String(AddonBackground)]</value>
 		<value>special://skin/extras/backgrounds/addons.jpg</value>
