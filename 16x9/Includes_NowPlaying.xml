@@ -714,7 +714,7 @@
 		<control type="group">
 			<left>$PARAM[left]</left>
 			<width>347</width>
-				<height>347</height>
+			<height>347</height>
 			<control type="image">
 				<visible>![Skin.HasSetting(MusicOSDDisableDiscArt) | Player.IsInternetStream | Pvr.IsPlayingRadio]</visible>
 				<animation effect="slide" end="$PARAM[slidedisc],0" time="300" condition="!Player.Paused">Conditional</animation>
@@ -1076,6 +1076,16 @@
 			<texture border="15">thumbs/case/cd.png</texture>
 		</control>
 	</include>
+	<include name="NowPlayingMusicOSDTexture">
+		<animation type="Conditional" pulse="true" condition="Skin.HasSetting(MusicOSDAnimatedBackground)">
+			<effect type="zoom" start="110" end="120" center="auto" time="12000" tween="sine" easing="inout"/>
+			<effect type="slide" start="-20,-20" end="20,20" time="6000" tween="sine" easing="inout"/>
+		</animation>
+		<include>FullScreenDimensions</include>
+		<randomize>true</randomize>
+		<aspectratio>scale</aspectratio>
+		<fadetime>TextureFadeTime</fadetime>
+	</include>
 
 
 
@@ -1162,10 +1172,30 @@
 	</variable>
 
 	<variable name="MusicOSDFanArtVar">
-		<value condition="Skin.HasSetting(MusicOSDExtraFanart) + !String.IsEmpty(Control.GetLabel(71111))">$INFO[Control.GetLabel(71111)]</value>
+		<value condition="Skin.String(MusicOSDBackground,none)"></value>
+		<value condition="Skin.String(MusicOSDBackground,extra) + !String.IsEmpty(Control.GetLabel(71111))">$INFO[Control.GetLabel(71111)]</value>
+		<value condition="!String.IsEmpty(Skin.String(MusicOSDBackground)) + !String.IsEqual(Skin.String(MusicOSDBackground),extra)">$INFO[Skin.String(MusicOSDBackground)]</value>
 		<value condition="!String.IsEmpty(Player.Art(fanart))">$INFO[Player.Art(fanart)]</value>
 		<value>special://skin/extras/backgrounds/music.jpg</value>
 	</variable>
+	<variable name="MusicOSDFanArtLabelVar">
+		<value condition="Skin.String(MusicOSDBackground,none)">$LOCALIZE[231]</value>
+		<value condition="Skin.String(MusicOSDBackground,extra)">$LOCALIZE[31035]</value>
+		<value condition="!String.IsEmpty(Skin.String(MusicOSDBackground))">$LOCALIZE[636]</value>
+		<value>$LOCALIZE[20445]</value>
+	</variable>
+	<variable name="MusicOSDRadioStreamFanArtVar">
+		<value condition="Skin.String(MusicOSDRadioStreamBackground,none)"></value>
+		<value condition="!String.IsEmpty(Skin.String(MusicOSDRadioStreamBackground))">$INFO[Skin.String(MusicOSDRadioStreamBackground)]</value>
+		<value condition="!String.IsEmpty(Player.Art(fanart))">$INFO[Player.Art(fanart)]</value>
+		<value>special://skin/extras/backgrounds/music.jpg</value>
+	</variable>
+	<variable name="MusicOSDRadioStreamFanArtLabelVar">
+		<value condition="Skin.String(MusicOSDRadioStreamBackground,none)">$LOCALIZE[231]</value>
+		<value condition="!String.IsEmpty(Skin.String(MusicOSDRadioStreamBackground))">$LOCALIZE[636]</value>
+		<value>$LOCALIZE[20445]</value>
+	</variable>
+
 
 	<variable name="LyricTextColorVar">
 		<value condition="!Skin.HasSetting(MusicOSDDisableAnimatedLyrics)">00FFFFFF</value>

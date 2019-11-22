@@ -2,6 +2,7 @@
 <includes>
 	<include name="BackgroundDefault">
 		<param name="imagepath"></param>
+		<param name="animatedfanart"></param>
 		<definition>
 			<!-- Now Playing -->
 			<control type="videowindow">
@@ -71,6 +72,10 @@
 				<include>AnimationWindowFade</include>
 				<control type="multiimage">
 					<visible>!Visualisation.Enabled | !Skin.HasSetting(NowplayingVizBackground)</visible>
+					<animation type="Conditional" pulse="true" condition="$PARAM[animatedfanart]">
+						<effect type="zoom" start="110" end="120" center="auto" time="12000" tween="sine" easing="inout"/>
+						<effect type="slide" start="-20,-20" end="20,20" time="6000" tween="sine" easing="inout"/>
+					</animation>
 					<include>FullScreenDimensions</include>
 					<aspectratio>scale</aspectratio>
 					<imagepath background="true">$PARAM[imagepath]</imagepath>
@@ -80,6 +85,10 @@
 				</control>
 				<control type="multiimage">
 					<visible>Visualisation.Enabled + Skin.HasSetting(NowplayingVizBackground)</visible>
+					<animation type="Conditional" pulse="true" condition="$PARAM[animatedfanart]">
+						<effect type="zoom" start="110" end="120" center="auto" time="12000" tween="sine" easing="inout"/>
+						<effect type="slide" start="-20,-20" end="20,20" time="6000" tween="sine" easing="inout"/>
+					</animation>
 					<include>FullScreenDimensions</include>
 					<aspectratio>scale</aspectratio>
 					<imagepath background="true" colordiffuse="AAFFFFFF">$PARAM[imagepath]</imagepath>

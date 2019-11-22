@@ -7,7 +7,7 @@
 			<include>FullScreenDimensions</include>
 		</control>
 		<control type="fadelabel" id="71111">
-			<visible>Skin.HasSetting(MusicOSDExtraFanart)</visible>
+			<visible>Skin.String(MusicOSDBackground,extra)</visible>
 			<top>-1000</top>
 			<width>1</width>
 			<height>1</height>
@@ -39,28 +39,24 @@
 			<label>$INFO[Player.Art(albumartist.fanart10)]</label>
 		</control>
 		<control type="multiimage">
-			<visible>Visualisation.Enabled</visible>
-			<animation type="Conditional" pulse="true" condition="Skin.HasSetting(MusicOSDAnimatedBackground)">
-				<effect type="zoom" start="110" end="120" center="auto" time="12000" tween="sine" easing="inout"/>
-				<effect type="slide" start="-20,-20" end="20,20" time="6000" tween="sine" easing="inout"/>
-			</animation>
-			<include>FullScreenDimensions</include>
-			<randomize>true</randomize>
-			<aspectratio>scale</aspectratio>
-			<fadetime>TextureFadeTime</fadetime>
+			<visible>![Pvr.IsPlayingRadio | Player.IsInternetStream] + Visualisation.Enabled</visible>
+			<include>NowPlayingMusicOSDTexture</include>
 			<imagepath background="true" colordiffuse="AAFFFFFF">$VAR[MusicOSDFanArtVar]</imagepath>
 		</control>
 		<control type="multiimage">
-			<visible>!Visualisation.Enabled</visible>
-			<animation type="Conditional" pulse="true" condition="Skin.HasSetting(MusicOSDAnimatedBackground)">
-				<effect type="zoom" start="110" end="120" center="auto" time="12000" tween="sine" easing="inout"/>
-				<effect type="slide" start="-20,-20" end="20,20" time="6000" tween="sine" easing="inout"/>
-			</animation>
-			<include>FullScreenDimensions</include>
-			<randomize>true</randomize>
-			<aspectratio>scale</aspectratio>
-			<fadetime>TextureFadeTime</fadetime>
+			<visible>![Pvr.IsPlayingRadio | Player.IsInternetStream | Visualisation.Enabled]</visible>
+			<include>NowPlayingMusicOSDTexture</include>
 			<imagepath background="true">$VAR[MusicOSDFanArtVar]</imagepath>
+		</control>
+		<control type="multiimage">
+			<visible>[Pvr.IsPlayingRadio | Player.IsInternetStream] + Visualisation.Enabled</visible>
+			<include>NowPlayingMusicOSDTexture</include>
+			<imagepath background="true" colordiffuse="AAFFFFFF">$VAR[MusicOSDRadioStreamFanArtVar]</imagepath>
+		</control>
+		<control type="multiimage">
+			<visible>[Pvr.IsPlayingRadio | Player.IsInternetStream] + !Visualisation.Enabled</visible>
+			<include>NowPlayingMusicOSDTexture</include>
+			<imagepath background="true">$VAR[MusicOSDRadioStreamFanArtVar]</imagepath>
 		</control>
 		<control type="image">
 			<visible>Skin.HasSetting(MusicOSDDisableAnimatedLyrics) + Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>

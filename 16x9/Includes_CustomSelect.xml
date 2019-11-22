@@ -1,5 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <includes>
+	<include name="SelectMusicOSDBackground">
+		<item>
+			<label>$LOCALIZE[20445]</label>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.Reset(MusicOSDBackground)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[31035]</label>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.SetString(MusicOSDBackground,extra)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[31007]</label>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.SetImage(MusicOSDBackground)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[31008]</label>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.SetPath(MusicOSDBackground)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[231]</label>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.SetString(MusicOSDBackground,none)</onclick>
+		</item>
+	</include>
+	<include name="SelectMusicOSDStreamRadioBackground">
+		<item>
+			<label>$LOCALIZE[20445]</label>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.Reset(MusicOSDRadioStreamBackground)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[31007]</label>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.SetImage(MusicOSDRadioStreamBackground)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[31008]</label>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.SetPath(MusicOSDRadioStreamBackground)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[231]</label>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.SetString(MusicOSDRadioStreamBackground,none)</onclick>
+		</item>
+	</include>
 	<include name="SelectMainMenuNowPlayingMusicCase">
 		<item>
 			<label>$LOCALIZE[571]</label>
@@ -309,6 +358,14 @@
 			<selected>Skin.HasSetting(NowplayingVizBackground)</selected>
 		</control>
 	</include>
+	<include name="SelectMainMenuBackground">
+		<control type="radiobutton" id="205">
+			<label>$LOCALIZE[31038]</label>
+			<onclick>Skin.ToggleSetting(HomeAnimatedFanart)</onclick>
+			<selected>Skin.HasSetting(HomeAnimatedFanart)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+	</include>
 	<include name="SelectVideoBackground">
 		<control type="radiobutton" id="101">
 			<label>$LOCALIZE[31314]</label>
@@ -322,6 +379,12 @@
 			<include>DialogRadioButton</include>
 			<onclick>Skin.ToggleSetting(DisableVideoExtraFanart)</onclick>
 			<selected>!Skin.HasSetting(DisableVideoExtraFanart)</selected>
+		</control>
+		<control type="radiobutton" id="103">
+			<label>$LOCALIZE[31038]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(VideoAnimatedFanart)</onclick>
+			<selected>Skin.HasSetting(VideoAnimatedFanart)</selected>
 		</control>
 		<control type="label" id="115">
 			<label>$LOCALIZE[31036]</label>
@@ -439,6 +502,12 @@
 			<onclick>Skin.ToggleSetting(DisableMusicExtraFanart)</onclick>
 			<selected>!Skin.HasSetting(DisableMusicExtraFanart)</selected>
 		</control>
+		<control type="radiobutton" id="103">
+			<label>$LOCALIZE[31038]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(MusicAnimatedFanart)</onclick>
+			<selected>Skin.HasSetting(MusicAnimatedFanart)</selected>
+		</control>
 		<control type="label" id="110">
 			<label>$LOCALIZE[31036]</label>
 			<include>DialogLabel</include>
@@ -515,19 +584,25 @@
 			<onclick>Skin.ToggleSetting(AddonDisableFanart)</onclick>
 			<selected>Skin.HasSetting(AddonDisableFanart)</selected>
 		</control>
-		<control type="button" id="102">
+		<control type="radiobutton" id="102">
+			<label>$LOCALIZE[31038]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(AddonAnimatedFanart)</onclick>
+			<selected>Skin.HasSetting(AddonAnimatedFanart)</selected>
+		</control>
+		<control type="button" id="103">
 			<label>$LOCALIZE[571]</label>
 			<include>DialogButton</include>
 			<onclick>Dialog.Close(1111)</onclick>
 			<onclick>Skin.Reset(AddonBackground)</onclick>
 		</control>
-		<control type="button" id="103">
+		<control type="button" id="104">
 			<label>$LOCALIZE[31007]</label>
 			<include>DialogButton</include>
 			<onclick>Dialog.Close(1111)</onclick>
 			<onclick>Skin.SetImage(AddonBackground)</onclick>
 		</control>
-		<control type="button" id="104">
+		<control type="button" id="105">
 			<label>$LOCALIZE[31008]</label>
 			<include>DialogButton</include>
 			<onclick>Dialog.Close(1111)</onclick>
@@ -536,19 +611,25 @@
 		<include condition="Window.IsActive(Custom_1115_ViewSettings.xml)">SelectNowPlayingBackground</include>
 	</include>
 	<include name="SelectPVRBackground">
-		<control type="button" id="101">
+		<control type="radiobutton" id="101">
+			<label>$LOCALIZE[31038]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(PVRAnimatedFanart)</onclick>
+			<selected>Skin.HasSetting(PVRAnimatedFanart)</selected>
+		</control>
+		<control type="button" id="102">
 			<label>$LOCALIZE[571]</label>
 			<include>DialogButton</include>
 			<onclick>Dialog.Close(1111)</onclick>
 			<onclick>Skin.Reset(PVRBackground)</onclick>
 		</control>
-		<control type="button" id="102">
+		<control type="button" id="103">
 			<label>$LOCALIZE[31007]</label>
 			<include>DialogButton</include>
 			<onclick>Dialog.Close(1111)</onclick>
 			<onclick>Skin.SetImage(PVRBackground)</onclick>
 		</control>
-		<control type="button" id="103">
+		<control type="button" id="104">
 			<label>$LOCALIZE[31008]</label>
 			<include>DialogButton</include>
 			<onclick>Dialog.Close(1111)</onclick>
@@ -557,19 +638,25 @@
 		<include condition="Window.IsActive(Custom_1115_ViewSettings.xml)">SelectNowPlayingBackground</include>
 	</include>
 	<include name="SelectGamesBackground">
-		<control type="button" id="101">
+		<control type="radiobutton" id="101">
+			<label>$LOCALIZE[31038]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(GamesAnimatedFanart)</onclick>
+			<selected>Skin.HasSetting(GamesAnimatedFanart)</selected>
+		</control>
+		<control type="button" id="102">
 			<label>$LOCALIZE[571]</label>
 			<include>DialogButton</include>
 			<onclick>Dialog.Close(1111)</onclick>
 			<onclick>Skin.Reset(GamesBackground)</onclick>
 		</control>
-		<control type="button" id="102">
+		<control type="button" id="103">
 			<label>$LOCALIZE[31007]</label>
 			<include>DialogButton</include>
 			<onclick>Dialog.Close(1111)</onclick>
 			<onclick>Skin.SetImage(GamesBackground)</onclick>
 		</control>
-		<control type="button" id="103">
+		<control type="button" id="104">
 			<label>$LOCALIZE[31008]</label>
 			<include>DialogButton</include>
 			<onclick>Dialog.Close(1111)</onclick>
@@ -578,18 +665,24 @@
 		<include condition="Window.IsActive(Custom_1115_ViewSettings.xml)">SelectNowPlayingBackground</include>
 	</include>
 	<include name="SelectPicturesBackground">
-		<control type="button" id="101">
+		<control type="radiobutton" id="101">
+			<label>$LOCALIZE[31038]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(PicturesAnimatedFanart)</onclick>
+			<selected>Skin.HasSetting(PicturesAnimatedFanart)</selected>
+		</control>
+		<control type="button" id="102">
 			<label>$LOCALIZE[571]</label>
 			<include>DialogButton</include>
 			<onclick>Skin.Reset(PicturesBackground)</onclick>
 		</control>
-		<control type="button" id="102">
+		<control type="button" id="103">
 			<label>$LOCALIZE[31007]</label>
 			<include>DialogButton</include>
 			<onclick>Dialog.Close(1111)</onclick>
 			<onclick>Skin.SetImage(PicturesBackground)</onclick>
 		</control>
-		<control type="button" id="103">
+		<control type="button" id="104">
 			<label>$LOCALIZE[31008]</label>
 			<include>DialogButton</include>
 			<onclick>Dialog.Close(1111)</onclick>
@@ -598,26 +691,32 @@
 		<include condition="Window.IsActive(Custom_1115_ViewSettings.xml)">SelectNowPlayingBackground</include>
 	</include>
 	<include name="SelectWeatherBackground">
-		<control type="button" id="101">
+		<control type="radiobutton" id="101">
+			<label>$LOCALIZE[31038]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(WeatherAnimatedFanart)</onclick>
+			<selected>Skin.HasSetting(WeatherAnimatedFanart)</selected>
+		</control>
+		<control type="button" id="102">
 			<label>$LOCALIZE[571]</label>
 			<include>DialogButton</include>
 			<onclick>Dialog.Close(1111)</onclick>
 			<onclick>Skin.Reset(WeatherBackground)</onclick>
 		</control>
-		<control type="button" id="102">
+		<control type="button" id="103">
 			<label>$LOCALIZE[20445]</label>
 			<include>DialogButton</include>
 			<onclick>Skin.SetString(WeatherBackground,resource)</onclick>
 			<onclick>Dialog.Close(all,true)</onclick>
 			<onclick>RunScript(script.image.resource.select,property=WeatherFanart&amp;type=resource.images.weatherfanart)</onclick>
 		</control>
-		<control type="button" id="103">
+		<control type="button" id="104">
 			<label>$LOCALIZE[31007]</label>
 			<include>DialogButton</include>
 			<onclick>Dialog.Close(1111)</onclick>
 			<onclick>Skin.SetImage(WeatherBackground)</onclick>
 		</control>
-		<control type="button" id="104">
+		<control type="button" id="105">
 			<label>$LOCALIZE[31008]</label>
 			<include>DialogButton</include>
 			<onclick>Dialog.Close(1111)</onclick>
@@ -626,19 +725,25 @@
 		<include condition="Window.IsActive(Custom_1115_ViewSettings.xml)">SelectNowPlayingBackground</include>
 	</include>
 	<include name="SelectSystemBackground">
-		<control type="button" id="101">
+		<control type="radiobutton" id="101">
+			<label>$LOCALIZE[31038]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(SystemAnimatedFanart)</onclick>
+			<selected>Skin.HasSetting(SystemAnimatedFanart)</selected>
+		</control>
+		<control type="button" id="102">
 			<label>$LOCALIZE[571]</label>
 			<include>DialogButton</include>
 			<onclick>Dialog.Close(1111)</onclick>
 			<onclick>Skin.Reset(SystemBackground)</onclick>
 		</control>
-		<control type="button" id="102">
+		<control type="button" id="103">
 			<label>$LOCALIZE[31007]</label>
 			<include>DialogButton</include>
 			<onclick>Dialog.Close(1111)</onclick>
 			<onclick>Skin.SetImage(SystemBackground)</onclick>
 		</control>
-		<control type="button" id="103">
+		<control type="button" id="104">
 			<label>$LOCALIZE[31008]</label>
 			<include>DialogButton</include>
 			<onclick>Dialog.Close(1111)</onclick>
@@ -943,18 +1048,21 @@
 			<label>$LOCALIZE[31044]</label>
 			<include>DialogLabel</include>
 		</control>
-		<control type="radiobutton" id="111">
-			<label>$LOCALIZE[31084]</label>
-			<onclick>Skin.ToggleSetting(MusicOSDCase)</onclick>
-			<selected>Skin.HasSetting(MusicOSDCase)</selected>
-			<include>DialogRadioButton</include>
-		</control>
-		<control type="radiobutton" id="112">
+		<control type="button" id="111">
 			<visible>Window.IsVisible(skinsettings) | ![Player.IsInternetStream | Pvr.IsPlayingRadio]</visible>
-			<label>$LOCALIZE[31035]</label>
-			<onclick>Skin.ToggleSetting(MusicOSDExtraFanart)</onclick>
-			<selected>Skin.HasSetting(MusicOSDExtraFanart)</selected>
-			<include>DialogRadioButton</include>
+			<label>$LOCALIZE[31315]</label>
+			<label2>$VAR[MusicOSDFanArtLabelVar]</label2>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[31315],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
+			<include>DialogButton</include>
+		</control>
+		<control type="button" id="112">
+			<visible>Window.IsVisible(skinsettings) | [Player.IsInternetStream | Pvr.IsPlayingRadio]</visible>
+			<label>$LOCALIZE[31316]</label>
+			<label2>$VAR[MusicOSDRadioStreamFanArtLabelVar]</label2>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[31316],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
+			<include>DialogButton</include>
 		</control>
 		<control type="radiobutton" id="113">
 			<label>$LOCALIZE[31038]</label>
@@ -963,13 +1071,26 @@
 			<selected>Skin.HasSetting(MusicOSDAnimatedBackground)</selected>
 		</control>
 		<control type="radiobutton" id="114">
+			<label>$LOCALIZE[31084]</label>
+			<onclick>Skin.ToggleSetting(MusicOSDCase)</onclick>
+			<selected>Skin.HasSetting(MusicOSDCase)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<!-- <control type="radiobutton" id="112">
+			<visible>Window.IsVisible(skinsettings) | ![Player.IsInternetStream | Pvr.IsPlayingRadio]</visible>
+			<label>$LOCALIZE[31035]</label>
+			<onclick>Skin.ToggleSetting(MusicOSDExtraFanart)</onclick>
+			<selected>Skin.HasSetting(MusicOSDExtraFanart)</selected>
+			<include>DialogRadioButton</include>
+		</control> -->
+		<control type="radiobutton" id="115">
 			<visible>Window.IsVisible(skinsettings) | ![Player.IsInternetStream | Pvr.IsPlayingRadio]</visible>
 			<label>$LOCALIZE[31108]</label>
 			<onclick>Skin.ToggleSetting(MusicOSDDisableDiscArt)</onclick>
 			<selected>!Skin.HasSetting(MusicOSDDisableDiscArt)</selected>
 			<include>DialogRadioButton</include>
 		</control>
-		<control type="radiobutton" id="115">
+		<control type="radiobutton" id="116">
 			<visible>Window.IsVisible(skinsettings) | ![Player.IsInternetStream | Pvr.IsPlayingRadio]</visible>
 			<label>$LOCALIZE[31123]</label>
 			<onclick>Skin.ToggleSetting(MusicOSDDisableLogo)</onclick>
