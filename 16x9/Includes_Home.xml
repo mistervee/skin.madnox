@@ -1514,4 +1514,146 @@
 			</control>
 		</control>
 	</include>
+	<include name="PVRWidget">
+		<control type="group">
+			<animation effect="slide" end="0,42" condition="Skin.HasSetting(InfoBarTop)">Conditional</animation>
+			<control type="group">
+				<visible>String.IsEqual(Container(9000).ListItem.Property(pvrWidget),pvr) + PVR.IsRecording</visible>
+				<include>AnimationVisibleFade</include>
+				<include content="PVRWidgetContent">
+					<param name="label">$LOCALIZE[19158]</param>
+					<param name="time">Pvr.NowRecordingDateTime</param>
+					<param name="title">Pvr.NowRecordingTitle</param>
+					<param name="icon">Pvr.NowRecordingChannelIcon</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>String.IsEqual(Container(9000).ListItem.Property(pvrWidget),pvr) + PVR.HasNonRecordingTimer + !PVR.IsRecording</visible>
+				<include>AnimationVisibleFade</include>
+				<include content="PVRWidgetContent">
+					<param name="label">$LOCALIZE[19157]</param>
+					<param name="time">Pvr.NextRecordingDateTime</param>
+					<param name="title">Pvr.NextRecordingTitle</param>
+					<param name="icon">Pvr.NextRecordingChannelIcon</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>String.IsEqual(Container(9000).ListItem.Property(pvrWidget),tv) + PVR.IsRecordingTV</visible>
+				<include>AnimationVisibleFade</include>
+				<include content="PVRWidgetContent">
+					<param name="label">$LOCALIZE[19158]</param>
+					<param name="time">Pvr.TVNowRecordingDateTime</param>
+					<param name="title">Pvr.TVNowRecordingTitle</param>
+					<param name="icon">Pvr.TVNowRecordingChannelIcon</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>String.IsEqual(Container(9000).ListItem.Property(pvrWidget),tv) + PVR.HasNonRecordingTVTimer + !PVR.IsRecordingTV</visible>
+				<include>AnimationVisibleFade</include>
+				<include content="PVRWidgetContent">
+					<param name="label">$LOCALIZE[19157]</param>
+					<param name="time">Pvr.TVNextRecordingDateTime</param>
+					<param name="title">Pvr.TVNextRecordingTitle</param>
+					<param name="icon">Pvr.TVNextRecordingChannelIcon</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>String.IsEqual(Container(9000).ListItem.Property(pvrWidget),radio) + PVR.IsRecordingRadio</visible>
+				<include>AnimationVisibleFade</include>
+				<include content="PVRWidgetContent">
+					<param name="label">$LOCALIZE[19158]</param>
+					<param name="time">Pvr.RadioNowRecordingDateTime</param>
+					<param name="title">Pvr.RadioNowRecordingTitle</param>
+					<param name="icon">Pvr.RadioNowRecordingChannelIcon</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>String.IsEqual(Container(9000).ListItem.Property(pvrWidget),radio) + PVR.HasNonRecordingRadioTimer + !PVR.IsRecordingRadio</visible>
+				<include>AnimationVisibleFade</include>
+				<include content="PVRWidgetContent">
+					<param name="label">$LOCALIZE[19157]</param>
+					<param name="time">Pvr.RadioNextRecordingDateTime</param>
+					<param name="title">Pvr.RadioNextRecordingTitle</param>
+					<param name="icon">Pvr.RadioNextRecordingChannelIcon</param>
+				</include>
+			</control>
+		</control>
+	</include>
+	<include name="PVRWidgetContent">
+		<param name="label"></param>
+		<param name="time"></param>
+		<param name="title"></param>
+		<param name="icon"></param>
+		<definition>
+			<top>30</top>
+			<right>30</right>
+			<height>134</height>
+			<width>730</width>
+			<control type="image">
+				<texture colordiffuse="$VAR[PanelShadowColorVar]" border="20">$VAR[DialogShadowScanVar]</texture>
+			</control>
+			<control type="image">
+				<texture flipx="true" colordiffuse="$VAR[PanelStyleColorVar]" border="20">$VAR[DialogStyleScanVar]</texture>
+			</control>
+			<control type="image">
+				<top>10</top>
+				<left>10</left>
+				<right>10</right>
+				<bottom>10</bottom>
+				<aspectratio scalediffuse="false">center</aspectratio>
+				<texture diffuse="diffuse/rounded10-710x104.png" colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
+				<visible>!Skin.HasSetting(PanelSquare.texture)</visible>
+			</control>
+			<control type="image">
+				<top>10</top>
+				<left>10</left>
+				<right>10</right>
+				<bottom>10</bottom>
+				<aspectratio scalediffuse="false">center</aspectratio>
+				<texture colordiffuse="$VAR[PanelTextureColorVar]">$INFO[Skin.String(PanelTexture.texture)]</texture>
+				<visible>Skin.HasSetting(PanelSquare.texture)</visible>
+			</control>
+			<control type="image">
+				<texture colordiffuse="$VAR[PanelEmbossColorVar]" border="40">$VAR[DialogEmbossScanVar]</texture>
+			</control>
+			<control type="image">
+				<top>20</top>
+				<right>20</right>
+				<width>102</width>
+				<height>94</height>
+				<aspectratio>keep</aspectratio>
+				<texture>$INFO[$PARAM[icon]]</texture>
+			</control>
+			<control type="group">
+				<top>15</top>
+				<left>25</left>
+				<control type="label">
+					<description>Line 1 Label</description>
+					<right>147</right>
+					<height>40</height>
+					<font>Font28_Reg</font>
+					<label>$PARAM[label]</label>
+					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+				</control>
+				<control type="label">
+					<description>Line 2 Label</description>
+					<top>63</top>
+					<right>147</right>
+					<height>40</height>
+					<font>Font28_Reg</font>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$INFO[$PARAM[title]]</label>
+				</control>
+				<control type="label">
+					<description>Line 2 Label</description>
+					<top>32</top>
+					<right>147</right>
+					<height>40</height>
+					<font>Font28_Reg</font>
+					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					<label>$INFO[$PARAM[time]]</label>
+				</control>
+			</control>
+		</definition>
+	</include>
 </includes>

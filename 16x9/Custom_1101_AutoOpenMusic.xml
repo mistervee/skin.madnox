@@ -2,6 +2,6 @@
 <window type="dialog" id="1101">
 	<onload condition="!Window.IsActive(visualisation) + !Window.IsActive(musicplaylist)">AlarmClock(FullscreenMusicParty,Action(FullScreen),00:00,silent)</onload>
 	<!-- <onload condition="MusicPartyMode.Enabled + Window.IsVisible(musicplaylist)">AlarmClock(FullscreenMusicParty,Action(FullScreen),00:02,silent)</onload> -->
-	<visible>!Skin.HasSetting(DisableAutoOpenMusicViz) + Player.HasAudio + ![Pvr.IsPlayingTv | Pvr.IsPlayingRadio | Player.IsInternetStream | Integer.IsEqual(MusicPlayer.Time,0)]</visible>
+	<visible>!Skin.HasSetting(DisableAutoOpenMusicViz) + Player.HasAudio + ![Pvr.IsPlayingTv | Pvr.IsPlayingRadio | Player.IsInternetStream | Integer.IsEqual(MusicPlayer.Time,0) | MusicPlayer.HasPrevious]</visible>
 	<controls />
 </window>
