@@ -2,29 +2,8 @@
 <window>
 	<defaultcontrol />
 	<controls>
-		<control type="grouplist">
-			<include>AnimationVisibleFade</include>
-			<itemgap>20</itemgap>
-			<align>center</align>
-			<orientation>horizontal</orientation>
-			<include>FullScreenDimensions</include>
-			<control type="label">
-				<width>auto</width>
-				<align>center</align>
-				<font>Font120_Bold_Caps</font>
-				<label>$VAR[SeekLabelVar]</label>
-				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-			</control>
-			<control type="label">
-				<width>auto</width>
-				<align>center</align>
-				<font>Font120_Icon</font>
-				<label>$VAR[SeekIconVar]</label>
-				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-			</control>
-		</control>
 		<control type="group" id="0">
-			<visible>Control.IsVisible(10)</visible>
+			<visible>Control.IsVisible(10) + !Window.IsVisible(seekbar)</visible>
 			<width>1920</width>
 			<height>162</height>
 			<include content="AnimationSlideTopVisible">
@@ -33,27 +12,26 @@
 			<include content="PanelWide">
 				<param name="top">0</param>
 				<param name="toptexture">0</param>
-				<param name="topshadow">150</param>
-				<param name="height">160</param>
-				<param name="heighttexture">150</param>
+				<param name="topshadow">149</param>
+				<param name="height">169</param>
+				<param name="heighttexture">149</param>
 				<param name="flipy">true</param>
 			</include>
 			<control type="grouplist">
-				<top>16</top>
+				<top>14</top>
 				<left>25</left>
 				<width>1920</width>
 				<height>600</height>
 				<control type="label" id="10">
-					<include>DialogLabelProcessInfo</include>
-					<label></label>
+					<font>Font26_Bold_Caps</font>
+					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+					<include>VideoOSDProcessInfo</include>
 				</control>
 				<control type="label" id="11">
-					<include>DialogLabelProcessInfo</include>
-					<label></label>
+					<include>VideoOSDProcessInfo</include>
 				</control>
 				<control type="label" id="12">
-					<include>DialogLabelProcessInfo</include>
-					<label></label>
+					<include>VideoOSDProcessInfo</include>
 				</control>
 			</control>
 		</control>

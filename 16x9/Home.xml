@@ -75,7 +75,7 @@
 			<include>AnimationVisibleFade</include>
 			<!-- Now playing -->
 			<control type="group">
-				<visible>[Player.HasAudio + !Skin.HasSetting(NowplayingHomeDisableAudio)] | [Player.HasVideo + !Skin.HasSetting(NowplayingHomeDisableVideo)]</visible>
+				<visible>Player.HasMedia + !Skin.HasSetting(NowplayingHomeDisable)</visible>
 				<include>AnimationVisibleFade</include>
 				<include content="AnimationSlideBottomWindow">
 					<param name="slide">540</param>
@@ -114,7 +114,7 @@
 		<!-- Media Menu -->
 		<include>MediaMenuMouseOverlay</include>
 		<control type="group">
-			<visible>!String.IsEqual(Skin.String(KioskMode),HideOptions) + !String.IsEqual(Skin.String(KioskMode),HideMenu)</visible>
+			<visible>!Skin.String(KioskMode,HideOptions) + !Skin.String(KioskMode,HideMenu)</visible>
 			<include>MediaMenuCommon</include>
 			<control type="grouplist" id="9050">
 				<usecontrolcoords>true</usecontrolcoords>
@@ -146,7 +146,7 @@
 					<onclick>SetProperty(MediaMenuSelect,info,home)</onclick>
 					<onclick>ActivateWindow(1115)</onclick>
 				</control>
-				<control type="radiobutton" id="9055">
+				<control type="radiobutton" id="9054">
 					<include content="MediaMenuIconButton">
 						<param name="iconon" value="icons/mediamenu/play.png" />
 						<param name="iconoff" value="icons/mediamenu/play.png" />
@@ -155,7 +155,7 @@
 					<onclick>SetProperty(MediaMenuSelect,nowplaying,home)</onclick>
 					<onclick>ActivateWindow(1115)</onclick>
 				</control>
-				<control type="radiobutton" id="9056">
+				<control type="radiobutton" id="9055">
 					<include content="MediaMenuIconButton">
 						<param name="iconon" value="icons/mediamenu/image.png" />
 						<param name="iconoff" value="icons/mediamenu/image.png" />

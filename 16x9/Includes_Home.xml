@@ -507,14 +507,14 @@
 						<texture border="70,0,70,0" colordiffuse="$VAR[TopbarTextureColorVar]">panels/mainmenu/default-submenubar.png</texture>
 					</control>
 					<control type="image">
-						<visible>String.IsEqual(Skin.String(MainMenuSubmenuBar.texture),wide)</visible>
+						<visible>Skin.String(MainMenuSubmenuBar.texture,wide)</visible>
 						<width>1920</width>
 						<height>88</height>
 						<include>AnimationVisibleFade</include>
 						<texture colordiffuse="$VAR[TopbarTextureColorVar]" border="1,0,1,0">panels/mainmenu/wide-bar.png</texture>
 					</control>
 					<control type="image">
-						<visible>String.IsEqual(Skin.String(MainMenuSubmenuBar.texture),shadow)</visible>
+						<visible>Skin.String(MainMenuSubmenuBar.texture,shadow)</visible>
 						<width>1920</width>
 						<height>88</height>
 						<include>AnimationVisibleFade</include>
@@ -534,7 +534,7 @@
 						<texture border="70,0,70,0" colordiffuse="$VAR[TopbarTextureColorVar]">panels/mainmenu/default-submenubar.png</texture>
 					</control>
 					<control type="image">
-						<visible>String.IsEqual(Skin.String(MainMenuSubmenuBar.texture),wide)</visible>
+						<visible>Skin.String(MainMenuSubmenuBar.texture,wide)</visible>
 						<animation effect="zoom" start="0,0,1920,0" end="0,0,1920,88" time="200" tween="quadratic" easing="out" condition="ControlGroup(9002).HasFocus">Conditional</animation>
 						<width>1920</width>
 						<height>1</height>
@@ -542,7 +542,7 @@
 						<texture colordiffuse="$VAR[TopbarTextureColorVar]" border="1,0,1,0">panels/mainmenu/wide-bar.png</texture>
 					</control>
 					<control type="image">
-						<visible>String.IsEqual(Skin.String(MainMenuSubmenuBar.texture),shadow)</visible>
+						<visible>Skin.String(MainMenuSubmenuBar.texture,shadow)</visible>
 						<animation effect="zoom" start="0,0,1920,0" end="0,0,1920,88" time="200" tween="quadratic" easing="out" condition="ControlGroup(9002).HasFocus">Conditional</animation>
 						<width>1920</width>
 						<height>1</height>
@@ -586,12 +586,12 @@
 								<visible>Control.HasFocus(9001)</visible>
 								<control type="image">
 									<texture border="1" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
-									<visible>!String.IsEqual(Skin.String(MainMenuSubmenuBar.texture),shadow)</visible>
+									<visible>!Skin.String(MainMenuSubmenuBar.texture,shadow)</visible>
 								</control>
 								<control type="image">
 									<height>70</height>
 									<texture border="1" colordiffuse="$VAR[PanelHighlightColorVar]">panels/mainmenu/shadow-bar-focus.png</texture>
-									<visible>String.IsEqual(Skin.String(MainMenuSubmenuBar.texture),shadow)</visible>
+									<visible>Skin.String(MainMenuSubmenuBar.texture,shadow)</visible>
 								</control>
 								<control type="label">
 									<align>center</align>
@@ -1260,12 +1260,12 @@
 			<bottom>0</bottom>
 			<width>1920</width>
 			<height>968</height>
-			<texture>panels/widget-gradient.png</texture>
+			<texture colordiffuse="$VAR[MainMenuShadowColorVar]">panels/widget-gradient.png</texture>
 		</control>
 		<control type="group">
 			<visible>!ControlGroup(90010).HasFocus</visible>
 			<animation effect="slide" end="0,42" condition="Skin.HasSetting(InfoBarTop)">Conditional</animation>
-			<top>429</top>
+			<top>388</top>
 			<left>30</left>
 			<right>30</right>
 			<include>AnimationVisibleFade</include>
@@ -1273,102 +1273,123 @@
 			<control type="group">
 				<visible>Player.HasVideo</visible>
 				<control type="group">
-					<visible>VideoPlayer.Content(movies)</visible>
-					<animation effect="slide" end="0,-41" time="200" condition="!Skin.HasSetting(WidgetHigh)">Conditional</animation>
-					<include>AnimationVisibleFade</include>
-					<include content="NowPlayingHomePortraitContent">
-						<param name="right">52</param>
-						<param name="case">$VAR[NowPlayingVideoCaseVar]</param>
-						<param name="logo">!Skin.HasSetting(NowPlayingHomeVideoDisableLogo)</param>
-						<param name="discart">!Skin.HasSetting(NowPlayingHomeVideoDisableDiscArt)</param>
-					</include>
-				</control>
-				<control type="group">
-					<visible>VideoPlayer.Content(episodes)</visible>
-					<animation effect="slide" end="0,-41" time="200" condition="!Skin.HasSetting(WidgetHigh)">Conditional</animation>
-					<include>AnimationVisibleFade</include>
-					<include content="NowPlayingHomePortraitContent">
-						<param name="right">52</param>
-						<param name="case">$VAR[NowPlayingVideoCaseVar]</param>
-						<param name="logo">!Skin.HasSetting(NowPlayingHomeVideoDisableLogo)</param>
-						<param name="discart">false</param>
-					</include>
-				</control>
-				<control type="group">
-					<visible>[String.IsEqual(Skin.String(MusicOSDMusicInfo),none) + VideoPlayer.Content(musicvideos)]</visible>
+					<visible>VideoPlayer.Content(movies) + !Player.IsInternetStream</visible>
 					<control type="group">
-						<visible>!Skin.HasSetting(MusicOSDCase)</visible>
+						<visible>Skin.String(NowPlayingHomeMovieInfo,none)</visible>
 						<include>AnimationVisibleFade</include>
-						<include content="NowPlayingHomeSquareContent">
-							<param name="left">0</param>
-							<param name="right">52</param>
-							<param name="leftinfo">336</param>
-							<param name="slide">115</param>
-							<param name="slidedisc">143</param>
+						<include content="NowPlayingHomePortraitContent">
+							<param name="case">Skin.HasSetting(NowPlayingHomeVideoCase)</param>
+							<param name="logo">!Skin.HasSetting(NowPlayingHomeDisableLogo)</param>
+							<param name="discart">!Skin.HasSetting(NowPlayingHomeDisableDiscArt)</param>
 						</include>
 					</control>
 					<control type="group">
-						<visible>Skin.HasSetting(MusicOSDCase)</visible>
+						<visible>!Skin.String(NowPlayingHomeMovieInfo,none)</visible>
 						<include>AnimationVisibleFade</include>
-						<include content="NowPlayingHomeSquareContent">
-							<param name="left">27</param>
-							<param name="right">52</param>
-							<param name="leftinfo">363</param>
-							<param name="slide">111</param>
-							<param name="slidedisc">139</param>
+						<include content="NowPlayingHomePortraitContent">
+							<param name="right">650</param>
+							<param name="case">Skin.HasSetting(NowPlayingHomeVideoCase)</param>
+							<param name="logo">!Skin.HasSetting(NowPlayingHomeDisableLogo)</param>
+							<param name="discart">!Skin.HasSetting(NowPlayingHomeDisableDiscArt)</param>
 						</include>
 					</control>
 				</control>
 				<control type="group">
-					<visible>Pvr.IsPlayingTV | [!VideoPlayer.Content(movies) + !VideoPlayer.Content(episodes) + !VideoPlayer.Content(musicvideos)]</visible>
-					<include>AnimationVisibleFade</include>
-					<include content="NowPlayingHomeSquareContent">
-						<param name="aspect">keep</param>
-						<param name="right">52</param>
-						<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-						<param name="discart">false</param>
-					</include>
+					<visible>VideoPlayer.Content(episodes) + !Player.IsInternetStream</visible>
+					<control type="group">
+						<visible>Skin.String(NowPlayingHomeMovieInfo,none)</visible>
+						<include>AnimationVisibleFade</include>
+						<include content="NowPlayingHomePortraitContent">
+							<param name="case">Skin.HasSetting(NowPlayingHomeVideoCase)</param>
+							<param name="logo">!Skin.HasSetting(NowPlayingHomeDisableLogo)</param>
+							<param name="discart">false</param>
+						</include>
+					</control>
+					<control type="group">
+						<visible>!Skin.String(NowPlayingHomeMovieInfo,none)</visible>
+						<include>AnimationVisibleFade</include>
+						<include content="NowPlayingHomePortraitContent">
+							<param name="right">650</param>
+							<param name="case">Skin.HasSetting(NowPlayingHomeVideoCase)</param>
+							<param name="logo">!Skin.HasSetting(NowPlayingHomeDisableLogo)</param>
+							<param name="discart">false</param>
+						</include>
+					</control>
+				</control>
+				<control type="group">
+					<visible>VideoPlayer.Content(musicvideos) + !Player.IsInternetStream</visible>
+					<control type="group">
+						<visible>Skin.String(NowPlayingHomeVideoInfo,none)</visible>
+						<include>AnimationVisibleFade</include>
+						<include content="NowPlayingHomeSquareContent">
+							<param name="case">Skin.HasSetting(NowPlayingHomeMusicCase)</param>
+							<param name="logo">!Skin.HasSetting(NowPlayingHomeDisableLogo)</param>
+							<param name="discart">!Skin.HasSetting(NowPlayingHomeDisableDiscArt)</param>
+						</include>
+					</control>
+					<control type="group">
+						<visible>!Skin.String(NowPlayingHomeVideoInfo,none)</visible>
+						<include>AnimationVisibleFade</include>
+						<include content="NowPlayingHomeSquareContent">
+							<param name="right">650</param>
+							<param name="case">Skin.HasSetting(NowPlayingHomeMusicCase)</param>
+							<param name="logo">!Skin.HasSetting(NowPlayingHomeDisableLogo)</param>
+							<param name="discart">!Skin.HasSetting(NowPlayingHomeDisableDiscArt)</param>
+						</include>
+					</control>
+				</control>
+				<control type="group">
+					<visible>![VideoPlayer.Content(movies) | VideoPlayer.Content(episodes) | VideoPlayer.Content(musicvideos)]</visible>
+					<control type="group">
+						<visible>Skin.String(NowPlayingHomeVideoInfo,none)</visible>
+						<include>AnimationVisibleFade</include>
+						<include content="NowPlayingHomeSquareContent">
+							<param name="aspect">keep</param>
+						</include>
+					</control>
+					<control type="group">
+						<visible>!Skin.String(NowPlayingHomeVideoInfo,none)</visible>
+						<include>AnimationVisibleFade</include>
+						<include content="NowPlayingHomeSquareContent">
+							<param name="right">650</param>
+							<param name="aspect">keep</param>
+						</include>
+					</control>
 				</control>
 				<control type="group">
 					<visible>[VideoPlayer.Content(movies) | VideoPlayer.Content(episodes)] + !Player.IsInternetStream</visible>
+					<include>AnimationVisibleFade</include>
+					<control type="grouplist">
+						<visible>String.IsEmpty(Skin.String(NowPlayingHomeMovieInfo))</visible>
+						<include>HomeNowPlayingVideoInfo</include>
+					</control>
 					<control type="group">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeMovieInfo),cast)</visible>
+						<visible>Skin.String(NowPlayingHomeMovieInfo,cast)</visible>
 						<include>HomeNowPlayingVideoCast</include>
 					</control>
 					<control type="group">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeMovieInfo),description)</visible>
-						<include>HomeNowPlayingPlot</include>
+						<visible>Skin.String(NowPlayingHomeMovieInfo,plot)</visible>
+						<include>HomeNowPlayingPortraitPlot</include>
 					</control>
 					<control type="group">
-						<visible>String.IsEmpty(Skin.String(NowPlayingHomeMovieInfo))</visible>
+						<visible>Skin.String(NowPlayingHomeMovieInfo,preview)</visible>
 						<include>HomeNowPlayingVideoPreview</include>
-					</control>
-					<control type="grouplist">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeMovieInfo),info) + Skin.HasSetting(WidgetHigh)</visible>
-						<include>HomeNowPlayingVideoInfo</include>
-					</control>
-					<control type="grouplist">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeMovieInfo),info) + !Skin.HasSetting(WidgetHigh)</visible>
-						<include>HomeNowPlayingVideoInfo2</include>
 					</control>
 				</control>
 				<control type="group">
-					<visible>[!VideoPlayer.Content(movies) + !VideoPlayer.Content(episodes)] | Player.IsInternetStream</visible>
-					<control type="group">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeVideoInfo),description) + VideoPlayer.Content(musicvideos)</visible>
-						<include>HomeNowPlayingPlotSquare</include>
-					</control>
-					<control type="group">
-						<visible>String.IsEmpty(Skin.String(NowPlayingHomeVideoInfo))</visible>
-						<include>HomeNowPlayingVideoPreview</include>
-					</control>
+					<visible>![VideoPlayer.Content(movies) | VideoPlayer.Content(episodes)]</visible>
+					<include>AnimationVisibleFade</include>
 					<control type="grouplist">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeVideoInfo),info) + Skin.HasSetting(WidgetHigh)</visible>
+						<visible>String.IsEmpty(Skin.String(NowPlayingHomeVideoInfo))</visible>
 						<include>HomeNowPlayingVideoInfo</include>
 					</control>
-					<control type="grouplist">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeVideoInfo),info) + !Skin.HasSetting(WidgetHigh)</visible>
-						<include>HomeNowPlayingVideoInfo2</include>
+					<control type="group">
+						<visible>Skin.String(NowPlayingHomeVideoInfo,plot)</visible>
+						<include>HomeNowPlayingSquarePlot</include>
+					</control>
+					<control type="group">
+						<visible>Skin.String(NowPlayingHomeVideoInfo,preview)</visible>
+						<include>HomeNowPlayingVideoPreview</include>
 					</control>
 				</control>
 			</control>
@@ -1376,139 +1397,83 @@
 			<control type="group">
 				<visible>Player.HasAudio</visible>
 				<control type="group">
-					<visible>[String.IsEqual(Skin.String(MusicOSDMusicInfo),none) + !Player.IsInternetStream + !Pvr.IsPlayingRadio] | [String.IsEqual(Skin.String(MusicOSDAudioInfo),none) + [Player.IsInternetStream | Pvr.IsPlayingRadio]]</visible>
+					<visible>![Pvr.IsPlayingRadio | Player.IsInternetStream]</visible>
 					<control type="group">
-						<visible>!Skin.HasSetting(MusicOSDCase)</visible>
+						<visible>Skin.String(NowPlayingHomeMusicInfo,none)</visible>
 						<include>AnimationVisibleFade</include>
 						<include content="NowPlayingHomeSquareContent">
-							<param name="left">0</param>
-							<param name="right">52</param>
-							<param name="leftinfo">336</param>
-							<param name="slide">115</param>
-							<param name="slidedisc">143</param>
+							<param name="case">Skin.HasSetting(NowPlayingHomeMusicCase)</param>
+							<param name="logo">!Skin.HasSetting(NowPlayingHomeDisableLogo)</param>
+							<param name="discart">!Skin.HasSetting(NowPlayingHomeDisableDiscArt)</param>
 						</include>
 					</control>
 					<control type="group">
-						<visible>Skin.HasSetting(MusicOSDCase)</visible>
+						<visible>!Skin.String(NowPlayingHomeMusicInfo,none)</visible>
 						<include>AnimationVisibleFade</include>
 						<include content="NowPlayingHomeSquareContent">
-							<param name="left">27</param>
-							<param name="right">52</param>
-							<param name="leftinfo">363</param>
-							<param name="slide">111</param>
-							<param name="slidedisc">139</param>
+							<param name="right">650</param>
+							<param name="case">Skin.HasSetting(NowPlayingHomeMusicCase)</param>
+							<param name="logo">!Skin.HasSetting(NowPlayingHomeDisableLogo)</param>
+							<param name="discart">!Skin.HasSetting(NowPlayingHomeDisableDiscArt)</param>
 						</include>
-					</control>
-				</control>
-				<control type="group">
-					<visible>[!String.IsEqual(Skin.String(MusicOSDMusicInfo),none) + !Player.IsInternetStream + !Pvr.IsPlayingRadio] | [!String.IsEqual(Skin.String(MusicOSDAudioInfo),none) + [Player.IsInternetStream | Pvr.IsPlayingRadio]]</visible>
-					<control type="group">
-						<visible>!Skin.HasSetting(MusicOSDCase)</visible>
-						<include>AnimationVisibleFade</include>
-						<include content="NowPlayingHomeSquareContent">
-							<param name="left">0</param>
-							<param name="right">52</param>
-							<param name="leftinfo">336</param>
-							<param name="slide">115</param>
-							<param name="slidedisc">143</param>
-						</include>
-					</control>
-					<control type="group">
-						<visible>Skin.HasSetting(MusicOSDCase)</visible>
-						<include>AnimationVisibleFade</include>
-						<include content="NowPlayingHomeSquareContent">
-							<param name="left">27</param>
-							<param name="right">760</param>
-							<param name="leftinfo">363</param>
-							<param name="slide">111</param>
-							<param name="slidedisc">139</param>
-						</include>
-					</control>
-				</control>
-
-
-
-
-			<!--<control type="group">
-					<visible>String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),none)</visible>
-					<control type="group">
-						<visible>!Pvr.IsPlayingRadio</visible>
-						<include>AnimationVisibleFade</include>
-						<include content="NowPlayingHomeSquareContent">
-							<param name="right">52</param>
-							<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-							<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-						</include>
-					</control>
-					<control type="group">
-						<visible>Pvr.IsPlayingRadio</visible>
-						<include>AnimationVisibleFade</include>
-						<include content="NowPlayingHomeSquareContent">
-							<param name="right">52</param>
-							<param name="aspect">keep</param>
-							<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-							<param name="discart">false</param>
-						</include>
-					</control>
-				</control>
-				<control type="group">
-					<visible>!String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),none)</visible>
-					<control type="group">
-						<visible>!Pvr.IsPlayingRadio</visible>
-						<include>AnimationVisibleFade</include>
-						<include content="NowPlayingHomeSquareContent">
-							<param name="right">660</param>
-							<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-							<param name="discart">!Skin.HasSetting(NowPlayingHomeAudioDisableDiscArt)</param>
-						</include>
-					</control>
-					<control type="group">
-						<visible>Pvr.IsPlayingRadio</visible>
-						<include>AnimationVisibleFade</include>
-						<include content="NowPlayingHomeSquareContent">
-							<param name="right">660</param>
-							<param name="aspect">keep</param>
-							<param name="logo">!Skin.HasSetting(NowPlayingHomeAudioDisableLogo)</param>
-							<param name="discart">false</param>
-						</include>
-					</control>
-				</control> -->
-				<control type="group">
-					<visible>!Pvr.IsPlayingRadio + !Player.IsInternetStream</visible>
-					<control type="group">
-						<visible>String.IsEmpty(Skin.String(NowPlayingHomeMusicInfo)) + MusicPlayer.HasNext</visible>
-						<include>HomeNowPlayingAudioNext</include>
-					</control>
-					<control type="group">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),tracks) + MusicPlayer.HasNext</visible>
-						<include>HomeNowPlayingAudioTrackList</include>
-					</control>
-					<control type="grouplist">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),info)</visible>
-						<include>HomeNowPlayingAudioInfo2</include>
 					</control>
 				</control>
 				<control type="group">
 					<visible>Pvr.IsPlayingRadio | Player.IsInternetStream</visible>
 					<control type="group">
-						<visible>String.IsEmpty(Skin.String(NowPlayingHomeAudioInfo)) + MusicPlayer.HasNext</visible>
-						<include>HomeNowPlayingAudioNext</include>
+						<visible>Skin.String(NowPlayingHomeAudioInfo,none)</visible>
+						<include>AnimationVisibleFade</include>
+						<include content="NowPlayingHomeSquareContent">
+							<param name="aspect">keep</param>
+							<param name="case">Skin.HasSetting(NowPlayingHomeMusicCase)</param>
+						</include>
 					</control>
 					<control type="group">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),tracks) + MusicPlayer.HasNext</visible>
-						<include>HomeNowPlayingAudioTrackList</include>
+						<visible>!Skin.String(NowPlayingHomeAudioInfo,none)</visible>
+						<include>AnimationVisibleFade</include>
+						<include content="NowPlayingHomeSquareContent">
+							<param name="right">650</param>
+							<param name="aspect">keep</param>
+							<param name="case">Skin.HasSetting(NowPlayingHomeMusicCase)</param>
+						</include>
+					</control>
+				</control>
+				<control type="group">
+					<visible>![Pvr.IsPlayingRadio | Player.IsInternetStream]</visible>
+					<control type="group">
+						<visible>Skin.String(NowPlayingHomeMusicInfo,next) + MusicPlayer.HasNext</visible>
+						<include>NowPlayingHomeAudioNext</include>
 					</control>
 					<control type="group">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeMusicInfo),description)</visible>
-						<include>HomeNowPlayingPlotSquare</include>
+						<visible>Skin.String(NowPlayingHomeMusicInfo,tracks) + MusicPlayer.HasNext</visible>
+						<include>NowPlayingHomeAudioTrackList</include>
+					</control>
+					<control type="group">
+						<visible>Skin.String(NowPlayingHomeMusicInfo,plot)</visible>
+						<include>HomeNowPlayingSquarePlot</include>
 					</control>
 					<control type="grouplist">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),info) + Skin.HasSetting(WidgetHigh)</visible>
-						<include>HomeNowPlayingAudioInfo</include>
+						<visible>String.IsEmpty(Skin.String(NowPlayingHomeMusicInfo))</visible>
+						<include>NowPlayingHomeAudioInfo</include>
+					</control>
+				</control>
+				<control type="group">
+					<visible>Pvr.IsPlayingRadio | Player.IsInternetStream</visible>
+					<control type="group">
+						<visible>Skin.String(NowPlayingHomeAudioInfo,next) + MusicPlayer.HasNext</visible>
+						<include>NowPlayingHomeAudioNext</include>
+					</control>
+					<control type="group">
+						<visible>Skin.String(NowPlayingHomeAudioInfo,tracks) + MusicPlayer.HasNext</visible>
+						<include>NowPlayingHomeAudioTrackList</include>
+					</control>
+					<control type="group">
+						<visible>Skin.String(NowPlayingHomeAudioInfo,plot)</visible>
+						<include>HomeNowPlayingSquarePlot</include>
 					</control>
 					<control type="grouplist">
-						<visible>String.IsEqual(Skin.String(NowPlayingHomeAudioInfo),info) + !Skin.HasSetting(WidgetHigh)</visible>
-						<include>HomeNowPlayingAudioInfo2</include>
+						<visible>String.IsEmpty(Skin.String(NowPlayingHomeAudioInfo))</visible>
+						<include>NowPlayingHomeAudioInfo</include>
 					</control>
 				</control>
 			</control>

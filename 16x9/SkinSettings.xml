@@ -205,9 +205,9 @@
 							<label>$LOCALIZE[31098]</label>
 							<label2>$VAR[KioskModeLabelVar]</label2>
 							<onclick condition="String.IsEmpty(Skin.String(KioskMode))">Skin.SetString(KioskMode,HideOptions)</onclick>
-							<onclick condition="String.IsEqual(Skin.String(KioskMode),HideOptions)">Skin.SetString(KioskMode,HideOptionsViewType)</onclick>
-							<onclick condition="String.IsEqual(Skin.String(KioskMode),HideOptionsViewType)">Skin.SetString(KioskMode,HideMenu)</onclick>
-							<onclick condition="String.IsEqual(Skin.String(KioskMode),HideMenu)">Skin.Reset(KioskMode)</onclick>
+							<onclick condition="Skin.String(KioskMode,HideOptions)">Skin.SetString(KioskMode,HideOptionsViewType)</onclick>
+							<onclick condition="Skin.String(KioskMode,HideOptionsViewType)">Skin.SetString(KioskMode,HideMenu)</onclick>
+							<onclick condition="Skin.String(KioskMode,HideMenu)">Skin.Reset(KioskMode)</onclick>
 							<include>SettingsButton</include>
 						</control>
 						<!-- <control type="radiobutton" id="110">
@@ -611,7 +611,7 @@
 							<onclick condition="String.IsEmpty(NowPlayingMusicBackground)">Skin.SetString(NowPlayingMusicBackground,fanart)</onclick>
 							<onclick condition="Skin.String(NowPlayingMusicBackground,fanart)">Skin.SetString(NowPlayingMusicBackground,extra)</onclick>
 							<onclick condition="Skin.String(NowPlayingMusicBackground,extra)">Skin.Reset(NowPlayingMusicBackground)</onclick>
-							<include>SettingsRadioButton</include>
+							<include>SettingsButton</include>
 						</control>
 						<control type="radiobutton" id="406">
 							<visible>Visualisation.Enabled</visible>
@@ -640,13 +640,6 @@
 							<label>$LOCALIZE[31036] / $LOCALIZE[33071]</label>
 							<font>Font28_Bold</font>
 							<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
-							<include>SettingsButton</include>
-						</control>
-						<control type="button" id="419">
-							<description>Main menu</description>
-							<label>$LOCALIZE[31041]</label>
-							<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[31041] $LOCALIZE[31107],home)</onclick>
-							<onclick>ActivateWindow(1111)</onclick>
 							<include>SettingsButton</include>
 						</control>
 						<control type="button" id="411">
@@ -779,13 +772,13 @@
 						</control>
 						<control type="button" id="523">
 							<label>$LOCALIZE[12005]</label>
-							<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[12005],home)</onclick>
+							<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[31338],home)</onclick>
 							<onclick>ActivateWindow(1111)</onclick>
 							<include>SettingsButton</include>
 						</control>
 						<control type="button" id="524">
 							<label>$LOCALIZE[31312]</label>
-							<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[31312],home)</onclick>
+							<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[31337],home)</onclick>
 							<onclick>ActivateWindow(1111)</onclick>
 							<include>SettingsButton</include>
 						</control>

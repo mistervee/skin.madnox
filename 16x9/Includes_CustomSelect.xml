@@ -1005,7 +1005,7 @@
 		</control>
 	</include>
 	<!-- Music OSD -->
-	<include name="MusicOSDSettings">
+	<include name="MusicOSDInfoSettings">
 		<control type="label" id="101">
 			<label>$LOCALIZE[29915]</label>
 			<include>DialogLabel</include>
@@ -1024,7 +1024,8 @@
 			<label2>$VAR[MusicOSDMusicInfoLabelVar]</label2>
 			<onclick condition="String.IsEmpty(MusicOSDMusicInfo)">Skin.SetString(MusicOSDMusicInfo,next)</onclick>
 			<onclick condition="Skin.String(MusicOSDMusicInfo,next)">Skin.SetString(MusicOSDMusicInfo,tracks)</onclick>
-			<onclick condition="Skin.String(MusicOSDMusicInfo,tracks)">Skin.SetString(MusicOSDMusicInfo,none)</onclick>
+			<onclick condition="Skin.String(MusicOSDMusicInfo,tracks)">Skin.SetString(MusicOSDMusicInfo,plot)</onclick>
+			<onclick condition="Skin.String(MusicOSDMusicInfo,plot)">Skin.SetString(MusicOSDMusicInfo,none)</onclick>
 			<onclick condition="Skin.String(MusicOSDMusicInfo,none)">Skin.Reset(MusicOSDMusicInfo)</onclick>
 			<include>DialogButton</include>
 		</control>
@@ -1034,7 +1035,8 @@
 			<label2>$VAR[MusicOSDAudioInfoLabelVar]</label2>
 			<onclick condition="String.IsEmpty(MusicOSDAudioInfo)">Skin.SetString(MusicOSDAudioInfo,next)</onclick>
 			<onclick condition="Skin.String(MusicOSDAudioInfo,next)">Skin.SetString(MusicOSDAudioInfo,tracks)</onclick>
-			<onclick condition="Skin.String(MusicOSDAudioInfo,tracks)">Skin.SetString(MusicOSDAudioInfo,none)</onclick>
+			<onclick condition="Skin.String(MusicOSDAudioInfo,tracks)">Skin.SetString(MusicOSDAudioInfo,plot)</onclick>
+			<onclick condition="Skin.String(MusicOSDAudioInfo,plot)">Skin.SetString(MusicOSDAudioInfo,none)</onclick>
 			<onclick condition="Skin.String(MusicOSDAudioInfo,none)">Skin.Reset(MusicOSDAudioInfo)</onclick>
 			<include>DialogButton</include>
 		</control>
@@ -1058,7 +1060,7 @@
 		</control>
 		<control type="button" id="112">
 			<visible>Window.IsVisible(skinsettings) | [Player.IsInternetStream | Pvr.IsPlayingRadio]</visible>
-			<label>$LOCALIZE[31316]</label>
+			<label>$LOCALIZE[31180]</label>
 			<label2>$VAR[MusicOSDRadioStreamFanArtLabelVar]</label2>
 			<onclick>SetProperty(CustomSelect,$LOCALIZE[31316],home)</onclick>
 			<onclick>ActivateWindow(1110)</onclick>
@@ -1076,13 +1078,6 @@
 			<selected>Skin.HasSetting(MusicOSDCase)</selected>
 			<include>DialogRadioButton</include>
 		</control>
-		<!-- <control type="radiobutton" id="112">
-			<visible>Window.IsVisible(skinsettings) | ![Player.IsInternetStream | Pvr.IsPlayingRadio]</visible>
-			<label>$LOCALIZE[31035]</label>
-			<onclick>Skin.ToggleSetting(MusicOSDExtraFanart)</onclick>
-			<selected>Skin.HasSetting(MusicOSDExtraFanart)</selected>
-			<include>DialogRadioButton</include>
-		</control> -->
 		<control type="radiobutton" id="115">
 			<visible>Window.IsVisible(skinsettings) | ![Player.IsInternetStream | Pvr.IsPlayingRadio]</visible>
 			<label>$LOCALIZE[31108]</label>
@@ -1113,19 +1108,93 @@
 			<onclick>Skin.ToggleSetting(MusicOSDDisableAnimatedLyrics)</onclick>
 			<selected>!Skin.HasSetting(MusicOSDDisableAnimatedLyrics)</selected>
 		</control>
-		<control type="label" id="141">
+		<control type="label" id="131">
+			<label>$LOCALIZE[35059]</label>
+			<include>DialogLabel</include>
+		</control>
+		<control type="radiobutton" id="132">
+			<label>$LOCALIZE[250]</label>
+			<onclick>Skin.ToggleSetting(MusicOSDDisableVizButton)</onclick>
+			<selected>!Skin.HasSetting(MusicOSDDisableVizButton)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="radiobutton" id="133">
+			<label>$LOCALIZE[31334]</label>
+			<onclick>Skin.ToggleSetting(MusicOSDDisableVizPresetsButton)</onclick>
+			<selected>!Skin.HasSetting(MusicOSDDisableVizPresetsButton)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="radiobutton" id="134">
+			<label>$LOCALIZE[31335]</label>
+			<onclick>Skin.ToggleSetting(MusicOSDDisableVizOptionsButton)</onclick>
+			<selected>!Skin.HasSetting(MusicOSDDisableVizOptionsButton)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="radiobutton" id="135">
+			<visible>Window.IsVisible(skinsettings) | !MusicPlayer.Content(LiveTV)</visible>
+			<label>$LOCALIZE[559]</label>
+			<onclick>Skin.ToggleSetting(MusicOSDDisablePlaylistButton)</onclick>
+			<selected>!Skin.HasSetting(MusicOSDDisablePlaylistButton)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="radiobutton" id="136">
+			<visible>Window.IsVisible(skinsettings) | ![MusicPlayer.Content(LiveTV) | MusicPartyMode.Enabled]</visible>
+			<label>$LOCALIZE[486]</label>
+			<onclick>Skin.ToggleSetting(MusicOSDDisableRepeatButton)</onclick>
+			<selected>!Skin.HasSetting(MusicOSDDisableRepeatButton)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="radiobutton" id="137">
+			<visible>Window.IsVisible(skinsettings) | ![MusicPlayer.Content(LiveTV) | MusicPartyMode.Enabled]</visible>
+			<label>$LOCALIZE[590]</label>
+			<onclick>Skin.ToggleSetting(MusicOSDDisableRandomButton)</onclick>
+			<selected>!Skin.HasSetting(MusicOSDDisableRandomButton)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="radiobutton" id="138">
+			<visible>Window.IsVisible(skinsettings) | ![Pvr.IsPlayingRadio | Player.IsInternetStream]</visible>
+			<label>$LOCALIZE[563]</label>
+			<onclick>Skin.ToggleSetting(MusicOSDDisableRatingButton)</onclick>
+			<selected>!Skin.HasSetting(MusicOSDDisableRatingButton)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="radiobutton" id="139">
+			<visible>Window.IsVisible(skinsettings) | !MusicPlayer.Content(LiveTV)</visible>
+			<label>$LOCALIZE[24013]</label>
+			<onclick>Skin.ToggleSetting(MusicOSDDisableLyricsButton)</onclick>
+			<selected>!Skin.HasSetting(MusicOSDDisableLyricsButton)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="radiobutton" id="140">
+			<visible>Window.IsVisible(skinsettings) | VideoPlayer.HasEpg</visible>
+			<label>$LOCALIZE[14301]</label>
+			<onclick>Skin.ToggleSetting(MusicOSDDisableChannelsButton)</onclick>
+			<selected>!Skin.HasSetting(MusicOSDDisableChannelsButton)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="radiobutton" id="141">
+			<visible>Window.IsVisible(skinsettings) | VideoPlayer.HasEpg</visible>
+			<label>$LOCALIZE[19069]</label>
+			<onclick>Skin.ToggleSetting(MusicOSDDisableGuideButton)</onclick>
+			<selected>!Skin.HasSetting(MusicOSDDisableGuideButton)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="label" id="151">
+			<visible>!Window.IsVisible(skinsettings)</visible>
 			<label>$LOCALIZE[31106]</label>
 			<include>DialogLabel</include>
 		</control>
-		<control type="radiobutton" id="142">
+		<control type="radiobutton" id="152">
+			<visible>!Window.IsVisible(skinsettings)</visible>
 			<label>$LOCALIZE[31197]</label>
 			<onclick>Skin.ToggleSetting(DisableAutoOpenMusicViz)</onclick>
 			<selected>!Skin.HasSetting(DisableAutoOpenMusicViz)</selected>
 			<include>DialogRadioButton</include>
 		</control>
-		<control type="button" id="143">
+		<control type="button" id="153">
+			<visible>!Window.IsVisible(skinsettings) + ![Player.IsInternetStream | Pvr.IsPlayingRadio]</visible>
 			<label>$LOCALIZE[31009]</label>
-			<label2>$VAR[MusicDiscArtFallbackLabelVar]</label2>
+			<label2>$VAR[NowPlayingMusicDiscArtLabelVar]</label2>
 			<onclick>SetProperty(CustomSelect,$LOCALIZE[31009],home)</onclick>
 			<onclick>ActivateWindow(1110)</onclick>
 			<include>DialogButton</include>
@@ -1133,15 +1202,200 @@
 	</include>
 	<!-- Video OSD -->
 	<include name="VideoOSDSettings">
-		<control type="button" id="109">
-			<width>990</width>
-			<label>Info</label>
-			<label2>$INFO[Skin.String(FullscreenVideoInfo)]</label2>
+		<control type="button" id="101">
+			<label>$LOCALIZE[13395]</label>
+			<onclick>ActivateWindow(osdvideosettings)</onclick>
 			<include>DialogButton</include>
-			<onclick condition="String.IsEmpty(Skin.String(FullscreenVideoInfo))">Skin.SetString(FullscreenVideoInfo,plot)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(FullscreenVideoInfo),plot)">Skin.SetString(FullscreenVideoInfo,cast)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(FullscreenVideoInfo),cast)">Skin.SetString(FullscreenVideoInfo,none)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(FullscreenVideoInfo),none)">Skin.Reset(FullscreenVideoInfo)</onclick>
+		</control>
+		<control type="button" id="102">
+			<label>$LOCALIZE[13396]</label>
+			<onclick>ActivateWindow(osdaudiosettings)</onclick>
+			<include>DialogButton</include>
+		</control>
+		<control type="button" id="103">
+			<label>$LOCALIZE[24133]</label>
+			<onclick>ActivateWindow(osdsubtitlesettings)</onclick>
+			<include>DialogButton</include>
+		</control>
+		<control type="button" id="104">
+			<label>$LOCALIZE[297]</label>
+			<onclick>audiodelay</onclick>
+			<include>DialogButton</include>
+		</control>
+		<control type="button" id="105">
+			<label>$LOCALIZE[22006]</label>
+			<onclick>subtitledelay</onclick>
+			<include>DialogButton</include>
+		</control>
+		<control type="button" id="106">
+			<visible>System.HasCMS</visible>
+			<label>$LOCALIZE[36560]</label>
+			<onclick>ActivateWindow(osdcmssettings)</onclick>
+			<include>DialogButton</include>
+		</control>
+		<control type="button" id="107">
+			<visible>Player.HasPrograms</visible>
+			<label>$LOCALIZE[31132]</label>
+			<onclick>PlayerProgramSelect</onclick>
+			<include>DialogButton</include>
+		</control>
+		<control type="button" id="108">
+			<visible>Player.HasResolutions</visible>
+			<label>$LOCALIZE[31133]</label>
+			<onclick>PlayerResolutionSelect</onclick>
+			<include>DialogButton</include>
+		</control>
+	</include>
+	<include name="VideoOSDInfoSettings">
+		<control type="label" id="111">
+			<label>$LOCALIZE[29915]</label>
+			<include>DialogLabel</include>
+		</control>
+		<control type="button" id="112">
+			<label>$LOCALIZE[36427]</label>
+			<label2>$VAR[VideoOSDInfoLabelVar]</label2>
+			<onclick condition="String.IsEmpty(VideoOSDInfo)">Skin.SetString(VideoOSDInfo,persistant)</onclick>
+			<onclick condition="Skin.String(VideoOSDInfo,persistant)">Skin.SetString(VideoOSDInfo,off)</onclick>
+			<onclick condition="Skin.String(VideoOSDInfo,off)">Skin.Reset(VideoOSDInfo)</onclick>
+			<include>DialogButton</include>
+		</control>
+		<control type="button" id="113">
+			<label>$LOCALIZE[31328]</label>
+			<label2>$VAR[VideoOSDMediaFlagsLabelVar]</label2>
+			<onclick condition="String.IsEmpty(VideoOSDMediaFlags)">Skin.SetString(VideoOSDMediaFlags,persistant)</onclick>
+			<onclick condition="Skin.String(VideoOSDMediaFlags,persistant)">Skin.SetString(VideoOSDMediaFlags,off)</onclick>
+			<onclick condition="Skin.String(VideoOSDMediaFlags,off)">Skin.Reset(VideoOSDMediaFlags)</onclick>
+			<include>DialogButton</include>
+		</control>
+		<control type="button" id="114">
+			<visible>Window.IsVisible(skinsettings) | VideoPlayer.Content(movies) | VideoPlayer.Content(episodes)</visible>
+			<label>$LOCALIZE[31211]</label>
+			<label2>$VAR[VideoOSDMovieInfoLabelVar]</label2>
+			<onclick condition="String.IsEmpty(VideoOSDMovieInfo)">Skin.SetString(VideoOSDMovieInfo,cast)</onclick>
+			<onclick condition="Skin.String(VideoOSDMovieInfo,cast)">Skin.SetString(VideoOSDMovieInfo,none)</onclick>
+			<onclick condition="Skin.String(VideoOSDMovieInfo,none)">Skin.Reset(VideoOSDMovieInfo)</onclick>
+			<include>DialogButton</include>
+		</control>
+		<control type="button" id="115">
+			<visible>Window.IsVisible(skinsettings) | ![VideoPlayer.Content(movies) | VideoPlayer.Content(episodes)]</visible>
+			<label>$LOCALIZE[12003]</label>
+			<label2>$VAR[VideoOSDVideoInfoLabelVar]</label2>
+			<onclick condition="String.IsEmpty(VideoOSDVideoInfo)">Skin.SetString(VideoOSDVideoInfo,none)</onclick>
+			<onclick condition="Skin.String(VideoOSDVideoInfo,none)">Skin.Reset(VideoOSDVideoInfo)</onclick>
+			<include>DialogButton</include>
+		</control>
+		<control type="radiobutton" id="116">
+			<label>$LOCALIZE[31333]</label>
+			<onclick>Skin.ToggleSetting(VideoOSDDisableSeekIcon)</onclick>
+			<selected>!Skin.HasSetting(VideoOSDDisableSeekIcon)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="label" id="120">
+			<visible>Window.IsVisible(skinsettings) | VideoPlayer.Content(movies) | VideoPlayer.Content(episodes) | VideoPlayer.Content(musicvideos)</visible>
+			<label>$LOCALIZE[31044]</label>
+			<include>DialogLabel</include>
+		</control>
+		<control type="radiobutton" id="121">
+			<visible>Window.IsVisible(skinsettings) | VideoPlayer.Content(movies) | VideoPlayer.Content(episodes)</visible>
+			<label>$LOCALIZE[31325]</label>
+			<onclick>Skin.ToggleSetting(VideoOSDCase)</onclick>
+			<selected>Skin.HasSetting(VideoOSDCase)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="radiobutton" id="122">
+			<visible>Window.IsVisible(skinsettings) | VideoPlayer.Content(musicvideos)</visible>
+			<label>$LOCALIZE[31326]</label>
+			<onclick>Skin.ToggleSetting(VideoOSDMusicVideoCase)</onclick>
+			<selected>Skin.HasSetting(VideoOSDMusicVideoCase)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="radiobutton" id="123">
+			<visible>Window.IsVisible(skinsettings) | VideoPlayer.Content(movies) | VideoPlayer.Content(musicvideos)</visible>
+			<label>$LOCALIZE[31108]</label>
+			<onclick>Skin.ToggleSetting(VideoOSDDisableDiscArt)</onclick>
+			<selected>!Skin.HasSetting(VideoOSDDisableDiscArt)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="radiobutton" id="124">
+			<visible>Window.IsVisible(skinsettings) | VideoPlayer.Content(movies) | VideoPlayer.Content(episodes) | VideoPlayer.Content(musicvideos)</visible>
+			<label>$LOCALIZE[31123]</label>
+			<onclick>Skin.ToggleSetting(VideoOSDDisableLogo)</onclick>
+			<selected>!Skin.HasSetting(VideoOSDDisableLogo)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="radiobutton" id="125">
+			<visible>!Skin.String(VideoOSDInfo,persistant) + [Window.IsVisible(skinsettings) | VideoPlayer.Content(movies) | VideoPlayer.Content(episodes) | VideoPlayer.Content(musicvideos)]</visible>
+			<label>$LOCALIZE[31165]</label>
+			<onclick>Skin.ToggleSetting(VideoOSDDisableClearArt)</onclick>
+			<selected>!Skin.HasSetting(VideoOSDDisableClearArt)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="label" id="131">
+			<label>$LOCALIZE[35059]</label>
+			<include>DialogLabel</include>
+		</control>
+		<control type="radiobutton" id="132">
+			<visible>Window.IsVisible(skinsettings) | VideoPlayer.HasInfo</visible>
+			<label>$LOCALIZE[29915]</label>
+			<onclick>Skin.ToggleSetting(VideoOSDDisableInfoButton)</onclick>
+			<selected>!Skin.HasSetting(VideoOSDDisableInfoButton)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="radiobutton" id="133">
+			<visible>Window.IsVisible(skinsettings) | !VideoPlayer.Content(livetv)</visible>
+			<label>$LOCALIZE[298]</label>
+			<onclick>Skin.ToggleSetting(VideoOSDDisableBookmarkButton)</onclick>
+			<selected>!Skin.HasSetting(VideoOSDDisableBookmarkButton)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="radiobutton" id="134">
+			<visible>Window.IsVisible(skinsettings) | ![VideoPlayer.Content(livetv) | VideoPlayer.Content(musicvideos)]</visible>
+			<label>$LOCALIZE[462]</label>
+			<onclick>Skin.ToggleSetting(VideoOSDDisableSubtitleButton)</onclick>
+			<selected>!Skin.HasSetting(VideoOSDDisableSubtitleButton)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="radiobutton" id="135">
+			<visible>Window.IsVisible(skinsettings) | VideoPlayer.HasEpg</visible>
+			<label>$LOCALIZE[14301]</label>
+			<onclick>Skin.ToggleSetting(VideoOSDDisableChannelsButton)</onclick>
+			<selected>!Skin.HasSetting(VideoOSDDisableChannelsButton)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="radiobutton" id="136">
+			<visible>Window.IsVisible(skinsettings) | VideoPlayer.HasEpg</visible>
+			<label>$LOCALIZE[19069]</label>
+			<onclick>Skin.ToggleSetting(VideoOSDDisableGuideButton)</onclick>
+			<selected>!Skin.HasSetting(VideoOSDDisableGuideButton)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="radiobutton" id="138">
+			<visible>Window.IsVisible(skinsettings) | VideoPlayer.HasTeletext</visible>
+			<label>$LOCALIZE[10550]</label>
+			<onclick>Skin.ToggleSetting(VideoOSDDisableTeletextButton)</onclick>
+			<selected>!Skin.HasSetting(VideoOSDDisableTeletextButton)</selected>
+			<include>DialogRadioButton</include>
+		</control>
+		<control type="label" id="141">
+			<visible>!Window.IsVisible(skinsettings) + [VideoPlayer.Content(movies) | VideoPlayer.Content(musicvideos)]</visible>
+			<label>$LOCALIZE[31106]</label>
+			<include>DialogLabel</include>
+		</control>
+		<control type="button" id="142">
+			<visible>!Window.IsVisible(skinsettings) + VideoPlayer.Content(musicvideos)</visible>
+			<label>$LOCALIZE[31009]</label>
+			<label2>$VAR[NowPlayingMusicDiscArtLabelVar]</label2>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[31009],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
+			<include>DialogButton</include>
+		</control>
+		<control type="button" id="143">
+			<visible>!Window.IsVisible(skinsettings) + VideoPlayer.Content(movies)</visible>
+			<label>$LOCALIZE[31299]</label>
+			<label2>$VAR[NowPlayingVideoDiscArtLabelVar]</label2>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[31299],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
+			<include>DialogButton</include>
 		</control>
 	</include>
 	<!-- Video info -->
@@ -1251,117 +1505,129 @@
 		</control>
 	</include>
 	<!-- Disc art fallback -->
-	<include name="SelectAudioCDArtFallback">
-		<item>
-			<label>$LOCALIZE[571]</label>
-			<onclick>Dialog.Close(1110)</onclick>
-			<onclick>Skin.Reset(AudioCDArtFallback)</onclick>
-		</item>
+	<include name="SelectNowPlayingMusicDiscartFallback">
 		<item>
 			<label>$LOCALIZE[231]</label>
 			<onclick>Dialog.Close(1110)</onclick>
-			<onclick>Skin.SetString(AudioCDArtFallback,none)</onclick>
+			<onclick>Skin.SetString(NowPlayingMusicDiscArtFallback,none)</onclick>
+		</item>
+		<item>
+			<label>CD</label>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.Reset(NowPlayingMusicDiscArtFallback)</onclick>
 		</item>
 		<item>
 			<label>$LOCALIZE[31182]</label>
 			<onclick>Dialog.Close(1110)</onclick>
-			<onclick>Skin.SetString(AudioCDArtFallback,vinyl)</onclick>
+			<onclick>Skin.SetString(NowPlayingMusicDiscArtFallback,vinyl)</onclick>
 		</item>
 		<item>
 			<label>$LOCALIZE[31183]</label>
 			<onclick>Dialog.Close(1110)</onclick>
-			<onclick>Skin.SetString(AudioCDArtFallback,bd)</onclick>
+			<onclick>Skin.SetString(NowPlayingMusicDiscArtFallback,bd)</onclick>
 		</item>
 		<item>
 			<label>$LOCALIZE[31184]</label>
 			<onclick>Dialog.Close(1110)</onclick>
-			<onclick>Skin.SetString(AudioCDArtFallback,white)</onclick>
+			<onclick>Skin.SetString(NowPlayingMusicDiscArtFallback,white)</onclick>
 		</item>
 		<item>
 			<label>$LOCALIZE[31185]</label>
 			<onclick>Dialog.Close(1110)</onclick>
-			<onclick>Skin.SetString(AudioCDArtFallback,blue)</onclick>
+			<onclick>Skin.SetString(NowPlayingMusicDiscArtFallback,blue)</onclick>
 		</item>
 		<item>
 			<label>$LOCALIZE[31186]</label>
 			<onclick>Dialog.Close(1110)</onclick>
-			<onclick>Skin.SetString(AudioCDArtFallback,golden)</onclick>
+			<onclick>Skin.SetString(NowPlayingMusicDiscArtFallback,golden)</onclick>
 		</item>
 		<item>
 			<label>$LOCALIZE[31187]</label>
 			<onclick>Dialog.Close(1110)</onclick>
-			<onclick>Skin.SetString(AudioCDArtFallback,green)</onclick>
+			<onclick>Skin.SetString(NowPlayingMusicDiscArtFallback,green)</onclick>
 		</item>
 		<item>
 			<label>$LOCALIZE[31188]</label>
 			<onclick>Dialog.Close(1110)</onclick>
-			<onclick>Skin.SetString(AudioCDArtFallback,grey)</onclick>
+			<onclick>Skin.SetString(NowPlayingMusicDiscArtFallback,grey)</onclick>
 		</item>
 		<item>
 			<label>$LOCALIZE[31189]</label>
 			<onclick>Dialog.Close(1110)</onclick>
-			<onclick>Skin.SetString(AudioCDArtFallback,orange)</onclick>
+			<onclick>Skin.SetString(NowPlayingMusicDiscArtFallback,orange)</onclick>
 		</item>
 		<item>
 			<label>$LOCALIZE[31190]</label>
 			<onclick>Dialog.Close(1110)</onclick>
-			<onclick>Skin.SetString(AudioCDArtFallback,purple)</onclick>
+			<onclick>Skin.SetString(NowPlayingMusicDiscArtFallback,purple)</onclick>
 		</item>
 		<item>
 			<label>$LOCALIZE[31191]</label>
 			<onclick>Dialog.Close(1110)</onclick>
-			<onclick>Skin.SetString(AudioCDArtFallback,red)</onclick>
+			<onclick>Skin.SetString(NowPlayingMusicDiscArtFallback,red)</onclick>
 		</item>
 	</include>
 	<!-- Disc art fallback -->
-	<include name="SelectVideoCDArtFallback">
-		<item>
-			<label>$LOCALIZE[571]</label>
-			<onclick>Skin.Reset(VideoCDArtFallback)</onclick>
-		</item>
+	<include name="SelectNowPlayingVideoDiscartFallback">
 		<item>
 			<label>$LOCALIZE[231]</label>
-			<onclick>Skin.SetString(VideoCDArtFallback,none)</onclick>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.SetString(NowPlayingVideoDiscArtFallback,none)</onclick>
+		</item>
+		<item>
+			<label>$LOCALIZE[14234]</label>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.Reset(NowPlayingVideoDiscArtFallback)</onclick>
 		</item>
 		<item>
 			<label>$LOCALIZE[31182]</label>
-			<onclick>Skin.SetString(VideoCDArtFallback,vinyl)</onclick>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.SetString(NowPlayingVideoDiscArtFallback,vinyl)</onclick>
 		</item>
 		<item>
 			<label>CD</label>
-			<onclick>Skin.SetString(VideoCDArtFallback,bd)</onclick>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.SetString(NowPlayingVideoDiscArtFallback,cd)</onclick>
 		</item>
 		<item>
 			<label>$LOCALIZE[31184]</label>
-			<onclick>Skin.SetString(VideoCDArtFallback,white)</onclick>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.SetString(NowPlayingVideoDiscArtFallback,white)</onclick>
 		</item>
 		<item>
 			<label>$LOCALIZE[31185]</label>
-			<onclick>Skin.SetString(VideoCDArtFallback,blue)</onclick>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.SetString(NowPlayingVideoDiscArtFallback,blue)</onclick>
 		</item>
 		<item>
 			<label>$LOCALIZE[31186]</label>
-			<onclick>Skin.SetString(VideoCDArtFallback,golden)</onclick>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.SetString(NowPlayingVideoDiscArtFallback,golden)</onclick>
 		</item>
 		<item>
 			<label>$LOCALIZE[31187]</label>
-			<onclick>Skin.SetString(VideoCDArtFallback,green)</onclick>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.SetString(NowPlayingVideoDiscArtFallback,green)</onclick>
 		</item>
 		<item>
 			<label>$LOCALIZE[31188]</label>
-			<onclick>Skin.SetString(VideoCDArtFallback,grey)</onclick>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.SetString(NowPlayingVideoDiscArtFallback,grey)</onclick>
 		</item>
 		<item>
 			<label>$LOCALIZE[31189]</label>
-			<onclick>Skin.SetString(VideoCDArtFallback,orange)</onclick>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.SetString(NowPlayingVideoDiscArtFallback,orange)</onclick>
 		</item>
 		<item>
 			<label>$LOCALIZE[31190]</label>
-			<onclick>Skin.SetString(VideoCDArtFallback,purple)</onclick>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.SetString(NowPlayingVideoDiscArtFallback,purple)</onclick>
 		</item>
 		<item>
 			<label>$LOCALIZE[31191]</label>
-			<onclick>Skin.SetString(VideoCDArtFallback,red)</onclick>
+			<onclick>Dialog.Close(1110)</onclick>
+			<onclick>Skin.SetString(NowPlayingVideoDiscArtFallback,red)</onclick>
 		</item>
 	</include>
 	<!-- View options -->

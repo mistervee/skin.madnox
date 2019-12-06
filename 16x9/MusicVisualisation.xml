@@ -40,22 +40,22 @@
 		</control>
 		<control type="multiimage">
 			<visible>![Pvr.IsPlayingRadio | Player.IsInternetStream] + Visualisation.Enabled</visible>
-			<include>NowPlayingMusicOSDTexture</include>
+			<include>NowPlayingMusicOSDFanart</include>
 			<imagepath background="true" colordiffuse="AAFFFFFF">$VAR[MusicOSDFanArtVar]</imagepath>
 		</control>
 		<control type="multiimage">
 			<visible>![Pvr.IsPlayingRadio | Player.IsInternetStream | Visualisation.Enabled]</visible>
-			<include>NowPlayingMusicOSDTexture</include>
+			<include>NowPlayingMusicOSDFanart</include>
 			<imagepath background="true">$VAR[MusicOSDFanArtVar]</imagepath>
 		</control>
 		<control type="multiimage">
 			<visible>[Pvr.IsPlayingRadio | Player.IsInternetStream] + Visualisation.Enabled</visible>
-			<include>NowPlayingMusicOSDTexture</include>
+			<include>NowPlayingMusicOSDFanart</include>
 			<imagepath background="true" colordiffuse="AAFFFFFF">$VAR[MusicOSDRadioStreamFanArtVar]</imagepath>
 		</control>
 		<control type="multiimage">
 			<visible>[Pvr.IsPlayingRadio | Player.IsInternetStream] + !Visualisation.Enabled</visible>
-			<include>NowPlayingMusicOSDTexture</include>
+			<include>NowPlayingMusicOSDFanart</include>
 			<imagepath background="true">$VAR[MusicOSDRadioStreamFanArtVar]</imagepath>
 		</control>
 		<control type="image">
@@ -100,7 +100,7 @@
 		</control>
 		<!-- Music info -->
 		<control type="image">
-			<visible>[Player.ShowInfo + String.IsEmpty(Skin.String(MusicOSDInfo))] | String.IsEqual(Skin.String(MusicOSDInfo),persistant)</visible>
+			<visible>[Player.ShowInfo + String.IsEmpty(Skin.String(MusicOSDInfo))] | Skin.String(MusicOSDInfo,persistant)</visible>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">440</param>
 			</include>
@@ -113,7 +113,7 @@
 			<texture colordiffuse="FF000000">panels/background-gradient.png</texture>
 		</control>
 		<control type="group">
-			<visible>[Player.ShowInfo + String.IsEmpty(Skin.String(MusicOSDInfo))] | String.IsEqual(Skin.String(MusicOSDInfo),persistant)</visible>
+			<visible>[Player.ShowInfo + String.IsEmpty(Skin.String(MusicOSDInfo))] | Skin.String(MusicOSDInfo,persistant)</visible>
 			<left>15</left>
 			<bottom>15</bottom>
 			<right>15</right>
@@ -125,7 +125,7 @@
 				<param name="slide">440</param>
 			</include>
 			<control type="group">
-				<visible>[String.IsEqual(Skin.String(MusicOSDMusicInfo),none) + !Player.IsInternetStream + !Pvr.IsPlayingRadio] | [String.IsEqual(Skin.String(MusicOSDAudioInfo),none) + [Player.IsInternetStream | Pvr.IsPlayingRadio]]</visible>
+				<visible>[Skin.String(MusicOSDMusicInfo,none) + !Player.IsInternetStream + !Pvr.IsPlayingRadio] | [Skin.String(MusicOSDAudioInfo,none) + [Player.IsInternetStream | Pvr.IsPlayingRadio]]</visible>
 				<control type="group">
 					<visible>!Skin.HasSetting(MusicOSDCase)</visible>
 					<include>AnimationVisibleFade</include>
@@ -150,7 +150,7 @@
 				</control>
 			</control>
 			<control type="group">
-				<visible>[!String.IsEqual(Skin.String(MusicOSDMusicInfo),none) + !Player.IsInternetStream + !Pvr.IsPlayingRadio] | [!String.IsEqual(Skin.String(MusicOSDAudioInfo),none) + [Player.IsInternetStream | Pvr.IsPlayingRadio]]</visible>
+				<visible>[!Skin.String(MusicOSDMusicInfo,none) + !Player.IsInternetStream + !Pvr.IsPlayingRadio] | [!Skin.String(MusicOSDAudioInfo,none) + [Player.IsInternetStream | Pvr.IsPlayingRadio]]</visible>
 				<control type="group">
 					<visible>!Skin.HasSetting(MusicOSDCase)</visible>
 					<include>AnimationVisibleFade</include>
@@ -177,12 +177,16 @@
 			<control type="group">
 				<visible>!Pvr.IsPlayingRadio + !Player.IsInternetStream</visible>
 				<control type="group">
-					<visible>String.IsEqual(Skin.String(MusicOSDMusicInfo),next) + MusicPlayer.HasNext</visible>
+					<visible>Skin.String(MusicOSDMusicInfo,next) + MusicPlayer.HasNext</visible>
 					<include>NowPlayingMusicOSDNext</include>
 				</control>
 				<control type="group">
-					<visible>String.IsEqual(Skin.String(MusicOSDMusicInfo),tracks) + MusicPlayer.HasNext</visible>
-					<include>NowPlayingMusicOSDTracks</include>
+					<visible>Skin.String(MusicOSDMusicInfo,tracks) + MusicPlayer.HasNext</visible>
+					<include>NowPlayingMusicOSDTrackList</include>
+				</control>
+				<control type="group">
+					<visible>Skin.String(MusicOSDMusicInfo,plot)</visible>
+					<include>HomeNowPlayingMusicOSDPlot</include>
 				</control>
 				<control type="grouplist">
 					<visible>String.IsEmpty(Skin.String(MusicOSDMusicInfo))</visible>
@@ -192,12 +196,16 @@
 			<control type="group">
 				<visible>Pvr.IsPlayingRadio | Player.IsInternetStream</visible>
 				<control type="group">
-					<visible>String.IsEqual(Skin.String(MusicOSDAudioInfo),next) + MusicPlayer.HasNext</visible>
+					<visible>Skin.String(MusicOSDAudioInfo,next) + MusicPlayer.HasNext</visible>
 					<include>NowPlayingMusicOSDNext</include>
 				</control>
 				<control type="group">
-					<visible>String.IsEqual(Skin.String(MusicOSDAudioInfo),tracks) + MusicPlayer.HasNext</visible>
-					<include>NowPlayingMusicOSDTracks</include>
+					<visible>Skin.String(MusicOSDAudioInfo,tracks) + MusicPlayer.HasNext</visible>
+					<include>NowPlayingMusicOSDTrackList</include>
+				</control>
+				<control type="group">
+					<visible>Skin.String(MusicOSDAudioInfo,plot)</visible>
+					<include>HomeNowPlayingMusicOSDPlot</include>
 				</control>
 				<control type="grouplist">
 					<visible>String.IsEmpty(Skin.String(MusicOSDAudioInfo))</visible>

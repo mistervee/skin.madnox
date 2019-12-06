@@ -5,7 +5,7 @@
 	<onunload>ClearProperty(CustomSelectGroup,home)</onunload>
 	<controls>
 		<control type="group">
-			<visible>!Window.IsActive(DialogSelect.xml) + !Window.IsActive(1110) + !Window.IsActive(addonsettings)</visible>
+			<visible>![Window.IsActive(DialogSelect.xml) | Window.IsActive(DialogSettings.xml) | Window.IsActive(1110) | Window.IsActive(addonsettings) | Window.IsActive(sliderdialog)]</visible>
 			<include>AnimationDialogPopupVisible</include>
 			<include content="DialogBackground">
 				<param name="width" value="1220" />
@@ -26,15 +26,13 @@
 				<!-- Top bar -->
 				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[31042])">TopbarSettings</include>
 				<!-- MusicOSD -->
-				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[31312])">MusicOSDSettings</include>
+				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[31337])">MusicOSDInfoSettings</include>
 				<!-- VideoOSD -->
-				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[12005])">VideoOSDSettings</include>
-				<!-- Live Background -->
-				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[31103])">LiveBackgroundSettings</include>
+				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[13395])">VideoOSDSettings</include>
+				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[31338])">VideoOSDInfoSettings</include>
 				<!-- Video info -->
 				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[12003])">VideoInfoSettings</include>
 				<!-- Backgrounds -->
-				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[31041] $LOCALIZE[31107])">SelectMainMenuBackground</include>
 				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[3] $LOCALIZE[31107])">SelectVideoBackground</include>
 				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[2] $LOCALIZE[31107])">SelectMusicBackground</include>
 				<include condition="String.IsEqual(Window(home).Property(CustomSelectGroup),$LOCALIZE[24001] $LOCALIZE[31107])">SelectAddonBackground</include>
