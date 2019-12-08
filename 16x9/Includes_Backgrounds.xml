@@ -51,27 +51,13 @@
 				</control>
 				<control type="multiimage">
 					<visible>!Visualisation.Enabled | !Skin.HasSetting(NowplayingVizBackground)</visible>
-					<animation type="Conditional" pulse="true" condition="$PARAM[animatedfanart]">
-						<effect type="zoom" start="110" end="120" center="auto" time="12000" tween="sine" easing="inout"/>
-						<effect type="slide" start="-20,-20" end="20,20" time="6000" tween="sine" easing="inout"/>
-					</animation>
-					<include>FullScreenDimensions</include>
-					<aspectratio>scale</aspectratio>
+					<include>BackgroundFanartImage</include>
 					<imagepath background="true">$VAR[NowPlayingMusicBackgroundVar]</imagepath>
-					<randomize>true</randomize>
-					<fadetime>TextureFadeTime</fadetime>
 				</control>
 				<control type="multiimage">
 					<visible>Visualisation.Enabled + Skin.HasSetting(NowplayingVizBackground)</visible>
-					<animation type="Conditional" pulse="true" condition="$PARAM[animatedfanart]">
-						<effect type="zoom" start="110" end="120" center="auto" time="12000" tween="sine" easing="inout"/>
-						<effect type="slide" start="-20,-20" end="20,20" time="6000" tween="sine" easing="inout"/>
-					</animation>
-					<include>FullScreenDimensions</include>
-					<aspectratio>scale</aspectratio>
+					<include>BackgroundFanartImage</include>
 					<imagepath background="true" colordiffuse="AAFFFFFF">$VAR[NowPlayingMusicBackgroundVar]</imagepath>
-					<randomize>true</randomize>
-					<fadetime>TextureFadeTime</fadetime>
 				</control>
 			</control>
 			<!-- Skin background -->
@@ -80,29 +66,13 @@
 				<include>AnimationWindowFade</include>
 				<control type="multiimage">
 					<visible>!Visualisation.Enabled | !Skin.HasSetting(NowplayingVizBackground)</visible>
-					<animation type="Conditional" pulse="true" condition="$PARAM[animatedfanart]">
-						<effect type="zoom" start="110" end="120" center="auto" time="12000" tween="sine" easing="inout"/>
-						<effect type="slide" start="-20,-20" end="20,20" time="6000" tween="sine" easing="inout"/>
-					</animation>
-					<include>FullScreenDimensions</include>
-					<aspectratio>scale</aspectratio>
+					<include>BackgroundFanartImage</include>
 					<imagepath background="true">$PARAM[imagepath]</imagepath>
-					<randomize>true</randomize>
-					<include>MultiImageTime</include>
-					<fadetime>TextureFadeTime</fadetime>
 				</control>
 				<control type="multiimage">
 					<visible>Visualisation.Enabled + Skin.HasSetting(NowplayingVizBackground)</visible>
-					<animation type="Conditional" pulse="true" condition="$PARAM[animatedfanart]">
-						<effect type="zoom" start="110" end="120" center="auto" time="12000" tween="sine" easing="inout"/>
-						<effect type="slide" start="-20,-20" end="20,20" time="6000" tween="sine" easing="inout"/>
-					</animation>
-					<include>FullScreenDimensions</include>
-					<aspectratio>scale</aspectratio>
+					<include>BackgroundFanartImage</include>
 					<imagepath background="true" colordiffuse="AAFFFFFF">$PARAM[imagepath]</imagepath>
-					<randomize>true</randomize>
-					<include>MultiImageTime</include>
-					<fadetime>TextureFadeTime</fadetime>
 				</control>
 				<!-- Cover backgrounds -->
 				<include condition="Window.IsActive(Home)">skinshortcuts-template-coverBackground</include>
@@ -988,6 +958,16 @@
 				</control>
 			</control>
 		</definition>
+	</include>
+	<include name="BackgroundFanartImage">
+		<animation type="Conditional" pulse="true" condition="$PARAM[animatedfanart]">
+			<effect type="zoom" start="110" end="120" center="auto" time="12000" tween="sine" easing="inout"/>
+			<effect type="slide" start="-20,-20" end="20,20" time="6000" tween="sine" easing="inout"/>
+		</animation>
+		<include>FullScreenDimensions</include>
+		<randomize>true</randomize>
+		<aspectratio>scale</aspectratio>
+		<fadetime>TextureFadeTime</fadetime>
 	</include>
 	<include name="MultiImageTime">
 		<include condition="Skin.String(FanartTimePerImage,5)">FanartTimePerImage5</include>

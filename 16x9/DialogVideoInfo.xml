@@ -1,37 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">8</defaultcontrol>
-	
-
-	
-	
+	<onload condition="System.HasAddon(script.embuary.info) + Skin.HasSetting(BlurEnabled)">RunScript(script.embuary.helper,action=blurimg,file=$ESCINFO[ListItem.Art(thumb)],prop=blurthumb,radius=2)</onload>
 	<controls>
-		<control type="image">
-			<visible>Skin.HasSetting(BlurEnabled)</visible>
-			<include>AnimationVisibleFade</include>
-			<include>AnimationWindowFade</include>
-			<aspectratio>scale</aspectratio>
-			<colordiffuse>$INFO[Window(home).Property(listitem_color)]</colordiffuse>
-			<texture>$INFO[Window(home).Property(listitem_blurred)]</texture>
-		</control>
-		<control type ="image">
-			<include>AnimationVisibleFade</include>
-			<include>AnimationWindowFade</include>
-			<texture>colors/black80.png</texture>
-			<visible>!Skin.HasSetting(BlurEnabled)</visible>
-		</control>
-		<control type ="image">
-			<include>AnimationVisibleFade</include>
-			<include>AnimationWindowFade</include>
-			<texture>colors/black50.png</texture>
-			<visible>Skin.HasSetting(BlurEnabled)</visible>
-		</control>
 		<!-- Background blur -->
+		<control type="group">
+			<visible>System.HasAddon(script.embuary.info) + Skin.HasSetting(BlurEnabled)</visible>
+			<include>AnimationVisibleFade</include>
+			<include>AnimationWindowFade</include>
 			<control type="image" id="100000">
-				<visible>Skin.HasSetting(BlurEnabled)</visible>
 				<include>HiddenObject</include>
 				<texture background="true">$INFO[ListItem.Icon]</texture>
 			</control>
+			<control type="image">
+				<aspectratio>scale</aspectratio>
+				<colordiffuse>$INFO[Window(home).Property(listitem_color)]</colordiffuse>
+				<texture>$INFO[Window(home).Property(listitem_blurred)]</texture>
+			</control>
+			<control type="image">
+				<texture>colors/black50.png</texture>
+			</control>
+		</control>
+		<control type="image">
+			<visible>!Skin.HasSetting(BlurEnabled) | System.HasAddon(script.embuary.info)</visible>
+			<include>AnimationVisibleFade</include>
+			<include>AnimationWindowFade</include>
+			<texture>colors/black80.png</texture>
+		</control>
+		<!-- Content -->
 		<control type="group">
 			<animation type="WindowOpen" reversible="false">
 				<effect type="zoom" start="80" end="100" center="50%,50%" time="480" tween="cubic" easing="out"/>
@@ -41,6 +37,48 @@
 				<effect type="zoom" start="100" end="80" center="50%,50%" delay="0" time="480" tween="cubic" easing="out"/>
 				<effect type="fade" end="0" time="400" tween="sine" easing="out" />
 			</animation>
+			<!-- Artwork -->
+			<control type="group">
+				<visible>!String.IsEqual(ListItem.DBTYPE,musicvideo) + !Skin.HasSetting(VideoInfoCase)</visible>
+				<include>AnimationVisibleFade</include>
+				<top>15</top>
+				<left>15</left>
+				<width>706</width>
+				<height>1050</height>
+				<include content="ViewArtwork">
+					<param name="diffuse">diffuse/rounded5-532x800.png</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>!String.IsEqual(ListItem.DBTYPE,musicvideo) + Skin.HasSetting(VideoInfoCase)</visible>
+				<include>AnimationVisibleFade</include>
+				<top>15</top>
+				<left>15</left>
+				<width>706</width>
+				<height>1050</height>
+				<include content="ViewArtwork">
+					<param name="diffuse">diffuse/rounded5-532x800.png</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>String.IsEqual(ListItem.DBTYPE,musicvideo)</visible>
+				<include>AnimationVisibleFade</include>
+				<control type="image">
+					<top>23</top>
+					<left>33</left>
+					<width>670</width>
+					<height>670</height>
+					<aspectratio>keep</aspectratio>
+					<texture background="true" fallback="thumbs/disc/cd.png" diffuse="diffuse/disc.png">$INFO[ListItem.Art(discart)]</texture>
+				</control>
+				<control type="group">
+					<bottom>15</bottom>
+					<left>15</left>
+					<width>706</width>
+					<height>706</height>
+					<include>ViewArtwork</include>
+				</control>
+			</control>
 
 			<!-- TMDB Info -->
 			<control type="list" id="500">
@@ -732,35 +770,7 @@
 				
 				
 			</control>
-			<!-- Artwork -->
-			<control type="group">
-				<visible>!String.IsEqual(ListItem.DBTYPE,musicvideo)</visible>
-				<include>AnimationVisibleFade</include>
-				<top>15</top>
-				<left>15</left>
-				<width>706</width>
-				<height>1050</height>
-				<include>ViewArtwork</include>
-			</control>
-			<control type="group">
-				<visible>String.IsEqual(ListItem.DBTYPE,musicvideo)</visible>
-				<include>AnimationVisibleFade</include>
-				<control type="image">
-					<top>23</top>
-					<left>33</left>
-					<width>670</width>
-					<height>670</height>
-					<aspectratio>keep</aspectratio>
-					<texture background="true" fallback="thumbs/disc/cd.png" diffuse="diffuse/disc.png">$INFO[ListItem.Art(discart)]</texture>
-				</control>
-				<control type="group">
-					<bottom>15</bottom>
-					<left>15</left>
-					<width>706</width>
-					<height>706</height>
-					<include>ViewArtwork</include>
-				</control>
-			</control>
+			
 		</control>
 	</control>
 </controls>

@@ -75,9 +75,12 @@
 			<include>AnimationVisibleFade</include>
 			<!-- Now playing -->
 			<control type="group">
-				<visible>Player.HasMedia + !Skin.HasSetting(NowplayingHomeDisable)</visible>
+				<visible>Player.HasMedia + ![Skin.HasSetting(NowplayingHomeDisable) | Window.Next(musicplaylist) | Window.Next(visualisation)]</visible>
 				<include>AnimationVisibleFade</include>
 				<include content="AnimationSlideBottomWindow">
+					<param name="slide">540</param>
+				</include>
+				<include content="AnimationSlideBottomVisible">
 					<param name="slide">540</param>
 				</include>
 				<include>HomeNowPlaying</include>

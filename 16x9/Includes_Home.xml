@@ -1137,8 +1137,10 @@
 		<control type="image">
 			<visible>$PARAM[infovisible] + ControlGroup(90010).HasFocus</visible>
 			<include>AnimationVisibleFade</include>
+			<top>-600</top>
 			<width>1300</width>
-			<texture>panels/kodiflix-gradient.png</texture>
+			<height>1680</height>
+			<texture colordiffuse="$VAR[MainMenuShadowColorVar]">panels/kodiflix-gradient.png</texture>
 		</control>
 		<control type="group">
 			<visible>$PARAM[infovisible]</visible>
@@ -1302,7 +1304,6 @@
 						<include content="NowPlayingHomePortraitContent">
 							<param name="case">Skin.HasSetting(NowPlayingHomeVideoCase)</param>
 							<param name="logo">!Skin.HasSetting(NowPlayingHomeDisableLogo)</param>
-							<param name="discart">false</param>
 						</include>
 					</control>
 					<control type="group">
@@ -1312,7 +1313,6 @@
 							<param name="right">650</param>
 							<param name="case">Skin.HasSetting(NowPlayingHomeVideoCase)</param>
 							<param name="logo">!Skin.HasSetting(NowPlayingHomeDisableLogo)</param>
-							<param name="discart">false</param>
 						</include>
 					</control>
 				</control>
@@ -1397,7 +1397,7 @@
 			<control type="group">
 				<visible>Player.HasAudio</visible>
 				<control type="group">
-					<visible>![Pvr.IsPlayingRadio | Player.IsInternetStream]</visible>
+					<visible>![Pvr.IsPlayingTv | Pvr.IsPlayingRadio | Player.IsInternetStream]</visible>
 					<control type="group">
 						<visible>Skin.String(NowPlayingHomeMusicInfo,none)</visible>
 						<include>AnimationVisibleFade</include>
@@ -1419,7 +1419,7 @@
 					</control>
 				</control>
 				<control type="group">
-					<visible>Pvr.IsPlayingRadio | Player.IsInternetStream</visible>
+					<visible>Pvr.IsPlayingTv | Pvr.IsPlayingRadio | Player.IsInternetStream</visible>
 					<control type="group">
 						<visible>Skin.String(NowPlayingHomeAudioInfo,none)</visible>
 						<include>AnimationVisibleFade</include>
@@ -1439,7 +1439,7 @@
 					</control>
 				</control>
 				<control type="group">
-					<visible>![Pvr.IsPlayingRadio | Player.IsInternetStream]</visible>
+					<visible>![Pvr.IsPlayingTv | Pvr.IsPlayingRadio | Player.IsInternetStream]</visible>
 					<control type="group">
 						<visible>Skin.String(NowPlayingHomeMusicInfo,next) + MusicPlayer.HasNext</visible>
 						<include>NowPlayingHomeAudioNext</include>
@@ -1458,7 +1458,7 @@
 					</control>
 				</control>
 				<control type="group">
-					<visible>Pvr.IsPlayingRadio | Player.IsInternetStream</visible>
+					<visible>Pvr.IsPlayingTv | Pvr.IsPlayingRadio | Player.IsInternetStream</visible>
 					<control type="group">
 						<visible>Skin.String(NowPlayingHomeAudioInfo,next) + MusicPlayer.HasNext</visible>
 						<include>NowPlayingHomeAudioNext</include>

@@ -99,83 +99,64 @@
 			<resetonlabelchange>true</resetonlabelchange>
 		</control>
 		<!-- Music info -->
-		<control type="image">
-			<visible>[Player.ShowInfo + String.IsEmpty(Skin.String(MusicOSDInfo))] | Skin.String(MusicOSDInfo,persistant)</visible>
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">440</param>
-			</include>
-			<include content="AnimationSlideBottomVisible">
-				<param name="slide">440</param>
-			</include>
-			<top>480</top>
-			<width>1920</width>
-			<height>600</height>
-			<texture colordiffuse="FF000000">panels/background-gradient.png</texture>
-		</control>
 		<control type="group">
 			<visible>[Player.ShowInfo + String.IsEmpty(Skin.String(MusicOSDInfo))] | Skin.String(MusicOSDInfo,persistant)</visible>
-			<left>15</left>
-			<bottom>15</bottom>
-			<right>15</right>
-			<height>400</height>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">440</param>
 			</include>
 			<include content="AnimationSlideBottomVisible">
 				<param name="slide">440</param>
 			</include>
+			<control type="image">
+				<top>480</top>
+				<width>1920</width>
+				<height>600</height>
+				<texture colordiffuse="FF000000">panels/background-gradient.png</texture>
+			</control>
 			<control type="group">
-				<visible>[Skin.String(MusicOSDMusicInfo,none) + !Player.IsInternetStream + !Pvr.IsPlayingRadio] | [Skin.String(MusicOSDAudioInfo,none) + [Player.IsInternetStream | Pvr.IsPlayingRadio]]</visible>
+				<visible>![Pvr.IsPlayingTv | Pvr.IsPlayingRadio | Player.IsInternetStream]</visible>
 				<control type="group">
-					<visible>!Skin.HasSetting(MusicOSDCase)</visible>
+					<visible>Skin.String(MusicOSDMusicInfo,none)</visible>
 					<include>AnimationVisibleFade</include>
 					<include content="NowPlayingMusicOSDContent">
-						<param name="left">0</param>
-						<param name="right">52</param>
-						<param name="leftinfo">390</param>
-						<param name="slide">125</param>
-						<param name="slidedisc">170</param>
+						<param name="case">Skin.HasSetting(MusicOSDCase)</param>
+						<param name="logo">!Skin.HasSetting(MusicOSDDisableLogo)</param>
+						<param name="discart">!Skin.HasSetting(MusicOSDDisableDiscArt)</param>
 					</include>
 				</control>
 				<control type="group">
-					<visible>Skin.HasSetting(MusicOSDCase)</visible>
+					<visible>!Skin.String(MusicOSDMusicInfo,none)</visible>
 					<include>AnimationVisibleFade</include>
 					<include content="NowPlayingMusicOSDContent">
-						<param name="left">30</param>
-						<param name="right">52</param>
-						<param name="leftinfo">420</param>
-						<param name="slide">120</param>
-						<param name="slidedisc">166</param>
+						<param name="right">650</param>
+						<param name="case">Skin.HasSetting(MusicOSDCase)</param>
+						<param name="logo">!Skin.HasSetting(MusicOSDDisableLogo)</param>
+						<param name="discart">!Skin.HasSetting(MusicOSDDisableDiscArt)</param>
 					</include>
 				</control>
 			</control>
 			<control type="group">
-				<visible>[!Skin.String(MusicOSDMusicInfo,none) + !Player.IsInternetStream + !Pvr.IsPlayingRadio] | [!Skin.String(MusicOSDAudioInfo,none) + [Player.IsInternetStream | Pvr.IsPlayingRadio]]</visible>
+				<visible>Pvr.IsPlayingTv | Pvr.IsPlayingRadio | Player.IsInternetStream</visible>
 				<control type="group">
-					<visible>!Skin.HasSetting(MusicOSDCase)</visible>
+					<visible>Skin.String(MusicOSDAudioInfo,none)</visible>
 					<include>AnimationVisibleFade</include>
 					<include content="NowPlayingMusicOSDContent">
-						<param name="left">0</param>
-						<param name="right">660</param>
-						<param name="leftinfo">390</param>
-						<param name="slide">125</param>
-						<param name="slidedisc">170</param>
+						<param name="aspect">keep</param>
+						<param name="case">Skin.HasSetting(MusicOSDCase)</param>
 					</include>
 				</control>
 				<control type="group">
-					<visible>Skin.HasSetting(MusicOSDCase)</visible>
+					<visible>!Skin.String(MusicOSDAudioInfo,none)</visible>
 					<include>AnimationVisibleFade</include>
 					<include content="NowPlayingMusicOSDContent">
-						<param name="left">30</param>
-						<param name="right">760</param>
-						<param name="leftinfo">420</param>
-						<param name="slide">120</param>
-						<param name="slidedisc">166</param>
+						<param name="right">650</param>
+						<param name="aspect">keep</param>
+						<param name="case">Skin.HasSetting(MusicOSDCase)</param>
 					</include>
 				</control>
 			</control>
 			<control type="group">
-				<visible>!Pvr.IsPlayingRadio + !Player.IsInternetStream</visible>
+				<visible>![Pvr.IsPlayingTv | Pvr.IsPlayingRadio | Player.IsInternetStream]</visible>
 				<control type="group">
 					<visible>Skin.String(MusicOSDMusicInfo,next) + MusicPlayer.HasNext</visible>
 					<include>NowPlayingMusicOSDNext</include>
@@ -194,7 +175,7 @@
 				</control>
 			</control>
 			<control type="group">
-				<visible>Pvr.IsPlayingRadio | Player.IsInternetStream</visible>
+				<visible>Pvr.IsPlayingTv | Pvr.IsPlayingRadio | Player.IsInternetStream</visible>
 				<control type="group">
 					<visible>Skin.String(MusicOSDAudioInfo,next) + MusicPlayer.HasNext</visible>
 					<include>NowPlayingMusicOSDNext</include>
