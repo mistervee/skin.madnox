@@ -132,13 +132,13 @@
 		<value condition="!String.IsEmpty(ListItem.Property(Artist_Born))">$INFO[ListItem.Property(Artist_Born), ,  ]</value>
 	</variable>
 	<variable name="ListViewIcon2Var">
-		<value condition="Container.Content(albums)">$VAR[IconPathVar]disc.png</value>
+		<value condition="Container.Content(albums)"></value>
 		<value condition="!String.IsEmpty(ListItem.AddonVersion)">$VAR[IconPathVar]addons.png</value>
 		<value>$VAR[IconPathVar]timer.png</value>
 	</variable>
 	<variable name="ListViewInfo2Var">
 		<value condition="Window.IsActive(MyPVRChannels.xml)">$INFO[ListItem.StartTime, , - ]$INFO[ListItem.EndTime,,  ]</value>
-		<value condition="Container.Content(albums)">$INFO[ListItem.Property(Album_Type), [CAPITALIZE],[/CAPITALIZE]  ]</value>
+		<value condition="Container.Content(albums)"></value>
 		<value condition="!String.IsEmpty(ListItem.Duration) + !Integer.IsGreater(ListItem.Duration(h),0)">$INFO[ListItem.Duration(mm), ,m]$INFO[ListItem.Duration(ss),,s  ]</value>
 		<value condition="!String.IsEmpty(ListItem.Duration)">$INFO[ListItem.Duration(hh), ,h]$INFO[ListItem.Duration(mm),,m  ]</value>
 		<value condition="!String.IsEmpty(ListItem.AddonVersion)">$INFO[ListItem.AddonVersion, v,  ]</value>
@@ -272,12 +272,14 @@
 	<variable name="ListOverlayIconVar">
 		<value condition="ListItem.IsPlaying">overlays/list/OverlayPlay.png</value>
 		<value condition="ListItem.IsResumable">overlays/list/OverlayResume.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem.Property(WatchedEpisodes),ListItem.Property(TotalEpisodes))">overlays/list/OverlayUnWatched.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem.Property(WatchedEpisodes),ListItem.Property(TotalEpisodes))">overlays/list/OverlayWatched.png</value>
-		<value condition="!String.IsEmpty(ListItem.Overlay)">overlays/list/$INFO[ListItem.Overlay]</value>
+		<value condition="!String.IsEmpty(Container.ListItem.Overlay)">overlays/list/$INFO[ListItem.Overlay]</value>
+		<!-- <value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem.Property(WatchedEpisodes),ListItem.Property(TotalEpisodes))">overlays/list/OverlayUnWatched.png</value>
+		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem.Property(WatchedEpisodes),ListItem.Property(TotalEpisodes))">overlays/list/OverlayWatched.png</value> -->
+		<value condition="Integer.IsGreater(Container.ListItem.Property(unwatchedepisodes),0) | !Integer.IsGreaterOrEqual(ListItem.PlayCount,1)">overlays/list/OverlayUnWatched.png</value>
+		<value condition="!Integer.IsGreater(Container.ListItem.Property(unwatchedepisodes),0) | Integer.IsGreaterOrEqual(ListItem.PlayCount,1)">overlays/list/OverlayWatched.png</value>
 		<value condition="Container.Content(songs)">flags/discnumber/$INFO[ListItem.DiscNumber,,.png]</value>
 	</variable>
-	<variable name="PosterOverlayIconVar">
+	<variable name="PosterOverlayIconVar">$INFO[Container.ListItem.Property(unwatchedepisodes)]
 		<value condition="ListItem.IsPlaying">overlays/poster/OverlayPlay.png</value>
 		<value condition="ListItem.IsResumable">overlays/poster/OverlayResume.png</value>
 		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem.Property(WatchedEpisodes),ListItem.Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
@@ -411,73 +413,10 @@
 
 
 
-	<variable name="VideoDialogTitleVar">
-		<value condition="String.IsEqual(ListItem.DBTYPE,episode)">$INFO[ListItem.Season,,x]$INFO[ListItem.Episode,,. ]$INFO[ListItem.Title]</value>
-		<value>$INFO[ListItem.Title]</value>
-	</variable>
-	<variable name="VideoDialogSubtitleVar">
-		<value condition="!String.IsEmpty(ListItem.Tagline)">$INFO[ListItem.Tagline]</value>
-		<value condition="String.IsEqual(ListItem.DBType,episode)">$INFO[ListItem.TvShowTitle]</value>
-		<value condition="String.IsEqual(ListItem.DBType,musicvideo)">$INFO[ListItem.Artist]</value>
-		<value>$INFO[ListItem.Genre]</value>
-	</variable>
-	<variable name="VideoDialogInfo1Var">
-		<value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)">$INFO[Window(Home).Property(NextAired.Status)]</value>
-		<value condition="String.IsEqual(ListItem.DBType,musicvideo)">$INFO[ListItem.Album]</value>
-		<value condition="!String.IsEmpty(ListItem.Director)">$INFO[ListItem.Director]</value>
-		<value>$LOCALIZE[1446]</value>
-	</variable>
-	<variable name="VideoDialogInfo1IconVar">
-		<value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)">$VAR[IconPathVar]tvshows.png</value>
-		<value condition="String.IsEqual(ListItem.DBType,musicvideo)">$VAR[IconPathVar]disc.png</value>
-		<value>$VAR[IconPathVar]movies.png</value>
-	</variable>
-	<variable name="VideoDialogInfo2Var">
-		<value condition="[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(Window(Home).Property(NextAired.NextDay))">$INFO[Window(Home).Property(NextAired.NextDay)]$INFO[Window(Home).Property(NextAired.ShortTime),$COMMA ]$INFO[Window(Home).Property(NextAired.NextNumber), - ]$INFO[Window(Home).Property(NextAired.NextTitle), ]</value>
-		<value condition="[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)]">$INFO[Window(Home).Property(NextAired.LatestDay)]$INFO[Window(Home).Property(NextAired.LatestNumber), - ]$INFO[Window(Home).Property(NextAired.LatestTitle), ]</value>
-		<value condition="String.IsEqual(ListItem.DBType,musicvideo)">$INFO[ListItem.Genre]</value>
-		<value condition="!String.IsEmpty(ListItem.Writer)">$INFO[ListItem.Writer]</value>
-		<value>$LOCALIZE[1446]</value>
-	</variable>
-	<variable name="VideoDialogInfo2IconVar">
-		<value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)">$VAR[IconPathVar]calendar.png</value>
-		<value condition="String.IsEqual(ListItem.DBType,musicvideo)">$VAR[IconPathVar]music.png</value>
-		<value>$VAR[IconPathVar]writer.png</value>
-	</variable>
-	<variable name="VideoDialogPlotArtVar">
-		<value condition="!Skin.HasSetting(VideoInfoDisableCharacterArt) + !String.IsEmpty(ListItem.Art(characterart)) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]">$INFO[ListItem.Art(characterart)]</value>
-		<value condition="!Skin.HasSetting(VideoInfoDisableClearLogo) + !String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEqual(ListItem.DBType,musicvideo)">$INFO[ListItem.Art(clearlogo)]</value>
-		<value condition="!Skin.HasSetting(VideoInfoDisableDiscArt) + !String.IsEmpty(ListItem.Art(discart))">$INFO[ListItem.Art(discart)]</value>
-	</variable>
-	<variable name="VideoDialogSimilarContentVar">
-		<value condition="String.IsEqual(ListItem.DBType,movie)">plugin://script.extendedinfo?info=similarmovies&amp;&amp;dbid=$INFO[ListItem.DBID]</value>
-		<value condition="String.IsEqual(ListItem.DBType,tvshow)">plugin://script.extendedinfo?info=similartvshows&amp;&amp;dbid=$INFO[ListItem.DBID]</value>
-		<value condition="String.IsEqual(ListItem.DBType,musicvideo)">plugin://script.extendedinfo?info=discography&amp;&amp;artistname=$INFO[ListItem.Artist]</value>
-	</variable>
-	<variable name="VideoDialogPlotVar">
-		<value condition="Skin.HasSetting(VideoDialogPlotOutline) + !String.IsEmpty(ListItem.PlotOutline)">$INFO[ListItem.PlotOutline]</value>
-		<value>$INFO[ListItem.Plot]</value>
-	</variable>
-	<variable name="VideoDialogToolTipsVar">
-		<value condition="System.HasAddon(script.extendedinfo) + Control.HasFocus(130)">$LOCALIZE[31923]</value>
-		<value condition="Control.HasFocus(130)">$LOCALIZE[31924]</value>
-		<value condition="System.HasAddon(script.extendedinfo) + Control.HasFocus(131)">$LOCALIZE[31925]</value>
-		<value condition="System.HasAddon(script.extendedinfo) + String.IsEqual(ListItem.DBTYPE,musicvideo) + Control.HasFocus(50)">$LOCALIZE[31929]</value>
-		<value condition="System.HasAddon(script.extendedinfo) + Control.HasFocus(50)">$LOCALIZE[31926]</value>
-		<value condition="Control.HasFocus(50)">$LOCALIZE[31927]</value>
-		<value condition="ControlGroup(9000).HasFocus">$LOCALIZE[31928]</value>
-		<value></value>
-	</variable>
+	
+	
 
-	<variable name="MusicDialogTitleVar">
-		<value condition="String.IsEqual(ListItem.DBTYPE,artist)">$INFO[ListItem.Artist]</value>
-		<value condition="String.IsEqual(ListItem.DBTYPE,album)">$INFO[ListItem.Album]</value>
-		<value>$INFO[ListItem.Title]</value>
-	</variable>
-	<variable name="MusicDialogSubtitleVar">
-		<value condition="String.IsEqual(ListItem.DBTYPE,artist)">$INFO[Listitem.Genre]</value>
-		<value>$INFO[ListItem.Artist]</value>
-	</variable>
+	
 	
 	
 	<variable name="MusicDialogPlotArtVar">
@@ -490,34 +429,6 @@
 	</variable>
 
 
-	<variable name="MusicDialogYoutubeVar">
-		<value condition="String.IsEqual(ListItem.DBTYPE,artist)">plugin://script.extendedinfo?info=youtubesearchvideos&amp;&amp;id=$ESCINFO[ListItem.Artist] band</value>
-		<value condition="String.IsEqual(ListItem.DBTYPE,album)">plugin://script.extendedinfo?info=youtubesearchvideos&amp;&amp;id=$ESCINFO[ListItem.Artist] $ESCINFO[ListItem.Album]</value>
-		<value condition="String.IsEqual(ListItem.DBTYPE,song)">plugin://script.extendedinfo?info=youtubesearchvideos&amp;&amp;id=$ESCINFO[ListItem.Artist] $ESCINFO[ListItem.Title]</value>
-		<value>$INFO[ListItem.Title]</value>
-	</variable>
-
-
-
-	<variable name="VideoDialogSimilarContentVar">
-		<value condition="String.IsEqual(ListItem.DBType,movie)">plugin://script.extendedinfo?info=similarmovies&amp;&amp;dbid=$INFO[ListItem.DBID]</value>
-		<value condition="String.IsEqual(ListItem.DBType,tvshow)">plugin://script.extendedinfo?info=similartvshows&amp;&amp;dbid=$INFO[ListItem.DBID]</value>
-		<value condition="String.IsEqual(ListItem.DBType,musicvideo)">plugin://script.extendedinfo?info=discography&amp;&amp;artistname=$INFO[ListItem.Artist]</value>
-	</variable>
-	<variable name="MusicDialogPlotVar">
-		<value condition="!String.IsEmpty(ListItem.Property(Album_Description))">$INFO[ListItem.Property(Album_Description)]</value>
-		<value condition="!String.IsEmpty(ListItem.Property(Artist_Description))">$INFO[ListItem.Property(Artist_Description)]</value>
-	</variable>
-	<variable name="VideoDialogToolTipsVar">
-		<value condition="System.HasAddon(script.extendedinfo) + Control.HasFocus(130)">$LOCALIZE[31923]</value>
-		<value condition="Control.HasFocus(130)">$LOCALIZE[31924]</value>
-		<value condition="System.HasAddon(script.extendedinfo) + Control.HasFocus(131)">$LOCALIZE[31925]</value>
-		<value condition="System.HasAddon(script.extendedinfo) + String.IsEqual(ListItem.DBTYPE,musicvideo) + Control.HasFocus(50)">$LOCALIZE[31929]</value>
-		<value condition="System.HasAddon(script.extendedinfo) + Control.HasFocus(50)">$LOCALIZE[31926]</value>
-		<value condition="Control.HasFocus(50)">$LOCALIZE[31927]</value>
-		<value condition="ControlGroup(9000).HasFocus">$LOCALIZE[31928]</value>
-		<value></value>
-	</variable>
 
 
 
@@ -533,15 +444,7 @@
 	</variable>
 
 
-	<variable name="MusicInfoYoutubePath">
-		<value condition="String.IsEqual(ListItem.DBTYPE,artist)">plugin://script.extendedinfo?info=youtubesearchvideos&amp;&amp;id=$ESCINFO[ListItem.Artist] $LOCALIZE[2]</value>
-		<value condition="String.IsEqual(ListItem.DBTYPE,album)">plugin://script.extendedinfo?info=youtubesearchvideos&amp;&amp;id=$ESCINFO[ListItem.Artist] $ESCINFO[ListItem.Label] $LOCALIZE[558]</value>
-		<value condition="String.IsEqual(ListItem.DBTYPE,song)">plugin://script.extendedinfo?info=youtubesearchvideos&amp;&amp;id=$ESCINFO[ListItem.Artist] $ESCINFO[ListItem.Title]</value>
-	</variable>
-	<variable name="VideoInfoTVShowYoutubePath">
-		<value condition="String.IsEqual(ListItem.DBTYPE,tvshow)">plugin://script.extendedinfo?info=youtubesearchvideos&amp;&amp;id=$ESCINFO[ListItem.TVShowTitle] $LOCALIZE[20364]</value>
-		<value>plugin://script.extendedinfo?info=youtubesearchvideos&amp;&amp;id=$ESCINFO[ListItem.TVShowTitle] $ESCINFO[ListItem.Label]</value>
-	</variable>
+	
 
 
 

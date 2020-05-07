@@ -1399,105 +1399,90 @@
 		</control>
 	</include>
 	<!-- Video info -->
-	<include name="VideoInfoSettings">
-		<!-- Get art -->
-		<!-- <control type="label" id="101">
-			<label>$LOCALIZE[128]</label>
-			<include>DialogLabel</include>
-		</control> -->
-		<control type="button" id="10111">
+	<include name="InfoDialogSettings">
+		<control type="button" id="101">
 			<width>990</width>
 			<label>$LOCALIZE[31044]</label>
 			<include>DialogButton</include>
 			<onclick>SendClick(12003,10)</onclick>
 		</control>
-		<!-- <control type="button" id="10112">
-			<width>990</width>
-			<label>$LOCALIZE[184]</label>
-			<include>DialogButton</include>
-			<onclick>Close</onclick>
-			<onclick>SendClick(12003,6)</onclick>
-		</control>
-		<control type="button" id="10113">
-			<width>990</width>
-			<label>$LOCALIZE[38018]</label>
-			<include>DialogButton</include>
-			<onclick>SendClick(12003,7)</onclick>
-		</control> -->
-		
-		
-		<!-- General options -->
-		<control type="button" id="116">
-			<label>$LOCALIZE[21450]</label>
-			<include>DialogRadioButton</include>
-			<onclick condition="System.HasAddon(script.libraryeditor)">Dialog.Close(1111)</onclick>
-			<onclick condition="System.HasAddon(script.libraryeditor)">RunScript(script.libraryeditor,DBID=$INFO[ListItem.DBID])</onclick>
-			<onclick condition="!System.HasAddon(script.libraryeditor)">Notification(Download script from,github.com/phil65/script.libraryeditor)</onclick>
-		</control>
-		
-		<control type="radiobutton" id="119">
+		<control type="radiobutton" id="102">
 			<label>$LOCALIZE[31164]</label>
 			<include>DialogRadioButton</include>
 			<onclick>Skin.ToggleSetting(BlurEnabled)</onclick>
-			<onclick condition="!Skin.HasSetting(BlurRadius)">Skin.String(BlurRadius,10)</onclick>
 			<onclick>RunScript(script.embuary.helper,action=restartservice)</onclick>
 			<selected>Skin.HasSetting(BlurEnabled)</selected>
 		</control>
-		<control type="radiobutton" id="121">
+		<control type="radiobutton" id="103">
+			<visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
+			<label>$LOCALIZE[31084]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(VideoInfoCase)</onclick>
+			<selected>Skin.HasSetting(VideoInfoCase)</selected>
+		</control>
+		<control type="radiobutton" id="104">
+			<visible>String.IsEqual(ListItem.DBType,artist) | String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song) | String.IsEqual(ListItem.DBType,musicvideo)</visible>
+			<label>$LOCALIZE[31291]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(VideoInfoMusicCase)</onclick>
+			<selected>Skin.HasSetting(VideoInfoMusicCase)</selected>
+		</control>
+		<control type="radiobutton" id="105">
 			<visible>String.IsEqual(ListItem.DBType,movie)</visible>
 			<label>$LOCALIZE[31108]</label>
 			<include>DialogRadioButton</include>
 			<onclick>Skin.ToggleSetting(VideoInfoDisableDiscArt)</onclick>
 			<selected>!Skin.HasSetting(VideoInfoDisableDiscArt)</selected>
 		</control>
-		<control type="radiobutton" id="122">
+		<control type="radiobutton" id="106">
 			<visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)</visible>
 			<label>$LOCALIZE[31162]</label>
 			<include>DialogRadioButton</include>
 			<onclick>Skin.ToggleSetting(VideoInfoDisableCharacterArt)</onclick>
 			<selected>!Skin.HasSetting(VideoInfoDisableCharacterArt)</selected>
 		</control>
-		<control type="radiobutton" id="123">
-			<visible>String.IsEqual(ListItem.DBType,musicvideo)</visible>
-			<label>$LOCALIZE[31165]</label>
+		<control type="radiobutton" id="107">
+			<visible>String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song) | String.IsEqual(ListItem.DBType,musicvideo)</visible>
+			<label>$LOCALIZE[31123]</label>
 			<include>DialogRadioButton</include>
-			<onclick>Skin.ToggleSetting(VideoInfoDisableClearLogo)</onclick>
-			<selected>!Skin.HasSetting(VideoInfoDisableClearLogo)</selected>
+			<onclick>Skin.ToggleSetting(MusicInfoDisableLogo)</onclick>
+			<selected>!Skin.HasSetting(MusicInfoDisableLogo)</selected>
 		</control>
-		<control type="radiobutton" id="125">
+		<control type="radiobutton" id="108">
 			<visible>String.IsEqual(ListItem.DBType,movie)</visible>
-			<label>$LOCALIZE[31166]</label>
+			<label>$LOCALIZE[203]</label>
 			<include>DialogRadioButton</include>
-			<onclick condition="System.HasAddon(script.cinemavision)">Skin.ToggleSetting(VideoInfoCinemaVisionPlay)</onclick>
-			<onclick condition="!System.HasAddon(script.cinemavision)">InstallAddon(script.cinemavision)</onclick>
-			<selected>Skin.HasSetting(VideoInfoCinemaVisionPlay)</selected>
+			<onclick>Skin.ToggleSetting(VideoInfoPlotOutline)</onclick>
+			<selected>Skin.HasSetting(VideoInfoPlotOutline)</selected>
 		</control>
-		<control type="label" id="101">
+		<control type="label" id="109">
+			<visible>String.IsEqual(ListItem.DBType,movie)</visible>
 			<label>$LOCALIZE[31295]</label>
 			<include>DialogLabel</include>
 		</control>
-		<control type="radiobutton" id="123">
+		<control type="radiobutton" id="110">
+			<visible>String.IsEqual(ListItem.DBType,movie)</visible>
 			<label>$LOCALIZE[24022]</label>
 			<include>DialogRadioButton</include>
 			<onclick>Skin.ToggleSetting(CinemaMode)</onclick>
 			<selected>Skin.HasSetting(CinemaMode)</selected>
 		</control>
-		<control type="button" id="1116">
-			<visible>Skin.HasSetting(CinemaMode)</visible>
+		<control type="button" id="111">
+			<visible>Skin.HasSetting(CinemaMode) + String.IsEqual(ListItem.DBType,movie)</visible>
 			<label>$LOCALIZE[31296]</label>
 			<label2>$INFO[Skin.String(TrailerCount)]</label2>
 			<include>DialogRadioButton</include>
 			<onclick>Skin.SetNumeric(TrailerCount)</onclick>
 		</control>
-		<control type="button" id="1117">
-			<visible>Skin.HasSetting(CinemaMode)</visible>
+		<control type="button" id="112">
+			<visible>Skin.HasSetting(CinemaMode) + String.IsEqual(ListItem.DBType,movie)</visible>
 			<label>$LOCALIZE[31297]</label>
 			<label2>$INFO[Skin.String(IntroPath)]</label2>
 			<include>DialogRadioButton</include>
 			<onclick>Skin.SetPath(IntroPath)</onclick>
 		</control>
-		<control type="radiobutton" id="1118">
-			<visible>String.IsEqual(ListItem.DBType,movie)</visible>
+		<control type="radiobutton" id="113">
+			<visible>Skin.HasSetting(CinemaMode) + String.IsEqual(ListItem.DBType,movie)</visible>
 			<label>$LOCALIZE[31166]</label>
 			<include>DialogRadioButton</include>
 			<onclick>Skin.ToggleSetting(CinemaModePlay)</onclick>

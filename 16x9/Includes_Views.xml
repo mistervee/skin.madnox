@@ -801,6 +801,9 @@
 		<param name="logoheight">53</param>
 		<param name="bordersize">19,63,19,23</param>
 		<param name="texturefadetime">TextureFadeTime</param>
+		<param name="art">$VAR[PosterVar]</param>
+		<param name="videocase">$VAR[VideoCaseVar]</param>
+		<param name="studioicon">$VAR[StudioIconsVar]</param>
 		<definition>
 			<control type="group">
 				<visible>ListItem.IsParentFolder | String.Contains(ListItem.Label,*)</visible>
@@ -827,20 +830,20 @@
 					<bordersize>$PARAM[bordersize]</bordersize>
 					<fadetime>$PARAM[texturefadetime]</fadetime>
 					<aspectratio>stretch</aspectratio>
-					<texture background="true" fallback="DefaultFile.png">$VAR[PosterVar]</texture>
+					<texture background="true" fallback="DefaultFile.png">$PARAM[art]</texture>
 				</control>
 				<control type="image">
 					<fadetime>$PARAM[texturefadetime]</fadetime>
-					<texture background="true" border="15">$VAR[VideoCaseVar]</texture>
+					<texture background="true" border="15">$PARAM[videocase]</texture>
 				</control>
 				<control type="image">
-					<visible>String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season)</visible>
+					<visible>[String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season) | String.IsEqual(Container.ListItem.DBTYPE,tvshow) | String.IsEqual(Container.ListItem.DBTYPE,season)] + !String.IsEqual(Container.ListItem.DBTYPE,movie)</visible>
 					<top>9</top>
 					<height>$PARAM[logoheight]</height>
 					<align>center</align>
 					<aspectratio>keep</aspectratio>
 					<fadetime>$PARAM[texturefadetime]</fadetime>
-					<texture background="true">$VAR[StudioIconsVar]</texture>
+					<texture background="true">$PARAM[studioicon]</texture>
 				</control>
 			</control>
 		</definition>
@@ -882,6 +885,7 @@
 		</definition>
 	</include>
 	<include name="ViewArtworkAudioCase">
+		<param name="art">$VAR[PosterVar]</param>
 		<param name="bordersize">53,15,15,15</param>
 		<param name="texturefadetime">TextureFadeTime</param>
 		<definition>
@@ -910,7 +914,7 @@
 					<bordersize>$PARAM[bordersize]</bordersize>
 					<fadetime>$PARAM[texturefadetime]</fadetime>
 					<aspectratio scalediffuse="false">stretch</aspectratio>
-					<texture background="true" fallback="DefaultFile.png">$VAR[PosterVar]</texture>
+					<texture background="true" fallback="DefaultFile.png">$PARAM[art]</texture>
 				</control>
 				<control type="image">
 					<fadetime>$PARAM[texturefadetime]</fadetime>
@@ -2626,5 +2630,388 @@
 				</control>
 			</control>
 		</control>
+	</include>
+	<variable name="ViewInfoDateVar">
+		<value condition="!String.IsEmpty(Container.ListItem.Premiered) + !String.IsEqual(Container.ListItem.DBTYPE,movie)">$INFO[Container.ListItem.Premiered, ,  ]</value>
+		<value condition="!String.IsEmpty(Container.ListItem.Date)">$INFO[Container.ListItem.Date, ,  ]</value>
+		<value condition="!String.IsEmpty(Container.ListItem.Year)">$INFO[Container.ListItem.Year, ,  ]</value>
+		<value condition="!String.IsEmpty(Container.ListItem.Property(Artist_Formed))">$INFO[Container.ListItem.Property(Artist_Formed), ,  ]</value>
+		<value condition="!String.IsEmpty(Container.ListItem.Property(Artist_Born))">$INFO[Container.ListItem.Property(Artist_Born), ,  ]</value>
+		<value condition="!Control.HasFocus(9002) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"></value>
+		<value condition="!String.IsEmpty(ListItem.Premiered) + !Container.Content(movies)">$INFO[ListItem.Premiered, ,  ]</value>
+		<value condition="!String.IsEmpty(ListItem.Date)">$INFO[ListItem.Date, ,  ]</value>
+		<value condition="!String.IsEmpty(ListItem.Year)">$INFO[ListItem.Year, ,  ]</value>
+		<value condition="!String.IsEmpty(ListItem.Property(Artist_Formed))">$INFO[ListItem.Property(Artist_Formed), ,  ]</value>
+		<value condition="!String.IsEmpty(ListItem.Property(Artist_Born))">$INFO[ListItem.Property(Artist_Born), ,  ]</value>
+	</variable>
+	<variable name="ViewInfoTimeVar">
+		<value condition="!String.IsEmpty(Container.ListItem.Duration) + !Integer.IsGreater(Container.ListItem.Duration(h),0)">$INFO[Container.ListItem.Duration(mm), ,m]$INFO[Container.ListItem.Duration(ss),,s  ]</value>
+		<value condition="!String.IsEmpty(Container.ListItem.Duration)">$INFO[Container.ListItem.Duration(hh), ,h]$INFO[Container.ListItem.Duration(mm),,m  ]</value>
+		<value condition="!Control.HasFocus(9002) + !Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"></value>
+		<value condition="!String.IsEmpty(ListItem.Duration) + !Integer.IsGreater(ListItem.Duration(h),0)">$INFO[ListItem.Duration(mm), ,m]$INFO[ListItem.Duration(ss),,s  ]</value>
+		<value condition="!String.IsEmpty(ListItem.Duration)">$INFO[ListItem.Duration(hh), ,h]$INFO[ListItem.Duration(mm),,m  ]</value>
+	</variable>
+	<variable name="ViewInfoRatingVar">
+		<value condition="!String.IsEmpty(Container.ListItem.UserRating)">$INFO[Container.ListItem.UserRating, ,.0  ]</value>
+		<value condition="String.IsEmpty(Container(7005).ListItem.Rating(imdb)) + String.IsEmpty(Container(7005).ListItem.Rating(Container(7005)tomatometerallcritics)) + String.IsEmpty(Container(7005).ListItem.Rating(tomatometerallaudience)) + String.IsEmpty(Container(7005).ListItem.Rating(metacritic)) + String.IsEmpty(Container(7005).ListItem.Rating(tvdb))">$INFO[Container(7005).ListItem.Rating, ]</value>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"></value>
+		<value condition="!String.IsEmpty(ListItem.UserRating)">$INFO[ListItem.UserRating, ,.0  ]</value>
+		<value condition="String.IsEmpty(ListItem.Rating(imdb)) + String.IsEmpty(ListItem.Rating(tomatometerallcritics)) + String.IsEmpty(ListItem.Rating(tomatometerallaudience)) + String.IsEmpty(ListItem.Rating(metacritic)) + String.IsEmpty(ListItem.Rating(tvdb)) + String.IsEmpty(Container(7005).ListItem.Rating(imdb)) + String.IsEmpty(Container(7005).ListItem.Rating(tomatometerallcritics)) + String.IsEmpty(Container(7005).ListItem.Rating(tomatometerallaudience)) + String.IsEmpty(Container(7005).ListItem.Rating(metacritic)) + String.IsEmpty(Container(7005).ListItem.Rating(tvdb))">$INFO[ListItem.Rating, ]</value>
+	</variable>
+	<variable name="ViewInfoMusicRatingVar">
+		<value condition="!String.IsEmpty(Container.ListItem.UserRating)">$INFO[Container.ListItem.UserRating, ,.0  ]</value>
+		<value condition="!String.IsEmpty(Container.ListItem.Rating)">$INFO[Container.ListItem.Rating, ,  ]</value>
+		<value condition="!Control.HasFocus(9002) + ControlGroup(9001).HasFocus"></value>
+		<value condition="!String.IsEmpty(ListItem.UserRating)">$INFO[ListItem.UserRating, ,.0  ]</value>
+		<value condition="!String.IsEmpty(ListItem.Rating)">$INFO[ListItem.Rating, ,  ]</value>
+	</variable>
+	<variable name="ViewInfoTVDBRatingVar">
+		<value condition="!String.IsEmpty(Container(7005).ListItem.Rating(tvdb))">$INFO[Container(7005).ListItem.Rating(tvdb), ,  ]</value>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"></value>
+		<value condition="!String.IsEmpty(ListItem.Rating(tvdb))">$INFO[ListItem.Rating(tvdb), ,  ]</value>
+	</variable>
+	<variable name="ViewInfoIMDBRatingVar">
+		<value condition="!String.IsEmpty(Container(7005).ListItem.Rating(imdb))">$INFO[Container(7005).ListItem.Rating(imdb), ,  ]</value>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"></value>
+		<value condition="!String.IsEmpty(ListItem.Rating(imdb))">$INFO[ListItem.Rating(imdb), ,  ]</value>
+	</variable>
+	<variable name="ViewInfoRTAllCriticsIconVar">
+		<value condition="!String.IsEmpty(Container(7005).ListItem.Rating(tomatometerallcritics)) + Integer.IsGreater(Container(7005).ListItem.Rating(tomatometerallcritics),7.4) + Integer.IsGreater(Container(7005).ListItem.Votes(tomatometerallaudience),79)">flags/ratings/certified.png</value>
+		<value condition="!String.IsEmpty(Container(7005).ListItem.Rating(tomatometerallcritics)) + Integer.IsGreater(Container(7005).ListItem.Rating(tomatometerallcritics),5.9)">flags/ratings/fresh.png</value>
+		<value condition="!String.IsEmpty(Container(7005).ListItem.Rating(tomatometerallcritics)) + Integer.IsLess(Container(7005).ListItem.Rating(tomatomterallcritics),6.0)">flags/ratings/rotten.png</value>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"></value>
+		<value condition="Integer.IsGreater(ListItem.Rating(tomatometerallcritics),7.4) + Integer.IsGreater(ListItem.Votes(tomatometerallcritics),79)">flags/ratings/certified.png</value>
+		<value condition="Integer.IsGreater(ListItem.Rating(tomatometerallcritics),5.9)">flags/ratings/fresh.png</value>
+		<value condition="Integer.IsLess(ListItem.Rating(tomatometerallcritics),6.0)">flags/ratings/rotten.png</value>
+	</variable>
+	<variable name="ViewInfoRTAllCriticsLabelVar">
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallcritics),10)">10</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallcritics),9)">9</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallcritics),8)">8</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallcritics),7)">7</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallcritics),6)">6</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallcritics),5)">5</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallcritics),4)">4</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallcritics),3)">3</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallcritics),2)">2</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallcritics),1)">1</value>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"></value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),10)">10</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),9)">9</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),8)">8</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),7)">7</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),6)">6</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),5)">5</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),4)">4</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),3)">3</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),2)">2</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),1)">1</value>
+	</variable>
+	<variable name="ViewInfoRTAllCriticsLabel2Var">
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallcritics),0)">0%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallcritics),9)">9%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallcritics),8)">8%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallcritics),7)">7%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallcritics),6)">6%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallcritics),5)">5%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallcritics),4)">4%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallcritics),3)">3%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallcritics),2)">2%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallcritics),1)">1%</value>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"></value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),0)">0%</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),9)">9%</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),8)">8%</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),7)">7%</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),6)">6%</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),5)">5%</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),4)">4%</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),3)">3%</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),2)">2%</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),1)">1%</value>
+	</variable>
+	<variable name="ViewInfoRTAllAudienceIconVar">
+		<value condition="!String.IsEmpty(Container(7005).ListItem.Rating(tomatometerallaudience)) + Integer.IsLess(Container(7005).ListItem.Rating(tomatometerallaudience),6.0)">flags/ratings/popcorn2.png</value>
+		<value condition="!String.IsEmpty(Container(7005).ListItem.Rating(tomatometerallaudience)) + !Integer.IsLess(Container(7005).ListItem.Rating(tomatometerallaudience),6.0)">flags/ratings/popcorn.png</value>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"></value>
+		<value condition="Integer.IsGreater(ListItem.Rating(tomatometerallaudience),5.9)">flags/ratings/popcorn.png</value>
+		<value condition="Integer.IsLess(ListItem.Rating(tomatometerallaudience),6.0)">flags/ratings/popcorn2.png</value>
+	</variable>
+	<variable name="ViewInfoRTAllAudienceLabelVar">
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallaudience),10)">10</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallaudience),9)">9</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallaudience),8)">8</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallaudience),7)">7</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallaudience),6)">6</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallaudience),5)">5</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallaudience),4)">4</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallaudience),3)">3</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallaudience),2)">2</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallaudience),1)">1</value>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"></value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),10)">10</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),9)">9</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),8)">8</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),7)">7</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),6)">6</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),5)">5</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),4)">4</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),3)">3</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),2)">2</value>
+		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),1)">1</value>
+	</variable>
+	<variable name="ViewInfoRTAllAudienceLabel2Var">
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallaudience),0)">0%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallaudience),9)">9%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallaudience),8)">8%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallaudience),7)">7%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallaudience),6)">6%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallaudience),5)">5%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallaudience),4)">4%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallaudience),3)">3%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallaudience),2)">2%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallaudience),1)">1%</value>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"></value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),0)">0%</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),9)">9%</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),8)">8%</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),7)">7%</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),6)">6%</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),5)">5%</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),4)">4%</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),3)">3%</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),2)">2%</value>
+		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),1)">1%</value>
+	</variable>
+	<variable name="ViewInfoMetacriticLabelVar">
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(metacritic),10)">10</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(metacritic),9)">9</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(metacritic),8)">8</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(metacritic),7)">7</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(metacritic),6)">6</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(metacritic),5)">5</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(metacritic),4)">4</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(metacritic),3)">3</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(metacritic),2)">2</value>
+		<value condition="String.StartsWith(Container(7005).ListItem.Rating(metacritic),1)">1</value>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"></value>
+		<value condition="String.StartsWith(ListItem.Rating(metacritic),10)">10</value>
+		<value condition="String.StartsWith(ListItem.Rating(metacritic),9)">9</value>
+		<value condition="String.StartsWith(ListItem.Rating(metacritic),8)">8</value>
+		<value condition="String.StartsWith(ListItem.Rating(metacritic),7)">7</value>
+		<value condition="String.StartsWith(ListItem.Rating(metacritic),6)">6</value>
+		<value condition="String.StartsWith(ListItem.Rating(metacritic),5)">5</value>
+		<value condition="String.StartsWith(ListItem.Rating(metacritic),4)">4</value>
+		<value condition="String.StartsWith(ListItem.Rating(metacritic),3)">3</value>
+		<value condition="String.StartsWith(ListItem.Rating(metacritic),2)">2</value>
+		<value condition="String.StartsWith(ListItem.Rating(metacritic),1)">1</value>
+	</variable>
+	<variable name="ViewInfoMetacriticLabel2Var">
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(metacritic),0)">0%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(metacritic),9)">9%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(metacritic),8)">8%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(metacritic),7)">7%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(metacritic),6)">6%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(metacritic),5)">5%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(metacritic),4)">4%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(metacritic),3)">3%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(metacritic),2)">2%</value>
+		<value condition="String.EndsWith(Container(7005).ListItem.Rating(metacritic),1)">1%</value>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"></value>
+		<value condition="String.EndsWith(ListItem.Rating(metacritic),0)">0%</value>
+		<value condition="String.EndsWith(ListItem.Rating(metacritic),9)">9%</value>
+		<value condition="String.EndsWith(ListItem.Rating(metacritic),8)">8%</value>
+		<value condition="String.EndsWith(ListItem.Rating(metacritic),7)">7%</value>
+		<value condition="String.EndsWith(ListItem.Rating(metacritic),6)">6%</value>
+		<value condition="String.EndsWith(ListItem.Rating(metacritic),5)">5%</value>
+		<value condition="String.EndsWith(ListItem.Rating(metacritic),4)">4%</value>
+		<value condition="String.EndsWith(ListItem.Rating(metacritic),3)">3%</value>
+		<value condition="String.EndsWith(ListItem.Rating(metacritic),2)">2%</value>
+		<value condition="String.EndsWith(ListItem.Rating(metacritic),1)">1%</value>
+	</variable>
+	<variable name="ViewInfoTop250Var">
+		<value condition="!String.IsEmpty(Container.ListItem.Top250)">$INFO[Container.ListItem.Top250, #,]</value>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"></value>
+		<value condition="!String.IsEmpty(ListItem.Top250)">$INFO[ListItem.Top250, #,]</value>
+	</variable>
+	<include name="HorizonalInfoLine">
+		<param name="visible">false</param>
+		<param name="font">false</param>
+		<param name="iconsize">false</param>
+		<definition>
+			<control type="grouplist">
+				<visible>$PARAM[visible]</visible>
+				<height>30</height>
+				<usecontrolcoords>true</usecontrolcoords>
+				<orientation>horizontal</orientation>
+				<control type="image">
+					<visible>!String.IsEmpty(Control.GetLabel(5301))</visible>
+					<top>3</top>
+					<width>30</width>
+					<aspectratio>keep</aspectratio>
+					<texture>$VAR[IconPathVar]calendar.png</texture>
+				</control>
+				<control type="label" id="5301">
+					<width>auto</width>
+					<font>Font30_Reg</font>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$VAR[ViewInfoDateVar]</label>
+				</control>
+				<control type="image">
+					<visible>!String.IsEmpty(Control.GetLabel(5302))</visible>
+					<top>3</top>
+					<width>30</width>
+					<aspectratio>keep</aspectratio>
+					<texture>$VAR[IconPathVar]timer.png</texture>
+				</control>
+				<control type="label" id="5302">
+					<width>auto</width>
+					<font>Font30_Reg</font>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$VAR[ViewInfoTimeVar]</label>
+				</control>
+				<control type="image">
+					<visible>!String.IsEmpty(Control.GetLabel(5303))</visible>
+					<top>3</top>
+					<width>30</width>
+					<aspectratio>keep</aspectratio>
+					<texture>$VAR[IconPathVar]star.png</texture>
+				</control>
+				<control type="label" id="5303">
+					<width>auto</width>
+					<font>Font30_Reg</font>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$VAR[ViewInfoRatingVar]</label>
+				</control>
+				<control type="image">
+					<visible>!String.IsEmpty(Control.GetLabel(5304))</visible>
+					<width>50</width>
+					<height>35</height>
+					<aspectratio>keep</aspectratio>
+					<texture>flags/ratings/tvdb.png</texture>
+				</control>
+				<control type="label" id="5304">
+					<width>auto</width>
+					<font>Font30_Reg</font>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$VAR[ViewInfoTVDBRatingVar]</label>
+				</control>
+				<control type="image">
+					<visible>!String.IsEmpty(Control.GetLabel(5305))</visible>
+					<width>50</width>
+					<height>35</height>
+					<aspectratio>keep</aspectratio>
+					<texture>flags/ratings/imdb.png</texture>
+				</control>
+				<control type="label" id="5305">
+					<width>auto</width>
+					<font>Font30_Reg</font>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$VAR[ViewInfoIMDBRatingVar]</label>
+				</control>
+				<control type="image">
+					<visible>!String.IsEmpty(Control.GetLabel(5306))</visible>
+					<top>3</top>
+					<width>30</width>
+					<aspectratio>keep</aspectratio>
+					<texture>$VAR[ViewInfoRTAllCriticsIconVar]</texture>
+				</control>
+				<control type="label" id="5306">
+					<width>auto</width>
+					<font>Font30_Reg</font>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$VAR[ViewInfoRTAllCriticsLabelVar, ]$VAR[ViewInfoRTAllCriticsLabel2Var,,  ]</label>
+				</control>
+				<control type="image">
+					<visible>!String.IsEmpty(Control.GetLabel(5307))</visible>
+					<top>3</top>
+					<width>30</width>
+					<aspectratio>keep</aspectratio>
+					<texture>$VAR[ViewInfoRTAllAudienceIconVar]</texture>
+				</control>
+				<control type="label" id="5307">
+					<width>auto</width>
+					<font>Font30_Reg</font>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$VAR[ViewInfoRTAllAudienceLabelVar, ]$VAR[ViewInfoRTAllAudienceLabel2Var,,  ]</label>
+				</control>
+				<control type="image">
+					<visible>!String.IsEmpty(Control.GetLabel(5308))</visible>
+					<top>3</top>
+					<width>30</width>
+					<aspectratio>keep</aspectratio>
+					<texture>flags/ratings/metacritic.png</texture>
+				</control>
+				<control type="label" id="5308">
+					<width>auto</width>
+					<font>Font30_Reg</font>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$VAR[ViewInfoMetacriticLabelVar, ]$VAR[ViewInfoMetacriticLabel2Var,,  ]</label>
+				</control>
+				<control type="image">
+					<visible>!String.IsEmpty(Control.GetLabel(5309))</visible>
+					<width>90</width>
+					<height>35</height>
+					<aspectratio>keep</aspectratio>
+					<texture>flags/ratings/imdb250.png</texture>
+				</control>
+				<control type="label" id="5309">
+					<width>auto</width>
+					<font>Font30_Reg</font>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$VAR[ViewInfoTop250Var]</label>
+				</control>
+			</control>
+		</definition>
+	</include>
+	<include name="MusicHorizonalInfoLine">
+		<param name="visible">false</param>
+		<definition>
+			<control type="grouplist">
+				<visible>$PARAM[visible]</visible>
+				<height>30</height>
+				<usecontrolcoords>true</usecontrolcoords>
+				<orientation>horizontal</orientation>
+				<control type="image">
+					<visible>!String.IsEmpty(Control.GetLabel(5301))</visible>
+					<top>3</top>
+					<width>30</width>
+					<aspectratio>keep</aspectratio>
+					<texture>$VAR[IconPathVar]calendar.png</texture>
+				</control>
+				<control type="label" id="5301">
+					<width>auto</width>
+					<font>Font30_Reg</font>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$VAR[ViewInfoDateVar]</label>
+				</control>
+				<control type="image">
+					<visible>!String.IsEmpty(Control.GetLabel(5302))</visible>
+					<top>3</top>
+					<width>30</width>
+					<aspectratio>keep</aspectratio>
+					<texture>$VAR[IconPathVar]timer.png</texture>
+				</control>
+				<control type="label" id="5302">
+					<width>auto</width>
+					<font>Font30_Reg</font>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$VAR[ViewInfoTimeVar]</label>
+				</control>
+				<control type="image">
+					<visible>!String.IsEmpty(Control.GetLabel(5303))</visible>
+					<top>3</top>
+					<width>30</width>
+					<aspectratio>keep</aspectratio>
+					<texture>$VAR[IconPathVar]star.png</texture>
+				</control>
+				<control type="label" id="5303">
+					<width>auto</width>
+					<font>Font30_Reg</font>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$VAR[ViewInfoMusicRatingVar]</label>
+				</control>
+			</control>
+		</definition>
 	</include>
 </includes>

@@ -2,13 +2,22 @@
 <window>
 	<defaultcontrol>111</defaultcontrol>
 	<controls>
-		<control type="list" id="10051">
-			<include>HiddenList</include>
-		</control>
 		<control type="group">
-			<left>736</left>
+			<visible>!Window.IsVisible(script-embuary-video.xml)</visible>
+			<animation type="WindowOpen" reversible="false">
+				<effect type="zoom" start="80" end="100" center="50%,50%" time="480" tween="cubic" easing="out"/>
+				<effect type="fade" time="400" tween="sine" easing="out" />
+			</animation>
+			<animation type="WindowClose" reversible="false">
+				<effect type="zoom" start="100" end="80" center="50%,50%" delay="0" time="480" tween="cubic" easing="out"/>
+				<effect type="fade" end="0" time="400" tween="sine" easing="out" />
+			</animation>
+			<control type="list" id="10051">
+				<include>HiddenList</include>
+			</control>
 			<control type="group">
 				<top>16</top>
+				<left>736</left>
 				<right>25</right>
 				<!-- Title -->
 				<control type="label">
@@ -61,7 +70,7 @@
 					</control>
 				</control>
 				<control type="image">
-					<top>157</top>
+					<top>152</top>
 					<height>4</height>
 					<texture border="0,0,220,0" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
 				</control>
@@ -84,18 +93,21 @@
 					<include content="DialogExtraInfo">
 						<param name="id">10054</param>
 						<param name="buttonid">113</param>
-						<param name="label">true</param>
 					</include>
 				</control>
-				<control type="panel" id="504">
-					<visible>Control.HasFocus(114) | Control.HasFocus(504)</visible>
-					<include>DialogExtraInfoYoutube</include>
+				<control type="panel" id="1140">
+					<!-- <onclick condition="System.HasAddon(script.embuary.info)">RunScript(script.embuary.info,call=person,query=$INFO[ListItem.Label])</onclick> -->
+					<include content="DialogExtraInfoYoutube">
+						<param name="id">1140</param>
+						<param name="buttonid">114</param>
+						<param name="label">true</param>
+					</include>
 					<content limit="25" target="videos" sortby="file">$INFO[Container(10051).ListItem.Label,plugin://plugin.video.youtube/search/?q=,]</content>
 				</control>
 				<!-- Buttons -->
 				<control type="group" id="9000">
 					<control type="grouplist">
-						<top>512</top>
+						<top>507</top>
 						<left>-10</left>
 						<right>15</right>
 						<onleft>102</onleft>
@@ -151,17 +163,17 @@
 					<label>$INFO[Container(10051).ListItem.Property(biography)]</label>
 				</control>
 			</control>
-		</control>
-		<control type="image">
-			<include>AnimationVisibleFade</include>
-			<top>15</top>
-			<left>15</left>
-			<width>706</width>
-			<height>1050</height>
-			<bordersize>10</bordersize>
-			<aspectratio>scale</aspectratio>
-			<bordertexture border="10">thumbs/border/706x1050.png</bordertexture>
-			<texture background="true" diffuse="diffuse/rounded5-686x1030.png">$INFO[Container(10051).ListItem.Art(thumb)]</texture>
+			<control type="image">
+				<include>AnimationVisibleFade</include>
+				<top>15</top>
+				<left>15</left>
+				<width>706</width>
+				<height>1050</height>
+				<bordersize>10</bordersize>
+				<aspectratio>scale</aspectratio>
+				<bordertexture border="10">thumbs/border/706x1050.png</bordertexture>
+				<texture background="true" diffuse="diffuse/rounded5-686x1030.png">$INFO[Container(10051).ListItem.Art(thumb)]</texture>
+			</control>
 		</control>
 	</controls>
 </window>

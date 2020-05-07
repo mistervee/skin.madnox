@@ -143,44 +143,69 @@
 					<align>right</align>
 					<itemgap>-10</itemgap>
 					<orientation>horizontal</orientation>
+					<usecontrolcoords>true</usecontrolcoords>
 					<control type="radiobutton" id="301">
+						<include>DialogButtonOSD</include>
+						<onclick>PlayerControl(Repeat)</onclick>
+						<visible>VideoPlayer.Content(MusicVideos) + !Skin.HasSetting(VideoOSDDisableRepeatButton)</visible>
+					</control>
+					<control type="image" id="302">
+						<left>-110</left>
+						<width>120</width>
+						<height>120</height>
+						<texture>$VAR[OSDRepeatButtonVar]</texture>
+						<visible>VideoPlayer.Content(MusicVideos) + !Skin.HasSetting(VideoOSDDisableRepeatButton)</visible>
+					</control>
+					<control type="radiobutton" id="303">
+						<include>DialogButtonOSD</include>
+						<onclick>PlayerControl(Random)</onclick>
+						<visible>VideoPlayer.Content(MusicVideos) + !Skin.HasSetting(VideoOSDDisableRandomButton)</visible>
+					</control>
+					<control type="image" id="304">
+						<left>-110</left>
+						<width>120</width>
+						<height>120</height>
+						<texture>$VAR[OSDRandomButtonVar]</texture>
+						<visible>VideoPlayer.Content(MusicVideos) + !Skin.HasSetting(VideoOSDDisableRandomButton)</visible>
+					</control>
+					<control type="radiobutton" id="305">
 						<include content="DialogButtonOSD">
 							<param name="texture" value="buttons/player/info.png"/>
 						</include>
 						<onclick>Action(Info)</onclick>
 						<visible>VideoPlayer.HasInfo + !Skin.HasSetting(VideoOSDDisableInfoButton)</visible>
 					</control>
-					<control type="radiobutton" id="302">
+					<control type="radiobutton" id="306">
 						<include content="DialogButtonOSD">
 							<param name="texture" value="buttons/player/bookmark.png"/>
 						</include>
 						<onclick>ActivateWindow(videobookmarks)</onclick>
 						<visible>!VideoPlayer.Content(livetv) + !Skin.HasSetting(VideoOSDDisableBookmarkButton)</visible>
 					</control>
-					<control type="radiobutton" id="303">
+					<control type="radiobutton" id="307">
 						<include content="DialogButtonOSD">
 							<param name="texture" value="buttons/player/subtitle.png"/>
 						</include>
 						<onclick condition="VideoPlayer.HasSubtitles">Action(NextSubtitle)</onclick>
 						<onclick condition="!VideoPlayer.HasSubtitles">Close</onclick>
-            			<onclick condition="!VideoPlayer.HasSubtitles">ActivateWindow(SubtitleSearch)</onclick>
+						<onclick condition="!VideoPlayer.HasSubtitles">ActivateWindow(SubtitleSearch)</onclick>
 						<visible>!VideoPlayer.Content(livetv) + !VideoPlayer.Content(musicvideos) + !Skin.HasSetting(VideoOSDDisableSubtitleButton)</visible>
 					</control>
-					<control type="radiobutton" id="304">
+					<control type="radiobutton" id="308">
 						<include content="DialogButtonOSD">
 							<param name="texture" value="buttons/player/channels.png"/>
 						</include>
 						<onclick>ActivateWindow(pvrosdChannels)</onclick>
 						<visible>VideoPlayer.HasEpg + !Skin.HasSetting(VideoOSDDisableChannelsButton)</visible>
 					</control>
-					<control type="radiobutton" id="305">
+					<control type="radiobutton" id="309">
 						<include content="DialogButtonOSD">
 							<param name="texture" value="buttons/player/guide.png"/>
 						</include>
 						<onclick>ActivateWindow(pvrchannelguide)</onclick>
 						<visible>VideoPlayer.HasEpg + !Skin.HasSetting(VideoOSDDisableGuideButton)</visible>
 					</control>
-					<control type="radiobutton" id="306">
+					<control type="radiobutton" id="310">
 						<include content="DialogButtonOSD">
 							<param name="texture" value="buttons/player/txt.png"/>
 						</include>

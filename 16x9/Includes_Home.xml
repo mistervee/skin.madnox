@@ -413,9 +413,8 @@
 				<bottom>9</bottom>
 				<width>1920</width>
 				<height>71</height>
-				<onup condition="[Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)] + Control.IsVisible(90010)">90010</onup>
-				<onup condition="[Skin.String(MainMenuPosition,high) | Skin.String(MainMenuPosition,top)] + !Control.IsVisible(90010)">9001</onup>
-				<onup condition="String.IsEmpty(Skin.String(MainMenuPosition)) | Skin.String(MainMenuPosition,bottom)">9001</onup>
+				<onup>9001</onup>
+				<ondown>9050</ondown>
 				<align>center</align>
 				<orientation>horizontal</orientation>
 				<control type="button" id="20">
@@ -641,7 +640,8 @@
 					<include>skinshortcuts-template-widgetOnUpMainMenu</include>
 					<onup condition="String.IsEmpty(Container(9000).ListItem.Property(widgetName.1))">9050</onup>
 					<ondown condition="String.IsEqual(Container(9000).ListItem.Property(hasSubmenu),True)">SetFocus(9001,2)</ondown>
-					<ondown condition="String.IsEqual(Container(9000).ListItem.Property(hasSubmenu),False)">9003</ondown>
+					<ondown condition="String.IsEqual(Container(9000).ListItem.Property(hasSubmenu),False) + Control.IsVisible(9003)">9003</ondown>
+					<ondown condition="String.IsEqual(Container(9000).ListItem.Property(hasSubmenu),False) + !Control.IsVisible(9003)">9050</ondown>
 					<orientation>horizontal</orientation>
 					<focusposition>3</focusposition>
 					<include>ContainerScrollTime</include>
@@ -807,7 +807,6 @@
 		<bottom>304</bottom>
 		<onclick condition="System.HasAddon(script.playalbum) + String.IsEqual(ListItem.DBType,album)">RunScript(script.playalbum,albumid=$INFO[ListItem.DBID])</onclick>
 		<ondown>9000</ondown>
-		<onleft>9050</onleft>
 		<preloaditems>2</preloaditems>
 		<orientation>horizontal</orientation>
 	</include>
@@ -841,7 +840,7 @@
 				<font>Font29_Cond</font>
 				<textcolor>$VAR[PanelTextColorVar]</textcolor>
 				<textoffsetx>5</textoffsetx>
-				<label>$INFO[ListItem.Title]</label>
+				<label>$INFO[ListItem.Label]</label>
 				<visible>$PARAM[labelvisible]</visible>
 			</control>
 			<control type="image">
@@ -898,7 +897,7 @@
 					<font>Font29_Cond</font>
 					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 					<textoffsetx>5</textoffsetx>
-					<label>$INFO[ListItem.Title]</label>
+					<label>$INFO[ListItem.Label]</label>
 					<visible>$PARAM[labelvisible]</visible>
 				</control>
 				<control type="image">

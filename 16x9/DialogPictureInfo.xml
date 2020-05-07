@@ -1,83 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">5</defaultcontrol>
+	<include>AnimationDialogPopupWindow</include>
 	<controls>
-		<include>Dialog_CloseOnclick</include>
 		<control type="group">
-			<visible>!Window.IsActive(Slideshow)</visible>
-			<include>OpenClose_Fade</include>
-			<control type="image">
-				<include>FullScreenDimensions</include>
-				<texture>colors/black.png</texture>
-			</control>
-			<control type="image">
-				<include>FullScreenDimensions</include>
-				<aspectratio>keep</aspectratio>
-				<texture>$INFO[ListItem.FolderPath]</texture>
-			</control>
-		</control>
-		<control type="group">
-			<include content="AnimationSlideLeftWindow">
-				<param name="slide">220</param>
+			<include content="DialogBackground">
+				<param name="width" value="1220" />
+				<param name="height" value="685" />
+				<param name="label" value="$LOCALIZE[10139]" />
 			</include>
-			<control type="image">
-				<left>549</left>
-				<width>20</width>
-				<height>1080</height>
-				<texture colordiffuse="$VAR[GlowColorVar]">panels/glow-right.png</texture>
-			</control>
-			<control type="image">
-				<width>570</width>
-				<height>1080</height>
-				<texture colordiffuse="$VAR[PanelColorVar]" border="15">panels/mediamenu-back.png</texture>
-			</control>
 			<control type="list" id="5">
-				<width>550</width>
-				<height>1080</height>
-				<orientation>vertical</orientation>
-				<itemlayout height="72">
-					<control type="image">
-						<texture border="30" colordiffuse="$VAR[PanelColorVar]">buttons/list-select-nofocus.png</texture>
-					</control>
-					<control type="label">
-						<width>220</width>
-						<font>Font26_Reg</font>
-						<label>$INFO[ListItem.Label]</label>
-						<textoffsetx>20</textoffsetx>
-						<align>right</align>
-					</control>
-					<control type="label">
-						<left>220</left>
-						<width>320</width>
-						<font>Font26_Reg</font>
-						<label>$INFO[ListItem.Label2]</label>
-						<textcolor>grey</textcolor>
-						<haspath>true</haspath>
-						<align>left</align>
-					</control>
-				</itemlayout>
-				<focusedlayout height="70">
-					<control type="image">
-						<texture border="10" colordiffuse="$VAR[HighlightColorVar]">buttons/list-select-focus.png</texture>
-
-					</control>
-					<control type="label">
-						<width>220</width>
-						<font>Font26_Reg</font>
-						<label>$INFO[ListItem.Label]</label>
-						<textoffsetx>20</textoffsetx>
-						<align>right</align>
-					</control>
-					<control type="label">
-						<left>220</left>
-						<width>320</width>
-						<font>Font26_Reg</font>
-						<label>$INFO[ListItem.Label2]</label>
-						<textcolor>grey</textcolor>
-						<haspath>true</haspath>
-						<align>left</align>
-					</control>
-				</focusedlayout>
+				<left>20</left>
+				<right>20</right>
+				<top>90</top>
+				<height>525</height>
+				<onleft>60</onleft>
+				<onright>8000</onright>
+				<pagecontrol>60</pagecontrol>
+				<include content="DialogList2Default">
+					<param name="id" value="5" />
+				</include>
+			</control>
+			<control type="image">
+				<include>DialogHorizontalSeparator</include>
+			</control>
+			<control type="label">
+				<include>DialogItemCountLabel</include>
+				<label>$INFO[Container(5).NumItems,, $LOCALIZE[31001]]$INFO[Container(5).CurrentPage, - ]$INFO[Container(5).NumPages,/]</label>
+			</control>
+			<control type="scrollbar" id="60">
+				<onright>5</onright>
+				<include>DialogScrollBar</include>
 			</control>
 		</control>
 	</controls>
