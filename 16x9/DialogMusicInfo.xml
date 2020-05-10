@@ -4,7 +4,10 @@
 	<onload>SetFocus(9000,0)</onload>
 	<onload condition="System.HasAddon(script.embuary.info) + Skin.HasSetting(BlurEnabled)">RunScript(script.embuary.helper,action=blurimg,file=$ESCINFO[ListItem.Art(thumb)],prop=blurthumb,radius=2)</onload>
 	<controls>
-		<include>DialogInfoCommon</include>
+		<include content="DialogInfoCommon">
+			<param name="blur">Skin.HasSetting(MusicBlurEnabled)</param>
+			<param name="art">$INFO[ListItem.Icon]</param>
+		</include>
 		<!-- Content -->
 		<control type="group">
 			<animation type="WindowOpen" reversible="false">

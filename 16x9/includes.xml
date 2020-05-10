@@ -80,6 +80,8 @@
 	<include name="onunload_SkinSettings">
 		<onunload condition="Window.IsActive(startup) + System.HasAddon(script.tv.show.next.aired)">RunScript(script.tv.show.next.aired,silent=True)</onunload>
 		<onunload condition="!Skin.HasSetting(SmartShortcuts.playlists)">Skin.SetBool(SmartShortcuts.playlists)</onunload>
+		<onunload condition="!Skin.HasSetting(BlurEnabled)">Skin.ToggleSetting(BlurEnabled)</onunload>
+		<onunload condition="!Skin.HasSetting(BlurEnabled)">RunScript(script.embuary.helper,action=restartservice)</onunload>
 	</include>
 	<include name="ContainerScrollTime">
 		<scrolltime tween="sine">480</scrolltime>

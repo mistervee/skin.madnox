@@ -6,7 +6,7 @@
 	<onunload>ClearProperty(skinshortcuts-Widget,Home)</onunload>
 	<onunload>ClearProperty(skinshortcuts-CoverBackground,Home)</onunload>
 	<onunload>ClearProperty(skinshortcuts-management-widget,10000)</onunload>
-	<onunload condition="String.IsEmpty(Window.Property(additionalDialog))">RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;levels=2&amp;group=mainmenu|quicknav)</onunload>
+	<onunload condition="String.IsEmpty(Window.Property(additionalDialog))">RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;levels=2&amp;group=mainmenu|shortcuts)</onunload>
 	<onunload>ClearProperty(WidgetFocus1,Home)</onunload>
 	<onunload>ClearProperty(WidgetFocus2,Home)</onunload>
 	<onunload>ClearProperty(WidgetFocus3,Home)</onunload>
@@ -66,7 +66,7 @@
 				<onright condition="String.IsEqual(Window(Home).Property(skinshortcuts-Widget),6)">8016</onright>
 				<itemlayout height="67">
 					<control type="label">
-						<visible>!String.Contains(Skin.String(MainMenuLayout),icons) + !String.IsEqual(Window.Property(groupname),quicknav)</visible>
+						<visible>!String.Contains(Skin.String(MainMenuLayout),icons) + !String.IsEqual(Window.Property(groupname),shortcuts)</visible>
 						<left>25</left>
 						<width>273</width>
 						<font>Font36_Reg</font>
@@ -74,7 +74,7 @@
 						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 					</control>
 					<control type="label">
-						<visible>String.Contains(Skin.String(MainMenuLayout),icons) | String.IsEqual(Window.Property(groupname),quicknav)</visible>
+						<visible>String.Contains(Skin.String(MainMenuLayout),icons) | String.IsEqual(Window.Property(groupname),shortcuts)</visible>
 						<left>25</left>
 						<width>213</width>
 						<font>Font36_Reg</font>
@@ -82,7 +82,7 @@
 						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 					</control>
 					<control type="image">
-						<visible>String.Contains(Skin.String(MainMenuLayout),icons) | String.IsEqual(Window.Property(groupname),quicknav)</visible>
+						<visible>String.Contains(Skin.String(MainMenuLayout),icons) | String.IsEqual(Window.Property(groupname),shortcuts)</visible>
 						<top>9</top>
 						<left>248</left>
 						<width>50</width>
@@ -96,7 +96,7 @@
 						<animation effect="fade" start="100" end="50" time="40" condition="!Control.HasFocus(211)">Conditional</animation>
 					</control>
 					<control type="label">
-						<visible>!String.Contains(Skin.String(MainMenuLayout),icons) | String.IsEqual(Window.Property(groupname),quicknav) + !String.IsEqual(Window.Property(groupname),quicknav)</visible>
+						<visible>!String.Contains(Skin.String(MainMenuLayout),icons) | String.IsEqual(Window.Property(groupname),shortcuts) + !String.IsEqual(Window.Property(groupname),shortcuts)</visible>
 						<left>25</left>
 						<width>273</width>
 						<font>Font36_Reg</font>
@@ -104,7 +104,7 @@
 						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
 					</control>
 					<control type="label">
-						<visible>String.Contains(Skin.String(MainMenuLayout),icons) | String.IsEqual(Window.Property(groupname),quicknav)</visible>
+						<visible>String.Contains(Skin.String(MainMenuLayout),icons) | String.IsEqual(Window.Property(groupname),shortcuts)</visible>
 						<left>25</left>
 						<width>213</width>
 						<font>Font36_Reg</font>
@@ -112,7 +112,7 @@
 						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
 					</control>
 					<control type="image">
-						<visible>String.Contains(Skin.String(MainMenuLayout),icons) | String.IsEqual(Window.Property(groupname),quicknav)</visible>
+						<visible>String.Contains(Skin.String(MainMenuLayout),icons) | String.IsEqual(Window.Property(groupname),shortcuts)</visible>
 						<top>9</top>
 						<left>248</left>
 						<width>50</width>
@@ -276,7 +276,7 @@
 					<include>SettingsButton</include>
 				</control>
 				<control type="button" id="306">
-					<visible>[String.IsEqual(Window.Property(groupname),mainmenu) + String.Contains(Skin.String(MainMenuLayout),icons)] | String.IsEqual(Window.Property(groupname),quicknav)</visible>
+					<visible>[String.IsEqual(Window.Property(groupname),mainmenu) + String.Contains(Skin.String(MainMenuLayout),icons)] | String.IsEqual(Window.Property(groupname),shortcuts)</visible>
 					<description>Background</description>
 					<label>$LOCALIZE[31061]</label>
 					<label2>$INFO[Container(211).ListItem.Property(icon)]</label2>

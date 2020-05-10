@@ -2,7 +2,7 @@
 <window>
 	<defaultcontrol always="true">7000</defaultcontrol>
 	<menucontrol>9050</menucontrol>
-	<onunload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;levels=2&amp;group=mainmenu|quicknav)</onunload>
+	<onunload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;levels=2&amp;group=mainmenu|shortcuts)</onunload>
 	<controls>
 		<!-- Background -->
 		<include content="BackgroundDefault">
@@ -105,14 +105,10 @@
 						<description>Addons</description>
 						<label>$LOCALIZE[24001]</label>
 					</item>
-					<item id="9">
-						<description>Credits</description>
-						<label>$LOCALIZE[470]</label>
-					</item>
 				</content>
 			</control>
 			<control type="textbox">
-				<visible>![ControlGroup(7001).HasFocus | ControlGroup(7005).HasFocus | ControlGroup(7006).HasFocus | ControlGroup(7007).HasFocus]</visible>
+				<visible>![ControlGroup(7001).HasFocus | ControlGroup(7004).HasFocus | ControlGroup(7005).HasFocus | ControlGroup(7006).HasFocus | ControlGroup(7007).HasFocus]</visible>
 				<left>460</left>
 				<bottom>115</bottom>
 				<width>1325</width>
@@ -182,21 +178,6 @@
 							<onclick>ActivateWindow(1110)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<!-- <control type="button" id="106">
-							<label>Aeon Nox 4</label>
-							<include>ThemeNox4</include>
-							<include>SettingsButton</include>
-						</control>
-						<control type="button" id="107">
-							<label>Aeon Auriga</label>
-							<include>ThemeAuriga</include>
-							<include>SettingsButton</include>
-						</control>
-						<control type="button" id="108">
-							<label>Dark</label>
-							<include>ThemeDark</include>
-							<include>SettingsButton</include>
-						</control> -->
 						<control type="label" id="109">
 							<label>$LOCALIZE[16000]</label>
 							<include>SettingsLabel</include>
@@ -210,25 +191,6 @@
 							<onclick condition="Skin.String(KioskMode,HideMenu)">Skin.Reset(KioskMode)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<!-- <control type="radiobutton" id="110">
-							<label>Play playlist on startup</label>
-							<include>SettingsRadioButton</include>
-							<onclick>Skin.ToggleSetting(EnableStartupPlaylist)</onclick>
-							<selected>Skin.HasSetting(EnableStartupPlaylist)</selected>
-						</control>
-						<control type="button" id="111">
-							<label>$LOCALIZE[559]</label>
-							<label2>$INFO[Skin.String(StartupPlaylist)]</label2>
-							<include>SettingsButton</include>
-							<onclick>Skin.SetFile(StartupPlaylist,.m3u|.xsp,special://profile/playlists/music/)</onclick>
-							<enable>Skin.HasSetting(EnableStartupPlaylist)</enable>
-						</control>
-						<control type="radiobutton" id="302">
-							<label>$LOCALIZE[31040]Splash Screen</label>
-							<include>SettingsRadioButton</include>
-							<onclick>Skin.ToggleSetting(DisableQuickNav)</onclick>
-							<selected>!Skin.HasSetting(DisableQuickNav)</selected>
-						</control> -->
 					</control>
 					<!-- General description -->
 					<control type="textbox">
@@ -327,29 +289,12 @@
 							<onclick condition="Skin.String(BackgroundTexture.texture,panels/patterns/wrinkles.png)">Skin.Reset(BackgroundTexture.texture)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<!-- <control type="button" id="222">
-							<label>$LOCALIZE[31145]</label>
-							<label2>$VAR[BackgroundEffectLabelVar]</label2>
-							<onclick condition="String.IsEmpty(BackgroundEffect.texture)">Skin.SetString(BackgroundEffect.texture,snow)</onclick>
-							<onclick condition="Skin.String(BackgroundEffect.texture,snow)">Skin.SetString(BackgroundEffect.texture,leaves)</onclick>
-							<onclick condition="Skin.String(BackgroundEffect.texture,leaves)">Skin.SetString(BackgroundEffect.texture,confetti)</onclick>
-							<onclick condition="Skin.String(BackgroundEffect.texture,confetti)">Skin.SetString(BackgroundEffect.texture,valentine)</onclick>
-							<onclick condition="Skin.String(BackgroundEffect.texture,valentine)">Skin.SetString(BackgroundEffect.texture,easter)</onclick>
-							<onclick condition="Skin.String(BackgroundEffect.texture,easter)">Skin.Reset(BackgroundEffect.texture)</onclick>
-							<include>SettingsButton</include>
-						</control> -->
 						<control type="radiobutton" id="223">
 							<label>$LOCALIZE[31048]</label>
 							<onclick>Skin.ToggleSetting(BackgroundShadow)</onclick>
 							<selected>Skin.HasSetting(BackgroundShadow)</selected>
 							<include>SettingsRadioButton</include>
 						</control>
-						<!-- <control type="radiobutton" id="224">
-							<label>$LOCALIZE[1427]</label>
-							<onclick>Skin.ToggleSetting(BackgroundSmoke)</onclick>
-							<selected>Skin.HasSetting(BackgroundSmoke)</selected>
-							<include>SettingsRadioButton</include>
-						</control> -->
 						<!-- Main menu -->
 						<control type="label" id="230">
 							<label>$LOCALIZE[31041]</label>
@@ -601,11 +546,11 @@
 							<onclick condition="Skin.String(BackgroundEffect.texture,easter)">Skin.Reset(BackgroundEffect.texture)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="label" id="404">
+						<control type="label" id="410">
 							<label>$LOCALIZE[31002]</label>
 							<include>SettingsLabel</include>
 						</control>
-						<control type="button" id="405">
+						<control type="button" id="411">
 							<label>$LOCALIZE[31180]</label>
 							<label2>$VAR[NowPlayingMusicBackgroundLabelVar]</label2>
 							<onclick condition="String.IsEmpty(NowPlayingMusicBackground)">Skin.SetString(NowPlayingMusicBackground,fanart)</onclick>
@@ -613,91 +558,91 @@
 							<onclick condition="Skin.String(NowPlayingMusicBackground,extra)">Skin.Reset(NowPlayingMusicBackground)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="radiobutton" id="406">
-							<visible>Visualisation.Enabled</visible>
+						<control type="radiobutton" id="412">
 							<label>$LOCALIZE[250]</label>
 							<onclick>Skin.ToggleSetting(NowplayingVizBackground)</onclick>
 							<selected>Skin.HasSetting(NowplayingVizBackground)</selected>
 							<include>SettingsRadioButton</include>
 						</control>
-						<control type="radiobutton" id="407">
+						<control type="radiobutton" id="413">
 							<label>$LOCALIZE[31181]</label>
 							<onclick>Skin.ToggleSetting(NowplayingVideoBackground)</onclick>
 							<selected>Skin.HasSetting(NowplayingVideoBackground)</selected>
 							<include>SettingsRadioButton</include>
 						</control>
-						<!-- <control type="label" id="405">
-							<label>$LOCALIZE[31309]</label>
-							<include>SettingsLabel</include>
-						</control>
-						<control type="button" id="406">
-							<label>$LOCALIZE[31103]</label>
-							<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[31103],home)</onclick>
-							<onclick>ActivateWindow(1111)</onclick>
-							<include>SettingsButton</include>
-						</control> -->
-						<control type="label" id="410">
+						<control type="label" id="420">
 							<label>$LOCALIZE[31036] / $LOCALIZE[33071]</label>
 							<font>Font28_Bold</font>
 							<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="411">
+						<control type="button" id="421">
 							<description>Videos</description>
 							<label>$LOCALIZE[3]</label>
 							<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[3] $LOCALIZE[31107],home)</onclick>
 							<onclick>ActivateWindow(1111)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="413">
+						<control type="button" id="422">
 							<description>Music</description>
 							<label>$LOCALIZE[14216]</label>
 							<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[2] $LOCALIZE[31107],home)</onclick>
 							<onclick>ActivateWindow(1111)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="412">
+						<control type="button" id="423">
 							<description>PVR</description>
 							<label>$LOCALIZE[14204]</label>
 							<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[14204] $LOCALIZE[31107],home)</onclick>
 							<onclick>ActivateWindow(1111)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="414">
+						<control type="button" id="424">
 							<description>Games</description>
 							<label>$LOCALIZE[15016]</label>
 							<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[15016] $LOCALIZE[31107],home)</onclick>
 							<onclick>ActivateWindow(1111)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="415">
+						<control type="button" id="425">
 							<description>Pictures</description>
 							<label>$LOCALIZE[14217]</label>
 							<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[1] $LOCALIZE[31107],home)</onclick>
 							<onclick>ActivateWindow(1111)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="416">
+						<control type="button" id="426">
 							<description>Addons</description>
 							<label>$LOCALIZE[24001]</label>
 							<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[24001] $LOCALIZE[31107],home)</onclick>
 							<onclick>ActivateWindow(1111)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="417">
+						<control type="button" id="427">
 							<description>Weather</description>
 							<label>$LOCALIZE[400]</label>
 							<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[400] $LOCALIZE[31107],home)</onclick>
 							<onclick>ActivateWindow(1111)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="418">
+						<control type="button" id="428">
 							<description>System</description>
 							<label>$LOCALIZE[24992]</label>
 							<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[24992] $LOCALIZE[31107],home)</onclick>
 							<onclick>ActivateWindow(1111)</onclick>
 							<include>SettingsButton</include>
 						</control>
+					</control>
+					<!-- Background description -->
+					<control type="textbox">
+						<visible>Container(7000).Hasfocus(4)</visible>
+						<left>460</left>
+						<bottom>115</bottom>
+						<width>1325</width>
+						<height>80</height>
+						<font>Font28_Reg</font>
+						<label>$VAR[BackgroundDescriptionVar]</label>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
 					</control>
 					<!-- Furniture -->
 					<control type="grouplist" id="7005">
@@ -745,57 +690,69 @@
 							<include>SettingsRadioButton</include>
 						</control>
 						<control type="label" id="510">
-							<label>$LOCALIZE[31040]</label>
+							<label>$LOCALIZE[31287]</label>
 							<include>SettingsLabel</include>
 						</control>
 						<control type="radiobutton" id="511">
 							<label>$LOCALIZE[24022]</label>
-							<onclick>Skin.ToggleSetting(DisableQuickNav)</onclick>
-							<selected>!Skin.HasSetting(DisableQuickNav)</selected>
+							<onclick>Skin.ToggleSetting(DisableShortcuts)</onclick>
+							<selected>!Skin.HasSetting(DisableShortcuts)</selected>
 							<include>SettingsRadioButton</include>
 						</control>
 						<control type="button" id="512">
 							<label>$LOCALIZE[21435]</label>
-							<visible>!Skin.HasSetting(DisableQuickNav)</visible>
-							<onclick>RunScript(script.skinshortcuts,type=manage&amp;group=quicknav)</onclick>
+							<visible>!Skin.HasSetting(DisableShortcuts)</visible>
+							<onclick>RunScript(script.skinshortcuts,type=manage&amp;group=shortcuts)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="label" id="521">
-							<label>General</label>
+						<control type="label" id="520">
+							<label>$LOCALIZE[128]</label>
 							<include>SettingsLabel</include>
 						</control>
-						<control type="button" id="522">
+						<control type="button" id="521">
 							<label>$LOCALIZE[31042]</label>
 							<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[31042],home)</onclick>
 							<onclick>ActivateWindow(1111)</onclick>
 							<include>SettingsButton</include>
 						</control>
+						<control type="button" id="522">
+							<label>$LOCALIZE[12003]</label>
+							<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[31330],home)</onclick>
+							<onclick>ActivateWindow(1111)</onclick>
+							<include>SettingsButton</include>
+						</control>
 						<control type="button" id="523">
+							<label>$LOCALIZE[12001]</label>
+							<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[31350],home)</onclick>
+							<onclick>ActivateWindow(1111)</onclick>
+							<include>SettingsButton</include>
+						</control>
+						<control type="button" id="524">
 							<label>$LOCALIZE[12005]</label>
 							<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[31338],home)</onclick>
 							<onclick>ActivateWindow(1111)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="button" id="524">
+						<control type="button" id="525">
 							<label>$LOCALIZE[31312]</label>
 							<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[31337],home)</onclick>
 							<onclick>ActivateWindow(1111)</onclick>
 							<include>SettingsButton</include>
 						</control>
-						<control type="radiobutton" id="525">
+						<control type="radiobutton" id="526">
 							<label>$LOCALIZE[31016]</label>
 							<onclick>Notification($LOCALIZE[25000],$LOCALIZE[31016])</onclick>
 							<onclick>Skin.ToggleSetting(SmallerNotifications)</onclick>
 							<selected>Skin.HasSetting(SmallerNotifications)</selected>
 							<include>SettingsRadioButton</include>
 						</control>
-						<control type="radiobutton" id="526">
+						<control type="radiobutton" id="527">
 							<label>$LOCALIZE[31020]</label>
 							<include>SettingsRadioButton</include>
 							<onclick>Skin.ToggleSetting(DisableDialogBackground)</onclick>
 							<selected>!Skin.HasSetting(DisableDialogBackground)</selected>
 						</control>
-						<control type="radiobutton" id="527">
+						<control type="radiobutton" id="528">
 							<label>$LOCALIZE[31197]</label>
 							<include>SettingsRadioButton</include>
 							<onclick>Skin.ToggleSetting(DisableAutoOpenMusicViz)</onclick>
@@ -961,13 +918,20 @@
 							<include>SettingsRadioButton</include>
 						</control>
 						<control type="button" id="703">
+							<label>Embuary helper</label>
+							<label2>$VAR[AddonEmbuaryHelperVar]</label2>
+							<onclick condition="!System.HasAddon(script.embuary.helper)">InstallAddon(script.embuary.helper)</onclick>
+							<onclick condition="System.HasAddon(script.embuary.helper)">Addon.OpenSettings(script.embuary.helper)</onclick>
+							<include>SettingsRadioButton</include>
+						</control>
+						<control type="button" id="704">
 							<label>Skin helper colorpicker</label>
 							<label2>$VAR[AddonColorPickerVar]</label2>
 							<onclick condition="!System.HasAddon(script.skin.helper.colorpicker)">InstallAddon(script.skin.helper.colorpicker)</onclick>
 							<onclick condition="System.HasAddon(script.skin.helper.colorpicker)">Addon.OpenSettings(script.skin.helper.colorpicker)</onclick>
 							<include>SettingsRadioButton</include>
 						</control>
-						<control type="button" id="704">
+						<control type="button" id="705">
 							<label>Image resource select addon</label>
 							<label2>$VAR[AddonResourceSelectVar]</label2>
 							<onclick condition="!System.HasAddon(script.image.resource.select)">InstallAddon(script.image.resource.select)</onclick>
@@ -987,41 +951,13 @@
 							<include>SettingsRadioButton</include>
 						</control>
 						<control type="button" id="712">
-							<label>TheMovieDb helper</label>
-							<label2>$VAR[AddonTMDbHelperVar]</label2>
-							<onclick condition="!System.HasAddon(plugin.video.themoviedb.helper)">InstallAddon(plugin.video.themoviedb.helper)</onclick>
-							<onclick condition="System.HasAddon(plugin.video.themoviedb.helper)">Addon.OpenSettings(plugin.video.themoviedb.helper)</onclick>
-							<include>SettingsRadioButton</include>
-						</control>
-						<control type="button" id="713">
-							<label>Embuary helper</label>
-							<label2>$VAR[AddonEmbuaryHelperVar]</label2>
-							<onclick condition="!System.HasAddon(script.embuary.helper)">InstallAddon(script.embuary.helper)</onclick>
-							<onclick condition="System.HasAddon(script.embuary.helper)">Addon.OpenSettings(script.embuary.helper)</onclick>
-							<include>SettingsRadioButton</include>
-						</control>
-						<control type="button" id="714">
-							<label>Embuary info</label>
-							<label2>$VAR[AddonEmbuaryInfoVar]</label2>
-							<onclick condition="!System.HasAddon(script.embuary.info)">InstallAddon(script.embuary.info)</onclick>
-							<onclick condition="System.HasAddon(script.embuary.info)">Addon.OpenSettings(script.embuary.info)</onclick>
-							<include>SettingsRadioButton</include>
-						</control>
-						<control type="button" id="715">
 							<label>TV show next aired</label>
 							<label2>$VAR[AddonNextAiredVar]</label2>
 							<onclick condition="!System.HasAddon(script.tv.show.next.aired)">InstallAddon(script.tv.show.next.aired)</onclick>
 							<onclick condition="System.HasAddon(script.tv.show.next.aired)">Addon.OpenSettings(script.tv.show.next.aired)</onclick>
 							<include>SettingsRadioButton</include>
 						</control>
-						<control type="button" id="716">
-							<label>Play album script</label>
-							<label2>$VAR[AddonPlayAlbumVar]</label2>
-							<onclick condition="!System.HasAddon(script.playalbum)">InstallAddon(script.playalbum)</onclick>
-							<onclick condition="System.HasAddon(script.playalbum)">Addon.OpenSettings(script.playalbum)</onclick>
-							<include>SettingsRadioButton</include>
-						</control>
-						<control type="button" id="717">
+						<control type="button" id="713">
 							<label>CU LRC lycics</label>
 							<label2>$VAR[AddonLyricsVar]</label2>
 							<onclick condition="!System.HasAddon(script.cu.lrclyrics)">InstallAddon(script.cu.lrclyrics)</onclick>
@@ -1039,32 +975,18 @@
 							<onclick condition="System.HasAddon(script.trakt)">Addon.OpenSettings(script.trakt)</onclick>
 							<include>SettingsRadioButton</include>
 						</control>
-						<control type="button" id="722">
-							<label>Global search</label>
-							<label2>$VAR[AddonSearchVar]</label2>
-							<onclick condition="!System.HasAddon(script.globalsearch)">InstallAddon(script.globalsearch)</onclick>
-							<onclick condition="System.HasAddon(script.globalsearch)">Addon.OpenSettings(script.globalsearch)</onclick>
+						<!-- <control type="button" id="722">
+							<label>Embuary info</label>
+							<label2>$VAR[AddonEmbuaryInfoVar]</label2>
+							<onclick condition="!System.HasAddon(script.embuary.info)">InstallAddon(script.embuary.info)</onclick>
+							<onclick condition="System.HasAddon(script.embuary.info)">Addon.OpenSettings(script.embuary.info)</onclick>
 							<include>SettingsRadioButton</include>
-						</control>
+						</control> -->
 						<control type="button" id="723">
 							<label>Favourites script</label>
 							<label2>$VAR[AddonFavouritesVar]</label2>
 							<onclick condition="!System.HasAddon(script.favourites)">InstallAddon(script.favourites)</onclick>
 							<onclick condition="System.HasAddon(script.favourites)">Addon.OpenSettings(script.favourites)</onclick>
-							<include>SettingsRadioButton</include>
-						</control>
-						<control type="button" id="724">
-							<label>Special features</label>
-							<label2>$VAR[AddonSpecialFeaturesVar]</label2>
-							<onclick condition="!System.HasAddon(plugin.video.specialfeatures)">InstallAddon(plugin.video.specialfeatures)</onclick>
-							<onclick condition="System.HasAddon(plugin.video.specialfeatures)">Addon.OpenSettings(plugin.video.specialfeatures)</onclick>
-							<include>SettingsRadioButton</include>
-						</control>
-						<control type="button" id="726">
-							<label>Library editor</label>
-							<label2>$VAR[AddonLibraryEditorVar]</label2>
-							<onclick condition="!System.HasAddon(script.libraryeditor)">Notification(Download script from,github.com/phil65/script.libraryeditor)</onclick>
-							<onclick condition="System.HasAddon(script.libraryeditor)">Addon.OpenSettings(script.libraryeditor)</onclick>
 							<include>SettingsRadioButton</include>
 						</control>
 					</control>
@@ -1078,143 +1000,6 @@
 						<font>Font28_Reg</font>
 						<label>$VAR[AddonDescriptionVar]</label>
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
-					</control>
-					<!-- Credits -->
-					<control type="grouplist" id="7009">
-						<visible>Container(7000).Hasfocus(9)</visible>
-						<top>132</top>
-						<left>460</left>
-						<width>1325</width>
-						<height>737</height>
-						<onleft>7000</onleft>
-						<onright>607009</onright>
-						<pagecontrol>607009</pagecontrol>
-						<usecontrolcoords>true</usecontrolcoords>
-						<!-- <control type="label">
-							<height>67</height>
-							<label>MADNOX</label>
-							<font>Font33_Bold_Caps</font>
-							<textcolor>grey2</textcolor>
-						</control>
-						<control type="label">
-							<height>30</height>
-							<label>by Team Madnox</label>
-							<font>Font_Bold28_Caps</font>
-							<textcolor>grey2</textcolor>
-						</control>
-						<control type="label">
-							<height>30</height>
-							<label>[B]by Mike_Doc, Schimi2k &amp; MeowMoo[/B]</label>
-							<font>Font_Bold28_Caps</font>
-							<textcolor>grey2</textcolor>
-						</control>
-						<control type="label">
-							<height>25</height>
-							<label>(Original AeonNox by BigNoid &amp; Phil65)</label>
-							<font>Font_Reg22</font>
-							<textcolor>grey2</textcolor>
-						</control>
-						<control type="label">
-							<height>40</height>
-						</control>
-						<control type="label">
-							<height>40</height>
-							<label>[B]BIG THANKS AND RESPECT TO:[/B]</label>
-							<font>Font_Bold30_Caps</font>
-							<textcolor>grey2</textcolor>
-						</control>
-						<control type="label">
-							<height>60</height>
-							<label>[B]The A-Team: "MikeSilvo", "Mr.V" &amp; "BobCratchett"[/B] [CR]for helping us so much with the Code update, adding SkinShortcut Script and the Great new Widget-System - You are Great Guys</label>
-							<font>Font_Reg22</font>
-							<textcolor>grey2</textcolor>
-						</control>
-						<control type="label">
-							<height>40</height>
-							<label>"bsoriano" for Testing and BugHunting</label>
-							<font>Font_Reg22</font>
-							<textcolor>grey2</textcolor>
-						</control>
-						<control type="label">
-							<height>40</height>
-							<label>"BigNoid and Phil65" for Original AeonNox</label>
-							<font>Font_Reg22</font>
-							<textcolor>grey2</textcolor>
-						</control>
-						<control type="label">
-							<height>40</height>
-							<label>"Warlion" "Shedrock" &amp; "Brimstone" for previous AeonNox Mod Versions</label>
-							<font>Font_Reg22</font>
-							<textcolor>grey2</textcolor>
-						</control>
-						<control type="label">
-							<height>40</height>
-							<label>"mikebzh44", "R3N3", "Warner306" &amp; "ShadowTek" for various Mods</label>
-							<font>Font_Reg22</font>
-							<textcolor>grey2</textcolor>
-						</control>
-						<control type="label">
-							<height>40</height>
-							<label>All Addon and Script Provider we are using in MadNox</label>
-							<font>Font_Reg22</font>
-							<textcolor>grey2</textcolor>
-						</control>
-						<control type="label">
-							<height>40</height>
-						</control>
-						<control type="label">
-							<width>1460</width>
-							<height>34</height>
-							<label>And to all other Important Contributors:</label>
-							<font>Font_Bold30_Caps</font>
-							<textcolor>grey2</textcolor>
-						</control>
-						<control type="label">
-							<width>1460</width>
-							<height>40</height>
-							<label>"neurosis13", "manfeed", "N.O.W.A.L.L.", "www.webdesignerdepot.com", "DJH_", "Jezz_X", "black",</label>
-							<font>Font_Reg22</font>
-							<textcolor>grey2</textcolor>
-						</control>
-						<control type="label">
-							<height>40</height>
-							<label>"Martijn", "Deano316", "defluo", "fmronan", "thrak76", "xhaggi" and all other people who contributed to this project.</label>
-							<font>Font_Reg22</font>
-							<textcolor>grey2</textcolor>
-						</control>
-						<control type="label">
-							<height>20</height>
-						</control>
-						<control type="label">
-							<height>40</height>
-							<label>[B]And of course the Great MadNox Community[/B]</label>
-							<font>Font_Reg22</font>
-							<textcolor>grey2</textcolor>
-						</control>
-						<control type="label">
-							<width>1960</width>
-							<height>28</height>
-							<label>[B]THANK YOU[/B]</label>
-							<font>Font_Bold28_Caps</font>
-							<textcolor>grey2</textcolor>
-						</control>
-						<control type="label">
-							<height>40</height>
-						</control>
-						<control type="image">
-							<width>400</width>
-							<height>100</height>
-							<aspectratio>keep</aspectratio>
-							<texture>fanarttv.png</texture>
-						</control>
-						<control type="image">
-							<top>-220</top>
-							<left>300</left>
-							<width>300</width>
-							<height>300</height>
-							<aspectratio>keep</aspectratio>
-							<texture>kodi.png</texture>
-						</control> -->
 					</control>
 				</control>
 			</control>

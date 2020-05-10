@@ -8,7 +8,10 @@
 	<onload condition="!String.IsEqual(ListItem.DBTYPE,musicvideo)">RunScript(script.embuary.helper,action=encode,string=$INFO[ListItem.Title],prop=TitleEncoded)</onload>
 	<onload condition="!String.IsEqual(ListItem.DBTYPE,musicvideo)">RunScript(script.embuary.helper,action=encode,string=$INFO[ListItem.TVShowTitle],prop=TVShowTitleEncoded)</onload>
 	<controls>
-		<include>DialogInfoCommon</include>
+		<include content="DialogInfoCommon">
+			<param name="blur">Skin.HasSetting(VideoBlurEnabled)</param>
+			<param name="art">$VAR[PosterVar]</param>
+		</include>
 		<control type="group">
 			<animation type="WindowOpen" reversible="false">
 				<effect type="zoom" start="80" end="100" center="50%,50%" time="480" tween="cubic" easing="out"/>
