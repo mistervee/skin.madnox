@@ -14,7 +14,7 @@
 				<include>FullScreenDimensions</include>
 			</control>
 			<control type="group">
-				<visible>Player.HasAudio + [Skin.String(NowPlayingMusicBackground,fanart) | Skin.String(NowPlayingMusicBackground,extra)]</visible>
+				<visible>Player.HasAudio + !String.IsEmpty(Skin.String(NowPlayingMusicBackground))</visible>
 				<include>AnimationWindowFade</include>
 				<!-- Extra fanart -->
 				<control type="fadelabel" id="71111">
@@ -66,17 +66,17 @@
 			</control>
 			<!-- Skin background -->
 			<control type="group">
-				<visible>!Player.HasMedia | [Player.HasAudio + String.IsEmpty(Skin.String(NowPlayingMusicBackground))] | [Player.HasVideo + !Skin.HasSetting(NowplayingVideoBackground)]</visible>
+				<visible>!Player.HasMedia | [Player.HasVideo + !Skin.HasSetting(NowplayingVideoBackground)] | [Player.HasAudio + String.IsEmpty(Skin.String(NowPlayingMusicBackground))]</visible>
 				<include>AnimationWindowFade</include>
 				<control type="multiimage">
-					<visible>!Visualisation.Enabled | !Skin.HasSetting(NowplayingVizBackground)</visible>
+					<visible>!Player.HasAudio | [Player.HasAudio + [!Visualisation.Enabled | !Skin.HasSetting(NowplayingVizBackground)]]</visible>
 					<include content="BackgroundFanartImage">
 						<param name="animatedfanart">$PARAM[animatedfanart]</param>
 					</include>
 					<imagepath background="true">$PARAM[imagepath]</imagepath>
 				</control>
 				<control type="multiimage">
-					<visible>Visualisation.Enabled + Skin.HasSetting(NowplayingVizBackground)</visible>
+					<visible>Player.HasAudio + Visualisation.Enabled + Skin.HasSetting(NowplayingVizBackground)</visible>
 					<include content="BackgroundFanartImage">
 						<param name="animatedfanart">$PARAM[animatedfanart]</param>
 					</include>
@@ -1147,8 +1147,16 @@
 	</include>
 	<!-- Variables -->
 	<variable name="NowPlayingMusicBackgroundVar">
-		<value condition="Skin.String(NowPlayingMusicBackground,fanart) + !String.IsEmpty(Player.Art(fanart))">$INFO[Player.Art(fanart)]</value>
+		<value condition="Skin.String(NowPlayingMusicBackground,artistsslideshow) + !String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image))">$INFO[Window(Visualisation).Property(ArtistSlideshow.Image)]</value>
 		<value condition="Skin.String(NowPlayingMusicBackground,extra) + !String.IsEmpty(Control.GetLabel(71111))">$INFO[Control.GetLabel(71111)]</value>
+		<value condition="!String.IsEmpty(Skin.String(NowPlayingMusicBackground)) + !Skin.String(NowPlayingMusicBackground,extra) + !Skin.String(NowPlayingMusicBackground,artistsslideshow) + !Skin.String(NowPlayingMusicBackground,fanart)">$INFO[Skin.String(NowPlayingMusicBackground)]</value>
+		<value condition="!String.IsEmpty(Player.Art(fanart))">$INFO[Player.Art(fanart)]</value>
+		<value>special://skin/extras/backgrounds/music.jpg</value>
+	</variable>
+	<variable name="NowPlayingStreamRadioBackgroundVar">
+		<value condition="Skin.String(NowPlayingStreamRadioBackground,artistsslideshow) + !String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image))">$INFO[Window(Visualisation).Property(ArtistSlideshow.Image)]</value>
+		<value condition="!String.IsEmpty(Skin.String(NowPlayingStreamRadioBackground)) + !Skin.String(NowPlayingStreamRadioBackground,artistsslideshow) + !Skin.String(NowPlayingStreamRadioBackground,fanart)">$INFO[Skin.String(NowPlayingStreamRadioBackground)]</value>
+		<value condition="!String.IsEmpty(Player.Art(fanart))">$INFO[Player.Art(fanart)]</value>
 		<value>special://skin/extras/backgrounds/music.jpg</value>
 	</variable>
 	<variable name="HomeFanartVar">
@@ -1212,5 +1220,9 @@
 		<value condition="!String.IsEmpty(Skin.String(SystemBackground))">$INFO[Skin.String(SystemBackground)]</value>
 		<value condition="Window.IsVisible(filemanager)">special://skin/extras/backgrounds/filemanager.jpg</value>
 		<value>special://skin/extras/backgrounds/system.jpg</value>
+	</variable>
+	<variable name="LogonBackgroundVar">
+		<value condition="!String.IsEmpty(Window(home).Property(EmbuaryBackground))">$INFO[Window(home).Property(EmbuaryBackground)]</value>
+		<value>special://skin/extras/backgrounds/videos.jpg</value>
 	</variable>
 </includes>

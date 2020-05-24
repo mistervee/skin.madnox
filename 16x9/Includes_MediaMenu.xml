@@ -9,7 +9,7 @@
 			<top>0</top>
 			<texturefocus />
 			<texturenofocus />
-			<visible>!Skin.String(KioskMode,HideMenu)</visible>
+			<visible>!Skin.HasSetting(KioskDisableMediaMenu) + Integer.IsGreater(Container(9050).NumItems,0)</visible>
 		</control>
 		<control type="button">
 			<label></label>
@@ -20,23 +20,27 @@
 			<texturefocus />
 			<texturenofocus />
 			<onfocus>ActivateWindow(1113)</onfocus>
-			<visible>Skin.String(KioskMode,HideMenu) + !Skin.HasSetting(DisableShortcuts) + !Window.IsActive(home)</visible>
+			<visible>[Skin.HasSetting(KioskDisableMediaMenu) | !Integer.IsGreater(Container(9050).NumItems,0)] + !Skin.HasSetting(DisableShortcuts) + !Window.IsActive(home)</visible>
 		</control>
 	</include>
 	<include name="MediaMenuCommon">
 		<visible>!Skin.String(KioskMode,HideMenu) + !String.IsEqual(Window(home).Property(ViewSelect),true)</visible>
 		<left>-420</left>
-		<!-- <animation type="Conditional" condition="[ControlGroup(9050).HasFocus | Control.HasFocus(6130)] + !System.HasActiveModalDialog" reversible="true">
-			<effect type="fade" start="0" end="100" time="300" tween="sine" easing="out" />
-			<effect type="slide" start="0" end="420" time="400" tween="cubic" easing="out" />
-		</animation> -->
-		<animation type="Conditional" condition="[ControlGroup(9050).HasFocus | Control.HasFocus(6130)] + !System.HasActiveModalDialog" reversible="true">
-			<!-- <effect type="fade" start="0" end="100" time="480"/> -->
+		<animation type="Conditional" condition="[ControlGroup(9050).HasFocus | Control.HasFocus(6130) | Control.HasFocus(6131)] + [!System.HasActiveModalDialog | Window.IsVisible(busydialog)]" reversible="true">
 			<effect type="slide" start="0" end="420" time="480" tween="cubic" easing="out" />
 		</animation>
 		<include content="AnimationSlideLeftWindow">
 			<param name="slide">420</param>
 		</include>
+		<control type="button" id="6131">
+			<left>0</left>
+			<top>0</top>
+			<width>400</width>
+			<height>100%</height>
+			<label></label>
+			<texturefocus />
+			<texturenofocus />
+		</control>
 		<include>MediaMenuBackground</include>
 	</include>
 	<include name="MediaMenuBackground">
@@ -119,6 +123,30 @@
 			</control>
 		</definition>
 	</include>
+	<include name="MediaMenuPlayerButton">
+		<param name="id"></param>
+		<param name="iconon"></param>
+		<param name="iconoff"></param>
+		<param name="onclick"></param>
+		<param name="visible">true</param>
+		<definition>
+			<control type="radiobutton" id="$PARAM[id]">
+				<visible>$PARAM[visible]</visible>
+				<width>60</width>
+				<height>90</height>
+				<font></font>
+				<texturefocus />
+				<texturenofocus />
+				<radiowidth>50</radiowidth>
+				<radioheight>50</radioheight>
+				<textureradioonfocus colordiffuse="$VAR[PanelFocusTextColorVar]">$PARAM[iconon]</textureradioonfocus>
+				<textureradioonnofocus colordiffuse="$VAR[PanelSubTextColorVar]">$PARAM[iconon]</textureradioonnofocus>
+				<textureradioofffocus colordiffuse="$VAR[PanelFocusTextColorVar]">$PARAM[iconoff]</textureradioofffocus>
+				<textureradiooffnofocus colordiffuse="$VAR[PanelSubTextColorVar]">$PARAM[iconoff]</textureradiooffnofocus>
+				<onclick>$PARAM[onclick]</onclick>
+			</control>
+		</definition>
+	</include>
 	<include name="MediaMenuLabel">
 		<height>60</height>
 		<textoffsetx>15</textoffsetx>
@@ -175,7 +203,7 @@
 			</include>
 			<label>$INFO[Container.Viewmode]</label>
 			<onclick>ActivateWindow(1116)</onclick>
-			<visible>!Skin.String(KioskMode,HideOptionsViewType)</visible>
+			<visible>!Skin.HasSetting(KioskDisableViewMode)</visible>
 		</control>
 		<control type="radiobutton" id="9052">
 			<include content="MediaMenuIconButton">
@@ -184,7 +212,7 @@
 			</include>
 			<label>$LOCALIZE[31025]</label>
 			<onclick>ActivateWindow(1115)</onclick>
-			<visible>!String.Contains(Skin.String(KioskMode),HideOptions)</visible>
+			<visible>!Skin.HasSetting(KioskDisableViewOptions)</visible>
 		</control>
 		<control type="radiobutton" id="3">
 			<include content="MediaMenuIconButton">
@@ -221,15 +249,6 @@
 		</control>
 	</include>
 	<include name="MediaMenuCommonBottom">
-		<control type="radiobutton" id="9091">
-			<include content="MediaMenuIconButton">
-				<param name="iconon" value="icons/mediamenu/play.png" />
-				<param name="iconoff" value="icons/mediamenu/play.png" />
-			</include>
-			<label>$LOCALIZE[10114]</label>
-			<onclick>ActivateWindow(playercontrols)</onclick>
-			<visible>Player.HasMedia</visible>
-		</control>
 		<control type="radiobutton" id="9092">
 			<include content="MediaMenuIconButton">
 				<param name="iconon" value="icons/mediamenu/playlistvideo.png" />
@@ -237,79 +256,93 @@
 			</include>
 			<label>$LOCALIZE[31086]</label>
 			<onclick>ActivateWindow(videoplaylist)</onclick>
-			<visible>Integer.IsGreater(Playlist.Length(video),0) + !Window.IsActive(myplaylist.xml)</visible>
+			<visible>!Skin.HasSetting(DisableVideoPlaylistButton) + Integer.IsGreater(Playlist.Length(video),0) + !Window.IsActive(myplaylist.xml)</visible>
 		</control>
 		<control type="radiobutton" id="9093">
 			<include content="MediaMenuIconButton">
 				<param name="iconon" value="icons/mediamenu/playlistmusic.png" />
 				<param name="iconoff" value="icons/mediamenu/playlistmusic.png" />
 			</include>
-			<label>$LOCALIZE[31087]</label>
+			<label>$LOCALIZE[10500]</label>
 			<onclick>ActivateWindow(musicplaylist)</onclick>
-			<visible>Integer.IsGreater(Playlist.Length(music),0) + !Window.IsActive(myplaylist.xml)</visible>
+			<visible>!Skin.HasSetting(DisableMusicPlaylistButton) + Integer.IsGreater(Playlist.Length(music),0) + !Window.IsActive(myplaylist.xml)</visible>
 		</control>
 		<control type="radiobutton" id="9094">
 			<include content="MediaMenuIconButton">
 				<param name="iconon" value="icons/mediamenu/fullscreen.png" />
 				<param name="iconoff" value="icons/mediamenu/fullscreen.png" />
 			</include>
-			<label>$LOCALIZE[31088]</label>
+			<label>$LOCALIZE[35232]</label>
 			<onclick>Fullscreen</onclick>
-			<visible>Player.HasMedia</visible>
+			<visible>Skin.HasSetting(EnableFullscreenButton) + Player.HasMedia</visible>
 		</control>
 		<control type="radiobutton" id="9095">
 			<include content="MediaMenuIconButton">
 				<param name="iconon" value="icons/mediamenu/arrowleft.png" />
 				<param name="iconoff" value="icons/mediamenu/arrowleft.png" />
 			</include>
-			<label>$LOCALIZE[31040]</label>
+			<label>$LOCALIZE[13398]</label>
 			<onclick>ActivateWindow(1113)</onclick>
-			<visible>!Skin.HasSetting(DisableShortcuts) + !Window.IsActive(home)</visible>
+			<visible>!Skin.HasSetting(DisableShortcutsButton) + !Skin.HasSetting(DisableShortcuts) + !Window.IsActive(home)</visible>
 		</control>
-	</include>
-	<!-- MyXML common settings -->
-	<include name="MediaMenuMyXMLCommon">
-		<include content="MediaMenuIconButton">
-			<param name="id" value="9001" />
-			<param name="icon" value="icons/mediamenu/view.png" />
-			<param name="label" value="$INFO[Container.Viewmode]" />
-			<param name="onclick" value="ActivateWindow(1115)" />
-			<visible>!Skin.String(KioskMode,HideOptionsViewType)</visible>
-		</include>
-		<include content="MediaMenuIconButton">
-			<param name="id" value="9002" />
-			<param name="icon" value="icons/mediamenu/viewoptions.png" />
-			<param name="label" value="$LOCALIZE[31025]" />
-			<param name="onclick" value="ActivateWindow(1115)" />
-			<visible>!String.Contains(Skin.String(KioskMode),HideOptions)</visible>
-		</include>
-		<include content="MediaMenuIconButton">
-			<param name="id" value="3" />
-			<param name="icon" value="icons/mediamenu/sort.png" />
-			<param name="label" value="$INFO[Container.SortMethod]" />
-			<param name="visible" value="Control.IsEnabled(3)" />
-		</include>
-		<include content="MediaMenuIconRadioButton">
-			<param name="id" value="4" />
-			<param name="iconon" value="icons/mediamenu/ascending.png" />
-			<param name="iconoff" value="icons/mediamenu/descending.png" />
-			<param name="label" value="$INFO[Container.SortOrder]" />
-			<param name="selected">String.IsEqual(Container.SortOrder,$LOCALIZE[584])</param>
-			<param name="visible" value="Control.IsEnabled(4)" />
-		</include>
-		<include content="MediaMenuIconButton">
-			<param name="id" value="19" />
-			<param name="icon" value="icons/mediamenu/search.png" />
-			<param name="label" value="$LOCALIZE[137]" />
-			<param name="visible" value="Container.CanFilter + !Container.CanFilterAdvanced" />
-		</include>
-		<include content="MediaMenuIconButton">
-			<param name="id" value="199" />
-			<param name="icon" value="icons/mediamenu/filter.png" />
-			<param name="label" value="$LOCALIZE[587]" />
-			<param name="onclick" value="Filter" />
-			<param name="visible" value="Container.CanFilterAdvanced" />
-		</include>
+		<control type="group" id="9081">
+			<visible>!Skin.HasSetting(DisablePlayerControlButton) + Player.HasMedia</visible>
+			<animation effect="fade" time="300">VisibleChange</animation>
+			<height>90</height>
+			<control type="image">
+				<width>400</width>
+				<texture border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texture>
+				<visible>ControlGroup(9082).HasFocus</visible>
+			</control>
+			<control type="image">
+				<width>400</width>
+				<texture border="10" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/list-select-nofocus.png</texture>
+				<visible>!ControlGroup(9082).HasFocus</visible>
+			</control>
+			<control type="grouplist" id="9082">
+				<left>20</left>
+				<width>395</width>
+				<height>90</height>
+				<onup>9095</onup>
+				<ondown>9051</ondown>
+				<itemgap>16</itemgap>
+				<orientation>horizontal</orientation>
+				<include content="MediaMenuPlayerButton">
+					<param name="visible" value="!VideoPlayer.Content(livetv) + !MusicPlayer.Content(livetv)" />
+					<param name="id" value="9083" />
+					<param name="onclick" value="PlayerControl(Previous)" />
+					<param name="iconon" value="icons/mediamenu/previous.png" />
+					<param name="iconoff" value="icons/mediamenu/previous.png" />
+				</include>
+				<include content="MediaMenuPlayerButton">
+					<param name="id" value="9084" />
+					<param name="onclick" value="PlayerControl(Stop)" />
+					<param name="iconon" value="icons/mediamenu/stop.png" />
+					<param name="iconoff" value="icons/mediamenu/stop.png" />
+				</include>
+				<include content="MediaMenuPlayerButton">
+					<param name="visible" value="Player.PauseEnabled" />
+					<param name="id" value="9085" />
+					<param name="onclick" value="PlayerControl(Play)" />
+					<param name="iconon" value="icons/mediamenu/play.png" />
+					<param name="iconoff" value="icons/mediamenu/pause.png" />
+				</include>
+				<include content="MediaMenuPlayerButton">
+					<param name="visible" value="!VideoPlayer.Content(livetv) + !MusicPlayer.Content(livetv)" />
+					<param name="id" value="9086" />
+					<param name="onclick" value="PlayerControl(Next)" />
+					<param name="iconon" value="icons/mediamenu/next.png" />
+					<param name="iconoff" value="icons/mediamenu/next.png" />
+				</include>
+				<include content="MediaMenuPlayerButton">
+					<param name="id" value="9087" />
+					<param name="onclick" value="Fullscreen" />
+					<param name="icon" value="icons/mediamenu/fullscreen.png" />
+					<param name="iconon" value="icons/mediamenu/fullscreen.png" />
+					<param name="iconoff" value="icons/mediamenu/fullscreen.png" />
+				</include>
+			</control>
+		</control>
 	</include>
 	<!-- Home -->
 	<include name="MediaMenuViewsettingsMenuHome">
@@ -570,27 +603,34 @@
 			<selected>Skin.HasSetting(HomeAnimatedFanart)</selected>
 			<include>MediaMenuRadioButton</include>
 		</control>
-		<control type="label" id="211">
-			<visible>!Skin.HasSetting(NowplayingHomeDisable)</visible>
-			<label>$LOCALIZE[31106]</label>
+		<control type="label" id="210">
+			<visible>Player.HasMedia</visible>
+			<label>Global</label>
 			<include>MediaMenuLabel</include>
 		</control>
-		<control type="button" id="212">
-			<label>$LOCALIZE[31180]</label>
+		<control type="button" id="211">
+			<visible>Player.HasAudio</visible>
+			<label>Now playing</label>
 			<label2>$VAR[NowPlayingMusicBackgroundLabelVar]</label2>
-			<onclick condition="String.IsEmpty(NowPlayingMusicBackground)">Skin.SetString(NowPlayingMusicBackground,fanart)</onclick>
-			<onclick condition="Skin.String(NowPlayingMusicBackground,fanart)">Skin.SetString(NowPlayingMusicBackground,extra)</onclick>
-			<onclick condition="Skin.String(NowPlayingMusicBackground,extra)">Skin.Reset(NowPlayingMusicBackground)</onclick>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[31030],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
 			<include>MediaMenuButton</include>
 		</control>
-		<control type="radiobutton" id="213">
-			<visible>Visualisation.Enabled</visible>
+		<control type="button" id="213">
+			<visible>Player.HasAudio + Skin.String(NowPlayingMusicBackground,artistsslideshow)</visible>
+			<label>$LOCALIZE[31354]</label>
+			<onclick>Addon.OpenSettings(script.artistslideshow)</onclick>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="radiobutton" id="214">
+			<visible>Player.HasAudio + Visualisation.Enabled</visible>
 			<label>$LOCALIZE[250]</label>
 			<onclick>Skin.ToggleSetting(NowplayingVizBackground)</onclick>
 			<selected>Skin.HasSetting(NowplayingVizBackground)</selected>
 			<include>MediaMenuRadioButton</include>
 		</control>
-		<control type="radiobutton" id="214">
+		<control type="radiobutton" id="215">
+			<visible>Player.HasVideo</visible>
 			<label>$LOCALIZE[31181]</label>
 			<onclick>Skin.ToggleSetting(NowplayingVideoBackground)</onclick>
 			<selected>Skin.HasSetting(NowplayingVideoBackground)</selected>
@@ -615,18 +655,10 @@
 		<control type="button" id="203">
 			<label>$LOCALIZE[31051]</label>
 			<label2>$VAR[MainMenuTextureLabelVar]</label2>
-			<onclick condition="String.IsEmpty(MainMenuTexture.texture)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/brushed.png)</onclick>
-			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/brushed.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/carbon.png)</onclick>
-			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/carbon.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/gradient.png)</onclick>
-			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/carbon.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/concrete.png)</onclick>
-			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/concrete.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/pixels.png)</onclick>
-			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/pixels.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/plain.png)</onclick>
-			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/plain.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/mud.png)</onclick>
-			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/mud.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/steelplate.png)</onclick>
-			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/steelplate.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/wallpaper.png)</onclick>
-			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/wallpaper.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/wood.png)</onclick>
-			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/wood.png)">Skin.SetString(MainMenuTexture.texture,panels/mainmenu/wrinkles.png)</onclick>
-			<onclick condition="Skin.String(MainMenuTexture.texture,panels/mainmenu/wrinkles.png)">Skin.Reset(MainMenuTexture.texture)</onclick>
+			<label>$LOCALIZE[31051]</label>
+							<label2>$VAR[MainMenuTextureLabelVar]</label2>
+							<onclick>SetProperty(CustomSelect,$LOCALIZE[31359],home)</onclick>
+							<onclick>ActivateWindow(1110)</onclick>
 			<include>MediaMenuButton</include>
 		</control>
 		<control type="button" id="204">
@@ -807,7 +839,7 @@
 			</include>
 			<label>$INFO[Container.Viewmode]</label>
 			<onclick>ActivateWindow(1118)</onclick>
-			<visible>!Window.IsActive(MyPVRGuide.xml) + !Skin.String(KioskMode,HideOptionsViewType)</visible>
+			<visible>!Window.IsActive(MyPVRGuide.xml) + !Skin.HasSetting(KioskDisableViewMode)</visible>
 		</control>
 		<control type="radiobutton" id="9070">
 			<include content="MediaMenuIconButton">
@@ -816,7 +848,7 @@
 			</include>
 			<label>$LOCALIZE[31025]</label>
 			<onclick>ActivateWindow(1119)</onclick>
-			<visible>!String.Contains(Skin.String(KioskMode),HideOptions)</visible>
+			<visible>!Skin.HasSetting(KioskDisableViewOptions)</visible>
 		</control>
 		<control type="radiobutton" id="28">
 			<include content="MediaMenuIconButton">
@@ -986,7 +1018,7 @@
 			</include>
 			<label>$LOCALIZE[31025]</label>
 			<onclick>ActivateWindow(1115)</onclick>
-			<visible>!String.Contains(Skin.String(KioskMode),HideOptions)</visible>
+			<visible>!Skin.HasSetting(KioskDisableViewOptions)</visible>
 		</control>
 		<!-- Addon Settings -->
 		<control type="radiobutton" id="5">
@@ -1067,7 +1099,7 @@
 			</include>
 			<label>$LOCALIZE[31025]</label>
 			<onclick>ActivateWindow(1115)</onclick>
-			<visible>!String.Contains(Skin.String(KioskMode),HideOptions)</visible>
+			<visible>!Skin.HasSetting(KioskDisableViewOptions)</visible>
 		</control>
 	</include>
 	<include name="MediaMenuViewsettingsSystem">

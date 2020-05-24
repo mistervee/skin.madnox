@@ -39,24 +39,14 @@
 			<label>$INFO[Player.Art(albumartist.fanart10)]</label>
 		</control>
 		<control type="multiimage">
-			<visible>![Pvr.IsPlayingRadio | Player.IsInternetStream] + Visualisation.Enabled</visible>
+			<visible>Visualisation.Enabled</visible>
 			<include>NowPlayingMusicOSDFanart</include>
 			<imagepath background="true" colordiffuse="AAFFFFFF">$VAR[MusicOSDFanArtVar]</imagepath>
 		</control>
 		<control type="multiimage">
-			<visible>![Pvr.IsPlayingRadio | Player.IsInternetStream | Visualisation.Enabled]</visible>
+			<visible>!Visualisation.Enabled</visible>
 			<include>NowPlayingMusicOSDFanart</include>
 			<imagepath background="true">$VAR[MusicOSDFanArtVar]</imagepath>
-		</control>
-		<control type="multiimage">
-			<visible>[Pvr.IsPlayingRadio | Player.IsInternetStream] + Visualisation.Enabled</visible>
-			<include>NowPlayingMusicOSDFanart</include>
-			<imagepath background="true" colordiffuse="AAFFFFFF">$VAR[MusicOSDRadioStreamFanArtVar]</imagepath>
-		</control>
-		<control type="multiimage">
-			<visible>[Pvr.IsPlayingRadio | Player.IsInternetStream] + !Visualisation.Enabled</visible>
-			<include>NowPlayingMusicOSDFanart</include>
-			<imagepath background="true">$VAR[MusicOSDRadioStreamFanArtVar]</imagepath>
 		</control>
 		<control type="image">
 			<visible>Skin.HasSetting(MusicOSDDisableAnimatedLyrics) + Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>

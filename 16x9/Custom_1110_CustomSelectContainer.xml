@@ -24,45 +24,25 @@
 					<param name="id">100</param>
 				</include>
 				<content>
-
+					<!-- FanArt -->
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31310])">SelectFanartRotationSpeed</include>
-
-					<!-- Main menu -->
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31041] $LOCALIZE[31144])">SelectMainMenuLayout</include>
-
-					
-					
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31142])">SelectMainMenuSubmenuBar</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31143])">SelectMainMenuRSSBar</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31041] $LOCALIZE[31207])">SelectMainMenuPosition</include>
 					<!-- Now playing -->
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31315])">SelectMusicOSDBackground</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31316])">SelectMusicOSDStreamRadioBackground</include>
-
-
-
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[2] $LOCALIZE[31176])">SelectMainMenuNowPlayingMusicCase</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),CaseVideo)">SelectMainMenuNowPlayingVideoCase</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31169])">SelectMainMenuNowPlayingMusicInfo</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31170])">SelectMainMenuNowPlayingAudioInfo</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31211])">SelectMainMenuNowPlayingMovieInfo</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[12003])">SelectMainMenuNowPlayingVideoInfo</include>
-					<!-- Music viz -->
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[250] $LOCALIZE[31176])">SelectNowPlayingMusicVizCase</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31177])">SelectNowPlayingMusicVizMusicInfo</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31178])">SelectNowPlayingMusicVizAudioInfo</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[250] $LOCALIZE[31179])">SelectNowPlayingMusicVizFanArt</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[36427])">SelectNowPlayingMusicVizInfo</include>
-					<!-- Other -->
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31030])">SelectNowPlayingMusicBackground</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31355])">SelectNowPlayingStreamRadioBackground</include>
+					<!-- Disc art -->
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31009])">SelectNowPlayingMusicDiscartFallback</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31299])">SelectNowPlayingVideoDiscartFallback</include>
-					<!-- Views -->
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31230] $LOCALIZE[29915])">SelectShowcaseInfo</include>
 					<!-- Favourites -->
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31292])">SelectCustomFavourites</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31294])">SelectCustomFavouriteAddons</include>
 					<!-- Theme -->
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[15111])">SelectCustomTheme</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31145])">SelectBackgroundEffect</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31357])">SelectThemePanelTexture</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31358])">SelectThemeBackgroundTexture</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31359])">SelectThemeMainMenuTexture</include>
 				</content>
 			</control>
 			<control type="image">
@@ -80,6 +60,28 @@
 					<param name="onclick" value="Action(close)"/>
 				</include>
 			</control>
+			<include content="DialogImage">
+				<param name="visible">String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31357])</param>
+				<param name="height">280</param>
+				<param name="aspect">center</param>
+				<param name="texture">$INFO[Container(100).ListItem.Icon]</param>
+				<param name="color">$VAR[PanelTextureColorVar]</param>
+			</include>
+			<include content="DialogImage">
+				<param name="visible">String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31358])</param>
+				<param name="height">280</param>
+				<param name="aspect">center</param>
+				<param name="texture">$INFO[Container(100).ListItem.Icon]</param>
+				<param name="color">$VAR[BackgroundTextureColorVar]</param>
+			</include>
+			<include content="DialogImage">
+				<param name="visible">String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31359])</param>
+				<param name="height">280</param>
+				<param name="bottom">62</param>
+				<param name="aspect">center</param>
+				<param name="texture">$INFO[Container(100).ListItem.Icon]</param>
+				<param name="color">$VAR[MainMenuTextureColorVar]</param>
+			</include>
 			<control type="image">
 				<include>DialogHorizontalSeparator</include>
 			</control>

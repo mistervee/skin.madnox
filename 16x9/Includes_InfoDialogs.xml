@@ -1,62 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
-	<include name="DialogButtonInfo">
-		<width>223.5</width>
-		<height>80</height>
-		<align>center</align>
-		<font>Font28_Reg</font>
-		<textoffsetx>20</textoffsetx>
-		<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-		<focusedcolor>$VAR[PanelFocusTextColorVar]</focusedcolor>
-		<disabledcolor>$VAR[PanelDisabledTextColorVar]</disabledcolor>
-		<texturefocus colordiffuse="$VAR[PanelHighlightColorVar]" border="20">buttons/button.png</texturefocus>
-		<texturenofocus colordiffuse="$VAR[PanelSubTextColorVar]" border="20">buttons/button.png</texturenofocus>
-	</include>
-	<include name="DialogButtonInfo2">
-		<width>auto</width>
-		<height>80</height>
-		<align>left</align>
-		<font>Font28_Reg</font>
-		<textoffsetx>20</textoffsetx>
-		<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
-		<focusedcolor>$VAR[PanelFocusTextColorVar]</focusedcolor>
-		<disabledcolor>$VAR[PanelDisabledTextColorVar]</disabledcolor>
-		<texturefocus colordiffuse="$VAR[PanelHighlightColorVar]" border="20">buttons/dialoginfo-button2.png</texturefocus>
-		<texturenofocus colordiffuse="$VAR[PanelHighlightColorVar]" border="20">buttons/dialoginfo-button2.png</texturenofocus>
-	</include>
-	<include name="DialogButtonInfoIcon">
-		<width>80</width>
-		<height>80</height>
-		<align>center</align>
-		<font>Font40_Icon</font>
-		<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-		<focusedcolor>$VAR[PanelFocusTextColorVar]</focusedcolor>
-		<disabledcolor>$VAR[PanelDisabledTextColorVar]</disabledcolor>
-		<texturefocus colordiffuse="$VAR[PanelHighlightColorVar]" border="20">buttons/dialoginfo-button.png</texturefocus>
-		<texturenofocus colordiffuse="$VAR[PanelSubTextColorVar]" border="20">buttons/button.png</texturenofocus>
-	</include>
-	<include name="DialogButtonInfoLabel">
-		<param name="id"></param>
-		<param name="label"></param>
-		<param name="labelwidth"></param>
-		<definition>
-			<control type="image" id="$PARAM[id]1">
-				<visible>Control.HasFocus($PARAM[id])</visible>
-				<left>-30</left>
-				<width>$PARAM[labelwidth]</width>
-				<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="20">buttons/dialoginfo-button2.png</texture>
-			</control>
-			<control type="label" id="$PARAM[id]2">
-				<visible>Control.HasFocus($PARAM[id])</visible>
-				<left>-$PARAM[labelwidth]</left>
-				<width>$PARAM[labelwidth]</width>
-				<font>Font28_Reg</font>
-				<label>$PARAM[label]</label>
-				<textoffsetx>15</textoffsetx>
-				<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
-			</control>
-		</definition>
-	</include>
 	<include name="DialogInfoCommon">
 		<param name="blur"></param>
 		<param name="art"></param>
@@ -207,21 +150,16 @@
 			<control type="list" id="9000">
 				<top>555</top>
 				<left>-10</left>
-				<width>1000</width>
+				<right>25</right>
 				<height>80</height>
 				<onup condition="Container(9000).Hasfocus(101)">SetFocus(1010)</onup>
-				<onup condition="Container(9000).Hasfocus(102)">SetFocus(1010)</onup>
-				<onup condition="Container(9000).Hasfocus(103)">SetFocus(1010)</onup>
 				<onup condition="Container(9000).Hasfocus(104)">SetFocus(1040)</onup>
 				<onup condition="Container(9000).Hasfocus(105)">SetFocus(1050)</onup>
 				<onup condition="Container(9000).Hasfocus(106)">SetFocus(1060)</onup>
 				<onup condition="Container(9000).Hasfocus(107)">SetFocus(1070)</onup>
 				<onup condition="Container(9000).Hasfocus(108)">SetFocus(1080)</onup>
 				<onup condition="Container(9000).Hasfocus(109)">SetFocus(1090)</onup>
-				<onup condition="Container(9000).Hasfocus(110)">SetFocus(1100)</onup>
-				<onup condition="Container(9000).Hasfocus(111)">SetFocus(9002,7)</onup>
 				<onup condition="Container(9000).Hasfocus(112)">SetFocus(9002,7)</onup>
-				<onup condition="Container(9000).Hasfocus(113)">SetFocus(9002,7)</onup>
 				<include>InfoDialogButtons</include>
 				<content>
 					<item id="101">
@@ -231,31 +169,31 @@
 						<label2>$LOCALIZE[208]</label2>
 						<onclick>SendClick(8)</onclick>
 					</item>
-					<item id="115">
+					<item id="101">
 						<description>Cinema mode</description>
 						<visible>String.IsEqual(ListItem.DBTYPE,movie) + Skin.HasSetting(CinemaMode)</visible>
 						<label></label>
 						<label2>$LOCALIZE[31295]</label2>
 						<onclick>RunScript(script.embuary.helper,action=playcinema,dbid=$INFO[ListItem.DBID],type=$INFO[ListItem.DBType],title='$ESCINFO[ListItem.Title]')</onclick>
 					</item>
-					<item id="102">
+					<item id="101">
 						<description>Trailer</description>
 						<visible>!String.IsEmpty(ListItem.Trailer) + !Skin.HasSetting(VideoInfoDisableTrailer)</visible>
 						<label></label>
 						<label2>$LOCALIZE[20410]</label2>
 						<onclick>RunScript(script.embuary.helper,action=playitem,item='$ESCINFO[ListItem.Trailer]')</onclick>
 					</item>
-					<item id="103">
+					<item id="101">
 						<description>Browse</description>
 						<visible>String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season)</visible>
 						<label></label>
 						<label2>$LOCALIZE[1024]</label2>
 						<onclick>SendClick(8)</onclick>
 					</item>
-					<item id="115">
+					<item id="101">
 						<description>TMDb info</description>
 						<visible>Skin.HasSetting(VideoInfoTMDb)</visible>
-						<label></label>
+						<label></label>
 						<label2>$LOCALIZE[31351]</label2>
 						<onclick>$VAR[VideoInfoTMDbVar]</onclick>
 					</item>
@@ -295,7 +233,13 @@
 						<label></label>
 						<label2>$LOCALIZE[31110]</label2>
 					</item>
-					<item id="111">
+					<item id="112">
+						<visible>Skin.HasSetting(VideoInfoDisableRate) + Skin.HasSetting(VideoInfoDisableRefresh) + Skin.HasSetting(VideoInfoDisableArtwork) + Skin.HasSetting(KioskDisableInfoVideoSettings)</visible>
+						<description>Info</description>
+						<label></label>
+						<label2>$LOCALIZE[29915]</label2>
+					</item>
+					<item id="112">
 						<visible>!Skin.HasSetting(VideoInfoDisableRate)</visible>
 						<description>Rate</description>
 						<label></label>
@@ -309,7 +253,15 @@
 						<label2>$LOCALIZE[184]</label2>
 						<onclick>SendClick(6)</onclick>
 					</item>
-					<item id="113">
+					<item id="112">
+						<visible>!Skin.HasSetting(VideoInfoDisableArtwork)</visible>
+						<description>Artwork</description>
+						<label></label>
+						<label2>$LOCALIZE[31044]</label2>
+						<onclick>SendClick(10)</onclick>
+					</item>
+					<item id="112">
+						<visible>!Skin.HasSetting(KioskDisableInfoVideoSettings)</visible>
 						<description>Settings</description>
 						<label></label>
 						<label2>$LOCALIZE[1390]</label2>
@@ -326,7 +278,7 @@
 					<onup>1020</onup>
 					<onclick condition="Skin.HasSetting(VideoInfoTMDbActor)">RunScript(script.embuary.info,call=person,query='"$ESCINFO[Container(1010).ListItem.Label]"')</onclick>
 					<include content="DialogExtraInfo">
-						<param name="visible">!Control.HasFocus(1020) + [Container(9000).HasFocus(101) | Container(9000).HasFocus(102) | Container(9000).HasFocus(103) | Container(9000).HasFocus(115)]</param>
+						<param name="visible">!Control.HasFocus(1020) + Container(9000).HasFocus(101)</param>
 						<param name="labelvisible">true</param>
 					</include>
 					<content>$VAR[VideoInfoCastVar]</content>
@@ -334,7 +286,7 @@
 				<!-- Actor movies/tv shows -->
 				<control type="panel" id="1020">
 					<onclick condition="String.IsEqual(Container(1020).ListItem.DBTYPE,movie)">RunScript(script.embuary.helper,action=playitem,item='$ESCINFO[ListItem.Filenameandpath]')</onclick>
-					<onclick condition="!String.IsEqual(Container(1020).ListItem.DBTYPE,movie)">RunScript(script.embuary.helper,action=goto,path='$ESCINFO[ListItem.Filenameandpath]',target=videos)</onclick>
+					<onclick condition="!String.IsEqual(Container(1020).ListItem.DBTYPE,movie)">RunScript(script.embuary.helper,action=goto,path='$ESCINFO[ListItem.FolderPath]',target=videos)</onclick>
 					<ondown>1010</ondown>
 					<include content="DialogExtraInfo">
 						<param name="visible">Control.HasFocus(1020)</param>
@@ -412,7 +364,7 @@
 			<!-- Info -->
 			<control type="panel" id="9002">
 				<include content="InfoDialogDetails">
-					<param name="visible">Container(9000).HasFocus(111) | Container(9000).HasFocus(112) | Container(9000).HasFocus(113)</param>
+					<param name="visible">Container(9000).HasFocus(112)</param>
 					<param name="label">$INFO[ListItem.Label]</param>
 					<param name="label2">$INFO[ListItem.Label2]</param>
 				</include>
@@ -646,13 +598,10 @@
 				<onup condition="Container(9000).Hasfocus(102)">SetFocus(50,6)</onup>
 				<onup condition="Container(9000).Hasfocus(103)">SetFocus(9002,6)</onup>
 				<onup condition="Container(9000).Hasfocus(104)">SetFocus(1090)</onup>
-				<onup condition="Container(9000).Hasfocus(105)">SetFocus(1090)</onup>
 				<onup condition="Container(9000).Hasfocus(106)">SetFocus(1060)</onup>
 				<onup condition="Container(9000).Hasfocus(107)">SetFocus(50,6)</onup>
 				<onup condition="Container(9000).Hasfocus(109)">SetFocus(1090)</onup>
-				<onup condition="Container(9000).Hasfocus(111)">SetFocus(9002,6)</onup>
 				<onup condition="Container(9000).Hasfocus(112)">SetFocus(9002,6)</onup>
-				<onup condition="Container(9000).Hasfocus(113)">SetFocus(9002,6)</onup>
 				<include>InfoDialogButtons</include>
 				<content>
 					<item id="101">
@@ -687,11 +636,11 @@
 						<onclick>SendClick(8)</onclick>
 						<onclick>Close</onclick>
 					</item>
-					<item id="105">
+					<item id="104">
 						<description>Play all music videos</description>
 						<visible>String.IsEqual(ListItem.DBTYPE,musicvideo) + Integer.IsGreater(Container(1090).NumItems,1)</visible>
 						<label></label>
-						<label2>Play all</label2>
+						<label2>$LOCALIZE[22083]</label2>
 						<onclick>Close</onclick>
 						<onclick>RunScript(script.embuary.helper,action=playall,id=1090)</onclick>
 					</item>
@@ -705,9 +654,9 @@
 					</item>
 					<item id="107">
 						<description>Contributers</description>
-						<visible>String.IsEqual(ListItem.DBTYPE,song) + !String.IsEmpty(Container(50).ListItem.Label)</visible>
+						<visible>!Skin.HasSetting(MusicInfoDisableContributors) + String.IsEqual(ListItem.DBTYPE,song) + !String.IsEmpty(Container(50).ListItem.Label)</visible>
 						<label></label>
-						<label2>Contributors</label2>
+						<label2>$LOCALIZE[31339]</label2>
 					</item>
 					<item id="109">
 						<description>MusicVideos</description>
@@ -717,25 +666,40 @@
 						<onclick>Close</onclick>
 						<onclick>RunScript(script.embuary.helper,action=playall,id=1090)</onclick>
 					</item>
-					<item id="111">
+					<item id="112">
 						<description>Rate</description>
-						<visible>String.IsEqual(ListItem.DBTYPE,album) | String.IsEqual(ListItem.DBTYPE,song)</visible>
+						<visible>!Skin.HasSetting(MusicInfoDisableRate) + !String.IsEqual(ListItem.DBTYPE,artist)</visible>
 						<label></label>
 						<label2>$LOCALIZE[31340]</label2>
 						<onclick>SendClick(7)</onclick>
 					</item>
 					<item id="112">
+						<visible>!Skin.HasSetting(MusicInfoDisableRefresh)</visible>
 						<description>Refresh</description>
 						<label></label>
 						<label2>$LOCALIZE[184]</label2>
 						<onclick>SendClick(6)</onclick>
 					</item>
-					<item id="113">
+					<item id="112">
+						<visible>!Skin.HasSetting(MusicInfoDisableArtwork)</visible>
+						<description>Artwork</description>
+						<label></label>
+						<label2>$LOCALIZE[31044]</label2>
+						<onclick>SendClick(10)</onclick>
+					</item>
+					<item id="112">
+						<visible>!Skin.HasSetting(KioskDisableInfoMusicSettings)</visible>
 						<description>Settings</description>
 						<label></label>
 						<label2>$LOCALIZE[1390]</label2>
 						<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[31350],home)</onclick>
 						<onclick>ActivateWindow(1111)</onclick>
+					</item>
+					<item id="112">
+						<visible>![!String.IsEqual(ListItem.DBTYPE,artist) + !Skin.HasSetting(MusicInfoDisableRate)] + Skin.HasSetting(MusicInfoDisableRefresh) + Skin.HasSetting(MusicInfoDisableArtwork) + Skin.HasSetting(KioskDisableInfoMusicSettings) + !String.IsEqual(ListItem.DBTYPE,song)</visible>
+						<description>Info</description>
+						<label></label>
+						<label2>$LOCALIZE[29915]</label2>
 					</item>
 				</content>
 			</control>
@@ -835,7 +799,7 @@
 				<!-- Info -->
 				<control type="panel" id="9002">
 					<include content="InfoDialogDetails">
-						<param name="visible">Container(9000).Hasfocus(103) | Container(9000).Hasfocus(111) | Container(9000).Hasfocus(112) | Container(9000).Hasfocus(113)</param>
+						<param name="visible">Container(9000).Hasfocus(103) | Container(9000).Hasfocus(112)</param>
 						<param name="height">364</param>
 						<param name="label">$INFO[ListItem.Label]</param>
 						<param name="label2">$INFO[ListItem.Label2]</param>
@@ -1559,7 +1523,7 @@
 	</variable>
 	<variable name="VideoInfoContainerIcon">
 		<value condition="Control.HasFocus(1010) + Integer.IsGreater(Container(1020).NumItems,0)">$VAR[IconPathVar]arrowup.png</value>
-		<value condition="Container(9000).HasFocus(101) | Container(9000).HasFocus(102) | Container(9000).HasFocus(103) | Container(9000).HasFocus(115) | Control.HasFocus(1010) | Control.HasFocus(1020)">$VAR[IconPathVar]person.png</value>
+		<value condition="Container(9000).HasFocus(101) | Container(9000).HasFocus(115) | Control.HasFocus(1010) | Control.HasFocus(1020)">$VAR[IconPathVar]person.png</value>
 		<value condition="Container(9000).HasFocus(104) | Control.HasFocus(1040)">$VAR[IconPathVar]next.png</value>
 		<value condition="Container(9000).HasFocus(105) | Control.HasFocus(1050)">$VAR[IconPathVar]set.png</value>
 		<value condition="Container(9000).HasFocus(106) | Control.HasFocus(1060)">$VAR[IconPathVar]set.png</value>
@@ -1568,9 +1532,9 @@
 		<value condition="Container(9000).HasFocus(109) | Control.HasFocus(1090)">$VAR[IconPathVar]similar.png</value>
 	</variable>
 	<variable name="VideoInfoContainerLabel">
-		<value condition="Control.HasFocus(1020)">$LOCALIZE[31342] $INFO[Container(50).ListItem.Label]</value>
+		<value condition="Control.HasFocus(1020)">$LOCALIZE[31342] $INFO[Container(1010).ListItem.Label]</value>
 		<value condition="Control.HasFocus(1010)">$INFO[Container(1020).NumItems, Appeared in , Movies and TV Shows]</value>
-		<value condition="Container(9000).HasFocus(101) | Container(9000).HasFocus(102) | Container(9000).HasFocus(103) | Container(9000).HasFocus(115)">$LOCALIZE[206]</value>
+		<value condition="Container(9000).HasFocus(101) | Container(9000).HasFocus(115)">$LOCALIZE[206]</value>
 		<value condition="Container(9000).HasFocus(104) | Control.HasFocus(1040)">$LOCALIZE[31341]</value>
 		<value condition="Container(9000).HasFocus(105)">$LOCALIZE[33054]</value>
 		<value condition="Control.HasFocus(1050)">$INFO[Container(1050).ListItem.Label]</value>

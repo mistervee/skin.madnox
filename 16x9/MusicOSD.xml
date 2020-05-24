@@ -34,7 +34,7 @@
 					</include>
 					<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[31337],home)</onclick>
 					<onclick>ActivateWindow(1111)</onclick>
-					<visible>!String.Contains(Skin.String(KioskMode),HideOptions) + !Skin.String(KioskMode,HideMenu)</visible>
+					<visible>!Skin.HasSetting(KioskDisableFullscreenAudio)</visible>
 				</control>
 				<control type="radiobutton" id="102">
 					<include content="DialogButtonOSD">
@@ -86,7 +86,7 @@
 						<param name="texture" value="buttons/player/previous.png"/>
 					</include>
 					<onclick>PlayerControl(Previous)</onclick>
-					<visible>!MusicPlayer.Content(LiveTV)</visible>
+					<visible>!MusicPlayer.Content(LiveTV) + MusicPlayer.HasPrevious</visible>
 				</control>
 				<control type="radiobutton" id="204">
 					<include content="DialogButtonOSD">

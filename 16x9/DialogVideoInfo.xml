@@ -4,25 +4,28 @@
 	<onload>SetFocus(9000,0)</onload>
 	<onload condition="System.HasAddon(script.embuary.info) + Skin.HasSetting(BlurEnabled)">RunScript(script.embuary.helper,action=blurimg,file=$ESCINFO[ListItem.Art(thumb)],prop=blurthumb,radius=2)</onload>
 	<onload condition="String.IsEqual(ListItem.DBTYPE,movie)">RunScript(script.embuary.helper,action=split,value='$ESCINFO[ListItem.Writer]',separator='" / "',prop=Writer)</onload>
-	<onload>RunScript(script.embuary.helper,action=resetposition,container=50||1020||1040||1050||1060||1070||1080||1090||9002)</onload>
+	<onload>RunScript(script.embuary.helper,action=resetposition,container=1010||1020||1040||1050||1060||1070||1080||1090||9002)</onload>
 	<onload condition="!String.IsEqual(ListItem.DBTYPE,musicvideo)">RunScript(script.embuary.helper,action=encode,string=$INFO[ListItem.Title],prop=TitleEncoded)</onload>
 	<onload condition="!String.IsEqual(ListItem.DBTYPE,musicvideo)">RunScript(script.embuary.helper,action=encode,string=$INFO[ListItem.TVShowTitle],prop=TVShowTitleEncoded)</onload>
 	<controls>
-		<include content="DialogInfoCommon">
-			<param name="blur">Skin.HasSetting(VideoBlurEnabled)</param>
-			<param name="art">$VAR[PosterVar]</param>
-		</include>
 		<control type="group">
-			<animation type="WindowOpen" reversible="false">
-				<effect type="zoom" start="80" end="100" center="50%,50%" time="480" tween="cubic" easing="out"/>
-				<effect type="fade" time="400" tween="sine" easing="out" />
-			</animation>
-			<animation type="WindowClose" reversible="false">
-				<effect type="zoom" start="100" end="80" center="50%,50%" delay="0" time="480" tween="cubic" easing="out"/>
-				<effect type="fade" end="0" time="400" tween="sine" easing="out" />
-			</animation>
-			<include condition="!String.IsEqual(ListItem.DBType,musicvideo)">DialogVideoInfo</include>
-			<include condition="String.IsEqual(ListItem.DBType,musicvideo)">DialogMusicInfo</include>
+			<!-- <visible></visible> -->
+			<include content="DialogInfoCommon">
+				<param name="blur">Skin.HasSetting(VideoBlurEnabled)</param>
+				<param name="art">$VAR[PosterVar]</param>
+			</include>
+			<control type="group">
+				<animation type="WindowOpen" reversible="false">
+					<effect type="zoom" start="80" end="100" center="50%,50%" time="480" tween="cubic" easing="out"/>
+					<effect type="fade" time="400" tween="sine" easing="out" />
+				</animation>
+				<animation type="WindowClose" reversible="false">
+					<effect type="zoom" start="100" end="80" center="50%,50%" delay="0" time="480" tween="cubic" easing="out"/>
+					<effect type="fade" end="0" time="400" tween="sine" easing="out" />
+				</animation>
+				<include condition="!String.IsEqual(ListItem.DBType,musicvideo)">DialogVideoInfo</include>
+				<include condition="String.IsEqual(ListItem.DBType,musicvideo)">DialogMusicInfo</include>
+			</control>
 		</control>
-</controls>
+	</controls>
 </window>
