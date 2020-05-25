@@ -8,7 +8,6 @@
 			<param name="imagepath">$VAR[WeatherBackgroundVar]</param>
 			<param name="animatedfanart">Skin.HasSetting(WeatherAnimatedFanart)</param>
 		</include>
-
 		<!-- Floor -->
 		<control type="group">
 			<include content="AnimationSlideBottomWindow">
@@ -34,9 +33,9 @@
 			<include>AnimationZoomWindow</include>
 			<control type="panel" id="8000">
 				<left>100</left>
-				<top>159</top>
+				<top>150</top>
 				<width>324</width>
-				<height>737</height>
+				<height>680</height>
 				<onleft>9050</onleft>
 				<onright condition="Container(8000).HasFocus(1)">8001</onright>
 				<onright condition="Container(8000).HasFocus(2)">8002</onright>
@@ -78,6 +77,7 @@
 						<visible>!String.IsEmpty(Window(weather).Property(Hourly.IsFetched))</visible>
 					</item>
 					<item id="6">
+						<visible>String.IsEqual(Weather.plugin,weather.ozweather)</visible>
 						<label>$LOCALIZE[31091]</label>
 						<visible>!String.IsEmpty(Window(weather).Property(Radar))</visible>
 					</item>
@@ -105,9 +105,9 @@
 			</control>
 			<control type="group">
 				<visible>Container(8000).HasFocus(1)</visible>
-				<left>481</left>
-				<top>159</top>
-				<width>1286</width>
+				<left>475</left>
+				<top>150</top>
+				<width>1295</width>
 				<height>775</height>
 				<include>AnimationVisibleFade</include>
 				<control type="image">
@@ -115,28 +115,24 @@
 					<texture colordiffuse="FF000000" border="10">buttons/panel-select-focus.png</texture>
 				</control>
 				<control type="image">
-					<left>608</left>
-					<top>20</top>
-					<width>647</width>
-					<height>113</height>
-					<aspectratio align="right">keep</aspectratio>
+					<top>50</top>
+					<right>50</right>
+					<width>582</width>
+					<height>112</height>
+					<aspectratio aligny="top" align="right">keep</aspectratio>
 					<texture>$INFO[Window(weather).Property(WeatherProviderLogo)]</texture>
 				</control>
 				<control type="multiimage">
-					<left>20</left>
-					<top>143</top>
-					<width>261</width>
-					<height>261</height>
+					<left>30</left>
+					<top>140</top>
+					<width>269</width>
+					<height>269</height>
 					<imagepath>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Current.FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</imagepath>
-					<fadetime>1</fadetime>
-					<pauseatend>1</pauseatend>
-					<timeperimage>080</timeperimage>
-					<randomize>false</randomize>
-					<loop>true</loop>
+					<include>WeatherIconAnimation</include>
 				</control>
 				<control type="grouplist">
-					<top>153</top>
-					<left>301</left>
+					<top>141</top>
+					<left>320</left>
 					<width>647</width>
 					<height>261</height>
 					<align>center</align>
@@ -159,8 +155,8 @@
 					</control>
 				</control>
 				<control type="grouplist">
-					<left>40</left>
-					<top>20</top>
+					<left>50</left>
+					<top>23</top>
 					<width>628</width>
 					<height>113</height>
 					<align>center</align>
@@ -178,8 +174,8 @@
 					</control>
 				</control>
 				<control type="grouplist">
-					<left>627</left>
-					<top>153</top>
+					<right>50</right>
+					<top>169</top>
 					<width>628</width>
 					<height>261</height>
 					<align>center</align>
@@ -213,261 +209,284 @@
 						<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[33028][/COLOR] [LOWERCASE]$INFO[Window(weather).Property(Today.Sunset)][/LOWERCASE]</label>
 					</control>
 				</control>
-				<control type="grouplist" id="8001">
-					<visible>Container(8000).HasFocus(1)</visible>
-					<include>AnimationVisibleFade</include>
-					<top>469</top>
-					<width>1286</width>
-					<height>299</height>
+				<control type="panel" id="8001">
+					<left>-15</left>
+					<top>464</top>
+					<width>1325</width>
+					<height>331</height>
 					<onleft>8000</onleft>
-					<itemgap>30</itemgap>
-					<pagecontrol>60</pagecontrol>
 					<orientation>horizontal</orientation>
-					<usecontrolcoords>true</usecontrolcoords>
-					<include content="WeatherDayList">
-						<param name="item">1</param>
-					</include>
-					<include content="WeatherDayList">
-						<param name="item">2</param>
-					</include>
-					<include content="WeatherDayList">
-						<param name="item">3</param>
-					</include>
-					<include content="WeatherDayList">
-						<param name="item">4</param>
-					</include>
-					<include content="WeatherDayList">
-						<param name="item">5</param>
-					</include>
-					<include content="WeatherDayList">
-						<param name="item">6</param>
-					</include>
+					<itemlayout width="331.25">
+						<control type="image">
+							<bordersize>15</bordersize>
+							<texture colordiffuse="FF000000" border="10">buttons/panel-select-focus.png</texture>
+						</control>
+						<control type="multiimage">
+							<top>73</top>
+							<height>150</height>
+							<include>WeatherIconAnimation</include>
+							<imagepath background="true">$INFO[ListItem.Icon]</imagepath>
+						</control>
+						<control type="label">
+							<top>25</top>
+							<height>50</height>
+							<align>center</align>
+							<font>Font33_Bold_Caps</font>
+							<textoffsetx>25</textoffsetx>
+							<textcolor>$VAR[PanelTextColorVar]</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+						<control type="label">
+							<top>220</top>
+							<height>50</height>
+							<align>center</align>
+							<font>Font29_Cond</font>
+							<textoffsetx>25</textoffsetx>
+							<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+							<label>$INFO[ListItem.Label2]</label>
+						</control>
+						<control type="label">
+							<top>254</top>
+							<height>50</height>
+							<align>center</align>
+							<textoffsetx>25</textoffsetx>
+							<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+							<label>$INFO[ListItem.Property(label3)]</label>
+						</control>
+					</itemlayout>
+					<focusedlayout width="331.25">
+						<control type="image">
+							<bordersize>15</bordersize>
+							<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/panel-select-focus.png</texture>
+						</control>
+						<control type="multiimage">
+							<top>73</top>
+							<height>150</height>
+							<include>WeatherIconAnimation</include>
+							<imagepath background="true">$INFO[ListItem.Icon]</imagepath>
+						</control>
+						<control type="label">
+							<top>25</top>
+							<height>50</height>
+							<align>center</align>
+							<font>Font33_Bold_Caps</font>
+							<textoffsetx>25</textoffsetx>
+							<textcolor>$VAR[PanelTextColorVar]</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+						<control type="label">
+							<top>220</top>
+							<height>50</height>
+							<align>center</align>
+							<font>Font29_Cond</font>
+							<textoffsetx>25</textoffsetx>
+							<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+							<label>$INFO[ListItem.Label2]</label>
+						</control>
+						<control type="label">
+							<top>254</top>
+							<height>50</height>
+							<align>center</align>
+							<textoffsetx>25</textoffsetx>
+							<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+							<label>$INFO[ListItem.Property(label3)]</label>
+						</control>
+					</focusedlayout>
+					<content>
+						<include content="WeatherDayItem">
+							<param name="item">1</param>
+						</include>
+						<include content="WeatherDayItem">
+							<param name="item">2</param>
+						</include>
+						<include content="WeatherDayItem">
+							<param name="item">3</param>
+						</include>
+						<include content="WeatherDayItem">
+							<param name="item">4</param>
+						</include>
+						<include content="WeatherDayItem">
+							<param name="item">5</param>
+						</include>
+						<include content="WeatherDayItem">
+							<param name="item">6</param>
+						</include>
+						<include content="WeatherDayItem">
+							<param name="item">7</param>
+						</include>
+					</content>
 				</control>
 			</control>
-			<control type="grouplist" id="8002">
+			<control type="panel" id="8002">
 				<visible>Container(8000).HasFocus(2)</visible>
-				<include>AnimationVisibleFade</include>
-				<left>481</left>
-				<top>159</top>
-				<width>1286</width>
-				<height>770</height>
-				<onleft>8000</onleft>
-				<itemgap>30</itemgap>
-				<pagecontrol>60</pagecontrol>
-				<usecontrolcoords>true</usecontrolcoords>
-				<include content="WeatherDailyList">
-					<param name="item">1</param>
-				</include>
-				<include content="WeatherDailyList">
-					<param name="item">2</param>
-				</include>
-				<include content="WeatherDailyList">
-					<param name="item">3</param>
-				</include>
-				<include content="WeatherDailyList">
-					<param name="item">4</param>
-				</include>
-				<include content="WeatherDailyList">
-					<param name="item">5</param>
-				</include>
-				<include content="WeatherDailyList">
-					<param name="item">6</param>
-				</include>
-				<include content="WeatherDailyList">
-					<param name="item">7</param>
-				</include>
-				<include content="WeatherDailyList">
-					<param name="item">8</param>
-				</include>
-				<include content="WeatherDailyList">
-					<param name="item">9</param>
-				</include>
-				<include content="WeatherDailyList">
-					<param name="item">10</param>
-				</include>
-				<include content="WeatherDailyList">
-					<param name="item">11</param>
-				</include>
-				<include content="WeatherDailyList">
-					<param name="item">12</param>
-				</include>
-				<include content="WeatherDailyList">
-					<param name="item">13</param>
-				</include>
-				<include content="WeatherDailyList">
-					<param name="item">14</param>
-				</include>
-				<include content="WeatherDailyList">
-					<param name="item">15</param>
-				</include>
-				<include content="WeatherDailyList">
-					<param name="item">16</param>
-				</include>
+				<include>WeatherVerticalList</include>
+				<content>
+					<include content="WeatherDailyItem">
+						<param name="item">1</param>
+					</include>
+					<include content="WeatherDailyItem">
+						<param name="item">2</param>
+					</include>
+					<include content="WeatherDailyItem">
+						<param name="item">3</param>
+					</include>
+					<include content="WeatherDailyItem">
+						<param name="item">4</param>
+					</include>
+					<include content="WeatherDailyItem">
+						<param name="item">5</param>
+					</include>
+					<include content="WeatherDailyItem">
+						<param name="item">6</param>
+					</include>
+					<include content="WeatherDailyItem">
+						<param name="item">7</param>
+					</include>
+					<include content="WeatherDailyItem">
+						<param name="item">8</param>
+					</include>
+					<include content="WeatherDailyItem">
+						<param name="item">9</param>
+					</include>
+					<include content="WeatherDailyItem">
+						<param name="item">10</param>
+					</include>
+					<include content="WeatherDailyItem">
+						<param name="item">11</param>
+					</include>
+					<include content="WeatherDailyItem">
+						<param name="item">12</param>
+					</include>
+					<include content="WeatherDailyItem">
+						<param name="item">13</param>
+					</include>
+					<include content="WeatherDailyItem">
+						<param name="item">14</param>
+					</include>
+					<include content="WeatherDailyItem">
+						<param name="item">15</param>
+					</include>
+					<include content="WeatherDailyItem">
+						<param name="item">16</param>
+					</include>
+				</content>
 			</control>
-			<control type="grouplist">
+			<control type="panel" id="8003">
 				<visible>Container(8000).HasFocus(3)</visible>
-				<include>AnimationVisibleFade</include>
-				<left>481</left>
-				<top>159</top>
-				<width>1286</width>
-				<height>770</height>
-				<itemgap>30</itemgap>
-				<orientation>horizontal</orientation>
-				<usecontrolcoords>true</usecontrolcoords>
-				<include content="Weather36hourList">
-					<param name="item">1</param>
+				<include content="WeatherHorizontalList">
+					<param name="width">442</param>
 				</include>
-				<include content="Weather36hourList">
-					<param name="item">2</param>
-				</include>
-				<include content="Weather36hourList">
-					<param name="item">3</param>
-				</include>
+				<content>
+					<include content="Weather36HourItem">
+						<param name="item">1</param>
+					</include>
+					<include content="Weather36HourItem">
+						<param name="item">2</param>
+					</include>
+					<include content="Weather36HourItem">
+						<param name="item">3</param>
+					</include>
+				</content>
 			</control>
-			<control type="grouplist">
+			<control type="panel" id="8004">
 				<visible>Container(8000).HasFocus(4)</visible>
-				<include>AnimationVisibleFade</include>
-				<left>481</left>
-				<top>159</top>
-				<width>1286</width>
-				<height>770</height>
-				<itemgap>30</itemgap>
-				<orientation>horizontal</orientation>
-				<usecontrolcoords>true</usecontrolcoords>
-				<include content="WeatherWeekendList">
-					<param name="item">1</param>
+				<include content="WeatherHorizontalList">
+					<param name="width">663</param>
 				</include>
-				<include content="WeatherWeekendList">
-					<param name="item">2</param>
-				</include>
+				<content>
+					<include content="WeatherWeekendItem">
+						<param name="item">1</param>
+					</include>
+					<include content="WeatherWeekendItem">
+						<param name="item">2</param>
+					</include>
+				</content>
 			</control>
-			<control type="grouplist" id="8005">
+			<control type="panel" id="8005">
 				<visible>Container(8000).HasFocus(5)</visible>
-				<include>AnimationVisibleFade</include>
-				<left>481</left>
-				<top>159</top>
-				<width>1286</width>
-				<height>770</height>
-				<onleft>8000</onleft>
-				<itemgap>30</itemgap>
-				<pagecontrol>60</pagecontrol>
-				<usecontrolcoords>true</usecontrolcoords>
-				<include content="WeatherHourlyList">
-					<param name="item">1</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">2</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">3</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">4</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">5</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">6</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">7</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">8</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">9</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">10</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">11</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">12</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">13</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">14</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">15</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">16</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">17</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">18</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">19</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">20</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">21</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">22</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">23</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">24</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">25</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">26</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">27</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">28</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">29</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">30</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">31</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">32</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">33</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">34</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">35</param>
-				</include>
-				<include content="WeatherHourlyList">
-					<param name="item">36</param>
-				</include>
+				<include>WeatherVerticalList</include>
+				<content>
+					<include content="WeatherHourlyItem">
+						<param name="item">1</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">2</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">3</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">4</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">5</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">6</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">7</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">8</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">9</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">10</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">11</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">12</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">13</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">14</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">15</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">16</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">17</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">18</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">19</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">20</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">21</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">22</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">23</param>
+					</include>
+					<include content="WeatherHourlyItem">
+						<param name="item">24</param>
+					</include>
+				</content>
 			</control>
 			<control type="group">
 				<visible>Container(8000).HasFocus(6)</visible>
 				<include>AnimationVisibleFade</include>
-				<left>481</left>
-				<top>159</top>
-				<width>1287</width>
-				<height>770</height>
+				<left>475</left>
+				<top>150</top>
+				<width>1295</width>
+				<height>780</height>
 				<control type="image">
 					<aspectratio>scale</aspectratio>
 					<texture>special://profile/addon_data/weather.ozweather/radarbackgrounds/$INFO[Window(weather).Property(Radar)]/background.png</texture>
@@ -562,6 +581,7 @@
 						<param name="iconon" value="icons/mediamenu/pin.png" />
 						<param name="iconoff" value="icons/mediamenu/pin.png" />
 					</include>
+					<label>$INFO[Window(weather).Property(Location)]</label>
 					<onclick>Weather.LocationNext</onclick>
 				</control>
 				<control type="radiobutton" id="2">

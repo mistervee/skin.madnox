@@ -225,11 +225,7 @@
 						<width>40</width>
 						<height>40</height>
 						<imagepath>$INFO[Skin.String(WeatherIcons.path)]$INFO[Weather.FanartCode]$INFO[Skin.String(WeatherIcons.ext)]</imagepath>
-						<fadetime>1</fadetime>
-						<pauseatend>1</pauseatend>
-						<timeperimage>080</timeperimage>
-						<randomize>false</randomize>
-						<loop>true</loop>
+						<include>WeatherIconAnimation</include>
 						<visible>!Skin.HasSetting(DisableTopbarWeather) + !String.IsEmpty(Window(Weather).Property(Current.Temperature))</visible>
 					</control>
 					<control type="label">
@@ -704,246 +700,217 @@
 		</definition>
 	</include>
 	<!-- Weather -->
-	<include name="WeatherDayList">
+	<include name="WeatherIconAnimation">
+		<fadetime>1</fadetime>
+		<pauseatend>1</pauseatend>
+		<timeperimage>080</timeperimage>
+		<randomize>false</randomize>
+		<loop>true</loop>
+		<aspectratio align="center" aligny="center">keep</aspectratio>
+	</include>
+	<include name="WeatherVerticalList">
+		<include>AnimationVisibleFade</include>
+		<left>460</left>
+		<top>135</top>
+		<width>1325</width>
+		<height>810</height>
+		<onleft>8000</onleft>
+		<itemlayout height="202.5">
+			<control type="image">
+				<bordersize>15</bordersize>
+				<texture colordiffuse="FF000000" border="10">buttons/panel-select-focus.png</texture>
+			</control>
+			<control type="multiimage">
+				<left>35</left>
+				<width>132</width>
+				<include>WeatherIconAnimation</include>
+				<imagepath background="true">$INFO[ListItem.Icon]</imagepath>
+			</control>
+			<control type="label">
+				<top>34</top>
+				<left>188</left>
+				<height>50</height>
+				<font>Font33_Bold_Caps</font>
+				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				<label>$INFO[ListItem.Label]</label>
+			</control>
+			<control type="label">
+				<top>71</top>
+				<left>188</left>
+				<height>100</height>
+				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+				<label>$INFO[ListItem.Label2]</label>
+			</control>
+			<control type="label">
+				<top>14</top>
+				<right>50</right>
+				<height>172.5</height>
+				<align>right</align>
+				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+				<label>$INFO[ListItem.Property(label3)]</label>
+			</control>
+		</itemlayout>
+		<focusedlayout height="202.50">
+			<control type="image">
+				<bordersize>15</bordersize>
+				<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/panel-select-focus.png</texture>
+			</control>
+			<control type="multiimage">
+				<left>35</left>
+				<width>132</width>
+				<include>WeatherIconAnimation</include>
+				<imagepath background="true">$INFO[ListItem.Icon]</imagepath>
+			</control>
+			<control type="label">
+				<top>34</top>
+				<left>188</left>
+				<height>50</height>
+				<font>Font33_Bold_Caps</font>
+				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				<label>$INFO[ListItem.Label]</label>
+			</control>
+			<control type="label">
+				<top>71</top>
+				<left>188</left>
+				<height>100</height>
+				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+				<label>$INFO[ListItem.Label2]</label>
+			</control>
+			<control type="label">
+				<top>14</top>
+				<right>50</right>
+				<height>172.5</height>
+				<align>right</align>
+				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+				<label>$INFO[ListItem.Property(label3)]</label>
+			</control>
+		</focusedlayout>
+	</include>
+	<include name="WeatherHorizontalList">
+		<param name="width">439</param>
+		<definition>
+			<include>AnimationVisibleFade</include>
+			<left>460</left>
+			<top>135</top>
+			<width>1325</width>
+			<height>810</height>
+			<orientation>horizontal</orientation>
+			<itemlayout width="$PARAM[width]">
+				<control type="image">
+					<bordersize>15</bordersize>
+					<texture colordiffuse="FF000000" border="10">buttons/panel-select-focus.png</texture>
+				</control>
+				<control type="multiimage">
+					<top>128</top>
+					<height>350</height>
+					<include>WeatherIconAnimation</include>
+					<imagepath background="true">$INFO[ListItem.Icon]</imagepath>
+				</control>
+				<control type="label">
+					<top>30</top>
+					<height>60</height>
+					<align>center</align>
+					<font>Font33_Bold_Caps</font>
+					<textoffsetx>60</textoffsetx>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+				<control type="label">
+					<top>495</top>
+					<height>300</height>
+					<align>center</align>
+					<textoffsetx>60</textoffsetx>
+					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					<label>$INFO[ListItem.Label2]</label>
+				</control>
+			</itemlayout>
+			<focusedlayout width="$PARAM[width]">
+				<control type="image">
+					<bordersize>15</bordersize>
+					<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/panel-select-focus.png</texture>
+				</control>
+				<control type="multiimage">
+					<top>128</top>
+					<height>350</height>
+					<include>WeatherIconAnimation</include>
+					<imagepath background="true">$INFO[ListItem.Icon]</imagepath>
+				</control>
+				<control type="label">
+					<top>30</top>
+					<height>60</height>
+					<align>center</align>
+					<font>Font33_Bold_Caps</font>
+					<textoffsetx>60</textoffsetx>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+				<control type="label">
+					<top>495</top>
+					<height>300</height>
+					<align>center</align>
+					<textoffsetx>60</textoffsetx>
+					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					<label>$INFO[ListItem.Label2]</label>
+				</control>
+			</focusedlayout>
+		</definition>
+	</include>
+	<include name="WeatherDayItem">
 		<param name="item"></param>
 		<definition>
-			<control type="button" id="10$PARAM[item]">
-				<width>299</width>
-				<height>299</height>
-				<align>center</align>
-				<aligny>top</aligny>
-				<font>Font33_Bold_Caps</font>
-				<textoffsetx>10</textoffsetx>
-				<textoffsety>2</textoffsety>
-				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+			<item>
 				<label>$INFO[Window(weather).Property(Daily.$PARAM[item].LongDay)]</label>
-				<texturefocus colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/panel-select-focus.png</texturefocus>
-				<texturenofocus colordiffuse="FF000000" border="10">buttons/panel-select-focus.png</texturenofocus>
-				<visible>!String.IsEmpty(Window(weather).Property(Daily.$PARAM[item].Outlook))</visible>
-			</control>
-			<control type="multiimage" id="10$PARAM[item]01">
-				<left>-329</left>
-				<top>53</top>
-				<width>299</width>
-				<height>155</height>
-				<aspectratio align="center" aligny="center">keep</aspectratio>
-				<imagepath>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Daily.$PARAM[item].FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</imagepath>
-				<fadetime>1</fadetime>
-				<pauseatend>1</pauseatend>
-				<timeperimage>080</timeperimage>
-				<randomize>false</randomize>
-				<loop>true</loop>
-				<visible>!String.IsEmpty(Window(weather).Property(Daily.$PARAM[item].Outlook))</visible>
-			</control>
-			<control type="label" id="10$PARAM[item]02">
-				<left>-329</left>
-				<top>203</top>
-				<width>299</width>
-				<height>50</height>
-				<align>center</align>
-				<font>Font29_Cond</font>
-				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-				<textoffsetx>5</textoffsetx>
-				<label>$INFO[Window(weather).Property(Daily.$PARAM[item].Outlook)]</label>
-			</control>
-			<control type="label" id="10$PARAM[item]03">
-				<left>-329</left>
-				<top>237</top>
-				<width>299</width>
-				<height>50</height>
-				<align>center</align>
-				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-				<textoffsetx>5</textoffsetx>
-				<label>$INFO[Window(weather).Property(Daily.$PARAM[item].HighTemperature),[COLOR red],[/COLOR]  ]$INFO[Window(weather).Property(Daily.$PARAM[item].LowTemperature),[COLOR blue],[/COLOR]]</label>
-			</control>
+				<label2>$INFO[Window(weather).Property(Daily.$PARAM[item].Outlook)]</label2>
+				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Daily.$PARAM[item].FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
+				<property name="label3">[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window(weather).Property(Daily.$PARAM[item].HighTemperature)][/COLOR]$INFO[Window(weather).Property(Daily.$PARAM[item].LowTemperature), ]</property>
+				<visible>!String.IsEmpty(Window(Weather).Property(Daily.$PARAM[item].LongDay))</visible>
+			</item>
 		</definition>
 	</include>
-	<include name="WeatherDailyList">
+	<include name="WeatherDailyItem">
 		<param name="item"></param>
 		<definition>
-			<control type="button" id="20$PARAM[item]">
-				<width>1286</width>
-				<height>170</height>
-				<aligny>top</aligny>
-				<font>Font33_Bold_Caps</font>
-				<textoffsetx>170</textoffsetx>
-				<textoffsety>20</textoffsety>
-				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+			<item>
 				<label>$INFO[Window.Property(Daily.$PARAM[item].LongDay)]$INFO[Window.Property(Daily.$PARAM[item].LongDate), ]</label>
-				<texturefocus colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/panel-select-focus.png</texturefocus>
-				<texturenofocus colordiffuse="FF000000" border="10">buttons/panel-select-focus.png</texturenofocus>
-				<visible>!String.IsEmpty(Window(weather).Property(Daily.$PARAM[item].Outlook))</visible>
-			</control>
-			<control type="multiimage" id="20$PARAM[item]01">
-				<left>20</left>
-				<top>-200</top>
-				<width>130</width>
-				<height>170</height>
-				<aspectratio align="center" aligny="center">keep</aspectratio>
-				<imagepath>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Daily.$PARAM[item].FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</imagepath>
-				<fadetime>1</fadetime>
-				<pauseatend>1</pauseatend>
-				<timeperimage>080</timeperimage>
-				<randomize>false</randomize>
-				<loop>true</loop>
-				<visible>!String.IsEmpty(Window(weather).Property(Daily.$PARAM[item].Outlook))</visible>
-			</control>
-			<control type="label" id="20$PARAM[item]02">
-				<left>170</left>
-				<top>-200</top>
-				<width>800</width>
-				<height>170</height>
-				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-				<label>[CR]$INFO[Window.Property(Daily.$PARAM[item].HighTemperature),[COLOR red],[/COLOR]]$INFO[Window.Property(Daily.$PARAM[item].LowTemperature),  [COLOR blue],[/COLOR]]$INFO[Window.Property(Daily.$PARAM[item].Outlook),[CR]]</label>
-				<visible>!String.IsEmpty(Window(weather).Property(Daily.$PARAM[item].Outlook))</visible>
-			</control>
-			<control type="label" id="20$PARAM[item]03">
-				<right>20</right>
-				<top>-200</top>
-				<width>800</width>
-				<height>170</height>
-				<align>right</align>
-				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-				<label>$INFO[Window.Property(Daily.$PARAM[item].Precipitation),$LOCALIZE[1448]: ][CR]$INFO[Window.Property(Daily.$PARAM[item].WindSpeed)]$INFO[Window.Property(Daily.$PARAM[item].WindDirection),  ]$INFO[Window.Property(Daily.$PARAM[item].WindDegree),  ,]$INFO[Window.Property(Daily.$PARAM[item].Humidity),[CR]$LOCALIZE[406]: ]</label>
-				<visible>!String.IsEmpty(Window(weather).Property(Daily.$PARAM[item].Outlook))</visible>
-			</control>
+				<label2>[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window.Property(Daily.$PARAM[item].HighTemperature)][/COLOR]$INFO[Window.Property(Daily.$PARAM[item].LowTemperature), ]$INFO[Window.Property(Daily.$PARAM[item].Outlook),[CR]]</label2>
+				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Daily.$PARAM[item].FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
+				<property name="label3">$INFO[Window.Property(Daily.$PARAM[item].Precipitation),$LOCALIZE[1448] ][CR]$INFO[Window.Property(Daily.$PARAM[item].WindSpeed)]$INFO[Window.Property(Daily.$PARAM[item].WindDirection),  ]$INFO[Window.Property(Daily.$PARAM[item].WindDegree),  ,]$INFO[Window.Property(Daily.$PARAM[item].Humidity),[CR]$LOCALIZE[406] ]</property>
+				<visible>!String.IsEmpty(Window(weather).Property(Daily.$PARAM[item].LongDay))</visible>
+			</item>
 		</definition>
 	</include>
-	<include name="Weather36hourList">
+	<include name="WeatherHourlyItem">
 		<param name="item"></param>
 		<definition>
-			<control type="image">
-				<width>409</width>
-				<height>770</height>
-				<texture colordiffuse="FF000000" border="10">buttons/panel-select-focus.png</texture>
-			</control>
-			<control type="label">
-				<left>-439</left>
-				<width>409</width>
-				<height>60</height>
-				<align>center</align>
-				<font>Font33_Bold_Caps</font>
-				<textcolor>$VAR[PanelTextColorVar]</textcolor>
-				<label>$INFO[Window.Property(36Hour.$PARAM[item].Heading)]</label>
-			</control>
-			<control type="multiimage">
-				<left>-439</left>
-				<top>83</top>
-				<width>409</width>
-				<height>350</height>
-				<aspectratio align="center" aligny="top">keep</aspectratio>
-				<imagepath>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(36Hour.$PARAM[item].FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</imagepath>
-				<timeperimage>050</timeperimage>
-				<fadetime>1</fadetime>
-				<pauseatend>1</pauseatend>
-				<timeperimage>080</timeperimage>
-				<randomize>false</randomize>
-				<loop>true</loop>
-			</control>
-			<control type="textbox">
-				<left>-439</left>
-				<top>473</top>
-				<width>409</width>
-				<height>272</height>
-				<align>center</align>
-				<aligny>center</aligny>
-				<textoffsetx>20</textoffsetx>
-				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-				<label>$INFO[Window.Property(36Hour.$PARAM[item].Outlook)]$INFO[Window.Property(36Hour.$PARAM[item].TemperatureHeading),[CR],: ]$INFO[Window.Property(36Hour.$PARAM[item].Temperature)]$INFO[Window.Property(36Hour.$PARAM[item].FeelsLike),[CR]$LOCALIZE[402]: ]$INFO[Window.Property(36Hour.$PARAM[item].Precipitation),[CR]$LOCALIZE[1448]: ][CR]$INFO[Window.Property(36Hour.1.WindSpeed)]$INFO[Window.Property(36Hour.$PARAM[item].WindDirection),  ]$INFO[Window.Property(36Hour.$PARAM[item].WindDegree),  ,]$INFO[Window.Property(36Hour.$PARAM[item].Humidity),[CR]$LOCALIZE[406]: ]</label>
-			</control>
-		</definition>
-	</include>
-	<include name="WeatherWeekendList">
-		<param name="item"></param>
-		<definition>
-			<control type="image">
-				<width>628</width>
-				<height>770</height>
-				<texture colordiffuse="FF000000" border="10">buttons/panel-select-focus.png</texture>
-			</control>
-			<control type="label">
-				<left>-658</left>
-				<width>628</width>
-				<height>60</height>
-				<align>center</align>
-				<font>Font33_Bold_Caps</font>
-				<textcolor>$VAR[PanelTextColorVar]</textcolor>
-				<label>$INFO[Window.Property(Weekend.$PARAM[item].LongDay)] $INFO[Window.Property(Weekend.$PARAM[item].LongDate)]</label>
-			</control>
-			<control type="multiimage">
-				<left>-658</left>
-				<top>83</top>
-				<width>628</width>
-				<height>350</height>
-				<aspectratio align="center" aligny="top">keep</aspectratio>
-				<imagepath>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Weekend.$PARAM[item].FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</imagepath>
-				<fadetime>1</fadetime>
-				<pauseatend>1</pauseatend>
-				<timeperimage>080</timeperimage>
-				<randomize>false</randomize>
-				<loop>true</loop>
-			</control>
-			<control type="label">
-				<left>-658</left>
-				<top>473</top>
-				<width>628</width>
-				<height>272</height>
-				<align>center</align>
-				<textoffsetx>20</textoffsetx>
-				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-				<label>$INFO[Window.Property(Weekend.1.HighTemperature),[COLOR red],[/COLOR]]$INFO[Window.Property(Weekend.1.LowTemperature),  [COLOR blue],[/COLOR]]$INFO[Window.Property(Weekend.1.Outlook),[CR]]$INFO[Window.Property(Weekend.$PARAM[item].Precipitation),[CR]$LOCALIZE[1448]: ][CR]$INFO[Window.Property(Weekend.1.WindSpeed)]$INFO[Window.Property(Weekend.$PARAM[item].WindDirection),  ]$INFO[Window.Property(Weekend.$PARAM[item].WindDegree),  ,]$INFO[Window.Property(Weekend.$PARAM[item].Humidity),[CR]$LOCALIZE[406]: ]</label>
-			</control>
-		</definition>
-	</include>
-	<include name="WeatherHourlyList">
-		<param name="item"></param>
-		<definition>
-			<control type="button" id="30$PARAM[item]01">
-				<width>1286</width>
-				<height>170</height>
-				<aligny>top</aligny>
-				<font>Font33_Bold_Caps</font>
-				<textoffsetx>170</textoffsetx>
-				<textoffsety>20</textoffsety>
-				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+			<item>
 				<label>$INFO[Window(weather).Property(Hourly.$PARAM[item].Time)]$INFO[Window(weather).Property(Hourly.$PARAM[item].LongDate), ]</label>
-				<texturefocus colordiffuse="$VAR[WeatherHighlightColorVar]" border="10">buttons/panel-select-focus.png</texturefocus>
-				<texturenofocus colordiffuse="FF000000" border="10">buttons/panel-select-focus.png</texturenofocus>
-				<visible>!String.IsEmpty(Window(weather).Property(Hourly.$PARAM[item].Outlook))</visible>
-			</control>
-			<control type="multiimage" id="30$PARAM[item]02">
-				<left>20</left>
-				<top>-200</top>
-				<width>130</width>
-				<height>170</height>
-				<aspectratio align="center" aligny="center">keep</aspectratio>
-				<imagepath>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Hourly.$PARAM[item].FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</imagepath>
-				<fadetime>1</fadetime>
-				<pauseatend>1</pauseatend>
-				<timeperimage>080</timeperimage>
-				<randomize>false</randomize>
-				<loop>true</loop>
-				<visible>!String.IsEmpty(Window(weather).Property(Hourly.$PARAM[item].Outlook))</visible>
-			</control>
-			<control type="label" id="30$PARAM[item]03">
-				<left>170</left>
-				<top>-200</top>
-				<width>800</width>
-				<height>170</height>
-				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-				<label>[CR]$INFO[Window(weather).Property(Hourly.$PARAM[item].Outlook)][CR]$INFO[Window(weather).Property(Hourly.$PARAM[item].Temperature)]</label>
-				<visible>!String.IsEmpty(Window(weather).Property(Hourly.$PARAM[item].Outlook))</visible>
-			</control>
-			<control type="label" id="30$PARAM[item]04">
-				<right>20</right>
-				<top>-200</top>
-				<width>800</width>
-				<height>170</height>
-				<align>right</align>
-				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-				<label>$INFO[Window.Property(Hourly.$PARAM[item].Precipitation),$LOCALIZE[1448]: ][CR]$INFO[Window.Property(Hourly.$PARAM[item].WindSpeed)]$INFO[Window.Property(Hourly.$PARAM[item].WindDirection),  ]$INFO[Window.Property(Hourly.$PARAM[item].WindDegree),  ,]$INFO[Window.Property(Hourly.$PARAM[item].Humidity),[CR]$LOCALIZE[406]: ]</label>
-				<visible>!String.IsEmpty(Window(weather).Property(Hourly.$PARAM[item].Outlook))</visible>
-			</control>
+				<label2>$INFO[Window(weather).Property(Hourly.$PARAM[item].Outlook)][CR]$INFO[Window(weather).Property(Hourly.$PARAM[item].Temperature)]</label2>
+				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Daily.$PARAM[item].FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
+				<property name="label3">$INFO[Window.Property(Hourly.$PARAM[item].Precipitation),$LOCALIZE[1448] ][CR]$INFO[Window.Property(Hourly.$PARAM[item].WindSpeed)]$INFO[Window.Property(Hourly.$PARAM[item].WindDirection),  ]$INFO[Window.Property(Hourly.$PARAM[item].WindDegree),  ,]$INFO[Window.Property(Hourly.$PARAM[item].Humidity),[CR]$LOCALIZE[406] ]</property>
+				<visible>!String.IsEmpty(Window(weather).Property(Hourly.$PARAM[item].Time))</visible>
+			</item>
+		</definition>
+	</include>
+	<include name="Weather36HourItem">
+		<param name="item"></param>
+		<definition>
+			<item>
+				<label>$INFO[Window.Property(36Hour.$PARAM[item].Heading)]</label>
+				<label2>$INFO[Window.Property(36Hour.$PARAM[item].Outlook)]$INFO[Window.Property(36Hour.$PARAM[item].TemperatureHeading),[CR], ]$INFO[Window.Property(36Hour.$PARAM[item].Temperature)]$INFO[Window.Property(36Hour.$PARAM[item].FeelsLike),[CR]$LOCALIZE[402] ]$INFO[Window.Property(36Hour.$PARAM[item].Precipitation),[CR]$LOCALIZE[1448] ][CR]$INFO[Window.Property(36Hour.1.WindSpeed)]$INFO[Window.Property(36Hour.$PARAM[item].WindDirection),  ]$INFO[Window.Property(36Hour.$PARAM[item].WindDegree),  ,]$INFO[Window.Property(36Hour.$PARAM[item].Humidity),[CR]$LOCALIZE[406] ]</label2>
+				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(36Hour.$PARAM[item].FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
+				<visible>!String.IsEmpty(Window(weather).Property(36Hour.$PARAM[item].Heading))</visible>
+			</item>
+		</definition>
+	</include>
+	<include name="WeatherWeekendItem">
+		<param name="item"></param>
+		<definition>
+			<item>
+				<label>$INFO[Window.Property(Weekend.$PARAM[item].LongDay)] $INFO[Window.Property(Weekend.$PARAM[item].LongDate)]</label>
+				<label2>[COLOR $VAR[PanelHighlightColorVar]]$INFO[Window.Property(Weekend.1.HighTemperature)][/COLOR]$INFO[Window.Property(Weekend.1.LowTemperature),  ]$INFO[Window.Property(Weekend.1.Outlook),[CR]]$INFO[Window.Property(Weekend.$PARAM[item].Precipitation),[CR]$LOCALIZE[1448] ][CR]$INFO[Window.Property(Weekend.1.WindSpeed)]$INFO[Window.Property(Weekend.$PARAM[item].WindDirection),  ]$INFO[Window.Property(Weekend.$PARAM[item].WindDegree),  ,]$INFO[Window.Property(Weekend.$PARAM[item].Humidity),[CR]$LOCALIZE[406] ]</label2>
+				<icon>$INFO[Skin.String(WeatherIcons.path)]$INFO[Window(weather).Property(Weekend.$PARAM[item].FanartCode)]$INFO[Skin.String(WeatherIcons.ext)]</icon>
+				<visible>!String.IsEmpty(Window(weather).Property(36Hour.$PARAM[item].Heading))</visible>
+			</item>
 		</definition>
 	</include>
 	<include name="WeatherMapItem">
@@ -953,10 +920,10 @@
 			<control type="group">
 				<visible>$PARAM[visible]</visible>
 				<include>AnimationVisibleFade</include>
-				<left>460</left>
-				<top>159</top>
-				<width>1287</width>
-				<height>770</height>
+				<left>475</left>
+				<top>150</top>
+				<width>1295</width>
+				<height>780</height>
 				<control type="image">
 					<aspectratio>scale</aspectratio>
 					<texture>$INFO[Window(weather).Property(Map.$PARAM[item].Area)]</texture>
