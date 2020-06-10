@@ -13,16 +13,9 @@
 			<visible>!Window.IsActive(musicinformation) + !Window.IsActive(songinformation)</visible>
 			<include>AnimationVisibleFade</include>
 			<!-- Floor -->
-			<control type="group">
-				<visible>!Skin.HasSetting(ViewsHideFloor)</visible>
-				<include content="AnimationSlideBottomWindow">
-					<param name="slide">220</param>
-				</include>
-				<include content="AnimationSlideBottomVisible">
-					<param name="slide">220</param>
-				</include>
-				<include>FloorDefault</include>
-			</control>
+			<include content="Floor">
+				<param name="visible">Skin.HasSetting(ViewMusicPlaylistEditorHideFloor)</param>
+			</include>
 			<!-- Panel -->
 			<control type="group">
 				<include>AnimationSlideLeftWindow</include>
@@ -30,7 +23,7 @@
 					<param name="right">965</param>
 					<param name="righttexture">985</param>
 					<param name="diffusetexture">diffuse/rounded20-835x880.png</param>
-					<param name="reflect">!Skin.HasSetting(ViewsHideFloor)</param>
+					<param name="reflect">!Skin.HasSetting(ViewMusicPlaylistEditorHideReflect)</param>
 				</include>
 			</control>
 			<control type="group">
@@ -39,7 +32,7 @@
 					<param name="left">965</param>
 					<param name="lefttexture">985</param>
 					<param name="diffusetexture">diffuse/rounded20-835x880.png</param>
-					<param name="reflect">!Skin.HasSetting(ViewsHideFloor)</param>
+					<param name="reflect">!Skin.HasSetting(ViewMusicPlaylistEditorHideReflect)</param>
 				</include>
 			</control>
 			<!-- Content -->
@@ -81,54 +74,18 @@
 				</control>
 			</control>
 			<!-- Topbar -->
-			<control type="group">
-				<visible>!Skin.HasSetting(ViewsHideTopBar)</visible>
-				<include content="AnimationSlideTopWindow">
-					<param name="slide">90</param>
-				</include>
-				<include content="AnimationSlideTopVisible">
-					<param name="slide">90</param>
-				</include>
-				<include content="TopBar">
-					<param name="label">$LOCALIZE[10500]</param>
-					<param name="icon">music.png</param>
-				</include>
-			</control>
+			<include content="TopBar">
+				<param name="visible">!Skin.HasSetting(MusicHideTopBar)</param>
+				<param name="icon">playlist.png</param>
+				<param name="label">$LOCALIZE[10503]</param>
+			</include>
 		</control>
 		<!-- Media Menu -->
-		<include>MediaMenuMouseOverlay</include>
-		<control type="group">
-			<include>MediaMenuCommon</include>
-			<control type="grouplist" id="9050">
-				<onright>50</onright>
-				<onback>50</onback>
-				<include>MediaMenuCommonTop</include>
-				<!-- Open playlist -->
-				<control type="radiobutton" id="6">
-					<include content="MediaMenuIconButton">
-						<param name="iconon">icons/mediamenu/open.png</param>
-						<param name="iconoff">icons/mediamenu/open.png</param>
-					</include>
-					<label>$LOCALIZE[502]</label>
-				</control>
-				<!-- Save playlist -->
-				<control type="radiobutton" id="7">
-					<include content="MediaMenuIconButton">
-						<param name="iconon">icons/mediamenu/save.png</param>
-						<param name="iconoff">icons/mediamenu/save.png</param>
-					</include>
-					<label>$LOCALIZE[190]</label>
-				</control>
-				<!-- Clear playlist -->
-				<control type="radiobutton" id="8">
-					<include content="MediaMenuIconButton">
-						<param name="iconon">icons/mediamenu/clear.png</param>
-						<param name="iconoff">icons/mediamenu/clear.png</param>
-					</include>
-					<label>$LOCALIZE[192]</label>
-				</control>
-				<include>MediaMenuCommonBottom</include>
-			</control>
-		</control>
+		<include content="MediaMenu">
+			<param name="contentvisible">true</param>
+			<param name="commontopvisible">true</param>
+			<param name="content">MediaMenuMusicPlayList</param>
+			<param name="navigationid">50</param>
+		</include>
 	</controls>
 </window>

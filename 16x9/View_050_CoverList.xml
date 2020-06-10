@@ -2,21 +2,10 @@
 <includes>
 	<include name="View50CoverList">
 		<!-- Floor -->
-		<control type="group">
-			<visible>Control.IsVisible(50)</visible>
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">220</param>
-			</include>
-			<control type="group">
-				<visible>!Skin.HasSetting(View50HideFloor)</visible>
-				<include content="Floor">
-					<param name="highlight">FloorHighlightRight</param>
-				</include>
-			</control>
-			<include content="FloorShadow">
-				<param name="visible">Skin.HasSetting(View50HideFloor)</param>
-			</include>
-		</control>
+		<include content="Floor">
+			<param name="visible">Skin.HasSetting(View50HideFloor) + Control.IsVisible(50)</param>
+			<param name="highlight">FloorHighlightRight</param>
+		</include>
 		<!-- List -->
 		<control type="group">
 			<visible>Control.IsVisible(50)</visible>

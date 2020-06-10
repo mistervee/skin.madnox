@@ -7,43 +7,39 @@
 			<param name="animatedfanart">false</param>
 		</include>
 		<!-- Floor -->
-		<control type="group">
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">220</param>
-			</include>
-			<include content="Floor">
-				<param name="highlight">FloorHighlightRight</param>
-			</include>
-			<control type="button" id="20">
-				<left>90</left>
-				<bottom>25</bottom>
-				<width>80</width>
-				<height>80</height>
-				<onup>52</onup>
-				<align>center</align>
-				<font>Font40_Icon</font>
-				<onclick>ActivateWindow(ShutdownMenu)</onclick>
-				<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-				<texturefocus border="30" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/button.png</texturefocus>
-				<texturenofocus border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/button.png</texturenofocus>
-				<label></label>
-			</control>
-			<control type="label">
-				<left>177</left>
-				<bottom>69</bottom>
-				<height>30</height>
-				<font>Font34_Reg</font>
-				<textcolor>$VAR[PanelTextColorVar]</textcolor>
-				<label>$INFO[ListItem.label]</label>
-			</control>
-			<control type="label">
-				<left>177</left>
-				<bottom>32</bottom>
-				<height>30</height>
-				<font>Font30_Reg</font>
-				<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
-				<label>$INFO[ListItem.label2]</label>
-			</control>
+		<include content="Floor">
+			<param name="visible">Skin.HasSetting(SettingsHideFloor)</param>
+			<param name="highlight">FloorHighlight</param>
+		</include>
+		<control type="button" id="20">
+			<left>90</left>
+			<bottom>25</bottom>
+			<width>80</width>
+			<height>80</height>
+			<onup>52</onup>
+			<align>center</align>
+			<font>Font40_Icon</font>
+			<onclick>ActivateWindow(ShutdownMenu)</onclick>
+			<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+			<texturefocus border="30" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/button.png</texturefocus>
+			<texturenofocus border="30" colordiffuse="$VAR[PanelListSeparatorColorVar]">buttons/button.png</texturenofocus>
+			<label></label>
+		</control>
+		<control type="label">
+			<left>177</left>
+			<bottom>69</bottom>
+			<height>30</height>
+			<font>Font34_Reg</font>
+			<textcolor>$VAR[PanelTextColorVar]</textcolor>
+			<label>$INFO[ListItem.label]</label>
+		</control>
+		<control type="label">
+			<left>177</left>
+			<bottom>32</bottom>
+			<height>30</height>
+			<font>Font30_Reg</font>
+			<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+			<label>$INFO[ListItem.label2]</label>
 		</control>
 		<!-- Panel -->
 		<control type="fixedlist" id="52">
@@ -96,14 +92,9 @@
 			</focusedlayout>
 		</control>
 		<!-- Topbar -->
-		<control type="group">
-			<include content="AnimationSlideTopWindow">
-				<param name="slide">90</param>
-			</include>
-			<include content="TopBar">
-				<param name="label">$LOCALIZE[13200]</param>
-				<param name="icon">person.png</param>
-			</include>
-		</control>
+		<include content="TopBar">
+			<param name="icon">person.png</param>
+			<param name="label">$LOCALIZE[13200]</param>
+		</include>
 	</controls>
 </window>

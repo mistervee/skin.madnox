@@ -9,20 +9,10 @@
 			<param name="animatedfanart">Skin.HasSetting(AddonAnimatedFanart)</param>
 		</include>
 		<!-- Floor -->
-		<control type="group">
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">220</param>
-			</include>
-			<control type="group">
-				<visible>!Skin.HasSetting(ViewCustom1114HideFloor)</visible>
-				<include content="Floor">
-					<param name="highlight">FloorHighlightRight</param>
-				</include>
-			</control>
-			<include content="FloorShadow">
-				<param name="visible">Skin.HasSetting(ViewCustom1114HideFloor)</param>
-			</include>
-		</control>
+		<include content="Floor">
+			<param name="visible">Skin.HasSetting(ViewCustom1114HideFloor)</param>
+			<param name="highlight">FloorHighlightRight</param>
+		</include>
 		<!-- Left menu -->
 		<control type="group">
 			<animation type="WindowOpen" reversible="false">
@@ -168,30 +158,17 @@
 			</control>
 		</control>
 		<!-- Topbar -->
-		<control type="group">
-			<visible>!Skin.HasSetting(AddonsHideTopBar)</visible>
-			<include content="AnimationSlideTopWindow">
-				<param name="slide">90</param>
-			</include>
-			<include content="AnimationSlideTopVisible">
-				<param name="slide">90</param>
-			</include>
-			<include content="TopBar">
-				<param name="label">$LOCALIZE[13000] / $LOCALIZE[24001]</param>
-				<param name="icon">addons.png</param>
-				<param name="id">51</param>
-			</include>
-		</control>
+		<include content="TopBar">
+			<param name="visible">!Skin.HasSetting(AddonsHideTopBar)</param>
+			<param name="icon">addons.png</param>
+			<param name="label">$LOCALIZE[24001]</param>
+		</include>
 		<!-- Media Menu -->
-		<include>MediaMenuMouseOverlay</include>
-		<control type="group">
-			<include>MediaMenuCommon</include>
-			<control type="grouplist" id="9050">
-				<onright>50</onright>
-				<onback>50</onback>
-				<include>MediaMenuAddons</include>
-				<include>MediaMenuCommonBottom</include>
-			</control>
-		</control>
+		<include content="MediaMenu">
+			<param name="contentvisible">true</param>
+			<param name="commontopvisible">false</param>
+			<param name="content">MediaMenuAddons</param>
+			<param name="navigationid">50</param>
+		</include>
 	</controls>
 </window>

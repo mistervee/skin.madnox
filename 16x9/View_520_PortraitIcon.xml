@@ -2,21 +2,10 @@
 <includes>
 	<include name="View520PortraitIcon">
 		<!-- Floor -->
-		<control type="group">
-			<visible>Control.IsVisible(520)</visible>
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">220</param>
-			</include>
-			<control type="group">
-				<visible>!Skin.HasSetting(View520HideFloor)</visible>
-				<include content="Floor">
-					<param name="highlight">FloorHighlightMiddle</param>
-				</include>
-			</control>
-			<include content="FloorShadow">
-				<param name="visible">Skin.HasSetting(View520HideFloor)</param>
-			</include>
-		</control>
+		<include content="Floor">
+			<param name="visible">Skin.HasSetting(View520HideFloor) + Control.IsVisible(520)</param>
+			<param name="highlight">FloorHighlightMiddle</param>
+		</include>
 		<!-- Panel -->
 		<control type="group">
 			<visible>Control.IsVisible(520)</visible>

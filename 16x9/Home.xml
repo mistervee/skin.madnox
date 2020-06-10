@@ -116,69 +116,12 @@
 
 		</control>
 		<!-- Media Menu -->
-		<include>MediaMenuMouseOverlay</include>
-		<control type="group">
-			<visible>!Skin.HasSetting(KioskDisableHomeSettings)</visible>
-			<include>MediaMenuCommon</include>
-			<control type="grouplist" id="9050">
-				<usecontrolcoords>true</usecontrolcoords>
-				<onright>9000</onright>
-				<onback>9000</onback>
-				<control type="radiobutton" id="9051">
-					<include content="MediaMenuIconButton">
-						<param name="iconon" value="icons/mediamenu/menu.png" />
-						<param name="iconoff" value="icons/mediamenu/menu.png" />
-					</include>
-					<label>$LOCALIZE[31017]</label>
-					<onclick>RunScript(script.skinshortcuts,type=manage&amp;group=mainmenu)</onclick>
-				</control>
-				<control type="radiobutton" id="9052">
-					<include content="MediaMenuIconButton">
-						<param name="iconon" value="icons/mediamenu/settings.png" />
-						<param name="iconoff" value="icons/mediamenu/settings.png" />
-					</include>
-					<label>$LOCALIZE[31286]</label>
-					<onclick>SetProperty(MediaMenuSelect,menu,home)</onclick>
-					<onclick>ActivateWindow(1115)</onclick>
-				</control>
-				<control type="radiobutton" id="9053">
-					<include content="MediaMenuIconButton">
-						<param name="iconon" value="icons/mediamenu/info.png" />
-						<param name="iconoff" value="icons/mediamenu/info.png" />
-					</include>
-					<label>$LOCALIZE[29915]</label>
-					<onclick>SetProperty(MediaMenuSelect,info,home)</onclick>
-					<onclick>ActivateWindow(1115)</onclick>
-				</control>
-				<control type="radiobutton" id="9054">
-					<include content="MediaMenuIconButton">
-						<param name="iconon" value="icons/mediamenu/play.png" />
-						<param name="iconoff" value="icons/mediamenu/play.png" />
-					</include>
-					<label>$LOCALIZE[31002]</label>
-					<onclick>SetProperty(MediaMenuSelect,nowplaying,home)</onclick>
-					<onclick>ActivateWindow(1115)</onclick>
-				</control>
-				<control type="radiobutton" id="9055">
-					<include content="MediaMenuIconButton">
-						<param name="iconon" value="icons/mediamenu/image.png" />
-						<param name="iconoff" value="icons/mediamenu/image.png" />
-					</include>
-					<label>$LOCALIZE[33068]</label>
-					<onclick>SetProperty(MediaMenuSelect,background,home)</onclick>
-					<onclick>ActivateWindow(1115)</onclick>
-				</control>
-				<control type="radiobutton" id="9056">
-					<include content="MediaMenuIconButton">
-						<param name="iconon" value="icons/mediamenu/colors.png" />
-						<param name="iconoff" value="icons/mediamenu/colors.png" />
-					</include>
-					<label>$LOCALIZE[31285]</label>
-					<onclick>SetProperty(MediaMenuSelect,colors,home)</onclick>
-					<onclick>ActivateWindow(1115)</onclick>
-				</control>
-				<include>MediaMenuCommonBottom</include>
-			</control>
-		</control>
+		<include content="MediaMenu">
+			<param name="visible">!Skin.HasSetting(KioskDisableHomeSettings)</param>
+			<param name="contentvisible">true</param>
+			<param name="commontopvisible">false</param>
+			<param name="content">MediaMenuHome</param>
+			<param name="navigationid">9000</param>
+		</include>
 	</controls>
 </window>

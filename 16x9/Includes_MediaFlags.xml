@@ -845,6 +845,35 @@
 			</control>
 		</definition>
 	</include>
+	<include name="MediaFlagsPVR">
+		<control type="grouplist">
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+				<param name="animationopen">$EXP[PVRAnimationOpenCondition]</param>
+				<param name="animationclose">$EXP[PVRAnimationCloseCondition]</param>
+			</include>
+			<bottom>25</bottom>
+			<left>125</left>
+			<right>125</right>
+			<height>80</height>
+			<align>right</align>
+			<itemgap>10</itemgap>
+			<orientation>horizontal</orientation>
+			<usecontrolcoords>true</usecontrolcoords>
+			<control type="label">
+				<visible>!String.IsEmpty(PVR.TVNextRecordingTitle) + String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
+				<width>532</width>
+				<include>MediaFlagLabelFull</include>
+				<label>$LOCALIZE[19157]$INFO[PVR.TVNextRecordingDateTime, - ,][B][CR]$INFO[PVR.TVNextRecordingTitle][/B]</label>
+			</control>
+			<control type="label">
+				<visible>!String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
+				<width>532</width>
+				<include>MediaFlagLabelFull</include>
+				<label>$LOCALIZE[19162]$INFO[PVR.TVNowRecordingDateTime, - ,][B][CR]$INFO[PVR.TVNowRecordingTitle, ][/B]</label>
+			</control>
+		</control>
+	</include>
 	<include name="MediaFlagsVideoFullscreen">
 		<control type="grouplist">
 			<top>10</top>

@@ -2,21 +2,10 @@
 <includes>
 	<include name="View531SquareIconInfo">
 		<!-- Floor -->
-		<control type="group">
-			<visible>Control.IsVisible(531)</visible>
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">220</param>
-			</include>
-			<control type="group">
-				<visible>!Skin.HasSetting(View531HideFloor)</visible>
-				<include content="Floor">
-					<param name="highlight">FloorHighlightRight</param>
-				</include>
-			</control>
-			<include content="FloorShadow">
-				<param name="visible">Skin.HasSetting(View531HideFloor)</param>
-			</include>
-		</control>
+		<include content="Floor">
+			<param name="visible">Skin.HasSetting(View531HideFloor) + Control.IsVisible(531)</param>
+			<param name="highlight">FloorHighlightRight</param>
+		</include>
 		<!-- Info -->
 		<control type="group">
 			<visible>Control.IsVisible(531)</visible>

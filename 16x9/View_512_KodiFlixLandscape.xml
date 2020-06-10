@@ -30,21 +30,10 @@
 			<texture colordiffuse="ff000000">panels/kodiflix-gradient.png</texture>
 		</control>
 		<!-- Floor -->
-		<control type="group">
-			<visible>Control.IsVisible(512)</visible>
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">220</param>
-			</include>
-			<control type="group">
-				<visible>!Skin.HasSetting(View512HideFloor)</visible>
-				<include content="Floor">
-					<param name="highlight">FloorHighlightLeft</param>
-				</include>
-			</control>
-			<include content="FloorShadow">
-				<param name="visible">Skin.HasSetting(View512HideFloor)</param>
-			</include>
-		</control>
+		<include content="Floor">
+			<param name="visible">Skin.HasSetting(View512HideFloor) + Control.IsVisible(512)</param>
+			<param name="highlight">FloorHighlightLeft</param>
+		</include>
 		<!-- Panel -->
 		<include content="View512Panel" condition="!Skin.HasSetting(View512FixedList)">
 			<param name="listtype">wraplist</param>

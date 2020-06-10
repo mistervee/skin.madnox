@@ -9,20 +9,11 @@
 			<param name="animatedfanart">Skin.HasSetting(SystemAnimatedFanart)</param>
 		</include>
 		<!-- Floor -->
-		<control type="group">
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">220</param>
-				<param name="opencondition">$EXP[SystemAnimationOpenCondition]</param>
-				<param name="closecondition">$EXP[SystemAnimationCloseCondition]</param>
-			</include>
-			<control type="group">
-				<visible>!Skin.HasSetting(SettingsHideFloor)</visible>
-				<include>Floor</include>
-			</control>
-			<include content="FloorShadow">
-				<param name="visible">Skin.HasSetting(SettingsHideFloor)</param>
-			</include>
-		</control>
+		<include content="Floor">
+			<param name="visible">Skin.HasSetting(SettingsHideFloor)</param>
+			<param name="animationopen">$EXP[SystemAnimationOpenCondition]</param>
+			<param name="animationclose">$EXP[SystemAnimationCloseCondition]</param>
+		</include>
 		<!-- Panel -->
 		<control type="group">
 			<include>AnimationSlideLeftWindow</include>
@@ -99,31 +90,19 @@
 			</control>
 		</control>
 		<!-- Topbar -->
-		<control type="group">
-			<visible>!Skin.HasSetting(SettingsHideTopBar)</visible>
-			<include content="AnimationSlideTopWindow">
-				<param name="slide">90</param>
-				<param name="opencondition">$EXP[SystemAnimationOpenCondition]</param>
-				<param name="closecondition">$EXP[SystemAnimationCloseCondition]</param>
-			</include>
-			<include content="AnimationSlideTopVisible">
-				<param name="slide">90</param>
-			</include>
-			<include content="TopBar">
-				<param name="label">$LOCALIZE[13000] / $LOCALIZE[7]</param>
-				<param name="icon">files.png</param>
-			</include>
-		</control>
+		<include content="TopBar">
+			<param name="visible">!Skin.HasSetting(SettingsHideTopBar)</param>
+			<param name="icon">files.png</param>
+			<param name="label">$LOCALIZE[13000] / $LOCALIZE[7]</param>
+			<param name="animationopen">$EXP[SystemAnimationOpenCondition]</param>
+			<param name="animationclose">$EXP[SystemAnimationCloseCondition]</param>
+		</include>
 		<!-- Media Menu -->
-		<include>MediaMenuMouseOverlay</include>
-		<control type="group">
-			<include>MediaMenuCommon</include>
-			<control type="grouplist" id="9050">
-				<onright>20</onright>
-				<onback>20</onback>
-				<include>MediaMenuSystem</include>
-				<include>MediaMenuCommonBottom</include>
-			</control>
-		</control>
+		<include content="MediaMenu">
+			<param name="contentvisible">true</param>
+			<param name="commontopvisible">false</param>
+			<param name="content">MediaMenuSystem</param>
+			<param name="navigationid">20</param>
+		</include>
 	</controls>
 </window>

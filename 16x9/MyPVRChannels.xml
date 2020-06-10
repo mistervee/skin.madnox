@@ -18,32 +18,19 @@
 		<control type="label" id="29">
 			<include>HiddenObject</include>
 		</control>
-		<control type="group">
-			<visible>!Skin.HasSetting(PVRHideTopBar)</visible>
-			<include content="AnimationSlideTopWindow">
-				<param name="slide">90</param>
-				<param name="opencondition">$EXP[PVRAnimationOpenCondition]</param>
-				<param name="closecondition">$EXP[PVRAnimationCloseCondition]</param>
-			</include>
-			<include content="AnimationSlideTopVisible">
-				<param name="slide">90</param>
-			</include>
-			<include content="TopBar">
-				<param name="label">$VAR[BreadcrumbsPVRChannelsVar]</param>
-				<param name="icon">channels.png</param>
-			</include>
-		</control>
+		<include content="TopBar">
+			<param name="visible">!Skin.HasSetting(PVRHideTopBar)</param>
+			<param name="icon">channels.png</param>
+			<param name="label">$VAR[BreadcrumbsPVRChannelsVar]</param>
+			<param name="animationopen">$EXP[PVRAnimationOpenCondition]</param>
+			<param name="animationclose">$EXP[PVRAnimationCloseCondition]</param>
+		</include>
 		<!-- Media Menu -->
-		<include>MediaMenuMouseOverlay</include>
-		<control type="group">
-			<visible>!Skin.String(KioskMode,HideMenu)</visible>
-			<include>MediaMenuCommon</include>
-			<control type="grouplist" id="9050">
-				<onright>50</onright>
-				<onback>50</onback>
-				<include>MediaMenuPVR</include>
-				<include>MediaMenuCommonBottom</include>
-			</control>
-		</control>
+		<include content="MediaMenu">
+			<param name="contentvisible">true</param>
+			<param name="commontopvisible">false</param>
+			<param name="content">MediaMenuPVR</param>
+			<param name="navigationid">50</param>
+		</include>
 	</controls>
 </window>

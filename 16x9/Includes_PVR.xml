@@ -484,24 +484,12 @@
 	<!-- PVR views -->
 	<include name="View50PVRCoverList">
 		<!-- Floor -->
-		<control type="group">
-			<visible>Control.IsVisible(50)</visible>
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">220</param>
-				<param name="opencondition">$EXP[PVRAnimationOpenCondition]</param>
-				<param name="closecondition">$EXP[PVRAnimationCloseCondition]</param>
-			</include>
-			<control type="group">
-				<visible>!Skin.HasSetting(PVRHideFloor)</visible>
-				<include content="Floor">
-					<param name="highlight">FloorHighlightRight</param>
-				</include>
-			</control>
-			<include content="FloorShadow">
-				<param name="visible">Skin.HasSetting(PVRHideFloor)</param>
-			</include>
-			<include>ViewPVRNextInfo1</include>
-		</control>
+		<include content="Floor">
+			<param name="visible">Skin.HasSetting(PVRHideFloor) + Control.IsVisible(50)</param>
+			<param name="highlight">FloorHighlightRight</param>
+			<param name="animationopen">$EXP[PVRAnimationOpenCondition]</param>
+			<param name="animationclose">$EXP[PVRAnimationCloseCondition]</param>
+		</include>
 		<!-- List -->
 		<control type="group">
 			<visible>Control.IsVisible(50)</visible>
@@ -572,27 +560,17 @@
 				</include>
 			</control>
 		</control>
+		<!-- Media flags -->
+		<include>MediaFlagsPVR</include>
 	</include>
 	<include name="View51PVRSimpleList">
 		<!-- Floor -->
-		<control type="group">
-			<visible>Control.IsVisible(51)</visible>
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">220</param>
-				<param name="opencondition">$EXP[PVRAnimationOpenCondition]</param>
-				<param name="closecondition">$EXP[PVRAnimationCloseCondition]</param>
-			</include>
-			<control type="group">
-				<visible>!Skin.HasSetting(PVRHideFloor)</visible>
-				<include content="Floor">
-					<param name="highlight">FloorHighlightRight</param>
-				</include>
-			</control>
-			<include content="FloorShadow">
-				<param name="visible">Skin.HasSetting(PVRHideFloor)</param>
-			</include>
-			<include>ViewPVRNextInfo2</include>
-		</control>
+		<include content="Floor">
+			<param name="visible">Skin.HasSetting(PVRHideFloor) + Control.IsVisible(51)</param>
+			<param name="highlight">FloorHighlightRight</param>
+			<param name="animationopen">$EXP[PVRAnimationOpenCondition]</param>
+			<param name="animationclose">$EXP[PVRAnimationCloseCondition]</param>
+		</include>
 		<!-- List -->
 		<control type="group">
 			<visible>Control.IsVisible(51)</visible>
@@ -625,27 +603,17 @@
 				<onleft>51</onleft>
 			</control>
 		</control>
+		<!-- Media flags -->
+		<include>MediaFlagsPVR</include>
 	</include>
 	<include name="View52PVRInfoList">
 		<!-- Floor -->
-		<control type="group">
-			<visible>Control.IsVisible(52)</visible>
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">220</param>
-				<param name="opencondition">$EXP[PVRAnimationOpenCondition]</param>
-				<param name="closecondition">$EXP[PVRAnimationCloseCondition]</param>
-			</include>
-			<control type="group">
-				<visible>!Skin.HasSetting(PVRHideFloor)</visible>
-				<include content="Floor">
-					<param name="highlight">FloorHighlightRight</param>
-				</include>
-			</control>
-			<include content="FloorShadow">
-				<param name="visible">Skin.HasSetting(PVRHideFloor)</param>
-			</include>
-			<include>ViewPVRNextInfo1</include>
-		</control>
+		<include content="Floor">
+			<param name="visible">Skin.HasSetting(PVRHideFloor) + Control.IsVisible(52)</param>
+			<param name="highlight">FloorHighlightRight</param>
+			<param name="animationopen">$EXP[PVRAnimationOpenCondition]</param>
+			<param name="animationclose">$EXP[PVRAnimationCloseCondition]</param>
+		</include>
 		<!-- Art/Info -->
 		<control type="group">
 			<visible>Control.IsVisible(52)</visible>
@@ -805,27 +773,17 @@
 				<onright>60521</onright>
 			</control>
 		</control>
+		<!-- Media flags -->
+		<include>MediaFlagsPVR</include>
 	</include>
 	<include name="View53PVRWall">
 		<!-- Floor -->
-		<control type="group">
-			<visible>Control.IsVisible(53)</visible>
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">220</param>
-				<param name="opencondition">$EXP[PVRAnimationOpenCondition]</param>
-				<param name="closecondition">$EXP[PVRAnimationCloseCondition]</param>
-			</include>
-			<control type="group">
-				<visible>!Skin.HasSetting(PVRHideFloor)</visible>
-				<include content="Floor">
-					<param name="highlight">FloorHighlightRight</param>
-				</include>
-			</control>
-			<include content="FloorShadow">
-				<param name="visible">Skin.HasSetting(PVRHideFloor)</param>
-			</include>
-			<include>ViewPVRNextInfo2</include>
-		</control>
+		<include content="Floor">
+			<param name="visible">Skin.HasSetting(PVRHideFloor) + Control.IsVisible(53)</param>
+			<param name="highlight">FloorHighlightRight</param>
+			<param name="animationopen">$EXP[PVRAnimationOpenCondition]</param>
+			<param name="animationclose">$EXP[PVRAnimationCloseCondition]</param>
+		</include>
 		<!-- Panel -->
 		<control type="group">
 			<visible>Control.IsVisible(53)</visible>
@@ -1012,54 +970,10 @@
 			</control>
 			<include>ViewPVRInfo</include>
 		</control>
+		<!-- Media flags -->
+		<include>MediaFlagsPVR</include>
 	</include>
 	<!-- Info -->
-	<include name="ViewPVRNextInfo1">
-		<control type="grouplist">
-			<bottom>25</bottom>
-			<left>125</left>
-			<right>125</right>
-			<height>80</height>
-			<align>right</align>
-			<itemgap>10</itemgap>
-			<orientation>horizontal</orientation>
-			<usecontrolcoords>true</usecontrolcoords>
-			<control type="label">
-				<visible>!String.IsEmpty(PVR.TVNextRecordingTitle) + String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
-				<width>532</width>
-				<include>MediaFlagLabelFull</include>
-				<label>$LOCALIZE[19157]$INFO[PVR.TVNextRecordingDateTime, - ,][B][CR]$INFO[PVR.TVNextRecordingTitle][/B]</label>
-			</control>
-			<control type="label">
-				<visible>!String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
-				<width>532</width>
-				<include>MediaFlagLabelFull</include>
-				<label>$LOCALIZE[19162]$INFO[PVR.TVNowRecordingDateTime, - ,][B][CR]$INFO[PVR.TVNowRecordingTitle, ][/B]</label>
-			</control>
-		</control>
-	</include>
-	<include name="ViewPVRNextInfo2">
-		<control type="group">
-			<bottom>10</bottom>
-			<left>125</left>
-			<right>125</right>
-			<height>80</height>
-			<control type="label">
-				<visible>!String.IsEmpty(PVR.TVNextRecordingTitle) + String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
-				<align>right</align>
-				<font>Font22_Reg</font>
-				<textcolor>55ffffff</textcolor>
-				<label>$LOCALIZE[19157]$INFO[PVR.TVNextRecordingDateTime, - ,  ][B]$INFO[PVR.TVNextRecordingTitle][/B]</label>
-			</control>
-			<control type="label">
-				<visible>!String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
-				<align>right</align>
-				<font>Font22_Reg</font>
-				<textcolor>55ffffff</textcolor>
-				<label>$LOCALIZE[19162]$INFO[PVR.TVNowRecordingDateTime, - ,  ][B]$INFO[PVR.TVNowRecordingTitle, ][/B]</label>
-			</control>
-		</control>
-	</include>
 	<include name="ViewPVRInfo">
 		<control type="group">
 			<top>756</top>

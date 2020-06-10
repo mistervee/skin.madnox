@@ -2,29 +2,18 @@
 <includes>
 	<include name="View58RightList">
 		<!-- Background fade -->
-		<control type ="image">
+		<control type="image">
 			<visible>Control.IsVisible(58)</visible>
 			<right>0</right>
 			<width>1300</width>
 			<texture flipx="true" colordiffuse="ff000000">panels/kodiflix-gradient.png</texture>
 		</control>
 		<!-- Floor -->
-		<control type="group">
-			<visible>Control.IsVisible(58)</visible>
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">220</param>
-			</include>
-			<control type="group">
-				<visible>!Skin.HasSetting(View58HideFloor)</visible>
-				<include content="Floor">
-					<param name="top">960</param>
-					<param name="highlight">FloorHighlightRight</param>
-				</include>
-			</control>
-			<include content="FloorShadow">
-				<param name="visible">Skin.HasSetting(View58HideFloor)</param>
-			</include>
-		</control>
+		<include content="Floor">
+			<param name="visible">Skin.HasSetting(View58HideFloor) + Control.IsVisible(58)</param>
+			<param name="top">960</param>
+			<param name="highlight">FloorHighlightRight</param>
+		</include>
 		<!-- List -->
 		<control type="group">
 			<visible>Control.IsVisible(58)</visible>

@@ -9,18 +9,9 @@
 			<param name="animatedfanart">Skin.HasSetting(WeatherAnimatedFanart)</param>
 		</include>
 		<!-- Floor -->
-		<control type="group">
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">220</param>
-			</include>
-			<control type="group">
-				<visible>!Skin.HasSetting(WeatherHideFloor)</visible>
-				<include>Floor</include>
-			</control>
-			<include content="FloorShadow">
-				<param name="visible">Skin.HasSetting(WeatherHideFloor)</param>
-			</include>
-		</control>
+		<include content="Floor">
+			<param name="visible">Skin.HasSetting(WeatherHideFloor)</param>
+		</include>
 		<!-- Panel -->
 		<control type="group">
 			<include>AnimationZoomWindow</include>
@@ -545,61 +536,17 @@
 			</include>
 		</control>
 		<!-- Topbar -->
-		<control type="group">
-			<visible>!Skin.HasSetting(WeatherHideTopBar)</visible>
-			<include content="AnimationSlideTopWindow">
-				<param name="slide">90</param>
-			</include>
-			<include content="AnimationSlideTopVisible">
-				<param name="slide">90</param>
-			</include>
-			<include content="TopBar">
-				<param name="label">$LOCALIZE[12600]$INFO[Window(weather).Property(Location), / ]</param>
-				<param name="icon">weather.png</param>
-			</include>
-		</control>
+		<include content="TopBar">
+			<param name="visible">!Skin.HasSetting(WeatherHideTopBar)</param>
+			<param name="icon">weather.png</param>
+			<param name="label">$LOCALIZE[12600]$INFO[Window(weather).Property(Location), / ]</param>
+		</include>
 		<!-- Media Menu -->
-		<include>MediaMenuMouseOverlay</include>
-		<control type="group">
-			<include>MediaMenuCommon</include>
-			<control type="grouplist" id="9050">
-				<onright>8000</onright>
-				<onback>8000</onback>
-				<usecontrolcoords>true</usecontrolcoords>
-				<onleft condition="!Skin.HasSetting(DisableShortcuts)">ActivateWindow(1113)</onleft>
-				<control type="radiobutton" id="9061">
-					<include content="MediaMenuIconButton">
-						<param name="iconon" value="icons/mediamenu/viewoptions.png" />
-						<param name="iconoff" value="icons/mediamenu/viewoptions.png" />
-					</include>
-					<label>$LOCALIZE[31025]</label>
-					<onclick>ActivateWindow(1115)</onclick>
-					<visible>!Skin.HasSetting(KioskDisableViewOptions)</visible>
-				</control>
-				<control type="radiobutton" id="3">
-					<include content="MediaMenuIconButton">
-						<param name="iconon" value="icons/mediamenu/pin.png" />
-						<param name="iconoff" value="icons/mediamenu/pin.png" />
-					</include>
-					<label>$INFO[Window(weather).Property(Location)]</label>
-					<onclick>Weather.LocationNext</onclick>
-				</control>
-				<control type="radiobutton" id="2">
-					<include content="MediaMenuIconButton">
-						<param name="iconon" value="icons/mediamenu/refresh.png" />
-						<param name="iconoff" value="icons/mediamenu/refresh.png" />
-					</include>
-				</control>
-				<control type="radiobutton" id="9062">
-					<include content="MediaMenuIconButton">
-						<param name="iconon" value="icons/mediamenu/settings.png" />
-						<param name="iconoff" value="icons/mediamenu/settings.png" />
-					</include>
-					<label>$LOCALIZE[5]</label>
-					<onclick>ActivateWindow(servicesettings,weather)</onclick>
-				</control>
-				<include>MediaMenuCommonBottom</include>
-			</control>
-		</control>
+		<include content="MediaMenu">
+			<param name="contentvisible">true</param>
+			<param name="commontopvisible">false</param>
+			<param name="content">MediaMenuWeather</param>
+			<param name="navigationid">8000</param>
+		</include>
 	</controls>
 </window>

@@ -9,21 +9,10 @@
 			</include>
 		</control>
 		<!-- Floor -->
-		<control type="group">
-			<visible>Control.IsVisible(500)</visible>
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">220</param>
-			</include>
-			<control type="group">
-				<visible>!Skin.HasSetting(View500HideFloor)</visible>
-				<include content="Floor">
-					<param name="highlight">FloorHighlightMiddle</param>
-				</include>
-			</control>
-			<include content="FloorShadow">
-				<param name="visible">Skin.HasSetting(View500HideFloor)</param>
-			</include>
-		</control>
+		<include content="Floor">
+			<param name="visible">Skin.HasSetting(View500HideFloor) + Control.IsVisible(500)</param>
+			<param name="highlight">FloorHighlightMiddle</param>
+		</include>
 		<!-- Panel -->
 		<include content="View500Panel" condition="!Skin.HasSetting(View500FixedList)">
 			<param name="listtype">wraplist</param>
