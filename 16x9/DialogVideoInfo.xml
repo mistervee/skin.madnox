@@ -9,7 +9,7 @@
 	<onload condition="!String.IsEqual(ListItem.DBTYPE,musicvideo)">RunScript(script.embuary.helper,action=encode,string=$INFO[ListItem.TVShowTitle],prop=TVShowTitleEncoded)</onload>
 	<controls>
 		<control type="group">
-			<!-- <visible></visible> -->
+			<visible>!Window.IsVisible(script-embuary-person.xml)</visible>
 			<include content="DialogInfoCommon">
 				<param name="blur">Skin.HasSetting(VideoBlurEnabled)</param>
 				<param name="art">$VAR[PosterVar]</param>

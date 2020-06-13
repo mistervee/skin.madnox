@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol>9000</defaultcontrol>
+	<onload>SetFocus(9000,0)</onload>
+	<controls>
+		<!-- Container for the item details -->
+		<control type="list" id="10051">
+			<include>HiddenList</include>
+		</control>
+		<control type="group">
+			<!-- <visible></visible> -->
+			<control type="group">
+				<animation type="WindowOpen" reversible="false">
+					<effect type="zoom" start="80" end="100" center="50%,50%" time="480" tween="cubic" easing="out"/>
+					<effect type="fade" time="400" tween="sine" easing="out" />
+				</animation>
+				<animation type="WindowClose" reversible="false">
+					<effect type="zoom" start="100" end="80" center="50%,50%" delay="0" time="480" tween="cubic" easing="out"/>
+					<effect type="fade" end="0" time="400" tween="sine" easing="out" />
+				</animation>
+				<!-- Background -->
+				<include content="DialogInfoCommon">
+					<param name="blur">Skin.HasSetting(VideoBlurEnabled)</param>
+					<param name="art">$INFO[Container(10051).ListItem.Art(thumb)]</param>
+				</include>
+				<!-- Artwork -->
+				<control type="group">
+					<include>AnimationVisibleFade</include>
+					<top>15</top>
+					<left>15</left>
+					<width>706</width>
+					<height>1050</height>
+					<include content="ViewArtwork">
+						<param name="art">$INFO[Container(10051).ListItem.Art(thumb)]</param>
+						<param name="diffuse">diffuse/rounded5-686x1030.png</param>
+					</include>
+				</control>
+				<control type="group">
+					<top>16</top>
+					<left>736</left>
+					<right>25</right>
+					<!-- Title -->
+					<control type="label">
+						<height>50</height>
+						<font>Font49_Bold_Caps</font>
+						<label>$INFO[Container(10051).ListItem.Label]</label>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<scroll>true</scroll>
+					</control>
+					<!-- Subtitle -->
+					<control type="label">
+						<top>52</top>
+						<height>40</height>
+						<font>Font36_Reg</font>
+						<label>$INFO[Container(10051).ListItem.Property(Place_Of_Birth)]</label>
+						<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+						<scroll>true</scroll>
+					</control>
+					<!-- Info line -->
+					<control type="group">
+						<top>105</top>
+						<control type="grouplist">
+							<height>30</height>
+							<usecontrolcoords>true</usecontrolcoords>
+							<orientation>horizontal</orientation>
+							<control type="image">
+								<visible>!String.IsEmpty(Control.GetLabel(5301))</visible>
+								<top>3</top>
+								<width>30</width>
+								<aspectratio>keep</aspectratio>
+								<texture>$VAR[IconPathVar]calendar.png</texture>
+							</control>
+							<control type="label" id="5301">
+								<width>auto</width>
+								<font>Font30_Reg</font>
+								<textcolor>$VAR[PanelTextColorVar]</textcolor>
+								<label>$INFO[Container(10051).ListItem.Property(Birthday), ]$INFO[Container(10051).ListItem.Property(Deathday), - ]</label>
+							</control>
+
+						</control>
+					</control>
+					<control type="image">
+						<top>152</top>
+						<height>4</height>
+						<texture border="0,0,220,0" colordiffuse="$VAR[PanelListSeparatorColorVar]">panels/separator.png</texture>
+					</control>
+					<!-- Container Info -->
+					<control type="grouplist">
+						<top>162</top>
+						<height>40</height>
+						<usecontrolcoords>true</usecontrolcoords>
+						<orientation>horizontal</orientation>
+						<control type="image">
+							<top>3</top>
+							<width>30</width>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[VideoInfoContainerIcon]</texture>
+						</control>
+						<control type="label">
+							<width>auto</width>
+							<font>Font30_Reg</font>
+							<label>$VAR[VideoInfoContainerLabel, ]</label>
+							<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+						</control>
+					</control>
+					<!-- Buttons -->
+					<control type="list" id="9000">
+						<top>555</top>
+						<left>-10</left>
+						<right>25</right>
+						<height>80</height>
+						<onup condition="Container(9000).Hasfocus(101)">SetFocus(1010)</onup>
+						<onup condition="Container(9000).Hasfocus(102)">SetFocus(1020)</onup>
+						<onup condition="Container(9000).Hasfocus(103)">SetFocus(1030)</onup>
+						<include>InfoDialogButtons</include>
+						<content>
+							<item id="101">
+								<description>Movies</description>
+								<visible>Integer.IsGreater(Container(10052).NumItems,0) | Container(10052).IsUpdating</visible>
+								<label></label>
+								<label2>$LOCALIZE[342]</label2>
+								<onclick>SendClick(8)</onclick>
+							</item>
+							<item id="102">
+								<description>TV Shows</description>
+								<visible>true</visible>
+								<label></label>
+								<label2>$LOCALIZE[20343]</label2>
+								<onclick>RunScript(script.embuary.helper,action=playcinema,dbid=$INFO[ListItem.DBID],type=$INFO[ListItem.DBType],title='$ESCINFO[ListItem.Title]')</onclick>
+							</item>
+							<item id="103">
+								<description>Images</description>
+								<visible>true</visible>
+								<label></label>
+								<label2>$LOCALIZE[1213]</label2>
+								<onclick>RunScript(script.embuary.helper,action=playitem,item='$ESCINFO[ListItem.Trailer]')</onclick>
+							</item>
+						</content>
+					</control>
+					<!-- Containers -->
+					<control type="group" id="9001">
+						<top>211</top>
+						<!-- Movies -->
+						<control type="panel" id="10052">
+							<include content="DialogExtraInfo">
+								<param name="visible">Container(9000).HasFocus(101)</param>
+							</include>
+						</control>
+						<!-- TV Shows -->
+						<control type="panel" id="10053">
+							<include content="DialogExtraInfo">
+								<param name="visible">Container(9000).HasFocus(102)</param>
+							</include>
+						</control>
+						<!-- Images -->
+						<control type="panel" id="10054">
+							<include content="DialogExtraInfo">
+								<param name="visible">Container(9000).HasFocus(103)</param>
+							</include>
+						</control>
+						<!-- Actor movies/tv shows -->
+						<control type="panel" id="1020">
+							<onclick condition="String.IsEqual(Container(1020).ListItem.DBTYPE,movie)">RunScript(script.embuary.helper,action=playitem,item='$ESCINFO[ListItem.Filenameandpath]')</onclick>
+							<onclick condition="!String.IsEqual(Container(1020).ListItem.DBTYPE,movie)">RunScript(script.embuary.helper,action=goto,path='$ESCINFO[ListItem.FolderPath]',target=videos)</onclick>
+							<ondown>1010</ondown>
+							<include content="DialogExtraInfo">
+								<param name="visible">Control.HasFocus(1020)</param>
+								<param name="overlayiconvisible">true</param>
+							</include>
+							<content>videodb://movies/titles/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22actor%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Container(1010).ListItem.Label]%22%5D%7D%2C%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22isnot%22%2C%22value%22%3A%5B%22$INFO[Window(home).Property(TitleEncoded)]%22%5D%7D%5D%7D%2C%22type%22%3A%22movies%22%7D</content>
+							<content>videodb://tvshows/titles/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22actor%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Container(1010).ListItem.Label]%22%5D%7D%2C%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22isnot%22%2C%22value%22%3A%5B%22$INFO[Window(home).Property(TVShowTitleEncoded)]%22%5D%7D%5D%7D%2C%22type%22%3A%22tvshows%22%7D</content>
+						</control>
+						<!-- Next up -->
+						<control type="panel" id="1040">
+							<visible>Integer.IsGreater(ListItem.Property(UnwatchedEpisodes),0) + Integer.IsGreater(ListItem.DBID,0)</visible>
+							<onclick>RunScript(script.embuary.helper,action=playitem,item='$ESCINFO[ListItem.Filenameandpath]')</onclick>
+							<include content="DialogExtraInfo">
+								<param name="visible">Control.HasFocus(1040) | Container(9000).HasFocus(104)</param>
+								<param name="labelvisible">true</param>
+								<param name="label"></param>
+								<param name="label2">$INFO[ListItem.Label]</param>
+								<param name="art">$VAR[ThumbVar]</param>
+								<param name="diffuse">diffuse/rounded5-247x370.png</param>
+								<param name="width">597</param>
+							</include>
+							<content sortby="playcount" sortorder="ascending" limit="1">videodb://inprogresstvshows/$INFO[ListItem.DBID]/-2/?tvshowid=$INFO[ListItem.DBID]</content>
+						</control>
+						<!-- Seasons -->
+						<control type="panel" id="1050">
+							<visible>String.IsEqual(ListItem.DBTYPE,tvshow)</visible>
+							<onclick>RunScript(script.embuary.helper,action=goto,path='$ESCINFO[ListItem.FolderPath]',target=videos)</onclick>
+							<include content="DialogExtraInfo">
+								<param name="visible">Control.HasFocus(1050) | Container(9000).HasFocus(105)</param>
+								<param name="overlayiconvisible">true</param>
+							</include>
+							<content limit="25" target="videos">$INFO[ListItem.DBID,videodb://tvshows/titles/,/]</content>
+						</control>
+						<!-- Sets -->
+						<control type="panel" id="1060">
+							<visible>!String.IsEmpty(ListItem.SetID)</visible>
+							<onclick>RunScript(script.embuary.helper,action=playitem,item='$ESCINFO[ListItem.Filenameandpath]')</onclick>
+							<include content="DialogExtraInfo">
+								<param name="visible">Control.HasFocus(1060) | Container(9000).HasFocus(106)</param>
+								<param name="overlayiconvisible">true</param>
+							</include>
+							<content limit="25" target="videos" sortby="year" sortorder="ascending">$INFO[ListItem.SetID,videodb://movies/sets/,/]</content>
+						</control>
+						<!-- Director -->
+						<control type="panel" id="1070">
+							<visible>String.IsEqual(ListItem.DBTYPE,movie)</visible>
+							<onclick>RunScript(script.embuary.helper,action=playitem,item='$ESCINFO[ListItem.Filenameandpath]')</onclick>
+							<include content="DialogExtraInfo">
+								<param name="visible">Control.HasFocus(1070) | Container(9000).HasFocus(107)</param>
+								<param name="overlayiconvisible">true</param>
+							</include>
+							<content>plugin://script.embuary.helper/?info=getdirectedby&amp;dbid=$INFO[ListItem.DBID]</content>
+						</control>
+						<!-- Writer -->
+						<control type="panel" id="1080">
+							<visible>String.IsEqual(ListItem.DBTYPE,movie)</visible>
+							<onclick>RunScript(script.embuary.helper,action=playitem,item='$ESCINFO[ListItem.Filenameandpath]')</onclick>
+							<include content="DialogExtraInfo">
+								<param name="visible">Control.HasFocus(1080) | Container(9000).HasFocus(108)</param>
+								<param name="overlayiconvisible">true</param>
+							</include>
+							<content>plugin://script.embuary.helper/?info=getbyargs&amp;filter_args=%7B%22and%22%3A%20%5B%7B%22or%22%3A%20%5B%7B%22operator%22%3A%20%22is%22%2C%20%22field%22%3A%20%22writers%22%2C%20%22value%22%3A%20%22$INFO[Window(home).Property(Writer.0)]%22%7D%2C%7B%22operator%22%3A%20%22is%22%2C%20%22field%22%3A%20%22writers%22%2C%20%22value%22%3A%20%22$INFO[Window(home).Property(Writer.1)]%22%7D%5D%7D%2C%20%7B%22operator%22%3A%20%22isnot%22%2C%20%22field%22%3A%20%22title%22%2C%20%22value%22%3A%20%22$INFO[Window(home).Property(TitleEncoded)]%22%7D%5D%7D&amp;type=movie</content>
+						</control>
+						<!-- Similar -->
+						<control type="panel" id="1090">
+							<visible>!String.IsEqual(ListItem.DBTYPE,episode)</visible>
+							<onclick>RunScript(script.embuary.helper,action=playitem,item='$ESCINFO[ListItem.Filenameandpath]')</onclick>
+							<include content="DialogExtraInfo">
+								<param name="visible">Control.HasFocus(1090) | Container(9000).HasFocus(109)</param>
+								<param name="overlayiconvisible">true</param>
+							</include>
+							<content>$VAR[VideoInfoSimilarContent]</content>
+						</control>
+					</control>
+					<!-- Plot -->
+					<control type="textbox">
+						<top>644</top>
+						<bottom>25</bottom>
+						<font>Font30_Reg_105</font>
+						<include>AutoScrollPlot</include>
+						<label>$INFO[Container(10051).ListItem.Property(Biography)]</label>
+					</control>
+				</control>
+
+
+
+
+
+			</control>
+		</control>
+	</controls>
+</window>

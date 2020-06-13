@@ -148,7 +148,7 @@
 					<visible>ListItem.IsCollection | Container.Content(artists) | Container.Content(albums)</visible>
 					<left>-135.5</left>
 					<include>MediaFlagBigLabel</include>
-					<label>$INFO[Container(811111).NumItems]</label>
+					<label>$INFO[Container(7002).NumItems]</label>
 				</control>
 			</control>
 		</definition>
@@ -209,7 +209,7 @@
 					<visible>ListItem.IsCollection | Container.Content(artists) | Container.Content(albums)</visible>
 					<left>-135.5</left>
 					<include>MediaFlagBigLabel</include>
-					<label>$INFO[Container(811111).NumItems]</label>
+					<label>$INFO[Container(7002).NumItems]</label>
 				</control>
 			</control>
 		</definition>
@@ -276,7 +276,7 @@
 					<visible>ListItem.IsCollection | Container.Content(artists) | Container.Content(albums)</visible>
 					<left>-135.5</left>
 					<include>MediaFlagBigLabel</include>
-					<label>$INFO[Container(811111).NumItems]</label>
+					<label>$INFO[Container(7002).NumItems]</label>
 				</control>
 			</control>
 		</definition>
@@ -348,7 +348,7 @@
 					<visible>ListItem.IsCollection | Container.Content(artists) | Container.Content(albums)</visible>
 					<left>-135.5</left>
 					<include>MediaFlagBigLabel</include>
-					<label>$INFO[Container(811111).NumItems]</label>
+					<label>$INFO[Container(7002).NumItems]</label>
 				</control>
 			</control>
 		</definition>
@@ -426,7 +426,7 @@
 					<visible>ListItem.IsCollection | Container.Content(artists) | Container.Content(albums)</visible>
 					<left>-135.5</left>
 					<include>MediaFlagBigLabel</include>
-					<label>$INFO[Container(811111).NumItems]</label>
+					<label>$INFO[Container(7002).NumItems]</label>
 				</control>
 			</control>
 		</definition>
@@ -506,6 +506,15 @@
 					<control type="image">
 						<include>MediaFlagImage</include>
 						<texture>$VAR[MediaFlagsPathVar]/audiocodec/$INFO[ListItem.FileExtension].png</texture>
+					</control>
+					<control type="label">
+						<include>MediaFlagLabel</include>
+						<label>$LOCALIZE[427]</label>
+					</control>
+					<control type="label">
+						<left>-135.5</left>
+						<include>MediaFlagBigLabel</include>
+						<label>$INFO[ListItem.DiscNumber]</label>
 					</control>
 				</control>
 			</control>
@@ -705,7 +714,7 @@
 					<visible>ListItem.IsCollection</visible>
 					<left>-135.5</left>
 					<include>MediaFlagBigLabel</include>
-					<label>$INFO[Container(811111).NumItems]</label>
+					<label>$INFO[Container(7002).NumItems]</label>
 				</control>
 			</control>
 		</definition>
@@ -1271,6 +1280,8 @@
 		<value condition="String.Contains(Window(Home).Property(NextAired.StatusID),-1)">$LOCALIZE[1446]</value>
 	</variable>
 	<variable name="StudioIconsVar">
+		<value condition="String.IsEqual(ListItem.DBTYPE,set) + !Skin.HasSetting(MediaFlagsColored)">flags/default/set.png</value>
+		<value condition="String.IsEqual(ListItem.DBTYPE,set) + Skin.HasSetting(MediaFlagsColored)">flags/colored/set.png</value>
 		<value condition="!String.IsEmpty(ListItem.Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem.Studio,resource://resource.images.studios.white/,.png]</value>
 		<value condition="!String.IsEmpty(ListItem.Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem.Studio,resource://resource.images.studios.coloured/,.png]</value>
 	</variable>
