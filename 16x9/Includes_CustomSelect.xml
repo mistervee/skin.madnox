@@ -940,19 +940,26 @@
 			<selected>Skin.HasSetting(MusicOSDAnimatedBackground)</selected>
 		</control>
 		<control type="radiobutton" id="115">
+			<visible>!String.IsEmpty(Skin.String(BackgroundTexture.texture))</visible>
+			<label>$LOCALIZE[31358]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(MusicOSDDisableBackgroundTexture)</onclick>
+			<selected>!Skin.HasSetting(MusicOSDDisableBackgroundTexture)</selected>
+		</control>
+		<control type="radiobutton" id="116">
 			<label>$LOCALIZE[31084]</label>
 			<onclick>Skin.ToggleSetting(MusicOSDCase)</onclick>
 			<selected>Skin.HasSetting(MusicOSDCase)</selected>
 			<include>DialogRadioButton</include>
 		</control>
-		<control type="radiobutton" id="116">
+		<control type="radiobutton" id="117">
 			<visible>Window.IsVisible(skinsettings) | ![Player.IsInternetStream | Pvr.IsPlayingRadio]</visible>
 			<label>$LOCALIZE[31108]</label>
 			<onclick>Skin.ToggleSetting(MusicOSDDisableDiscArt)</onclick>
 			<selected>!Skin.HasSetting(MusicOSDDisableDiscArt)</selected>
 			<include>DialogRadioButton</include>
 		</control>
-		<control type="radiobutton" id="117">
+		<control type="radiobutton" id="118">
 			<visible>Window.IsVisible(skinsettings) | ![Player.IsInternetStream | Pvr.IsPlayingRadio]</visible>
 			<label>$LOCALIZE[31123]</label>
 			<onclick>Skin.ToggleSetting(MusicOSDDisableLogo)</onclick>
@@ -1838,6 +1845,10 @@
 		<item>
 			<label>Dark</label>
 			<include>ThemeDark</include>
+		</item>
+		<item>
+			<label>Purple carbon</label>
+			<include>ThemePurpleCarbon</include>
 		</item>
 	</include>
 	<include name="SelectBackgroundEffect">
