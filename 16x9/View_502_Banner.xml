@@ -36,19 +36,34 @@
 				<viewtype label="$LOCALIZE[31242]">icon</viewtype>
 				<itemlayout width="580" height="124">
 					<control type="group">
-						<visible>!Skin.HasSetting(View502HideReflect)</visible>
-						<top>109</top>
-						<height>124</height>
-						<include content="ViewArtworkReflect">
+						<visible>!String.IsEmpty(ListItem.Art(banner)) | !String.IsEmpty(ListItem.Art(tvshow.banner)) | !String.IsEmpty(ListItem.Art(artist.banner))</visible>
+						<control type="group">
+							<visible>!Skin.HasSetting(View502HideReflect)</visible>
+							<top>109</top>
+							<height>124</height>
+							<include content="ViewArtworkReflect">
+								<param name="art">$VAR[BannerVar]</param>
+								<param name="fallback"></param>
+								<param name="texturefadetime">0</param>
+							</include>
+						</control>
+						<include content="ViewArtwork">
 							<param name="art">$VAR[BannerVar]</param>
+							<param name="fallback"></param>
 							<param name="texturefadetime">0</param>
+							<param name="diffuse">diffuse/rounded5-560x104.png</param>
 						</include>
 					</control>
-					<include content="ViewArtwork">
-						<param name="art">$VAR[BannerVar]</param>
-						<param name="texturefadetime">0</param>
-						<param name="diffuse">diffuse/rounded5-560x104.png</param>
-					</include>
+					<control type="group">
+						<visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner)) + String.IsEmpty(ListItem.Art(artist.banner))</visible>
+						<control type="group">
+							<visible>!Skin.HasSetting(View502HideReflect)</visible>
+							<top>109</top>
+							<height>124</height>
+							<include>ViewBannerFallbackReflect</include>
+						</control>
+						<include>ViewBannerFallback</include>
+					</control>
 				</itemlayout>
 				<focusedlayout width="580" height="124">
 					<control type="image">
@@ -59,19 +74,34 @@
 							<effect type="zoom" start="95" end="100" time="240" center="auto" />
 						</animation>
 						<control type="group">
-							<visible>!Skin.HasSetting(View502HideReflect)</visible>
-							<top>109</top>
-							<height>124</height>
-							<include content="ViewArtworkReflect">
+							<visible>!String.IsEmpty(ListItem.Art(banner)) | !String.IsEmpty(ListItem.Art(tvshow.banner)) | !String.IsEmpty(ListItem.Art(artist.banner))</visible>
+							<control type="group">
+								<visible>!Skin.HasSetting(View502HideReflect)</visible>
+								<top>109</top>
+								<height>124</height>
+								<include content="ViewArtworkReflect">
+									<param name="art">$VAR[BannerVar]</param>
+									<param name="fallback"></param>
+									<param name="texturefadetime">0</param>
+								</include>
+							</control>
+							<include content="ViewArtwork">
 								<param name="art">$VAR[BannerVar]</param>
+								<param name="fallback"></param>
 								<param name="texturefadetime">0</param>
+								<param name="diffuse">diffuse/rounded5-560x104.png</param>
 							</include>
 						</control>
-						<include content="ViewArtwork">
-							<param name="art">$VAR[BannerVar]</param>
-							<param name="texturefadetime">0</param>
-							<param name="diffuse">diffuse/rounded5-560x104.png</param>
-						</include>
+						<control type="group">
+							<visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner)) + String.IsEmpty(ListItem.Art(artist.banner))</visible>
+							<control type="group">
+								<visible>!Skin.HasSetting(View502HideReflect)</visible>
+								<top>109</top>
+								<height>124</height>
+								<include>ViewBannerFallbackReflect</include>
+							</control>
+							<include>ViewBannerFallback</include>
+						</control>
 					</control>
 				</focusedlayout>
 			</control>

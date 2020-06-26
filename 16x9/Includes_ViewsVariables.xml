@@ -520,6 +520,14 @@
 		<value condition="!String.IsEmpty(ListItem(7).Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(7).Studio,resource://resource.images.studios.white/,.png]</value>
 		<value condition="!String.IsEmpty(ListItem(7).Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(7).Studio,resource://resource.images.studios.coloured/,.png]</value>
 	</variable>
+	<variable name="Showcase8StudioIconsVar">
+		<value condition="!String.IsEmpty(ListItem(8).Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(8).Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem(8).Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(8).Studio,resource://resource.images.studios.coloured/,.png]</value>
+	</variable>
+	<variable name="Showcase9StudioIconsVar">
+		<value condition="!String.IsEmpty(ListItem(9).Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(9).Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(ListItem(9).Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(9).Studio,resource://resource.images.studios.coloured/,.png]</value>
+	</variable>
 
 
 	<variable name="ShowcaseOverlay-7Var">
@@ -631,6 +639,7 @@
 	<variable name="LibraryVideoDiscArtVar">
 		<value condition="!String.IsEmpty(ListItem.Art(discart))">$INFO[ListItem.Art(discart)]</value>
 		<value condition="Skin.String(LibraryVideoDiscArtFallback,none)"></value>
+		<value condition="String.IsEqual(ListItem.DBTYPE,set) | ListItem.IsParentFolder"></value>
 		<value condition="Skin.String(LibraryVideoDiscArtFallback,cd)">thumbs/disc/cd.png</value>
 		<value condition="Skin.String(LibraryVideoDiscArtFallback,vinyl)">thumbs/disc/vinyl.png</value>
 		<value condition="Skin.String(LibraryVideoDiscArtFallback,white)">thumbs/disc/white.png</value>
@@ -657,10 +666,11 @@
 		<value condition="Skin.String(LibraryVideoDiscArtFallback,red)">$LOCALIZE[31191]</value>
 		<value>$LOCALIZE[31183]</value>
 	</variable>
-	<variable name="LibraryMusicDiscArtVar">
+	<variable name="LibraryAudioDiscArtVar">
 		<value condition="!String.IsEmpty(ListItem.Art(discart))">$INFO[ListItem.Art(discart)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(album.discart))">$INFO[ListItem.Art(album.discart)]</value>
 		<value condition="Skin.String(LibraryMusicDiscArtFallback,none)"></value>
+		<value condition="String.Contains(ListItem.Label,*) | ListItem.IsParentFolder"></value>
 		<value condition="Skin.String(LibraryMusicDiscArtFallback,vinyl)">thumbs/disc/vinyl.png</value>
 		<value condition="Skin.String(LibraryMusicDiscArtFallback,bd)">thumbs/disc/bd.png</value>
 		<value condition="Skin.String(LibraryMusicDiscArtFallback,white)">thumbs/disc/white.png</value>
@@ -673,7 +683,7 @@
 		<value condition="Skin.String(LibraryMusicDiscArtFallback,red)">thumbs/disc/red.png</value>
 		<value>thumbs/disc/cd.png</value>
 	</variable>
-	<variable name="LibraryMusicDiscArtLabelVar">
+	<variable name="LibraryAudioDiscArtLabelVar">
 		<value condition="Skin.String(LibraryMusicDiscArtFallback,none)">$LOCALIZE[231]</value>
 		<value condition="Skin.String(LibraryMusicDiscArtFallback,vinyl)">$LOCALIZE[31182]</value>
 		<value condition="Skin.String(LibraryMusicDiscArtFallback,bd)">$LOCALIZE[31183]</value>

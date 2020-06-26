@@ -108,7 +108,7 @@
 									<visible>!Skin.HasSetting(View504HideReflect)</visible>
 									<top>455</top>
 									<height>470</height>
-									<include content="ViewArtworkVideoCase">
+									<include content="ViewArtworkVideoCaseReflect">
 										<param name="texturefadetime">0</param>
 										<param name="bordersize">16,18,16,41</param>
 									</include>
@@ -129,14 +129,14 @@
 							<animation effect="zoom" start="117.7" end="100" center="auto" time="240">unfocus</animation>
 							<control type="image">
 								<visible>Skin.HasSetting(View504DiscArt)</visible>
-								<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" condition="Player.Playing + ListItem.IsPlaying">Conditional</animation>
+								<include>AnimationDiscArtLibrary</include>
 								<animation effect="fade" start="0" end="100" time="160">focus</animation>
 								<animation effect="fade" start="100" end="0" time="160">unfocus</animation>
 								<top>-150</top>
 								<height>320</height>
 								<bordersize>20</bordersize>
 								<aspectratio>keep</aspectratio>
-								<texture background="true">$VAR[DiscArtVar]</texture>
+								<texture diffuse="diffuse/disc.png" background="true">$VAR[LibraryVideoDiscArtVar]</texture>
 							</control>
 							<control type="group">
 								<visible>!Skin.HasSetting(View504VideoCase) | Container.Content(genres)</visible>

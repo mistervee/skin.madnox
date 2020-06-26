@@ -32,8 +32,10 @@
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31030])">SelectNowPlayingMusicBackground</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31355])">SelectNowPlayingStreamRadioBackground</include>
 					<!-- Disc art -->
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31009])">SelectNowPlayingMusicDiscartFallback</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31299])">SelectNowPlayingVideoDiscartFallback</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31361])">SelectNowPlayingMusicDiscartFallback</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31362])">SelectNowPlayingVideoDiscartFallback</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31009])">SelectLibraryMusicDiscartFallback</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31299])">SelectLibraryVideoDiscartFallback</include>
 					<!-- Favourites -->
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31292])">SelectCustomFavourites</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31294])">SelectCustomFavouriteAddons</include>
@@ -81,6 +83,12 @@
 				<param name="aspect">center</param>
 				<param name="texture">$INFO[Container(100).ListItem.Icon]</param>
 				<param name="color">$VAR[MainMenuTextureColorVar]</param>
+			</include>
+			<include content="DialogImage">
+				<param name="visible">String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31009]) | String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31299]) | String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31361]) | String.IsEqual(Window(home).Property(CustomSelect),$LOCALIZE[31362])</param>
+				<param name="height">280</param>
+				<param name="aspect">keep</param>
+				<param name="texture">$INFO[Container(100).ListItem.Icon]</param>
 			</include>
 			<control type="image">
 				<include>DialogHorizontalSeparator</include>

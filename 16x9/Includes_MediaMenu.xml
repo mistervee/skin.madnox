@@ -455,6 +455,7 @@
 			<onclick>ActivateWindow(1115)</onclick>
 		</control>
 		<control type="radiobutton" id="9054">
+			<visible>Player.HasMedia</visible>
 			<include content="MediaMenuIconButton">
 				<param name="iconon" value="icons/mediamenu/play.png" />
 				<param name="iconoff" value="icons/mediamenu/play.png" />
@@ -631,35 +632,51 @@
 			<include>MediaMenuRadioButton</include>
 		</control>
 		<control type="radiobutton" id="203">
-			<visible>!Skin.HasSetting(NowplayingHomeDisable)</visible>
+			<visible>!Skin.HasSetting(NowplayingHomeDisable) + [VideoPlayer.Content(movies) | VideoPlayer.Content(episodes)]</visible>
 			<label>$LOCALIZE[31324]</label>
 			<onclick>Skin.ToggleSetting(NowPlayingHomeVideoCase)</onclick>
 			<selected>Skin.HasSetting(NowPlayingHomeVideoCase)</selected>
 			<include>MediaMenuRadioButton</include>
 		</control>
 		<control type="radiobutton" id="204">
-			<visible>!Skin.HasSetting(NowplayingHomeDisable)</visible>
+			<visible>!Skin.HasSetting(NowplayingHomeDisable) + [VideoPlayer.Content(musicvideos) | Player.HasAudio]</visible>
 			<label>$LOCALIZE[31291]</label>
 			<onclick>Skin.ToggleSetting(NowPlayingHomeMusicCase)</onclick>
 			<selected>Skin.HasSetting(NowPlayingHomeMusicCase)</selected>
 			<include>MediaMenuRadioButton</include>
 		</control>
 		<control type="radiobutton" id="205">
-			<visible>!Skin.HasSetting(NowplayingHomeDisable)</visible>
-			<label>$LOCALIZE[31108]</label>
-			<onclick>Skin.ToggleSetting(NowPlayingHomeDisableDiscArt)</onclick>
-			<selected>!Skin.HasSetting(NowPlayingHomeDisableDiscArt)</selected>
-			<include>MediaMenuRadioButton</include>
-		</control>
-		<control type="radiobutton" id="206">
-			<visible>!Skin.HasSetting(NowplayingHomeDisable)</visible>
+			<visible>!Skin.HasSetting(NowplayingHomeDisable) + [[VideoPlayer.Content(movies) | VideoPlayer.Content(episodes) | VideoPlayer.Content(musicvideos)] | [Player.HasAudio + !Pvr.IsPlayingTv + !Pvr.IsPlayingRadio + !Player.IsInternetStream]]</visible>
 			<label>$LOCALIZE[31123]</label>
 			<onclick>Skin.ToggleSetting(NowPlayingHomeDisableLogo)</onclick>
 			<selected>!Skin.HasSetting(NowPlayingHomeDisableLogo)</selected>
 			<include>MediaMenuRadioButton</include>
 		</control>
+		<control type="radiobutton" id="206">
+			<visible>!Skin.HasSetting(NowplayingHomeDisable) + [[VideoPlayer.Content(movies) | VideoPlayer.Content(musicvideos)] | [Player.HasAudio + !Pvr.IsPlayingTv + !Pvr.IsPlayingRadio + !Player.IsInternetStream]]</visible>
+			<label>$LOCALIZE[31108]</label>
+			<onclick>Skin.ToggleSetting(NowPlayingHomeDisableDiscArt)</onclick>
+			<selected>!Skin.HasSetting(NowPlayingHomeDisableDiscArt)</selected>
+			<include>MediaMenuRadioButton</include>
+		</control>
 		<control type="button" id="207">
-			<visible>!Skin.HasSetting(NowplayingHomeDisable)</visible>
+			<visible>!Skin.HasSetting(NowplayingHomeDisable) + [VideoPlayer.Content(musicvideos) | [Player.HasAudio + !Pvr.IsPlayingTv + !Pvr.IsPlayingRadio + !Player.IsInternetStream]]</visible>
+			<label>$LOCALIZE[31009]</label>
+			<label2>$VAR[NowPlayingMusicDiscArtLabelVar]</label2>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[31361],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="button" id="208">
+			<visible>!Skin.HasSetting(NowplayingHomeDisable) + VideoPlayer.Content(movies)</visible>
+			<label>$LOCALIZE[31299]</label>
+			<label2>$VAR[NowPlayingVideoDiscArtLabelVar]</label2>
+			<onclick>SetProperty(CustomSelect,$LOCALIZE[31362],home)</onclick>
+			<onclick>ActivateWindow(1110)</onclick>
+			<include>MediaMenuButton</include>
+		</control>
+		<control type="button" id="209">
+			<visible>!Skin.HasSetting(NowplayingHomeDisable) + [VideoPlayer.Content(movies) | VideoPlayer.Content(episodes)] + !Player.IsInternetStream</visible>
 			<label>$LOCALIZE[31211]</label>
 			<label2>$VAR[NowPlayingHomeMovieInfoLabelVar]</label2>
 			<onclick condition="String.IsEmpty(NowPlayingHomeMovieInfo)">Skin.SetString(NowPlayingHomeMovieInfo,cast)</onclick>
@@ -669,8 +686,8 @@
 			<onclick condition="Skin.String(NowPlayingHomeMovieInfo,none)">Skin.Reset(NowPlayingHomeMovieInfo)</onclick>
 			<include>MediaMenuButton</include>
 		</control>
-		<control type="button" id="208">
-			<visible>!Skin.HasSetting(NowplayingHomeDisable)</visible>
+		<control type="button" id="210">
+			<visible>!Skin.HasSetting(NowplayingHomeDisable) + ![VideoPlayer.Content(movies) | VideoPlayer.Content(episodes)]</visible>
 			<label>$LOCALIZE[31323]</label>
 			<label2>$VAR[NowPlayingHomeVideoInfoLabelVar]</label2>
 			<onclick condition="String.IsEmpty(NowPlayingHomeVideoInfo)">Skin.SetString(NowPlayingHomeVideoInfo,plot)</onclick>
@@ -679,8 +696,8 @@
 			<onclick condition="Skin.String(NowPlayingHomeVideoInfo,none)">Skin.Reset(NowPlayingHomeVideoInfo)</onclick>
 			<include>MediaMenuButton</include>
 		</control>
-		<control type="button" id="209">
-			<visible>!Skin.HasSetting(NowplayingHomeDisable)</visible>
+		<control type="button" id="211">
+			<visible>!Skin.HasSetting(NowplayingHomeDisable) + Player.HasAudio + ![Pvr.IsPlayingTv | Pvr.IsPlayingRadio | Player.IsInternetStream]</visible>
 			<label>$LOCALIZE[31169]</label>
 			<label2>$VAR[NowPlayingHomeMusicInfoLabelVar]</label2>
 			<onclick condition="String.IsEmpty(NowPlayingHomeMusicInfo)">Skin.SetString(NowPlayingHomeMusicInfo,next)</onclick>
@@ -690,8 +707,8 @@
 			<onclick condition="Skin.String(NowPlayingHomeMusicInfo,none)">Skin.Reset(NowPlayingHomeMusicInfo)</onclick>
 			<include>MediaMenuButton</include>
 		</control>
-		<control type="button" id="210">
-			<visible>!Skin.HasSetting(NowplayingHomeDisable)</visible>
+		<control type="button" id="212">
+			<visible>!Skin.HasSetting(NowplayingHomeDisable) + Player.HasAudio + [Pvr.IsPlayingTv | Pvr.IsPlayingRadio | Player.IsInternetStream]</visible>
 			<label>$LOCALIZE[31170]</label>
 			<label2>$VAR[NowPlayingHomeAudioInfoLabelVar]</label2>
 			<onclick condition="String.IsEmpty(NowPlayingHomeAudioInfo)">Skin.SetString(NowPlayingHomeAudioInfo,next)</onclick>
@@ -699,27 +716,6 @@
 			<onclick condition="Skin.String(NowPlayingHomeAudioInfo,tracks)">Skin.SetString(NowPlayingHomeAudioInfo,plot)</onclick>
 			<onclick condition="Skin.String(NowPlayingHomeAudioInfo,plot)">Skin.SetString(NowPlayingHomeAudioInfo,none)</onclick>
 			<onclick condition="Skin.String(NowPlayingHomeAudioInfo,none)">Skin.Reset(NowPlayingHomeAudioInfo)</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="label" id="221">
-			<visible>!Skin.HasSetting(NowplayingHomeDisable)</visible>
-			<label>$LOCALIZE[31106]</label>
-			<include>MediaMenuLabel</include>
-		</control>
-		<control type="button" id="222">
-			<visible>!Skin.HasSetting(NowplayingHomeDisable)</visible>
-			<label>$LOCALIZE[31009]</label>
-			<label2>$VAR[NowPlayingMusicDiscArtLabelVar]</label2>
-			<onclick>SetProperty(CustomSelect,$LOCALIZE[31009],home)</onclick>
-			<onclick>ActivateWindow(1110)</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="button" id="223">
-			<visible>!Skin.HasSetting(NowplayingHomeDisable)</visible>
-			<label>$LOCALIZE[31299]</label>
-			<label2>$VAR[NowPlayingVideoDiscArtLabelVar]</label2>
-			<onclick>SetProperty(CustomSelect,$LOCALIZE[31299],home)</onclick>
-			<onclick>ActivateWindow(1110)</onclick>
 			<include>MediaMenuButton</include>
 		</control>
 	</include>
@@ -1881,7 +1877,7 @@
 			<include>MediaMenuRadioButton</include>
 		</control>
 		<control type="radiobutton" id="103">
-			<visible>!Container.Content(addons) | !$EXP[AreaVisiblePVR]</visible>
+			<visible>!Container.Content(addons)</visible>
 			<label>$LOCALIZE[31123]</label>
 			<onclick>Skin.ToggleSetting(View53HideLogo)</onclick>
 			<selected>!Skin.HasSetting(View53HideLogo)</selected>

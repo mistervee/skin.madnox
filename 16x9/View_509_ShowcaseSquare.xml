@@ -302,7 +302,7 @@
 					</include>
 				</control>
 				<control type="group">
-					<visible>Skin.HasSetting(View509AlbumCase) + [String.IsEqual(ListItem.DBTYPE,album) | String.IsEqual(ListItem.DBTYPE,musicvideo)]</visible>
+					<visible>Skin.HasSetting(View509AlbumCase) + String.IsEqual(ListItem.DBTYPE,album)</visible>
 					<left>730</left>
 					<width>396</width>
 					<height>396</height>
@@ -329,7 +329,7 @@
 						<left>16</left>
 						<width>364</width>
 						<height>364</height>
-						<texture background="true">$INFO[ListItem.Art(discart)]</texture>
+						<texture diffuse="diffuse/disc.png" background="true">$VAR[LibraryAudioDiscArtVar]</texture>
 					</control>
 				</control>
 				<control type="group">
@@ -341,15 +341,15 @@
 						<param name="item">0</param>
 						<param name="left">730</param>
 						<param name="casevisible">false</param>
-						<param name="casefrontvisible">Skin.HasSetting(View509AlbumCase) + [Container.Content(musicvideos) | Container.Content(albums)]</param>
+						<param name="casefrontvisible">true</param>
 					</include>
 				</control>
 			</control>
 			<!-- Hidden object for open case -->
 			<control type="label" id="1970">
-				<visible>Skin.HasSetting(View509AlbumCase) + Skin.HasSetting(View509OpenCase) + [String.IsEqual(ListItem.DBTYPE,album) | String.IsEqual(ListItem.DBTYPE,musicvideo)]</visible>
-				<include>HiddenObject</include>
+				<visible>Skin.HasSetting(View509AlbumCase) + Skin.HasSetting(View509OpenCase) + String.IsEqual(ListItem.DBTYPE,album) + !String.Equal(Skin.String(LibraryMusicDiscArtFallback,none))</visible>
 				<visible>!Container.OnNext + !Container.OnPrevious</visible>
+				<include>HiddenObject</include>
 				<animation effect="fade" end="100" time="120" delay="1000">Visible</animation>
 				<animation effect="fade" end="100" time="120" delay="1000">WindowOpen</animation>
 			</control>

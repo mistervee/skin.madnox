@@ -828,12 +828,6 @@
 								<label>$VAR[ViewPlotVar]</label>
 							</control>
 						</control>
-						<control type="image">
-							<right>20</right>
-							<width>30</width>
-							<aspectratio align="right">keep</aspectratio>
-							<texture colordiffuse="$VAR[PanelHighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
-						</control>
 					</focusedlayout>
 					<focusedlayout height="250" condition="Container.Content(albums)">
 						<control type="group">
@@ -918,12 +912,6 @@
 								<label>$VAR[ViewPlotVar]</label>
 							</control>
 						</control>
-						<control type="image">
-							<right>20</right>
-							<width>30</width>
-							<aspectratio align="right">keep</aspectratio>
-							<texture colordiffuse="$VAR[PanelHighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
-						</control>
 					</focusedlayout>
 					<focusedlayout height="250" condition="Container.Content(songs)">
 						<control type="group">
@@ -1000,12 +988,6 @@
 								<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 								<label>$VAR[ViewPlotVar]</label>
 							</control>
-						</control>
-						<control type="image">
-							<right>20</right>
-							<width>30</width>
-							<aspectratio align="right">keep</aspectratio>
-							<texture colordiffuse="$VAR[PanelHighlightColorVar]">$VAR[ListOverlayIconVar]</texture>
 						</control>
 					</focusedlayout>
 					<focusedlayout height="250" condition="Container.Content(musicvideos)">
@@ -1122,14 +1104,14 @@
 					<height>642</height>
 					<control type="image">
 						<visible>!Skin.HasSetting(View58HideDiscArt)</visible>
-						<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" condition="Player.Playing + String.IsEqual(ListItem.Title,Player.Title)">Conditional</animation>
+						<include>AnimationDiscArtLibrary</include>
 						<bottom>434</bottom>
 						<left>20</left>
 						<width>395</width>
 						<height>395</height>
 						<fadetime>TextureFadeTime</fadetime>
 						<aspectratio>keep</aspectratio>
-						<texture background="true">$INFO[ListItem.Art(discart)]</texture>
+						<texture diffuse="diffuse/disc.png" background="true">$VAR[LibraryVideoDiscArtVar]</texture>
 					</control>
 					<control type="group">
 						<visible>!Skin.HasSetting(View58VideoCase)</visible>
@@ -1187,14 +1169,14 @@
 						<visible>!Skin.HasSetting(View58AlbumCase)</visible>
 						<control type="image">
 							<visible>!Skin.HasSetting(View58HideDiscArt)</visible>
-							<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" condition="Player.Playing + [String.IsEqual(ListItem.Album,MusicPlayer.Album) | String.IsEqual(ListItem.Title,Player.Title)]">Conditional</animation>
+							<include>AnimationDiscArtLibrary</include>
 							<bottom>250</bottom>
 							<left>20</left>
 							<width>460</width>
 							<height>460</height>
 							<fadetime>TextureFadeTime</fadetime>
 							<aspectratio>keep</aspectratio>
-							<texture background="true">$VAR[DiscArtVar]</texture>
+							<texture diffuse="diffuse/disc.png" background="true">$VAR[LibraryAudioDiscArtVar]</texture>
 						</control>
 						<include content="ViewArtwork">
 							<param name="diffuse">diffuse/rounded5-480x480.png</param>
@@ -1205,14 +1187,14 @@
 						<width>537</width>
 						<control type="image">
 							<visible>!Skin.HasSetting(View58HideDiscArt)</visible>
-							<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" condition="Player.Playing + [String.IsEqual(ListItem.Album,MusicPlayer.Album) | String.IsEqual(ListItem.Title,Player.Title)]">Conditional</animation>
+							<include>AnimationDiscArtLibrary</include>
 							<bottom>250</bottom>
 							<left>61</left>
 							<width>452</width>
 							<height>452</height>
 							<fadetime>TextureFadeTime</fadetime>
 							<aspectratio>keep</aspectratio>
-							<texture background="true">$VAR[DiscArtVar]</texture>
+							<texture diffuse="diffuse/disc.png" background="true">$VAR[LibraryAudioDiscArtVar]</texture>
 						</control>
 						<include>ViewArtworkAudioCase</include>
 					</control>

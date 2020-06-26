@@ -369,7 +369,7 @@
 						<left>18</left>
 						<width>230</width>
 						<height>230</height>
-						<texture background="true">$INFO[ListItem.Art(discart)]</texture>
+						<texture background="true">$VAR[LibraryVideoDiscArtVar]</texture>
 					</control>
 				</control>
 				<control type="group">
@@ -385,7 +385,7 @@
 			</control>
 			<!-- Hidden object for open case -->
 			<control type="label" id="1970">
-				<visible>Skin.HasSetting(View508OpenCase) + String.IsEqual(ListItem.DBTYPE,movie)</visible>
+				<visible>Skin.HasSetting(View508VideoCase) + Skin.HasSetting(View508OpenCase) + String.IsEqual(ListItem.DBTYPE,movie) + !String.IsEqual(Skin.String(LibraryVideoDiscArtFallback),none)</visible>
 				<include>HiddenObject</include>
 				<visible>!Container.OnNext + !Container.OnPrevious</visible>
 				<animation effect="fade" end="100" time="120" delay="1000">Visible</animation>

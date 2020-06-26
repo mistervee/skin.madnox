@@ -817,7 +817,7 @@
 			<control type="image">
 				<bordersize>$PARAM[border]</bordersize>
 				<aspectratio align="center" aligny="center" scalediffuse="false">$PARAM[artworkaspect]</aspectratio>
-				<texture diffuse="$PARAM[diffuse]" fallback="DefaultFile.png" colordiffuse="$VAR[MainMenuWidgetColorVar]">$PARAM[artwork]</texture>
+				<texture diffuse="$PARAM[diffuse]" colordiffuse="$VAR[MainMenuWidgetColorVar]">$PARAM[artwork]</texture>
 			</control>
 			<control type="image">
 				<left>0</left>
@@ -839,6 +839,16 @@
 				<textoffsetx>5</textoffsetx>
 				<label>$INFO[ListItem.Label]</label>
 				<visible>$PARAM[labelvisible]</visible>
+			</control>
+			<control type="textbox">
+				<visible>$PARAM[logofallback] + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</visible>
+				<left>20</left>
+				<right>20</right>
+				<align>center</align>
+				<aligny>center</aligny>
+				<font>$PARAM[font1]</font>
+				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				<label>$INFO[ListItem.Label]</label>
 			</control>
 			<control type="image">
 				<texture border="20" colordiffuse="$VAR[MainMenuWidgetColorVar]">thumbs/overlay.png</texture>
@@ -874,7 +884,7 @@
 				<control type="image">
 					<bordersize>$PARAM[border]</bordersize>
 					<aspectratio align="center" aligny="center" scalediffuse="false">$PARAM[artworkaspect]</aspectratio>
-					<texture diffuse="$PARAM[diffuse]" fallback="DefaultFile.png">$PARAM[artwork]</texture>
+					<texture diffuse="$PARAM[diffuse]">$PARAM[artwork]</texture>
 				</control>
 				<control type="image">
 					<left>0</left>
@@ -896,6 +906,16 @@
 					<textoffsetx>5</textoffsetx>
 					<label>$INFO[ListItem.Label]</label>
 					<visible>$PARAM[labelvisible]</visible>
+				</control>
+				<control type="textbox">
+					<visible>$PARAM[logofallback] + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</visible>
+					<left>20</left>
+					<right>20</right>
+					<align>center</align>
+					<aligny>center</aligny>
+					<font>$PARAM[font1]</font>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$INFO[ListItem.Label]</label>
 				</control>
 				<control type="image">
 					<texture border="20">thumbs/overlay.png</texture>

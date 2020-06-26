@@ -553,6 +553,11 @@
 		<value condition="!String.IsEmpty(ListItem.Property(fanart))">$INFO[ListItem.Property(fanart)]</value>
 		<value>$INFO[ListItem.Icon]</value>
 	</variable>
+	<variable name="FanartBannerFallbackVar">
+		<value condition="!String.IsEmpty(ListItem.Thumb) + Container.Content(episodes)">$INFO[ListItem.Thumb]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+		<value condition="!String.IsEmpty(ListItem.Property(fanart))">$INFO[ListItem.Property(fanart)]</value>
+	</variable>
 	<variable name="Fanart1Var">
 		<value condition="!String.IsEmpty(ListItem.Art(fanart1))">$INFO[ListItem.Art(fanart1)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(tvshow.fanart1))">$INFO[ListItem.Art(tvshow.fanart1)]</value>
@@ -576,7 +581,10 @@
 	<variable name="ThumbVar">
 		<value condition="!String.IsEmpty(ListItem.Thumb) + String.IsEqual(ListItem.DBTYPE,episode)">$INFO[ListItem.Thumb]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
-		<value></value>
+		<value condition="String.Contains(ListItem.Label,*)">$INFO[Container(7002).ListItem(0).Art(fanart)]</value>
+		<value condition="String.IsEqual(ListItem.DBTYPE,artist) | String.IsEqual(ListItem.DBTYPE,album) | String.IsEqual(ListItem.DBTYPE,song)">special://skin/extras/backgrounds/music.jpg</value>
+		<value condition="String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,set)">special://skin/extras/backgrounds/movies.jpg</value>
+		<value condition="String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season) | String.IsEqual(ListItem.DBTYPE,episode)">special://skin/extras/backgrounds/tvshows.jpg</value>
 	</variable>
 	<variable name="LandscapeVar">
 		<value condition="!String.IsEmpty(ListItem.Thumb) + Container.Content(episodes)">$INFO[ListItem.Thumb]</value>
@@ -619,7 +627,6 @@
 		<value condition="!String.IsEmpty(ListItem.Art(banner))">$INFO[ListItem.Art(banner)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(tvshow.banner))">$INFO[ListItem.Art(tvshow.banner)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(artist.banner))">$INFO[ListItem.Art(artist.banner)]</value>
-		<value>$INFO[ListItem.Icon]</value>
 	</variable>
 	<variable name="ShowCaseBackVar">
 		<value condition="ListItem.IsStereoscopic">thumbs/case/portrait/back/1080p.png</value>

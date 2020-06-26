@@ -58,40 +58,13 @@
 				<param name="slide">652</param>
 			</include>
 			<control type="group">
-				<visible>!$EXP[AreaVisiblePVR]</visible>
+				<visible>Container.Content(movies) | Container.Content(episodes) | String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,episode) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)</visible>
+				<top>130</top>
+				<left>1278</left>
+				<width>552</width>
+				<height>820</height>
 				<control type="group">
-					<visible>Container.Content(movies) | Container.Content(episodes) | String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,episode) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)</visible>
-					<top>130</top>
-					<left>1278</left>
-					<width>552</width>
-					<height>820</height>
-					<control type="group">
-						<visible>!Skin.HasSetting(View50VideoCase)</visible>
-						<control type="group">
-							<visible>!Skin.HasSetting(View50HideReflect)</visible>
-							<top>805</top>
-							<height>820</height>
-							<include>ViewArtworkReflect</include>
-						</control>
-						<include>ViewArtwork</include>
-					</control>
-					<control type="group">
-						<visible>Skin.HasSetting(View50VideoCase)</visible>
-						<control type="group">
-							<visible>!Skin.HasSetting(View50HideReflect)</visible>
-							<top>805</top>
-							<height>820</height>
-							<include>ViewArtworkVideoCaseReflect</include>
-						</control>
-						<include>ViewArtworkVideoCase</include>
-					</control>
-				</control>
-				<control type="group">
-					<visible>Container.Content(actors) | Container.Content(directors)</visible>
-					<top>130</top>
-					<left>1278</left>
-					<width>552</width>
-					<height>820</height>
+					<visible>!Skin.HasSetting(View50VideoCase)</visible>
 					<control type="group">
 						<visible>!Skin.HasSetting(View50HideReflect)</visible>
 						<top>805</top>
@@ -101,178 +74,74 @@
 					<include>ViewArtwork</include>
 				</control>
 				<control type="group">
-					<visible>Container.Content(countries)</visible>
-					<top>535</top>
-					<left>1278</left>
-					<width>552</width>
-					<height>415</height>
-					<control type="group">
-						<visible>!Skin.HasSetting(View50HideReflect)</visible>
-						<top>400</top>
-						<height>415</height>
-						<include content="ViewArtworkReflect">
-							<param name="art">$VAR[CountryIconVar]</param>
-							<param name="fallback">DefaultFolderBack.png</param>
-						</include>
-					</control>
-					<include content="ViewArtwork">
-						<param name="art">$VAR[CountryIconVar]</param>
-						<param name="fallback">DefaultFolderBack.png</param>
-						<param name="diffuse">diffuse/rounded5-532x395.png</param>
-					</include>
-				</control>
-				<control type="group">
-					<visible>Container.Content(studios)</visible>
-					<top>535</top>
-					<left>1278</left>
-					<width>552</width>
-					<height>415</height>
-					<control type="group">
-						<visible>!Skin.HasSetting(View50HideReflect)</visible>
-						<top>400</top>
-						<height>415</height>
-						<include content="ViewArtworkReflect">
-							<param name="art">$VAR[StudioIconVar]</param>
-							<param name="fallback">DefaultStudios.png</param>
-						</include>
-					</control>
-					<include content="ViewArtwork">
-						<param name="art">$VAR[StudioIconVar]</param>
-						<param name="fallback">DefaultStudios.png</param>
-						<param name="diffuse">diffuse/rounded5-532x395</param>
-					</include>
-				</control>
-				<control type="group">
-					<visible>Container.Content(genres) + String.Contains(ListItem(1).FolderPath,music)</visible>
-					<include>AnimationVisibleFade</include>
-					<top>398</top>
-					<left>1278</left>
-					<width>552</width>
-					<height>552</height>
-					<control type="group">
-						<visible>!Skin.HasSetting(View50HideReflect)</visible>
-						<top>537</top>
-						<height>552</height>
-						<include content="ViewArtworkReflect">
-							<param name="art">$INFO[ListItem.Label,resource://resource.images.musicgenreicons.text/,.jpg]</param>
-							<param name="fallback">DefaultGenre.png</param>
-						</include>
-					</control>
-					<include content="ViewArtwork">
-						<param name="art">$INFO[ListItem.Label,resource://resource.images.musicgenreicons.text/,.jpg]</param>
-						<param name="fallback">DefaultGenre.png</param>
-						<param name="diffuse">diffuse/rounded5-532x532.png</param>
-					</include>
-				</control>
-				<control type="group">
-					<visible>Container.Content(genres) + !String.Contains(ListItem(1).FolderPath,music)</visible>
-					<include>AnimationVisibleFade</include>
-					<top>130</top>
-					<left>1278</left>
-					<width>552</width>
-					<height>820</height>
+					<visible>Skin.HasSetting(View50VideoCase)</visible>
 					<control type="group">
 						<visible>!Skin.HasSetting(View50HideReflect)</visible>
 						<top>805</top>
 						<height>820</height>
-						<include content="ViewArtworkReflect">
-							<param name="art">$VAR[GenreIconVar]</param>
-							<param name="fallback">DefaultGenre.png</param>
-						</include>
+						<include>ViewArtworkVideoCaseReflect</include>
 					</control>
-					<include content="ViewArtwork">
-						<param name="art">$VAR[GenreIconVar]</param>
-						<param name="fallback">DefaultGenre.png</param>
-					</include>
-				</control>
-				<control type="group">
-					<visible>Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos) | String.IsEqual(ListItem.DBTYPE,song) | String.IsEqual(ListItem.DBTYPE,musicvideo)</visible>
-					<top>398</top>
-					<left>1278</left>
-					<width>552</width>
-					<height>552</height>
-					<control type="group">
-						<visible>!Skin.HasSetting(View50AlbumCase)</visible>
-						<control type="image">
-							<visible>!Skin.HasSetting(View50HideDiscArt)</visible>
-							<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" condition="Player.Playing + [String.IsEqual(ListItem.Album,MusicPlayer.Album) | String.IsEqual(ListItem.Title,Player.Title)]">Conditional</animation>
-							<top>-241</top>
-							<left>25</left>
-							<width>502</width>
-							<height>502</height>
-							<fadetime>TextureFadeTime</fadetime>
-							<aspectratio>keep</aspectratio>
-							<texture background="true">$VAR[DiscArtVar]</texture>
-						</control>
-						<control type="group">
-							<visible>!Skin.HasSetting(View50HideReflect)</visible>
-							<top>537</top>
-							<height>552</height>
-							<include>ViewArtworkReflect</include>
-						</control>
-						<include content="ViewArtwork">
-							<param name="diffuse">diffuse/rounded5-532x532.png</param>
-						</include>
-					</control>
-					<control type="group">
-						<visible>Skin.HasSetting(View50AlbumCase)</visible>
-						<top>40</top>
-						<width>552</width>
-						<height>512</height>
-						<control type="image">
-							<visible>!Skin.HasSetting(View50HideDiscArt)</visible>
-							<animation effect="rotate" end="-360" center="auto" time="6000" loop="true" condition="Player.Playing + [String.IsEqual(ListItem.Album,MusicPlayer.Album) | String.IsEqual(ListItem.Title,Player.Title)]">Conditional</animation>
-							<top>-211</top>
-							<left>65</left>
-							<width>462</width>
-							<height>462</height>
-							<fadetime>TextureFadeTime</fadetime>
-							<aspectratio>keep</aspectratio>
-							<texture background="true">$VAR[DiscArtVar]</texture>
-						</control>
-						<control type="group">
-							<visible>!Skin.HasSetting(View50HideReflect)</visible>
-							<top>497</top>
-							<height>552</height>
-							<include>ViewArtworkAudioCaseReflect</include>
-						</control>
-						<include>ViewArtworkAudioCase</include>
-					</control>
-				</control>
-				<control type="group">
-					<visible>![Container.Content(movies) | Container.Content(episodes) | String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,episode) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(actors) | Container.Content(directors) | Container.Content(countries) | Container.Content(studios) | Container.Content(genres) | Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos) | String.IsEqual(ListItem.DBTYPE,song) | String.IsEqual(ListItem.DBTYPE,musicvideo)]</visible>
-					<top>398</top>
-					<left>1278</left>
-					<width>552</width>
-					<height>552</height>
-					<control type="image">
-						<visible>Container.Content(artists) + !Skin.HasSetting(View50HideLogo)</visible>
-						<top>-258</top>
-						<left>10</left>
-						<width>532</width>
-						<height>268</height>
-						<fadetime>TextureFadeTime</fadetime>
-						<aspectratio>keep</aspectratio>
-						<texture background="true">$VAR[ClearLogoVar]</texture>
-					</control>
-					<control type="group">
-						<visible>!Skin.HasSetting(View50HideReflect)</visible>
-						<top>537</top>
-						<height>552</height>
-						<include content="ViewArtworkReflect">
-							<param name="art">$VAR[PosterVar]</param>
-							<param name="fallback">DefaultFile.png</param>
-						</include>
-					</control>
-					<include content="ViewArtwork">
-						<param name="art">$VAR[PosterVar]</param>
-						<param name="fallback">DefaultFile.png</param>
-						<param name="diffuse">diffuse/rounded5-532x532.png</param>
-					</include>
+					<include>ViewArtworkVideoCase</include>
 				</control>
 			</control>
 			<control type="group">
-				<visible>$EXP[AreaVisiblePVR]</visible>
+				<visible>Container.Content(actors) | Container.Content(directors)</visible>
+				<top>130</top>
+				<left>1278</left>
+				<width>552</width>
+				<height>820</height>
+				<control type="group">
+					<visible>!Skin.HasSetting(View50HideReflect)</visible>
+					<top>805</top>
+					<height>820</height>
+					<include>ViewArtworkReflect</include>
+				</control>
+				<include>ViewArtwork</include>
+			</control>
+			<control type="group">
+				<visible>Container.Content(countries)</visible>
+				<top>535</top>
+				<left>1278</left>
+				<width>552</width>
+				<height>415</height>
+				<control type="group">
+					<visible>!Skin.HasSetting(View50HideReflect)</visible>
+					<top>400</top>
+					<height>415</height>
+					<include content="ViewArtworkReflect">
+						<param name="art">$VAR[CountryIconVar]</param>
+						<param name="fallback">DefaultFolderBack.png</param>
+					</include>
+				</control>
+				<include content="ViewArtwork">
+					<param name="art">$VAR[CountryIconVar]</param>
+					<param name="fallback">DefaultFolderBack.png</param>
+					<param name="diffuse">diffuse/rounded5-532x395.png</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>Container.Content(studios)</visible>
+				<top>535</top>
+				<left>1278</left>
+				<width>552</width>
+				<height>415</height>
+				<control type="group">
+					<visible>!Skin.HasSetting(View50HideReflect)</visible>
+					<top>400</top>
+					<height>415</height>
+					<include content="ViewArtworkReflect">
+						<param name="art">$VAR[StudioIconVar]</param>
+						<param name="fallback">DefaultStudios.png</param>
+					</include>
+				</control>
+				<include content="ViewArtwork">
+					<param name="art">$VAR[StudioIconVar]</param>
+					<param name="fallback">DefaultStudios.png</param>
+					<param name="diffuse">diffuse/rounded5-532x395</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>Container.Content(genres) + String.Contains(ListItem(1).FolderPath,music)</visible>
 				<include>AnimationVisibleFade</include>
 				<top>398</top>
 				<left>1278</left>
@@ -282,32 +151,122 @@
 					<visible>!Skin.HasSetting(View50HideReflect)</visible>
 					<top>537</top>
 					<height>552</height>
-					<control type="image">
-						<bordersize>10</bordersize>
-						<fadetime>TextureFadeTime</fadetime>
-						<aspectratio scalediffuse="false">scale</aspectratio>
-						<texture diffuse="thumbs/reflect.png" flipy="true" background="true" colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
-					</control>
-					<control type="image">
-						<bordersize>10</bordersize>
-						<fadetime>TextureFadeTime</fadetime>
-						<aspectratio scalediffuse="false">keep</aspectratio>
-						<texture background="true" flipy="true" diffuse="thumbs/reflect.png" fallback="DefaultFile.png">$INFO[ListItem.Icon]</texture>
-					</control>
+					<include content="ViewArtworkReflect">
+						<param name="art">$INFO[ListItem.Label,resource://resource.images.musicgenreicons.text/,.jpg]</param>
+						<param name="fallback">DefaultGenre.png</param>
+					</include>
 				</control>
-				<control type="image">
-					<bordersize>10</bordersize>
-					<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
+				<include content="ViewArtwork">
+					<param name="art">$INFO[ListItem.Label,resource://resource.images.musicgenreicons.text/,.jpg]</param>
+					<param name="fallback">DefaultGenre.png</param>
+					<param name="diffuse">diffuse/rounded5-532x532.png</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>Container.Content(genres) + !String.Contains(ListItem(1).FolderPath,music)</visible>
+				<include>AnimationVisibleFade</include>
+				<top>130</top>
+				<left>1278</left>
+				<width>552</width>
+				<height>820</height>
+				<control type="group">
+					<visible>!Skin.HasSetting(View50HideReflect)</visible>
+					<top>805</top>
+					<height>820</height>
+					<include content="ViewArtworkReflect">
+						<param name="art">$VAR[GenreIconVar]</param>
+						<param name="fallback">DefaultGenre.png</param>
+					</include>
 				</control>
+				<include content="ViewArtwork">
+					<param name="art">$VAR[GenreIconVar]</param>
+					<param name="fallback">DefaultGenre.png</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos) | String.IsEqual(ListItem.DBTYPE,song) | String.IsEqual(ListItem.DBTYPE,musicvideo)</visible>
+				<top>398</top>
+				<left>1278</left>
+				<width>552</width>
+				<height>552</height>
+				<control type="group">
+					<visible>!Skin.HasSetting(View50AlbumCase)</visible>
+					<control type="image">
+						<visible>!Skin.HasSetting(View50HideDiscArt)</visible>
+						<include>AnimationDiscArtLibrary</include>
+						<top>-241</top>
+						<left>25</left>
+						<width>502</width>
+						<height>502</height>
+						<fadetime>TextureFadeTime</fadetime>
+						<aspectratio>keep</aspectratio>
+						<texture diffuse="diffuse/disc.png" background="true">$VAR[LibraryAudioDiscArtVar]</texture>
+					</control>
+					<control type="group">
+						<visible>!Skin.HasSetting(View50HideReflect)</visible>
+						<top>537</top>
+						<height>552</height>
+						<include>ViewArtworkReflect</include>
+					</control>
+					<include content="ViewArtwork">
+						<param name="diffuse">diffuse/rounded5-532x532.png</param>
+					</include>
+				</control>
+				<control type="group">
+					<visible>Skin.HasSetting(View50AlbumCase)</visible>
+					<top>40</top>
+					<width>552</width>
+					<height>512</height>
+					<control type="image">
+						<visible>!Skin.HasSetting(View50HideDiscArt)</visible>
+						<include>AnimationDiscArtLibrary</include>
+						<top>-211</top>
+						<left>65</left>
+						<width>462</width>
+						<height>462</height>
+						<fadetime>TextureFadeTime</fadetime>
+						<aspectratio>keep</aspectratio>
+						<texture diffuse="diffuse/disc.png" background="true">$VAR[LibraryAudioDiscArtVar]</texture>
+					</control>
+					<control type="group">
+						<visible>!Skin.HasSetting(View50HideReflect)</visible>
+						<top>497</top>
+						<height>552</height>
+						<include>ViewArtworkAudioCaseReflect</include>
+					</control>
+					<include>ViewArtworkAudioCase</include>
+				</control>
+			</control>
+			<control type="group">
+				<visible>![Container.Content(movies) | Container.Content(episodes) | String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,episode) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(actors) | Container.Content(directors) | Container.Content(countries) | Container.Content(studios) | Container.Content(genres) | Container.Content(albums) | Container.Content(songs) | Container.Content(musicvideos) | String.IsEqual(ListItem.DBTYPE,song) | String.IsEqual(ListItem.DBTYPE,musicvideo)]</visible>
+				<top>398</top>
+				<left>1278</left>
+				<width>552</width>
+				<height>552</height>
 				<control type="image">
-					<bordersize>10</bordersize>
+					<visible>Container.Content(artists) + !Skin.HasSetting(View50HideLogo)</visible>
+					<top>-258</top>
+					<left>10</left>
+					<width>532</width>
+					<height>268</height>
 					<fadetime>TextureFadeTime</fadetime>
-					<aspectratio scalediffuse="false">keep</aspectratio>
-					<texture background="true" diffuse="diffuse/rounded5-532x532.png" fallback="DefaultFile.png">$INFO[ListItem.Icon]</texture>
+					<aspectratio>keep</aspectratio>
+					<texture background="true">$VAR[ClearLogoVar]</texture>
 				</control>
-				<control type="image">
-					<texture background="true" border="20">thumbs/overlay.png</texture>
+				<control type="group">
+					<visible>!Skin.HasSetting(View50HideReflect)</visible>
+					<top>537</top>
+					<height>552</height>
+					<include content="ViewArtworkReflect">
+						<param name="art">$VAR[PosterVar]</param>
+						<param name="fallback">DefaultFile.png</param>
+					</include>
 				</control>
+				<include content="ViewArtwork">
+					<param name="art">$VAR[PosterVar]</param>
+					<param name="fallback">DefaultFile.png</param>
+					<param name="diffuse">diffuse/rounded5-532x532.png</param>
+				</include>
 			</control>
 		</control>
 		<!-- Media flags -->
