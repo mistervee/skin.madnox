@@ -54,9 +54,14 @@
 			<texture>colors/black50.png</texture>
 		</control>
 		<control type="image">
-		 	<include>FullScreenDimensions</include>
+			<include>FullScreenDimensions</include>
 			<texture colordiffuse="$VAR[BackgroundTextureColorVar]">$INFO[Skin.String(BackgroundTexture.texture)]</texture>
 			<visible>!Skin.HasSetting(MusicOSDDisableBackgroundTexture) + !String.IsEmpty(Skin.String(BackgroundTexture.texture))</visible>
+		</control>
+		<control type="image">
+			<include>FullScreenDimensions</include>
+			<texture colordiffuse="$VAR[BackgroundShadowColorVar]">panels/patterns/shadow.png</texture>
+			<visible>!Skin.HasSetting(MusicOSDDisableBackgroundShadow) + Skin.HasSetting(BackgroundShadow)</visible>
 		</control>
 		<!-- Background scroll labels -->
 		<control type="fadelabel">
