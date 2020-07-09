@@ -850,6 +850,28 @@
 				<textcolor>$VAR[PanelTextColorVar]</textcolor>
 				<label>$INFO[ListItem.Label]</label>
 			</control>
+			<control type="group">
+				<visible>$PARAM[watchedstatus]</visible>
+				<control type="image">
+					<top>$PARAM[watchedstatustop]</top>
+					<right>18</right>
+					<width>45</width>
+					<height>45</height>
+					<aspectratio>keep</aspectratio>
+					<texture colordiffuse="$VAR[PanelHighlightColorVar]">$VAR[WidgetWatchedSatusIndicatorVar]</texture>
+				</control>
+				<control type="label">
+					<visible>Skin.HasSetting(EnableWidgetEpisodeCountStatus) + Integer.IsGreater(Container.ListItem.Property(unwatchedepisodes),0)</visible>
+					<top>$PARAM[watchedstatustop]</top>
+					<right>18</right>
+					<width>45</width>
+					<height>45</height>
+					<align>center</align>
+					<font>Font20_Cond_Bold</font>
+					<label>$INFO[Container.ListItem.Property(unwatchedepisodes)]</label>
+					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+				</control>
+			</control>
 			<control type="image">
 				<texture border="20" colordiffuse="$VAR[MainMenuWidgetColorVar]">thumbs/overlay.png</texture>
 			</control>
@@ -916,6 +938,28 @@
 					<font>$PARAM[font1]</font>
 					<textcolor>$VAR[PanelTextColorVar]</textcolor>
 					<label>$INFO[ListItem.Label]</label>
+				</control>
+				<control type="group">
+					<visible>$PARAM[watchedstatus]</visible>
+					<control type="image">
+						<top>$PARAM[watchedstatustop]</top>
+						<right>18</right>
+						<width>45</width>
+						<height>45</height>
+						<aspectratio>keep</aspectratio>
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]">$VAR[WidgetWatchedSatusIndicatorVar]</texture>
+					</control>
+					<control type="label">
+						<visible>Skin.HasSetting(EnableWidgetEpisodeCountStatus) + Integer.IsGreater(Container.ListItem.Property(unwatchedepisodes),0)</visible>
+						<top>$PARAM[watchedstatustop]</top>
+						<right>18</right>
+						<width>45</width>
+						<height>45</height>
+						<align>center</align>
+						<font>Font20_Cond_Bold</font>
+						<label>$INFO[Container.ListItem.Property(unwatchedepisodes)]</label>
+						<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+					</control>
 				</control>
 				<control type="image">
 					<texture border="20">thumbs/overlay.png</texture>
@@ -1629,4 +1673,11 @@
 			</control>
 		</definition>
 	</include>
+	<variable name="WidgetWatchedSatusIndicatorVar">
+		<value condition="!Skin.HasSetting(DisableWidgetResumeStatus) + ListItem.IsResumable">overlays/list/OverlayResume.png</value>
+		<value condition="!Skin.HasSetting(DisableWidgetWatchedStatus) + Integer.IsGreater(ListItem.PlayCount,0)">overlays/list/OverlayWatched.png</value>
+		<value condition="Skin.HasSetting(EnableWidgetUnwatchedStatus) + Integer.IsEqual(ListItem.PlayCount,0)">overlays/list/OverlayUnWatched.png</value>
+		<value condition="Skin.HasSetting(EnableWidgetEpisodeCountStatus) + Integer.IsGreater(ListItem.Property(unwatchedepisodes),0)">overlays/list/OverlayUnWatched.png</value>
+		<value condition="Skin.HasSetting(EnableWidgetEpisodeCountStatus) + String.IsEqual(ListItem.DBTYPE,tvshow) + !Integer.IsGreater(ListItem.Property(unwatchedepisodes),0)">overlays/list/OverlayWatched.png</value>
+	</variable>
 </includes>

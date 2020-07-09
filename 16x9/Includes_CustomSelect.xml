@@ -826,6 +826,59 @@
 			<selected>!Skin.HasSetting(DisableViewLandscapeWall)</selected>
 		</control>
 	</include>
+	<!-- Enable/Disable watched status indicators -->
+	<include name="WatchedStatusSettings">
+		<control type="radiobutton" id="102">
+			<label>$LOCALIZE[16102]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(DisableWatchedStatus)</onclick>
+			<selected>!Skin.HasSetting(DisableWatchedStatus)</selected>
+		</control>
+		<control type="radiobutton" id="103">
+			<label>$LOCALIZE[16101]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(EnableUnwatchedStatus)</onclick>
+			<selected>Skin.HasSetting(EnableUnwatchedStatus)</selected>
+		</control>
+		<control type="radiobutton" id="104">
+			<label>$LOCALIZE[13404]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(DisableResumeStatus)</onclick>
+			<selected>!Skin.HasSetting(DisableResumeStatus)</selected>
+		</control>
+		<control type="radiobutton" id="105">
+			<label>$LOCALIZE[31364]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(EnableEpisodeCountStatus)</onclick>
+			<selected>Skin.HasSetting(EnableEpisodeCountStatus)</selected>
+		</control>
+	</include>
+	<include name="WidgetWatchedStatusSettings">
+		<control type="radiobutton" id="102">
+			<label>$LOCALIZE[16102]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(DisableWidgetWatchedStatus)</onclick>
+			<selected>!Skin.HasSetting(DisableWidgetWatchedStatus)</selected>
+		</control>
+		<control type="radiobutton" id="103">
+			<label>$LOCALIZE[16101]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(EnableWidgetUnwatchedStatus)</onclick>
+			<selected>Skin.HasSetting(EnableWidgetUnwatchedStatus)</selected>
+		</control>
+		<control type="radiobutton" id="104">
+			<label>$LOCALIZE[13404]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(DisableWidgetResumeStatus)</onclick>
+			<selected>!Skin.HasSetting(DisableWidgetResumeStatus)</selected>
+		</control>
+		<control type="radiobutton" id="105">
+			<label>$LOCALIZE[31364]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(EnableWidgetEpisodeCountStatus)</onclick>
+			<selected>Skin.HasSetting(EnableWidgetEpisodeCountStatus)</selected>
+		</control>
+	</include>
 	<!-- Top bar -->
 	<include name="TopbarSettings">
 		<control type="radiobutton" id="102">
@@ -2242,17 +2295,4 @@
 			<onclick>Skin.SetString(MainMenuTexture.texture,panels/mainmenu/wrinkles.png)</onclick>
 		</item>
 	</include>
-
-<onclick condition="String.IsEmpty(BackgroundTexture.texture)">Skin.SetString(BackgroundTexture.texture,panels/patterns/brushed.png)</onclick>
-							<onclick condition="Skin.String(BackgroundTexture.texture,panels/patterns/brushed.png)">Skin.SetString(BackgroundTexture.texture,panels/patterns/carbon.png)</onclick>
-							<onclick condition="Skin.String(BackgroundTexture.texture,panels/patterns/carbon.png)">Skin.SetString(BackgroundTexture.texture,panels/patterns/gradient.png)</onclick>
-							<onclick condition="Skin.String(BackgroundTexture.texture,panels/patterns/carbon.png)">Skin.SetString(BackgroundTexture.texture,panels/patterns/concrete.png)</onclick>
-							<onclick condition="Skin.String(BackgroundTexture.texture,panels/patterns/concrete.png)">Skin.SetString(BackgroundTexture.texture,panels/patterns/pixels.png)</onclick>
-							<onclick condition="Skin.String(BackgroundTexture.texture,panels/patterns/pixels.png)">Skin.SetString(BackgroundTexture.texture,colors/white90.png)</onclick>
-							<onclick condition="Skin.String(BackgroundTexture.texture,colors/white90.png)">Skin.SetString(BackgroundTexture.texture,panels/patterns/mud.png)</onclick>
-							<onclick condition="Skin.String(BackgroundTexture.texture,panels/patterns/mud.png)">Skin.SetString(BackgroundTexture.texture,panels/patterns/steelplate.png)</onclick>
-							<onclick condition="Skin.String(BackgroundTexture.texture,panels/patterns/steelplate.png)">Skin.SetString(BackgroundTexture.texture,panels/patterns/wallpaper.png)</onclick>
-							<onclick condition="Skin.String(BackgroundTexture.texture,panels/patterns/wallpaper.png)">Skin.SetString(BackgroundTexture.texture,panels/patterns/wood.png)</onclick>
-							<onclick condition="Skin.String(BackgroundTexture.texture,panels/patterns/wood.png)">Skin.SetString(BackgroundTexture.texture,panels/patterns/wrinkles.png)</onclick>
-							<onclick condition="Skin.String(BackgroundTexture.texture,panels/patterns/wrinkles.png)">Skin.Reset(BackgroundTexture.texture)</onclick>
 </includes>

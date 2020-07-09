@@ -56,12 +56,15 @@
 						<include content="ViewArtwork">
 							<param name="art">$VAR[BannerVar]</param>
 							<param name="texturefadetime">0</param>
+							<param name="watchedstatusvisible">!Skin.HasSetting(View532DisableWatchedStatus)</param>
 							<param name="diffuse">diffuse/rounded5-480x91.png</param>
 						</include>
 					</control>
 					<control type="group">
 						<visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner)) + String.IsEmpty(ListItem.Art(artist.banner))</visible>
-						<include>ViewBannerFallback</include>
+						<include content="ViewBannerFallback">
+							<param name="watchedstatusvisible">!Skin.HasSetting(View532DisableWatchedStatus)</param>
+						</include>
 					</control>
 				</itemlayout>
 				<focusedlayout height="111.4" width="500">
@@ -77,12 +80,15 @@
 							<include content="ViewArtwork">
 								<param name="art">$VAR[BannerVar]</param>
 								<param name="texturefadetime">0</param>
+								<param name="watchedstatusvisible">!Skin.HasSetting(View532DisableWatchedStatus)</param>
 								<param name="diffuse">diffuse/rounded5-480x91.png</param>
 							</include>
 						</control>
 						<control type="group">
 							<visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner)) + String.IsEmpty(ListItem.Art(artist.banner))</visible>
-							<include>ViewBannerFallback</include>
+							<include content="ViewBannerFallback">
+								<param name="watchedstatusvisible">!Skin.HasSetting(View532DisableWatchedStatus)</param>
+							</include>
 						</control>
 					</control>
 				</focusedlayout>

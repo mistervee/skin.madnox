@@ -708,12 +708,40 @@
 			<param name="biglistvisible">$PARAM[biglistvisible]</param>
 		</include>
 	</include>
+	<include name="ViewWatchedStatus">
+		<param name="visible">false</param>
+		<param name="top">18</param>
+		<definition>
+			<control type="group">
+				<visible>$PARAM[visible] + !ListItem.IsParentFolder + [String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,set)| String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season) | String.IsEqual(ListItem.DBTYPE,episode)]</visible>
+				<control type="image">
+					<top>$PARAM[top]</top>
+					<right>18</right>
+					<width>45</width>
+					<height>45</height>
+					<aspectratio>keep</aspectratio>
+					<texture colordiffuse="$VAR[PanelHighlightColorVar]">$VAR[WatchedSatusIndicatorVar]</texture>
+				</control>
+				<control type="label">
+					<visible>Skin.HasSetting(EnableEpisodeCountStatus) + Integer.IsGreater(Container.ListItem.Property(unwatchedepisodes),0)</visible>
+					<top>$PARAM[top]</top>
+					<right>18</right>
+					<width>45</width>
+					<height>45</height>
+					<align>center</align>
+					<font>Font20_Cond_Bold</font>
+					<label>$INFO[Container.ListItem.Property(unwatchedepisodes)]</label>
+					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+				</control>
+			</control>
+		</definition>
+	</include>
 	<include name="ViewArtwork">
 		<param name="aspect">scale</param>
 		<param name="art">$VAR[PosterVar]</param>
 		<param name="fallback">DefaultFile.png</param>
 		<param name="texturefadetime">TextureFadeTime</param>
-		<param name="overlayiconvisible">true</param>
+		<param name="watchedstatusvisible">false</param>
 		<param name="diffuse">diffuse/rounded5-532x800.png</param>
 		<definition>
 			<control type="image">
@@ -734,31 +762,21 @@
 				<aspectratio scalediffuse="false">$PARAM[aspect]</aspectratio>
 				<texture background="true" diffuse="$PARAM[diffuse]" fallback="$PARAM[fallback]">$PARAM[art]</texture>
 			</control>
-			<!-- <control type="image">
-				<visible>$PARAM[overlayiconvisible]</visible>
-				<top>18</top>
-				<right>18</right>
-				<width>45</width>
-				<height>45</height>
-				<aspectratio>keep</aspectratio>
-				<texture colordiffuse="$VAR[PanelHighlightColorVar]">$VAR[VideoInfoOverlayVar]</texture>
-			</control>
-			<control type="label">
-				<visible>$PARAM[overlayiconvisible] + Integer.IsGreater(Container.ListItem.Property(unwatchedepisodes),0)</visible>
-				<top>20</top>
-				<right>20</right>
-				<width>40</width>
-				<height>40</height>
-				<align>center</align>
-				<font>Font20_Cond_Bold</font>
-				<label>$INFO[Container.ListItem.Property(unwatchedepisodes)]</label>
-				<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
-			</control> -->
+			<include content="ViewWatchedStatus">
+				<param name="visible">$PARAM[watchedstatusvisible]</param>
+			</include>
 			<control type="image">
 				<texture border="20">thumbs/overlay.png</texture>
 			</control>
 		</definition>
 	</include>
+	<variable name="WatchedSatusIndicatorVar">
+		<value condition="!Skin.HasSetting(DisableResumeStatus) + ListItem.IsResumable">overlays/list/OverlayResume.png</value>
+		<value condition="!Skin.HasSetting(DisableWatchedStatus) + Integer.IsGreater(ListItem.PlayCount,0)">overlays/list/OverlayWatched.png</value>
+		<value condition="Skin.HasSetting(EnableUnwatchedStatus) + Integer.IsEqual(ListItem.PlayCount,0)">overlays/list/OverlayUnWatched.png</value>
+		<value condition="Skin.HasSetting(EnableEpisodeCountStatus) + Integer.IsGreater(ListItem.Property(unwatchedepisodes),0)">overlays/list/OverlayUnWatched.png</value>
+		<value condition="Skin.HasSetting(EnableEpisodeCountStatus) + String.IsEqual(ListItem.DBTYPE,tvshow) + !Integer.IsGreater(ListItem.Property(unwatchedepisodes),0)">overlays/list/OverlayWatched.png</value>
+	</variable>
 	<include name="ViewArtworkReflect">
 		<param name="aspect">scale</param>
 		<param name="art">$VAR[PosterVar]</param>
@@ -812,6 +830,9 @@
 					<textcolor>$VAR[PanelTextColorVar]</textcolor>
 					<label>$INFO[ListItem.Label]</label>
 				</control>
+				<include content="ViewWatchedStatus">
+					<param name="visible">$PARAM[watchedstatusvisible]</param>
+				</include>
 				<control type="image">
 					<texture border="20">thumbs/overlay.png</texture>
 				</control>
@@ -820,6 +841,7 @@
 	</include>
 	<include name="ViewBannerFallback">
 		<param name="font">Font33_Bold</param>
+		<param name="watchedstatusvisible">false</param>
 		<definition>
 			<control type="image">
 				<bordersize>10</bordersize>
@@ -853,6 +875,9 @@
 				<textcolor>$VAR[PanelTextColorVar]</textcolor>
 				<label>$INFO[ListItem.Label]</label>
 			</control>
+			<include content="ViewWatchedStatus">
+				<param name="visible">$PARAM[watchedstatusvisible]</param>
+			</include>
 			<control type="image">
 				<texture border="20">thumbs/overlay.png</texture>
 			</control>
@@ -889,6 +914,8 @@
 		<param name="logoheight">53</param>
 		<param name="bordersize">19,63,19,23</param>
 		<param name="texturefadetime">TextureFadeTime</param>
+		<param name="watchedstatustop">18</param>
+		<param name="watchedstatusvisible">false</param>
 		<param name="art">$VAR[PosterVar]</param>
 		<param name="videocase">$VAR[VideoCaseVar]</param>
 		<param name="studioicon">$VAR[StudioIconsVar]</param>
@@ -920,6 +947,10 @@
 					<aspectratio>stretch</aspectratio>
 					<texture background="true" fallback="DefaultFile.png">$PARAM[art]</texture>
 				</control>
+				<include content="ViewWatchedStatus">
+					<param name="top">$PARAM[watchedstatustop]</param>
+					<param name="visible">$PARAM[watchedstatusvisible]</param>
+				</include>
 				<control type="image">
 					<fadetime>$PARAM[texturefadetime]</fadetime>
 					<texture background="true" border="15">$PARAM[videocase]</texture>
@@ -1176,13 +1207,16 @@
 					<include content="ViewArtwork">
 						<param name="aspect">stretch</param>
 						<param name="texturefadetime">0</param>
+						<param name="watchedstatusvisible">!Skin.HasSetting(View56DisableWatchedStatus)</param>
 						<param name="art">$VAR[BannerVar]</param>
 						<param name="diffuse">diffuse/rounded5-547x103.png</param>
 					</include>
 				</control>
 				<control type="group">
 					<visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner)) + String.IsEmpty(ListItem.Art(artist.banner))</visible>
-					<include>ViewBannerFallback</include>
+					<include content="ViewBannerFallback">
+						<param name="watchedstatusvisible">!Skin.HasSetting(View56DisableWatchedStatus)</param>
+					</include>
 				</control>
 			</itemlayout>
 			<focusedlayout width="712" height="156">
@@ -1199,13 +1233,16 @@
 						<include content="ViewArtwork">
 							<param name="aspect">stretch</param>
 							<param name="texturefadetime">0</param>
+							<param name="watchedstatusvisible">!Skin.HasSetting(View56DisableWatchedStatus)</param>
 							<param name="art">$VAR[BannerVar]</param>
 							<param name="diffuse">diffuse/rounded5-547x103.png</param>
 						</include>
 					</control>
 					<control type="group">
 						<visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner)) + String.IsEmpty(ListItem.Art(artist.banner))</visible>
-						<include>ViewBannerFallback</include>
+						<include content="ViewBannerFallback">
+							<param name="watchedstatusvisible">!Skin.HasSetting(View56DisableWatchedStatus)</param>
+						</include>
 					</control>
 				</control>
 			</focusedlayout>
@@ -2203,6 +2240,61 @@
 			</control>
 		</definition>
 	</include>
+
+	<include name="CascadeItemPortrait2">
+		<param name="item"></param>
+		<param name="reflecttop"></param>
+		<param name="logoheight"></param>
+		<param name="caseborder"></param>
+		<param name="casereflectborder"></param>
+		<param name="diffuse"></param>
+		<definition>
+			<visible>!String.IsEmpty(Container.ListItemNoWrap($PARAM[item]).FolderPath) | !Skin.HasSetting(View506FixedList)</visible>
+			<left>40</left>
+			<top>0</top>
+			<width>450</width>
+			<height>665</height>
+			<control type="group">
+				<visible>!Skin.HasSetting(View506VideoCase) | Container.Content(genres)</visible>
+				<!-- <animation effect="zoom" end="$PARAM[zoom]" reversible="false" condition="Container(506).OnNext">Conditional</animation> -->
+				<control type="group">
+					<visible>!Skin.HasSetting(View506HideReflect)</visible>
+					<include content="ViewArtworkReflect">
+						<param name="aspect">scale</param>
+						<param name="art">$VAR[ShowcaseItem$PARAM[item]Var]</param>
+						<param name="texturefadetime">0</param>
+					</include>
+				</control>
+				<include content="ViewArtwork">
+					<param name="aspect">scale</param>
+					<param name="art">$VAR[ShowcaseItem$PARAM[item]Var]</param>
+					<param name="texturefadetime">0</param>
+					<param name="watchedstatusvisible">true</param>
+					<param name="diffuse">diffuse/rounded5-430x645.png</param>
+				</include>
+			</control>
+			<control  type="group">
+				<visible>Skin.HasSetting(View506VideoCase) + !Container.Content(genres)</visible>
+				<control type="group">
+					<visible>!Skin.HasSetting(View506HideReflect)</visible>
+					<include content="ViewArtworkVideoCaseReflect">
+						<param name="aspect">scale</param>
+						<param name="art">$VAR[PosterVar]</param>
+						<param name="texturefadetime">0</param>
+						<param name="bordersize">17,53,17,20</param>
+					</include>
+				</control>
+				<include content="ViewArtworkVideoCase">
+					<param name="logoheight">43</param>
+					<param name="texturefadetime">0</param>
+					<param name="bordersize">17,20,17,53</param>
+					<param name="watchedstatusvisible">true</param>
+				</include>
+			</control>
+		</definition>
+	</include>
+
+
 	<include name="CascadeItemPortrait">
 		<param name="item"></param>
 		<param name="reflecttop"></param>
@@ -2210,6 +2302,10 @@
 		<param name="caseborder"></param>
 		<param name="casereflectborder"></param>
 		<param name="diffuse"></param>
+		<param name="watchedstatussize">45</param>
+		<param name="watchedstatusoffset">18</param>
+		<param name="watchedstatustop">18</param>
+		<param name="watchedstatusfont">Font20_Cond_Bold</param>
 		<definition>
 			<visible>!String.IsEmpty(Container.ListItemNoWrap($PARAM[item]).FolderPath) | !Skin.HasSetting(View506FixedList)</visible>
 			<control type="group">
@@ -2236,6 +2332,25 @@
 					<bordersize>10</bordersize>
 					<aspectratio scalediffuse="false">scale</aspectratio>
 					<texture background="true" diffuse="$PARAM[diffuse]">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+				</control>
+				<control type="group">
+					<visible>!ListItem($PARAM[item]).IsParentFolder + !Skin.HasSetting(View506DisableWatchedStatus)</visible>
+					<top>$PARAM[watchedstatusoffset]</top>
+					<right>$PARAM[watchedstatusoffset]</right>
+					<width>$PARAM[watchedstatussize]</width>
+					<height>$PARAM[watchedstatussize]</height>
+					<control type="image">
+						<aspectratio>keep</aspectratio>
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]">$VAR[ShowcaseWatchedSatus$PARAM[item]Var]</texture>
+					</control>
+					<control type="label">
+						<visible>Skin.HasSetting(EnableEpisodeCountStatus) + Integer.IsGreater(Container.ListItem($PARAM[item]).Property(unwatchedepisodes),0)</visible>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>$PARAM[watchedstatusfont]</font>
+						<label>$INFO[Container.ListItem($PARAM[item]).Property(unwatchedepisodes)]</label>
+						<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+					</control>
 				</control>
 				<control type="image">
 					<texture border="20">thumbs/overlay.png</texture>
@@ -2283,6 +2398,25 @@
 					<bordersize>$PARAM[caseborder]</bordersize>
 					<aspectratio scalediffuse="false">stretch</aspectratio>
 					<texture background="true">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+				</control>
+				<control type="group">
+					<visible>!ListItem($PARAM[item]).IsParentFolder + !Skin.HasSetting(View506DisableWatchedStatus)</visible>
+					<top>$PARAM[watchedstatustop]</top>
+					<right>$PARAM[watchedstatusoffset]</right>
+					<width>$PARAM[watchedstatussize]</width>
+					<height>$PARAM[watchedstatussize]</height>
+					<control type="image">
+						<aspectratio>keep</aspectratio>
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]">$VAR[ShowcaseWatchedSatus$PARAM[item]Var]</texture>
+					</control>
+					<control type="label">
+						<visible>Skin.HasSetting(EnableEpisodeCountStatus) + Integer.IsGreater(Container.ListItem($PARAM[item]).Property(unwatchedepisodes),0)</visible>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>$PARAM[watchedstatusfont]</font>
+						<label>$INFO[Container.ListItem($PARAM[item]).Property(unwatchedepisodes)]</label>
+						<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+					</control>
 				</control>
 				<control type="image">
 					<texture background="true" border="15">$VAR[ShowcaseCase$PARAM[item]Var]</texture>
@@ -2432,14 +2566,24 @@
 					<aspectratio scalediffuse="false">scale</aspectratio>
 					<texture background="true" diffuse="diffuse/rounded5-250x376.png">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
 				</control>
-				<!-- <control type="image">
-					<top>10</top>
-					<right>10</right>
-					<width>70</width>
-					<height>70</height>
-					<aspectratio>keep</aspectratio>
-					<texture>$VAR[ShowcaseOverlay$PARAM[item]Var]</texture>
-				</control> -->
+				<control type="group">
+					<visible>!ListItem($PARAM[item]).IsParentFolder + !Skin.HasSetting(View508DisableWatchedStatus)</visible>
+					<top>18</top>
+					<right>18</right>
+					<width>45</width>
+					<height>45</height>
+					<control type="image">
+						<aspectratio>keep</aspectratio>
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]">$VAR[ShowcaseWatchedSatus$PARAM[item]Var]</texture>
+					</control>
+					<control type="label">
+						<visible>Skin.HasSetting(EnableEpisodeCountStatus) + Integer.IsGreater(Container.ListItem($PARAM[item]).Property(unwatchedepisodes),0)</visible>
+						<align>center</align>
+						<font>Font20_Cond_Bold</font>
+						<label>$INFO[Container.ListItem($PARAM[item]).Property(unwatchedepisodes)]</label>
+						<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+					</control>
+				</control>
 				<control type="image">
 					<texture border="20">thumbs/overlay.png</texture>
 				</control>
@@ -2475,16 +2619,34 @@
 					<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
 				</control>
 				<control type="image">
-					<visible>ListItem($PARAM[item]).IsParentFolder</visible>
+					<visible>ListItem($PARAM[item]).IsParentFolder | String.StartsWith(ListItem($PARAM[item]).Label,*)</visible>
 					<bordersize>10</bordersize>
-					<aspectratio>scale</aspectratio>
+					<aspectratio>keep</aspectratio>
 					<texture>$INFO[ListItem($PARAM[item]).Icon]</texture>
 				</control>
 				<control type="image">
-					<visible>!ListItem($PARAM[item]).IsParentFolder</visible>
+					<visible>!ListItem($PARAM[item]).IsParentFolder + !String.StartsWith(ListItem($PARAM[item]).Label,*)</visible>
 					<bordersize>17,37,17,19</bordersize>
 					<aspectratio scalediffuse="false">stretch</aspectratio>
 					<texture background="true">$VAR[ShowcaseItem$PARAM[item]Var]</texture>
+				</control>
+				<control type="group">
+					<visible>!ListItem($PARAM[item]).IsParentFolder + !Skin.HasSetting(View508DisableWatchedStatus)</visible>
+					<top>39</top>
+					<right>18</right>
+					<width>45</width>
+					<height>45</height>
+					<control type="image">
+						<aspectratio>keep</aspectratio>
+						<texture colordiffuse="$VAR[PanelHighlightColorVar]">$VAR[ShowcaseWatchedSatus$PARAM[item]Var]</texture>
+					</control>
+					<control type="label">
+						<visible>Skin.HasSetting(EnableEpisodeCountStatus) + Integer.IsGreater(Container.ListItem($PARAM[item]).Property(unwatchedepisodes),0)</visible>
+						<align>center</align>
+						<font>Font20_Cond_Bold</font>
+						<label>$INFO[Container.ListItem($PARAM[item]).Property(unwatchedepisodes)]</label>
+						<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+					</control>
 				</control>
 				<control type="image">
 					<texture background="true" border="15">$VAR[ShowcaseCase$PARAM[item]Var]</texture>

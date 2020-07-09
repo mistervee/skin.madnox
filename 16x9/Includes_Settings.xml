@@ -200,16 +200,17 @@
 					<selected>String.IsEqual(Container(211).ListItem.Property(widgetCaseMusic.$PARAM[id]),true)</selected>
 					<include>SettingsRadioButton</include>
 				</control>
-				<!-- <control type="radiobutton" id="80$PARAM[id]9">
-					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetStyle.$PARAM[id])) + !String.IsEqual(Container(211).ListItem.Property(widget.$PARAM[id]),info)</visible>
-					<label>$LOCALIZE[29915]</label>
-					<onclick condition="!String.IsEmpty(Container(211).ListItem.Property(widgetInfo.$PARAM[id]))">SetProperty(customProperty,widgetInfo.$PARAM[id])</onclick>
-					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetInfo.$PARAM[id]))">SetProperty(customProperty,widgetInfo.$PARAM[id])</onclick>
-					<onclick condition="String.IsEmpty(Container(211).ListItem.Property(widgetInfo.$PARAM[id]))">SetProperty(customValue,true)</onclick>
+				<control type="radiobutton" id="80$PARAM[id]9">
+					<visible>!String.IsEmpty(Container(211).ListItem.Property(widgetPath.$PARAM[id])) + [String.IsEqual(Container(211).ListItem.Property(widgetType.$PARAM[id]),movies) | String.IsEqual(Container(211).ListItem.Property(widgetType.$PARAM[id]),episodes) | String.IsEqual(Container(211).ListItem.Property(widgetType.$PARAM[id]),tvshows) | String.IsEqual(Container(211).ListItem.Property(widgetType.$PARAM[id]),musicvideos)]</visible>
+					<label>$LOCALIZE[31363]</label>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetWatchedStatus.$PARAM[id]),false)">SetProperty(customProperty,widgetWatchedStatus.$PARAM[id])</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetWatchedStatus.$PARAM[id]),false)">SetProperty(customValue,true)</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetWatchedStatus.$PARAM[id]),true)">SetProperty(customProperty,widgetWatchedStatus.$PARAM[id])</onclick>
+					<onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetWatchedStatus.$PARAM[id]),true)">SetProperty(customValue,false)</onclick>
 					<onclick>SendClick(404)</onclick>
-					<selected>!String.IsEmpty(Container(211).ListItem.Property(widgetInfo.$PARAM[id]))</selected>
+					<selected>String.IsEqual(Container(211).ListItem.Property(widgetWatchedStatus.$PARAM[id]),true)</selected>
 					<include>SettingsRadioButton</include>
-				</control> -->
+				</control>
 			</control>
 		</definition>
 	</include>
