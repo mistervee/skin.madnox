@@ -770,13 +770,6 @@
 			</control>
 		</definition>
 	</include>
-	<variable name="WatchedSatusIndicatorVar">
-		<value condition="!Skin.HasSetting(DisableResumeStatus) + ListItem.IsResumable">overlays/list/OverlayResume.png</value>
-		<value condition="!Skin.HasSetting(DisableWatchedStatus) + Integer.IsGreater(ListItem.PlayCount,0)">overlays/list/OverlayWatched.png</value>
-		<value condition="Skin.HasSetting(EnableUnwatchedStatus) + Integer.IsEqual(ListItem.PlayCount,0)">overlays/list/OverlayUnWatched.png</value>
-		<value condition="Skin.HasSetting(EnableEpisodeCountStatus) + Integer.IsGreater(ListItem.Property(unwatchedepisodes),0)">overlays/list/OverlayUnWatched.png</value>
-		<value condition="Skin.HasSetting(EnableEpisodeCountStatus) + String.IsEqual(ListItem.DBTYPE,tvshow) + !Integer.IsGreater(ListItem.Property(unwatchedepisodes),0)">overlays/list/OverlayWatched.png</value>
-	</variable>
 	<include name="ViewArtworkReflect">
 		<param name="aspect">scale</param>
 		<param name="art">$VAR[PosterVar]</param>
@@ -921,7 +914,7 @@
 		<param name="studioicon">$VAR[StudioIconsVar]</param>
 		<definition>
 			<control type="group">
-				<visible>ListItem.IsParentFolder | String.Contains(ListItem.Label,*)</visible>
+				<visible>ListItem.IsParentFolder</visible>
 				<control type="image">
 					<bordersize>10</bordersize>
 					<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
@@ -936,7 +929,7 @@
 				</control>
 			</control>
 			<control type="group">
-				<visible>!ListItem.IsParentFolder + !String.Contains(ListItem.Label,*)</visible>
+				<visible>!ListItem.IsParentFolder</visible>
 				<control type="image">
 					<bordersize>$PARAM[bordersize]</bordersize>
 					<texture colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
@@ -972,7 +965,7 @@
 		<param name="texturefadetime">TextureFadeTime</param>
 		<definition>
 			<control type="group">
-				<visible>ListItem.IsParentFolder | String.Contains(ListItem.Label,*)</visible>
+				<visible>ListItem.IsParentFolder</visible>
 				<control type="image">
 					<bordersize>10</bordersize>
 					<texture diffuse="thumbs/reflect.png" flipy="true" colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
@@ -985,7 +978,7 @@
 				</control>
 			</control>
 			<control type="group">
-				<visible>!ListItem.IsParentFolder + !String.Contains(ListItem.Label,*)</visible>
+				<visible>!ListItem.IsParentFolder</visible>
 				<control type="image">
 					<bordersize>$PARAM[bordersize]</bordersize>
 					<texture diffuse="thumbs/reflect.png" flipy="true" colordiffuse="ff000000" border="10">buttons/thumb-select-focus.png</texture>
