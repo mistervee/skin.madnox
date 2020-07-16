@@ -17,22 +17,22 @@
 				<orientation>horizontal</orientation>
 				<usecontrolcoords>true</usecontrolcoords>
 				<control type="label">
-					<visible>!String.IsEmpty(Window(Home).Property(NextAired.NextDay)) | !String.IsEmpty(Window(Home).Property(NextAired.LatestDay))</visible>
+					<visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Last_Aired))</visible>
 					<include>MediaFlagLabelFull</include>
 					<label>$VAR[TVShowAirDateLabelVar]</label>
 				</control>
 				<control type="label">
-					<visible>!String.IsEmpty(Window(Home).Property(NextAired.StatusID))</visible>
+					<visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status))</visible>
 					<width>135.5</width>
 					<include>MediaFlagLabel</include>
 					<label>$VAR[NextAiredStausLabelVar]</label>
 				</control>
 				<control type="image">
-					<visible>!String.IsEmpty(Window(Home).Property(NextAired.StatusID))</visible>
+					<visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status))</visible>
 					<left>-145.5</left>
 					<width>135.5</width>
 					<include>MediaFlagImage</include>
-					<texture>$VAR[MediaFlagsPathVar]nextaired/$INFO[Window(Home).Property(NextAired.StatusID)].png</texture>
+					<texture>$VAR[MediaFlagsPathVar]nextaired/$INFO[Window(Home).Property(TMDbHelper.ListItem.Status)].png</texture>
 				</control>
 				<control type="image">
 					<visible>!String.IsEmpty(ListItem.FolderName)</visible>
@@ -76,20 +76,20 @@
 					<include>MediaFlagImage</include>
 				</control>
 				<control type="label">
-					<visible>!String.IsEmpty(Window(Home).Property(NextAired.NextDay)) | !String.IsEmpty(Window(Home).Property(NextAired.LatestDay))</visible>
+					<visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Last_Aired))</visible>
 					<width>135.5</width>
 					<include>MediaFlagLabel</include>
 					<label>$VAR[NextAiredStausLabelVar]</label>
 				</control>
 				<control type="image">
-					<visible>!String.IsEmpty(Window(Home).Property(NextAired.StatusID))</visible>
+					<visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status))</visible>
 					<left>-145.5</left>
 					<width>135.5</width>
 					<include>MediaFlagImage</include>
-					<texture>$VAR[MediaFlagsPathVar]nextaired/$INFO[Window(Home).Property(NextAired.StatusID)].png</texture>
+					<texture>$VAR[MediaFlagsPathVar]nextaired/$INFO[Window(Home).Property(TMDbHelper.ListItem.Status)].png</texture>
 				</control>
 				<control type="label">
-					<visible>!String.IsEmpty(Window(Home).Property(NextAired.StatusID))</visible>
+					<visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status))</visible>
 					<align>left</align>
 					<include>MediaFlagLabelFull</include>
 					<label>$VAR[TVShowAirDateLabelVar]</label>
@@ -623,7 +623,7 @@
 				<orientation>horizontal</orientation>
 				<usecontrolcoords>true</usecontrolcoords>
 				<control type="label">
-					<visible>!String.IsEmpty(Window(Home).Property(NextAired.NextDay)) | !String.IsEmpty(Window(Home).Property(NextAired.LatestDay))</visible>
+					<visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Last_Aired))</visible>
 					<top>-2</top>
 					<width>251</width>
 					<align>right</align>
@@ -631,17 +631,17 @@
 					<label>$VAR[TVShowAirDateLabelVar]</label>
 				</control>
 				<control type="label">
-					<visible>!String.IsEmpty(Window(Home).Property(NextAired.StatusID))</visible>
+					<visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status))</visible>
 					<width>135.5</width>
 					<include>MediaFlagLabel</include>
 					<label>$VAR[NextAiredStausLabelVar]</label>
 				</control>
 				<control type="image">
-					<visible>!String.IsEmpty(Window(Home).Property(NextAired.StatusID))</visible>
+					<visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status))</visible>
 					<left>-145.5</left>
 					<width>135.5</width>
 					<include>MediaFlagImage</include>
-					<texture>$VAR[MediaFlagsPathVar]nextaired/$INFO[Window(Home).Property(NextAired.StatusID)].png</texture>
+					<texture>$VAR[MediaFlagsPathVar]nextaired/$INFO[Window(Home).Property(TMDbHelper.ListItem.Status)].png</texture>
 				</control>
 			</control>
 			<control type="grouplist">
@@ -972,20 +972,20 @@
 				<include>MediaFlagImage</include>
 			</control>
 			<control type="label">
-				<visible>[String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season)] + [!Control.HasFocus(1020) + !Control.HasFocus(1090) + !Control.HasFocus(1040)] + [!String.IsEmpty(Window(Home).Property(NextAired.NextDay)) | !String.IsEmpty(Window(Home).Property(NextAired.LatestDay))]</visible>
+				<visible>[String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season)] + [!Control.HasFocus(1020) + !Control.HasFocus(1090) + !Control.HasFocus(1040)] + [!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Last_Aired))]</visible>
 				<width>135.5</width>
 				<include>MediaFlagLabel</include>
 				<label>$VAR[NextAiredStausLabelVar]</label>
 			</control>
 			<control type="image">
-				<visible>[String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season)] + [!Control.HasFocus(1020) + !Control.HasFocus(1090) + !Control.HasFocus(1040)] + !String.IsEmpty(Window(Home).Property(NextAired.StatusID))</visible>
+				<visible>[String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season)] + [!Control.HasFocus(1020) + !Control.HasFocus(1090) + !Control.HasFocus(1040)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status))</visible>
 				<left>-145.5</left>
 				<width>135.5</width>
 				<include>MediaFlagImage</include>
-				<texture>$VAR[MediaFlagsPathVar]nextaired/$INFO[Window(Home).Property(NextAired.StatusID)].png</texture>
+				<texture>$VAR[MediaFlagsPathVar]nextaired/$INFO[Window(Home).Property(TMDbHelper.ListItem.Status)].png</texture>
 			</control>
 			<control type="label">
-				<visible>[String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season)] + [!Control.HasFocus(1020) + !Control.HasFocus(1090) + !Control.HasFocus(1040)] + !String.IsEmpty(Window(Home).Property(NextAired.StatusID))</visible>
+				<visible>[String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season)] + [!Control.HasFocus(1020) + !Control.HasFocus(1090) + !Control.HasFocus(1040)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status))</visible>
 				<align>left</align>
 				<include>MediaFlagLabelFull</include>
 				<label>$VAR[TVShowAirDateLabelVar]</label>
@@ -1201,6 +1201,47 @@
 			</control>
 		</control>
 	</include>
+	<include name="MediaFlagsNextAiredInfo">
+		<control type="grouplist">
+			<bottom>20</bottom>
+			<left>50</left>
+			<right>50</right>
+			<height>80</height>
+			<align>left</align>
+			<itemgap>10</itemgap>
+			<orientation>horizontal</orientation>
+			<usecontrolcoords>true</usecontrolcoords>
+			<control type="image">
+				<texture>$VAR[MediaFlagsPathVar]mpaa/$VAR[Container7007RatingFlagVar]</texture>
+				<include>MediaFlagImage</include>
+			</control>
+			<control type="image">
+				<visible>!String.IsEqual(Control.GetLabel(811112),none)</visible>
+				<bordersize>0,10,0,10</bordersize>
+				<texture>$VAR[StudioIconNextAiredVar]</texture>
+				<include>MediaFlagImage</include>
+			</control>
+			<control type="label">
+				<visible>!String.IsEmpty(Container(7007).ListItem.Status)</visible>
+				<width>135.5</width>
+				<include>MediaFlagLabel</include>
+				<label>$VAR[NextAiredStaus7007LabelVar]</label>
+			</control>
+			<control type="image">
+				<visible>!String.IsEmpty(Container(7007).ListItem.Status)</visible>
+				<left>-145.5</left>
+				<width>135.5</width>
+				<include>MediaFlagImage</include>
+				<texture>$VAR[MediaFlagsPathVar]nextaired/$INFO[Container(7007).ListItem.Status].png</texture>
+			</control>
+			<control type="label">
+				<visible>!String.IsEmpty(Container(7007).ListItem.Property(Last_Aired))</visible>
+				<align>left</align>
+				<include>MediaFlagLabelFull</include>
+				<label>$INFO[Container(7007).ListItem.Property(Last_Aired.Season)]$INFO[Container(7007).ListItem.Property(Last_Aired.Episode),x, ]$LOCALIZE[31064][B][CR]$INFO[Container(7007).ListItem.Property(Last_Aired)][/B]</label>
+			</control>
+		</control>
+	</include>
 	<include name="MediaFlagImage">
 		<width>125.5</width>
 		<height>80</height>
@@ -1262,23 +1303,26 @@
 	</include>
 	<!-- Variables -->
 	<variable name="TVShowAirDateLabelVar">
-		<value condition="!String.IsEmpty(Window(Home).Property(NextAired.NextDay))">$INFO[Window(Home).Property(NextAired.NextNumber),, ]$LOCALIZE[31063][B][CR]$INFO[Window(Home).Property(NextAired.NextDay),, ]$INFO[Window(Home).Property(NextAired.ShortTime)][/B]</value>
-		<value condition="String.IsEmpty(Window(Home).Property(NextAired.NextDay)) + !String.IsEmpty(Window(Home).Property(NextAired.LatestDay))">$INFO[Window(Home).Property(NextAired.LatestNumber),, ]$LOCALIZE[31064][B][CR]$INFO[Window(Home).Property(NextAired.LatestDay)][/B]</value>
+		<value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Next_Aired.Season)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Next_Aired.Episode),x, ]$LOCALIZE[31063][B][CR]$INFO[Window(Home).Property(TMDbHelper.ListItem.Next_Aired)][/B]</value>
+		<value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Last_Aired))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Last_Aired.Season)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Last_Aired.Episode),x, ]$LOCALIZE[31064][B][CR]$INFO[Window(Home).Property(TMDbHelper.ListItem.Last_Aired)][/B]</value>
 	</variable>
 	<variable name="NextAiredStausLabelVar">
-		<value condition="String.IsEqual(Window(Home).Property(NextAired.Today),True)">$LOCALIZE[33006]</value>
-		<value condition="String.Contains(Window(Home).Property(NextAired.StatusID),0)">$LOCALIZE[31011]</value>
-		<value condition="String.Contains(Window(Home).Property(NextAired.StatusID),1)">$LOCALIZE[31012]</value>
-		<value condition="String.Contains(Window(Home).Property(NextAired.StatusID),2)">$LOCALIZE[31013]</value>
-		<value condition="String.Contains(Window(Home).Property(NextAired.StatusID),4)">$LOCALIZE[31014]</value>
-		<value condition="String.Contains(Window(Home).Property(NextAired.StatusID),6)">$LOCALIZE[31015]</value>
-		<value condition="String.Contains(Window(Home).Property(NextAired.StatusID),-1)">$LOCALIZE[1446]</value>
+		<value condition="String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.Status),Returning)">$LOCALIZE[31011]</value>
+		<value>$INFO[Window(Home).Property(TMDbHelper.ListItem.Status)]</value>
+	</variable>
+	<variable name="NextAiredStaus7007LabelVar">
+		<value condition="String.StartsWith(Container(7007).ListItem.Status,Return)">$LOCALIZE[31011]</value>
+		<value>$INFO[Container(7007).ListItem.Status]</value>
 	</variable>
 	<variable name="StudioIconsVar">
 		<value condition="String.IsEqual(ListItem.DBTYPE,set) + !Skin.HasSetting(MediaFlagsColored)">flags/default/set.png</value>
 		<value condition="String.IsEqual(ListItem.DBTYPE,set) + Skin.HasSetting(MediaFlagsColored)">flags/colored/set.png</value>
 		<value condition="!String.IsEmpty(ListItem.Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem.Studio,resource://resource.images.studios.white/,.png]</value>
 		<value condition="!String.IsEmpty(ListItem.Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem.Studio,resource://resource.images.studios.coloured/,.png]</value>
+	</variable>
+	<variable name="StudioIconNextAiredVar">
+		<value condition="!String.IsEmpty(Container(8000).ListItem.Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[Container(8000).ListItem.Studio,resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(Container(8000).ListItem.Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[Container(8000).ListItem.Studio,resource://resource.images.studios.coloured/,.png]</value>
 	</variable>
 	<variable name="ContainerStudioIconsVar">
 		<value condition="!String.IsEmpty(Container.ListItem.Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[Container.ListItem.Studio,resource://resource.images.studios.white/,.png]</value>
@@ -1386,6 +1430,64 @@
 		<value condition="String.Contains(Container.ListItem.MPAA,NL-18)">NL-18.png</value>
 		<value condition="!String.IsEmpty(Container.ListItem.MPAA)">$INFO[Container.ListItem.MPAA,,.png]</value>
 		<value>NR.png</value>
+	</variable>
+	<variable name="Container7007RatingFlagVar">
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,NR)">NR.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,US:G) | String.Contains(Container(7007).ListItem.MPAA,USA:G) | String.Contains(Container(7007).ListItem.MPAA,Rated G) | String.Contains(Container(7007).ListItem.MPAA,Rated Approved) | String.Contains(Container(7007).ListItem.MPAA,Rated Passed)">G.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,PG-13)">PG-13.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,Rated PG) | String.IsEqual(Container(7007).ListItem.Mpaa,PG)">PG.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,US:R) | String.Contains(Container(7007).ListItem.MPAA,USA:R) | String.Contains(Container(7007).ListItem.MPAA,Rated R) | String.IsEqual(Container(7007).ListItem.MPAA,R)">R.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,US:NC-17) | String.Contains(Container(7007).ListItem.MPAA,USA:NC-17) | String.Contains(Container(7007).ListItem.MPAA,Rated NC-17)">NC-17.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,UK:U)">BBFC_U_Certificate_UK.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,UK:PG)">BBFC_PG_Certificate_UK.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,UK:12A)">BBFC_12A_Certificate_UK.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,UK:12)">BBFC_12_Certificate_UK.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,UK:15)">BBFC_15_Certificate_UK.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,UK:18)">BBFC_18_Certificate_UK.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,Germany:16) | String.Contains(Container(7007).ListItem.MPAA,ab 16) | String.IsEqual(Container(7007).ListItem.MPAA,16) | String.Contains(Container(7007).ListItem.MPAA,FSK 16) | String.Contains(Container(7007).ListItem.MPAA,Rated 16)">FSK-16.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,Germany:0) | String.Contains(Container(7007).ListItem.MPAA,ab 0) | String.IsEqual(Container(7007).ListItem.MPAA,0) | String.Contains(Container(7007).ListItem.MPAA,FSK 0) | String.Contains(Container(7007).ListItem.MPAA,Rated 0)">FSK-0.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,Germany:6) | String.Contains(Container(7007).ListItem.MPAA,ab 6) | String.IsEqual(Container(7007).ListItem.MPAA,6) | String.Contains(Container(7007).ListItem.MPAA,FSK 6) | String.Contains(Container(7007).ListItem.MPAA,Rated 6)">FSK-6.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,Germany:12) | String.Contains(Container(7007).ListItem.MPAA,ab 12) | String.IsEqual(Container(7007).ListItem.MPAA,12) | String.Contains(Container(7007).ListItem.MPAA,FSK 12) | String.Contains(Container(7007).ListItem.MPAA,Rated 12)">FSK-12.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,Germany:18) | String.Contains(Container(7007).ListItem.MPAA,ab 18) | String.IsEqual(Container(7007).ListItem.MPAA,18) | String.Contains(Container(7007).ListItem.MPAA,FSK 18) | String.Contains(Container(7007).ListItem.MPAA,Rated 18)">FSK-18.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,Germany) |String.Contains(Container(7007).ListItem.MPAA,FSK) | String.Contains(Container(7007).ListItem.MPAA,o.A) | String.Contains(Container(7007).ListItem.MPAA,Rated 0)">FSK-0.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,besorolás alatt)">HU_BA.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,korhatárra való tekintett nélkül megtekintetheto)">HU_KN.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,12 éven aluliak számára a megtekintése nagykorú felügyelete mellett ajánlott)">HU_12.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,16 éven aluliak számára nem ajánlott)">HU_16.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,18 éven aluliak számára nem ajánlott)">HU_18.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,France:U) | String.Contains(Container(7007).ListItem.MPAA,Tout public) | String.Contains(Container(7007).ListItem.MPAA,partir de 3 ans) | String.Contains(Container(7007).ListItem.MPAA,partir de 6 ans)">csaU.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,France:-10) | String.Contains(Container(7007).ListItem.MPAA,Interdit aux moins de 10 ans) | String.Contains(Container(7007).ListItem.MPAA,des propos ou des images peuvent heurter)">csa10.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,France:-12) | String.Contains(Container(7007).ListItem.MPAA,Interdit aux moins de 12 ans)">csa12.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,France:-16) | String.Contains(Container(7007).ListItem.MPAA,Interdit aux moins de 16 ans)">csa16.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,France:-18) | String.Contains(Container(7007).ListItem.MPAA,Interdit aux moins de 18 ans)">csa18.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,전체)">KR_Certificate_All.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,12세)">KR_Certificate_12.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,15세)">KR_Certificate_15.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,불가)">KR_Certificate_18.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,제한)">KR_Certificate_R.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,Brazil:Livre) | String.Contains(Container(7007).ListItem.MPAA,Livre)">MPAA_Brazil_Livre.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,Brazil:10) | String.Contains(Container(7007).ListItem.MPAA,10 anos)">MPAA_Brazil_10.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,Brazil:12) | String.Contains(Container(7007).ListItem.MPAA,12 anos)">MPAA_Brazil_12.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,Brazil:14) | String.Contains(Container(7007).ListItem.MPAA,14 anos)">MPAA_Brazil_14.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,Brazil:16) | String.Contains(Container(7007).ListItem.MPAA,16 anos)">MPAA_Brazil_16.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,Brazil:18) | String.Contains(Container(7007).ListItem.MPAA,18 anos)">MPAA_Brazil_18.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,Australia:)">$INFO[Container(7007).ListItem.MPAA,australia_,.png]</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,NL-AL)">NL-AL.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,NL-6)">NL-6.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,NL-9)">NL-9.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,NL-12)">NL-12.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,NL-16)">NL-16.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,NL-18)">NL-18.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,TV-14)">TV-14.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,TV-MA)">TV-MA.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,TV-PG)">TV-PG.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,TV-G)">TV-G.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,TV-Y7)">TV-Y7.png</value>
+		<value condition="String.Contains(Container(7007).ListItem.MPAA,TV-Y)">TV-Y.png</value>
+		<value condition="!String.IsEmpty(Container(7007).ListItem.MPAA)">$INFO[Container(7007).ListItem.MPAA,,.png]</value>
+		<value>NR.png</value>
+
+		$INFO[ListItem.MPAA]
 	</variable>
 	<variable name="FolderPathItemCountVar">
 		<value condition="ListItem.IsCollection">$LOCALIZE[342]</value>

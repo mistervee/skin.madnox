@@ -143,6 +143,10 @@
 		<value condition="!String.IsEmpty(ListItem.Duration)">$INFO[ListItem.Duration(hh), ,h]$INFO[ListItem.Duration(mm),,m  ]</value>
 		<value condition="!String.IsEmpty(ListItem.AddonVersion)">$INFO[ListItem.AddonVersion, v,  ]</value>
 	</variable>
+	<variable name="NextAiredDurationVar">
+		<value condition="!String.IsEmpty(Container(8000).ListItem.Duration) + !Integer.IsGreater(Container(8000).ListItem.Duration(h),0)">$INFO[Container(8000).ListItem.Duration(mm), ,m]$INFO[Container(8000).ListItem.Duration(ss),,s  ]</value>
+		<value condition="!String.IsEmpty(Container(8000).ListItem.Duration)">$INFO[Container(8000).ListItem.Duration(hh), ,h]$INFO[Container(8000).ListItem.Duration(mm),,m  ]</value>
+	</variable>
 	<variable name="ListViewIcon3Var">
 		<value condition="Window.IsActive(MyPVRChannels.xml)">$VAR[IconPathVar]next.png</value>
 		<value condition="!String.IsEmpty(ListItem.UserRating)">$VAR[IconPathVar]star.png</value>
@@ -741,12 +745,6 @@
 		<value condition="!String.IsEmpty(VideoPlayer.Tagline)">$INFO[VideoPlayer.Tagline]</value>
 		<value condition="!String.IsEmpty(VideoPlayer.TvShowTitle)">$INFO[VideoPlayer.TvShowTitle]</value>
 		<value condition="!String.IsEmpty(VideoPlayer.Artist)">$INFO[VideoPlayer.Artist]</value>
-		<value>$INFO[VideoPlayer.Genre]</value>
-	</variable>
-	<variable name="VideoPlayerInfoVar">
-		<value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)">$INFO[Window(Home).Property(NextAired.Status)]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Artist)">$INFO[VideoPlayer.Album]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Director)">$INFO[VideoPlayer.Director]</value>
 		<value>$INFO[VideoPlayer.Genre]</value>
 	</variable>
 	<variable name="VideoPlayerPlotVar">

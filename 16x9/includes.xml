@@ -2,7 +2,6 @@
 <includes>
 	<include file="Defaults.xml"/>
 	<include file="Variables.xml"/>
-
 	<include file="Includes_Temp.xml"/>
 	<include file="Includes_Themes.xml"/>
 	<include file="Includes_ThemeSelect.xml"/>
@@ -23,7 +22,6 @@
 	<include file="Includes_PVR.xml"/>
 	<include file="Includes_Settings.xml"/>
 	<include file="Includes_Topbar.xml"/>
-
 	<include file="View_050_CoverList.xml"/>
 	<include file="View_051_SimpleList.xml"/>
 	<include file="View_053_InfoList1.xml"/>
@@ -61,7 +59,7 @@
 	<!-- <include file="Custom_Overlay.xml"/> -->
 	<constant name="TextureFadeTime">480</constant>
 	<expression name="AreaVisibleHome">Window.IsVisible(home)</expression>
-	<expression name="AreaVisibleVideos">[Window.IsVisible(videos) | Window.IsVisible(videoplaylist)]</expression>
+	<expression name="AreaVisibleVideos">[Window.IsVisible(videos) | Window.IsVisible(videoplaylist) | Window.IsVisible(1102)]</expression>
 	<expression name="AreaVisibleTV">Window.IsVisible(tvchannels) | Window.IsVisible(tvrecordings) | Window.IsVisible(tvguide) | Window.IsVisible(tvtimers) | Window.IsVisible(tvsearch) | Window.IsVisible(tvtimerrules) | Window.IsVisible(fullscreenlivetv)</expression>
 	<expression name="AreaVisibleRadio">Window.IsVisible(radiochannels) | Window.IsVisible(radiorecordings) | Window.IsVisible(radioguide) | Window.IsVisible(radiotimers) | Window.IsVisible(radiosearch) | Window.IsVisible(radiotimerrules) | Window.IsVisible(fullscreenlivetv)</expression>
 	<expression name="AreaVisiblePVR">[Window.IsVisible(MyPVRChannels.xml) | Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRGuide.xml) | Window.IsVisible(MyPVRTimers.xml) | Window.IsVisible(MyPVRSearch.xml)]</expression>
@@ -71,20 +69,21 @@
 	<expression name="AreaVisibleAddons">[Window.IsVisible(1114) | Window.IsVisible(programs) | Window.IsVisible(addonbrowser)]</expression>
 	<expression name="AreaVisibleWeather">Window.IsVisible(weather)</expression>
 	<expression name="AreaVisibleSystem">Window.IsActive(settings) | Window.IsActive(SettingsCategory.xml) | Window.IsActive(profiles) |  Window.IsActive(skinsettings) | Window.IsActive(eventlog) | Window.IsActive(systeminfo) | Window.IsActive(filemanager) | Window.IsActive(script-skinshortcuts.xml)</expression>
-
 	<expression name="AddonAnimationOpenCondition">![Window.Previous(1114) | Window.Previous(programs) | Window.Previous(addonbrowser)]</expression>
 	<expression name="AddonAnimationCloseCondition">![Window.Next(1114) | Window.Next(programs) | Window.Next(addonbrowser)]</expression>
-
 	<expression name="SystemAnimationOpenCondition">![Window.Previous(settings) | Window.Previous(SettingsCategory.xml) | Window.Previous(skinsettings) | Window.Previous(profiles) | Window.Previous(systeminfo) | Window.Previous(eventlog) | Window.Previous(filemanager)]</expression>
 	<expression name="SystemAnimationCloseCondition">![Window.Next(settings) | Window.Next(SettingsCategory.xml) | Window.Next(skinsettings) | Window.Next(profiles) | Window.Next(systeminfo) | Window.Next(eventlog) | Window.Next(filemanager)]</expression>
 	<expression name="PVRAnimationOpenCondition">![Window.Previous(MyPVRChannels.xml) | Window.Previous(MyPVRGuide.xml) | Window.Previous(MyPVRRecordings.xml) | Window.Previous(MyPVRSearch.xml) | Window.Previous(MyPVRTimers.xml)]</expression>
 	<expression name="PVRAnimationCloseCondition">![Window.Next(MyPVRChannels.xml) | Window.Next(MyPVRGuide.xml) | Window.Next(MyPVRRecordings.xml) | Window.Next(MyPVRSearch.xml) | Window.Next(MyPVRTimers.xml)]</expression>
 	<include name="onunload_SkinSettings">
-		<onunload condition="Window.IsActive(startup) + System.HasAddon(script.tv.show.next.aired)">RunScript(script.tv.show.next.aired,silent=True)</onunload>
 		<onunload condition="!Skin.HasSetting(SmartShortcuts.playlists)">Skin.SetBool(SmartShortcuts.playlists)</onunload>
 		<onunload condition="!Skin.HasSetting(BlurEnabled)">Skin.ToggleSetting(BlurEnabled)</onunload>
 		<onunload condition="!Skin.HasSetting(BlurEnabled)">RunScript(script.embuary.helper,action=restartservice)</onunload>
 		<onunload condition="System.HasAddon(script.artistslideshow)">RunScript(script.artistslideshow,daemon=True)</onunload>
+		<onunload condition="System.HasAddon(plugin.video.themoviedb.helper)">Skin.SetBool(TMDbHelper.Service)</onunload>
+		<onunload condition="System.HasAddon(plugin.video.themoviedb.helper)">Skin.SetBool(TMDbHelper.DisableArtwork)</onunload>
+		<onunload condition="System.HasAddon(plugin.video.themoviedb.helper)">Skin.SetBool(TMDbHelper.DisablePersonStats)</onunload>
+		<onunload condition="System.HasAddon(plugin.video.themoviedb.helper)">Skin.SetBool(TMDbHelper.DisableExtendedProperties)</onunload>
 	</include>
 	<include name="ContainerScrollTime">
 		<scrolltime tween="sine">480</scrolltime>
