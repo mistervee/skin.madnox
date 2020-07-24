@@ -1306,6 +1306,14 @@
 		<value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Next_Aired.Season)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Next_Aired.Episode),x, ]$LOCALIZE[31063][B][CR]$INFO[Window(Home).Property(TMDbHelper.ListItem.Next_Aired)][/B]</value>
 		<value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Last_Aired))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Last_Aired.Season)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Last_Aired.Episode),x, ]$LOCALIZE[31064][B][CR]$INFO[Window(Home).Property(TMDbHelper.ListItem.Last_Aired)][/B]</value>
 	</variable>
+	<variable name="TVShowEmbuaryAirDateLabelVar">
+		<value condition="!String.IsEmpty(Container(10051).ListItem.Property(NextEpisode_date))">$INFO[Container(10051).ListItem.Property(NextEpisode_season)]$INFO[Container(10051).ListItem.Property(NextEpisode_number),x, ]$LOCALIZE[31064][B][CR]$INFO[Container(10051).ListItem.Property(NextEpisode_date)][/B]</value>
+		<value condition="!String.IsEmpty(Container(10051).ListItem.Property(LastEpisode_date))">$INFO[Container(10051).ListItem.Property(LastEpisode_season)]$INFO[Container(10051).ListItem.Property(LastEpisode_number),x, ]$LOCALIZE[31064][B][CR]$INFO[Container(10051).ListItem.Property(LastEpisode_date)][/B]</value>
+	</variable>
+	<variable name="NextAiredEmbuaryStausLabelVar">
+		<value condition="String.StartsWith(Container(10051).ListItem.Status,Returning)">$LOCALIZE[31011]</value>
+		<value>$INFO[Container(10051).ListItem.Status]</value>
+	</variable>
 	<variable name="NextAiredStausLabelVar">
 		<value condition="String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.Status),Returning)">$LOCALIZE[31011]</value>
 		<value>$INFO[Window(Home).Property(TMDbHelper.ListItem.Status)]</value>
@@ -1330,6 +1338,12 @@
 		<value condition="ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"></value>
 		<value condition="!String.IsEmpty(ListItem.Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem.Studio,resource://resource.images.studios.white/,.png]</value>
 		<value condition="!String.IsEmpty(ListItem.Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem.Studio,resource://resource.images.studios.coloured/,.png]</value>
+	</variable>
+	<variable name="EmbuaryStudioIconsVar">
+		<value condition="!String.IsEmpty(Container(10051).ListItem.Property(Network.0)) + !Skin.HasSetting(MediaFlagsColored)">$INFO[Container(10051).ListItem.Property(Network.0),resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(Container(10051).ListItem.Property(Network.0)) + Skin.HasSetting(MediaFlagsColored)">$INFO[Container(10051).ListItem.Property(Network.0),resource://resource.images.studios.coloured/,.png]</value>
+		<value condition="!String.IsEmpty(Container(10051).ListItem.Property(Studio.0)) + !Skin.HasSetting(MediaFlagsColored)">$INFO[Container(10051).ListItem.Property(Studio.0),resource://resource.images.studios.white/,.png]</value>
+		<value condition="!String.IsEmpty(Container(10051).ListItem.Property(Studio.0)) + Skin.HasSetting(MediaFlagsColored)">$INFO[Container(10051).ListItem.Property(Studio.0),resource://resource.images.studios.coloured/,.png]</value>
 	</variable>
 	<variable name="RatingFlagVar">
 		<value condition="String.Contains(ListItem.MPAA,NR)">NR.png</value>

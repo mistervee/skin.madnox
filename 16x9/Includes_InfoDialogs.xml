@@ -193,6 +193,7 @@
 						<visible>Skin.HasSetting(VideoInfoTMDb)</visible>
 						<label></label>
 						<label2>$LOCALIZE[31351]</label2>
+						<onclick>Dialog.Close(all)</onclick>
 						<onclick>$VAR[VideoInfoTMDbVar]</onclick>
 					</item>
 					<item id="104">
@@ -1629,12 +1630,20 @@
 		<value condition="!String.IsEmpty(ListItem.Property(Artist_Formed))">$INFO[ListItem.Property(Artist_Formed), ,  ]</value>
 		<value condition="!String.IsEmpty(ListItem.Property(Artist_Born))">$INFO[ListItem.Property(Artist_Born), ,  ]</value>
 	</variable>
+	<variable name="ViewEmbuaryInfoDateVar">
+		<value condition="!String.IsEmpty(Container(10051).ListItem.Premiered)">$INFO[Container(10051).ListItem.Premiered, ,  ]</value>
+		<value condition="!String.IsEmpty(Container(10051).ListItem.Year)">$INFO[Container(10051).ListItem.Year, ,  ]</value>
+	</variable>
 	<variable name="ViewInfoTimeVar">
 		<value condition="!String.IsEmpty(Container.ListItem.Duration) + !Integer.IsGreater(Container.ListItem.Duration(h),0)">$INFO[Container.ListItem.Duration(mm), ,m]$INFO[Container.ListItem.Duration(ss),,s  ]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Duration)">$INFO[Container.ListItem.Duration(hh), ,h]$INFO[Container.ListItem.Duration(mm),,m  ]</value>
 		<value condition="!Control.HasFocus(9002) + !Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"></value>
 		<value condition="!String.IsEmpty(ListItem.Duration) + !Integer.IsGreater(ListItem.Duration(h),0)">$INFO[ListItem.Duration(mm), ,m]$INFO[ListItem.Duration(ss),,s  ]</value>
 		<value condition="!String.IsEmpty(ListItem.Duration)">$INFO[ListItem.Duration(hh), ,h]$INFO[ListItem.Duration(mm),,m  ]</value>
+	</variable>
+	<variable name="ViewEmbuaryInfoTimeVar">
+		<value condition="!String.IsEmpty(Container(10051).ListItem.Duration) + !Integer.IsGreater(Container(10051).ListItem.Duration(h),0)">$INFO[Container(10051).ListItem.Duration(mm), ,m]$INFO[Container(10051).ListItem.Duration(ss),,s  ]</value>
+		<value condition="!String.IsEmpty(Container(10051).ListItem.Duration)">$INFO[Container(10051).ListItem.Duration(hh), ,h]$INFO[Container(10051).ListItem.Duration(mm),,m  ]</value>
 	</variable>
 	<variable name="ViewInfoRatingVar">
 		<value condition="!String.IsEmpty(Container.ListItem.UserRating)">$INFO[Container.ListItem.UserRating, ,.0  ]</value>
@@ -1668,6 +1677,11 @@
 		<value condition="Integer.IsGreater(ListItem.Rating(tomatometerallcritics),7.4) + Integer.IsGreater(ListItem.Votes(tomatometerallcritics),79)">flags/ratings/certified.png</value>
 		<value condition="Integer.IsGreater(ListItem.Rating(tomatometerallcritics),5.9)">flags/ratings/fresh.png</value>
 		<value condition="Integer.IsLess(ListItem.Rating(tomatometerallcritics),6.0)">flags/ratings/rotten.png</value>
+	</variable>
+		<variable name="ViewEmbuaryInfoRTAllCriticsIconVar">
+		<value condition="!String.IsEmpty(Container(10051).ListItem.Property(Rating.Rotten)) + Integer.IsGreater(Container(10051).ListItem.Property(Rating.Rotten),74) + Integer.IsGreater(Container(10051).ListItem.Property(Votes.Rotten),79)">flags/ratings/certified.png</value>
+		<value condition="!String.IsEmpty(Container(10051).ListItem.Property(Rating.Rotten)) + Integer.IsGreater(Container(10051).ListItem.Property(Rating.Rotten),59)">flags/ratings/fresh.png</value>
+		<value condition="!String.IsEmpty(Container(10051).ListItem.Property(Rating.Rotten)) + Integer.IsLess(Container(10051).ListItem.Property(Rating.Rotten),60)">flags/ratings/rotten.png</value>
 	</variable>
 	<variable name="ViewInfoRTAllCriticsLabelVar">
 		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallcritics),10)">10</value>
@@ -1721,6 +1735,10 @@
 		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"></value>
 		<value condition="Integer.IsGreater(ListItem.Rating(tomatometerallaudience),5.9)">flags/ratings/popcorn.png</value>
 		<value condition="Integer.IsLess(ListItem.Rating(tomatometerallaudience),6.0)">flags/ratings/popcorn2.png</value>
+	</variable>
+	<variable name="ViewEmbuaryInfoRTAllAudienceIconVar">
+		<value condition="!String.IsEmpty(Container(10051).ListItem.Property(Rating.Rotten_User)) + Integer.IsLess(Container(10051).ListItem.Property(Rating.Rotten_User),60)">flags/ratings/popcorn2.png</value>
+		<value condition="!String.IsEmpty(Container(10051).ListItem.Property(Rating.Rotten_User)) + !Integer.IsLess(Container(10051).ListItem.Property(Rating.Rotten_User),60)">flags/ratings/popcorn.png</value>
 	</variable>
 	<variable name="ViewInfoRTAllAudienceLabelVar">
 		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallaudience),10)">10</value>
@@ -1820,7 +1838,8 @@
 		<value condition="!String.IsEmpty(ListItem.Top250)">$INFO[ListItem.Top250, #,]</value>
 	</variable>
 	<variable name="VideoInfoFanartVar">
-		<value condition="ControlGroup(9001).HasFocus + !Control.HasFocus(1010)">$INFO[Container.ListItem.Art(fanart)]</value>
+		<value condition="Window.IsVisible(script-embuary-video.xml) + !String.IsEmpty(Container(10051).ListItem.Art(fanart))">$INFO[Container(10051).ListItem.Art(fanart)]</value>
+		<value condition="!Window.IsVisible(script-embuary-person.xml) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)">$INFO[Container.ListItem.Art(fanart)]</value>
 		<value>$INFO[ListItem.Art(fanart)]</value>
 	</variable>
 	<variable name="VideoInfoPosterVar">
@@ -1882,6 +1901,11 @@
 		<value condition="String.IsEqual(ListItem.DBType,episode)">$INFO[ListItem.TvShowTitle]</value>
 		<value>$INFO[ListItem.Genre]</value>
 	</variable>
+	<variable name="EmbuaryInfoSubtitleVar">
+		<value condition="!String.IsEmpty(Container(10051).ListItem.Tagline)">$INFO[Container(10051).ListItem.Tagline]</value>
+		<value condition="String.IsEqual(Container(10051).ListItem.DBType,season)">$INFO[Container(10051).ListItem.Season,$LOCALIZE[20373] ]</value>
+		<value>$INFO[Container(10051).ListItem.Genre]</value>
+	</variable>
 	<variable name="VideoInfoPlotVar">
 		<value condition="Skin.HasSetting(VideoInfoPlotOutline) + !String.IsEmpty(Container.ListItem.PlotOutline)">$INFO[Container.ListItem.PlotOutline]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Plot)">$INFO[Container.ListItem.Plot]</value>
@@ -1914,6 +1938,42 @@
 		<value condition="Container(9000).HasFocus(108)">$LOCALIZE[31346] $INFO[ListItem.Writer]</value>
 		<value condition="Container(9000).HasFocus(109) | Control.HasFocus(1090)">$LOCALIZE[31347]</value>
 	</variable>
+	<variable name="EmbuaryInfoVideoContainerIcon">
+		<value condition="Container(9000).HasFocus(101) | Control.HasFocus(10052)">$VAR[IconPathVar]star.png</value>
+		<value condition="Container(9000).HasFocus(102) | Control.HasFocus(10056)">$VAR[IconPathVar]person.png</value>
+		<value condition="Container(9000).HasFocus(103) | Control.HasFocus(10057)">$VAR[IconPathVar]set.png</value>
+		<value condition="Container(9000).HasFocus(104) | Control.HasFocus(10058)">$VAR[IconPathVar]set.png</value>
+		<value condition="Container(9000).HasFocus(105) | Control.HasFocus(10053)">$VAR[IconPathVar]similar.png</value>
+		<value condition="Container(9000).HasFocus(106) | Control.HasFocus(10054)">$VAR[IconPathVar]videos.png</value>
+	</variable>
+	<variable name="EmbuaryInfoVideoContainerLabel">
+		<value condition="Control.HasFocus(10052)">$INFO[Container(10052).ListItem.Label,, ]$INFO[Container(10052).ListItem.Label2,$LOCALIZE[20347] ]</value>
+		<value condition="Container(9000).HasFocus(101)">$LOCALIZE[206]</value>
+		<value condition="Control.HasFocus(10056) + !String.IsEqual(Container(10051).ListItem.DBType,season)">$INFO[Container(10056).ListItem.Label2,, - ]$INFO[Container(10056).ListItem.Label]</value>
+		<value condition="Container(9000).HasFocus(102) + !String.IsEqual(Container(10051).ListItem.DBType,season)">$ADDON[script.embuary.info 32018]</value>
+		<value condition="Control.HasFocus(10056) + String.IsEqual(Container(10051).ListItem.DBType,season)">$INFO[Container(10056).ListItem.Label,, ]$INFO[Container(10056).ListItem.Label2,$LOCALIZE[20347] ]</value>
+		<value condition="Container(9000).HasFocus(102) + String.IsEqual(Container(10051).ListItem.DBType,season)">$ADDON[script.embuary.info 32039]</value>
+		<value condition="Control.HasFocus(10057)">$INFO[Container(10057).ListItem.Label]$INFO[Container(10057).ListItem.Year, (,)]</value>
+		<value condition="Container(9000).HasFocus(103)">$INFO[Container(10051).ListItem.Property(Collection)]</value>
+		<value condition="Control.HasFocus(10058)">$INFO[Container(10058).ListItem.Season,$LOCALIZE[20373] ]</value>
+		<value condition="Container(9000).HasFocus(104)">$LOCALIZE[33054]</value>
+		<value condition="Control.HasFocus(10053)">$INFO[Container(10053).ListItem.Label]$INFO[Container(10053).ListItem.Year, (,)]</value>
+		<value condition="Container(9000).HasFocus(105)">$LOCALIZE[31347]</value>
+		<value condition="Control.HasFocus(10054)">$INFO[Container(10054).ListItem.Label]</value>
+		<value condition="Container(9000).HasFocus(106)">$LOCALIZE[10025]</value>
+	</variable>
+	<variable name="EmbuaryInfoPersonContainerIcon">
+		<value condition="Container(9000).HasFocus(101) | Control.HasFocus(10052)">$VAR[IconPathVar]movies.png</value>
+		<value condition="Container(9000).HasFocus(102) | Control.HasFocus(10053)">$VAR[IconPathVar]tvshows.png</value>
+		<value condition="Container(9000).HasFocus(103) | Control.HasFocus(10054)">$VAR[IconPathVar]pictures.png</value>
+	</variable>
+	<variable name="EmbuaryInfoPersonContainerLabel">
+		<value condition="Control.HasFocus(10052)">$INFO[Container(10051).ListItem.Label,, ]$INFO[Container(10052).ListItem.Property(Role),$LOCALIZE[20347] ]</value>
+		<value condition="Container(9000).HasFocus(101)">$INFO[Container(10051).ListItem.Label,$LOCALIZE[31366] ]</value>
+		<value condition="Control.HasFocus(10053)">$INFO[Container(10051).ListItem.Label,, ]$INFO[Container(10053).ListItem.Property(Role),$LOCALIZE[20347] ]</value>
+		<value condition="Container(9000).HasFocus(102)">$INFO[Container(10051).ListItem.Label,$LOCALIZE[31367] ]</value>
+		<value condition="Container(9000).HasFocus(103) | Control.HasFocus(10054)">$LOCALIZE[1213]</value>
+	</variable>
 	<variable name="VideoInfoCastContent">
 		<value condition="String.IsEqual(ListItem.DBType,movie) + Integer.IsGreater(ListItem.DBID,0)">plugin://script.embuary.helper?info=getcast&amp;type=movie&amp;dbid=$INFO[ListItem.DBID]</value>
 		<value condition="String.IsEqual(ListItem.DBType,tvshow) + Integer.IsGreater(ListItem.DBID,0)">plugin://script.embuary.helper?info=getcast&amp;type=tvshow&amp;dbid=$INFO[ListItem.DBID]</value>
@@ -1925,10 +1985,11 @@
 		<value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)">plugin://script.embuary.helper/?info=getsimilar&amp;dbid=$INFO[ListItem.DBID]&amp;type=tvshow</value>
 	</variable>
 	<variable name="VideoInfoOverlayVar">
-		<value condition="ListItem.IsResumable">overlays/list/OverlayResume.png</value>
-		<value condition="Integer.IsGreater(ListItem.PlayCount,0)">overlays/list/OverlayWatched.png</value>
-		<value condition="Integer.IsGreater(ListItem.Property(unwatchedepisodes),0)">overlays/list/OverlayUnWatched.png</value>
-		<value condition="String.IsEqual(ListItem.DBTYPE,tvshow) + !Integer.IsGreater(ListItem.Property(unwatchedepisodes),0)">overlays/list/OverlayWatched.png</value>
+		<value condition="ListItem.IsResumable | Container.ListItem.IsResumable">overlays/list/OverlayResume.png</value>
+		<value condition="Integer.IsGreater(ListItem.PlayCount,0) | Integer.IsGreater(Container.ListItem.PlayCount,0)">overlays/list/OverlayWatched.png</value>
+		<value condition="Integer.IsGreater(ListItem.Property(unwatchedepisodes),0) | Integer.IsGreater(Container.ListItem.Property(unwatchedepisodes),0)">overlays/list/OverlayUnWatched.png</value>
+		<value condition="String.IsEqual(ListItem.DBTYPE,tvshow) + !String.IsEmpty(Container.ListItem.Property(unwatchedepisodes))">overlays/list/OverlayWatched.png</value>
+		<value condition="Window.IsVisible(script-embuary-person.xml) + !String.IsEmpty(Container.ListItem.DBID)">overlays/list/OverlayLocal.png</value>
 	</variable>
 	<variable name="MusicInfoPosterVar">
 		<value condition="!String.IsEmpty(Container.ListItem.Art(poster))">$INFO[Container.ListItem.Art(poster)]</value>
