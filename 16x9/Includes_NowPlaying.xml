@@ -899,6 +899,11 @@
 		<aspectratio>scale</aspectratio>
 		<fadetime>TextureFadeTime</fadetime>
 	</include>
+	<include name="VideoOSDProcessInfo">
+		<height>39</height>
+		<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+		<disabledcolor>$VAR[PanelDisabledTextColorVar]</disabledcolor>
+	</include>
 	<!-- Variables -->
 	<variable name="NowPlayingInfo1Var">
 		<value condition="VideoPlayer.Content(episodes)">$INFO[VideoPlayer.TVShowTitle]</value>
@@ -967,7 +972,6 @@
 		<value condition="!Skin.HasSetting(DisablePlotOutline) + !String.IsEmpty(VideoPlayer.PlotOutline)">$INFO[VideoPlayer.PlotOutline]</value>
 		<value condition="!String.IsEmpty(VideoPlayer.Plot)">$INFO[VideoPlayer.Plot]</value>
 	</variable>
-
 	<variable name="NowPlayingVideoDiscArtVar">
 		<value condition="!String.IsEmpty(Player.Art(discart))">$INFO[Player.Art(discart)]</value>
 		<value condition="Skin.String(NowPlayingVideoDiscArtFallback,none)"></value>
@@ -1027,10 +1031,6 @@
 		<value condition="Skin.String(NowPlayingMusicDiscArtFallback,red)">$LOCALIZE[31191]</value>
 		<value>CD</value>
 	</variable>
-
-
-
-
 	<variable name="MusicOSDInfoLabelVar">
 		<value condition="Skin.String(MusicOSDInfo,off)">$LOCALIZE[16039]</value>
 		<value condition="Skin.String(MusicOSDInfo,persistant)">$LOCALIZE[31194]</value>
@@ -1065,7 +1065,6 @@
 		<value condition="!String.IsEmpty(Skin.String(MusicOSDBackground))">$INFO[Skin.String(MusicOSDBackground)]</value>
 		<value>$LOCALIZE[20445]</value>
 	</variable>
-
 	<variable name="LyricTextColorVar">
 		<value condition="!Skin.HasSetting(MusicOSDDisableAnimatedLyrics)">00FFFFFF</value>
 		<value>$VAR[PanelSubTextColorVar]</value>
@@ -1078,7 +1077,6 @@
 		<value condition="!Skin.HasSetting(MusicOSDDisableAnimatedLyrics)">00FFFFFF</value>
 		<value>$VAR[PanelShadowColorVar]</value>
 	</variable>
-
 	<variable name="NowPlayingHomeMovieInfoLabelVar">
 		<value condition="Skin.String(NowPlayingHomeMovieInfo,cast)">$LOCALIZE[206]</value>
 		<value condition="Skin.String(NowPlayingHomeMovieInfo,plot)">$LOCALIZE[21821]</value>
@@ -1106,7 +1104,6 @@
 		<value condition="Skin.String(NowPlayingHomeAudioInfo,none)">$LOCALIZE[231]</value>
 		<value>$LOCALIZE[29915]</value>
 	</variable>
-
 	<variable name="VideoOSDCoverLabelVar">
 		<value condition="Skin.String(VideoOSDCover,off)">$LOCALIZE[16039]</value>
 		<value condition="Skin.String(VideoOSDCover,persistant)">$LOCALIZE[31194]</value>
@@ -1133,26 +1130,26 @@
 	</variable>
 	<variable name="VideoOSDSeasonNumberVar">
 		<value condition="String.StartsWith(VideoPlayer.Episode,S)">$INFO[VideoPlayer.Episode]</value>
-		<value condition="Integer.IsGreater(VideoPlayer.Season,9) + Integer.IsGreater(VideoPlayer.Episode,9)">$INFO[VideoPlayer.Season,S]$INFO[VideoPlayer.Episode,E]</value>
-		<value condition="Integer.IsGreater(VideoPlayer.Season,9) + !Integer.IsGreater(VideoPlayer.Episode,9)">$INFO[VideoPlayer.Season,S]$INFO[VideoPlayer.Episode,E0]</value>
-		<value condition="Integer.IsGreater(VideoPlayer.Episode,9)">$INFO[VideoPlayer.Season,S0]$INFO[VideoPlayer.Episode,E]</value>
-		<value>$INFO[VideoPlayer.Season,S0]$INFO[VideoPlayer.Episode,E0]</value>
+		<value>$INFO[VideoPlayer.Season,,x]$INFO[VideoPlayer.Episode]</value>
 	</variable>
 	<variable name="VideoOSDLabelVar">
 		<value condition="!String.IsEmpty(Player.SeekStepSize)">$LOCALIZE[773] $INFO[Player.SeekStepSize]</value>
-		<value condition="Player.Paused">$LOCALIZE[112]</value>
-		<value condition="Player.Forwarding">$LOCALIZE[31198] $VAR[VideoOSDSeekLabelVar]</value>
-		<value condition="Player.Rewinding">$LOCALIZE[31199] $VAR[VideoOSDSeekLabelVar]</value>
+		<value condition="Player.Paused + Skin.HasSetting(VideoOSDDisableSeekIcon)">$LOCALIZE[112]</value>
+		<value condition="Player.Forwarding + Skin.HasSetting(VideoOSDDisableSeekIcon)">$LOCALIZE[31198] $VAR[VideoOSDSeekLabelVar]</value>
+		<value condition="Player.Rewinding + Skin.HasSetting(VideoOSDDisableSeekIcon)">$LOCALIZE[31199] $VAR[VideoOSDSeekLabelVar]</value>
 		<value condition="VideoPlayer.Content(episodes)">$INFO[VideoPlayer.TVShowTitle,, - ]$VAR[VideoOSDSeasonNumberVar,, ]$INFO[Player.Title]</value>
 		<value condition="!String.IsEmpty(VideoPlayer.Artist)">$INFO[VideoPlayer.Artist,, - ]$INFO[Player.Title]</value>
 		<value condition="VideoPlayer.Content(livetv)">$INFO[VideoPlayer.ChannelName,, - ]$INFO[Player.Title]</value>
-		<value>$INFO[Player.Title]</value>
+		<value condition="Player.ChapterCount + !Player.ShowInfo + !Skin.String(VideoOSDInfo,persistant)">$INFO[Player.Title]$INFO[Player.Chapter, ($LOCALIZE[21396] ]$INFO[Player.ChapterCount,/,)]</value>
+		<value condition="Player.ChapterCount + [Player.ShowInfo | Skin.String(VideoOSDInfo,persistant)]">$INFO[Player.Chapter,$LOCALIZE[21396] ]$INFO[Player.ChapterCount,/]</value>
+		<value condition="!Player.ChapterCount + !Player.ShowInfo + !Skin.String(VideoOSDInfo,persistant)">$INFO[Player.Title]</value>
 	</variable>
-	<include name="VideoOSDProcessInfo">
-		<height>39</height>
-		<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
-		<disabledcolor>$VAR[PanelDisabledTextColorVar]</disabledcolor>
-	</include>
+	<variable name="VideoOSDTimeVar">
+		<value condition="!VideoPlayer.Content(livetv) + !Skin.HasSetting(VideoOSDTimeRemaining)">$INFO[Player.Time(hh:mm:ss)]$INFO[Player.Duration(hh:mm:ss), / ]</value>
+		<value condition="!VideoPlayer.Content(livetv) + Skin.HasSetting(VideoOSDTimeRemaining)">$INFO[Player.TimeRemaining(hh:mm:ss)]$INFO[Player.Duration(hh:mm:ss), / ]</value>
+		<value condition="VideoPlayer.Content(livetv) + !Skin.HasSetting(VideoOSDTimeRemaining)">$INFO[PVR.EpgEventElapsedTime(hh:mm:ss)]$INFO[PVR.EpgEventDuration(hh:mm:ss), / ]</value>
+		<value condition="VideoPlayer.Content(livetv) + Skin.HasSetting(VideoOSDTimeRemaining)">$INFO[PVR.EpgEventRemainingTime(hh:mm:ss)]$INFO[PVR.EpgEventDuration(hh:mm:ss), / ]</value>
+	</variable>
 	<variable name="VideoOSDSeekIconVar">
 		<value condition="Player.Paused"></value>
 		<value condition="Player.Rewinding"></value>
