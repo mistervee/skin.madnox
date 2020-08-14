@@ -19,10 +19,11 @@
 		<control type="list" id="7002">
 			<visible>String.StartsWith(ListItem.FolderPath,videodb)</visible>
 			<include>HiddenList</include>
-			<content>$INFO[ListItem.FolderPath]</content>
+			<content>$VAR[VideoFolderPathVar]</content>
 		</control>
 		<!-- Subfolder fanart -->
 		<control type="fadelabel" id="7003">
+			<visible>!ListItem.IsParentFolder + [Container.Content(genres) | Container.Content(years) | Container.Content(actors) | Container.Content(directors) | Container.Content(studios) | Container.Content(countries) | Container.Content(artists) | Container.Content(albums)]</visible>
 			<top>-1000</top>
 			<width>1</width>
 			<height>1</height>

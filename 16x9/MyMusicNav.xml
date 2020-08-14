@@ -19,10 +19,11 @@
 		<control type="list" id="7002">
 			<visible>String.StartsWith(ListItem.FolderPath,musicdb)</visible>
 			<include>HiddenList</include>
-			<content>$INFO[ListItem.FolderPath]</content>
+			<content>$VAR[MusicFolderPathVar]</content>
 		</control>
 		<!-- Subfolder fanart -->
 		<control type="fadelabel" id="7003">
+			<visible>!ListItem.IsParentFolder + [Container.Content(genres) | Container.Content(years)]</visible>
 			<top>-1000</top>
 			<width>1</width>
 			<height>1</height>
@@ -118,12 +119,6 @@
 			<include condition="!Skin.HasSetting(DisableViewSquareWall)">View541SquareWall</include>
 			<include condition="!Skin.HasSetting(DisableViewBannerWall)">View542BannerWall</include>
 			<include condition="!Skin.HasSetting(DisableViewLandscapeWall)">View543LandscapeWall</include>
-			<!-- Hidden - Album/Song count -->
-			<control type="list" id="811111">
-				<visible>String.StartsWith(ListItem.FolderPath,musicdb)</visible>
-				<include>HiddenList</include>
-				<content>$INFO[ListItem.FolderPath]</content>
-			</control>
 			<!-- Studio Logo check if image exists -->
 			<control type="image" id="811112">
 				<include>HiddenObject</include>
