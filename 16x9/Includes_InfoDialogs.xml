@@ -1504,6 +1504,19 @@
 				<label>$VAR[ViewInfoTVDBRatingVar]</label>
 			</control>
 			<control type="image">
+				<visible>!String.IsEmpty(Control.GetLabel(5310))</visible>
+				<width>50</width>
+				<height>35</height>
+				<aspectratio>keep</aspectratio>
+				<texture>flags/ratings/tmdb.png</texture>
+			</control>
+			<control type="label" id="5310">
+				<width>auto</width>
+				<font>Font30_Reg</font>
+				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				<label>$VAR[ViewInfoTMDBRatingVar]</label>
+			</control>
+			<control type="image">
 				<visible>!String.IsEmpty(Control.GetLabel(5305))</visible>
 				<width>50</width>
 				<height>35</height>
@@ -1668,6 +1681,11 @@
 		<value condition="!String.IsEmpty(Container(7005).ListItem.Rating(imdb))">$INFO[Container(7005).ListItem.Rating(imdb), ,  ]</value>
 		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"/>
 		<value condition="!String.IsEmpty(ListItem.Rating(imdb))">$INFO[ListItem.Rating(imdb), ,  ]</value>
+	</variable>
+	<variable name="ViewInfoTMDBRatingVar">
+		<value condition="!String.IsEmpty(Container(7005).ListItem.Rating(themoviedb))">$INFO[Container(7005).ListItem.Rating(themoviedb), ,  ]</value>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"/>
+		<value condition="!String.IsEmpty(ListItem.Rating(themoviedb))">$INFO[ListItem.Rating(themoviedb), ,  ]</value>
 	</variable>
 	<variable name="ViewInfoRTAllCriticsIconVar">
 		<value condition="!String.IsEmpty(Container(7005).ListItem.Rating(tomatometerallcritics)) + Integer.IsGreater(Container(7005).ListItem.Rating(tomatometerallcritics),7.4) + Integer.IsGreater(Container(7005).ListItem.Votes(tomatometerallaudience),79)">flags/ratings/certified.png</value>
