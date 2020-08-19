@@ -5,8 +5,8 @@
 	<onload>ClearProperty(skinshortcuts-CoverBackground,Home)</onload>
 	<onunload>ClearProperty(skinshortcuts-Widget,Home)</onunload>
 	<onunload>ClearProperty(skinshortcuts-CoverBackground,Home)</onunload>
-	<onunload>ClearProperty(skinshortcuts-management-widget,10000)</onunload>
-	<onunload condition="String.IsEmpty(Window.Property(additionalDialog))">RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;levels=2&amp;group=mainmenu|shortcuts)</onunload>
+	<!-- <onunload>ClearProperty(skinshortcuts-management-widget,10000)</onunload> -->
+	<onunload condition="String.IsEmpty(Window.Property(additionalDialog))">RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;group=mainmenu|shortcuts)</onunload>
 	<onunload>ClearProperty(WidgetFocus1,Home)</onunload>
 	<onunload>ClearProperty(WidgetFocus2,Home)</onunload>
 	<onunload>ClearProperty(WidgetFocus3,Home)</onunload>
@@ -76,7 +76,7 @@
 					<control type="label">
 						<visible>String.Contains(Skin.String(MainMenuLayout),icons) | String.IsEqual(Window.Property(groupname),shortcuts)</visible>
 						<left>25</left>
-						<width>213</width>
+						<width>220</width>
 						<font>Font36_Reg</font>
 						<label>$INFO[ListItem.Label]</label>
 						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
@@ -96,7 +96,7 @@
 						<animation effect="fade" start="100" end="50" time="40" condition="!Control.HasFocus(211)">Conditional</animation>
 					</control>
 					<control type="label">
-						<visible>!String.Contains(Skin.String(MainMenuLayout),icons) | String.IsEqual(Window.Property(groupname),shortcuts) + !String.IsEqual(Window.Property(groupname),shortcuts)</visible>
+						<visible>!String.Contains(Skin.String(MainMenuLayout),icons) + !String.IsEqual(Window.Property(groupname),shortcuts)</visible>
 						<left>25</left>
 						<width>273</width>
 						<font>Font36_Reg</font>
@@ -106,7 +106,7 @@
 					<control type="label">
 						<visible>String.Contains(Skin.String(MainMenuLayout),icons) | String.IsEqual(Window.Property(groupname),shortcuts)</visible>
 						<left>25</left>
-						<width>213</width>
+						<width>220</width>
 						<font>Font36_Reg</font>
 						<label>$INFO[ListItem.Label]</label>
 						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
@@ -154,8 +154,8 @@
 				<orientation>horizontal</orientation>
 				<control type="button" id="303">
 					<description>Move up</description>
-					<texturefocus />
-					<texturenofocus />
+					<texturefocus/>
+					<texturenofocus/>
 					<width>67</width>
 					<align>center</align>
 					<font>Font40_Icon</font>
@@ -163,8 +163,8 @@
 				</control>
 				<control type="button" id="304">
 					<description>Move down</description>
-					<texturefocus />
-					<texturenofocus />
+					<texturefocus/>
+					<texturenofocus/>
 					<width>67</width>
 					<align>center</align>
 					<font>Font40_Icon</font>
@@ -172,8 +172,8 @@
 				</control>
 				<control type="button" id="301">
 					<description>Add shortcut</description>
-					<texturefocus />
-					<texturenofocus />
+					<texturefocus/>
+					<texturenofocus/>
 					<width>67</width>
 					<align>center</align>
 					<font>Font40_Icon</font>
@@ -181,8 +181,8 @@
 				</control>
 				<control type="button" id="302">
 					<description>Delete shortcut</description>
-					<texturefocus />
-					<texturenofocus />
+					<texturefocus/>
+					<texturenofocus/>
 					<width>67</width>
 					<align>center</align>
 					<font>Font40_Icon</font>
@@ -190,8 +190,8 @@
 				</control>
 				<control type="button" id="308">
 					<description>Reset/Restore</description>
-					<texturefocus />
-					<texturenofocus />
+					<texturefocus/>
+					<texturenofocus/>
 					<width>67</width>
 					<align>center</align>
 					<font>Font40_Icon</font>
@@ -249,7 +249,7 @@
 				<control type="button" id="511">
 					<visible>String.IsEqual(Window.Property(groupname),mainmenu) + String.IsEqual(Container(211).ListItem.Property(background),cover)</visible>
 					<description>Cover background settings</description>
-					<label>Cover background settings</label>
+					<label>$LOCALIZE[31374]</label>
 					<onfocus condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-CoverBackground))">ClearProperty(skinshortcuts-CoverBackground,Home)</onfocus>
 					<onclick>SetProperty(skinshortcuts-CoverBackground,1,Home)</onclick>
 					<onclick>Control.SetFocus(8092)</onclick>
@@ -280,7 +280,6 @@
 					<description>Background</description>
 					<label>$LOCALIZE[31061]</label>
 					<label2>$INFO[Container(211).ListItem.Property(icon)]</label2>
-					<visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
 					<include>SettingsButton</include>
 				</control>
 				<control type="button" id="501">
@@ -351,8 +350,8 @@
 			<control type="button" id="809">
 				<include>FullScreenDimensions</include>
 				<onclick>back</onclick>
-				<texturefocus />
-				<texturenofocus />
+				<texturefocus/>
+				<texturenofocus/>
 			</control>
 			<control type="grouplist" id="8091">
 				<top>200</top>

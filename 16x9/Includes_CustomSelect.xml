@@ -966,23 +966,14 @@
 			<include>DialogLabel</include>
 		</control>
 		<control type="button" id="111">
-			<visible>Window.IsVisible(skinsettings) | ![Player.IsInternetStream | Pvr.IsPlayingRadio]</visible>
-			<label>$LOCALIZE[31315]</label>
+			<label>$LOCALIZE[33068]</label>
 			<label2>$VAR[MusicOSDFanArtLabelVar]</label2>
 			<onclick>SetProperty(CustomSelect,$LOCALIZE[31315],home)</onclick>
 			<onclick>ActivateWindow(1110)</onclick>
 			<include>DialogButton</include>
 		</control>
-		<control type="button" id="112">
-			<visible>Window.IsVisible(skinsettings) | [Player.IsInternetStream | Pvr.IsPlayingRadio]</visible>
-			<label>$LOCALIZE[31180]</label>
-			<label2>$VAR[MusicOSDRadioStreamFanArtLabelVar]</label2>
-			<onclick>SetProperty(CustomSelect,$LOCALIZE[31316],home)</onclick>
-			<onclick>ActivateWindow(1110)</onclick>
-			<include>DialogButton</include>
-		</control>
 		<control type="button" id="113">
-			<visible>[Skin.String(MusicOSDBackground,artistsslideshow) + !Player.IsInternetStream + !Pvr.IsPlayingRadio] | [Skin.String(MusicOSDRadioStreamBackground,artistsslideshow) + [Player.IsInternetStream | Pvr.IsPlayingRadio]] | [Window.IsVisible(skinsettings) + [Skin.String(MusicOSDBackground,artistsslideshow) | Skin.String(MusicOSDRadioStreamBackground,artistsslideshow)]]</visible>
+			<visible>Skin.String(MusicOSDBackground,artistsslideshow)</visible>
 			<label>$LOCALIZE[31354]</label>
 			<onclick>Addon.OpenSettings(script.artistslideshow)</onclick>
 			<include>DialogButton</include>
@@ -2280,14 +2271,12 @@
 			<onclick>Dialog.Close(1110)</onclick>
 			<onclick>Skin.SetString(MainMenuTexture.texture,panels/mainmenu/pixels.png)</onclick>
 		</item>
-
 		<item>
 			<label>$LOCALIZE[31283]</label>
 			<icon>panels/mainmenu/plain.png</icon>
 			<onclick>Dialog.Close(1110)</onclick>
 			<onclick>Skin.SetString(MainMenuTexture.texture,panels/patterns/plain.png)</onclick>
 		</item>
-
 		<item>
 			<label>$LOCALIZE[31116]</label>
 			<icon>panels/mainmenu/steelplate.png</icon>

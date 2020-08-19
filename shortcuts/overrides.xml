@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <overrides>
 	<!-- Do not share menu, other skins custom language strings and icons are not the same -->
-	<doNotShareMenu />
-	<!-- Main menu icon default directory -->
+	<doNotShareMenu/>
+	<!-- Main menu/Shortcut icon default directory -->
 	<thumbnailBrowseDefault>special://skin/extras/icons/</thumbnailBrowseDefault>
 	<!-- Main menu overides actions for when libray has no content -->
 	<visibleoverride group="mainmenu" condition="Library.HasContent(Movies)">ActivateWindow(Videos,sources://video/,return)</visibleoverride>
@@ -29,30 +29,12 @@
 	<backgrounddefault labelID="system">special://skin/extras/backgrounds/system.jpg</backgrounddefault>
 	<backgrounddefault labelID="weather">special://skin/extras/backgrounds/weather.jpg</backgrounddefault>
 	<backgrounddefault labelID="disc">special://skin/extras/backgrounds/disc.jpg</backgrounddefault>
-	<!-- Home icon defaults -->
-	<!-- <propertydefault labelID="pictures" property="MenuIcon">special://skin/extras/icons/pictures.png</propertydefault>
-	<propertydefault labelID="musicvideos" property="MenuIcon">special://skin/extras/icons/musicvideos.png</propertydefault>
-	<propertydefault labelID="music" property="MenuIcon">special://skin/extras/icons/music.png</propertydefault>
-	<propertydefault labelID="movies" property="MenuIcon">special://skin/extras/icons/movies.png</propertydefault>
-	<propertydefault labelID="tvshows" property="MenuIcon">special://skin/extras/icons/tvshows.png</propertydefault>
-	<propertydefault labelID="tv" property="MenuIcon">special://skin/extras/icons/tv.png</propertydefault>
-	<propertydefault labelID="radio" property="MenuIcon">special://skin/extras/icons/radio.png</propertydefault>
-	<propertydefault labelID="videos" property="MenuIcon">special://skin/extras/icons/videos.png</propertydefault>
-	<propertydefault labelID="games" property="MenuIcon">special://skin/extras/icons/games.png</propertydefault>
-	<propertydefault labelID="addons" property="MenuIcon">special://skin/extras/icons/addons.png</propertydefault>
-	<propertydefault labelID="system" property="MenuIcon">special://skin/extras/icons/system.png</propertydefault>
-	<propertydefault labelID="weather" property="MenuIcon">special://skin/extras/icons/weather.png</propertydefault>
-	<propertydefault labelID="disc" property="MenuIcon">special://skin/extras/icons/disc.png</propertydefault> -->
-	<!-- Shortcuts icon defaults -->
-	<propertydefault labelID="movies" group="shortcuts" property="ShortcutIcon">special://skin/extras/icons/movies.png</propertydefault>
-	<propertydefault labelID="tvshows" group="shortcuts" property="ShortcutIcon">special://skin/extras/icons/tvshows.png</propertydefault>
-	<propertydefault labelID="music" group="shortcuts" property="ShortcutIcon">special://skin/extras/icons/music.png</propertydefault>
-	<propertydefault labelID="musicvideos" group="shortcuts" property="ShortcutIcon">special://skin/extras/icons/musicvideos.png</propertydefault>
-	<propertydefault labelID="tv" group="shortcuts" property="ShortcutIcon">special://skin/extras/icons/tv.png</propertydefault>
-	<propertydefault labelID="games" group="shortcuts" property="ShortcutIcon">special://skin/extras/icons/games.png</propertydefault>
-	<propertydefault labelID="addons" group="shortcuts" property="ShortcutIcon">special://skin/extras/icons/addons.png</propertydefault>
-	<propertydefault labelID="search" group="shortcuts" property="ShortcutIcon">special://skin/extras/icons/search.png</propertydefault>
-	<propertydefault labelID="favourites" group="shortcuts" property="ShortcutIcon">special://skin/extras/icons/favourites.png</propertydefault>
+	<!-- Shortcut search menu -->
+	<override action="ActivateWindow(1112)" group="shortcuts">
+		<condition>true</condition>
+		<action>Skin.SetString(SearchTerm)</action>
+		<action>ActivateWindow(1112)</action>
+	</override>
 	<!-- Home infoline default -->
 	<!-- <propertydefault labelID="pictures" property="InfoLine">pictureaddons</propertydefault>
 	<propertydefault labelID="musicvideos" property="InfoLine">musicvideos</propertydefault>
@@ -119,7 +101,6 @@
 			<shortcut label="$ADDON[script.embuary.helper 32007]" icon="icons/addons/embuaryhelper.png" widget="library" widgetType="tvshows" widgetTarget="videos" condition="Library.HasContent(tvshows)">plugin://script.embuary.helper/?info=getsimilar&amp;type=tvshow&amp;reload=$INFO[Window(home).Property(EmbuaryWidgetUpdate)]</shortcut>
 			<shortcut label="$ADDON[script.embuary.helper 32014]" icon="icons/addons/embuaryhelper.png" widget="library" widgetType="tvshows" widgetTarget="videos" condition="Library.HasContent(tvshows)">plugin://script.embuary.helper/?info=getsimilar&amp;type=tvshow&amp;pos=0&amp;reload=$INFO[Window(home).Property(EmbuaryWidgetUpdate)]</shortcut>
 			<shortcut label="$ADDON[script.embuary.helper 32009]" icon="icons/addons/embuaryhelper.png" widget="library" widgetType="tvshows" widgetTarget="videos" condition="Library.HasContent(tvshows)">plugin://script.embuary.helper/?info=getbygenre&amp;type=tvshow&amp;reload=$INFO[Window(home).Property(EmbuaryWidgetUpdate)]</shortcut>
-			
 			<shortcut label="$ADDON[script.embuary.info 32043]" icon="icons/addons/embuaryinfo.png" widget="tmdb" widgetType="tvshows" widgetTarget="videos" condition="System.HasAddon(script.embuary.info)">plugin://script.embuary.info/tv/trending</shortcut>
 			<shortcut label="$ADDON[script.embuary.info 32033]" icon="icons/addons/embuaryinfo.png" widget="tmdb" widgetType="tvshows" widgetTarget="videos" condition="System.HasAddon(script.embuary.info)">plugin://script.embuary.info/tv/top_rated</shortcut>
 			<shortcut label="$ADDON[script.embuary.info 32034]" icon="icons/addons/embuaryinfo.png" widget="tmdb" widgetType="tvshows" widgetTarget="videos" condition="System.HasAddon(script.embuary.info)">plugin://script.embuary.info/tv/popular</shortcut>
@@ -385,18 +366,18 @@
 	<propertyfallback property="widgetStyle.6">medium</propertyfallback>
 	<!-- Cover background -->
 	<propertySettings property="coverBackground" buttonID="8093" title="$LOCALIZE[33068]" showNone="false" imageBrowse="true"/>
-	<property property="coverBackground" label="$LOCALIZE[571]"></property>
+	<property property="coverBackground" label="$LOCALIZE[571]"/>
 	<property property="coverBackground" label="$LOCALIZE[20445]">fanart</property>
 	<!-- Cover sort by -->
 	<propertySettings property="coverSortBy" buttonID="8094" title="$LOCALIZE[580]" showNone="false" templateonly="true"/>
-	<property property="coverSortBy" label="$LOCALIZE[571]"></property>
+	<property property="coverSortBy" label="$LOCALIZE[571]"/>
 	<property property="coverSortBy" label="$LOCALIZE[369]">title</property>
 	<property property="coverSortBy" label="$LOCALIZE[552]">date</property>
 	<property property="coverSortBy" label="$LOCALIZE[345]">year</property>
 	<property property="coverSortBy" label="$LOCALIZE[590]">random</property>
 	<!-- Cover sort order -->
 	<propertySettings property="coverSortOrder" buttonID="8095" title="$LOCALIZE[581]" showNone="false" templateonly="true"/>
-	<property property="coverSortOrder" label="$LOCALIZE[571]"></property>
+	<property property="coverSortOrder" label="$LOCALIZE[571]"/>
 	<property property="coverSortOrder" label="$LOCALIZE[584]">ascending</property>
 	<property property="coverSortOrder" label="$LOCALIZE[585]">descending</property>
 	<!-- Infolines -->
@@ -491,62 +472,62 @@
 	<onback to="511">8095</onback>
 	<!-- Remove any default menu item properties that we don't need -->
 	<!-- widgetName must be built as it is required for onup condition for main menu -->
-	<propertySettings property="backgroundName" templateonly="true" />
-	<propertySettings property="backgroundPlaylistName" templateonly="true" />
-	<propertySettings property="covercase" templateonly="true" />
-	<propertySettings property="coverSortBy" templateonly="true" />
-	<propertySettings property="coverSortOrder" templateonly="true" />
-	<propertySettings property="labelID" templateonly="true" />
-	<propertySettings property="defaultID" templateonly="true" />
-	<propertySettings property="list" templateonly="true" />
-	<propertySettings property="group" templateonly="true" />
-	<propertySettings property="hasSubmenu" templateonly="true" />
-	<propertySettings property="widget.1" templateonly="true" />
-	<propertySettings property="widgetPath.1" templateonly="true" />
-	<propertySettings property="widgetType.1" templateonly="true" />
-	<propertySettings property="widgetLabel.1" templateonly="true" />
-	<propertySettings property="widgetTarget.1" templateonly="true" />
-	<propertySettings property="widgetCaseMusic.1" templateonly="true" />
-	<propertySettings property="widgetCaseVideo.1" templateonly="true" />
-	<propertySettings property="widgetWatchedStatus.1" templateonly="true" />
-	<propertySettings property="widget.2" templateonly="true" />
-	<propertySettings property="widgetPath.2" templateonly="true" />
-	<propertySettings property="widgetType.2" templateonly="true" />
-	<propertySettings property="widgetLabel.2" templateonly="true" />
-	<propertySettings property="widgetTarget.2" templateonly="true" />
-	<propertySettings property="widgetCaseMusic.2" templateonly="true" />
-	<propertySettings property="widgetCaseVideo.2" templateonly="true" />
-	<propertySettings property="widgetWatchedStatus.2" templateonly="true" />
-	<propertySettings property="widget.3" templateonly="true" />
-	<propertySettings property="widgetPath.3" templateonly="true" />
-	<propertySettings property="widgetType.3" templateonly="true" />
-	<propertySettings property="widgetLabel.3" templateonly="true" />
-	<propertySettings property="widgetTarget.3" templateonly="true" />
-	<propertySettings property="widgetCaseMusic.3" templateonly="true" />
-	<propertySettings property="widgetCaseVideo.3" templateonly="true" />
-	<propertySettings property="widgetWatchedStatus.3" templateonly="true" />
-	<propertySettings property="widget.4" templateonly="true" />
-	<propertySettings property="widgetPath.4" templateonly="true" />
-	<propertySettings property="widgetType.4" templateonly="true" />
-	<propertySettings property="widgetLabel.4" templateonly="true" />
-	<propertySettings property="widgetTarget.4" templateonly="true" />
-	<propertySettings property="widgetCaseMusic.4" templateonly="true" />
-	<propertySettings property="widgetCaseVideo.4" templateonly="true" />
-	<propertySettings property="widgetWatchedStatus.4" templateonly="true" />
-	<propertySettings property="widget.5" templateonly="true" />
-	<propertySettings property="widgetPath.5" templateonly="true" />
-	<propertySettings property="widgetType.5" templateonly="true" />
-	<propertySettings property="widgetLabel.5" templateonly="true" />
-	<propertySettings property="widgetTarget.5" templateonly="true" />
-	<propertySettings property="widgetCaseMusic.5" templateonly="true" />
-	<propertySettings property="widgetCaseVideo.5" templateonly="true" />
-	<propertySettings property="widgetWatchedStatus.5" templateonly="true" />
-	<propertySettings property="widget.6" templateonly="true" />
-	<propertySettings property="widgetPath.6" templateonly="true" />
-	<propertySettings property="widgetType.6" templateonly="true" />
-	<propertySettings property="widgetLabel.6" templateonly="true" />
-	<propertySettings property="widgetTarget.6" templateonly="true" />
-	<propertySettings property="widgetCaseMusic.6" templateonly="true" />
-	<propertySettings property="widgetCaseVideo.6" templateonly="true" />
-	<propertySettings property="widgetWatchedStatus.6" templateonly="true" />
+	<propertySettings property="backgroundName" templateonly="true"/>
+	<propertySettings property="backgroundPlaylistName" templateonly="true"/>
+	<propertySettings property="covercase" templateonly="true"/>
+	<propertySettings property="coverSortBy" templateonly="true"/>
+	<propertySettings property="coverSortOrder" templateonly="true"/>
+	<propertySettings property="labelID" templateonly="true"/>
+	<propertySettings property="defaultID" templateonly="true"/>
+	<propertySettings property="list" templateonly="true"/>
+	<propertySettings property="group" templateonly="true"/>
+	<propertySettings property="hasSubmenu" templateonly="true"/>
+	<propertySettings property="widget.1" templateonly="true"/>
+	<propertySettings property="widgetPath.1" templateonly="true"/>
+	<propertySettings property="widgetType.1" templateonly="true"/>
+	<propertySettings property="widgetLabel.1" templateonly="true"/>
+	<propertySettings property="widgetTarget.1" templateonly="true"/>
+	<propertySettings property="widgetCaseMusic.1" templateonly="true"/>
+	<propertySettings property="widgetCaseVideo.1" templateonly="true"/>
+	<propertySettings property="widgetWatchedStatus.1" templateonly="true"/>
+	<propertySettings property="widget.2" templateonly="true"/>
+	<propertySettings property="widgetPath.2" templateonly="true"/>
+	<propertySettings property="widgetType.2" templateonly="true"/>
+	<propertySettings property="widgetLabel.2" templateonly="true"/>
+	<propertySettings property="widgetTarget.2" templateonly="true"/>
+	<propertySettings property="widgetCaseMusic.2" templateonly="true"/>
+	<propertySettings property="widgetCaseVideo.2" templateonly="true"/>
+	<propertySettings property="widgetWatchedStatus.2" templateonly="true"/>
+	<propertySettings property="widget.3" templateonly="true"/>
+	<propertySettings property="widgetPath.3" templateonly="true"/>
+	<propertySettings property="widgetType.3" templateonly="true"/>
+	<propertySettings property="widgetLabel.3" templateonly="true"/>
+	<propertySettings property="widgetTarget.3" templateonly="true"/>
+	<propertySettings property="widgetCaseMusic.3" templateonly="true"/>
+	<propertySettings property="widgetCaseVideo.3" templateonly="true"/>
+	<propertySettings property="widgetWatchedStatus.3" templateonly="true"/>
+	<propertySettings property="widget.4" templateonly="true"/>
+	<propertySettings property="widgetPath.4" templateonly="true"/>
+	<propertySettings property="widgetType.4" templateonly="true"/>
+	<propertySettings property="widgetLabel.4" templateonly="true"/>
+	<propertySettings property="widgetTarget.4" templateonly="true"/>
+	<propertySettings property="widgetCaseMusic.4" templateonly="true"/>
+	<propertySettings property="widgetCaseVideo.4" templateonly="true"/>
+	<propertySettings property="widgetWatchedStatus.4" templateonly="true"/>
+	<propertySettings property="widget.5" templateonly="true"/>
+	<propertySettings property="widgetPath.5" templateonly="true"/>
+	<propertySettings property="widgetType.5" templateonly="true"/>
+	<propertySettings property="widgetLabel.5" templateonly="true"/>
+	<propertySettings property="widgetTarget.5" templateonly="true"/>
+	<propertySettings property="widgetCaseMusic.5" templateonly="true"/>
+	<propertySettings property="widgetCaseVideo.5" templateonly="true"/>
+	<propertySettings property="widgetWatchedStatus.5" templateonly="true"/>
+	<propertySettings property="widget.6" templateonly="true"/>
+	<propertySettings property="widgetPath.6" templateonly="true"/>
+	<propertySettings property="widgetType.6" templateonly="true"/>
+	<propertySettings property="widgetLabel.6" templateonly="true"/>
+	<propertySettings property="widgetTarget.6" templateonly="true"/>
+	<propertySettings property="widgetCaseMusic.6" templateonly="true"/>
+	<propertySettings property="widgetCaseVideo.6" templateonly="true"/>
+	<propertySettings property="widgetWatchedStatus.6" templateonly="true"/>
 </overrides>

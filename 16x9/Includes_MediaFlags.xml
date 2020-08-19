@@ -808,7 +808,7 @@
 	</include>
 	<include name="LanguageFlags">
 		<param name="visible">true</param>
-		<param name="container"></param>
+		<param name="container"/>
 		<definition>
 			<control type="grouplist">
 				<visible>$PARAM[visible] + Skin.HasSetting(ShowLanguageFlags)</visible>
@@ -833,7 +833,7 @@
 	</include>
 	<include name="SubtitleFlags">
 		<param name="visible">true</param>
-		<param name="container"></param>
+		<param name="container"/>
 		<definition>
 			<control type="grouplist">
 				<visible>$PARAM[visible] + Skin.HasSetting(ShowLanguageFlags)</visible>
@@ -1051,7 +1051,7 @@
 			</control>
 			<include content="LanguageFlags">
 				<param name="visible">[!ControlGroup(9001).HasFocus | Control.HasFocus(1010)]</param>
-				<param name="container"></param>
+				<param name="container"/>
 			</include>
 			<include content="LanguageFlags">
 				<param name="visible">ControlGroup(9001).HasFocus + !Control.HasFocus(1010)</param>
@@ -1064,7 +1064,7 @@
 			</control>
 			<include content="SubtitleFlags">
 				<param name="visible">[!ControlGroup(9001).HasFocus | Control.HasFocus(1010)]</param>
-				<param name="container"></param>
+				<param name="container"/>
 			</include>
 			<include content="SubtitleFlags">
 				<param name="visible">ControlGroup(9001).HasFocus + !Control.HasFocus(1010)</param>
@@ -1180,7 +1180,7 @@
 			</control>
 			<include content="LanguageFlags">
 				<param name="visible">String.IsEqual(ListItem.DBTYPE,musicvideo) + [!ControlGroup(9001).HasFocus | Control.HasFocus(9002)]</param>
-				<param name="container"></param>
+				<param name="container"/>
 			</include>
 			<include content="LanguageFlags">
 				<param name="visible">Control.HasFocus(1090)</param>
@@ -1231,20 +1231,20 @@
 				<include>MediaFlagImage</include>
 			</control>
 			<control type="label">
-				<visible>!String.IsEmpty(Container(7007).ListItem.Status)</visible>
+				<visible>System.HasAddon(plugin.video.themoviedb.helper) + !String.IsEmpty(Container(7007).ListItem.Status)</visible>
 				<width>135.5</width>
 				<include>MediaFlagLabel</include>
 				<label>$VAR[NextAiredStaus7007LabelVar]</label>
 			</control>
 			<control type="image">
-				<visible>!String.IsEmpty(Container(7007).ListItem.Status)</visible>
+				<visible>System.HasAddon(plugin.video.themoviedb.helper) + !String.IsEmpty(Container(7007).ListItem.Status)</visible>
 				<left>-145.5</left>
 				<width>135.5</width>
 				<include>MediaFlagImage</include>
 				<texture>$VAR[MediaFlagsPathVar]nextaired/$INFO[Container(7007).ListItem.Status].png</texture>
 			</control>
 			<control type="label">
-				<visible>!String.IsEmpty(Container(7007).ListItem.Property(Last_Aired))</visible>
+				<visible>System.HasAddon(plugin.video.themoviedb.helper) + !String.IsEmpty(Container(7007).ListItem.Property(Last_Aired))</visible>
 				<align>left</align>
 				<include>MediaFlagLabelFull</include>
 				<label>$INFO[Container(7007).ListItem.Property(Last_Aired.Season)]$INFO[Container(7007).ListItem.Property(Last_Aired.Episode),x, ]$LOCALIZE[31064][B][CR]$INFO[Container(7007).ListItem.Property(Last_Aired)][/B]</label>
@@ -1254,15 +1254,6 @@
 	<include name="MediaFlagImage">
 		<width>125.5</width>
 		<height>80</height>
-		<fadetime>TextureFadeTime</fadetime>
-		<include condition="!Skin.HasSetting(MediaFlagsColored)">MediaFlagWhite</include>
-		<include condition="Skin.HasSetting(MediaFlagsColored)">MediaFlagColored</include>
-		<aspectratio align="center" aligny="center">keep</aspectratio>
-	</include>
-	<include name="MediaFlagSmallImage">
-		<top>6</top>
-		<width>125</width>
-		<height>30</height>
 		<fadetime>TextureFadeTime</fadetime>
 		<include condition="!Skin.HasSetting(MediaFlagsColored)">MediaFlagWhite</include>
 		<include condition="Skin.HasSetting(MediaFlagsColored)">MediaFlagColored</include>
@@ -1296,13 +1287,6 @@
 		<align>center</align>
 		<textcolor>55ffffff</textcolor>
 		<font>Font36_Bold_Caps</font>
-	</include>
-	<include name="MediaFlagBigLabelCenter">
-		<width>125.5</width>
-		<height>90</height>
-		<align>center</align>
-		<textcolor>55ffffff</textcolor>
-		<font>Font49_Bold_Caps</font>
 	</include>
 	<include name="MediaFlagWhite">
 		<colordiffuse>55ffffff</colordiffuse>
@@ -1346,7 +1330,7 @@
 	<variable name="ContainerStudioIconsVar">
 		<value condition="!String.IsEmpty(Container.ListItem.Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[Container.ListItem.Studio,resource://resource.images.studios.white/,.png]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[Container.ListItem.Studio,resource://resource.images.studios.coloured/,.png]</value>
-		<value condition="ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"></value>
+		<value condition="ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"/>
 		<value condition="!String.IsEmpty(ListItem.Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem.Studio,resource://resource.images.studios.white/,.png]</value>
 		<value condition="!String.IsEmpty(ListItem.Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem.Studio,resource://resource.images.studios.coloured/,.png]</value>
 	</variable>
@@ -1578,12 +1562,7 @@
 	<variable name="ContainerAlbumLabelVar">
 		<value condition="String.IsEqual(ListItem.DBTYPE,artist) + !String.IsEmpty(Container(1010).ListItem.Property(Album_Label))">$INFO[Container(1010).ListItem.Property(Album_Label),resource://resource.images.recordlabels.white/,.png]</value>
 		<value condition="String.IsEqual(ListItem.DBTYPE,musicvideo) + !String.IsEmpty(Container(1060).ListItem.Property(Album_Label))">$INFO[Container(1060).ListItem.Property(Album_Label),resource://resource.images.recordlabels.white/,.png]</value>
-		<value condition="!Control.HasFocus(50) + !Control.HasFocus(9002) + ControlGroup(9001).HasFocus"></value>
+		<value condition="!Control.HasFocus(50) + !Control.HasFocus(9002) + ControlGroup(9001).HasFocus"/>
 		<value condition="!String.IsEmpty(ListItem.Property(Album_Label))">$INFO[ListItem.Property(Album_Label),resource://resource.images.recordlabels.white/,.png]</value>
-	</variable>
-	<variable name="ContainerSongCodecVar">
-		<value condition="!String.IsEmpty(Container.ListItem.FileExtension)">$VAR[MediaFlagsPathVar]/audiocodec/$INFO[Container.ListItem.FileExtension].png</value>
-		<value condition="!Control.HasFocus(50) + !Control.HasFocus(9002) + ControlGroup(9001).HasFocus"></value>
-		<value condition="!String.IsEmpty(ListItem.FileExtension)">$VAR[MediaFlagsPathVar]/audiocodec/$INFO[ListItem.FileExtension].png</value>
 	</variable>
 </includes>

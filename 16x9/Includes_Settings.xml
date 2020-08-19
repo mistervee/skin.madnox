@@ -36,7 +36,7 @@
 		<height>67</height>
 		<textoffsetx>25</textoffsetx>
 		<font>Font36_Reg</font>
-		<texturenofocus />
+		<texturenofocus/>
 		<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 	</include>
 	<include name="SettingsRightLabel">
@@ -56,11 +56,11 @@
 	</include>
 	<!-- File Manager -->
 	<include name="FileManagerList">
-		<param name="id"></param>
-		<param name="left"></param>
-		<param name="onleft"></param>
-		<param name="onright"></param>
-		<param name="scrollbarid"></param>
+		<param name="id"/>
+		<param name="left"/>
+		<param name="onleft"/>
+		<param name="onright"/>
+		<param name="scrollbarid"/>
 		<definition>
 			<control type="list" id="$PARAM[id]">
 				<left>$PARAM[left]</left>
@@ -136,8 +136,8 @@
 				<width>1395</width>
 				<height>100%</height>
 				<onclick>back</onclick>
-				<texturefocus />
-				<texturenofocus />
+				<texturefocus/>
+				<texturenofocus/>
 			</control>
 			<control type="grouplist" id="80$PARAM[id]1">
 				<top>200</top>
@@ -393,10 +393,11 @@
 		<value condition="!System.HasAddon(resource.images.moviecountryicons.flags)">[COLOR red]✕[/COLOR]</value>
 		<value>$INFO[System.AddonVersion(resource.images.moviecountryicons.flags),v, ][COLOR green]✓[/COLOR]</value>
 	</variable>
-		<variable name="Widget1StyleLabelVar">
+	<variable name="Widget1StyleLabelVar">
 		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetStyle.1),big)">$LOCALIZE[31210]</value>
 		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetStyle.1),medium)">$LOCALIZE[601]</value>
 		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetStyle.1),small)">$LOCALIZE[1438]</value>
+		<!-- Widgets -->
 	</variable>
 	<variable name="Widget1ArtworkLabelVar">
 		<value condition="String.IsEqual(Container(211).ListItem.Property(widgetArtwork.1),portraiticon)">$LOCALIZE[31248]</value>
@@ -506,6 +507,14 @@
 		<value condition="Control.HasFocus(303)">$ADDON[script.skinshortcuts 32002]</value>
 		<value condition="Control.HasFocus(304)">$ADDON[script.skinshortcuts 32003]</value>
 		<value condition="Control.HasFocus(308)">$ADDON[script.skinshortcuts 32102]</value>
+	</variable>
+	<variable name="SkinShortcutsLeftLabelVar">
+		<value condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-Background))">$LOCALIZE[33068]</value>
+		<value condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-LiveBackground))">$LOCALIZE[31103]</value>
+		<value condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))">$LOCALIZE[31039]</value>
+		<value condition="String.IsEqual(Window.Property(groupname),mainmenu)">$LOCALIZE[33061]</value>
+		<value condition="String.IsEqual(Window.Property(groupname),shortcuts)">$LOCALIZE[13398]</value>
+		<value>$LOCALIZE[31101]</value>
 	</variable>
 	<variable name="NowPlayingMusicBackgroundLabelVar">
 		<value condition="Skin.String(NowPlayingMusicBackground,fanart)">$LOCALIZE[20445]</value>

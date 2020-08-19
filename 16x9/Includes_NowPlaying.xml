@@ -974,7 +974,7 @@
 	</variable>
 	<variable name="NowPlayingVideoDiscArtVar">
 		<value condition="!String.IsEmpty(Player.Art(discart))">$INFO[Player.Art(discart)]</value>
-		<value condition="Skin.String(NowPlayingVideoDiscArtFallback,none)"></value>
+		<value condition="Skin.String(NowPlayingVideoDiscArtFallback,none)"/>
 		<value condition="Skin.String(NowPlayingVideoDiscArtFallback,cd)">thumbs/disc/cd.png</value>
 		<value condition="Skin.String(NowPlayingVideoDiscArtFallback,vinyl)">thumbs/disc/vinyl.png</value>
 		<value condition="Skin.String(NowPlayingVideoDiscArtFallback,white)">thumbs/disc/white.png</value>
@@ -1004,7 +1004,7 @@
 	<variable name="NowPlayingMusicDiscArtVar">
 		<value condition="!String.IsEmpty(Player.Art(discart))">$INFO[Player.Art(discart)]</value>
 		<value condition="!String.IsEmpty(Player.Art(album.discart))">$INFO[Player.Art(album.discart)]</value>
-		<value condition="Skin.String(NowPlayingMusicDiscArtFallback,none)"></value>
+		<value condition="Skin.String(NowPlayingMusicDiscArtFallback,none)"/>
 		<value condition="Skin.String(NowPlayingMusicDiscArtFallback,vinyl)">thumbs/disc/vinyl.png</value>
 		<value condition="Skin.String(NowPlayingMusicDiscArtFallback,bd)">thumbs/disc/bd.png</value>
 		<value condition="Skin.String(NowPlayingMusicDiscArtFallback,white)">thumbs/disc/white.png</value>
@@ -1051,7 +1051,7 @@
 		<value>$LOCALIZE[29915]</value>
 	</variable>
 	<variable name="MusicOSDFanArtVar">
-		<value condition="Skin.String(MusicOSDBackground,none)"></value>
+		<value condition="Skin.String(MusicOSDBackground,none)"/>
 		<value condition="Skin.String(MusicOSDBackground,artistsslideshow) + !String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image))">$INFO[Window(Visualisation).Property(ArtistSlideshow.Image)]</value>
 		<value condition="[Skin.String(MusicOSDBackground,extra) | [Skin.String(MusicOSDBackground,artistsslideshow) + !String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image))]] + !String.IsEmpty(Control.GetLabel(71111))">$INFO[Control.GetLabel(71111)]</value>
 		<value condition="!String.IsEmpty(Skin.String(MusicOSDBackground)) + !Skin.String(MusicOSDBackground,extra) + !Skin.String(MusicOSDBackground,artistsslideshow)">$INFO[Skin.String(MusicOSDBackground)]</value>
@@ -1103,11 +1103,6 @@
 		<value condition="Skin.String(NowPlayingHomeAudioInfo,plot)">$LOCALIZE[21821]</value>
 		<value condition="Skin.String(NowPlayingHomeAudioInfo,none)">$LOCALIZE[231]</value>
 		<value>$LOCALIZE[29915]</value>
-	</variable>
-	<variable name="VideoOSDCoverLabelVar">
-		<value condition="Skin.String(VideoOSDCover,off)">$LOCALIZE[16039]</value>
-		<value condition="Skin.String(VideoOSDCover,persistant)">$LOCALIZE[31194]</value>
-		<value>$LOCALIZE[31193]</value>
 	</variable>
 	<variable name="VideoOSDInfoLabelVar">
 		<value condition="Skin.String(VideoOSDInfo,off)">$LOCALIZE[16039]</value>
@@ -1162,5 +1157,23 @@
 		<value condition="Player.Forwarding8x | Player.Rewinding8x">8x</value>
 		<value condition="Player.Forwarding16x | Player.Rewinding16x">16x</value>
 		<value condition="Player.Forwarding32x | Player.Rewinding32x">32x</value>
+	</variable>
+	<!--  OSD Buttons -->
+	<variable name="OSDPlayButtonVar">
+		<value condition="Player.Paused | Player.Forwarding | Player.Rewinding">buttons/player/play.png</value>
+		<value>buttons/player/pause.png</value>
+	</variable>
+	<variable name="OSDRecordButtonVar">
+		<value condition="PVR.IsRecordingPlayingChannel">buttons/player/recording.png</value>
+		<value>buttons/player/record.png</value>
+	</variable>
+	<variable name="OSDRepeatButtonVar">
+		<value condition="Playlist.IsRepeatOne">buttons/player/repeatone.png</value>
+		<value condition="Playlist.IsRepeat">buttons/player/repeat.png</value>
+		<value>buttons/player/repeatoff.png</value>
+	</variable>
+	<variable name="OSDRandomButtonVar">
+		<value condition="Playlist.IsRandom">buttons/player/randomon.png</value>
+		<value>buttons/player/randomoff.png</value>
 	</variable>
 </includes>

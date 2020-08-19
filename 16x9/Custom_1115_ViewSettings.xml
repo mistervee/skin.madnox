@@ -60,18 +60,18 @@
 				<include condition="Window.IsVisible(1114)">ViewCustom1114Addons</include>
 				<include condition="Window.IsVisible(1102)">ViewCustom1102NextAired</include>
 				<include condition="Window.IsVisible(musicplaylisteditor)">ViewMusicPlaylistEditor</include>
-				<include condition="$EXP[AreaVisibleHome] + String.IsEqual(Window(home).Property(MediaMenuSelect),menu)">MediaMenuViewsettingsMenuHome</include>
-				<include condition="$EXP[AreaVisibleHome] + String.IsEqual(Window(home).Property(MediaMenuSelect),info)">MediaMenuViewsettingsInfoHome</include>
-				<include condition="$EXP[AreaVisibleHome] + String.IsEqual(Window(home).Property(MediaMenuSelect),nowplaying)">MediaMenuViewsettingsNowPlayingHome</include>
-				<include condition="$EXP[AreaVisibleHome] + String.IsEqual(Window(home).Property(MediaMenuSelect),background)">MediaMenuViewsettingsBackgroundHome</include>
-				<include condition="$EXP[AreaVisibleHome] + String.IsEqual(Window(home).Property(MediaMenuSelect),colors)">MediaMenuViewsettingsColorsHome</include>
+				<include condition="Window.IsVisible(home) + String.IsEqual(Window(home).Property(MediaMenuSelect),menu)">MediaMenuViewsettingsMenuHome</include>
+				<include condition="Window.IsVisible(home) + String.IsEqual(Window(home).Property(MediaMenuSelect),info)">MediaMenuViewsettingsInfoHome</include>
+				<include condition="Window.IsVisible(home) + String.IsEqual(Window(home).Property(MediaMenuSelect),nowplaying)">MediaMenuViewsettingsNowPlayingHome</include>
+				<include condition="Window.IsVisible(home) + String.IsEqual(Window(home).Property(MediaMenuSelect),background)">MediaMenuViewsettingsBackgroundHome</include>
+				<include condition="Window.IsVisible(home) + String.IsEqual(Window(home).Property(MediaMenuSelect),colors)">MediaMenuViewsettingsColorsHome</include>
 				<include condition="$EXP[AreaVisibleVideos]">MediaMenuCommonViewsettingsVideos</include>
 				<include condition="$EXP[AreaVisibleMusic]">MediaMenuCommonViewsettingsMusic</include>
-				<include condition="$EXP[AreaVisibleGames]">MediaMenuViewsettingsGames</include>
-				<include condition="$EXP[AreaVisiblePictures]">MediaMenuViewsettingsPictures</include>
-				<include condition="$EXP[AreaVisibleAddons]">MediaMenuViewsettingsAddons</include>
-				<include condition="$EXP[AreaVisibleWeather]">MediaMenuViewsettingsWeather</include>
-				<include condition="$EXP[AreaVisibleSystem]">MediaMenuViewsettingsSystem</include>
+				<include condition="Window.IsVisible(games)">MediaMenuViewsettingsGames</include>
+				<include condition="Window.IsVisible(pictures)">MediaMenuViewsettingsPictures</include>
+				<include condition="[Window.IsVisible(1114) | Window.IsVisible(programs) | Window.IsVisible(addonbrowser)]">MediaMenuViewsettingsAddons</include>
+				<include condition="Window.IsVisible(weather)">MediaMenuViewsettingsWeather</include>
+				<include condition="Window.IsActive(settings) | Window.IsActive(SettingsCategory.xml) | Window.IsActive(profiles) |  Window.IsActive(skinsettings) | Window.IsActive(eventlog) | Window.IsActive(systeminfo) | Window.IsActive(filemanager) | Window.IsActive(script-skinshortcuts.xml)">MediaMenuViewsettingsSystem</include>
 			</control>
 			<control type="group">
 				<visible>Container(100).HasNext | Container(100).HasPrevious</visible>
@@ -90,7 +90,7 @@
 					<textcolor>$VAR[PanelTextColorVar]</textcolor>
 					<focusedcolor>$VAR[PanelFocusTextColorVar]</focusedcolor>
 					<texturefocus border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
-					<texturenofocus />
+					<texturenofocus/>
 				</control>
 				<control type="button">
 					<left>235</left>
@@ -102,7 +102,7 @@
 					<textcolor>$VAR[PanelTextColorVar]</textcolor>
 					<focusedcolor>$VAR[PanelFocusTextColorVar]</focusedcolor>
 					<texturefocus border="10" colordiffuse="$VAR[PanelHighlightColorVar]">buttons/list-select-focus.png</texturefocus>
-					<texturenofocus />
+					<texturenofocus/>
 				</control>
 			</control>
 		</control>
