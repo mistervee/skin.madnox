@@ -7,7 +7,7 @@
 			<control type="group">
 				<top>$PARAM[top]</top>
 				<control type="label">
-					<visible>![Player.HasMedia + Skin.HasSetting(NowplayingSystemBar)] + !String.IsEmpty(Container(9000).ListItem.Property(InfoLine)) + !Skin.HasSetting(HideInfoLine)</visible>
+					<visible>![Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + !String.IsEmpty(Window(10025).Property(PlayingBackgroundMedia))] + !String.IsEmpty(Container(9000).ListItem.Property(InfoLine)) + !Skin.HasSetting(HideInfoLine)</visible>
 					<left>5</left>
 					<width>$PARAM[width]</width>
 					<height>38</height>
@@ -17,7 +17,7 @@
 					<textcolor>$VAR[PanelTextColorVar]</textcolor>
 				</control>
 				<control type="grouplist">
-					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar)</visible>
+					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + String.IsEmpty(Window(10025).Property(PlayingBackgroundMedia))</visible>
 					<include>AnimationVisibleFade</include>
 					<left>5</left>
 					<width>$PARAM[width]</width>
@@ -137,103 +137,87 @@
 					<include>AnimationVisibleFade</include>
 					<texture border="70,1,1,1" colordiffuse="$VAR[TopbarTextureColorVar]">panels/mainmenu/default-systembar.png</texture>
 				</control>
-				<control type="progress">
-					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar)</visible>
-					<include>AnimationVisibleFade</include>
-					<top>47</top>
-					<width>740</width>
-					<height>41</height>
-					<info>Player.ProgressCache</info>
-					<texturebg>colors/none.png</texturebg>
-					<lefttexture/>
-					<midtexture colordiffuse="$VAR[PanelHighlightColorVar]">colors/white20.png</midtexture>
-					<righttexture/>
-					<overlaytexture/>
-				</control>
-				<control type="progress">
-					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar)</visible>
-					<include>AnimationVisibleFade</include>
-					<top>47</top>
-					<width>740</width>
-					<height>41</height>
-					<info>Player.Progress</info>
-					<texturebg>colors/none.png</texturebg>
-					<lefttexture/>
-					<midtexture colordiffuse="$VAR[PanelHighlightColorVar]">colors/white20.png</midtexture>
-					<righttexture/>
-					<overlaytexture/>
-				</control>
+				<include content="TopBarNowPlayingProgress">
+					<param name="visible">Player.HasMedia + Skin.HasSetting(NowplayingSystemBar)</param>
+					<param name="top">47</param>
+					<param name="width">740</param>
+					<param name="info">Player.ProgressCache</param>
+				</include>
+				<include content="TopBarNowPlayingProgress">
+					<param name="visible">Player.HasMedia + !VideoPlayer.HasEpg + Skin.HasSetting(NowplayingSystemBar)</param>
+					<param name="top">47</param>
+					<param name="width">740</param>
+				</include>
+				<include content="TopBarNowPlayingProgress">
+					<param name="visible">VideoPlayer.HasEpg + Skin.HasSetting(NowplayingSystemBar)</param>
+					<param name="top">47</param>
+					<param name="width">740</param>
+					<param name="info">PVR.EpgEventProgress</param>
+				</include>
 				<include content="InfoTimeBarContent">
 					<param name="top">47</param>
 				</include>
 			</control>
 			<control type="group">
-				<visible>!String.IsEmpty(Skin.String(MainMenuSystemBar.texture))</visible>
+				<visible>Skin.String(MainMenuSystemBar.texture,wide)</visible>
 				<include>AnimationVisibleFade</include>
 				<control type="image">
-					<visible>Skin.String(MainMenuSystemBar.texture,wide)</visible>
 					<width>1920</width>
 					<height>88</height>
 					<include>AnimationVisibleFade</include>
 					<texture flipy="true" colordiffuse="$VAR[TopbarTextureColorVar]" border="1">panels/mainmenu/wide-bar.png</texture>
 				</control>
+				<include content="TopBarNowPlayingProgress">
+					<param name="visible">Player.HasMedia + Skin.HasSetting(NowplayingSystemBar)</param>
+					<param name="top">47</param>
+					<param name="info">Player.ProgressCache</param>
+				</include>
+				<include content="TopBarNowPlayingProgress">
+					<param name="visible">Player.HasMedia + !VideoPlayer.HasEpg + Skin.HasSetting(NowplayingSystemBar)</param>
+					<param name="top">47</param>
+				</include>
+				<include content="TopBarNowPlayingProgress">
+					<param name="visible">VideoPlayer.HasEpg + Skin.HasSetting(NowplayingSystemBar)</param>
+					<param name="top">47</param>
+					<param name="info">PVR.EpgEventProgress</param>
+				</include>
+				<include content="InfoTimeBarContent">
+					<param name="top">47</param>
+					<param name="width">900</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>Skin.String(MainMenuSystemBar.texture,shadow)</visible>
+				<include>AnimationVisibleFade</include>
 				<control type="image">
-					<visible>Skin.String(MainMenuSystemBar.texture,shadow)</visible>
 					<width>1920</width>
 					<height>88</height>
 					<include>AnimationVisibleFade</include>
 					<texture flipy="true" colordiffuse="$VAR[TopbarShadowTextureColorVar]" border="1">panels/mainmenu/shadow-bar.png</texture>
 				</control>
-				<control type="progress">
-					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + Skin.String(MainMenuSystemBar.texture,wide)</visible>
-					<include>AnimationVisibleFade</include>
-					<top>47</top>
-					<width>1920</width>
-					<height>41</height>
-					<info>Player.ProgressCache</info>
-					<texturebg>colors/none.png</texturebg>
-					<lefttexture/>
-					<midtexture colordiffuse="$VAR[PanelHighlightColorVar]">colors/white20.png</midtexture>
-					<righttexture/>
-					<overlaytexture/>
-				</control>
-				<control type="progress">
-					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + Skin.String(MainMenuSystemBar.texture,wide)</visible>
-					<include>AnimationVisibleFade</include>
-					<top>47</top>
-					<width>1920</width>
-					<height>41</height>
-					<info>Player.Progress</info>
-					<texturebg>colors/none.png</texturebg>
-					<lefttexture/>
-					<midtexture colordiffuse="$VAR[PanelHighlightColorVar]">colors/white20.png</midtexture>
-					<righttexture/>
-					<overlaytexture/>
-				</control>
-				<control type="progress">
-					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + Skin.String(MainMenuSystemBar.texture,shadow)</visible>
-					<include>AnimationVisibleFade</include>
-					<width>1920</width>
-					<height>87</height>
-					<info>Player.ProgressCache</info>
-					<texturebg>panels/mainmenu/shadow-bar-empty.png</texturebg>
-					<lefttexture/>
-					<midtexture flipy="true" colordiffuse="$VAR[PanelHighlightColorVar]">panels/mainmenu/shadow-bar20.png</midtexture>
-					<righttexture/>
-					<overlaytexture/>
-				</control>
-				<control type="progress">
-					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + Skin.String(MainMenuSystemBar.texture,shadow)</visible>
-					<include>AnimationVisibleFade</include>
-					<width>1920</width>
-					<height>87</height>
-					<info>Player.Progress</info>
-					<texturebg>panels/mainmenu/shadow-bar-empty.png</texturebg>
-					<lefttexture/>
-					<midtexture flipy="true" colordiffuse="$VAR[PanelHighlightColorVar]">panels/mainmenu/shadow-bar20.png</midtexture>
-					<righttexture/>
-					<overlaytexture/>
-				</control>
+				<include content="TopBarNowPlayingProgress">
+					<param name="visible">Player.HasMedia + Skin.HasSetting(NowplayingSystemBar)</param>
+					<param name="height">87</param>
+					<param name="flipy">true</param>
+					<param name="info">Player.ProgressCache</param>
+					<param name="texturebg">panels/mainmenu/shadow-bar-empty.png</param>
+					<param name="midtexture">panels/mainmenu/shadow-bar20.png</param>
+				</include>
+				<include content="TopBarNowPlayingProgress">
+					<param name="visible">Player.HasMedia + !VideoPlayer.HasEpg + Skin.HasSetting(NowplayingSystemBar)</param>
+					<param name="height">87</param>
+					<param name="flipy">true</param>
+					<param name="texturebg">panels/mainmenu/shadow-bar-empty.png</param>
+					<param name="midtexture">panels/mainmenu/shadow-bar20.png</param>
+				</include>
+				<include content="TopBarNowPlayingProgress">
+					<param name="visible">VideoPlayer.HasEpg + Skin.HasSetting(NowplayingSystemBar)</param>
+					<param name="height">87</param>
+					<param name="flipy">true</param>
+					<param name="info">PVR.EpgEventProgress</param>
+					<param name="texturebg">panels/mainmenu/shadow-bar-empty.png</param>
+					<param name="midtexture">panels/mainmenu/shadow-bar20.png</param>
+				</include>
 				<include content="InfoTimeBarContent">
 					<param name="top">47</param>
 					<param name="width">900</param>
@@ -262,97 +246,75 @@
 					<include>AnimationVisibleFade</include>
 					<texture border="70,1,1,1" flipy="true" colordiffuse="$VAR[TopbarTextureColorVar]">panels/mainmenu/default-systembar.png</texture>
 				</control>
-				<control type="progress">
-					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar)</visible>
-					<include>AnimationVisibleFade</include>
-					<width>740</width>
-					<height>41</height>
-					<info>Player.ProgressCache</info>
-					<texturebg>colors/none.png</texturebg>
-					<lefttexture/>
-					<midtexture colordiffuse="$VAR[PanelHighlightColorVar]">colors/white20.png</midtexture>
-					<righttexture/>
-					<overlaytexture/>
-				</control>
-				<control type="progress">
-					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar)</visible>
-					<include>AnimationVisibleFade</include>
-					<width>740</width>
-					<height>41</height>
-					<info>Player.Progress</info>
-					<texturebg>colors/none.png</texturebg>
-					<lefttexture/>
-					<midtexture colordiffuse="$VAR[PanelHighlightColorVar]">colors/white20.png</midtexture>
-					<righttexture/>
-					<overlaytexture/>
-				</control>
+				<include content="TopBarNowPlayingProgress">
+					<param name="visible">Player.HasMedia + Skin.HasSetting(NowplayingSystemBar)</param>
+					<param name="width">740</param>
+					<param name="info">Player.ProgressCache</param>
+				</include>
+				<include content="TopBarNowPlayingProgress">
+					<param name="visible">Player.HasMedia + !VideoPlayer.HasEpg + Skin.HasSetting(NowplayingSystemBar)</param>
+					<param name="width">740</param>
+				</include>
+				<include content="TopBarNowPlayingProgress">
+					<param name="visible">VideoPlayer.HasEpg + Skin.HasSetting(NowplayingSystemBar)</param>
+					<param name="width">740</param>
+					<param name="info">PVR.EpgEventProgress</param>
+				</include>
 				<include>InfoTimeBarContent</include>
 			</control>
 			<control type="group">
-				<visible>!String.IsEmpty(Skin.String(MainMenuSystemBar.texture))</visible>
+				<visible>Skin.String(MainMenuSystemBar.texture,wide)</visible>
 				<include>AnimationVisibleFade</include>
 				<control type="image">
-					<visible>Skin.String(MainMenuSystemBar.texture,wide)</visible>
 					<width>1920</width>
 					<height>88</height>
 					<include>AnimationVisibleFade</include>
 					<texture colordiffuse="$VAR[TopbarTextureColorVar]" border="1">panels/mainmenu/wide-bar.png</texture>
 				</control>
+				<include content="TopBarNowPlayingProgress">
+					<param name="visible">Player.HasMedia + Skin.HasSetting(NowplayingSystemBar)</param>
+					<param name="info">Player.ProgressCache</param>
+				</include>
+				<include content="TopBarNowPlayingProgress">
+					<param name="visible">Player.HasMedia + !VideoPlayer.HasEpg + Skin.HasSetting(NowplayingSystemBar)</param>
+				</include>
+				<include content="TopBarNowPlayingProgress">
+					<param name="visible">VideoPlayer.HasEpg + Skin.HasSetting(NowplayingSystemBar)</param>
+					<param name="info">PVR.EpgEventProgress</param>
+				</include>
+				<include content="InfoTimeBarContent">
+					<param name="width">900</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>Skin.String(MainMenuSystemBar.texture,shadow)</visible>
+				<include>AnimationVisibleFade</include>
 				<control type="image">
-					<visible>Skin.String(MainMenuSystemBar.texture,shadow)</visible>
 					<width>1920</width>
 					<height>88</height>
 					<include>AnimationVisibleFade</include>
 					<texture colordiffuse="$VAR[TopbarShadowTextureColorVar]" border="1">panels/mainmenu/shadow-bar.png</texture>
 				</control>
-				<control type="progress">
-					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + Skin.String(MainMenuSystemBar.texture,wide)</visible>
-					<include>AnimationVisibleFade</include>
-					<width>1920</width>
-					<height>41</height>
-					<info>Player.ProgressCache</info>
-					<texturebg>colors/none.png</texturebg>
-					<lefttexture/>
-					<midtexture colordiffuse="$VAR[PanelHighlightColorVar]">colors/white20.png</midtexture>
-					<righttexture/>
-					<overlaytexture/>
-				</control>
-				<control type="progress">
-					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + Skin.String(MainMenuSystemBar.texture,wide)</visible>
-					<include>AnimationVisibleFade</include>
-					<width>1920</width>
-					<height>41</height>
-					<info>Player.Progress</info>
-					<texturebg>colors/none.png</texturebg>
-					<lefttexture/>
-					<midtexture colordiffuse="$VAR[PanelHighlightColorVar]">colors/white20.png</midtexture>
-					<righttexture/>
-					<overlaytexture/>
-				</control>
-				<control type="progress">
-					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + Skin.String(MainMenuSystemBar.texture,shadow)</visible>
-					<include>AnimationVisibleFade</include>
-					<width>1920</width>
-					<height>87</height>
-					<info>Player.ProgressCache</info>
-					<texturebg>panels/mainmenu/shadow-bar-empty.png</texturebg>
-					<lefttexture/>
-					<midtexture colordiffuse="$VAR[PanelHighlightColorVar]">panels/mainmenu/shadow-bar20.png</midtexture>
-					<righttexture/>
-					<overlaytexture/>
-				</control>
-				<control type="progress">
-					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + Skin.String(MainMenuSystemBar.texture,shadow)</visible>
-					<include>AnimationVisibleFade</include>
-					<width>1920</width>
-					<height>87</height>
-					<info>Player.Progress</info>
-					<texturebg>panels/mainmenu/shadow-bar-empty.png</texturebg>
-					<lefttexture/>
-					<midtexture colordiffuse="$VAR[PanelHighlightColorVar]">panels/mainmenu/shadow-bar20.png</midtexture>
-					<righttexture/>
-					<overlaytexture/>
-				</control>
+				<include content="TopBarNowPlayingProgress">
+					<param name="visible">Player.HasMedia + Skin.HasSetting(NowplayingSystemBar)</param>
+					<param name="height">87</param>
+					<param name="info">Player.ProgressCache</param>
+					<param name="texturebg">panels/mainmenu/shadow-bar-empty.png</param>
+					<param name="midtexture">panels/mainmenu/shadow-bar20.png</param>
+				</include>
+				<include content="TopBarNowPlayingProgress">
+					<param name="visible">Player.HasMedia + !VideoPlayer.HasEpg + Skin.HasSetting(NowplayingSystemBar)</param>
+					<param name="height">87</param>
+					<param name="texturebg">panels/mainmenu/shadow-bar-empty.png</param>
+					<param name="midtexture">panels/mainmenu/shadow-bar20.png</param>
+				</include>
+				<include content="TopBarNowPlayingProgress">
+					<param name="visible">VideoPlayer.HasEpg + Skin.HasSetting(NowplayingSystemBar)</param>
+					<param name="height">87</param>
+					<param name="info">PVR.EpgEventProgress</param>
+					<param name="texturebg">panels/mainmenu/shadow-bar-empty.png</param>
+					<param name="midtexture">panels/mainmenu/shadow-bar20.png</param>
+				</include>
 				<include content="InfoTimeBarContent">
 					<param name="width">900</param>
 				</include>
