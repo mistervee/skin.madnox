@@ -435,6 +435,8 @@
 			</include>
 			<label>$LOCALIZE[31017]</label>
 			<onclick>RunScript(script.skinshortcuts,type=manage&amp;group=mainmenu)</onclick>
+			<onunfocus condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-build))">RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;group=mainmenu|shortcuts)</onunfocus>
+			<onunfocus condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-build))">ClearProperty(skinshortcuts-build,Home)</onunfocus>
 		</control>
 		<control type="radiobutton" id="9052">
 			<include content="MediaMenuIconButton">

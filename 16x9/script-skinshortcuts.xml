@@ -6,7 +6,7 @@
 	<onunload>ClearProperty(skinshortcuts-Widget,Home)</onunload>
 	<onunload>ClearProperty(skinshortcuts-CoverBackground,Home)</onunload>
 	<!-- <onunload>ClearProperty(skinshortcuts-management-widget,10000)</onunload> -->
-	<onunload condition="String.IsEmpty(Window.Property(additionalDialog))">RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;group=mainmenu|shortcuts)</onunload>
+	<onunload condition="Window.IsActive(home)">SetProperty(skinshortcuts-build,1,Home)</onunload>
 	<onunload>ClearProperty(WidgetFocus1,Home)</onunload>
 	<onunload>ClearProperty(WidgetFocus2,Home)</onunload>
 	<onunload>ClearProperty(WidgetFocus3,Home)</onunload>
@@ -243,11 +243,11 @@
 					<description>Background</description>
 					<label>$ADDON[script.skinshortcuts 32045]</label>
 					<label2>$INFO[Container(211).ListItem.Property(backgroundName)]</label2>
-					<visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+					<visible>!String.IsEqual(Window.Property(groupname),shortcuts)</visible>
 					<include>SettingsButton</include>
 				</control>
 				<control type="button" id="511">
-					<visible>String.IsEqual(Window.Property(groupname),mainmenu) + String.IsEqual(Container(211).ListItem.Property(background),cover)</visible>
+					<visible>!String.IsEqual(Window.Property(groupname),shortcuts) + String.IsEqual(Container(211).ListItem.Property(background),cover)</visible>
 					<description>Cover background settings</description>
 					<label>$LOCALIZE[31374]</label>
 					<onfocus condition="!String.IsEmpty(Window(Home).Property(skinshortcuts-CoverBackground))">ClearProperty(skinshortcuts-CoverBackground,Home)</onfocus>

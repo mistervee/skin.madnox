@@ -84,6 +84,7 @@
 				</control>
 				<!-- Cover backgrounds -->
 				<include condition="Window.IsActive(Home)">skinshortcuts-template-coverBackground</include>
+				<include condition="Window.IsActive(Home)">skinshortcuts-template-coverBackgroundSubmenu</include>
 				<include condition="Window.IsActive(videos)">CoverBackgroundVideos</include>
 				<include condition="Window.IsActive(music)">CoverBackgroundMusic</include>
 			</control>
@@ -1081,6 +1082,10 @@
 	</variable>
 	<variable name="HomeFanartVar">
 		<value condition="ControlGroup(90010).HasFocus + !String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+		<value condition="Control.HasFocus(9001) + [String.IsEqual(Container(9001).ListItem.Property(background),playlist) | String.IsEqual(Container(9001).ListItem.Property(coverBackground),fanart)]">$INFO[Control.GetLabel(7004)]</value>
+		<value condition="Control.HasFocus(9001) + String.IsEqual(Container(9001).ListItem.Property(background),cover) + !String.IsEmpty(Container(9001).ListItem.Property(coverBackground))">$INFO[Container(9001).ListItem.Property(coverBackground)]</value>
+		<value condition="Control.HasFocus(9001) + String.IsEqual(Container(9001).ListItem.Property(background),cover)">thumbs/coverbackground.jpg</value>
+		<value condition="Control.HasFocus(9001) + !String.IsEmpty(Container(9001).ListItem.Property(background))">$INFO[Container(9001).ListItem.Property(background)]</value>
 		<value condition="String.IsEqual(Container(9000).ListItem.Property(background),playlist) | String.IsEqual(Container(9000).ListItem.Property(coverBackground),fanart)">$INFO[Control.GetLabel(7002)]</value>
 		<value condition="String.IsEqual(Container(9000).ListItem.Property(background),cover) + !String.IsEmpty(Container(9000).ListItem.Property(coverBackground))">$INFO[Container(9000).ListItem.Property(coverBackground)]</value>
 		<value condition="String.IsEqual(Container(9000).ListItem.Property(background),cover)">thumbs/coverbackground.jpg</value>

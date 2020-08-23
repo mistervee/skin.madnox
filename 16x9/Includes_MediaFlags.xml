@@ -125,7 +125,7 @@
 				</control>
 				<control type="image">
 					<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
-					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioCodec,audiocodec/,.png]</texture>
+					<texture>$VAR[AudioCodecFlagVar]</texture>
 					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
@@ -186,7 +186,7 @@
 				</control>
 				<control type="image">
 					<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
-					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioCodec,audiocodec/,.png]</texture>
+					<texture>$VAR[AudioCodecFlagVar]</texture>
 					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
@@ -247,7 +247,7 @@
 				</control>
 				<control type="image">
 					<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
-					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioCodec,audiocodec/,.png]</texture>
+					<texture>$VAR[AudioCodecFlagVar]</texture>
 					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
@@ -319,7 +319,7 @@
 				</control>
 				<control type="image">
 					<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
-					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioCodec,audiocodec/,.png]</texture>
+					<texture>$VAR[AudioCodecFlagVar]</texture>
 					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
@@ -397,7 +397,7 @@
 				</control>
 				<control type="image">
 					<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
-					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioCodec,audiocodec/,.png]</texture>
+					<texture>$VAR[AudioCodecFlagVar]</texture>
 					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
@@ -700,7 +700,7 @@
 				</control>
 				<control type="image">
 					<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
-					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioCodec,audiocodec/,.png]</texture>
+					<texture>$VAR[AudioCodecFlagVar]</texture>
 					<include>MediaFlagImage</include>
 				</control>
 				<control type="image">
@@ -925,7 +925,7 @@
 			</control>
 			<control type="image">
 				<visible>!String.IsEmpty(VideoPlayer.AudioCodec)</visible>
-				<texture>$VAR[MediaFlagsPathVar]$INFO[VideoPlayer.AudioCodec,audiocodec/,.png]</texture>
+				<texture>$VAR[PlayerAudioCodecFlagVar]</texture>
 				<include>MediaFlagImage</include>
 			</control>
 			<control type="image">
@@ -1036,7 +1036,7 @@
 			</control>
 			<control type="image">
 				<visible>ControlGroup(9001).HasFocus + !Control.HasFocus(1010)</visible>
-				<texture>$VAR[MediaFlagsPathVar]$INFO[Container.ListItem.AudioCodec,audiocodec/,.png]</texture>
+				<texture>$VAR[ContainerAudioCodecFlagVar]</texture>
 				<include>MediaFlagImage</include>
 			</control>
 			<control type="image">
@@ -1165,7 +1165,7 @@
 			</control>
 			<control type="image">
 				<visible>Control.HasFocus(1090)</visible>
-				<texture>$VAR[MediaFlagsPathVar]$INFO[Container.ListItem.AudioCodec,audiocodec/,.png]</texture>
+				<texture>$VAR[ContainerAudioCodecFlagVar]</texture>
 				<include>MediaFlagImage</include>
 			</control>
 			<control type="image">
@@ -1495,6 +1495,24 @@
 		<value condition="String.Contains(Container(7007).ListItem.MPAA,TV-Y)">TV-Y.png</value>
 		<value condition="!String.IsEmpty(Container(7007).ListItem.MPAA)">$INFO[Container(7007).ListItem.MPAA,,.png]</value>
 		<value>NR.png</value>
+	</variable>
+	<variable name="AudioCodecFlagVar">
+		<value condition="String.Contains(ListItem.Filename,atmos)">$VAR[MediaFlagsPathVar]atmos.png</value>
+		$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioCodec,audiocodec/,.png]
+		<value condition="String.Contains(ListItem.Filename,dtsx) | String.Contains(ListItem.Filename,dts-x)">$VAR[MediaFlagsPathVar]dtsx.png</value>
+		<value>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioCodec,audiocodec/,.png]</value>
+	</variable>
+	<variable name="ContainerAudioCodecFlagVar">
+		<value condition="String.Contains(Container.ListItem.Filename,atmos)">$VAR[MediaFlagsPathVar]atmos.png</value>
+		$VAR[MediaFlagsPathVar]$INFO[Container.ListItem.AudioCodec,audiocodec/,.png]
+		<value condition="String.Contains(Container.ListItem.Filename,dtsx) | String.Contains(Container.ListItem.Filename,dts-x)">$VAR[MediaFlagsPathVar]dtsx.png</value>
+		<value>$VAR[MediaFlagsPathVar]$INFO[Container.ListItem.AudioCodec,audiocodec/,.png]</value>
+	</variable>
+	<variable name="PlayerAudioCodecFlagVar">
+		<value condition="String.Contains(Player.Filename,atmos)">$VAR[MediaFlagsPathVar]atmos.png</value>
+		$VAR[MediaFlagsPathVar]$INFO[VideoPlayer.AudioCodec,audiocodec/,.png]
+		<value condition="String.Contains(Player.Filename,dtsx) | String.Contains(Player.Filename,dts-x)">$VAR[MediaFlagsPathVar]dtsx.png</value>
+		<value>$VAR[MediaFlagsPathVar]$INFO[VideoPlayer.AudioCodec,audiocodec/,.png]</value>
 	</variable>
 	<variable name="FolderPathItemCountVar">
 		<value condition="ListItem.IsCollection">$LOCALIZE[342]</value>

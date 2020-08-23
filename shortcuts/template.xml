@@ -2330,6 +2330,7 @@
 		<controls>
 			<control type="group">
 				<skinshortcuts>visibility</skinshortcuts>
+				<visible>[!Control.HasFocus(9001) + !String.IsEmpty(Container(9001).ListItem.Property(background))] | [Control.HasFocus(9001) + String.IsEmpty(Container(9001).ListItem.Property(background))]</visible>
 				<include>AnimationVisibleFade</include>
 				<control type="wraplist" id="7000$SKINSHORTCUTS[id]">
 					<include>HiddenList</include>
@@ -2346,4 +2347,73 @@
 			</control>
 		</controls>
 	</other>
+	<submenuOther container="9001" include="coverBackgroundSubmenu">
+		<!-- Build include if background is set cover -->
+		<condition tag="property" attribute="name|background">cover</condition>
+		<!-- Retrieve properties -->
+		<property name="mainmenuid" tag="property" attribute="name|mainmenuid"/>
+		<property name="path" tag="property" attribute="name|backgroundPlaylist"/>
+		<property name="coversortby" tag="property" attribute="name|coverSortBy"/>
+		<property name="coversortorder" tag="property" attribute="name|coverSortOrder"/>
+		<!-- Case -->
+		<property name="casevisible" tag="property" attribute="name|covercase" value="true">true</property>
+		<property name="casevisible">false</property>
+		<!-- Diffuse -->
+		<property name="diffuseportrait" tag="property" attribute="name|covercase" value="true">noop</property>
+		<property name="diffuseportrait">diffuse/rounded5-330x495.png</property>
+		<property name="diffusesquare" tag="property" attribute="name|covercase" value="true">noop</property>
+		<property name="diffusesquare">diffuse/rounded5-376x376.png</property>
+		<!-- Submenu id -->
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[1]">1</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[2]">2</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[3]">3</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[4]">4</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[5]">5</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[6]">6</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[7]">7</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[8]">8</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[9]">9</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[10]">10</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[11]">11</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[12]">12</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[13]">13</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[14]">14</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[15]">15</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[16]">16</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[17]">17</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[18]">18</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[19]">19</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[20]">20</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[21]">21</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[22]">22</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[23]">23</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[24]">24</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[25]">25</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[26]">26</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[27]">27</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[28]">28</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[29]">29</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[30]">30</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[31]">31</property>
+		<property name="submenuid" tag="property" attribute="name|id" value="$NUMBER[32]">32</property>
+		<controls>
+			<control type="group">
+				<skinshortcuts>visibility</skinshortcuts>
+				<visible>Control.HasFocus(9001)</visible>
+				<include>AnimationVisibleFade</include>
+				<control type="wraplist" id="7000$SKINSHORTCUTS[mainmenuid]$SKINSHORTCUTS[submenuid]">
+					<include>HiddenList</include>
+					<content limit="10" sortby="$SKINSHORTCUTS[coversortby]" sortorder="$SKINSHORTCUTS[coversortorder]">$SKINSHORTCUTS[path]</content>
+				</control>
+				<include content="CoverBackground">
+					<param name="id">7000$SKINSHORTCUTS[mainmenuid]$SKINSHORTCUTS[submenuid]</param>
+					<param name="casevisible">$SKINSHORTCUTS[casevisible]</param>
+					<param name="diffuseportrait">$SKINSHORTCUTS[diffuseportrait]</param>
+					<param name="diffusesquare">$SKINSHORTCUTS[diffusesquare]</param>
+					<param name="portraitvisible">!ControlGroup(90010).HasFocus + [String.IsEqual(Container(7000$SKINSHORTCUTS[mainmenuid]$SKINSHORTCUTS[submenuid]).ListItem.DBTYPE,movie) | String.IsEqual(Container(7000$SKINSHORTCUTS[mainmenuid]$SKINSHORTCUTS[submenuid]).ListItem.DBTYPE,set) | String.IsEqual(Container(7000$SKINSHORTCUTS[mainmenuid]$SKINSHORTCUTS[submenuid]).ListItem.DBTYPE,tvshow) | String.IsEqual(Container(7000$SKINSHORTCUTS[mainmenuid]$SKINSHORTCUTS[submenuid]).ListItem.DBTYPE,season) | String.IsEqual(Container(7000$SKINSHORTCUTS[mainmenuid]$SKINSHORTCUTS[submenuid]).ListItem.DBTYPE,episode)]</param>
+					<param name="squarevisible">!ControlGroup(90010).HasFocus + ![String.IsEqual(Container(7000$SKINSHORTCUTS[mainmenuid]$SKINSHORTCUTS[submenuid]).ListItem.DBTYPE,movie) | String.IsEqual(Container(7000$SKINSHORTCUTS[mainmenuid]$SKINSHORTCUTS[submenuid]).ListItem.DBTYPE,set) | String.IsEqual(Container(7000$SKINSHORTCUTS[mainmenuid]$SKINSHORTCUTS[submenuid]).ListItem.DBTYPE,tvshow) | String.IsEqual(Container(7000$SKINSHORTCUTS[mainmenuid]$SKINSHORTCUTS[submenuid]).ListItem.DBTYPE,season) | String.IsEqual(Container(7000$SKINSHORTCUTS[mainmenuid]$SKINSHORTCUTS[submenuid]).ListItem.DBTYPE,episode)]</param>
+				</include>
+			</control>
+		</controls>
+	</submenuOther>
 </template>
