@@ -1150,7 +1150,7 @@
 		<animation effect="fade" end="100" time="300">Visible</animation>
 		<animation effect="fade" start="100" end="0" time="300">Hidden</animation>
 		<control type="image">
-			<visible>$PARAM[infovisible] + ControlGroup(90010).HasFocus</visible>
+			<visible>[ControlGroup(90010).HasFocus | Control.HasFocus(1607)]</visible>
 			<include>AnimationVisibleFade</include>
 			<top>-600</top>
 			<width>1300</width>
@@ -1164,7 +1164,7 @@
 			<right>40</right>
 			<animation effect="slide" end="0,42" condition="Skin.HasSetting(InfoBarTop)">Conditional</animation>
 			<control type="grouplist">
-				<visible>ControlGroup(90010).HasFocus</visible>
+				<visible>ControlGroup(90010).HasFocus + !Control.HasFocus(1607)</visible>
 				<bottom>350</bottom>
 				<width>910</width>
 				<height>300</height>
@@ -1267,6 +1267,13 @@
 				<label>$PARAM[label]</label>
 			</control>
 		</control>
+	</include>
+	<include name="WidgetNextButton">
+		<visible>Skin.HasSetting(WidgetNextButton) + !String.IsEmpty(Container(9000).ListItem.Property(widgetName.2))</visible>
+		<top>30</top>
+		<right>30</right>
+		<label></label>
+		<include>RSSShortcutsIcon</include>
 	</include>
 	<variable name="WidgetWatchedSatusIndicatorVar">
 		<value condition="!Skin.HasSetting(DisableWidgetResumeStatus) + ListItem.IsResumable">overlays/list/OverlayResume.png</value>
