@@ -17,8 +17,10 @@
 		<!-- List -->
 		<control type="group">
 			<visible>Control.IsVisible(58)</visible>
-			<animation effect="slide" end="0,-20" condition="!Skin.HasSetting(View58HideFloor) + [[$EXP[AreaVisibleVideos] + Skin.HasSetting(VideosHideTopBar)] | [$EXP[AreaVisibleMusic] + Skin.HasSetting(MusicHideTopBar)]]">conditional</animation>
-			<animation effect="slide" end="0,20" condition="Skin.HasSetting(View58HideFloor) + [[$EXP[AreaVisibleVideos] + !Skin.HasSetting(VideosHideTopBar)] | [$EXP[AreaVisibleMusic] + !Skin.HasSetting(MusicHideTopBar)]]">conditional</animation>
+			<animation effect="slide" end="0,-20" condition="!Skin.HasSetting(View58HideFloor) + Skin.HasSetting(VideosHideTopBar) + [$EXP[AreaVisibleVideos]]">conditional</animation>
+			<animation effect="slide" end="0,-20" condition="!Skin.HasSetting(View58HideFloor) + Skin.HasSetting(MusicHideTopBar) + [$EXP[AreaVisibleMusic]]">conditional</animation>
+			<animation effect="slide" end="0,20" condition="Skin.HasSetting(View58HideFloor) + !Skin.HasSetting(VideosHideTopBar) + [$EXP[AreaVisibleVideos]]">conditional</animation>
+			<animation effect="slide" end="0,20" condition="Skin.HasSetting(View58HideFloor) + !Skin.HasSetting(MusicHideTopBar) + [$EXP[AreaVisibleMusic]]">conditional</animation>
 			<include content="AnimationSlideRightWindow">
 				<param name="slide">1263</param>
 			</include>

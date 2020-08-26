@@ -14,14 +14,16 @@
 		<!-- Panel -->
 		<control type="group">
 			<visible>Control.IsVisible(541)</visible>
-			<animation effect="slide" end="0,-40" time="240" condition="[$EXP[AreaVisibleVideos] + Skin.HasSetting(VideosHideTopBar)] | [$EXP[AreaVisibleMusic] + Skin.HasSetting(MusicHideTopBar)] | [$EXP[AreaVisibleAddons] + Skin.HasSetting(AddonsHideTopBar)]">Conditional</animation>
+			<animation effect="slide" end="0,-40" time="240" condition="Skin.HasSetting(VideosHideTopBar) + [$EXP[AreaVisibleVideos]]">Conditional</animation>
+			<animation effect="slide" end="0,-40" time="240" condition="Skin.HasSetting(VideosHideTopBar) + [$EXP[AreaVisibleMusic]]">Conditional</animation>
+			<animation effect="slide" end="0,-40" time="240" condition="Skin.HasSetting(AddonsHideTopBar) + [$EXP[AreaVisibleAddons]]">Conditional</animation>
 			<include>AnimationZoomWindow</include>
 			<include>AnimationZoomVisible</include>
 			<control type="panel" id="541">
 				<top>80</top>
 				<left>40</left>
 				<width>1840</width>
-				<height>1000</height>
+				<height>1040</height>
 				<onleft>9050</onleft>
 				<onright>60541</onright>
 				<pagecontrol>60541</pagecontrol>
