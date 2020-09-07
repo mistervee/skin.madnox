@@ -1014,12 +1014,11 @@
 			<onclick>ActivateWindow(1111)</onclick>
 			<include>MediaMenuButton</include>
 		</control>
-		<control type="radiobutton" id="222">
+		<control type="button" id="222">
 			<visible>Container.Content(movies) | Container.Content(episodes) | Container.Content(musicvideos)</visible>
-			<label>$LOCALIZE[31060]</label>
-			<onclick condition="!System.HasAddon(resource.images.languageflags.rounded)">InstallAddon(resource.images.languageflags.rounded)</onclick>
-			<onclick condition="System.HasAddon(resource.images.languageflags.rounded)">Skin.ToggleSetting(ShowLanguageFlags)</onclick>
-			<selected>Skin.HasSetting(ShowLanguageFlags)</selected>
+			<label>$LOCALIZE[31234]</label>
+			<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[31234],home)</onclick>
+			<onclick>ActivateWindow(1111)</onclick>
 			<include>MediaMenuRadioButton</include>
 		</control>
 	</include>
@@ -3343,10 +3342,12 @@
 			<label>$LOCALIZE[21483]</label>
 			<include>MediaMenuLabel</include>
 		</control>
-		<control type="radiobutton" id="102">
-			<label>$LOCALIZE[31235]</label>
-			<onclick>Skin.ToggleSetting(View540SmallIcons)</onclick>
-			<selected>Skin.HasSetting(View540SmallIcons)</selected>
+		<control type="button" id="102">
+			<label>$LOCALIZE[31229]</label>
+			<label2>$VAR[View540IconSizeLabelVar]</label2>
+			<onclick condition="String.IsEmpty(View540IconSize)">Skin.SetString(View540IconSize,1)</onclick>
+			<onclick condition="Skin.String(View540IconSize,1)">Skin.SetString(View540IconSize,2)</onclick>
+			<onclick condition="Skin.String(View540IconSize,2)">Skin.Reset(View540IconSize)</onclick>
 			<include>MediaMenuButton</include>
 		</control>
 		<control type="radiobutton" id="103">

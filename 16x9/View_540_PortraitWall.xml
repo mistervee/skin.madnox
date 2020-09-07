@@ -27,7 +27,7 @@
 				<pagecontrol>60540</pagecontrol>
 				<include>ContainerScrollTime</include>
 				<viewtype label="$LOCALIZE[31254]">bigicon</viewtype>
-				<itemlayout height="384" width="262.8" condition="!Skin.HasSetting(View540SmallIcons)">
+				<itemlayout height="384" width="262.8" condition="String.IsEmpty(Skin.String(View540IconSize))">
 					<control type="group">
 						<visible>!Skin.HasSetting(View540VideoCase)</visible>
 						<include content="ViewArtwork">
@@ -47,7 +47,7 @@
 						</include>
 					</control>
 				</itemlayout>
-				<focusedlayout height="384" width="262.8" condition="!Skin.HasSetting(View540SmallIcons)">
+				<focusedlayout height="384" width="262.8" condition="String.IsEmpty(Skin.String(View540IconSize))">
 					<control type="group">
 						<animation effect="zoom" start="100" end="115" center="auto" time="240">focus</animation>
 						<animation effect="zoom" start="115" end="100" center="auto" time="240">unfocus</animation>
@@ -74,7 +74,7 @@
 						</control>
 					</control>
 				</focusedlayout>
-				<itemlayout height="335" width="230" condition="Skin.HasSetting(View540SmallIcons)">
+				<itemlayout height="335" width="230" condition="Skin.String(View540IconSize,1)">
 					<control type="group">
 						<visible>!Skin.HasSetting(View540VideoCase)</visible>
 						<include content="ViewArtwork">
@@ -94,7 +94,7 @@
 						</include>
 					</control>
 				</itemlayout>
-				<focusedlayout height="335" width="230" condition="Skin.HasSetting(View540SmallIcons)">
+				<focusedlayout height="335" width="230" condition="Skin.String(View540IconSize,1)">
 					<control type="group">
 						<animation effect="zoom" start="100" end="115" center="auto" time="240">focus</animation>
 						<animation effect="zoom" start="115" end="100" center="auto" time="240">unfocus</animation>
@@ -116,6 +116,53 @@
 								<param name="texturefadetime">0</param>
 								<param name="bordersize">16,33,16,17</param>
 								<param name="watchedstatustop">36</param>
+								<param name="watchedstatusvisible">!Skin.HasSetting(View540DisableWatchedStatus)</param>
+							</include>
+						</control>
+					</control>
+				</focusedlayout>
+				<itemlayout height="266" width="184" condition="Skin.String(View540IconSize,2)">
+					<control type="group">
+						<visible>!Skin.HasSetting(View540VideoCase)</visible>
+						<include content="ViewArtwork">
+							<param name="texturefadetime">0</param>
+							<param name="watchedstatusvisible">!Skin.HasSetting(View540DisableWatchedStatus)</param>
+							<param name="diffuse">diffuse/rounded5-163x245.png</param>
+						</include>
+					</control>
+					<control type="group">
+						<visible>Skin.HasSetting(View540VideoCase)</visible>
+						<include content="ViewArtworkVideoCase">
+							<param name="logoheight">19</param>
+							<param name="texturefadetime">0</param>
+							<param name="bordersize">16,29,16,17</param>
+							<param name="watchedstatustop">32</param>
+							<param name="watchedstatusvisible">!Skin.HasSetting(View540DisableWatchedStatus)</param>
+						</include>
+					</control>
+				</itemlayout>
+				<focusedlayout height="266" width="184" condition="Skin.String(View540IconSize,2)">
+					<control type="group">
+						<animation effect="zoom" start="100" end="115" center="auto" time="240">focus</animation>
+						<animation effect="zoom" start="115" end="100" center="auto" time="240">unfocus</animation>
+						<control type="image">
+							<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
+						</control>
+						<control type="group">
+							<visible>!Skin.HasSetting(View540VideoCase)</visible>
+							<include content="ViewArtwork">
+								<param name="texturefadetime">0</param>
+								<param name="watchedstatusvisible">!Skin.HasSetting(View540DisableWatchedStatus)</param>
+								<param name="diffuse">diffuse/rounded5-163x245.png</param>
+							</include>
+						</control>
+						<control type="group">
+							<visible>Skin.HasSetting(View540VideoCase)</visible>
+							<include content="ViewArtworkVideoCase">
+								<param name="logoheight">19</param>
+								<param name="texturefadetime">0</param>
+								<param name="bordersize">16,29,16,17</param>
+								<param name="watchedstatustop">32</param>
 								<param name="watchedstatusvisible">!Skin.HasSetting(View540DisableWatchedStatus)</param>
 							</include>
 						</control>

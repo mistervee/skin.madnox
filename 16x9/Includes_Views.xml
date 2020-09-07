@@ -835,6 +835,7 @@
 	<include name="ViewBannerFallback">
 		<param name="font">Font33_Bold</param>
 		<param name="watchedstatusvisible">false</param>
+		<param name="diffuse"></param>
 		<definition>
 			<control type="image">
 				<bordersize>10</bordersize>
@@ -850,7 +851,7 @@
 				<visible>!ListItem.IsParentFolder</visible>
 				<bordersize>10</bordersize>
 				<aspectratio scalediffuse="false">scale</aspectratio>
-				<texture background="true">$VAR[FanartBannerFallbackVar]</texture>
+				<texture background="true" diffuse="$PARAM[diffuse]">$VAR[FanartBannerFallbackVar]</texture>
 			</control>
 			<control type="image">
 				<visible>!ListItem.IsParentFolder</visible>
@@ -859,13 +860,14 @@
 				<texture background="true">$VAR[ClearLogoVar]</texture>
 			</control>
 			<control type="textbox">
-				<visible>!ListItem.IsParentFolder + String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearlogo))</visible>
+				<visible>!ListItem.IsParentFolder + String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo))</visible>
 				<left>20</left>
 				<right>20</right>
 				<align>center</align>
 				<aligny>center</aligny>
 				<font>$PARAM[font]</font>
 				<textcolor>$VAR[PanelTextColorVar]</textcolor>
+				<shadowcolor>ff000000</shadowcolor>
 				<label>$INFO[ListItem.Label]</label>
 			</control>
 			<include content="ViewWatchedStatus">
@@ -950,7 +952,7 @@
 				</control>
 				<control type="image">
 					<visible>[Window.IsVisible(1102) | String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season) | String.IsEqual(Container.ListItem.DBTYPE,tvshow) | String.IsEqual(Container.ListItem.DBTYPE,season)] + !String.IsEqual(Container.ListItem.DBTYPE,movie)</visible>
-					<top>9</top>
+					<top>10</top>
 					<height>$PARAM[logoheight]</height>
 					<align>center</align>
 					<aspectratio>keep</aspectratio>
@@ -1455,7 +1457,7 @@
 					<texture colordiffuse="CCFFFFFF">colors/black.png</texture>
 				</control>
 				<control type="group">
-					<visible>!ListItem.IsParentFolder</visible>
+					<visible>!ListItem.IsParentFolder + !String.Startswith(ListItem.Label,*)</visible>
 					<include content="AnimationSlideBottomWindow">
 						<param name="slide">1000</param>
 					</include>
@@ -2217,7 +2219,7 @@
 		<param name="watchedstatustop">18</param>
 		<param name="watchedstatusfont">Font20_Cond_Bold</param>
 		<definition>
-			<visible>!String.IsEmpty(Container.ListItemNoWrap($PARAM[item]).FolderPath) | !Skin.HasSetting(View506FixedList)</visible>
+			<visible>!String.IsEmpty(Container.ListItemNoWrap($PARAM[item]).Label) | !Skin.HasSetting(View506FixedList)</visible>
 			<control type="group">
 				<visible>!Skin.HasSetting(View506VideoCase) | Container.Content(genres)</visible>
 				<control type="group">
@@ -2354,7 +2356,7 @@
 		<param name="casereflectborder"/>
 		<param name="diffuse"/>
 		<definition>
-			<visible>[!Skin.HasSetting(View507FixedList) + !String.IsEmpty(Container.ListItem($PARAM[item]).FolderPath)] | [Skin.HasSetting(View507FixedList) + !String.IsEmpty(Container.ListItemNoWrap($PARAM[item]).FolderPath)]</visible>
+			<visible>[!Skin.HasSetting(View507FixedList) + !String.IsEmpty(Container.ListItem($PARAM[item]).Label)] | [Skin.HasSetting(View507FixedList) + !String.IsEmpty(Container.ListItemNoWrap($PARAM[item]).Label)]</visible>
 			<control type="group">
 				<visible>!Container.Content(albums) | [!Skin.HasSetting(View507AlbumCase) + Container.Content(albums)]</visible>
 				<control type="group">
@@ -2447,7 +2449,7 @@
 		<param name="left"/>
 		<param name="item"/>
 		<definition>
-			<visible>[!Skin.HasSetting(View508FixedList) + !String.IsEmpty(Container.ListItem($PARAM[item]).FolderPath)] | [Skin.HasSetting(View508FixedList) + !String.IsEmpty(Container.ListItemNoWrap($PARAM[item]).FolderPath)]</visible>
+			<visible>[!Skin.HasSetting(View508FixedList) + !String.IsEmpty(Container.ListItem($PARAM[item]).Label)] | [Skin.HasSetting(View508FixedList) + !String.IsEmpty(Container.ListItemNoWrap($PARAM[item]).Label)]</visible>
 			<left>$PARAM[left]</left>
 			<width>270</width>
 			<height>396</height>
@@ -2582,7 +2584,7 @@
 		<param name="casevisible">true</param>
 		<param name="casefrontvisible">false</param>
 		<definition>
-			<visible>[!Skin.HasSetting(View509FixedList) + !String.IsEmpty(Container.ListItem($PARAM[item]).FolderPath)] | [Skin.HasSetting(View509FixedList) + !String.IsEmpty(Container.ListItemNoWrap($PARAM[item]).FolderPath)]</visible>
+			<visible>[!Skin.HasSetting(View509FixedList) + !String.IsEmpty(Container.ListItem($PARAM[item]).Label)] | [Skin.HasSetting(View509FixedList) + !String.IsEmpty(Container.ListItemNoWrap($PARAM[item]).Label)]</visible>
 			<left>$PARAM[left]</left>
 			<width>396</width>
 			<height>396</height>

@@ -769,6 +769,7 @@
 		<ondown>9000</ondown>
 		<preloaditems>2</preloaditems>
 		<orientation>horizontal</orientation>
+		<include>ContainerScrollTime</include>
 	</include>
 	<include name="WidgetContainer">
 		<include>WidgetContainerCommon</include>
@@ -781,6 +782,12 @@
 				<bordersize>$PARAM[border]</bordersize>
 				<aspectratio align="center" aligny="center" scalediffuse="false">$PARAM[artworkaspect]</aspectratio>
 				<texture diffuse="$PARAM[diffuse]" colordiffuse="$VAR[MainMenuWidgetColorVar]">$PARAM[artwork]</texture>
+			</control>
+			<control type="image">
+				<visible>$PARAM[landscapefallback] + String.IsEmpty(ListItem.Art(tvshow.landscape)) + String.IsEmpty(ListItem.Art(artist.landscape)) + String.IsEmpty(ListItem.Art(landscape))</visible>
+				<bordersize>40</bordersize>
+				<aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
+				<texture colordiffuse="$VAR[MainMenuWidgetColorVar]">$VAR[ClearLogoVar]</texture>
 			</control>
 			<control type="image">
 				<left>0</left>
@@ -804,12 +811,13 @@
 				<visible>$PARAM[labelvisible]</visible>
 			</control>
 			<control type="textbox">
-				<visible>$PARAM[logofallback] + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</visible>
+				<visible>[$PARAM[logofallback] | $PARAM[landscapefallback]] + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</visible>
 				<left>20</left>
 				<right>20</right>
 				<align>center</align>
 				<aligny>center</aligny>
 				<font>$PARAM[font1]</font>
+				<shadowcolor>ff000000</shadowcolor>
 				<textcolor>$VAR[PanelTextColorVar]</textcolor>
 				<label>$INFO[ListItem.Label]</label>
 			</control>
@@ -872,6 +880,12 @@
 					<texture diffuse="$PARAM[diffuse]">$PARAM[artwork]</texture>
 				</control>
 				<control type="image">
+					<visible>$PARAM[landscapefallback] + String.IsEmpty(ListItem.Art(tvshow.landscape)) + String.IsEmpty(ListItem.Art(artist.landscape)) + String.IsEmpty(ListItem.Art(landscape))</visible>
+					<bordersize>40</bordersize>
+					<aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
+					<texture>$VAR[ClearLogoVar]</texture>
+				</control>
+				<control type="image">
 					<left>0</left>
 					<right>0</right>
 					<bottom>0</bottom>
@@ -893,7 +907,7 @@
 					<visible>$PARAM[labelvisible]</visible>
 				</control>
 				<control type="textbox">
-					<visible>$PARAM[logofallback] + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</visible>
+					<visible>[$PARAM[logofallback] | $PARAM[landscapefallback]] + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + String.IsEmpty(ListItem.Art(clearlogo))</visible>
 					<left>20</left>
 					<right>20</right>
 					<align>center</align>

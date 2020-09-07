@@ -386,7 +386,7 @@
 			</control>
 			<!-- Hidden object for open case -->
 			<control type="label" id="1970">
-				<visible>Skin.HasSetting(View508VideoCase) + Skin.HasSetting(View508OpenCase) + String.IsEqual(ListItem.DBTYPE,movie) + !String.IsEqual(Skin.String(LibraryVideoDiscArtFallback),none)</visible>
+				<visible>Skin.HasSetting(View508VideoCase) + Skin.HasSetting(View508OpenCase) + String.IsEqual(ListItem.DBTYPE,movie) + [!String.IsEmpty(ListItem.Art(discart)) | !String.IsEqual(Skin.String(LibraryVideoDiscArtFallback),none)]</visible>
 				<include>HiddenObject</include>
 				<visible>!Container.OnNext + !Container.OnPrevious</visible>
 				<animation effect="fade" end="100" time="120" delay="1000">Visible</animation>
@@ -398,8 +398,8 @@
 				<left>100</left>
 				<width>1820</width>
 				<height>396</height>
-				<onup condition="!Skin.String(View508InfoDelay,manual) | ListItem.IsParentFolder">9050</onup>
-				<onup condition="Skin.String(View508InfoDelay,manual) + !ListItem.IsParentFolder">9999</onup>
+				<onup condition="!Skin.String(View508InfoDelay,manual) | ListItem.IsParentFolder | String.Startswith(ListItem.Label,*)">9050</onup>
+				<onup condition="Skin.String(View508InfoDelay,manual) + !ListItem.IsParentFolder + !String.Startswith(ListItem.Label,*)">9999</onup>
 				<ondown>60508</ondown>
 				<pagecontrol>60508</pagecontrol>
 				<orientation>horizontal</orientation>

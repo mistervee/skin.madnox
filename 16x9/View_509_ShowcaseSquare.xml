@@ -347,7 +347,7 @@
 			</control>
 			<!-- Hidden object for open case -->
 			<control type="label" id="1970">
-				<visible>Skin.HasSetting(View509AlbumCase) + Skin.HasSetting(View509OpenCase) + String.IsEqual(ListItem.DBTYPE,album) + !String.Equal(Skin.String(LibraryMusicDiscArtFallback,none))</visible>
+				<visible>Skin.HasSetting(View509AlbumCase) + Skin.HasSetting(View509OpenCase) + String.IsEqual(ListItem.DBTYPE,album) + [!String.IsEmpty(ListItem.Art(discart)) | !String.IsEqual(Skin.String(LibraryMusicDiscArtFallback),none)]</visible>
 				<visible>!Container.OnNext + !Container.OnPrevious</visible>
 				<include>HiddenObject</include>
 				<animation effect="fade" end="100" time="120" delay="1000">Visible</animation>
@@ -359,8 +359,8 @@
 				<left>100</left>
 				<width>1720</width>
 				<height>396</height>
-				<onup condition="!Skin.String(View509InfoDelay,manual) | ListItem.IsParentFolder">9050</onup>
-				<onup condition="Skin.String(View509InfoDelay,manual) + !ListItem.IsParentFolder">9999</onup>
+				<onup condition="!Skin.String(View509InfoDelay,manual) | ListItem.IsParentFolder | String.Startswith(ListItem.Label,*)">9050</onup>
+				<onup condition="Skin.String(View509InfoDelay,manual) + !ListItem.IsParentFolder + !String.Startswith(ListItem.Label,*)">9999</onup>
 				<ondown>60509</ondown>
 				<pagecontrol>60509</pagecontrol>
 				<orientation>horizontal</orientation>

@@ -52,7 +52,7 @@
 				<viewtype label="$LOCALIZE[31252]">icon</viewtype>
 				<itemlayout height="111.4" width="500">
 					<control type="group">
-						<visible>!String.IsEmpty(ListItem.Art(banner)) | !String.IsEmpty(ListItem.Art(tvshow.banner)) | !String.IsEmpty(ListItem.Art(artist.banner))</visible>
+						<visible>!String.IsEmpty(ListItem.Art(banner)) | !String.IsEmpty(ListItem.Art(tvshow.banner))</visible>
 						<include content="ViewArtwork">
 							<param name="art">$VAR[BannerVar]</param>
 							<param name="texturefadetime">0</param>
@@ -61,8 +61,9 @@
 						</include>
 					</control>
 					<control type="group">
-						<visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner)) + String.IsEmpty(ListItem.Art(artist.banner))</visible>
+						<visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner))</visible>
 						<include content="ViewBannerFallback">
+							<param name="diffuse">diffuse/rounded5-480x91.png</param>
 							<param name="watchedstatusvisible">!Skin.HasSetting(View532DisableWatchedStatus)</param>
 						</include>
 					</control>
@@ -76,7 +77,7 @@
 							<effect type="zoom" start="95" end="100" time="240" center="auto"/>
 						</animation>
 						<control type="group">
-							<visible>!String.IsEmpty(ListItem.Art(banner)) | !String.IsEmpty(ListItem.Art(tvshow.banner)) | !String.IsEmpty(ListItem.Art(artist.banner))</visible>
+							<visible>!String.IsEmpty(ListItem.Art(banner)) | !String.IsEmpty(ListItem.Art(tvshow.banner))</visible>
 							<include content="ViewArtwork">
 								<param name="art">$VAR[BannerVar]</param>
 								<param name="texturefadetime">0</param>
@@ -85,8 +86,9 @@
 							</include>
 						</control>
 						<control type="group">
-							<visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner)) + String.IsEmpty(ListItem.Art(artist.banner))</visible>
+							<visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner))</visible>
 							<include content="ViewBannerFallback">
+								<param name="diffuse">diffuse/rounded5-480x91.png</param>
 								<param name="watchedstatusvisible">!Skin.HasSetting(View532DisableWatchedStatus)</param>
 							</include>
 						</control>

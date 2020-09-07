@@ -118,11 +118,7 @@
 					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoCodec,videocodec/,.png]</texture>
 					<include>MediaFlagImage</include>
 				</control>
-				<control type="image">
-					<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
-					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoResolution,videoresolution/,.png]</texture>
-					<include>MediaFlagImage</include>
-				</control>
+				<include>ResolutionFlags</include>
 				<control type="image">
 					<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
 					<texture>$VAR[AudioCodecFlagVar]</texture>
@@ -179,11 +175,7 @@
 					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoCodec,videocodec/,.png]</texture>
 					<include>MediaFlagImage</include>
 				</control>
-				<control type="image">
-					<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
-					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoResolution,videoresolution/,.png]</texture>
-					<include>MediaFlagImage</include>
-				</control>
+				<include>ResolutionFlags</include>
 				<control type="image">
 					<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
 					<texture>$VAR[AudioCodecFlagVar]</texture>
@@ -240,11 +232,7 @@
 					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoCodec,videocodec/,.png]</texture>
 					<include>MediaFlagImage</include>
 				</control>
-				<control type="image">
-					<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
-					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoResolution,videoresolution/,.png]</texture>
-					<include>MediaFlagImage</include>
-				</control>
+				<include>ResolutionFlags</include>
 				<control type="image">
 					<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
 					<texture>$VAR[AudioCodecFlagVar]</texture>
@@ -312,11 +300,7 @@
 					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoCodec,videocodec/,.png]</texture>
 					<include>MediaFlagImage</include>
 				</control>
-				<control type="image">
-					<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
-					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoResolution,videoresolution/,.png]</texture>
-					<include>MediaFlagImage</include>
-				</control>
+				<include>ResolutionFlags</include>
 				<control type="image">
 					<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
 					<texture>$VAR[AudioCodecFlagVar]</texture>
@@ -390,11 +374,7 @@
 					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoCodec,videocodec/,.png]</texture>
 					<include>MediaFlagImage</include>
 				</control>
-				<control type="image">
-					<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
-					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoResolution,videoresolution/,.png]</texture>
-					<include>MediaFlagImage</include>
-				</control>
+				<include>ResolutionFlags</include>
 				<control type="image">
 					<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
 					<texture>$VAR[AudioCodecFlagVar]</texture>
@@ -667,11 +647,7 @@
 					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoCodec,videocodec/,.png]</texture>
 					<include>MediaFlagImage</include>
 				</control>
-				<control type="image">
-					<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
-					<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoResolution,videoresolution/,.png]</texture>
-					<include>MediaFlagImage</include>
-				</control>
+				<include>ResolutionFlags</include>
 				<control type="image">
 					<visible>!ListItem.IsCollection</visible>
 					<bordersize>0,10,0,10</bordersize>
@@ -858,6 +834,44 @@
 			</control>
 		</definition>
 	</include>
+	<include name="ResolutionFlags">
+		<param name="container">ListItem</param>
+		<param name="resolutionvisible">!String.IsEmpty(ListItem.VideoResolution)</param>
+		<param name="resolutionflag">$INFO[ListItem.VideoResolution,videoresolution/,.png]</param>
+		<param name="hdrflag">$VAR[HDRFlagVar]</param>
+		<param name="bitdepthflag">$VAR[BitDepthFlagVar]</param>
+		<definition>
+			<control type="image">
+				<visible>$PARAM[resolutionvisible]</visible>
+				<animation effect="slide" end="-16" condition="[Skin.HasSetting(HDRSDRflag) + [String.Contains($PARAM[container].Filename,hdr) | String.Contains($PARAM[container].Filename,sdr)]] | [Skin.HasSetting(BitDepthFlag) + [String.Contains($PARAM[container].Filename,8bit) | String.Contains($PARAM[container].Filename,8-bit) | String.Contains($PARAM[container].Filename,10bit) | String.Contains($PARAM[container].Filename,10-bit) | String.Contains($PARAM[container].Filename,12bit) | String.Contains($PARAM[container].Filename,12-bit)]]">Conditional</animation>
+				<texture>$VAR[MediaFlagsPathVar]$PARAM[resolutionflag]</texture>
+				<include>MediaFlagImage</include>
+			</control>
+			<control type="grouplist">
+				<visible>$PARAM[resolutionvisible]</visible>
+				<top>17</top>
+				<left>-52</left>
+				<width>42</width>
+				<height>80</height>
+				<itemgap>0</itemgap>
+				<orientation>vertical</orientation>
+				<control type="image" id="6111">
+					<visible>Skin.HasSetting(HDRSDRflag) + [String.Contains($PARAM[container].Filename,hdr) | String.Contains($PARAM[container].Filename,sdr)]</visible>
+					<width>42</width>
+					<height>20</height>
+					<include>MediaFlagImage</include>
+					<texture>$PARAM[hdrflag]</texture>
+				</control>
+				<control type="image" id="6112">
+					<visible>Skin.HasSetting(BitDepthFlag)</visible>
+					<width>42</width>
+					<height>20</height>
+					<include>MediaFlagImage</include>
+					<texture>$PARAM[bitdepthflag]</texture>
+				</control>
+			</control>
+		</definition>
+	</include>
 	<include name="MediaFlagsPVR">
 		<control type="grouplist">
 			<include content="AnimationSlideBottomWindow">
@@ -918,11 +932,13 @@
 				<texture>$VAR[MediaFlagsPathVar]$INFO[VideoPlayer.VideoCodec,videocodec/,.png]</texture>
 				<include>MediaFlagImage</include>
 			</control>
-			<control type="image">
-				<visible>!String.IsEmpty(VideoPlayer.VideoResolution)</visible>
-				<texture>$VAR[MediaFlagsPathVar]$INFO[VideoPlayer.VideoResolution,videoresolution/,.png]</texture>
-				<include>MediaFlagImage</include>
-			</control>
+			<include content="ResolutionFlags">
+				<param name="container">Container.VideoPlayer</param>
+				<param name="resolutionvisible">!String.IsEmpty(VideoPlayer.VideoResolution)</param>
+				<param name="resolutionflag">$INFO[VideoPlayer.VideoResolution,videoresolution/,.png]</param>
+				<param name="hdrflag">$VAR[PlayerHDRFlagVar]</param>
+				<param name="bitdepthflag">$VAR[PlayerBitDepthFlagVar]</param>
+			</include>
 			<control type="image">
 				<visible>!String.IsEmpty(VideoPlayer.AudioCodec)</visible>
 				<texture>$VAR[PlayerAudioCodecFlagVar]</texture>
@@ -1019,19 +1035,19 @@
 				<texture>$VAR[MediaFlagsPathVar]$INFO[Container.ListItem.VideoCodec,videocodec/,.png]</texture>
 				<include>MediaFlagImage</include>
 			</control>
+			<include content="ResolutionFlags">
+				<param name="resolutionvisible">!ControlGroup(9001).HasFocus | Control.HasFocus(1010)</param>
+			</include>
+			<include content="ResolutionFlags">
+				<param name="container">Container.ListItem</param>
+				<param name="resolutionvisible">ControlGroup(9001).HasFocus + !Control.HasFocus(1010)</param>
+				<param name="resolutionflag">$INFO[Container.ListItem.VideoResolution,videoresolution/,.png]</param>
+				<param name="hdrflag">$VAR[ContainerHDRFlagVar]</param>
+				<param name="bitdepthflag">$VAR[ContainerBitDepthFlagVar]</param>
+			</include>
 			<control type="image">
 				<visible>!ControlGroup(9001).HasFocus | Control.HasFocus(1010)</visible>
-				<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoResolution,videoresolution/,.png]</texture>
-				<include>MediaFlagImage</include>
-			</control>
-			<control type="image">
-				<visible>ControlGroup(9001).HasFocus + !Control.HasFocus(1010)</visible>
-				<texture>$VAR[MediaFlagsPathVar]$INFO[Container.ListItem.VideoResolution,videoresolution/,.png]</texture>
-				<include>MediaFlagImage</include>
-			</control>
-			<control type="image">
-				<visible>!ControlGroup(9001).HasFocus | Control.HasFocus(1010)</visible>
-				<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioCodec,audiocodec/,.png]</texture>
+				<texture>$VAR[AudioCodecFlagVar]</texture>
 				<include>MediaFlagImage</include>
 			</control>
 			<control type="image">
@@ -1497,22 +1513,46 @@
 		<value>NR.png</value>
 	</variable>
 	<variable name="AudioCodecFlagVar">
-		<value condition="String.Contains(ListItem.Filename,atmos)">$VAR[MediaFlagsPathVar]atmos.png</value>
-		$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioCodec,audiocodec/,.png]
-		<value condition="String.Contains(ListItem.Filename,dtsx) | String.Contains(ListItem.Filename,dts-x)">$VAR[MediaFlagsPathVar]dtsx.png</value>
+		<value condition="String.Contains(ListItem.Filename,atmos)">$VAR[MediaFlagsPathVar]audiocodec/atmos.png</value>
+		<value condition="String.Contains(ListItem.Filename,dtsx) | String.Contains(ListItem.Filename,dts-x)">$VAR[MediaFlagsPathVar]audiocodec/dtsx.png</value>
 		<value>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioCodec,audiocodec/,.png]</value>
 	</variable>
 	<variable name="ContainerAudioCodecFlagVar">
-		<value condition="String.Contains(Container.ListItem.Filename,atmos)">$VAR[MediaFlagsPathVar]atmos.png</value>
-		$VAR[MediaFlagsPathVar]$INFO[Container.ListItem.AudioCodec,audiocodec/,.png]
-		<value condition="String.Contains(Container.ListItem.Filename,dtsx) | String.Contains(Container.ListItem.Filename,dts-x)">$VAR[MediaFlagsPathVar]dtsx.png</value>
+		<value condition="String.Contains(Container.ListItem.Filename,atmos)">$VAR[MediaFlagsPathVar]audiocodec/atmos.png</value>
+		<value condition="String.Contains(Container.ListItem.Filename,dtsx) | String.Contains(Container.ListItem.Filename,dts-x)">$VAR[MediaFlagsPathVar]audiocodec/dtsx.png</value>
 		<value>$VAR[MediaFlagsPathVar]$INFO[Container.ListItem.AudioCodec,audiocodec/,.png]</value>
 	</variable>
 	<variable name="PlayerAudioCodecFlagVar">
-		<value condition="String.Contains(Player.Filename,atmos)">$VAR[MediaFlagsPathVar]atmos.png</value>
-		$VAR[MediaFlagsPathVar]$INFO[VideoPlayer.AudioCodec,audiocodec/,.png]
-		<value condition="String.Contains(Player.Filename,dtsx) | String.Contains(Player.Filename,dts-x)">$VAR[MediaFlagsPathVar]dtsx.png</value>
+		<value condition="String.Contains(Player.Filename,atmos)">$VAR[MediaFlagsPathVar]audiocodec/atmos.png</value>
+		<value condition="String.Contains(Player.Filename,dtsx) | String.Contains(Player.Filename,dts-x)">$VAR[MediaFlagsPathVar]audiocodec/dtsx.png</value>
 		<value>$VAR[MediaFlagsPathVar]$INFO[VideoPlayer.AudioCodec,audiocodec/,.png]</value>
+	</variable>
+	<variable name="HDRFlagVar">
+		<value condition="String.Contains(ListItem.Filename,hdr)">$VAR[MediaFlagsPathVar]hdr.png</value>
+		<value condition="String.Contains(ListItem.Filename,sdr)">$VAR[MediaFlagsPathVar]sdr.png</value>
+	</variable>
+	<variable name="ContainerHDRFlagVar">
+		<value condition="String.Contains(Container.ListItem.Filename,hdr)">$VAR[MediaFlagsPathVar]hdr.png</value>
+		<value condition="String.Contains(Container.ListItem.Filename,sdr)">$VAR[MediaFlagsPathVar]sdr.png</value>
+	</variable>
+	<variable name="PlayerHDRFlagVar">
+		<value condition="String.Contains(Player.Filename,hdr)">$VAR[MediaFlagsPathVar]hdr.png</value>
+		<value condition="String.Contains(Player.Filename,sdr)">$VAR[MediaFlagsPathVar]sdr.png</value>
+	</variable>
+	<variable name="BitDepthFlagVar">
+		<value condition="String.Contains(ListItem.Filename,8bit) | String.Contains(ListItem.Filename,8-bit)">$VAR[MediaFlagsPathVar]8bit.png</value>
+		<value condition="String.Contains(ListItem.Filename,10bit) | String.Contains(ListItem.Filename,10-bit)">$VAR[MediaFlagsPathVar]10bit.png</value>
+		<value condition="String.Contains(ListItem.Filename,12bit) | String.Contains(ListItem.Filename,12-bit)">$VAR[MediaFlagsPathVar]12bit.png</value>
+	</variable>
+	<variable name="ContainerBitDepthFlagVar">
+		<value condition="String.Contains(Container.ListItem.Filename,8bit) | String.Contains(Container.ListItem.Filename,8-bit)">$VAR[MediaFlagsPathVar]8bit.png</value>
+		<value condition="String.Contains(Container.ListItem.Filename,10bit) | String.Contains(Container.ListItem.Filename,10-bit)">$VAR[MediaFlagsPathVar]10bit.png</value>
+		<value condition="String.Contains(Container.ListItem.Filename,12bit) | String.Contains(Container.ListItem.Filename,12-bit)">$VAR[MediaFlagsPathVar]12bit.png</value>
+	</variable>
+	<variable name="PlayerBitDepthFlagVar">
+		<value condition="String.Contains(Player.Filename,8bit) | String.Contains(Player.Filename,8-bit)">$VAR[MediaFlagsPathVar]8bit.png</value>
+		<value condition="String.Contains(Player.Filename,10bit) | String.Contains(Player.Filename,10-bit)">$VAR[MediaFlagsPathVar]10bit.png</value>
+		<value condition="String.Contains(Player.Filename,12bit) | String.Contains(Player.Filename,12-bit)">$VAR[MediaFlagsPathVar]12bit.png</value>
 	</variable>
 	<variable name="FolderPathItemCountVar">
 		<value condition="ListItem.IsCollection">$LOCALIZE[342]</value>
