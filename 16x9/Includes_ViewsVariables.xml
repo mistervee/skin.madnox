@@ -393,6 +393,7 @@
 	<variable name="VideoCaseVar">
 		<value condition="ListItem.IsCollection">thumbs/case/portrait/set.png</value>
 		<value condition="ListItem.IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="String.Contains(ListItem.Filename,webdl)">thumbs/case/portrait/webdl.png</value>
 		<value condition="!String.IsEmpty(ListItem.VideoResolution)">thumbs/case/portrait/$INFO[ListItem.VideoResolution]p.png</value>
 		<value>thumbs/case/portrait/tvshow.png</value>
 	</variable>
@@ -496,7 +497,9 @@
 	<!-- Showcase -->
 	<variable name="ShowCaseBackVar">
 		<value condition="ListItem.IsStereoscopic">thumbs/case/portrait/back/1080p.png</value>
-		<value>thumbs/case/portrait/back/$INFO[ListItem.VideoResolution]p.png</value>
+		<value condition="String.Contains(ListItem.Filename,webdl) | String.Contains(ListItem.Filename,web-dl)">thumbs/case/portrait/back/webdl.png</value>
+		<value condition="!String.IsEmpty(ListItem.VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem.VideoResolution]p.png</value>
+		<value>thumbs/case/portrait/back/1080p.png</value>
 	</variable>
 	<variable name="ShowcaseItem-1Var">
 		<value condition="!ListItem(-1).IsParentFolder + Container.Content(genres) + ![String.Contains(ListItem.FolderPath,movies) | String.Contains(ListItem.FolderPath,tvshows)] + System.HasAddon(resource.images.musicgenreicons.text)">$INFO[ListItem(-1).Label,resource://resource.images.musicgenreicons.text/,.jpg]</value>
@@ -634,179 +637,124 @@
 		<value condition="!String.IsEmpty(ListItem(9).Thumb)">$INFO[ListItem(9).Thumb]</value>
 		<value>$INFO[ListItem(9).Icon]</value>
 	</variable>
-	<variable name="ShowcaseCase-9Var">
-		<value condition="String.IsEqual(ListItem(-9).DBTYPE,tvshow) | String.IsEqual(ListItem(-9).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
-		<value condition="ListItem(-9).IsCollection">thumbs/case/portrait/set.png</value>
-		<value condition="ListItem(-9).IsStereoscopic">thumbs/case/portrait/3d.png</value>
-		<value condition="!String.IsEmpty(ListItem(-9).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-9).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCase-8Var">
-		<value condition="String.IsEqual(ListItem(-8).DBTYPE,tvshow) | String.IsEqual(ListItem(-8).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
-		<value condition="ListItem(-8).IsCollection">thumbs/case/portrait/set.png</value>
-		<value condition="ListItem(-8).IsStereoscopic">thumbs/case/portrait/3d.png</value>
-		<value condition="!String.IsEmpty(ListItem(-8).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-8).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCase-7Var">
-		<value condition="String.IsEqual(ListItem(-7).DBTYPE,tvshow) | String.IsEqual(ListItem(-7).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
-		<value condition="ListItem(-7).IsCollection">thumbs/case/portrait/set.png</value>
-		<value condition="ListItem(-7).IsStereoscopic">thumbs/case/portrait/3d.png</value>
-		<value condition="!String.IsEmpty(ListItem(-7).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-7).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCase-6Var">
-		<value condition="String.IsEqual(ListItem(-6).DBTYPE,tvshow) | String.IsEqual(ListItem(-6).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
-		<value condition="ListItem(-6).IsCollection">thumbs/case/portrait/set.png</value>
-		<value condition="ListItem(-6).IsStereoscopic">thumbs/case/portrait/3d.png</value>
-		<value condition="!String.IsEmpty(ListItem(-6).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-6).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCase-5Var">
-		<value condition="String.IsEqual(ListItem(-5).DBTYPE,tvshow) | String.IsEqual(ListItem(-5).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
-		<value condition="ListItem(-5).IsCollection">thumbs/case/portrait/set.png</value>
-		<value condition="ListItem(-5).IsStereoscopic">thumbs/case/portrait/3d.png</value>
-		<value condition="!String.IsEmpty(ListItem(-5).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-5).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCase-4Var">
-		<value condition="String.IsEqual(ListItem(-4).DBTYPE,tvshow) | String.IsEqual(ListItem(-4).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
-		<value condition="ListItem(-4).IsCollection">thumbs/case/portrait/set.png</value>
-		<value condition="ListItem(-4).IsStereoscopic">thumbs/case/portrait/3d.png</value>
-		<value condition="!String.IsEmpty(ListItem(-4).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-4).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCase-3Var">
-		<value condition="String.IsEqual(ListItem(-3).DBTYPE,tvshow) | String.IsEqual(ListItem(-3).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
-		<value condition="ListItem(-3).IsCollection">thumbs/case/portrait/set.png</value>
-		<value condition="ListItem(-3).IsStereoscopic">thumbs/case/portrait/3d.png</value>
-		<value condition="!String.IsEmpty(ListItem(-3).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-3).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCase-2Var">
-		<value condition="String.IsEqual(ListItem(-2).DBTYPE,tvshow) | String.IsEqual(ListItem(-2).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
-		<value condition="ListItem(-2).IsCollection">thumbs/case/portrait/set.png</value>
-		<value condition="ListItem(-2).IsStereoscopic">thumbs/case/portrait/3d.png</value>
-		<value condition="!String.IsEmpty(ListItem(-2).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-2).VideoResolution]p.png</value>
-	</variable>
 	<variable name="ShowcaseCase-1Var">
-		<value condition="String.IsEqual(ListItem(-1).DBTYPE,tvshow) | String.IsEqual(ListItem(-1).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
 		<value condition="ListItem(-1).IsCollection">thumbs/case/portrait/set.png</value>
 		<value condition="ListItem(-1).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="String.Contains(ListItem(-1).Filename,webdl) | String.Contains(ListItem(-1).Filename,web-dl)">thumbs/case/portrait/webdl.png</value>
 		<value condition="!String.IsEmpty(ListItem(-1).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-1).VideoResolution]p.png</value>
+		<value>thumbs/case/portrait/tvshow.png</value>
+	</variable>
+	<variable name="ShowcaseCase-2Var">
+		<value condition="ListItem(-2).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(-2).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="String.Contains(ListItem(-2).Filename,webdl) | String.Contains(ListItem(-2).Filename,web-dl)">thumbs/case/portrait/webdl.png</value>
+		<value condition="!String.IsEmpty(ListItem(-2).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-2).VideoResolution]p.png</value>
+		<value>thumbs/case/portrait/tvshow.png</value>
+	</variable>
+	<variable name="ShowcaseCase-3Var">
+		<value condition="ListItem(-3).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(-3).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="String.Contains(ListItem(-3).Filename,webdl) | String.Contains(ListItem(-3).Filename,web-dl)">thumbs/case/portrait/webdl.png</value>
+		<value condition="!String.IsEmpty(ListItem(-3).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-3).VideoResolution]p.png</value>
+		<value>thumbs/case/portrait/tvshow.png</value>
+	</variable>
+	<variable name="ShowcaseCase-4Var">
+		<value condition="ListItem(-4).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(-4).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="String.Contains(ListItem(-4).Filename,webdl) | String.Contains(ListItem(-4).Filename,web-dl)">thumbs/case/portrait/webdl.png</value>
+		<value condition="!String.IsEmpty(ListItem(-4).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-4).VideoResolution]p.png</value>
+		<value>thumbs/case/portrait/tvshow.png</value>
+	</variable>
+	<variable name="ShowcaseCase-5Var">
+		<value condition="ListItem(-5).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(-5).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="String.Contains(ListItem(-5).Filename,webdl) | String.Contains(ListItem(-5).Filename,web-dl)">thumbs/case/portrait/webdl.png</value>
+		<value condition="!String.IsEmpty(ListItem(-5).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-5).VideoResolution]p.png</value>
+		<value>thumbs/case/portrait/tvshow.png</value>
+	</variable>
+	<variable name="ShowcaseCase-6Var">
+		<value condition="ListItem(-6).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(-6).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="String.Contains(ListItem(-6).Filename,webdl) | String.Contains(ListItem(-6).Filename,web-dl)">thumbs/case/portrait/webdl.png</value>
+		<value condition="!String.IsEmpty(ListItem(-6).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-6).VideoResolution]p.png</value>
+		<value>thumbs/case/portrait/tvshow.png</value>
+	</variable>
+	<variable name="ShowcaseCase-7Var">
+		<value condition="ListItem(-7).IsCollection">thumbs/case/portrait/set.png</value>
+		<value condition="ListItem(-7).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="String.Contains(ListItem(-7).Filename,webdl) | String.Contains(ListItem(-7).Filename,web-dl)">thumbs/case/portrait/webdl.png</value>
+		<value condition="!String.IsEmpty(ListItem(-7).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(-7).VideoResolution]p.png</value>
+		<value>thumbs/case/portrait/tvshow.png</value>
 	</variable>
 	<variable name="ShowcaseCase0Var">
-		<value condition="String.IsEqual(ListItem(0).DBTYPE,tvshow) | String.IsEqual(ListItem(0).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
 		<value condition="ListItem(0).IsCollection">thumbs/case/portrait/set.png</value>
 		<value condition="ListItem(0).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="String.Contains(ListItem(0).Filename,webdl) | String.Contains(ListItem(0).Filename,web-dl)">thumbs/case/portrait/webdl.png</value>
 		<value condition="!String.IsEmpty(ListItem(0).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(0).VideoResolution]p.png</value>
+		<value>thumbs/case/portrait/tvshow.png</value>
 	</variable>
 	<variable name="ShowcaseCase1Var">
-		<value condition="String.IsEqual(ListItem(1).DBTYPE,tvshow) | String.IsEqual(ListItem(1).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
 		<value condition="ListItem(1).IsCollection">thumbs/case/portrait/set.png</value>
 		<value condition="ListItem(1).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="String.Contains(ListItem(1).Filename,webdl) | String.Contains(ListItem(1).Filename,web-dl)">thumbs/case/portrait/webdl.png</value>
 		<value condition="!String.IsEmpty(ListItem(1).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(1).VideoResolution]p.png</value>
+		<value>thumbs/case/portrait/tvshow.png</value>
 	</variable>
 	<variable name="ShowcaseCase2Var">
-		<value condition="String.IsEqual(ListItem(2).DBTYPE,tvshow) | String.IsEqual(ListItem(2).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
 		<value condition="ListItem(2).IsCollection">thumbs/case/portrait/set.png</value>
 		<value condition="ListItem(2).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="String.Contains(ListItem(2).Filename,webdl) | String.Contains(ListItem(2).Filename,web-dl)">thumbs/case/portrait/webdl.png</value>
 		<value condition="!String.IsEmpty(ListItem(2).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(2).VideoResolution]p.png</value>
+		<value>thumbs/case/portrait/tvshow.png</value>
 	</variable>
 	<variable name="ShowcaseCase3Var">
-		<value condition="String.IsEqual(ListItem(3).DBTYPE,tvshow) | String.IsEqual(ListItem(3).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
 		<value condition="ListItem(3).IsCollection">thumbs/case/portrait/set.png</value>
 		<value condition="ListItem(3).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="String.Contains(ListItem(3).Filename,webdl) | String.Contains(ListItem(3).Filename,web-dl)">thumbs/case/portrait/webdl.png</value>
 		<value condition="!String.IsEmpty(ListItem(3).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(3).VideoResolution]p.png</value>
+		<value>thumbs/case/portrait/tvshow.png</value>
 	</variable>
 	<variable name="ShowcaseCase4Var">
-		<value condition="String.IsEqual(ListItem(4).DBTYPE,tvshow) | String.IsEqual(ListItem(4).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
 		<value condition="ListItem(4).IsCollection">thumbs/case/portrait/set.png</value>
 		<value condition="ListItem(4).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="String.Contains(ListItem(4).Filename,webdl) | String.Contains(ListItem(4).Filename,web-dl)">thumbs/case/portrait/webdl.png</value>
 		<value condition="!String.IsEmpty(ListItem(4).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(4).VideoResolution]p.png</value>
+		<value>thumbs/case/portrait/tvshow.png</value>
 	</variable>
 	<variable name="ShowcaseCase5Var">
-		<value condition="String.IsEqual(ListItem(5).DBTYPE,tvshow) | String.IsEqual(ListItem(5).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
 		<value condition="ListItem(5).IsCollection">thumbs/case/portrait/set.png</value>
 		<value condition="ListItem(5).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="String.Contains(ListItem(5).Filename,webdl) | String.Contains(ListItem(5).Filename,web-dl)">thumbs/case/portrait/webdl.png</value>
 		<value condition="!String.IsEmpty(ListItem(5).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(5).VideoResolution]p.png</value>
+		<value>thumbs/case/portrait/tvshow.png</value>
 	</variable>
 	<variable name="ShowcaseCase6Var">
-		<value condition="String.IsEqual(ListItem(6).DBTYPE,tvshow) | String.IsEqual(ListItem(6).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
 		<value condition="ListItem(6).IsCollection">thumbs/case/portrait/set.png</value>
 		<value condition="ListItem(6).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="String.Contains(ListItem(6).Filename,webdl) | String.Contains(ListItem(6).Filename,web-dl)">thumbs/case/portrait/webdl.png</value>
 		<value condition="!String.IsEmpty(ListItem(6).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(6).VideoResolution]p.png</value>
+		<value>thumbs/case/portrait/tvshow.png</value>
 	</variable>
 	<variable name="ShowcaseCase7Var">
-		<value condition="String.IsEqual(ListItem(7).DBTYPE,tvshow) | String.IsEqual(ListItem(7).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
 		<value condition="ListItem(7).IsCollection">thumbs/case/portrait/set.png</value>
 		<value condition="ListItem(7).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="String.Contains(ListItem(7).Filename,webdl) | String.Contains(ListItem(7).Filename,web-dl)">thumbs/case/portrait/webdl.png</value>
 		<value condition="!String.IsEmpty(ListItem(7).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(7).VideoResolution]p.png</value>
+		<value>thumbs/case/portrait/tvshow.png</value>
 	</variable>
 	<variable name="ShowcaseCase8Var">
-		<value condition="String.IsEqual(ListItem(8).DBTYPE,tvshow) | String.IsEqual(ListItem(8).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
 		<value condition="ListItem(8).IsCollection">thumbs/case/portrait/set.png</value>
 		<value condition="ListItem(8).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="String.Contains(ListItem(8).Filename,webdl) | String.Contains(ListItem(8).Filename,web-dl)">thumbs/case/portrait/webdl.png</value>
 		<value condition="!String.IsEmpty(ListItem(8).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(8).VideoResolution]p.png</value>
+		<value>thumbs/case/portrait/tvshow.png</value>
 	</variable>
 	<variable name="ShowcaseCase9Var">
-		<value condition="String.IsEqual(ListItem(9).DBTYPE,tvshow) | String.IsEqual(ListItem(9).DBTYPE,season)">thumbs/case/portrait/tvshow.png</value>
 		<value condition="ListItem(9).IsCollection">thumbs/case/portrait/set.png</value>
 		<value condition="ListItem(9).IsStereoscopic">thumbs/case/portrait/3d.png</value>
+		<value condition="String.Contains(ListItem(9).Filename,webdl) | String.Contains(ListItem(9).Filename,web-dl)">thumbs/case/portrait/webdl.png</value>
 		<value condition="!String.IsEmpty(ListItem(9).VideoResolution)">thumbs/case/portrait/$INFO[ListItem(9).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCaseBack-1Var">
-		<value condition="ListItem(-1).IsStereoscopic">thumbs/case/portrait/back/1080p.png</value>
-		<value condition="!String.IsEmpty(ListItem(-1).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(-1).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCaseBack-2Var">
-		<value condition="ListItem(-2).IsStereoscopic">thumbs/case/portrait/back/1081p.png</value>
-		<value condition="!String.IsEmpty(ListItem(-2).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(-2).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCaseBack-3Var">
-		<value condition="ListItem(-3).IsStereoscopic">thumbs/case/portrait/back/1082p.png</value>
-		<value condition="!String.IsEmpty(ListItem(-3).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(-3).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCaseBack-4Var">
-		<value condition="ListItem(-4).IsStereoscopic">thumbs/case/portrait/back/1083p.png</value>
-		<value condition="!String.IsEmpty(ListItem(-4).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(-4).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCaseBack-5Var">
-		<value condition="ListItem(-5).IsStereoscopic">thumbs/case/portrait/back/1084p.png</value>
-		<value condition="!String.IsEmpty(ListItem(-5).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(-5).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCaseBack-6Var">
-		<value condition="ListItem(-6).IsStereoscopic">thumbs/case/portrait/back/1085p.png</value>
-		<value condition="!String.IsEmpty(ListItem(-6).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(-6).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCaseBack-7Var">
-		<value condition="ListItem(-7).IsStereoscopic">thumbs/case/portrait/back/1086p.png</value>
-		<value condition="!String.IsEmpty(ListItem(-7).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(-7).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCaseBack0Var">
-		<value condition="ListItem(0).IsStereoscopic">thumbs/case/portrait/back/1080p.png</value>
-		<value condition="!String.IsEmpty(ListItem(0).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(0).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCaseBack1Var">
-		<value condition="ListItem(1).IsStereoscopic">thumbs/case/portrait/back/1081p.png</value>
-		<value condition="!String.IsEmpty(ListItem(1).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(1).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCaseBack2Var">
-		<value condition="ListItem(2).IsStereoscopic">thumbs/case/portrait/back/1082p.png</value>
-		<value condition="!String.IsEmpty(ListItem(2).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(2).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCaseBack3Var">
-		<value condition="ListItem(3).IsStereoscopic">thumbs/case/portrait/back/1083p.png</value>
-		<value condition="!String.IsEmpty(ListItem(3).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(3).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCaseBack4Var">
-		<value condition="ListItem(4).IsStereoscopic">thumbs/case/portrait/back/1084p.png</value>
-		<value condition="!String.IsEmpty(ListItem(4).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(4).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCaseBack5Var">
-		<value condition="ListItem(5).IsStereoscopic">thumbs/case/portrait/back/1085p.png</value>
-		<value condition="!String.IsEmpty(ListItem(5).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(5).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCaseBack6Var">
-		<value condition="ListItem(6).IsStereoscopic">thumbs/case/portrait/back/1086p.png</value>
-		<value condition="!String.IsEmpty(ListItem(6).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(6).VideoResolution]p.png</value>
-	</variable>
-	<variable name="ShowcaseCaseBack7Var">
-		<value condition="ListItem(7).IsStereoscopic">thumbs/case/portrait/back/1087p.png</value>
-		<value condition="!String.IsEmpty(ListItem(7).VideoResolution)">thumbs/case/portrait/back/$INFO[ListItem(7).VideoResolution]p.png</value>
+		<value>thumbs/case/portrait/tvshow.png</value>
 	</variable>
 	<variable name="Showcase-7StudioIconsVar">
 		<value condition="!String.IsEmpty(ListItem(-7).Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem(-7).Studio,resource://resource.images.studios.white/,.png]</value>
@@ -994,111 +942,6 @@
 		<value condition="Skin.HasSetting(EnableUnwatchedStatus) + Integer.IsEqual(ListItem(9).PlayCount,0)">overlays/list/OverlayUnWatched.png</value>
 		<value condition="Skin.HasSetting(EnableEpisodeCountStatus) + Integer.IsGreater(ListItem(9).Property(unwatchedepisodes),0)">overlays/list/OverlayUnWatched.png</value>
 		<value condition="Skin.HasSetting(EnableEpisodeCountStatus) + String.IsEqual(ListItem(9).DBTYPE,tvshow) + !Integer.IsGreater(ListItem(9).Property(unwatchedepisodes),0)">overlays/list/OverlayWatched.png</value>
-	</variable>
-	<variable name="ShowcaseOverlay-7Var">
-		<value condition="ListItem(-7).IsPlaying">overlays/poster/OverlayPlay.png</value>
-		<value condition="ListItem(-7).IsResumable">overlays/poster/OverlayResume.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(-7).Property(WatchedEpisodes),ListItem(-7).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(-7).Property(WatchedEpisodes),ListItem(-7).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
-		<value condition="!String.IsEmpty(ListItem(-7).Overlay)">overlays/poster/$INFO[ListItem(-7).Overlay]</value>
-	</variable>
-	<variable name="ShowcaseOverlay-6Var">
-		<value condition="ListItem(-6).IsPlaying">overlays/poster/OverlayPlay.png</value>
-		<value condition="ListItem(-6).IsResumable">overlays/poster/OverlayResume.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(-6).Property(WatchedEpisodes),ListItem(-6).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(-6).Property(WatchedEpisodes),ListItem(-6).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
-		<value condition="!String.IsEmpty(ListItem(-6).Overlay)">overlays/poster/$INFO[ListItem(-6).Overlay]</value>
-	</variable>
-	<variable name="ShowcaseOverlay-5Var">
-		<value condition="ListItem(-5).IsPlaying">overlays/poster/OverlayPlay.png</value>
-		<value condition="ListItem(-5).IsResumable">overlays/poster/OverlayResume.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(-5).Property(WatchedEpisodes),ListItem(-5).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(-5).Property(WatchedEpisodes),ListItem(-5).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
-		<value condition="!String.IsEmpty(ListItem(-5).Overlay)">overlays/poster/$INFO[ListItem(-5).Overlay]</value>
-	</variable>
-	<variable name="ShowcaseOverlay-4Var">
-		<value condition="ListItem(-4).IsPlaying">overlays/poster/OverlayPlay.png</value>
-		<value condition="ListItem(-4).IsResumable">overlays/poster/OverlayResume.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(-4).Property(WatchedEpisodes),ListItem(-4).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(-4).Property(WatchedEpisodes),ListItem(-4).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
-		<value condition="!String.IsEmpty(ListItem(-4).Overlay)">overlays/poster/$INFO[ListItem(-4).Overlay]</value>
-	</variable>
-	<variable name="ShowcaseOverlay-3Var">
-		<value condition="ListItem(-3).IsPlaying">overlays/poster/OverlayPlay.png</value>
-		<value condition="ListItem(-3).IsResumable">overlays/poster/OverlayResume.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(-3).Property(WatchedEpisodes),ListItem(-3).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(-3).Property(WatchedEpisodes),ListItem(-3).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
-		<value condition="!String.IsEmpty(ListItem(-3).Overlay)">overlays/poster/$INFO[ListItem(-3).Overlay]</value>
-	</variable>
-	<variable name="ShowcaseOverlay-2Var">
-		<value condition="ListItem(-2).IsPlaying">overlays/poster/OverlayPlay.png</value>
-		<value condition="ListItem(-2).IsResumable">overlays/poster/OverlayResume.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(-2).Property(WatchedEpisodes),ListItem(-2).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(-2).Property(WatchedEpisodes),ListItem(-2).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
-		<value condition="!String.IsEmpty(ListItem(-2).Overlay)">overlays/poster/$INFO[ListItem(-2).Overlay]</value>
-	</variable>
-	<variable name="ShowcaseOverlay-1Var">
-		<value condition="ListItem(-1).IsPlaying">overlays/poster/OverlayPlay.png</value>
-		<value condition="ListItem(-1).IsResumable">overlays/poster/OverlayResume.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(-1).Property(WatchedEpisodes),ListItem(-1).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(-1).Property(WatchedEpisodes),ListItem(-1).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
-		<value condition="!String.IsEmpty(ListItem(-1).Overlay)">overlays/poster/$INFO[ListItem(-1).Overlay]</value>
-	</variable>
-	<variable name="ShowcaseOverlay0Var">
-		<value condition="ListItem(0).IsPlaying">overlays/poster/OverlayPlay.png</value>
-		<value condition="ListItem(0).IsResumable">overlays/poster/OverlayResume.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(0).Property(WatchedEpisodes),ListItem(0).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(0).Property(WatchedEpisodes),ListItem(0).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
-		<value condition="!String.IsEmpty(ListItem(0).Overlay)">overlays/poster/$INFO[ListItem(0).Overlay]</value>
-	</variable>
-	<variable name="ShowcaseOverlay1Var">
-		<value condition="ListItem(1).IsPlaying">overlays/poster/OverlayPlay.png</value>
-		<value condition="ListItem(1).IsResumable">overlays/poster/OverlayResume.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(1).Property(WatchedEpisodes),ListItem(1).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(1).Property(WatchedEpisodes),ListItem(1).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
-		<value condition="!String.IsEmpty(ListItem(1).Overlay)">overlays/poster/$INFO[ListItem(1).Overlay]</value>
-	</variable>
-	<variable name="ShowcaseOverlay2Var">
-		<value condition="ListItem(2).IsPlaying">overlays/poster/OverlayPlay.png</value>
-		<value condition="ListItem(2).IsResumable">overlays/poster/OverlayResume.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(2).Property(WatchedEpisodes),ListItem(2).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(2).Property(WatchedEpisodes),ListItem(2).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
-		<value condition="!String.IsEmpty(ListItem(2).Overlay)">overlays/poster/$INFO[ListItem(2).Overlay]</value>
-	</variable>
-	<variable name="ShowcaseOverlay3Var">
-		<value condition="ListItem(3).IsPlaying">overlays/poster/OverlayPlay.png</value>
-		<value condition="ListItem(3).IsResumable">overlays/poster/OverlayResume.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(3).Property(WatchedEpisodes),ListItem(3).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(3).Property(WatchedEpisodes),ListItem(3).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
-		<value condition="!String.IsEmpty(ListItem(3).Overlay)">overlays/poster/$INFO[ListItem(3).Overlay]</value>
-	</variable>
-	<variable name="ShowcaseOverlay4Var">
-		<value condition="ListItem(4).IsPlaying">overlays/poster/OverlayPlay.png</value>
-		<value condition="ListItem(4).IsResumable">overlays/poster/OverlayResume.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(4).Property(WatchedEpisodes),ListItem(4).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(4).Property(WatchedEpisodes),ListItem(4).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
-		<value condition="!String.IsEmpty(ListItem(4).Overlay)">overlays/poster/$INFO[ListItem(4).Overlay]</value>
-	</variable>
-	<variable name="ShowcaseOverlay5Var">
-		<value condition="ListItem(5).IsPlaying">overlays/poster/OverlayPlay.png</value>
-		<value condition="ListItem(5).IsResumable">overlays/poster/OverlayResume.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(5).Property(WatchedEpisodes),ListItem(5).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(5).Property(WatchedEpisodes),ListItem(5).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
-		<value condition="!String.IsEmpty(ListItem(5).Overlay)">overlays/poster/$INFO[ListItem(5).Overlay]</value>
-	</variable>
-	<variable name="ShowcaseOverlay6Var">
-		<value condition="ListItem(6).IsPlaying">overlays/poster/OverlayPlay.png</value>
-		<value condition="ListItem(6).IsResumable">overlays/poster/OverlayResume.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(6).Property(WatchedEpisodes),ListItem(6).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(6).Property(WatchedEpisodes),ListItem(6).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
-		<value condition="!String.IsEmpty(ListItem(6).Overlay)">overlays/poster/$INFO[ListItem(6).Overlay]</value>
-	</variable>
-	<variable name="ShowcaseOverlay7Var">
-		<value condition="ListItem(7).IsPlaying">overlays/poster/OverlayPlay.png</value>
-		<value condition="ListItem(7).IsResumable">overlays/poster/OverlayResume.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + !String.IsEqual(ListItem(7).Property(WatchedEpisodes),ListItem(7).Property(TotalEpisodes))">overlays/poster/OverlayUnWatched.png</value>
-		<value condition="Container.Content(seasons) + !ListItem.IsParentFolder + String.IsEqual(ListItem(7).Property(WatchedEpisodes),ListItem(7).Property(TotalEpisodes))">overlays/poster/OverlayWatched.png</value>
-		<value condition="!String.IsEmpty(ListItem(7).Overlay)">overlays/poster/$INFO[ListItem(7).Overlay]</value>
 	</variable>
 	<variable name="LibraryVideoDiscArtVar">
 		<value condition="!String.IsEmpty(ListItem.Art(discart))">$INFO[ListItem.Art(discart)]</value>
