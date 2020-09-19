@@ -7,6 +7,12 @@
 		<control type="list" id="10051">
 			<include>HiddenList</include>
 		</control>
+		<!-- Get item details by DBID -->
+		<control type="list" id="7005">
+			<visible>!String.IsEmpty(Container(10051).ListItem.DBID) + !String.IsEqual(Container(10051).ListItem.Property(call),tv)</visible>
+			<include>HiddenList</include>
+			<content>plugin://script.embuary.helper/?info=getbydbid&amp;dbid=$INFO[Container(10051).ListItem.DBID]&amp;type=$INFO[Container(10051).ListItem.DBType]</content>
+		</control>
 		<!-- Check if Studio Image exists -->
 		<control type="image" id="811115">
 			<include>HiddenObject</include>
@@ -428,6 +434,44 @@
 							<include>MediaFlagLabelFull</include>
 							<label>$VAR[TVShowEmbuaryAirDateLabelVar]</label>
 						</control>
+						<control type="image">
+							<visible>!String.IsEmpty(Container(7005).ListItem.VideoAspect)</visible>
+							<texture>$VAR[MediaFlagsPathVar]$INFO[Container(7005).ListItem.VideoAspect,videoaspect/,.png]</texture>
+							<include>MediaFlagImage</include>
+						</control>
+						<control type="image">
+							<visible>!String.IsEmpty(Container(7005).ListItem.VideoCodec)</visible>
+							<texture>$VAR[Container7005VideoCodecFlagVar]</texture>
+							<include>MediaFlagImage</include>
+						</control>
+						<include content="ResolutionFlags">
+							<param name="container">Container(7005).ListItem</param>
+							<param name="resolutionvisible">!String.IsEmpty(Container(7005).ListItem.VideoResolution)</param>
+							<param name="resolutionflag">$VAR[Container7005VideoResolutionFlagVar]</param>
+							<param name="hdrflag">$VAR[ContainerHDRFlagVar]</param>
+							<param name="bitdepthflag">$VAR[ContainerBitDepthFlagVar]</param>
+						</include>
+						<control type="image">
+							<visible>!String.IsEmpty(Container(7005).ListItem.AudioCodec)</visible>
+							<texture>$VAR[ContainerAudioCodecFlagVar]</texture>
+							<include>MediaFlagImage</include>
+						</control>
+						<control type="image">
+							<visible>!String.IsEmpty(Container(7005).ListItem.AudioChannels)</visible>
+							<texture>$VAR[MediaFlagsPathVar]$INFO[Container(7005).ListItem.AudioChannels,audiochannels/,.png]</texture>
+							<include>MediaFlagImage</include>
+						</control>
+						<include content="LanguageFlags">
+							<param name="container">Container(7005).</param>
+						</include>
+						<control type="image">
+							<visible>!String.IsEmpty(Container(7005).ListItem.SubtitleLanguage)</visible>
+							<texture>$VAR[MediaFlagsPathVar]cc.png</texture>
+							<include>MediaFlagImage</include>
+						</control>
+						<include content="SubtitleFlags">
+							<param name="container">Container(7005).</param>
+						</include>
 					</control>
 				</control>
 			</control>

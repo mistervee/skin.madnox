@@ -392,8 +392,8 @@
 	<!-- Artwork -->
 	<variable name="VideoCaseVar">
 		<value condition="ListItem.IsCollection">thumbs/case/portrait/set.png</value>
-		<value condition="ListItem.IsStereoscopic">thumbs/case/portrait/3d.png</value>
-		<value condition="String.Contains(ListItem.Filename,webdl)">thumbs/case/portrait/webdl.png</value>
+		<value condition="ListItem.IsStereoscopic | String.Contains(ListItem.Filename,3D)">thumbs/case/portrait/3d.png</value>
+		<value condition="String.Contains(ListItem.Filename,webdl) | String.Contains(ListItem.Filename,web-dl)">thumbs/case/portrait/webdl.png</value>
 		<value condition="!String.IsEmpty(ListItem.VideoResolution)">thumbs/case/portrait/$INFO[ListItem.VideoResolution]p.png</value>
 		<value>thumbs/case/portrait/tvshow.png</value>
 	</variable>

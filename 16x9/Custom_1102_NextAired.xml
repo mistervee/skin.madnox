@@ -3,12 +3,6 @@
 	<defaultcontrol always="true">8000</defaultcontrol>
 	<menucontrol>9050</menucontrol>
 	<controls>
-		<!-- TMDb helper info -->
-		<control type="list" id="7007">
-			<visible>System.HasAddon(plugin.video.themoviedb.helper)</visible>
-			<include>HiddenList</include>
-			<content>plugin://plugin.video.themoviedb.helper/?info=details&amp;type=tv&amp;query=$INFO[Container(8000).ListItem.TVShowTitle]</content>
-		</control>
 		<!-- Background -->
 		<include content="BackgroundDefault">
 			<param name="imagepath">$VAR[VideoBackgroundVar]</param>
@@ -21,7 +15,7 @@
 		</control>
 		<!-- Floor -->
 		<include content="Floor">
-			<param name="visible">Skin.HasSetting(ViewCustom1102HideFloor)</param>
+			<param name="visible">Skin.HasSetting(ViewCustom1102HideFloor) + !Container(8000).IsUpdating</param>
 			<param name="highlight">FloorHighlightLeft</param>
 		</include>
 		<!-- Info -->
@@ -32,29 +26,7 @@
 			<include content="AnimationSlideBottomVisible">
 				<param name="slide">525</param>
 			</include>
-			<control type="image">
-				<visible>Skin.HasSetting(ViewCustom1102Logo) + !String.IsEmpty(Container(8000).ListItem.Art(clearlogo))</visible>
-				<include>AnimationVisibleFade</include>
-				<top>90</top>
-				<left>50</left>
-				<height>110</height>
-				<fadetime>TextureFadeTime</fadetime>
-				<aspectratio align="left">keep</aspectratio>
-				<texture background="true">$INFO[Container(8000).ListItem.Art(clearlogo)]</texture>
-			</control>
-			<control type="label">
-				<visible>Skin.HasSetting(ViewCustom1102Logo) + String.IsEmpty(Container(8000).ListItem.Art(clearlogo))</visible>
-				<include>AnimationVisibleFade</include>
-				<top>90</top>
-				<left>50</left>
-				<height>110</height>
-				<scroll>true</scroll>
-				<font>Font38_Bold</font>
-				<textcolor>$VAR[PanelTextColorVar]</textcolor>
-				<label>$INFO[Container(8000).ListItem.TVShowTitle]</label>
-			</control>
 			<control type="grouplist">
-				<animation effect="slide" end="0,40" condition="Skin.HasSetting(ViewCustom1102Logo)">conditional</animation>
 				<top>130</top>
 				<left>50</left>
 				<width>910</width>
@@ -62,7 +34,6 @@
 				<itemgap>10</itemgap>
 				<usecontrolcoords>true</usecontrolcoords>
 				<control type="label">
-					<visible>!Skin.HasSetting(ViewCustom1102Logo)</visible>
 					<include>AnimationVisibleFade</include>
 					<height>30</height>
 					<scroll>true</scroll>
@@ -71,24 +42,11 @@
 					<label>$INFO[Container(8000).ListItem.Season,,x]$INFO[Container(8000).ListItem.Episode,,. ]$INFO[Container(8000).ListItem.Title]</label>
 				</control>
 				<control type="label">
-					<visible>Skin.HasSetting(ViewCustom1102Logo)</visible>
-					<height>30</height>
-				</control>
-				<control type="label">
-					<visible>!Skin.HasSetting(ViewCustom1102Logo)</visible>
 					<height>30</height>
 					<scroll>true</scroll>
 					<font>Font28_Reg</font>
 					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 					<label>$INFO[Container(8000).ListItem.TVShowTitle]</label>
-				</control>
-				<control type="label">
-					<visible>Skin.HasSetting(ViewCustom1102Logo)</visible>
-					<height>30</height>
-					<scroll>true</scroll>
-					<font>Font28_Reg</font>
-					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
-					<label>$INFO[Container(8000).ListItem.Season,,x]$INFO[Container(8000).ListItem.Episode,,. ]$INFO[Container(8000).ListItem.Title]</label>
 				</control>
 				<control type="grouplist">
 					<height>37</height>
@@ -106,7 +64,7 @@
 						<width>auto</width>
 						<font>Font26_Reg</font>
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
-						<label>$INFO[Container(8000).ListItem.Property(AirDay), ]$INFO[Container(8000).ListItem.Property(AirTime), ,  ]</label>
+						<label>$INFO[Container(8000).ListItem.Property(Next_Aired.Day), ]$INFO[Container(8000).ListItem.Property(Air_Time), ,  ]</label>
 					</control>
 					<control type="image">
 						<visible>!String.IsEmpty(Control.GetLabel(5302))</visible>
@@ -240,7 +198,7 @@
 						</control>
 					</control>
 				</focusedlayout>
-				<content>plugin://script.embuary.info/nextaired/week</content>
+				<content>plugin://plugin.video.themoviedb.helper/?info=library_nextaired&amp;startdate=0&amp;widget=True&amp;type=episode&amp;days=365&amp;reload=$INFO[Window(Home).Property(widgetreload-movies)]</content>
 			</control>
 			<include content="ViewCoverFlowScrollBar">
 				<param name="id">8000</param>
@@ -248,7 +206,27 @@
 				<param name="width">1820</param>
 			</include>
 			<!-- Media flags -->
-			<include>MediaFlagsNextAiredInfo</include>
+			<control type="grouplist">
+				<visible>!Container(8000).IsUpdating</visible>
+				<bottom>20</bottom>
+				<left>50</left>
+				<right>50</right>
+				<height>80</height>
+				<align>left</align>
+				<itemgap>10</itemgap>
+				<orientation>horizontal</orientation>
+				<usecontrolcoords>true</usecontrolcoords>
+				<control type="image">
+					<texture>$VAR[MediaFlagsPathVar]mpaa/$VAR[RatingFlagVar]</texture>
+					<include>MediaFlagImage</include>
+				</control>
+				<control type="image">
+					<visible>!String.IsEqual(Control.GetLabel(811113),none)</visible>
+					<bordersize>0,10,0,10</bordersize>
+					<texture>$VAR[StudioIconNextAiredVar]</texture>
+					<include>MediaFlagImage</include>
+				</control>
+			</control>
 		</control>
 		<!-- Topbar -->
 		<include content="TopBar">
@@ -267,6 +245,24 @@
 		<control type="image" id="811113">
 			<include>HiddenObject</include>
 			<texture fallback="none">$VAR[StudioIconNextAiredVar]</texture>
+		</control>
+		<control type="group">
+			<visible>Container(8000).IsUpdating</visible>
+			<control type="image">
+				<include>FullScreenDimensions</include>
+				<texture colordiffuse="ff000000">colors/white50.png</texture>
+			</control>
+			<control type="group">
+				<centerleft>50%</centerleft>
+				<centertop>50%</centertop>
+				<width>100</width>
+				<height>100</height>
+				<control type="image">
+					<animation effect="rotate" end="-360" center="auto" time="2000" loop="true" condition="true">Conditional</animation>
+					<texture colordiffuse="$VAR[PanelHighlightColorVar]">panels/spinner.png</texture>
+					<aspectratio>keep</aspectratio>
+				</control>
+			</control>
 		</control>
 	</controls>
 </window>

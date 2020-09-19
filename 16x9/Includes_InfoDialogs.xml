@@ -151,7 +151,7 @@
 				<left>-10</left>
 				<right>25</right>
 				<height>80</height>
-				<onup condition="Container(9000).Hasfocus(101)">SetFocus(1010)</onup>
+				<onup condition="Container(9000).Hasfocus(101)">SetFocus(50)</onup>
 				<onup condition="Container(9000).Hasfocus(104)">SetFocus(1040)</onup>
 				<onup condition="Container(9000).Hasfocus(105)">SetFocus(1050)</onup>
 				<onup condition="Container(9000).Hasfocus(106)">SetFocus(1060)</onup>
@@ -274,26 +274,25 @@
 			<control type="group" id="9001">
 				<top>211</top>
 				<!-- Cast -->
-				<control type="panel" id="1010">
-					<onup>1020</onup>
-					<onclick condition="Skin.HasSetting(VideoInfoTMDbActor)">RunScript(script.embuary.info,call=person,query='"$ESCINFO[Container(1010).ListItem.Label]"')</onclick>
+				<control type="panel" id="50">
+					<onup condition="!Skin.HasSetting(VideoInfoTMDbActor)">1020</onup>
+					<onup condition="Skin.HasSetting(VideoInfoTMDbActor)">RunScript(script.embuary.info,call=person,query='"$ESCINFO[Container(50).ListItem.Label]"')</onup>
 					<include content="DialogExtraInfo">
 						<param name="visible">!Control.HasFocus(1020) + Container(9000).HasFocus(101)</param>
 						<param name="labelvisible">true</param>
 					</include>
-					<content>$VAR[VideoInfoCastVar]</content>
 				</control>
 				<!-- Actor movies/tv shows -->
 				<control type="panel" id="1020">
 					<onclick condition="String.IsEqual(Container(1020).ListItem.DBTYPE,movie)">RunScript(script.embuary.helper,action=playitem,item='$ESCINFO[ListItem.Filenameandpath]')</onclick>
 					<onclick condition="!String.IsEqual(Container(1020).ListItem.DBTYPE,movie)">RunScript(script.embuary.helper,action=goto,path='$ESCINFO[ListItem.FolderPath]',target=videos)</onclick>
-					<ondown>1010</ondown>
+					<ondown>50</ondown>
 					<include content="DialogExtraInfo">
 						<param name="visible">Control.HasFocus(1020)</param>
 						<param name="overlayiconvisible">true</param>
 					</include>
-					<content>videodb://movies/titles/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22actor%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Container(1010).ListItem.Label]%22%5D%7D%2C%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22isnot%22%2C%22value%22%3A%5B%22$INFO[Window(home).Property(TitleEncoded)]%22%5D%7D%5D%7D%2C%22type%22%3A%22movies%22%7D</content>
-					<content>videodb://tvshows/titles/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22actor%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Container(1010).ListItem.Label]%22%5D%7D%2C%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22isnot%22%2C%22value%22%3A%5B%22$INFO[Window(home).Property(TVShowTitleEncoded)]%22%5D%7D%5D%7D%2C%22type%22%3A%22tvshows%22%7D</content>
+					<content>videodb://movies/titles/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22actor%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Container(50).ListItem.Label]%22%5D%7D%2C%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22isnot%22%2C%22value%22%3A%5B%22$INFO[Window(home).Property(TitleEncoded)]%22%5D%7D%5D%7D%2C%22type%22%3A%22movies%22%7D</content>
+					<content>videodb://tvshows/titles/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22actor%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Container(50).ListItem.Label]%22%5D%7D%2C%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22isnot%22%2C%22value%22%3A%5B%22$INFO[Window(home).Property(TVShowTitleEncoded)]%22%5D%7D%5D%7D%2C%22type%22%3A%22tvshows%22%7D</content>
 				</control>
 				<!-- Next up -->
 				<control type="panel" id="1040">
@@ -1637,7 +1636,7 @@
 		<value condition="!String.IsEmpty(Container.ListItem.Year)">$INFO[Container.ListItem.Year, ,  ]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Property(Artist_Formed))">$INFO[Container.ListItem.Property(Artist_Formed), ,  ]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Property(Artist_Born))">$INFO[Container.ListItem.Property(Artist_Born), ,  ]</value>
-		<value condition="!Control.HasFocus(9002) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"/>
+		<value condition="!Control.HasFocus(9002) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"/>
 		<value condition="!String.IsEmpty(ListItem.Premiered) + !Container.Content(movies)">$INFO[ListItem.Premiered, ,  ]</value>
 		<value condition="!String.IsEmpty(ListItem.Date)">$INFO[ListItem.Date, ,  ]</value>
 		<value condition="!String.IsEmpty(ListItem.Year)">$INFO[ListItem.Year, ,  ]</value>
@@ -1651,7 +1650,7 @@
 	<variable name="ViewInfoTimeVar">
 		<value condition="!String.IsEmpty(Container.ListItem.Duration) + !Integer.IsGreater(Container.ListItem.Duration(h),0)">$INFO[Container.ListItem.Duration(mm), ,m]$INFO[Container.ListItem.Duration(ss),,s  ]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Duration)">$INFO[Container.ListItem.Duration(hh), ,h]$INFO[Container.ListItem.Duration(mm),,m  ]</value>
-		<value condition="!Control.HasFocus(9002) + !Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"/>
+		<value condition="!Control.HasFocus(9002) + !Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"/>
 		<value condition="!String.IsEmpty(ListItem.Duration) + !Integer.IsGreater(ListItem.Duration(h),0)">$INFO[ListItem.Duration(mm), ,m]$INFO[ListItem.Duration(ss),,s  ]</value>
 		<value condition="!String.IsEmpty(ListItem.Duration)">$INFO[ListItem.Duration(hh), ,h]$INFO[ListItem.Duration(mm),,m  ]</value>
 	</variable>
@@ -1662,7 +1661,7 @@
 	<variable name="ViewInfoRatingVar">
 		<value condition="!String.IsEmpty(Container.ListItem.UserRating)">$INFO[Container.ListItem.UserRating, ,.0  ]</value>
 		<value condition="String.IsEmpty(Container(7005).ListItem.Rating(imdb)) + String.IsEmpty(Container(7005).ListItem.Rating(Container(7005)tomatometerallcritics)) + String.IsEmpty(Container(7005).ListItem.Rating(tomatometerallaudience)) + String.IsEmpty(Container(7005).ListItem.Rating(metacritic)) + String.IsEmpty(Container(7005).ListItem.Rating(tvdb))">$INFO[Container(7005).ListItem.Rating, ]</value>
-		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"/>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"/>
 		<value condition="!String.IsEmpty(ListItem.UserRating)">$INFO[ListItem.UserRating, ,.0  ]</value>
 		<value condition="String.IsEmpty(ListItem.Rating(imdb)) + String.IsEmpty(ListItem.Rating(tomatometerallcritics)) + String.IsEmpty(ListItem.Rating(tomatometerallaudience)) + String.IsEmpty(ListItem.Rating(metacritic)) + String.IsEmpty(ListItem.Rating(tvdb)) + String.IsEmpty(Container(7005).ListItem.Rating(imdb)) + String.IsEmpty(Container(7005).ListItem.Rating(tomatometerallcritics)) + String.IsEmpty(Container(7005).ListItem.Rating(tomatometerallaudience)) + String.IsEmpty(Container(7005).ListItem.Rating(metacritic)) + String.IsEmpty(Container(7005).ListItem.Rating(tvdb))">$INFO[ListItem.Rating, ]</value>
 	</variable>
@@ -1675,24 +1674,24 @@
 	</variable>
 	<variable name="ViewInfoTVDBRatingVar">
 		<value condition="!String.IsEmpty(Container(7005).ListItem.Rating(tvdb))">$INFO[Container(7005).ListItem.Rating(tvdb), ,  ]</value>
-		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"/>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"/>
 		<value condition="!String.IsEmpty(ListItem.Rating(tvdb))">$INFO[ListItem.Rating(tvdb), ,  ]</value>
 	</variable>
 	<variable name="ViewInfoIMDBRatingVar">
 		<value condition="!String.IsEmpty(Container(7005).ListItem.Rating(imdb))">$INFO[Container(7005).ListItem.Rating(imdb), ,  ]</value>
-		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"/>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"/>
 		<value condition="!String.IsEmpty(ListItem.Rating(imdb))">$INFO[ListItem.Rating(imdb), ,  ]</value>
 	</variable>
 	<variable name="ViewInfoTMDBRatingVar">
 		<value condition="!String.IsEmpty(Container(7005).ListItem.Rating(themoviedb))">$INFO[Container(7005).ListItem.Rating(themoviedb), ,  ]</value>
-		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"/>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"/>
 		<value condition="!String.IsEmpty(ListItem.Rating(themoviedb))">$INFO[ListItem.Rating(themoviedb), ,  ]</value>
 	</variable>
 	<variable name="ViewInfoRTAllCriticsIconVar">
 		<value condition="!String.IsEmpty(Container(7005).ListItem.Rating(tomatometerallcritics)) + Integer.IsGreater(Container(7005).ListItem.Rating(tomatometerallcritics),7.4) + Integer.IsGreater(Container(7005).ListItem.Votes(tomatometerallaudience),79)">flags/ratings/certified.png</value>
 		<value condition="!String.IsEmpty(Container(7005).ListItem.Rating(tomatometerallcritics)) + Integer.IsGreater(Container(7005).ListItem.Rating(tomatometerallcritics),5.9)">flags/ratings/fresh.png</value>
 		<value condition="!String.IsEmpty(Container(7005).ListItem.Rating(tomatometerallcritics)) + Integer.IsLess(Container(7005).ListItem.Rating(tomatomterallcritics),6.0)">flags/ratings/rotten.png</value>
-		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"/>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"/>
 		<value condition="Integer.IsGreater(ListItem.Rating(tomatometerallcritics),7.4) + Integer.IsGreater(ListItem.Votes(tomatometerallcritics),79)">flags/ratings/certified.png</value>
 		<value condition="Integer.IsGreater(ListItem.Rating(tomatometerallcritics),5.9)">flags/ratings/fresh.png</value>
 		<value condition="Integer.IsLess(ListItem.Rating(tomatometerallcritics),6.0)">flags/ratings/rotten.png</value>
@@ -1713,7 +1712,7 @@
 		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallcritics),3)">3</value>
 		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallcritics),2)">2</value>
 		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallcritics),1)">1</value>
-		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"/>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"/>
 		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),10)">10</value>
 		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),9)">9</value>
 		<value condition="String.StartsWith(ListItem.Rating(tomatometerallcritics),8)">8</value>
@@ -1736,7 +1735,7 @@
 		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallcritics),3)">3%</value>
 		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallcritics),2)">2%</value>
 		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallcritics),1)">1%</value>
-		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"/>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"/>
 		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),0)">0%</value>
 		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),9)">9%</value>
 		<value condition="String.EndsWith(ListItem.Rating(tomatometerallcritics),8)">8%</value>
@@ -1751,7 +1750,7 @@
 	<variable name="ViewInfoRTAllAudienceIconVar">
 		<value condition="!String.IsEmpty(Container(7005).ListItem.Rating(tomatometerallaudience)) + Integer.IsLess(Container(7005).ListItem.Rating(tomatometerallaudience),6.0)">flags/ratings/popcorn2.png</value>
 		<value condition="!String.IsEmpty(Container(7005).ListItem.Rating(tomatometerallaudience)) + !Integer.IsLess(Container(7005).ListItem.Rating(tomatometerallaudience),6.0)">flags/ratings/popcorn.png</value>
-		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"/>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"/>
 		<value condition="Integer.IsGreater(ListItem.Rating(tomatometerallaudience),5.9)">flags/ratings/popcorn.png</value>
 		<value condition="Integer.IsLess(ListItem.Rating(tomatometerallaudience),6.0)">flags/ratings/popcorn2.png</value>
 	</variable>
@@ -1770,7 +1769,7 @@
 		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallaudience),3)">3</value>
 		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallaudience),2)">2</value>
 		<value condition="String.StartsWith(Container(7005).ListItem.Rating(tomatometerallaudience),1)">1</value>
-		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"/>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"/>
 		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),10)">10</value>
 		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),9)">9</value>
 		<value condition="String.StartsWith(ListItem.Rating(tomatometerallaudience),8)">8</value>
@@ -1793,7 +1792,7 @@
 		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallaudience),3)">3%</value>
 		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallaudience),2)">2%</value>
 		<value condition="String.EndsWith(Container(7005).ListItem.Rating(tomatometerallaudience),1)">1%</value>
-		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"/>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"/>
 		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),0)">0%</value>
 		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),9)">9%</value>
 		<value condition="String.EndsWith(ListItem.Rating(tomatometerallaudience),8)">8%</value>
@@ -1816,7 +1815,7 @@
 		<value condition="String.StartsWith(Container(7005).ListItem.Rating(metacritic),3)">3</value>
 		<value condition="String.StartsWith(Container(7005).ListItem.Rating(metacritic),2)">2</value>
 		<value condition="String.StartsWith(Container(7005).ListItem.Rating(metacritic),1)">1</value>
-		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"/>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"/>
 		<value condition="String.StartsWith(ListItem.Rating(metacritic),10)">10</value>
 		<value condition="String.StartsWith(ListItem.Rating(metacritic),9)">9</value>
 		<value condition="String.StartsWith(ListItem.Rating(metacritic),8)">8</value>
@@ -1839,7 +1838,7 @@
 		<value condition="String.EndsWith(Container(7005).ListItem.Rating(metacritic),3)">3%</value>
 		<value condition="String.EndsWith(Container(7005).ListItem.Rating(metacritic),2)">2%</value>
 		<value condition="String.EndsWith(Container(7005).ListItem.Rating(metacritic),1)">1%</value>
-		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"/>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"/>
 		<value condition="String.EndsWith(ListItem.Rating(metacritic),0)">0%</value>
 		<value condition="String.EndsWith(ListItem.Rating(metacritic),9)">9%</value>
 		<value condition="String.EndsWith(ListItem.Rating(metacritic),8)">8%</value>
@@ -1853,20 +1852,20 @@
 	</variable>
 	<variable name="ViewInfoTop250Var">
 		<value condition="!String.IsEmpty(Container.ListItem.Top250)">$INFO[Container.ListItem.Top250, #,]</value>
-		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"/>
+		<value condition="!Control.HasFocus(1050) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"/>
 		<value condition="!String.IsEmpty(ListItem.Top250)">$INFO[ListItem.Top250, #,]</value>
 	</variable>
 	<variable name="VideoInfoFanartVar">
 		<value condition="Window.IsVisible(script-embuary-video.xml) + !String.IsEmpty(Container(10051).ListItem.Art(fanart))">$INFO[Container(10051).ListItem.Art(fanart)]</value>
-		<value condition="!Window.IsVisible(script-embuary-person.xml) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)">$INFO[Container.ListItem.Art(fanart)]</value>
+		<value condition="!Window.IsVisible(script-embuary-person.xml) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)">$INFO[Container.ListItem.Art(fanart)]</value>
 		<value>$INFO[ListItem.Art(fanart)]</value>
 	</variable>
 	<variable name="VideoInfoPosterVar">
-		<value condition="!Control.HasFocus(1010) + !String.IsEmpty(Container.ListItem.Art(season.poster))">$INFO[Container.ListItem.Art(season.poster)]</value>
-		<value condition="!Control.HasFocus(1010) + !String.IsEmpty(Container.ListItem.Art(poster))">$INFO[Container.ListItem.Art(poster)]</value>
-		<value condition="!Control.HasFocus(1010) + !String.IsEmpty(Container.ListItem.Thumb)">$INFO[Container.ListItem.Thumb]</value>
-		<value condition="!Control.HasFocus(1010) + !String.IsEmpty(Container.ListItem.Icon)">$INFO[Container.ListItem.Icon]</value>
-		<value condition="ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"/>
+		<value condition="!Control.HasFocus(50) + !String.IsEmpty(Container.ListItem.Art(season.poster))">$INFO[Container.ListItem.Art(season.poster)]</value>
+		<value condition="!Control.HasFocus(50) + !String.IsEmpty(Container.ListItem.Art(poster))">$INFO[Container.ListItem.Art(poster)]</value>
+		<value condition="!Control.HasFocus(50) + !String.IsEmpty(Container.ListItem.Thumb)">$INFO[Container.ListItem.Thumb]</value>
+		<value condition="!Control.HasFocus(50) + !String.IsEmpty(Container.ListItem.Icon)">$INFO[Container.ListItem.Icon]</value>
+		<value condition="ControlGroup(9001).HasFocus + !Control.HasFocus(50)"/>
 		<value condition="!String.IsEmpty(ListItem.Art(season.poster))">$INFO[ListItem.Art(season.poster)]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
 		<value condition="!String.IsEmpty(ListItem.Thumb)">$INFO[ListItem.Thumb]</value>
@@ -1875,7 +1874,7 @@
 	<variable name="VideoInfoCaseVar">
 		<value condition="Container.ListItem.IsStereoscopic">thumbs/case/portrait/3d.png</value>
 		<value condition="!String.IsEmpty(Container.ListItem.VideoResolution)">thumbs/case/portrait/$INFO[Container.ListItem.VideoResolution]p.png</value>
-		<value condition="ControlGroup(9001).HasFocus + !Control.HasFocus(1010)">thumbs/case/portrait/tvshow.png</value>
+		<value condition="ControlGroup(9001).HasFocus + !Control.HasFocus(50)">thumbs/case/portrait/tvshow.png</value>
 		<value condition="ListItem.IsStereoscopic">thumbs/case/portrait/3d.png</value>
 		<value condition="!String.IsEmpty(ListItem.VideoResolution)">thumbs/case/portrait/$INFO[ListItem.VideoResolution]p.png</value>
 		<value>thumbs/case/portrait/tvshow.png</value>
@@ -1883,7 +1882,7 @@
 	<variable name="VideoInfoStudioIconsVar">
 		<value condition="!String.IsEmpty(Container.ListItem.Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[Container.ListItem.Studio,resource://resource.images.studios.white/,.png]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[Container.ListItem.Studio,resource://resource.images.studios.coloured/,.png]</value>
-		<value condition="ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"/>
+		<value condition="ControlGroup(9001).HasFocus + !Control.HasFocus(50)"/>
 		<value condition="!String.IsEmpty(ListItem.Studio) + !Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem.Studio,resource://resource.images.studios.white/,.png]</value>
 		<value condition="!String.IsEmpty(ListItem.Studio) + Skin.HasSetting(MediaFlagsColored)">$INFO[ListItem.Studio,resource://resource.images.studios.coloured/,.png]</value>
 	</variable>
@@ -1891,7 +1890,7 @@
 		<value condition="!Skin.HasSetting(VideoInfoDisableCharacterArt) + !String.IsEmpty(Container.ListItem.Art(characterart)) + [String.IsEqual(Container.ListItem.DBType,tvshow) | String.IsEqual(Container.ListItem.DBType,season) | String.IsEqual(Container.ListItem.DBType,episode)]">$INFO[Container.ListItem.Art(characterart)]</value>
 		<value condition="!Skin.HasSetting(VideoInfoDisableClearLogo) + !String.IsEmpty(Container.ListItem.Art(clearlogo)) + String.IsEqual(Container.ListItem.DBType,musicvideo)">$INFO[Container.ListItem.Art(clearlogo)]</value>
 		<value condition="!Skin.HasSetting(VideoInfoDisableDiscArt) + !String.IsEmpty(Container.ListItem.Art(discart))">$INFO[Container.ListItem.Art(discart)]</value>
-		<value condition="!Control.HasFocus(1050) + !Control.HasFocus(1040) + ControlGroup(9001).HasFocus + !Control.HasFocus(1010)"/>
+		<value condition="!Control.HasFocus(1050) + !Control.HasFocus(1040) + ControlGroup(9001).HasFocus + !Control.HasFocus(50)"/>
 		<value condition="!Skin.HasSetting(VideoInfoDisableCharacterArt) + !String.IsEmpty(ListItem.Art(characterart)) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]">$INFO[ListItem.Art(characterart)]</value>
 		<value condition="!Skin.HasSetting(VideoInfoDisableClearLogo) + !String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEqual(ListItem.DBType,musicvideo)">$INFO[ListItem.Art(clearlogo)]</value>
 		<value condition="!Skin.HasSetting(VideoInfoDisableDiscArt) + !String.IsEmpty(ListItem.Art(discart))">$INFO[ListItem.Art(discart)]</value>
@@ -1908,14 +1907,14 @@
 	</variable>
 	<variable name="VideoInfoTitleVar">
 		<value condition="String.IsEqual(Container.ListItem.DBTYPE,episode)">$INFO[Container.ListItem.Season,,x]$INFO[Container.ListItem.Episode,,. ]$INFO[Container.ListItem.Title]</value>
-		<value condition="ControlGroup(9001).HasFocus + !Control.HasFocus(1010)">$INFO[Container.ListItem.Title]</value>
+		<value condition="ControlGroup(9001).HasFocus + !Control.HasFocus(50)">$INFO[Container.ListItem.Title]</value>
 		<value condition="String.IsEqual(ListItem.DBTYPE,episode)">$INFO[ListItem.Season,,x]$INFO[ListItem.Episode,,. ]$INFO[ListItem.Title]</value>
 		<value>$INFO[ListItem.Title]</value>
 	</variable>
 	<variable name="VideoInfoSubtitleVar">
 		<value condition="!String.IsEmpty(Container.ListItem.Tagline)">$INFO[Container.ListItem.Tagline]</value>
 		<value condition="String.IsEqual(Container.ListItem.DBType,episode)">$INFO[Container.ListItem.TvShowTitle]</value>
-		<value condition="ControlGroup(9001).HasFocus + !Control.HasFocus(1010)">$INFO[Container.ListItem.Genre]</value>
+		<value condition="ControlGroup(9001).HasFocus + !Control.HasFocus(50)">$INFO[Container.ListItem.Genre]</value>
 		<value condition="!String.IsEmpty(ListItem.Tagline)">$INFO[ListItem.Tagline]</value>
 		<value condition="String.IsEqual(ListItem.DBType,episode)">$INFO[ListItem.TvShowTitle]</value>
 		<value>$INFO[ListItem.Genre]</value>
@@ -1928,14 +1927,15 @@
 	<variable name="VideoInfoPlotVar">
 		<value condition="Skin.HasSetting(VideoInfoPlotOutline) + !String.IsEmpty(Container.ListItem.PlotOutline)">$INFO[Container.ListItem.PlotOutline]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Plot)">$INFO[Container.ListItem.Plot]</value>
-		<value condition="ControlGroup(9001).HasFocus + !Control.HasFocus(1010)">$LOCALIZE[31348]</value>
+		<value condition="ControlGroup(9001).HasFocus + !Control.HasFocus(50)">$LOCALIZE[31348]</value>
 		<value condition="Skin.HasSetting(VideoInfoPlotOutline) + !String.IsEmpty(ListItem.PlotOutline)">$INFO[ListItem.PlotOutline]</value>
 		<value condition="!String.IsEmpty(ListItem.Plot)">$INFO[ListItem.Plot]</value>
 		<value>$LOCALIZE[31348]</value>
 	</variable>
 	<variable name="VideoInfoContainerIcon">
-		<value condition="Control.HasFocus(1010) + Integer.IsGreater(Container(1020).NumItems,0)">$VAR[IconPathVar]arrowup.png</value>
-		<value condition="Container(9000).HasFocus(101) | Container(9000).HasFocus(115) | Control.HasFocus(1010) | Control.HasFocus(1020)">$VAR[IconPathVar]person.png</value>
+		<value condition="Control.HasFocus(50) + Skin.HasSetting(VideoInfoTMDbActor)">$VAR[IconPathVar]person.png</value>
+		<value condition="Control.HasFocus(50) + Integer.IsGreater(Container(1020).NumItems,0)">$VAR[IconPathVar]arrowup.png</value>
+		<value condition="Container(9000).HasFocus(101) | Container(9000).HasFocus(115) | Control.HasFocus(50) | Control.HasFocus(1020)">$VAR[IconPathVar]person.png</value>
 		<value condition="Container(9000).HasFocus(104) | Control.HasFocus(1040)">$VAR[IconPathVar]next.png</value>
 		<value condition="Container(9000).HasFocus(105) | Control.HasFocus(1050)">$VAR[IconPathVar]set.png</value>
 		<value condition="Container(9000).HasFocus(106) | Control.HasFocus(1060)">$VAR[IconPathVar]set.png</value>
@@ -1944,8 +1944,10 @@
 		<value condition="Container(9000).HasFocus(109) | Control.HasFocus(1090)">$VAR[IconPathVar]similar.png</value>
 	</variable>
 	<variable name="VideoInfoContainerLabel">
-		<value condition="Control.HasFocus(1020)">$LOCALIZE[31342] $INFO[Container(1010).ListItem.Label]</value>
-		<value condition="Control.HasFocus(1010)">$INFO[Container(1020).NumItems, Appeared in , Movies and TV Shows]</value>
+		<value condition="Control.HasFocus(1020)">$LOCALIZE[31342] $INFO[Container(50).ListItem.Label]</value>
+		<value condition="!Skin.HasSetting(VideoInfoTMDbActor) + Control.HasFocus(50) + Integer.IsGreater(Container(1020).NumItems,0)">$INFO[Container(1020).NumItems, $LOCALIZE[31381] , $LOCALIZE[31154] ] ($LOCALIZE[31383])</value>
+		<value condition="!Skin.HasSetting(VideoInfoTMDbActor) + Control.HasFocus(50)">$INFO[Container(1020).NumItems, $LOCALIZE[31381] , $LOCALIZE[31154] ]</value>
+		<value condition="Skin.HasSetting(VideoInfoTMDbActor) + Control.HasFocus(50)">$INFO[Container(50).ListItem.Label]$INFO[Container(50).ListItem.Label2, $LOCALIZE[20347] ] ($LOCALIZE[31382])</value>
 		<value condition="Container(9000).HasFocus(101) | Container(9000).HasFocus(115)">$LOCALIZE[206]</value>
 		<value condition="Container(9000).HasFocus(104) | Control.HasFocus(1040)">$LOCALIZE[31341]</value>
 		<value condition="Container(9000).HasFocus(105)">$LOCALIZE[33054]</value>

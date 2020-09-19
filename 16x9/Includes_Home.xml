@@ -7,7 +7,7 @@
 			<control type="group">
 				<top>$PARAM[top]</top>
 				<control type="label">
-					<visible>![Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + !String.IsEmpty(Window(10025).Property(PlayingBackgroundMedia))] + !String.IsEmpty(Container(9000).ListItem.Property(InfoLine)) + !Skin.HasSetting(HideInfoLine)</visible>
+					<visible>![Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + String.IsEmpty(Window(10025).Property(PlayingBackgroundMedia))] + !String.IsEmpty(Container(9000).ListItem.Property(InfoLine)) + !Skin.HasSetting(HideInfoLine)</visible>
 					<left>5</left>
 					<width>$PARAM[width]</width>
 					<height>38</height>
@@ -351,9 +351,9 @@
 					<height>38</height>
 					<font>Font28_Reg</font>
 					<urlset>1</urlset>
-					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 					<headlinecolor>$VAR[PanelSubTextColorVar]</headlinecolor>
-					<titlecolor>$VAR[PanelTextColorVar]</titlecolor>
+					<titlecolor>$VAR[PanelHighlightColorVar]</titlecolor>
 				</control>
 			</control>
 			<control type="image">
@@ -1193,8 +1193,8 @@
 					<textcolor>$VAR[PanelTextColorVar]</textcolor>
 					<label>$VAR[WidgetTitleVar]</label>
 				</control>
-				<control type="label" id="5304">
-					<visible>!String.IsEmpty(Control.GetLabel(5304))</visible>
+				<control type="label" id="5305">
+					<visible>!String.IsEmpty(Control.GetLabel(5305))</visible>
 					<height>30</height>
 					<scroll>true</scroll>
 					<font>Font28_Reg</font>
@@ -1202,7 +1202,7 @@
 					<label>$VAR[WidgetSubTitleVar]</label>
 				</control>
 				<control type="grouplist">
-					<visible>!String.IsEmpty(Control.GetLabel(5301)) | !String.IsEmpty(Control.GetLabel(5302)) | !String.IsEmpty(Control.GetLabel(5303))</visible>
+					<visible>!String.IsEmpty(Control.GetLabel(5301)) | !String.IsEmpty(Control.GetLabel(5302)) | !String.IsEmpty(Control.GetLabel(5303)) | !String.IsEmpty(Control.GetLabel(5304))</visible>
 					<height>37</height>
 					<usecontrolcoords>true</usecontrolcoords>
 					<orientation>horizontal</orientation>
@@ -1212,13 +1212,13 @@
 						<width>22</width>
 						<height>22</height>
 						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ListViewIcon1Var]</texture>
+						<texture>$VAR[IconPathVar]next.png</texture>
 					</control>
 					<control type="label" id="5301">
 						<width>auto</width>
 						<font>Font26_Reg</font>
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
-						<label>$VAR[WidgetInfo1Var]</label>
+						<label>$INFO[Container.ListItem.Property(Next_Aired.Day), ]$INFO[Container.ListItem.Property(Air_Time), ,  ]</label>
 					</control>
 					<control type="image">
 						<visible>!String.IsEmpty(Control.GetLabel(5302))</visible>
@@ -1226,13 +1226,13 @@
 						<width>22</width>
 						<height>22</height>
 						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ListViewIcon2Var]</texture>
+						<texture>$VAR[ListViewIcon1Var]</texture>
 					</control>
 					<control type="label" id="5302">
 						<width>auto</width>
 						<font>Font26_Reg</font>
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
-						<label>$VAR[WidgetInfo2Var]</label>
+						<label>$VAR[WidgetInfo1Var]</label>
 					</control>
 					<control type="image">
 						<visible>!String.IsEmpty(Control.GetLabel(5303))</visible>
@@ -1240,9 +1240,23 @@
 						<width>22</width>
 						<height>22</height>
 						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ListViewIcon3Var]</texture>
+						<texture>$VAR[ListViewIcon2Var]</texture>
 					</control>
 					<control type="label" id="5303">
+						<width>auto</width>
+						<font>Font26_Reg</font>
+						<textcolor>$VAR[PanelTextColorVar]</textcolor>
+						<label>$VAR[WidgetInfo2Var]</label>
+					</control>
+					<control type="image">
+						<visible>!String.IsEmpty(Control.GetLabel(5304))</visible>
+						<top>9</top>
+						<width>22</width>
+						<height>22</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$VAR[ListViewIcon3Var]</texture>
+					</control>
+					<control type="label" id="5304">
 						<width>auto</width>
 						<font>Font26_Reg</font>
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
@@ -1733,9 +1747,9 @@
 		<value>$INFO[ListItem.Genre]</value>
 	</variable>
 	<variable name="WidgetInfo1Var">
-		<value condition="!String.IsEmpty(ListItem.Property(calender))">$INFO[ListItem.Property(calender), ,  ]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.AddonCreator)">$INFO[Container.ListItem.AddonCreator, ,  ]</value>
 		<value condition="String.Contains(ListItem.Path,pvr)">$INFO[ListItem.StartTime, , - ]$INFO[ListItem.EndTime,,  ]</value>
+		<value condition="!String.IsEmpty(Container.ListItem.Premiered) + String.IsEqual(ListItem.DBTYPE,episode)">$INFO[Container.ListItem.Premiered, ,  ]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Date)">$INFO[Container.ListItem.Date, ,  ]</value>
 		<value condition="!String.IsEmpty(ListItem.Property(Artist_YearsActive))">$INFO[Container.ListItem.Property(Artist_YearsActive), ,  ]</value>
 		<value condition="!String.IsEmpty(ListItem.Year)">$INFO[Container.ListItem.Year, ,  ]</value>
