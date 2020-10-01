@@ -1483,7 +1483,8 @@
 	<variable name="ContainerAudioCodecFlagVar">
 		<value condition="String.Contains(Container(7005).ListItem.Filename,atmos)">$VAR[MediaFlagsPathVar]audiocodec/atmos.png</value>
 		<value condition="String.Contains(Container(7005).ListItem.Filename,dtsx) | String.Contains(Container(7005).Filename,dts-x)">$VAR[MediaFlagsPathVar]audiocodec/dtsx.png</value>
-		<value>$VAR[MediaFlagsPathVar]$INFO[Container(7005).ListItem.AudioCodec,audiocodec/,.png]</value>
+		<value condition="!String.IsEmpty(Container(7005).ListItem.AudioCodec)">$VAR[MediaFlagsPathVar]$INFO[Container(7005).ListItem.AudioCodec,audiocodec/,.png]</value>
+		<value>$VAR[MediaFlagsPathVar]$INFO[Container.ListItem.AudioCodec,audiocodec/,.png]</value>
 	</variable>
 	<variable name="PlayerAudioCodecFlagVar">
 		<value condition="String.Contains(Player.Filename,atmos)">$VAR[MediaFlagsPathVar]audiocodec/atmos.png</value>

@@ -279,6 +279,7 @@
 					<onup condition="Skin.HasSetting(VideoInfoTMDbActor)">RunScript(script.embuary.info,call=person,query='"$ESCINFO[Container(50).ListItem.Label]"')</onup>
 					<include content="DialogExtraInfo">
 						<param name="visible">!Control.HasFocus(1020) + Container(9000).HasFocus(101)</param>
+						<param name="aspect">scale</param>
 						<param name="labelvisible">true</param>
 					</include>
 				</control>
@@ -289,10 +290,11 @@
 					<ondown>50</ondown>
 					<include content="DialogExtraInfo">
 						<param name="visible">Control.HasFocus(1020)</param>
+						<param name="art">$VAR[PosterVar]</param>
 						<param name="overlayiconvisible">true</param>
 					</include>
-					<content>videodb://movies/titles/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22actor%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Container(50).ListItem.Label]%22%5D%7D%2C%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22isnot%22%2C%22value%22%3A%5B%22$INFO[Window(home).Property(TitleEncoded)]%22%5D%7D%5D%7D%2C%22type%22%3A%22movies%22%7D</content>
-					<content>videodb://tvshows/titles/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22actor%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Container(50).ListItem.Label]%22%5D%7D%2C%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22isnot%22%2C%22value%22%3A%5B%22$INFO[Window(home).Property(TVShowTitleEncoded)]%22%5D%7D%5D%7D%2C%22type%22%3A%22tvshows%22%7D</content>
+					<content sortby="year" sortorder="descending">videodb://movies/titles/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22actor%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Container(50).ListItem.Label]%22%5D%7D%2C%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22isnot%22%2C%22value%22%3A%5B%22$INFO[Window(home).Property(TitleEncoded)]%22%5D%7D%5D%7D%2C%22type%22%3A%22movies%22%7D</content>
+					<content sortby="year" sortorder="descending">videodb://tvshows/titles/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22actor%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Container(50).ListItem.Label]%22%5D%7D%2C%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22isnot%22%2C%22value%22%3A%5B%22$INFO[Window(home).Property(TVShowTitleEncoded)]%22%5D%7D%5D%7D%2C%22type%22%3A%22tvshows%22%7D</content>
 				</control>
 				<!-- Next up -->
 				<control type="panel" id="1040">
@@ -314,6 +316,7 @@
 					<onclick>RunScript(script.embuary.helper,action=goto,path='$ESCINFO[ListItem.FolderPath]',target=videos)</onclick>
 					<include content="DialogExtraInfo">
 						<param name="visible">Control.HasFocus(1050) | Container(9000).HasFocus(105)</param>
+						<param name="art">$VAR[PosterVar]</param>
 						<param name="overlayiconvisible">true</param>
 					</include>
 					<content limit="25" target="videos">$INFO[ListItem.DBID,videodb://tvshows/titles/,/]</content>
@@ -324,6 +327,7 @@
 					<onclick>RunScript(script.embuary.helper,action=playitem,item='$ESCINFO[ListItem.Filenameandpath]')</onclick>
 					<include content="DialogExtraInfo">
 						<param name="visible">Control.HasFocus(1060) | Container(9000).HasFocus(106)</param>
+						<param name="art">$VAR[PosterVar]</param>
 						<param name="overlayiconvisible">true</param>
 					</include>
 					<content limit="25" target="videos" sortby="year" sortorder="ascending">$INFO[ListItem.SetID,videodb://movies/sets/,/]</content>
@@ -334,9 +338,10 @@
 					<onclick>RunScript(script.embuary.helper,action=playitem,item='$ESCINFO[ListItem.Filenameandpath]')</onclick>
 					<include content="DialogExtraInfo">
 						<param name="visible">Control.HasFocus(1070) | Container(9000).HasFocus(107)</param>
+						<param name="art">$VAR[PosterVar]</param>
 						<param name="overlayiconvisible">true</param>
 					</include>
-					<content>plugin://script.embuary.helper/?info=getdirectedby&amp;dbid=$INFO[ListItem.DBID]</content>
+					<content sortby="year" sortorder="descending">plugin://script.embuary.helper/?info=getdirectedby&amp;dbid=$INFO[ListItem.DBID]</content>
 				</control>
 				<!-- Writer -->
 				<control type="panel" id="1080">
@@ -344,9 +349,10 @@
 					<onclick>RunScript(script.embuary.helper,action=playitem,item='$ESCINFO[ListItem.Filenameandpath]')</onclick>
 					<include content="DialogExtraInfo">
 						<param name="visible">Control.HasFocus(1080) | Container(9000).HasFocus(108)</param>
+						<param name="art">$VAR[PosterVar]</param>
 						<param name="overlayiconvisible">true</param>
 					</include>
-					<content>plugin://script.embuary.helper/?info=getbyargs&amp;filter_args=%7B%22and%22%3A%20%5B%7B%22or%22%3A%20%5B%7B%22operator%22%3A%20%22is%22%2C%20%22field%22%3A%20%22writers%22%2C%20%22value%22%3A%20%22$INFO[Window(home).Property(Writer.0)]%22%7D%2C%7B%22operator%22%3A%20%22is%22%2C%20%22field%22%3A%20%22writers%22%2C%20%22value%22%3A%20%22$INFO[Window(home).Property(Writer.1)]%22%7D%5D%7D%2C%20%7B%22operator%22%3A%20%22isnot%22%2C%20%22field%22%3A%20%22title%22%2C%20%22value%22%3A%20%22$INFO[Window(home).Property(TitleEncoded)]%22%7D%5D%7D&amp;type=movie</content>
+					<content sortby="year" sortorder="descending">plugin://script.embuary.helper/?info=getbyargs&amp;filter_args=%7B%22and%22%3A%20%5B%7B%22or%22%3A%20%5B%7B%22operator%22%3A%20%22is%22%2C%20%22field%22%3A%20%22writers%22%2C%20%22value%22%3A%20%22$INFO[Window(home).Property(Writer.0)]%22%7D%2C%7B%22operator%22%3A%20%22is%22%2C%20%22field%22%3A%20%22writers%22%2C%20%22value%22%3A%20%22$INFO[Window(home).Property(Writer.1)]%22%7D%5D%7D%2C%20%7B%22operator%22%3A%20%22isnot%22%2C%20%22field%22%3A%20%22title%22%2C%20%22value%22%3A%20%22$INFO[Window(home).Property(TitleEncoded)]%22%7D%5D%7D&amp;type=movie</content>
 				</control>
 				<!-- Similar -->
 				<control type="panel" id="1090">
@@ -354,9 +360,10 @@
 					<onclick>RunScript(script.embuary.helper,action=playitem,item='$ESCINFO[ListItem.Filenameandpath]')</onclick>
 					<include content="DialogExtraInfo">
 						<param name="visible">Control.HasFocus(1090) | Container(9000).HasFocus(109)</param>
+						<param name="art">$VAR[PosterVar]</param>
 						<param name="overlayiconvisible">true</param>
 					</include>
-					<content>$VAR[VideoInfoSimilarContent]</content>
+					<content sortby="year" sortorder="descending">$VAR[VideoInfoSimilarContent]</content>
 				</control>
 			</control>
 			<!-- Info -->
@@ -718,7 +725,7 @@
 						<param name="containerheight">305</param>
 						<param name="label2">$INFO[ListItem.Year]</param>
 					</include>
-					<content target="music">musicdb://artists/$INFO[ListItem.DBID]?albumartistsonly=false</content>
+					<content target="music" sortby="year" sortorder="descending">musicdb://artists/$INFO[ListItem.DBID]?albumartistsonly=false</content>
 				</control>
 				<!-- Tracks -->
 				<control type="panel" id="1020">
@@ -742,6 +749,7 @@
 					<include content="DialogExtraInfo">
 						<param name="visible">[String.IsEqual(ListItem.DBTYPE,musicvideo) + [Container(9000).HasFocus(104) | Container(9000).HasFocus(105)]] | [!String.IsEqual(ListItem.DBTYPE,musicvideo) + Container(9000).HasFocus(109)]</param>
 						<param name="labelvisible">true</param>
+						<param name="aspect">scale</param>
 						<param name="art">$INFO[ListItem.Icon]</param>
 						<param name="diffuse">diffuse/rounded5-373x275.png</param>
 						<param name="width">393</param>
@@ -749,7 +757,7 @@
 						<param name="containerheight">305</param>
 						<param name="label2">$INFO[ListItem.Album]</param>
 					</include>
-					<content target="video">$VAR[MusicInfoMusicVideoContent]</content>
+					<content target="video" sortby="year" sortorder="descending">$VAR[MusicInfoMusicVideoContent]</content>
 				</control>
 				<!-- Music Videos Albums -->
 				<control type="panel" id="1060">
@@ -768,7 +776,7 @@
 						<param name="containerheight">305</param>
 						<param name="label2">$INFO[ListItem.Year]</param>
 					</include>
-					<content target="music">musicdb://albums/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22sorttitle%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22albumartist%22%2C%22operator%22%3A%22contains%22%2C%22value%22%3A%5B%22$INFO[ListItem.Artist]%22%5D%7D%5D%7D%2C%22type%22%3A%22albums%22%7D</content>
+					<content target="music" sortby="year" sortorder="descending">musicdb://albums/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22sorttitle%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22albumartist%22%2C%22operator%22%3A%22contains%22%2C%22value%22%3A%5B%22$INFO[ListItem.Artist]%22%5D%7D%5D%7D%2C%22type%22%3A%22albums%22%7D</content>
 				</control>
 				<!-- Tracks -->
 				<control type="panel" id="50">
@@ -1178,6 +1186,7 @@
 		<param name="labelvisible">false</param>
 		<param name="overlayiconvisible">false</param>
 		<param name="art">$INFO[ListItem.Thumb]</param>
+		<param name="aspect">stretch</param>
 		<param name="diffuse">diffuse/rounded5-230x345.png</param>
 		<param name="width">235.8</param>
 		<param name="height">344</param>
@@ -1202,6 +1211,7 @@
 			<itemlayout width="$PARAM[width]" height="$PARAM[height]">
 				<include content="ViewArtwork">
 					<param name="art">$PARAM[art]</param>
+					<param name="aspect">$PARAM[aspect]</param>
 					<param name="texturefadetime"/>
 					<param name="diffuse">$PARAM[diffuse]</param>
 				</include>
@@ -1260,6 +1270,7 @@
 				</control>
 				<include content="ViewArtwork">
 					<param name="art">$PARAM[art]</param>
+					<param name="aspect">$PARAM[aspect]</param>
 					<param name="texturefadetime"/>
 					<param name="diffuse">$PARAM[diffuse]</param>
 				</include>
