@@ -1081,7 +1081,7 @@
 		<value>special://skin/extras/backgrounds/music.jpg</value>
 	</variable>
 	<variable name="HomeFanartVar">
-		<value condition="ControlGroup(90010).HasFocus + !String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+		<value condition="!Skin.HasSetting(DisableWidgetFanart) + ControlGroup(90010).HasFocus + !String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
 		<value condition="Control.HasFocus(9001) + [String.IsEqual(Container(9001).ListItem.Property(background),playlist) | String.IsEqual(Container(9001).ListItem.Property(coverBackground),fanart)]">$INFO[Control.GetLabel(7004)]</value>
 		<value condition="Control.HasFocus(9001) + String.IsEqual(Container(9001).ListItem.Property(background),cover) + !String.IsEmpty(Container(9001).ListItem.Property(coverBackground))">$INFO[Container(9001).ListItem.Property(coverBackground)]</value>
 		<value condition="Control.HasFocus(9001) + String.IsEqual(Container(9001).ListItem.Property(background),cover)">thumbs/coverbackground.jpg</value>
