@@ -1195,7 +1195,7 @@
 				<visible>ControlGroup(90010).HasFocus + !Control.HasFocus(1607)</visible>
 				<bottom>350</bottom>
 				<width>910</width>
-				<height>300</height>
+				<height>400</height>
 				<align>bottom</align>
 				<itemgap>10</itemgap>
 				<usecontrolcoords>true</usecontrolcoords>
@@ -1291,6 +1291,14 @@
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
 						<label>$INFO[ListItem.Top250, #,]</label>
 					</control>
+				</control>
+				<control type="textbox" id="5306">
+					<visible>!String.IsEmpty(Control.GetLabel(5306)) + Skin.HasSetting(WidgetPlot)</visible>
+					<height>85</height>
+					<scroll>true</scroll>
+					<font>Font28_Reg_106</font>
+					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
+					<label>$VAR[ViewPlotVar]</label>
 				</control>
 				<control type="image">
 					<top>0</top>
@@ -1774,6 +1782,11 @@
 		<value condition="!Integer.IsGreater(Container.ListItem.Duration(h),0)">$INFO[Container.ListItem.Duration(mm), ,m]$INFO[Container.ListItem.Duration(ss),,s  ]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Duration)">$INFO[Container.ListItem.Duration(hh), ,h]$INFO[Container.ListItem.Duration(mm),,m  ]</value>
 	</variable>
+	<variable name="WidgetInfo3Var">
+		<value condition="!String.IsEmpty(Container.ListItem.UserRating)">$INFO[Container.ListItem.UserRating, ,.0  ]</value>
+		<value condition="!String.IsEmpty(Container.ListItem.Rating)">$INFO[Container.ListItem.Rating, ,  ]</value>
+	</variable>
+
 	<variable name="WidgetInfo3Var">
 		<value condition="!String.IsEmpty(Container.ListItem.UserRating)">$INFO[Container.ListItem.UserRating, ,.0  ]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Rating)">$INFO[Container.ListItem.Rating, ,  ]</value>
