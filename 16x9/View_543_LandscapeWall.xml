@@ -28,15 +28,17 @@
 				<pagecontrol>60543</pagecontrol>
 				<include>ContainerScrollTime</include>
 				<viewtype label="$LOCALIZE[31257]">bigicon</viewtype>
-				<itemlayout height="267" width="460" condition="!Skin.HasSetting(View543SmallIcons) + Container.Content(images)">
+				<itemlayout height="267" width="460" condition="!Skin.HasSetting(View543SmallIcons) + [Container.Content(images) | Container.Content(episodes)]">
 					<include content="ViewArtwork">
 						<param name="aspect">scale</param>
 						<param name="art">$VAR[FanartVar]</param>
 						<param name="texturefadetime">0</param>
 						<param name="diffuse">diffuse/rounded5-440x247.png</param>
+						<param name="watchedstatusvisible">Container.Content(episodes) + !Skin.HasSetting(View543DisableWatchedStatus)</param>
+						<param name="labelvisible">Container.Content(episodes) + !Skin.HasSetting(View543DisableEpisodeLabel)</param>
 					</include>
 				</itemlayout>
-				<focusedlayout height="267" width="460" condition="!Skin.HasSetting(View543SmallIcons) + Container.Content(images)">
+				<focusedlayout height="267" width="460" condition="!Skin.HasSetting(View543SmallIcons) + [Container.Content(images) | Container.Content(episodes)]">
 					<control type="group">
 						<animation effect="zoom" start="100" end="115" center="auto" time="240">focus</animation>
 						<animation effect="zoom" start="115" end="100" center="auto" time="240">unfocus</animation>
@@ -48,18 +50,24 @@
 							<param name="art">$VAR[FanartVar]</param>
 							<param name="texturefadetime">0</param>
 							<param name="diffuse">diffuse/rounded5-440x247.png</param>
+							<param name="watchedstatusvisible">Container.Content(episodes) + !Skin.HasSetting(View543DisableWatchedStatus)</param>
+							<param name="labelvisible">Container.Content(episodes) + !Skin.HasSetting(View543DisableEpisodeLabel)</param>
+							<param name="labeltextcolor">$VAR[PanelTextColorVar]</param>
 						</include>
 					</control>
 				</focusedlayout>
-				<itemlayout height="216" width="368" condition="Skin.HasSetting(View543SmallIcons) + Container.Content(images)">
+				<itemlayout height="216" width="368" condition="Skin.HasSetting(View543SmallIcons) + [Container.Content(images) | Container.Content(episodes)]">
 					<include content="ViewArtwork">
 						<param name="aspect">scale</param>
 						<param name="art">$VAR[FanartVar]</param>
 						<param name="texturefadetime">0</param>
 						<param name="diffuse">diffuse/rounded5-348x196.png</param>
+						<param name="watchedstatusvisible">Container.Content(episodes) + !Skin.HasSetting(View543DisableWatchedStatus)</param>
+						<param name="labelvisible">Container.Content(episodes) + !Skin.HasSetting(View543DisableEpisodeLabel)</param>
+						<param name="labelfont">Font26_Cond_07</param>
 					</include>
 				</itemlayout>
-				<focusedlayout height="216" width="368" condition="Skin.HasSetting(View543SmallIcons) + Container.Content(images)">
+				<focusedlayout height="216" width="368" condition="Skin.HasSetting(View543SmallIcons) + [Container.Content(images) | Container.Content(episodes)]">
 					<control type="group">
 						<animation effect="zoom" start="100" end="115" center="auto" time="240">focus</animation>
 						<animation effect="zoom" start="115" end="100" center="auto" time="240">unfocus</animation>
@@ -71,6 +79,10 @@
 							<param name="art">$VAR[FanartVar]</param>
 							<param name="texturefadetime">0</param>
 							<param name="diffuse">diffuse/rounded5-348x196.png</param>
+							<param name="watchedstatusvisible">Container.Content(episodes) + !Skin.HasSetting(View543DisableWatchedStatus)</param>
+							<param name="labelvisible">Container.Content(episodes) + !Skin.HasSetting(View543DisableEpisodeLabel)</param>
+							<param name="labeltextcolor">$VAR[PanelTextColorVar]</param>
+							<param name="labelfont">Font26_Cond_07</param>
 						</include>
 					</control>
 				</focusedlayout>

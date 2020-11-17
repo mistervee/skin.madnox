@@ -2,7 +2,6 @@
 <window type="window" id="1112">
 	<defaultcontrol always="true">8000</defaultcontrol>
 	<onload condition="String.IsEmpty(Skin.String(SearchTerm))">AlarmClock(Search,Action(Close),00:01,silent)</onload>
-	<!-- <onload condition="String.IsEmpty(Skin.String(SearchTerm))">Close</onload> -->
 	<menucontrol>9050</menucontrol>
 	<controls>
 		<control type="group">
@@ -10,7 +9,7 @@
 			<!-- Background -->
 			<include content="BackgroundDefault">
 				<param name="imagepath">$VAR[SearchBackgroundVar]</param>
-				<param name="animatedfanart">Skin.HasSetting(ViewCustom1112AnimatedFanart)</param>
+				<param name="animatedfanart">false</param>
 			</include>
 			<!-- Background fade -->
 			<control type="image">
@@ -219,11 +218,11 @@
 				</control>
 				<control type="group">
 					<visible>String.IsEqual(Container.ListItem.DBTYPE,tvshow)</visible>
-					<!-- <include content="MediaFlagsTVShows">
-					<param name="left">30</param>
-					<param name="bottom">20</param>
-					<param name="align">left</param>
-				</include> -->
+					<include content="MediaFlagsTVShows">
+						<param name="left">30</param>
+						<param name="bottom">20</param>
+						<param name="align">left</param>
+					</include>
 					<include>MediaFlagsNextAiredInfo</include>
 				</control>
 				<control type="group">

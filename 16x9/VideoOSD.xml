@@ -184,6 +184,13 @@
 					</control>
 					<control type="radiobutton" id="307">
 						<include content="DialogButtonOSD">
+							<param name="texture" value="buttons/player/audio.png"/>
+						</include>
+						<onclick>AudioNextLanguage</onclick>
+						<visible>!VideoPlayer.Content(livetv) + !VideoPlayer.Content(musicvideos) + !Skin.HasSetting(VideoOSDDisableAudioButton)</visible>
+					</control>
+					<control type="radiobutton" id="308">
+						<include content="DialogButtonOSD">
 							<param name="texture" value="buttons/player/subtitle.png"/>
 						</include>
 						<onclick condition="VideoPlayer.HasSubtitles">Action(NextSubtitle)</onclick>
@@ -191,21 +198,21 @@
 						<onclick condition="!VideoPlayer.HasSubtitles">ActivateWindow(SubtitleSearch)</onclick>
 						<visible>!VideoPlayer.Content(livetv) + !VideoPlayer.Content(musicvideos) + !Skin.HasSetting(VideoOSDDisableSubtitleButton)</visible>
 					</control>
-					<control type="radiobutton" id="308">
+					<control type="radiobutton" id="309">
 						<include content="DialogButtonOSD">
 							<param name="texture" value="buttons/player/channels.png"/>
 						</include>
 						<onclick>ActivateWindow(pvrosdChannels)</onclick>
 						<visible>VideoPlayer.HasEpg + !Skin.HasSetting(VideoOSDDisableChannelsButton)</visible>
 					</control>
-					<control type="radiobutton" id="309">
+					<control type="radiobutton" id="310">
 						<include content="DialogButtonOSD">
 							<param name="texture" value="buttons/player/guide.png"/>
 						</include>
 						<onclick>ActivateWindow(pvrchannelguide)</onclick>
 						<visible>VideoPlayer.HasEpg + !Skin.HasSetting(VideoOSDDisableGuideButton)</visible>
 					</control>
-					<control type="radiobutton" id="310">
+					<control type="radiobutton" id="311">
 						<include content="DialogButtonOSD">
 							<param name="texture" value="buttons/player/txt.png"/>
 						</include>

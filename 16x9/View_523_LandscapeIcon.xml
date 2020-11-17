@@ -27,15 +27,17 @@
 				<pagecontrol>60513</pagecontrol>
 				<include>ContainerScrollTime</include>
 				<viewtype label="$LOCALIZE[31250]">bigicon</viewtype>
-				<itemlayout height="250" width="425" condition="!Skin.HasSetting(View523SmallIcons) + Container.Content(images)">
+				<itemlayout height="250" width="425" condition="!Skin.HasSetting(View523SmallIcons) + [Container.Content(images) | Container.Content(episodes)]">
 					<include content="ViewArtwork">
 						<param name="aspect">scale</param>
 						<param name="art">$VAR[FanartVar]</param>
 						<param name="texturefadetime">0</param>
 						<param name="diffuse">diffuse/rounded5-405x230.png</param>
+						<param name="watchedstatusvisible">Container.Content(episodes) + !Skin.HasSetting(View523DisableWatchedStatus)</param>
+						<param name="labelvisible">Container.Content(episodes) + !Skin.HasSetting(View523DisableEpisodeLabel)</param>
 					</include>
 				</itemlayout>
-				<focusedlayout height="250" width="425" condition="!Skin.HasSetting(View523SmallIcons) + Container.Content(images)">
+				<focusedlayout height="250" width="425" condition="!Skin.HasSetting(View523SmallIcons) + [Container.Content(images) | Container.Content(episodes)]">
 					<control type="image">
 						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
 					</control>
@@ -48,18 +50,24 @@
 							<param name="art">$VAR[FanartVar]</param>
 							<param name="texturefadetime">0</param>
 							<param name="diffuse">diffuse/rounded5-405x230.png</param>
+							<param name="watchedstatusvisible">Container.Content(episodes) + !Skin.HasSetting(View523DisableWatchedStatus)</param>
+							<param name="labelvisible">Container.Content(episodes) + !Skin.HasSetting(View523DisableEpisodeLabel)</param>
+							<param name="labeltextcolor">$VAR[PanelTextColorVar]</param>
 						</include>
 					</control>
 				</focusedlayout>
-				<itemlayout height="187.5" width="340" condition="Skin.HasSetting(View523SmallIcons) + Container.Content(images)">
+				<itemlayout height="187.5" width="340" condition="Skin.HasSetting(View523SmallIcons) + [Container.Content(images) | Container.Content(episodes)]">
 					<include content="ViewArtwork">
 						<param name="aspect">scale</param>
 						<param name="art">$VAR[FanartVar]</param>
 						<param name="texturefadetime">0</param>
 						<param name="diffuse">diffuse/rounded5-320x167.png</param>
+						<param name="watchedstatusvisible">Container.Content(episodes) + !Skin.HasSetting(View523DisableWatchedStatus)</param>
+						<param name="labelvisible">Container.Content(episodes) + !Skin.HasSetting(View523DisableEpisodeLabel)</param>
+						<param name="labelfont">Font26_Cond_07</param>
 					</include>
 				</itemlayout>
-				<focusedlayout height="187.5" width="340" condition="Skin.HasSetting(View523SmallIcons) + Container.Content(images)	">
+				<focusedlayout height="187.5" width="340" condition="Skin.HasSetting(View523SmallIcons) + [Container.Content(images) | Container.Content(episodes)]">
 					<control type="image">
 						<texture colordiffuse="$VAR[PanelHighlightColorVar]" border="10">buttons/thumb-select-focus.png</texture>
 					</control>
@@ -72,6 +80,10 @@
 							<param name="art">$VAR[FanartVar]</param>
 							<param name="texturefadetime">0</param>
 							<param name="diffuse">diffuse/rounded5-320x167.png</param>
+							<param name="watchedstatusvisible">Container.Content(episodes) + !Skin.HasSetting(View523DisableWatchedStatus)</param>
+							<param name="labelvisible">Container.Content(episodes) + !Skin.HasSetting(View523DisableEpisodeLabel)</param>
+							<param name="labeltextcolor">$VAR[PanelTextColorVar]</param>
+							<param name="labelfont">Font26_Cond_07</param>
 						</include>
 					</control>
 				</focusedlayout>

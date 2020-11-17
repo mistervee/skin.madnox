@@ -25,15 +25,22 @@
 		</control>
 		<!-- Floor -->
 		<include content="Floor">
-			<param name="visible">Skin.HasSetting(View507HideFloor) + Control.IsVisible(507)</param>
+			<param name="visible">Skin.HasSetting(View507HideFloor) + Control.IsVisible(507) + !Container.Content(artists)</param>
 			<param name="top">849</param>
 			<param name="slide">250</param>
+			<param name="highlight">FloorHighlightRight</param>
+		</include>
+		<include content="Floor">
+			<param name="visible">Skin.HasSetting(View507HideFloor) + Control.IsVisible(507) + Container.Content(artists)</param>
+			<param name="top">778</param>
+			<param name="slide">320</param>
 			<param name="highlight">FloorHighlightRight</param>
 		</include>
 		<!-- Panel -->
 		<control type="group">
 			<visible>Control.IsVisible(507)</visible>
 			<animation effect="slide" end="44,-4" condition="Skin.HasSetting(View507AlbumCase) + Container.Content(albums)">conditional</animation>
+			<animation effect="slide" end="0,-81" condition="Container.Content(artists)">conditional</animation>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">820</param>
 			</include>
@@ -462,6 +469,14 @@
 			<visible>Control.IsVisible(507)</visible>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
+			</include>
+			<include content="ViewCoverFlowBottomInfo">
+				<param name="visible">Container.Content(artists)</param>
+				<param name="left">50</param>
+				<param name="right">1000</param>
+				<param name="align">left</param>
+				<param name="logowidth">482</param>
+				<param name="logovisible">View506Logo</param>
 			</include>
 			<include condition="Window.IsVisible(MyMusicNav.xml)" content="MediaFlagsAudio">
 				<param name="right">50</param>

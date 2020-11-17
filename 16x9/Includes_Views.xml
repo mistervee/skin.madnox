@@ -743,6 +743,9 @@
 		<param name="texturefadetime">TextureFadeTime</param>
 		<param name="watchedstatusvisible">false</param>
 		<param name="diffuse">diffuse/rounded5-532x800.png</param>
+		<param name="labelvisible">false</param>
+		<param name="labelfont">Font28_Cond_07</param>
+		<param name="labeltextcolor">$VAR[PanelSubTextColorVar]</param>
 		<definition>
 			<control type="image">
 				<bordersize>10</bordersize>
@@ -765,6 +768,25 @@
 			<include content="ViewWatchedStatus">
 				<param name="visible">$PARAM[watchedstatusvisible]</param>
 			</include>
+			<control type="group">
+				<visible>!ListItem.IsParentFolder + $PARAM[labelvisible]</visible>
+				<bottom>10</bottom>
+				<height>62</height>
+				<control type="image">
+					<left>10</left>
+					<right>10</right>
+					<texture border="10">buttons/focus-fade.png</texture>
+				</control>
+				<control type="textbox">
+					<left>15</left>
+					<right>15</right>
+					<align>center</align>
+					<aligny>center</aligny>
+					<font>$PARAM[labelfont]</font>
+					<label>$INFO[ListItem.Label]</label>
+					<textcolor>$PARAM[labeltextcolor]</textcolor>
+				</control>
+			</control>
 			<control type="image">
 				<texture border="20">thumbs/overlay.png</texture>
 			</control>
@@ -1071,6 +1093,33 @@
 					<fadetime>$PARAM[texturefadetime]</fadetime>
 					<aspectratio scalediffuse="false">stretch</aspectratio>
 					<texture flipy="true" diffuse="thumbs/reflectsquare.png" border="15">thumbs/case/cd.png</texture>
+				</control>
+			</control>
+		</definition>
+	</include>
+	<include name="ViewThumbLabel">
+		<param name="visible">false</param>
+		<param name="font">Font28_Cond_07</param>
+		<param name="height">60</param>
+		<param name="textcolor">$VAR[PanelSubTextColorVar]</param>
+		<definition>
+			<control type="group">
+				<visible>!ListItem.IsParentFolder + $PARAM[visible]</visible>
+				<bottom>10</bottom>
+				<height>$PARAM[height]</height>
+				<control type="image">
+					<left>10</left>
+					<right>10</right>
+					<texture border="10">buttons/focus-fade.png</texture>
+				</control>
+				<control type="textbox">
+					<left>15</left>
+					<right>15</right>
+					<align>center</align>
+					<aligny>center</aligny>
+					<font>$PARAM[font]</font>
+					<label>$INFO[ListItem.Label]</label>
+					<textcolor>$PARAM[textcolor]</textcolor>
 				</control>
 			</control>
 		</definition>
@@ -2127,6 +2176,7 @@
 		</definition>
 	</include>
 	<include name="ViewCoverFlowBottomInfo">
+		<param name="visible">true</param>
 		<param name="left">540</param>
 		<param name="right">540</param>
 		<param name="align">center</param>
@@ -2134,76 +2184,79 @@
 		<param name="logovisible"/>
 		<definition>
 			<control type="group">
-				<visible>String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,set) | String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season) | String.IsEqual(ListItem.DBTYPE,episode) | String.IsEqual(ListItem.DBTYPE,album) | String.IsEqual(ListItem.DBTYPE,artist)</visible>
-				<bottom>0</bottom>
-				<left>$PARAM[left]</left>
-				<right>$PARAM[right]</right>
-				<height>116</height>
+				<visible>$PARAM[visible]</visible>
 				<control type="group">
-					<visible>!Skin.HasSetting($PARAM[logovisible]) | Container.Content(episodes)</visible>
-					<include>AnimationVisibleFade</include>
+					<visible>String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,set) | String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season) | String.IsEqual(ListItem.DBTYPE,episode) | String.IsEqual(ListItem.DBTYPE,album) | String.IsEqual(ListItem.DBTYPE,artist)</visible>
+					<bottom>0</bottom>
+					<left>$PARAM[left]</left>
+					<right>$PARAM[right]</right>
+					<height>116</height>
+					<control type="group">
+						<visible>!Skin.HasSetting($PARAM[logovisible]) | [Container.Content(episodes) + String.IsEqual(Container.Viewmode,$LOCALIZE[31243])]</visible>
+						<include>AnimationVisibleFade</include>
+						<control type="label">
+							<animation effect="slide" end="0,19" condition="String.IsEmpty(ListItem.Tagline) + String.IsEmpty(ListItem.Genre) + String.IsEmpty(Listitem.Property(Artist_Disambiguation)) + !Container.Content(albums)">conditional</animation>
+							<top>17</top>
+							<height>30</height>
+							<align>$PARAM[align]</align>
+							<font>Font34_Reg</font>
+							<textcolor>$VAR[PanelTextColorVar]</textcolor>
+							<label>$VAR[CoverFlowViewTitleVar]</label>
+						</control>
+						<control type="label">
+							<top>54</top>
+							<height>30</height>
+							<align>$PARAM[align]</align>
+							<font>Font30_Reg</font>
+							<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+							<label>$VAR[CoverFlowViewSubTitleVar]</label>
+						</control>
+					</control>
+					<control type="image">
+						<visible>Skin.HasSetting($PARAM[logovisible]) + [!Container.Content(episodes) | !String.IsEqual(Container.Viewmode,$LOCALIZE[31243])]</visible>
+						<include>AnimationVisibleFade</include>
+						<bottom>10</bottom>
+						<height>106</height>
+						<width>$PARAM[logowidth]</width>
+						<fadetime>TextureFadeTime</fadetime>
+						<aspectratio align="center">keep</aspectratio>
+						<texture background="true">$VAR[ClearLogoVar]</texture>
+					</control>
 					<control type="label">
-						<animation effect="slide" end="0,19" condition="String.IsEmpty(ListItem.Tagline) + String.IsEmpty(ListItem.Genre) + String.IsEmpty(Listitem.Property(Artist_Disambiguation)) + !Container.Content(albums)">conditional</animation>
-						<top>17</top>
-						<height>30</height>
-						<align>$PARAM[align]</align>
+						<visible>Skin.HasSetting($PARAM[logovisible]) + String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + [!Container.Content(episodes) | !String.IsEqual(Container.Viewmode,$LOCALIZE[31243])]</visible>
+						<include>AnimationVisibleFade</include>
+						<bottom>10</bottom>
+						<width>$PARAM[logowidth]</width>
+						<height>106</height>
+						<align>center</align>
 						<font>Font34_Reg</font>
+						<wrapmultiline>true</wrapmultiline>
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
-						<label>$VAR[CoverFlowViewTitleVar]</label>
+						<label>$INFO[ListItem.Label]</label>
 					</control>
-					<control type="label">
-						<top>54</top>
-						<height>30</height>
-						<align>$PARAM[align]</align>
-						<font>Font30_Reg</font>
-						<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
-						<label>$VAR[CoverFlowViewSubTitleVar]</label>
-					</control>
-				</control>
-				<control type="image">
-					<visible>Skin.HasSetting($PARAM[logovisible]) + !Container.Content(episodes)</visible>
-					<include>AnimationVisibleFade</include>
-					<bottom>10</bottom>
-					<height>106</height>
-					<width>$PARAM[logowidth]</width>
-					<fadetime>TextureFadeTime</fadetime>
-					<aspectratio align="center">keep</aspectratio>
-					<texture background="true">$VAR[ClearLogoVar]</texture>
 				</control>
 				<control type="label">
-					<visible>Skin.HasSetting($PARAM[logovisible]) + String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(ListItem.Art(artist.clearlogo)) + !Container.Content(episodes)</visible>
-					<include>AnimationVisibleFade</include>
-					<bottom>10</bottom>
-					<width>$PARAM[logowidth]</width>
-					<height>106</height>
-					<align>center</align>
+					<visible>![String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,set) | String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season) | String.IsEqual(ListItem.DBTYPE,episode) | String.IsEqual(ListItem.DBTYPE,album) | String.IsEqual(ListItem.DBTYPE,artist) | Container.Content(genres)]</visible>
+					<left>$PARAM[left]</left>
+					<right>$PARAM[right]</right>
+					<bottom>8</bottom>
+					<height>116</height>
+					<align>$PARAM[align]</align>
 					<font>Font34_Reg</font>
-					<wrapmultiline>true</wrapmultiline>
 					<textcolor>$VAR[PanelTextColorVar]</textcolor>
 					<label>$INFO[ListItem.Label]</label>
 				</control>
-			</control>
-			<control type="label">
-				<visible>![String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,set) | String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season) | String.IsEqual(ListItem.DBTYPE,episode) | String.IsEqual(ListItem.DBTYPE,album) | String.IsEqual(ListItem.DBTYPE,artist) | Container.Content(genres)]</visible>
-				<left>$PARAM[left]</left>
-				<right>$PARAM[right]</right>
-				<bottom>8</bottom>
-				<height>116</height>
-				<align>$PARAM[align]</align>
-				<font>Font34_Reg</font>
-				<textcolor>$VAR[PanelTextColorVar]</textcolor>
-				<label>$INFO[ListItem.Label]</label>
-			</control>
-			<control type="label">
-				<visible>Container.Content(genres) + ![System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour) + System.HasAddon(resource.images.musicgenreicons.text)]</visible>
-				<left>$PARAM[left]</left>
-				<right>$PARAM[right]</right>
-				<bottom>8</bottom>
-				<height>116</height>
-				<align>$PARAM[align]</align>
-				<font>Font34_Reg</font>
-				<textcolor>$VAR[PanelTextColorVar]</textcolor>
-				<label>$INFO[ListItem.Label]</label>
+				<control type="label">
+					<visible>Container.Content(genres) + ![System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour) + System.HasAddon(resource.images.musicgenreicons.text)]</visible>
+					<left>$PARAM[left]</left>
+					<right>$PARAM[right]</right>
+					<bottom>8</bottom>
+					<height>116</height>
+					<align>$PARAM[align]</align>
+					<font>Font34_Reg</font>
+					<textcolor>$VAR[PanelTextColorVar]</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
 			</control>
 		</definition>
 	</include>
