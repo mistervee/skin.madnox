@@ -1849,6 +1849,14 @@
 			<onclick>ActivateWindow(1115)</onclick>
 			<visible>!Skin.HasSetting(KioskDisableViewOptions)</visible>
 		</control>
+		<control type="radiobutton" id="9052">
+			<include content="MediaMenuIconButton">
+				<param name="iconon" value="icons/mediamenu/search.png"/>
+				<param name="iconoff" value="icons/mediamenu/search.png"/>
+			</include>
+			<label>$LOCALIZE[137]</label>
+			<onclick>Skin.SetString(SearchTerm)</onclick>
+		</control>
 	</include>
 	<!-- Views library -->
 	<include name="View50SettingsCoverList">
@@ -3516,101 +3524,32 @@
 			<label>$LOCALIZE[21483]</label>
 			<include>MediaMenuLabel</include>
 		</control>
-		<control type="radiobutton" id="102">
-			<label>$LOCALIZE[31123]</label>
-			<onclick>Skin.ToggleSetting(ViewCustom1102Logo)</onclick>
-			<selected>Skin.HasSetting(ViewCustom1102Logo)</selected>
-			<include>MediaMenuRadioButton</include>
-		</control>
-		<control type="radiobutton" id="103">
-			<label>$LOCALIZE[31084]</label>
-			<onclick>Skin.ToggleSetting(ViewCustom1102VideoCase)</onclick>
-			<selected>Skin.HasSetting(ViewCustom1102VideoCase)</selected>
-			<include>MediaMenuRadioButton</include>
-		</control>
-		<control type="radiobutton" id="104">
-			<label>$LOCALIZE[31214]</label>
-			<onclick>Skin.ToggleSetting(ViewCustom1102HideReflect)</onclick>
-			<selected>!Skin.HasSetting(ViewCustom1102HideReflect)</selected>
-			<include>MediaMenuRadioButton</include>
-		</control>
-		<control type="radiobutton" id="105">
-			<label>$LOCALIZE[31047]</label>
-			<onclick>Skin.ToggleSetting(ViewCustom1102HideFloor)</onclick>
-			<selected>!Skin.HasSetting(ViewCustom1102HideFloor)</selected>
-			<include>MediaMenuRadioButton</include>
-		</control>
-		<control type="radiobutton" id="106">
-			<label>$LOCALIZE[31228]</label>
-			<onclick>Skin.ToggleSetting(ViewCustom1102VideoPreviewWindow)</onclick>
-			<selected>Skin.HasSetting(ViewCustom1102VideoPreviewWindow)</selected>
-			<include>MediaMenuRadioButton</include>
-		</control>
 		<control type="radiobutton" id="208">
 			<label>$LOCALIZE[31042]</label>
-			<onclick>Skin.ToggleSetting(VideosHideTopBar)</onclick>
-			<selected>!Skin.HasSetting(VideosHideTopBar)</selected>
+			<onclick>Skin.ToggleSetting(SearchHideTopBar)</onclick>
+			<selected>!Skin.HasSetting(SearchHideTopBar)</selected>
 			<include>MediaMenuRadioButton</include>
 		</control>
 		<control type="button" id="202">
 			<label>$LOCALIZE[33069]</label>
-			<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[3] $LOCALIZE[31107],home)</onclick>
+			<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[137] $LOCALIZE[31107],home)</onclick>
 			<onclick>ActivateWindow(1111)</onclick>
 			<include>MediaMenuButton</include>
 		</control>
-		<control type="label" id="201">
-			<label>$LOCALIZE[31021]</label>
-			<include>MediaMenuLabel</include>
-		</control>
-		<control type="button" id="203">
-			<visible>Container.Content(countries) + !System.HasAddon(resource.images.moviecountryicons.flags)</visible>
-			<label>$LOCALIZE[31053]</label>
-			<onclick>InstallAddon(resource.images.moviecountryicons.flags)</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="button" id="204">
-			<visible>Container.Content(genres) + !String.Contains(ListItem.FolderPath,music) + !System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.colour)</visible>
-			<label>$LOCALIZE[31276]</label>
-			<onclick>InstallAddon(resource.images.moviegenreicons.filmstrip-hd.colour)</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="button" id="205">
-			<visible>Container.Content(genres) + !String.Contains(ListItem.FolderPath,music) + !System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)</visible>
-			<label>$LOCALIZE[31277]</label>
-			<onclick>InstallAddon(resource.images.moviegenreicons.filmstrip-hd.bw)</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="button" id="206">
-			<visible>Container.Content(genres) + String.Contains(ListItem.FolderPath,music) + !System.HasAddon(resource.images.musicgenreicons.text)</visible>
-			<label>$LOCALIZE[31274]</label>
-			<onclick>InstallAddon(resource.images.musicgenreicons.text)</onclick>
-			<include>MediaMenuButton</include>
-		</control>
-		<control type="radiobutton" id="207">
-			<visible>Container.Content(genres) + !String.Contains(ListItem.FolderPath,music) + System.HasAddon(resource.images.moviegenreicons.filmstrip-hd.bw)</visible>
-			<label>$LOCALIZE[31275]</label>
-			<onclick>Skin.ToggleSetting(BWGenreIcons)</onclick>
-			<selected>Skin.HasSetting(BWGenreIcons)</selected>
-			<include>MediaMenuRadioButton</include>
-		</control>
 		<control type="label" id="220">
-			<visible>Control.IsVisible(221) | Control.IsVisible(222)</visible>
 			<label>$LOCALIZE[31106]</label>
 			<include>MediaMenuLabel</include>
 		</control>
 		<control type="button" id="221">
-			<visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
 			<label>$LOCALIZE[31363]</label>
 			<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[31363],home)</onclick>
 			<onclick>ActivateWindow(1111)</onclick>
 			<include>MediaMenuButton</include>
 		</control>
-		<control type="radiobutton" id="222">
-			<visible>Container.Content(movies) | Container.Content(episodes) | Container.Content(musicvideos)</visible>
-			<label>$LOCALIZE[31060]</label>
-			<onclick condition="!System.HasAddon(resource.images.languageflags.rounded)">InstallAddon(resource.images.languageflags.rounded)</onclick>
-			<onclick condition="System.HasAddon(resource.images.languageflags.rounded)">Skin.ToggleSetting(ShowLanguageFlags)</onclick>
-			<selected>Skin.HasSetting(ShowLanguageFlags)</selected>
+		<control type="button" id="222">
+			<label>$LOCALIZE[31234]</label>
+			<onclick>SetProperty(CustomSelectGroup,$LOCALIZE[31234],home)</onclick>
+			<onclick>ActivateWindow(1111)</onclick>
 			<include>MediaMenuRadioButton</include>
 		</control>
 	</include>

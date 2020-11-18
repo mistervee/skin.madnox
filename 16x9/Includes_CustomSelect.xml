@@ -403,6 +403,32 @@
 		</control>
 		<include condition="Window.IsActive(Custom_1115_ViewSettings.xml)">SelectNowPlayingBackground</include>
 	</include>
+	<include name="SelectSearchBackground">
+		<control type="radiobutton" id="101">
+			<label>$LOCALIZE[31038]</label>
+			<include>DialogRadioButton</include>
+			<onclick>Skin.ToggleSetting(SearchAnimatedFanart)</onclick>
+			<selected>Skin.HasSetting(SearchAnimatedFanart)</selected>
+		</control>
+		<control type="button" id="102">
+			<label>$LOCALIZE[571]</label>
+			<include>DialogButton</include>
+			<onclick>Dialog.Close(1111)</onclick>
+			<onclick>Skin.Reset(SearchBackground)</onclick>
+		</control>
+		<control type="button" id="103">
+			<label>$LOCALIZE[31007]</label>
+			<include>DialogButton</include>
+			<onclick>Dialog.Close(1111)</onclick>
+			<onclick>Skin.SetImage(SearchBackground)</onclick>
+		</control>
+		<control type="button" id="104">
+			<label>$LOCALIZE[31008]</label>
+			<include>DialogButton</include>
+			<onclick>Dialog.Close(1111)</onclick>
+			<onclick>Skin.SetPath(SearchBackground)</onclick>
+		</control>
+	</include>
 	<include name="SelectPVRBackground">
 		<control type="radiobutton" id="101">
 			<label>$LOCALIZE[31038]</label>
@@ -887,6 +913,8 @@
 			<include>DialogRadioButton</include>
 			<onclick condition="!System.HasAddon(resource.images.studios.coloured)">InstallAddon(resource.images.studios.coloured)</onclick>
 			<onclick condition="System.HasAddon(resource.images.studios.coloured)">Skin.ToggleSetting(MediaFlagsColored)</onclick>
+			<onclick condition="System.HasAddon(resource.images.studios.coloured)">Dialog.Close(all,true)</onclick>
+			<include>ReloadWindowOnClick</include>
 			<selected>Skin.HasSetting(MediaFlagsColored)</selected>
 		</control>
 		<control type="radiobutton" id="103">

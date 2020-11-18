@@ -55,7 +55,7 @@
 		<param name="align">right</param>
 		<definition>
 			<control type="grouplist">
-				<visible>!ListItem.IsParentFolder + [Container.Content(tvshows) | Container.Content(seasons)]</visible>
+				<visible>!ListItem.IsParentFolder + [Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBTYPE,tvshow)]</visible>
 				<bottom>$PARAM[bottom]</bottom>
 				<left>$PARAM[left]</left>
 				<right>$PARAM[right]</right>
@@ -76,7 +76,7 @@
 					<include>MediaFlagImage</include>
 				</control>
 				<control type="label">
-					<visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Last_Aired))</visible>
+					<visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status))</visible>
 					<width>135.5</width>
 					<include>MediaFlagLabel</include>
 					<label>$VAR[NextAiredStausLabelVar]</label>
@@ -89,7 +89,7 @@
 					<texture>$VAR[MediaFlagsPathVar]nextaired/$INFO[Window(Home).Property(TMDbHelper.ListItem.Status)].png</texture>
 				</control>
 				<control type="label">
-					<visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status))</visible>
+					<visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Last_Aired))</visible>
 					<align>left</align>
 					<include>MediaFlagLabelFull</include>
 					<label>$VAR[TVShowAirDateLabelVar]</label>
@@ -1286,10 +1286,6 @@
 		<value condition="String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.Status),Returning)">$LOCALIZE[31011]</value>
 		<value>$INFO[Window(Home).Property(TMDbHelper.ListItem.Status)]</value>
 	</variable>
-	<variable name="NextAiredStaus7005LabelVar">
-		<value condition="String.StartsWith(Container(7005).ListItem.Status,Return)">$LOCALIZE[31011]</value>
-		<value>$INFO[Container(7005).ListItem.Status]</value>
-	</variable>
 	<variable name="StudioIconsVar">
 		<value condition="String.IsEqual(ListItem.DBTYPE,set) + !Skin.HasSetting(MediaFlagsColored)">flags/default/set.png</value>
 		<value condition="String.IsEqual(ListItem.DBTYPE,set) + Skin.HasSetting(MediaFlagsColored)">flags/colored/set.png</value>
@@ -1421,7 +1417,7 @@
 		<value condition="!String.IsEmpty(Container.ListItem.MPAA)">$INFO[Container.ListItem.MPAA,,.png]</value>
 		<value>NR.png</value>
 	</variable>
-		<variable name="VideoCodecFlagVar">
+	<variable name="VideoCodecFlagVar">
 		<value condition="!Skin.HasSetting(SourceFlags)">$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoCodec,videocodec/,.png]</value>
 		<value condition="String.IsEqual(ListItem.VideoResolution,4k) | String.Contains(ListItem.filename,UHD)">$VAR[MediaFlagsPathVar]videocodec/4k.png</value>
 		<value condition="ListItem.IsStereoscopic | String.Contains(ListItem.filename,3D)">$VAR[MediaFlagsPathVar]videocodec/bluray3d.png</value>
