@@ -115,7 +115,7 @@
 				</control>
 				<control type="image">
 					<visible>$PARAM[case]</visible>
-					<texture border="15">thumbs/case/portrait/$INFO[VideoPlayer.VideoResolution]p.png</texture>
+					<texture border="15">$VAR[NowPlayingCaseVar]</texture>
 				</control>
 			</control>
 		</definition>
@@ -905,6 +905,12 @@
 		<disabledcolor>$VAR[PanelDisabledTextColorVar]</disabledcolor>
 	</include>
 	<!-- Variables -->
+	<variable name="NowPlayingCaseVar">
+		<value condition="VideoPlayer.IsStereoscopic | String.Contains(Player.Filename,3D)">thumbs/case/portrait/3d.png</value>
+		<value condition="String.Contains(Player.Filename,webdl) | String.Contains(Player.Filename,web-dl)">thumbs/case/portrait/webdl.png</value>
+		<value condition="String.Contains(Player.Filename,4K)">thumbs/case/portrait/4Kp.png</value>
+		<value>thumbs/case/portrait/$INFO[VideoPlayer.VideoResolution]p.png</value>
+	</variable>
 	<variable name="NowPlayingInfo1Var">
 		<value condition="VideoPlayer.Content(episodes)">$INFO[VideoPlayer.TVShowTitle]</value>
 		<value condition="!String.IsEmpty(MusicPlayer.Artist)">$INFO[MusicPlayer.Artist]</value>
