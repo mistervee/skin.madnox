@@ -457,11 +457,40 @@
 						<texture>$INFO[ListItem.Property(Album_Label),resource://resource.images.recordlabels.white/,.png]</texture>
 						<include>MediaFlagImage</include>
 					</control>
+					<control type="image">
+						<visible>Integer.IsGreater(ListItem.TotalDiscs,1) + String.IsEmpty(ListItem.DiscNumber)</visible>
+						<texture>$VAR[MediaFlagsPathVar]set.png</texture>
+						<include>MediaFlagImage</include>
+					</control>
 					<control type="label">
+						<visible>!String.IsEmpty(ListItem.TotalDiscs) + String.IsEmpty(ListItem.DiscNumber)</visible>
+						<include>MediaFlagLabel</include>
+						<label>$LOCALIZE[14087]</label>
+					</control>
+					<control type="label">
+						<visible>!String.IsEmpty(ListItem.TotalDiscs) + String.IsEmpty(ListItem.DiscNumber)</visible>
+						<left>-135.5</left>
+						<include>MediaFlagBigLabel</include>
+						<label>$INFO[ListItem.TotalDiscs]</label>
+					</control>
+					<control type="label">
+						<visible>!String.IsEmpty(ListItem.DiscNumber)</visible>
+						<include>MediaFlagLabel</include>
+						<label>$LOCALIZE[427]</label>
+					</control>
+					<control type="label">
+						<visible>!String.IsEmpty(ListItem.DiscNumber)</visible>
+						<left>-135.5</left>
+						<include>MediaFlagBigLabel</include>
+						<label>$INFO[ListItem.DiscNumber]</label>
+					</control>
+					<control type="label">
+						<visible>!String.IsEqual(ListItem.TotalDiscs,Container(7002).NumItems)</visible>
 						<include>MediaFlagLabel</include>
 						<label>$LOCALIZE[182]</label>
 					</control>
 					<control type="label">
+						<visible>!String.IsEqual(ListItem.TotalDiscs,Container(7002).NumItems)</visible>
 						<left>-135.5</left>
 						<include>MediaFlagBigLabel</include>
 						<label>$INFO[Container(7002).NumItems]</label>
@@ -474,22 +503,42 @@
 					<orientation>horizontal</orientation>
 					<usecontrolcoords>true</usecontrolcoords>
 					<control type="image">
-						<bordersize>5</bordersize>
-						<texture>$INFO[ListItem.Property(Album_Label),resource://resource.images.recordlabels.white/,.png]</texture>
 						<include>MediaFlagImage</include>
+						<texture>$VAR[MediaFlagsPathVar]/bitrate.png</texture>
+					</control>
+					<control type="label">
+						<top>40</top>
+						<left>-135.5</left>
+						<include>MediaFlagAudio</include>
+						<label>$INFO[ListItem.Bitrate,, Kbps]</label>
+					</control>
+					<control type="label">
+						<top>40</top>
+						<align>right</align>
+						<width>62.75</width>
+						<include>MediaFlagAudio</include>
+						<label>$INFO[ListItem.SampleRate]</label>
+					</control>
+					<control type="image">
+						<left>-72.75</left>
+						<include>MediaFlagImage</include>
+						<texture>$VAR[MediaFlagsPathVar]/samplerate.png</texture>
+					</control>
+					<control type="label">
+						<top>4</top>
+						<align>left</align>
+						<left>-72.75</left>
+						<width>62.75</width>
+						<include>MediaFlagAudio</include>
+						<label>kHz</label>
 					</control>
 					<control type="image">
 						<include>MediaFlagImage</include>
 						<texture>$VAR[MediaFlagsPathVar]/audiocodec/$INFO[ListItem.FileExtension].png</texture>
 					</control>
-					<control type="label">
-						<include>MediaFlagLabel</include>
-						<label>$LOCALIZE[427]</label>
-					</control>
-					<control type="label">
-						<left>-135.5</left>
-						<include>MediaFlagBigLabel</include>
-						<label>$INFO[ListItem.DiscNumber]</label>
+					<control type="image">
+						<include>MediaFlagImage</include>
+						<texture>$VAR[MediaFlagsPathVar]/audiochannels/$INFO[ListItem.MusicChannels].png</texture>
 					</control>
 				</control>
 			</control>
@@ -541,38 +590,47 @@
 					<orientation>horizontal</orientation>
 					<usecontrolcoords>true</usecontrolcoords>
 					<control type="label">
+						<visible>!String.IsEqual(ListItem.TotalDiscs,Container(7002).NumItems)</visible>
 						<include>MediaFlagLabel</include>
 						<label>$LOCALIZE[182]</label>
 					</control>
 					<control type="label">
+						<visible>!String.IsEqual(ListItem.TotalDiscs,Container(7002).NumItems)</visible>
 						<left>-135.5</left>
 						<include>MediaFlagBigLabel</include>
 						<label>$INFO[Container(7002).NumItems]</label>
+					</control>
+					<control type="label">
+						<visible>Integer.IsGreater(ListItem.TotalDiscs,1) + String.IsEmpty(ListItem.DiscNumber)</visible>
+						<include>MediaFlagLabel</include>
+						<label>$LOCALIZE[14087]</label>
+					</control>
+					<control type="label">
+						<visible>Integer.IsGreater(ListItem.TotalDiscs,1) + String.IsEmpty(ListItem.DiscNumber)</visible>
+						<left>-135.5</left>
+						<include>MediaFlagBigLabel</include>
+						<label>$INFO[ListItem.TotalDiscs]</label>
+					</control>
+					<control type="label">
+						<visible>Integer.IsGreater(ListItem.TotalDiscs,1) + !String.IsEmpty(ListItem.DiscNumber)</visible>
+						<include>MediaFlagLabel</include>
+						<label>$LOCALIZE[427]</label>
+					</control>
+					<control type="label">
+						<visible>Integer.IsGreater(ListItem.TotalDiscs,1) + !String.IsEmpty(ListItem.DiscNumber)</visible>
+						<left>-135.5</left>
+						<include>MediaFlagBigLabel</include>
+						<label>$INFO[ListItem.DiscNumber]</label>
+					</control>
+					<control type="image">
+						<visible>Integer.IsGreater(ListItem.TotalDiscs,1) + String.IsEmpty(ListItem.DiscNumber)</visible>
+						<texture>$VAR[MediaFlagsPathVar]set.png</texture>
+						<include>MediaFlagImage</include>
 					</control>
 					<control type="image">
 						<bordersize>5</bordersize>
 						<texture>$INFO[ListItem.Property(Album_Label),resource://resource.images.recordlabels.white/,.png]</texture>
 						<include>MediaFlagImage</include>
-					</control>
-				</control>
-				<control type="grouplist">
-					<visible>!ListItem.IsParentFolder + [Container.Content(songs) | String.IsEqual(ListItem.DBTYPE,song)]</visible>
-					<align>left</align>
-					<itemgap>10</itemgap>
-					<orientation>horizontal</orientation>
-					<usecontrolcoords>true</usecontrolcoords>
-					<control type="image">
-						<include>MediaFlagImage</include>
-						<texture>$VAR[MediaFlagsPathVar]/audiocodec/$INFO[ListItem.FileExtension].png</texture>
-					</control>
-					<control type="label">
-						<include>MediaFlagLabel</include>
-						<label>$LOCALIZE[427]</label>
-					</control>
-					<control type="label">
-						<left>-135.5</left>
-						<include>MediaFlagBigLabel</include>
-						<label>$INFO[ListItem.DiscNumber]</label>
 					</control>
 				</control>
 			</control>
@@ -755,11 +813,18 @@
 				<itemgap>10</itemgap>
 				<orientation>horizontal</orientation>
 				<usecontrolcoords>true</usecontrolcoords>
+				<control type="image">
+					<bordersize>5</bordersize>
+					<texture>$INFO[ListItem.Property(Album_Label),resource://resource.images.recordlabels.white/,.png]</texture>
+					<include>MediaFlagImage</include>
+				</control>
 				<control type="label">
+					<visible>!String.IsEqual(ListItem.TotalDiscs,Container(7002).NumItems)</visible>
 					<include>MediaFlagLabel</include>
 					<label>$LOCALIZE[182]</label>
 				</control>
 				<control type="label">
+					<visible>!String.IsEqual(ListItem.TotalDiscs,Container(7002).NumItems)</visible>
 					<left>-135.5</left>
 					<include>MediaFlagBigLabel</include>
 					<label>$INFO[Container(7002).NumItems]</label>
@@ -774,9 +839,31 @@
 				<itemgap>10</itemgap>
 				<orientation>horizontal</orientation>
 				<usecontrolcoords>true</usecontrolcoords>
+				<control type="label">
+					<visible>!String.IsEmpty(ListItem.TotalDiscs) + String.IsEmpty(ListItem.DiscNumber)</visible>
+					<include>MediaFlagLabel</include>
+					<label>$LOCALIZE[14087]</label>
+				</control>
+				<control type="label">
+					<visible>!String.IsEmpty(ListItem.TotalDiscs) + String.IsEmpty(ListItem.DiscNumber)</visible>
+					<left>-135.5</left>
+					<include>MediaFlagBigLabel</include>
+					<label>$INFO[ListItem.TotalDiscs]</label>
+				</control>
+				<control type="label">
+					<visible>!String.IsEmpty(ListItem.DiscNumber)</visible>
+					<include>MediaFlagLabel</include>
+					<label>$LOCALIZE[427]</label>
+				</control>
+				<control type="label">
+					<visible>!String.IsEmpty(ListItem.DiscNumber)</visible>
+					<left>-135.5</left>
+					<include>MediaFlagBigLabel</include>
+					<label>$INFO[ListItem.DiscNumber]</label>
+				</control>
 				<control type="image">
-					<bordersize>5</bordersize>
-					<texture>$INFO[ListItem.Property(Album_Label),resource://resource.images.recordlabels.white/,.png]</texture>
+					<visible>Integer.IsGreater(ListItem.TotalDiscs,1) + String.IsEmpty(ListItem.DiscNumber)</visible>
+					<texture>$VAR[MediaFlagsPathVar]set.png</texture>
 					<include>MediaFlagImage</include>
 				</control>
 			</control>
@@ -1097,12 +1184,7 @@
 			<itemgap>10</itemgap>
 			<orientation>horizontal</orientation>
 			<usecontrolcoords>true</usecontrolcoords>
-			<control type="image">
-				<visible>!String.IsEqual(Control.GetLabel(811115),none) + !Control.HasFocus(1090) + [Control.HasFocus(1010) | Control.HasFocus(1020) | Control.HasFocus(1060) | String.IsEqual(ListItem.DBTYPE,album) | String.IsEqual(ListItem.DBTYPE,song)]</visible>
-				<bordersize>5</bordersize>
-				<texture>$INFO[Control.GetLabel(811115)]</texture>
-				<include>MediaFlagImage</include>
-			</control>
+			<!-- Artists -->
 			<control type="label">
 				<visible>String.IsEqual(ListItem.DBTYPE,artist) + !String.IsEmpty(ListItem.Property(Artist_YearsActive)) + [Control.HasFocus(9002) | !ControlGroup(9001).HasFocus]</visible>
 				<width>291</width>
@@ -1127,16 +1209,45 @@
 				<include>MediaFlagBigLabel</include>
 				<label>$INFO[Container(1010).NumItems]</label>
 			</control>
+			<!-- Albums -->
+			<control type="image">
+				<visible>!String.IsEqual(Control.GetLabel(811115),none) + !Control.HasFocus(1090) + [Control.HasFocus(1010) | Control.HasFocus(1060) | String.IsEqual(ListItem.DBTYPE,album) | String.IsEqual(ListItem.DBTYPE,song)]</visible>
+				<bordersize>5</bordersize>
+				<texture>$INFO[Control.GetLabel(811115)]</texture>
+				<include>MediaFlagImage</include>
+			</control>
+			<control type="image">
+				<visible>[String.IsEqual(ListItem.DBTYPE,album) | Control.HasFocus(1010) | Control.HasFocus(1060)] + !Control.HasFocus(1090) + [Integer.IsGreater(Container.ListItem.TotalDiscs,1) | Integer.IsGreater(ListItem.TotalDiscs,1)]</visible>
+				<texture>$VAR[MediaFlagsPathVar]set.png</texture>
+				<include>MediaFlagImage</include>
+			</control>
 			<control type="label">
-				<visible>[String.IsEqual(ListItem.DBTYPE,album) | Control.HasFocus(1010) | Control.HasFocus(1020) | Control.HasFocus(1060)] + !Control.HasFocus(1090)</visible>
+				<visible>[String.IsEqual(ListItem.DBTYPE,album) | Control.HasFocus(50) | Control.HasFocus(1010) | Control.HasFocus(1060)] + !Control.HasFocus(1090)</visible>
+				<include>MediaFlagLabel</include>
+				<label>$LOCALIZE[14087]</label>
+			</control>
+			<control type="label">
+				<visible>[Control.HasFocus(1010) | Control.HasFocus(1060)] + !Control.HasFocus(1090) + !String.IsEmpty(Container(7006).ListItem.TotalDiscs)</visible>
+				<left>-135.5</left>
+				<include>MediaFlagBigLabel</include>
+				<label>$INFO[Container(7006).ListItem.TotalDiscs]</label>
+			</control>
+			<control type="label">
+				<visible>String.IsEqual(ListItem.DBTYPE,album) + !Control.HasFocus(1090)</visible>
+				<left>-135.5</left>
+				<include>MediaFlagBigLabel</include>
+				<label>$INFO[ListItem.TotalDiscs]</label>
+			</control>
+			<control type="label">
+				<visible>[String.IsEqual(ListItem.DBTYPE,album) | Control.HasFocus(1010) | Control.HasFocus(1060)] + !Control.HasFocus(1090)</visible>
 				<include>MediaFlagLabel</include>
 				<label>$LOCALIZE[182]</label>
 			</control>
 			<control type="label">
-				<visible>Control.HasFocus(1010) | Control.HasFocus(1020) | Control.HasFocus(1060)</visible>
+				<visible>Control.HasFocus(1010) | Control.HasFocus(1060)</visible>
 				<left>-135.5</left>
 				<include>MediaFlagBigLabel</include>
-				<label>$INFO[Container(1020).NumItems]</label>
+				<label>$INFO[Container(7006).NumItems]</label>
 			</control>
 			<control type="label">
 				<visible>String.IsEqual(ListItem.DBTYPE,album) + !Control.HasFocus(1090)</visible>
@@ -1144,6 +1255,93 @@
 				<include>MediaFlagBigLabel</include>
 				<label>$INFO[Container(50).NumItems]</label>
 			</control>
+			<!-- Songs -->
+			<control type="image">
+				<visible>String.IsEqual(ListItem.DBTYPE,song) | [String.IsEqual(ListItem.DBTYPE,album) + Control.HasFocus(50)]</visible>
+				<include>MediaFlagImage</include>
+				<texture>$VAR[MediaFlagsPathVar]/bitrate.png</texture>
+			</control>
+			<control type="label">
+				<visible>String.IsEqual(ListItem.DBTYPE,album) + Control.HasFocus(50)</visible>
+				<top>40</top>
+				<left>-135.5</left>
+				<font>Font25_Cond_Bold</font>
+				<shadowcolor>black</shadowcolor>
+				<textcolor>aaffffff</textcolor>
+				<include>MediaFlagLabel</include>
+				<label>$INFO[Container.ListItem.Bitrate,, Kbps]</label>
+			</control>
+			<control type="label">
+				<visible>String.IsEqual(ListItem.DBTYPE,song)</visible>
+				<top>40</top>
+				<left>-135.5</left>
+				<font>Font25_Cond_Bold</font>
+				<shadowcolor>black</shadowcolor>
+				<textcolor>aaffffff</textcolor>
+				<include>MediaFlagLabel</include>
+				<label>$INFO[ListItem.Bitrate,, Kbps]</label>
+			</control>
+			<control type="label">
+				<visible>String.IsEqual(ListItem.DBTYPE,album) + Control.HasFocus(50)</visible>
+				<top>40</top>
+				<align>right</align>
+				<width>62.75</width>
+				<font>Font25_Cond_Bold</font>
+				<shadowcolor>black</shadowcolor>
+				<textcolor>aaffffff</textcolor>
+				<include>MediaFlagLabel</include>
+				<label>$INFO[Container.ListItem.SampleRate]</label>
+			</control>
+			<control type="label">
+				<visible>String.IsEqual(ListItem.DBTYPE,song)</visible>
+				<top>40</top>
+				<align>right</align>
+				<width>62.75</width>
+				<font>Font25_Cond_Bold</font>
+				<shadowcolor>black</shadowcolor>
+				<textcolor>aaffffff</textcolor>
+				<include>MediaFlagLabel</include>
+				<label>$INFO[ListItem.SampleRate]</label>
+			</control>
+			<control type="image">
+				<visible>String.IsEqual(ListItem.DBTYPE,song) | [String.IsEqual(ListItem.DBTYPE,album) + Control.HasFocus(50)]</visible>
+				<left>-72.75</left>
+				<include>MediaFlagImage</include>
+				<texture>$VAR[MediaFlagsPathVar]/samplerate.png</texture>
+			</control>
+			<control type="label">
+				<visible>String.IsEqual(ListItem.DBTYPE,song) | [String.IsEqual(ListItem.DBTYPE,album) + Control.HasFocus(50)]</visible>
+				<top>4</top>
+				<align>left</align>
+				<left>-72.75</left>
+				<width>62.75</width>
+				<shadowcolor>black</shadowcolor>
+				<textcolor>aaffffff</textcolor>
+				<font>Font25_Cond_Bold</font>
+				<include>MediaFlagLabel</include>
+				<label>kHz</label>
+			</control>
+			<control type="image">
+				<visible>Control.HasFocus(1020) | [String.IsEqual(ListItem.DBTYPE,album) + Control.HasFocus(50)]</visible>
+				<texture>$VAR[MediaFlagsPathVar]/audiocodec/$INFO[Container.ListItem.FileExtension].png</texture>
+				<include>MediaFlagImage</include>
+			</control>
+			<control type="image">
+				<visible>String.IsEqual(ListItem.DBTYPE,song)</visible>
+				<texture>$VAR[MediaFlagsPathVar]/audiocodec/$INFO[ListItem.FileExtension].png</texture>
+				<include>MediaFlagImage</include>
+			</control>
+			<control type="image">
+				<visible>Control.HasFocus(1020) | [String.IsEqual(ListItem.DBTYPE,album) + Control.HasFocus(50)]</visible>
+				<texture>$VAR[MediaFlagsPathVar]$INFO[Container.ListItem.MusicChannels,audiochannels/,.png]</texture>
+				<include>MediaFlagImage</include>
+			</control>
+			<control type="image">
+				<visible>String.IsEqual(ListItem.DBTYPE,song)</visible>
+				<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.MusicChannels,audiochannels/,.png]</texture>
+				<include>MediaFlagImage</include>
+			</control>
+			<!-- Music Videos -->
 			<control type="image">
 				<visible>String.IsEqual(ListItem.DBTYPE,musicvideo) + [!ControlGroup(9001).HasFocus | Control.HasFocus(9002)]</visible>
 				<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoAspect,videoaspect/,.png]</texture>
@@ -1184,16 +1382,6 @@
 				<texture>$VAR[ContainerAudioCodecFlagVar]</texture>
 				<include>MediaFlagImage</include>
 			</control>
-			<control type="image">
-				<visible>String.IsEqual(ListItem.DBTYPE,musicvideo) + [!ControlGroup(9001).HasFocus | Control.HasFocus(9002)]</visible>
-				<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioChannels,audiochannels/,.png]</texture>
-				<include>MediaFlagImage</include>
-			</control>
-			<control type="image">
-				<visible>Control.HasFocus(1090)</visible>
-				<texture>$VAR[MediaFlagsPathVar]$INFO[Container.ListItem.AudioChannels,audiochannels/,.png]</texture>
-				<include>MediaFlagImage</include>
-			</control>
 			<include content="LanguageFlags">
 				<param name="visible">String.IsEqual(ListItem.DBTYPE,musicvideo) + [!ControlGroup(9001).HasFocus | Control.HasFocus(9002)]</param>
 				<param name="container"/>
@@ -1203,13 +1391,13 @@
 				<param name="container">Container.</param>
 			</include>
 			<control type="image">
-				<visible>Control.HasFocus(1020) | [String.IsEqual(ListItem.DBTYPE,album) + Control.HasFocus(50)]</visible>
-				<texture>$VAR[MediaFlagsPathVar]/audiocodec/$INFO[Container.ListItem.FileExtension].png</texture>
+				<visible>String.IsEqual(ListItem.DBTYPE,musicvideo) + [!ControlGroup(9001).HasFocus | Control.HasFocus(9002)]</visible>
+				<texture>$VAR[MediaFlagsPathVar]$INFO[ListItem.AudioChannels,audiochannels/,.png]</texture>
 				<include>MediaFlagImage</include>
 			</control>
 			<control type="image">
-				<visible>String.IsEqual(ListItem.DBTYPE,song)</visible>
-				<texture>$VAR[MediaFlagsPathVar]/audiocodec/$INFO[ListItem.FileExtension].png</texture>
+				<visible>Control.HasFocus(1090)</visible>
+				<texture>$VAR[MediaFlagsPathVar]$INFO[Container.ListItem.AudioChannels,audiochannels/,.png]</texture>
 				<include>MediaFlagImage</include>
 			</control>
 			<control type="label">
@@ -1233,6 +1421,14 @@
 		<include condition="!Skin.HasSetting(MediaFlagsColored)">MediaFlagWhite</include>
 		<include condition="Skin.HasSetting(MediaFlagsColored)">MediaFlagColored</include>
 		<aspectratio align="center" aligny="center">keep</aspectratio>
+	</include>
+	<include name="MediaFlagAudio">
+		<width>125.5</width>
+		<height>40</height>
+		<align>center</align>
+		<aligny>center</aligny>
+		<include condition="!Skin.HasSetting(MediaFlagsColored)">MediaFlagAudioWhite</include>
+		<include condition="Skin.HasSetting(MediaFlagsColored)">MediaFlagAudioColored</include>
 	</include>
 	<include name="LanguageSubtitleFlagImage">
 		<width>30</width>
@@ -1269,6 +1465,16 @@
 	<include name="MediaFlagColored">
 		<colordiffuse>bbffffff</colordiffuse>
 	</include>
+	<include name="MediaFlagAudioWhite">
+		<font>Font25_Cond_Bold</font>
+		<textcolor>55ffffff</textcolor>
+	</include>
+	<include name="MediaFlagAudioColored">
+		<font>Font25_Cond_Bold</font>
+		<shadowcolor>black</shadowcolor>
+		<textcolor>aaffffff</textcolor>
+	</include>
+
 	<!-- Variables -->
 	<variable name="TVShowAirDateLabelVar">
 		<value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Next_Aired.Season)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Next_Aired.Episode),x, ]$LOCALIZE[31063][B][CR]$INFO[Window(Home).Property(TMDbHelper.ListItem.Next_Aired)][/B]</value>

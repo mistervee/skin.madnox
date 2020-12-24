@@ -599,17 +599,17 @@
 			<include>MediaMenuLabel</include>
 		</control>
 		<control type="radiobutton" id="206">
+			<visible>System.AddonIsEnabled(script.embuary.helper)</visible>
 			<label>$LOCALIZE[24022]</label>
 			<onclick>RunScript(script.embuary.helper,action=togglekodisetting,setting=lookandfeel.enablerssfeeds)</onclick>
 			<selected>system.getbool(lookandfeel.enablerssfeeds)</selected>
 			<include>MediaMenuRadioButton</include>
 		</control>
 		<control type="button" id="207">
+			<visible>System.getbool(lookandfeel.enablerssfeeds) + System.AddonIsEnabled(script.rss.editor)</visible>
 			<label>$LOCALIZE[21435]</label>
-			<onclick condition="!System.HasAddon(script.rss.editor)">InstallAddon(script.rss.editor)</onclick>
-			<onclick condition="System.HasAddon(script.rss.editor)">XBMC.RunScript(script.rss.editor)</onclick>
+			<onclick>RunScript(script.rss.editor)</onclick>
 			<include>MediaMenuRadioButton</include>
-			<visible>system.getbool(lookandfeel.enablerssfeeds)</visible>
 		</control>
 		<control type="label" id="208">
 			<label>$LOCALIZE[31039]</label>
@@ -946,14 +946,13 @@
 		</control>
 		<!-- Add Node -->
 		<control type="radiobutton" id="9066">
+			<visible>System.AddonIsEnabled(plugin.library.node.editor) + Container.Content() + String.IsEmpty(Container.PluginName)</visible>
 			<include content="MediaMenuIconButton">
 				<param name="iconon">icons/mediamenu/add.png</param>
 				<param name="iconoff">icons/mediamenu/add.png</param>
 			</include>
 			<label>$LOCALIZE[31089]</label>
-			<onclick condition="System.HasAddon(plugin.library.node.editor)">ActivateWindow(programs,plugin://plugin.library.node.editor/?ltype=video,return)</onclick>
-			<onclick condition="!System.HasAddon(plugin.library.node.editor)">InstallAddon(plugin.library.node.editor)</onclick>
-			<visible>Container.Content() + String.IsEmpty(Container.PluginName)</visible>
+			<onclick>ActivateWindow(programs,plugin://plugin.library.node.editor/?ltype=video,return)</onclick>
 		</control>
 		<!-- Open Settings -->
 		<control type="radiobutton" id="9067">
@@ -1283,6 +1282,20 @@
 			<onclick>Skin.ToggleSetting(MusicHideTopBar)</onclick>
 			<selected>!Skin.HasSetting(MusicHideTopBar)</selected>
 			<include>MediaMenuRadioButton</include>
+		</control>
+		<control type="label" id="220">
+			<visible>Control.IsVisible(222)</visible>
+			<label>$LOCALIZE[31106]</label>
+			<include>MediaMenuLabel</include>
+		</control>
+		<control type="radiobutton" id="222">
+			<label>$LOCALIZE[31386]</label>
+			<include>MediaMenuRadioButton</include>
+			<onclick condition="!System.HasAddon(resource.images.studios.coloured)">InstallAddon(resource.images.studios.coloured)</onclick>
+			<onclick condition="System.HasAddon(resource.images.studios.coloured)">Skin.ToggleSetting(MediaFlagsColored)</onclick>
+			<onclick condition="System.HasAddon(resource.images.studios.coloured)">Dialog.Close(all,true)</onclick>
+			<include>ReloadWindowOnClick</include>
+			<selected>Skin.HasSetting(MediaFlagsColored)</selected>
 		</control>
 	</include>
 	<include name="MediaMenuMusicPlayList">

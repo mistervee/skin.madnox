@@ -12,7 +12,7 @@
 			<onclick>Skin.SetString(MusicOSDBackground,extra)</onclick>
 		</item>
 		<item>
-			<visible>System.HasAddon(script.artistslideshow)</visible>
+			<visible>System.AddonIsEnabled(script.artistslideshow)</visible>
 			<label>$LOCALIZE[31353]</label>
 			<onclick>Dialog.Close(1110)</onclick>
 			<onclick>Skin.SetString(MusicOSDBackground,artistsslideshow)</onclick>
@@ -45,7 +45,7 @@
 			<onclick>Skin.SetString(NowPlayingMusicBackground,extra)</onclick>
 		</item>
 		<item>
-			<visible>System.HasAddon(script.artistslideshow)</visible>
+			<visible>System.AddonIsEnabled(script.artistslideshow)</visible>
 			<label>$LOCALIZE[31353]</label>
 			<onclick>Dialog.Close(1110)</onclick>
 			<onclick>Skin.SetString(NowPlayingMusicBackground,artistsslideshow)</onclick>
@@ -911,9 +911,9 @@
 		<control type="radiobutton" id="102">
 			<label>$LOCALIZE[31052]</label>
 			<include>DialogRadioButton</include>
-			<onclick condition="!System.HasAddon(resource.images.studios.coloured)">InstallAddon(resource.images.studios.coloured)</onclick>
-			<onclick condition="System.HasAddon(resource.images.studios.coloured)">Skin.ToggleSetting(MediaFlagsColored)</onclick>
-			<onclick condition="System.HasAddon(resource.images.studios.coloured)">Dialog.Close(all,true)</onclick>
+			<onclick condition="!System.AddonIsEnabled(resource.images.studios.coloured)">InstallAddon(resource.images.studios.coloured)</onclick>
+			<onclick condition="System.AddonIsEnabled(resource.images.studios.coloured)">Skin.ToggleSetting(MediaFlagsColored)</onclick>
+			<onclick condition="System.AddonIsEnabled(resource.images.studios.coloured)">Dialog.Close(all,true)</onclick>
 			<include>ReloadWindowOnClick</include>
 			<selected>Skin.HasSetting(MediaFlagsColored)</selected>
 		</control>
@@ -932,8 +932,8 @@
 		<control type="radiobutton" id="105">
 			<label>$LOCALIZE[31060]</label>
 			<include>DialogRadioButton</include>
-			<onclick condition="!System.HasAddon(resource.images.languageflags.rounded)">InstallAddon(resource.images.languageflags.rounded)</onclick>
-			<onclick condition="System.HasAddon(resource.images.languageflags.rounded)">Skin.ToggleSetting(ShowLanguageFlags)</onclick>
+			<onclick condition="!System.AddonIsEnabled(resource.images.languageflags.rounded)">InstallAddon(resource.images.languageflags.rounded)</onclick>
+			<onclick condition="System.AddonIsEnabled(resource.images.languageflags.rounded)">Skin.ToggleSetting(ShowLanguageFlags)</onclick>
 			<selected>Skin.HasSetting(ShowLanguageFlags)</selected>
 		</control>
 		<control type="radiobutton" id="106">
@@ -1101,10 +1101,10 @@
 			<include>DialogLabel</include>
 		</control>
 		<control type="button" id="122">
+			<visible>System.AddonIsEnabled(script.cu.lrclyrics)</visible>
 			<label>$LOCALIZE[31069]</label>
 			<include>DialogButton</include>
-			<onclick condition="!System.HasAddon(script.cu.lrclyrics)">InstallAddon(script.cu.lrclyrics)</onclick>
-			<onclick condition="System.HasAddon(script.cu.lrclyrics)">Addon.OpenSettings(script.cu.lrclyrics)</onclick>
+			<onclick>Addon.OpenSettings(script.cu.lrclyrics)</onclick>
 		</control>
 		<control type="radiobutton" id="123">
 			<label>$LOCALIZE[31195]</label>
@@ -1415,10 +1415,10 @@
 			<selected>Skin.HasSetting(VideoInfoPlotOutline)</selected>
 		</control>
 		<control type="radiobutton" id="103">
+			<visible>System.AddonIsEnabled(script.embuary.info)</visible>
 			<label>$LOCALIZE[31352]</label>
 			<include>DialogRadioButton</include>
-			<onclick condition="!System.HasAddon(script.embuary.info)">InstallAddon(script.embuary.info)</onclick>
-			<onclick condition="System.HasAddon(script.embuary.info)">Skin.ToggleSetting(VideoInfoTMDbActor)</onclick>
+			<onclick>Skin.ToggleSetting(VideoInfoTMDbActor)</onclick>
 			<selected>Skin.HasSetting(VideoInfoTMDbActor)</selected>
 		</control>
 		<control type="label" id="111">
@@ -1426,9 +1426,11 @@
 			<include>DialogLabel</include>
 		</control>
 		<control type="radiobutton" id="112">
+			<visible>System.AddonIsEnabled(script.embuary.helper)</visible>
 			<label>$LOCALIZE[31164]</label>
 			<include>DialogRadioButton</include>
 			<onclick>Skin.ToggleSetting(VideoBlurEnabled)</onclick>
+			<onclick condition="Skin.HasSetting(VideoBlurEnabled)">RunScript(script.embuary.helper,action=blurimg,file=$ESCINFO[ListItem.Art(thumb)],prop=blurthumb,radius=2)</onclick>
 			<selected>Skin.HasSetting(VideoBlurEnabled)</selected>
 		</control>
 		<control type="radiobutton" id="113">
@@ -1452,33 +1454,33 @@
 			<selected>!Skin.HasSetting(VideoInfoDisableCharacterArt)</selected>
 		</control>
 		<control type="label" id="121">
-			<visible>Window.IsVisible(skinsettings) | String.IsEqual(ListItem.DBType,movie)</visible>
+			<visible>System.AddonIsEnabled(script.embuary.helper) + [Window.IsVisible(skinsettings) | String.IsEqual(ListItem.DBType,movie)]</visible>
 			<label>$LOCALIZE[31295]</label>
 			<include>DialogLabel</include>
 		</control>
 		<control type="radiobutton" id="122">
-			<visible>Window.IsVisible(skinsettings) | String.IsEqual(ListItem.DBType,movie)</visible>
+			<visible>System.AddonIsEnabled(script.embuary.helper) + [Window.IsVisible(skinsettings) | String.IsEqual(ListItem.DBType,movie)]</visible>
 			<label>$LOCALIZE[24022]</label>
 			<include>DialogRadioButton</include>
 			<onclick>Skin.ToggleSetting(CinemaMode)</onclick>
 			<selected>Skin.HasSetting(CinemaMode)</selected>
 		</control>
 		<control type="button" id="123">
-			<visible>Skin.HasSetting(CinemaMode) + [String.IsEqual(ListItem.DBType,movie) | Window.IsVisible(skinsettings)]</visible>
+			<visible>System.AddonIsEnabled(script.embuary.helper) + Skin.HasSetting(CinemaMode) + [String.IsEqual(ListItem.DBType,movie) | Window.IsVisible(skinsettings)]</visible>
 			<label>$LOCALIZE[31296]</label>
 			<label2>$INFO[Skin.String(TrailerCount)]</label2>
 			<include>DialogRadioButton</include>
 			<onclick>Skin.SetNumeric(TrailerCount)</onclick>
 		</control>
 		<control type="button" id="124">
-			<visible>Skin.HasSetting(CinemaMode) + [String.IsEqual(ListItem.DBType,movie) | Window.IsVisible(skinsettings)]</visible>
+			<visible>System.AddonIsEnabled(script.embuary.helper) + Skin.HasSetting(CinemaMode) + [String.IsEqual(ListItem.DBType,movie) | Window.IsVisible(skinsettings)]</visible>
 			<label>$LOCALIZE[31297]</label>
 			<label2>$INFO[Skin.String(IntroPath)]</label2>
 			<include>DialogRadioButton</include>
 			<onclick>Skin.SetPath(IntroPath)</onclick>
 		</control>
 		<control type="radiobutton" id="125">
-			<visible>Skin.HasSetting(CinemaMode) + [String.IsEqual(ListItem.DBType,movie) | Window.IsVisible(skinsettings)]</visible>
+			<visible>System.AddonIsEnabled(script.embuary.helper) + Skin.HasSetting(CinemaMode) + [String.IsEqual(ListItem.DBType,movie) | Window.IsVisible(skinsettings)]</visible>
 			<label>$LOCALIZE[31166]</label>
 			<include>DialogRadioButton</include>
 			<onclick>Skin.ToggleSetting(CinemaModePlay)</onclick>
@@ -1496,10 +1498,10 @@
 			<selected>!Skin.HasSetting(VideoInfoDisableTrailer)</selected>
 		</control>
 		<control type="radiobutton" id="133">
+			<visible>System.AddonIsEnabled(script.embuary.info)</visible>
 			<label>$LOCALIZE[31351]</label>
 			<include>DialogRadioButton</include>
-			<onclick condition="!System.HasAddon(script.embuary.info)">InstallAddon(script.embuary.info)</onclick>
-			<onclick condition="System.HasAddon(script.embuary.info)">Skin.ToggleSetting(VideoInfoTMDb)</onclick>
+			<onclick>Skin.ToggleSetting(VideoInfoTMDb)</onclick>
 			<selected>Skin.HasSetting(VideoInfoTMDb)</selected>
 		</control>
 		<control type="radiobutton" id="134">
@@ -1572,6 +1574,7 @@
 			<label>$LOCALIZE[31164]</label>
 			<include>DialogRadioButton</include>
 			<onclick>Skin.ToggleSetting(MusicBlurEnabled)</onclick>
+			<onclick condition="Skin.HasSetting(MusicBlurEnabled)">RunScript(script.embuary.helper,action=blurimg,file=$ESCINFO[ListItem.Art(thumb)],prop=blurthumb,radius=2)</onclick>
 			<selected>Skin.HasSetting(MusicBlurEnabled)</selected>
 		</control>
 		<control type="radiobutton" id="113">

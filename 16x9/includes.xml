@@ -64,11 +64,10 @@
 	<include name="onunload_SkinSettings">
 		<onunload condition="!Skin.HasSetting(SmartShortcuts.playlists)">Skin.SetBool(SmartShortcuts.playlists)</onunload>
 		<onunload condition="!Skin.HasSetting(BlurEnabled)">Skin.ToggleSetting(BlurEnabled)</onunload>
-		<onunload condition="!Skin.HasSetting(BlurEnabled)">RunScript(script.embuary.helper,action=restartservice)</onunload>
-		<onunload condition="System.HasAddon(script.artistslideshow)">RunScript(script.artistslideshow,daemon=True)</onunload>
-		<onunload condition="System.HasAddon(plugin.video.themoviedb.helper)">Skin.SetBool(TMDbHelper.Service)</onunload>
-		<onunload condition="System.HasAddon(plugin.video.themoviedb.helper)">Skin.SetBool(TMDbHelper.DisableArtwork)</onunload>
-		<onunload condition="System.HasAddon(plugin.video.themoviedb.helper)">Skin.SetBool(TMDbHelper.DisablePersonStats)</onunload>
+		<onunload condition="System.AddonIsEnabled(script.artistslideshow)">RunScript(script.artistslideshow,daemon=True)</onunload>
+		<onunload condition="!Skin.HasSetting(TMDbHelper.Service)">Skin.SetBool(TMDbHelper.Service)</onunload>
+		<onunload condition="!Skin.HasSetting(TMDbHelper.DisableArtwork)">Skin.SetBool(TMDbHelper.DisableArtwork)</onunload>
+		<onunload condition="!Skin.HasSetting(TMDbHelper.DisablePersonStats)">Skin.SetBool(TMDbHelper.DisablePersonStats)</onunload>
 	</include>
 	<include name="ContainerScrollTime">
 		<scrolltime tween="sine">480</scrolltime>

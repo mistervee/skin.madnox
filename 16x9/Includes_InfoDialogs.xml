@@ -12,7 +12,7 @@
 			</control>
 			<!-- Background blur -->
 			<control type="group">
-				<visible>$PARAM[blur]</visible>
+				<visible>[$PARAM[blur]] + System.AddonIsEnabled(script.embuary.helper) + Skin.HasSetting(BlurEnabled)</visible>
 				<include>AnimationVisibleFade</include>
 				<include>AnimationWindowFade</include>
 				<control type="image" id="100000">
@@ -34,7 +34,7 @@
 				</control>
 			</control>
 			<control type="image">
-				<visible>!$PARAM[blur]</visible>
+				<visible>!$PARAM[blur] | !System.AddonIsEnabled(script.embuary.helper) | !Skin.HasSetting(BlurEnabled)</visible>
 				<include>AnimationVisibleFade</include>
 				<include>AnimationWindowFade</include>
 				<texture>colors/black80.png</texture>
@@ -483,9 +483,15 @@
 			<include>HiddenList</include>
 			<content>$VAR[MusicInfoArtistContentVar]</content>
 		</control>
+		<!-- Get album track details -->
+		<control type="list" id="7006">
+			<visible>String.IsEqual(ListItem.DBTYPE,musicvideo) | String.IsEqual(ListItem.DBTYPE,artist)</visible>
+			<include>HiddenList</include>
+			<content>$VAR[MusicInfoTrackContentVar]</content>
+		</control>
 		<!-- Artwork -->
 		<control type="image">
-			<visible>String.IsEqual(ListItem.DBType,artist) + ![Control.HasFocus(1010) | Control.HasFocus(1020) | Control.HasFocus(1090)]</visible>
+			<visible>String.IsEqual(ListItem.DBType,artist) + ![Control.HasFocus(1010) | Control.HasFocus(1090)]</visible>
 			<top>25</top>
 			<left>25</left>
 			<width>686</width>
@@ -497,7 +503,7 @@
 			<visible>!Skin.HasSetting(VideoInfoMusicCase)</visible>
 			<include>AnimationVisibleFade</include>
 			<control type="image">
-				<visible>!String.IsEqual(ListItem.DBType,artist) | Control.HasFocus(1010) | Control.HasFocus(1020) | Control.HasFocus(1090)</visible>
+				<visible>!String.IsEqual(ListItem.DBType,artist) | Control.HasFocus(1010) | control.HasFocus(1090)</visible>
 				<top>36</top>
 				<left>35</left>
 				<width>666</width>
@@ -521,7 +527,7 @@
 			<visible>Skin.HasSetting(VideoInfoMusicCase)</visible>
 			<include>AnimationVisibleFade</include>
 			<control type="image">
-				<visible>!String.IsEqual(ListItem.DBType,artist) | Control.HasFocus(1010) | Control.HasFocus(1020) | Control.HasFocus(1090)</visible>
+				<visible>!String.IsEqual(ListItem.DBType,artist) | Control.HasFocus(1010) | Control.HasFocus(1090)</visible>
 				<top>118</top>
 				<left>89</left>
 				<width>608</width>
@@ -713,10 +719,9 @@
 					<visible>String.IsEqual(ListItem.DBTYPE,artist)</visible>
 					<onclick>Dialog.Close(all)</onclick>
 					<onclick>PlayMedia($INFO[Container(1010).ListItem.FolderPath],isdir)</onclick>
-					<onup>SetFocus(1020,6)</onup>
 					<top>211</top>
 					<include content="DialogExtraInfo">
-						<param name="visible">Container(9000).HasFocus(101) + !Control.HasFocus(1020)</param>
+						<param name="visible">Container(9000).HasFocus(101)</param>
 						<param name="labelvisible">true</param>
 						<param name="art">$VAR[MusicInfoPosterVar]</param>
 						<param name="diffuse">diffuse/rounded5-275x275.png</param>
@@ -726,21 +731,6 @@
 						<param name="label2">$INFO[ListItem.Year]</param>
 					</include>
 					<content target="music" sortby="year" sortorder="descending">musicdb://artists/$INFO[ListItem.DBID]?albumartistsonly=false</content>
-				</control>
-				<!-- Tracks -->
-				<control type="panel" id="1020">
-					<visible>String.IsEqual(ListItem.DBTYPE,musicvideo) | String.IsEqual(ListItem.DBTYPE,artist)</visible>
-					<top>152</top>
-					<height>364</height>
-					<ondown condition="!String.IsEqual(ListItem.DBTYPE,musicvideo)">1010</ondown>
-					<ondown condition="String.IsEqual(ListItem.DBTYPE,musicvideo)">1060</ondown>
-					<include content="InfoDialogDetails">
-						<param name="visible">Control.HasFocus(1020)</param>
-						<param name="label">$INFO[ListItem.Title]</param>
-						<param name="label2">$INFO[ListItem.TrackNumber]</param>
-						<param name="labelwidth">55</param>
-					</include>
-					<content target="music">$VAR[MusicInfoTracksContent]</content>
 				</control>
 				<!-- Music Videos -->
 				<control type="panel" id="1090">
@@ -764,10 +754,9 @@
 					<visible>String.IsEqual(ListItem.DBTYPE,musicvideo)</visible>
 					<onclick>Dialog.Close(all)</onclick>
 					<onclick>PlayMedia($INFO[Container(1060).ListItem.FolderPath],isdir)</onclick>
-					<onup>SetFocus(1020,6)</onup>
 					<top>211</top>
 					<include content="DialogExtraInfo">
-						<param name="visible">Container(9000).HasFocus(106) + !Control.HasFocus(1020)</param>
+						<param name="visible">Container(9000).HasFocus(106)</param>
 						<param name="labelvisible">true</param>
 						<param name="art">$VAR[MusicInfoPosterVar]</param>
 						<param name="diffuse">diffuse/rounded5-275x275.png</param>
@@ -2063,21 +2052,13 @@
 		<value>$INFO[ListItem.Artist]</value>
 	</variable>
 	<variable name="MusicInfoContainerIcon">
-		<value condition="Control.HasFocus(1010) + Integer.IsGreater(Container(1020).NumItems,0)">$VAR[IconPathVar]arrowup.png</value>
-		<value condition="Container(9000).HasFocus(101) + !Control.HasFocus(1020)">$VAR[IconPathVar]disc.png</value>
+		<value condition="Container(9000).HasFocus(101) | Container(9000).HasFocus(106)">$VAR[IconPathVar]disc.png</value>
 		<value condition="Container(9000).HasFocus(109) | Container(9000).HasFocus(104) | Container(9000).HasFocus(105)">$VAR[IconPathVar]musicvideos.png</value>
-		<value condition="Control.HasFocus(1060) + Integer.IsGreater(Container(1060).NumItems,0)">$VAR[IconPathVar]arrowup.png</value>
-		<value condition="Container(9000).HasFocus(106) + !Control.HasFocus(1020)">$VAR[IconPathVar]disc.png</value>
 	</variable>
 	<variable name="MusicInfoContainerLabel">
-		<value condition="Control.HasFocus(1010) + !Control.HasFocus(1020) + Integer.IsGreater(Container(1020).NumItems,1)">$INFO[Container(1020).NumItems,, Tracks]</value>
-		<value condition="Control.HasFocus(1010) + !Control.HasFocus(1020)">$INFO[Container(1020).NumItems,, Track]</value>
-		<value condition="Container(9000).HasFocus(101) + !Control.HasFocus(1020)">Albums featuring $INFO[ListItem.Artist]</value>
+		<value condition="Container(9000).HasFocus(101) | Container(9000).HasFocus(106)">Albums featuring $INFO[ListItem.Artist]</value>
 		<value condition="Container(9000).HasFocus(109)">Music Videos</value>
 		<value condition="Container(9000).HasFocus(104) | Container(9000).HasFocus(105)">More music videos by $INFO[ListItem.Artist]</value>
-		<value condition="Control.HasFocus(1060) + Integer.IsGreater(Container(1060).NumItems,1)">$INFO[Container(1020).NumItems,, Tracks]</value>
-		<value condition="Control.HasFocus(1060) + !Control.HasFocus(1060)">$INFO[Container(1020).NumItems,, Track]</value>
-		<value condition="Container(9000).HasFocus(106) + !Control.HasFocus(1020)">Albums featuring $INFO[ListItem.Artist]</value>
 	</variable>
 	<variable name="MusicInfoMusicVideoContent">
 		<value condition="String.IsEqual(ListItem.DBType,artist) | String.IsEqual(ListItem.DBType,musicvideo)">videodb://musicvideos/titles/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22artist%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[ListItem.Artist]%22%5D%7D%5D%7D%2C%22type%22%3A%22musicvideos%22%7D</value>
@@ -2085,14 +2066,9 @@
 		<value condition="String.IsEqual(ListItem.DBType,song)">videodb://musicvideos/titles/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22Artist%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[ListItem.Artist]%22%5D%7D%2C%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22contains%22%2C%22value%22%3A%5B%22$INFO[ListItem.Title]%22%5D%7D%5D%7D%2C%22type%22%3A%22musicvideos%22%7D</value>
 		<value/>
 	</variable>
-	<variable name="MusicInfoTracksContent">
-		<value condition="String.IsEqual(ListItem.DBType,album)">$INFO[Container.ListItem.FolderPath]</value>
-		<value condition="!String.IsEqual(ListItem.DBType,musicvideo)">$INFO[Container(1010).ListItem.FolderPath]</value>
-		<value condition="String.IsEqual(ListItem.DBType,musicvideo)">$INFO[Container(1060).ListItem.FolderPath]</value>
-	</variable>
 	<variable name="MusicInfoPlotVar">
-		<value condition="[Control.HasFocus(1010) | Control.HasFocus(1020)] + !String.IsEmpty(Container(1010).ListItem.Property(Album_Description))">$INFO[Container(1010).ListItem.Property(Album_Description)]</value>
-		<value condition="[Control.HasFocus(1010) | Control.HasFocus(1020)] + !String.IsEmpty(Container(1010).ListItem.Property(Artist_Description))">$INFO[Container(1010).ListItem.Property(Artist_Description)]</value>
+		<value condition="Control.HasFocus(1010) + !String.IsEmpty(Container(1010).ListItem.Property(Album_Description))">$INFO[Container(1010).ListItem.Property(Album_Description)]</value>
+		<value condition="Control.HasFocus(1010) + !String.IsEmpty(Container(1010).ListItem.Property(Artist_Description))">$INFO[Container(1010).ListItem.Property(Artist_Description)]</value>
 		<value condition="Control.HasFocus(1090) + !String.IsEmpty(Container(7004).ListItem.Property(Album_Description))">$INFO[Container(7004).ListItem.Property(Album_Description)]</value>
 		<value condition="!String.IsEmpty(ListItem.Property(Album_Description))">$INFO[ListItem.Property(Album_Description)]</value>
 		<value condition="!String.IsEmpty(ListItem.Property(Artist_Description))">$INFO[ListItem.Property(Artist_Description)]</value>
@@ -2100,17 +2076,21 @@
 	</variable>
 	<variable name="MusicVideoInfoPlotVar">
 		<value condition="Control.HasFocus(1090) + !String.IsEmpty(Container.ListItem.Plot)">$INFO[Container.ListItem.Plot]</value>
-		<value condition="![Control.HasFocus(1090) | Control.HasFocus(1060) | Control.HasFocus(1020)] + !String.IsEmpty(ListItem.Plot)">$INFO[ListItem.Plot]</value>
+		<value condition="![Control.HasFocus(1090) | Control.HasFocus(1060)] + !String.IsEmpty(ListItem.Plot)">$INFO[ListItem.Plot]</value>
 		<value condition="!String.IsEmpty(Container(7004).ListItem.Property(Album_Description))">$INFO[Container(7004).ListItem.Property(Album_Description)]</value>
 		<value condition="!String.IsEmpty(Container(7005).ListItem.Property(Artist_Description))">$INFO[Container(7005).ListItem.Property(Artist_Description)]</value>
 	</variable>
 	<variable name="MusicInfoAlbumContentVar">
-		<value condition="Control.HasFocus(1010) | Control.HasFocus(1020) | Control.HasFocus(1060) | Control.HasFocus(1090)">musicdb://albums/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22artist%22%2C%22operator%22%3A%22contains%22%2C%22value%22%3A%5B%22$INFO[Container.ListItem.Artist]%22%5D%7D%2C%7B%22field%22%3A%22album%22%2C%22operator%22%3A%22contains%22%2C%22value%22%3A%5B%22$INFO[Container.ListItem.Album]%22%5D%7D%5D%7D%2C%22type%22%3A%22albums%22%7D%0A</value>
+		<value condition="Control.HasFocus(1010) | Control.HasFocus(1060) | Control.HasFocus(1090)">musicdb://albums/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22artist%22%2C%22operator%22%3A%22contains%22%2C%22value%22%3A%5B%22$INFO[Container.ListItem.Artist]%22%5D%7D%2C%7B%22field%22%3A%22album%22%2C%22operator%22%3A%22contains%22%2C%22value%22%3A%5B%22$INFO[Container.ListItem.Album]%22%5D%7D%5D%7D%2C%22type%22%3A%22albums%22%7D%0A</value>
 		<value>musicdb://albums/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22artist%22%2C%22operator%22%3A%22contains%22%2C%22value%22%3A%5B%22$INFO[ListItem.Artist]%22%5D%7D%2C%7B%22field%22%3A%22album%22%2C%22operator%22%3A%22contains%22%2C%22value%22%3A%5B%22$INFO[ListItem.Album]%22%5D%7D%5D%7D%2C%22type%22%3A%22albums%22%7D%0A</value>
 	</variable>
 	<variable name="MusicInfoArtistContentVar">
-		<value condition="Control.HasFocus(1010) | Control.HasFocus(1020) | Control.HasFocus(1060) | Control.HasFocus(1090)">musicdb://artists/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22artist%22%2C%22operator%22%3A%22contains%22%2C%22value%22%3A%5B%22$INFO[Container.ListItem.Artist]%22%5D%7D%5D%7D%2C%22type%22%3A%22artists%22%7D</value>
+		<value condition="Control.HasFocus(1010) | Control.HasFocus(1060) | Control.HasFocus(1090)">musicdb://artists/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22artist%22%2C%22operator%22%3A%22contains%22%2C%22value%22%3A%5B%22$INFO[Container.ListItem.Artist]%22%5D%7D%5D%7D%2C%22type%22%3A%22artists%22%7D</value>
 		<value>musicdb://artists/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22artist%22%2C%22operator%22%3A%22contains%22%2C%22value%22%3A%5B%22$INFO[ListItem.Artist]%22%5D%7D%5D%7D%2C%22type%22%3A%22artists%22%7D</value>
+	</variable>
+	<variable name="MusicInfoTrackContentVar">
+		<value condition="Control.HasFocus(1010)">musicdb://albums/$INFO[Container(1010).ListItem.DBID]/-1/?albumid=$INFO[Container(1010).ListItem.DBID]</value>
+		<value condition="Control.HasFocus(1060)">musicdb://albums/$INFO[Container(1060).ListItem.DBID]/-1/?albumid=$INFO[Container(1060).ListItem.DBID]</value>
 	</variable>
 	<variable name="AddonInfoEnableIconVar">
 		<value condition="String.IsEqual(Control.GetLabel(7),$LOCALIZE[24022])"></value>
@@ -2119,5 +2099,9 @@
 	<variable name="AddonInfoAutoUpdateIconVar">
 		<value condition="String.Contains(Control.GetLabel(13),*)"></value>
 		<value></value>
+	</variable>
+	<variable name="MusicInfoFolderPathVar">
+		<value condition="Container.Content(albums) + String.IsEmpty(ListItem.DiscNumber)">musicdb://albums/$INFO[ListItem.DBID]/-1/?albumid=$INFO[ListItem.DBID]</value>
+		<value condition="!ListItem.IsParentFolder + Container.Content(albums) + !String.IsEmpty(ListItem.DiscNumber)">$INFO[ListItem.FolderPath]</value>
 	</variable>
 </includes>
