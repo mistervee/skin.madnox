@@ -54,21 +54,21 @@
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
 					</control>
 					<control type="label">
-						<visible>!$PARAM[progressvisible] + ![ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasRecording]</visible>
+						<visible>!$PARAM[progressvisible] + ![ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasArchive | ListItem.HasReminder]</visible>
 						<right>$PARAM[labelright]</right>
 						<align>right</align>
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
 						<label>$PARAM[rightlabel]</label>
 					</control>
 					<control type="label">
-						<visible>!$PARAM[progressvisible] + [ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasRecording]</visible>
+						<visible>!$PARAM[progressvisible] + [ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasArchive | ListItem.HasReminder]</visible>
 						<right>65</right>
 						<align>right</align>
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
 						<label>$PARAM[rightlabel]</label>
 					</control>
 					<control type="progress">
-						<visible>$PARAM[progressvisible] + ListItem.IsRecording</visible>
+						<visible>$PARAM[progressvisible] + [ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasArchive | ListItem.HasReminder]</visible>
 						<top>26</top>
 						<right>65</right>
 						<width>100</width>
@@ -76,7 +76,7 @@
 						<midtexture colordiffuse="$VAR[PanelHighlightColorVar]" border="8">panels/progress-control/progress-mid.png</midtexture>
 					</control>
 					<control type="progress">
-						<visible>$PARAM[progressvisible] + !ListItem.IsRecording</visible>
+						<visible>$PARAM[progressvisible] + ![ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasArchive | ListItem.HasReminder]</visible>
 						<top>26</top>
 						<right>25</right>
 						<width>100</width>
@@ -84,12 +84,12 @@
 						<midtexture colordiffuse="$VAR[PanelHighlightColorVar]" border="8">panels/progress-control/progress-mid.png</midtexture>
 					</control>
 					<control type="label">
-						<visible>!Window.IsVisible(MyPVRRecordings) + [ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasRecording]</visible>
+						<visible>!Window.IsVisible(MyPVRRecordings) + [ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasArchive | ListItem.HasReminder]</visible>
 						<right>25</right>
 						<align>right</align>
 						<font>Font30_Icon</font>
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
-						<label>$VAR[PVRTimerIconVar]</label>
+						<label>$VAR[PVRStatusImageVar]</label>
 					</control>
 				</control>
 				<control type="image">
@@ -139,21 +139,21 @@
 						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
 					</control>
 					<control type="label">
-						<visible>!$PARAM[progressvisible] + ![ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasRecording]</visible>
+						<visible>!$PARAM[progressvisible] + ![ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasArchive | ListItem.HasReminder]</visible>
 						<right>$PARAM[labelright]</right>
 						<align>right</align>
 						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
 						<label>$PARAM[rightlabel]</label>
 					</control>
 					<control type="label">
-						<visible>!$PARAM[progressvisible] + [ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasRecording]</visible>
+						<visible>!$PARAM[progressvisible] + [ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasArchive | ListItem.HasReminder]</visible>
 						<right>65</right>
 						<align>right</align>
 						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
 						<label>$PARAM[rightlabel]</label>
 					</control>
 					<control type="progress">
-						<visible>$PARAM[progressvisible] + ListItem.IsRecording</visible>
+						<visible>$PARAM[progressvisible] + [ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasArchive | ListItem.HasReminder]</visible>
 						<top>26</top>
 						<right>65</right>
 						<width>100</width>
@@ -161,7 +161,7 @@
 						<midtexture colordiffuse="$VAR[PanelHighlightColorVar]" border="8">panels/progress-control/progress-mid.png</midtexture>
 					</control>
 					<control type="progress">
-						<visible>$PARAM[progressvisible] + !ListItem.IsRecording</visible>
+						<visible>$PARAM[progressvisible] + ![ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasArchive | ListItem.HasReminder]</visible>
 						<top>26</top>
 						<right>25</right>
 						<width>100</width>
@@ -169,12 +169,12 @@
 						<midtexture colordiffuse="$VAR[PanelHighlightColorVar]" border="8">panels/progress-control/progress-mid.png</midtexture>
 					</control>
 					<control type="label">
-						<visible>!Window.IsVisible(MyPVRRecordings) + [ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasRecording]</visible>
+						<visible>!Window.IsVisible(MyPVRRecordings) + [ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasArchive | ListItem.HasReminder]</visible>
 						<right>25</right>
 						<align>right</align>
 						<font>Font30_Icon</font>
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
-						<label>$VAR[PVRTimerIconVar]</label>
+						<label>$VAR[PVRStatusImageVar]</label>
 					</control>
 				</control>
 				<control type="image">
@@ -264,21 +264,21 @@
 						<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 					</control>
 					<control type="label">
-						<visible>!$PARAM[progressvisible] + ![ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasRecording]</visible>
+						<visible>!$PARAM[progressvisible] + ![ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasRecording | ListItem.HasReminder]</visible>
 						<right>$PARAM[labelright]</right>
 						<align>right</align>
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
 						<label>$PARAM[rightlabel]</label>
 					</control>
 					<control type="label">
-						<visible>!$PARAM[progressvisible] + [ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasRecording]</visible>
+						<visible>!$PARAM[progressvisible] + [ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasRecording | ListItem.HasReminder]</visible>
 						<right>65</right>
 						<align>right</align>
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
 						<label>$PARAM[rightlabel]</label>
 					</control>
 					<control type="progress">
-						<visible>$PARAM[progressvisible] + ListItem.IsRecording</visible>
+						<visible>$PARAM[progressvisible] + [ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasArchive | ListItem.HasReminder]</visible>
 						<top>40</top>
 						<right>65</right>
 						<width>100</width>
@@ -286,7 +286,7 @@
 						<midtexture colordiffuse="$VAR[PanelHighlightColorVar]" border="8">panels/progress-control/progress-mid.png</midtexture>
 					</control>
 					<control type="progress">
-						<visible>$PARAM[progressvisible] + !ListItem.IsRecording</visible>
+						<visible>$PARAM[progressvisible] + ![ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasArchive | ListItem.HasReminder]</visible>
 						<top>40</top>
 						<right>25</right>
 						<width>100</width>
@@ -298,7 +298,7 @@
 						<align>right</align>
 						<font>Font30_Icon</font>
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
-						<label>$VAR[PVRTimerIconVar]</label>
+						<label>$VAR[PVRStatusImageVar]</label>
 					</control>
 					<control type="image">
 						<visible>$PARAM[overlayiconvisible]</visible>
@@ -371,21 +371,21 @@
 						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
 					</control>
 					<control type="label">
-						<visible>!$PARAM[progressvisible] + ![ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasRecording]</visible>
+						<visible>!$PARAM[progressvisible] + ![ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasRecording | ListItem.HasReminder]</visible>
 						<right>$PARAM[labelright]</right>
 						<align>right</align>
 						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
 						<label>$PARAM[rightlabel]</label>
 					</control>
 					<control type="label">
-						<visible>!$PARAM[progressvisible] + [ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasRecording]</visible>
+						<visible>!$PARAM[progressvisible] + [ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasRecording | ListItem.HasReminder]</visible>
 						<right>65</right>
 						<align>right</align>
 						<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
 						<label>$PARAM[rightlabel]</label>
 					</control>
 					<control type="progress">
-						<visible>$PARAM[progressvisible] + ListItem.IsRecording</visible>
+						<visible>$PARAM[progressvisible] + [ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasArchive | ListItem.HasReminder]</visible>
 						<top>39</top>
 						<right>65</right>
 						<width>100</width>
@@ -393,7 +393,7 @@
 						<midtexture colordiffuse="$VAR[PanelHighlightColorVar]" border="8">panels/progress-control/progress-mid.png</midtexture>
 					</control>
 					<control type="progress">
-						<visible>$PARAM[progressvisible] + !ListItem.IsRecording</visible>
+						<visible>$PARAM[progressvisible] + ![ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasArchive | ListItem.HasReminder]</visible>
 						<top>39</top>
 						<right>25</right>
 						<width>100</width>
@@ -405,7 +405,7 @@
 						<align>right</align>
 						<font>Font30_Icon</font>
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
-						<label>$VAR[PVRTimerIconVar]</label>
+						<label>$VAR[PVRStatusImageVar]</label>
 					</control>
 					<control type="image">
 						<visible>$PARAM[overlayiconvisible]</visible>
@@ -559,9 +559,9 @@
 					<param name="diffuse">diffuse/rounded5-532x532.png</param>
 				</include>
 			</control>
+			<!-- Media flags -->
+			<include>MediaFlagsPVR</include>
 		</control>
-		<!-- Media flags -->
-		<include>MediaFlagsPVR</include>
 	</include>
 	<include name="View51PVRSimpleList">
 		<!-- Floor -->
@@ -602,9 +602,11 @@
 				<bottom>140</bottom>
 				<onleft>51</onleft>
 			</control>
+			<!-- Media flags -->
+			<include content="MediaFlagsPVR">
+				<param name="bottom">10</param>
+			</include>
 		</control>
-		<!-- Media flags -->
-		<include>MediaFlagsPVR</include>
 	</include>
 	<include name="View52PVRInfoList">
 		<!-- Floor -->
@@ -772,9 +774,9 @@
 				<onleft>52</onleft>
 				<onright>60521</onright>
 			</control>
+			<!-- Media flags -->
+			<include>MediaFlagsPVR</include>
 		</control>
-		<!-- Media flags -->
-		<include>MediaFlagsPVR</include>
 	</include>
 	<include name="View53PVRWall">
 		<!-- Floor -->
@@ -813,10 +815,10 @@
 						<height>60</height>
 						<font>Font30_Icon</font>
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
-						<label>$VAR[PVRTimerIconVar]</label>
+						<label>$VAR[PVRStatusImageVar]</label>
 					</control>
 					<control type="label">
-						<visible>!ListItem.IsRecording + !ListItem.HasTimerSchedule + !ListItem.HasTimer + !ListItem.HasRecording</visible>
+						<visible>![ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasArchive]</visible>
 						<top>20</top>
 						<left>25</left>
 						<width>265</width>
@@ -826,7 +828,7 @@
 						<textcolor>$VAR[PanelTextColorVar]</textcolor>
 					</control>
 					<control type="label">
-						<visible>ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasRecording</visible>
+						<visible>ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasArchive</visible>
 						<top>20</top>
 						<left>60</left>
 						<width>265</width>
@@ -895,10 +897,10 @@
 							<height>60</height>
 							<font>Font30_Icon</font>
 							<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
-							<label>$VAR[PVRTimerIconVar]</label>
+							<label>$VAR[PVRStatusImageVar]</label>
 						</control>
 						<control type="label">
-							<visible>!ListItem.IsRecording + !ListItem.HasTimerSchedule + !ListItem.HasTimer + !ListItem.HasRecording</visible>
+							<visible>![ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasArchive]</visible>
 							<top>20</top>
 							<left>25</left>
 							<width>265</width>
@@ -908,7 +910,7 @@
 							<textcolor>$VAR[PanelFocusTextColorVar]</textcolor>
 						</control>
 						<control type="label">
-							<visible>ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasRecording</visible>
+							<visible>ListItem.IsRecording | ListItem.HasTimerSchedule | ListItem.HasTimer | ListItem.HasArchive</visible>
 							<top>20</top>
 							<left>60</left>
 							<width>265</width>
@@ -969,9 +971,11 @@
 				<onright>60531</onright>
 			</control>
 			<include>ViewPVRInfo</include>
+			<!-- Media flags -->
+			<include content="MediaFlagsPVR">
+				<param name="bottom">10</param>
+			</include>
 		</control>
-		<!-- Media flags -->
-		<include>MediaFlagsPVR</include>
 	</include>
 	<!-- Info -->
 	<include name="ViewPVRInfo">
@@ -1040,13 +1044,11 @@
 			<width>449</width>
 			<control type="label" id="$PARAM[labelid]">
 				<top>90</top>
-				<description>name label</description>
 				<include>DialogLabel</include>
-				<label>$LOCALIZE[19146]</label>
 			</control>
 			<control type="list" id="$PARAM[listid]">
 				<top>165</top>
-				<height>525</height>
+				<height>600</height>
 				<onleft>$PARAM[onleft]</onleft>
 				<onright>$PARAM[scrollid]</onright>
 				<pagecontrol>$PARAM[scrollid]</pagecontrol>
@@ -1180,17 +1182,25 @@
 		<value condition="Skin.HasSetting(View50EPGChannelNumber)">$INFO[ListItem.ChannelNumberLabel,,. ]$INFO[ListItem.ChannelName]</value>
 		<value>$INFO[ListItem.ChannelName]</value>
 	</variable>
+	<variable name="PVRStatusImageVar">
+		<value condition="ListItem.IsRecording">[COLOR red][/COLOR]</value>
+		<value condition="ListItem.HasReminder"></value>
+		<value condition="ListItem.HasTimer | ListItem.HasTimerSchedule"></value>
+		<value condition="ListItem.HasArchive">[COLOR green][/COLOR]</value>
+	</variable>
 	<variable name="PVRTimerIconVar">
 		<value condition="ListItem.IsRecording">[COLOR red][/COLOR]</value>
+		<value condition="ListItem.HasReminder"></value>
 		<value condition="ListItem.HasTimerSchedule + ListItem.TimerHasError">[COLOR red][/COLOR]</value>
 		<value condition="ListItem.HasTimer + ListItem.TimerHasError">[COLOR red][/COLOR]</value>
 		<value condition="ListItem.HasTimerSchedule + ListItem.TimerHasConflict">[COLOR red][/COLOR]</value>
 		<value condition="ListItem.HasTimer + ListItem.TimerHasConflict">[COLOR red][/COLOR]</value>
-		<value condition="ListItem.HasRecording">[COLOR red][/COLOR]</value>
+		<value condition="ListItem.HasRecording"></value>
 		<value condition="ListItem.HasTimerSchedule + !ListItem.TimerIsActive"></value>
 		<value condition="ListItem.HasTimer + !ListItem.TimerIsActive"></value>
 		<value condition="ListItem.HasTimerSchedule"></value>
 		<value condition="ListItem.HasTimer"></value>
+		<value condition="ListItem.IsPlayable">[COLOR green][/COLOR]</value>
 	</variable>
 	<variable name="PVRIconVar">
 		<value condition="Window.IsActive(MyPVRGuide.xml)">$INFO[Container(50).ListItem.Icon]</value>
@@ -1225,5 +1235,21 @@
 		<value condition="Window.IsActive(MyPVRChannels.xml)">$INFO[ListItem.NextTitle, $LOCALIZE[209] - ]</value>
 		<value condition="!String.IsEmpty(ListItem.Duration) + !Integer.IsGreater(ListItem.Duration(h),0)">$INFO[ListItem.Duration(mm), ,m]$INFO[ListItem.Duration(ss),,s  ]</value>
 		<value condition="!String.IsEmpty(ListItem.Duration)">$INFO[ListItem.Duration(hh), ,h]$INFO[ListItem.Duration(mm),,m  ]</value>
+	</variable>
+	<variable name="PVRGuideLabelVar1">
+		<value condition="Control.HasFocus(301)">$LOCALIZE[19063]</value>
+		<value condition="Control.HasFocus(302)">$LOCALIZE[19317]</value>
+		<value condition="Control.HasFocus(303)">$LOCALIZE[19070]</value>
+		<value condition="Control.HasFocus(304)">$LOCALIZE[19318]</value>
+		<value condition="Control.HasFocus(305)">$LOCALIZE[19064]</value>
+		<value condition="Control.HasFocus(306)">$LOCALIZE[19288]</value>
+	</variable>
+	<variable name="PVRGuideLabelVar2">
+		<value condition="Control.HasFocus(311)">$LOCALIZE[19322]</value>
+		<value condition="Control.HasFocus(312)">$LOCALIZE[19323]</value>
+		<value condition="Control.HasFocus(313)">$LOCALIZE[19324]</value>
+		<value condition="Control.HasFocus(314)">$LOCALIZE[19319]</value>
+		<value condition="Control.HasFocus(315)">$LOCALIZE[19320]</value>
+		<value condition="Control.HasFocus(316)">$LOCALIZE[19321]</value>
 	</variable>
 </includes>

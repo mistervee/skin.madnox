@@ -741,10 +741,11 @@
 							<selected>!Skin.HasSetting(DisableDialogBackground)</selected>
 						</control>
 						<control type="radiobutton" id="528">
-							<label>$LOCALIZE[31197]</label>
+							<visible>System.AddonIsEnabled(script.embuary.helper)</visible>
+							<label>$LOCALIZE[12381]</label>
 							<include>SettingsRadioButton</include>
-							<onclick>Skin.ToggleSetting(DisableAutoOpenMusicViz)</onclick>
-							<selected>!Skin.HasSetting(DisableAutoOpenMusicViz)</selected>
+							<onclick>RunScript(script.embuary.helper,action=togglekodisetting,setting=musicfiles.selectaction)</onclick>
+							<selected>system.getbool(musicfiles.selectaction)</selected>
 						</control>
 					</control>
 					<!-- Furniture description -->

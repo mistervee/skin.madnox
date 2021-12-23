@@ -960,33 +960,91 @@
 		</definition>
 	</include>
 	<include name="MediaFlagsPVR">
-		<control type="grouplist">
-			<include content="AnimationSlideBottomWindow">
-				<param name="slide">220</param>
-				<param name="animationopen">$EXP[PVRAnimationOpenCondition]</param>
-				<param name="animationclose">$EXP[PVRAnimationCloseCondition]</param>
-			</include>
-			<bottom>25</bottom>
-			<left>125</left>
-			<right>125</right>
-			<height>80</height>
-			<align>right</align>
-			<itemgap>10</itemgap>
-			<orientation>horizontal</orientation>
-			<usecontrolcoords>true</usecontrolcoords>
-			<control type="label">
-				<visible>!String.IsEmpty(PVR.TVNextRecordingTitle) + String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
-				<width>532</width>
-				<include>MediaFlagLabelFull</include>
-				<label>$LOCALIZE[19157]$INFO[PVR.TVNextRecordingDateTime, - ,][B][CR]$INFO[PVR.TVNextRecordingTitle][/B]</label>
+		<param name="bottom">25</param>
+		<definition>
+			<control type="grouplist">
+				<visible>Window.IsVisible(tvchannels) | Window.IsVisible(tvrecordings) | Window.IsVisible(tvguide) | Window.IsVisible(tvtimers) | Window.IsVisible(tvsearch) | Window.IsVisible(tvtimerrules)</visible>
+				<include content="AnimationSlideBottomWindow">
+					<param name="slide">220</param>
+					<param name="animationopen">$EXP[PVRAnimationOpenCondition]</param>
+					<param name="animationclose">$EXP[PVRAnimationCloseCondition]</param>
+				</include>
+				<bottom>$PARAM[bottom]</bottom>
+				<left>125</left>
+				<right>100</right>
+				<height>80</height>
+				<align>right</align>
+				<orientation>horizontal</orientation>
+				<usecontrolcoords>true</usecontrolcoords>
+				<control type="label">
+					<visible>!String.IsEmpty(PVR.TVNextRecordingTitle) + String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
+					<width>532</width>
+					<font>Font20_Reg_0.7</font>
+					<include>MediaFlagLabelFull</include>
+					<label>$LOCALIZE[19157]$INFO[PVR.TVNextRecordingDateTime, - ,][B][CR]$INFO[PVR.TVNextRecordingTitle][/B][CR]$INFO[PVR.TVNextRecordingChannel]</label>
+				</control>
+				<control type="label">
+					<visible>!String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
+					<width>532</width>
+					<font>Font20_Reg_0.7</font>
+					<include>MediaFlagLabelFull</include>
+					<label>$LOCALIZE[19162]$INFO[PVR.TVNowRecordingDateTime, - ,][B][CR]$INFO[PVR.TVNowRecordingTitle, ][/B][CR]$INFO[PVR.TVNowRecordingChannel]</label>
+				</control>
+				<control type="image">
+					<visible>!String.IsEmpty(Pvr.TVNowRecordingChannelIcon)</visible>
+					<texture>$INFO[Pvr.TVNowRecordingChannelIcon]</texture>
+					<colordiffuse>bbffffff</colordiffuse>
+					<include>MediaFlagImage</include>
+				</control>
+				<control type="image">
+					<visible>!String.IsEmpty(Pvr.TVNextRecordingChannelIcon) + String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
+					<texture>$INFO[Pvr.TVNextRecordingChannelIcon]</texture>
+					<colordiffuse>bbffffff</colordiffuse>
+					<include>MediaFlagImage</include>
+				</control>
 			</control>
-			<control type="label">
-				<visible>!String.IsEmpty(PVR.TVNowRecordingTitle)</visible>
-				<width>532</width>
-				<include>MediaFlagLabelFull</include>
-				<label>$LOCALIZE[19162]$INFO[PVR.TVNowRecordingDateTime, - ,][B][CR]$INFO[PVR.TVNowRecordingTitle, ][/B]</label>
+			<control type="grouplist">
+				<visible>Window.IsVisible(radiochannels) | Window.IsVisible(radiorecordings) | Window.IsVisible(radioguide) | Window.IsVisible(radiotimers) | Window.IsVisible(radiosearch) | Window.IsVisible(radiotimerrules)</visible>
+				<include content="AnimationSlideBottomWindow">
+					<param name="slide">220</param>
+					<param name="animationopen">$EXP[PVRAnimationOpenCondition]</param>
+					<param name="animationclose">$EXP[PVRAnimationCloseCondition]</param>
+				</include>
+				<bottom>$PARAM[bottom]</bottom>
+				<left>125</left>
+				<right>100</right>
+				<height>80</height>
+				<align>right</align>
+				<orientation>horizontal</orientation>
+				<usecontrolcoords>true</usecontrolcoords>
+				<control type="label">
+					<visible>!String.IsEmpty(PVR.RadioNextRecordingTitle) + String.IsEmpty(PVR.RadioNowRecordingTitle)</visible>
+					<width>532</width>
+					<font>Font20_Reg_0.7</font>
+					<include>MediaFlagLabelFull</include>
+					<label>$LOCALIZE[19157]$INFO[PVR.RadioNextRecordingDateTime, - ,][B][CR]$INFO[PVR.RadioNextRecordingTitle][/B][CR]$INFO[PVR.RadioNextRecordingChannel]</label>
+				</control>
+				<control type="label">
+					<visible>!String.IsEmpty(PVR.RadioNowRecordingTitle)</visible>
+					<width>532</width>
+					<font>Font20_Reg_0.7</font>
+					<include>MediaFlagLabelFull</include>
+					<label>$LOCALIZE[19162]$INFO[PVR.RadioNowRecordingDateTime, - ,][B][CR]$INFO[PVR.RadioNowRecordingTitle, ][/B][CR]$INFO[PVR.NowRecordingChannel]</label>
+				</control>
+				<control type="image">
+					<visible>!String.IsEmpty(Pvr.RadioNowRecordingChannelIcon)</visible>
+					<texture>$INFO[Pvr.RadioNowRecordingChannelIcon]</texture>
+					<colordiffuse>bbffffff</colordiffuse>
+					<include>MediaFlagImage</include>
+				</control>
+				<control type="image">
+					<visible>!String.IsEmpty(Pvr.RadioNextRecordingChannelIcon) + String.IsEmpty(PVR.RadioNowRecordingTitle)</visible>
+					<texture>$INFO[Pvr.RadioNextRecordingChannelIcon]</texture>
+					<colordiffuse>bbffffff</colordiffuse>
+					<include>MediaFlagImage</include>
+				</control>
 			</control>
-		</control>
+		</definition>
 	</include>
 	<include name="MediaFlagsVideoFullscreen">
 		<control type="grouplist">

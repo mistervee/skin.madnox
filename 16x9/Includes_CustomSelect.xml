@@ -1189,11 +1189,11 @@
 			<include>DialogLabel</include>
 		</control>
 		<control type="radiobutton" id="152">
-			<visible>!Window.IsVisible(skinsettings)</visible>
-			<label>$LOCALIZE[31197]</label>
-			<onclick>Skin.ToggleSetting(DisableAutoOpenMusicViz)</onclick>
-			<selected>!Skin.HasSetting(DisableAutoOpenMusicViz)</selected>
-			<include>DialogRadioButton</include>
+			<visible>System.AddonIsEnabled(script.embuary.helper)</visible>
+			<label>$LOCALIZE[12381]</label>
+			<onclick>RunScript(script.embuary.helper,action=togglekodisetting,setting=musicfiles.selectaction)</onclick>
+			<selected>system.getbool(musicfiles.selectaction)</selected>
+			<include>MediaMenuRadioButton</include>
 		</control>
 	</include>
 	<!-- Video OSD -->

@@ -1318,7 +1318,7 @@
 				<icon>icons/systeminfo/icons/cpu.png</icon>
 				<property name="fanart">icons/systeminfo/fanart/cpu.jpg</property>
 				<property name="label3">$INFO[System.CPUUsage(used.percent)]</property>
-				<visible>Integer.IsGreater(System.CPUTemperature,0)</visible>
+				<visible>Integer.IsGreater(System.CPUTemperature,0) + System.SupportsCPUUsage</visible>
 				<onclick>ActivateWindow(systeminfo)</onclick>
 			</item>
 			<item>
@@ -1327,7 +1327,7 @@
 				<icon>icons/systeminfo/icons/cpu.png</icon>
 				<property name="fanart">icons/systeminfo/fanart/cpu.jpg</property>
 				<property name="label3">$INFO[System.CPUUsage(used.percent)]</property>
-				<visible>!Integer.IsGreater(System.CPUTemperature,0)</visible>
+				<visible>!Integer.IsGreater(System.CPUTemperature,0) + System.SupportsCPUUsage</visible>
 				<onclick>ActivateWindow(systeminfo)</onclick>
 			</item>
 			<item>
@@ -1493,7 +1493,7 @@
 				<icon>icons/systeminfo/icons/cpu.png</icon>
 				<property name="fanart">icons/systeminfo/fanart/cpu.jpg</property>
 				<property name="label3">$INFO[System.CPUUsage(used.percent)]</property>
-				<visible>Integer.IsGreater(System.CPUTemperature,0)</visible>
+				<visible>Integer.IsGreater(System.CPUTemperature,0) + System.SupportsCPUUsage</visible>
 				<onclick>ActivateWindow(systeminfo)</onclick>
 			</item>
 			<item>
@@ -1502,7 +1502,7 @@
 				<icon>icons/systeminfo/icons/cpu.png</icon>
 				<property name="fanart">icons/systeminfo/fanart/cpu.jpg</property>
 				<property name="label3">$INFO[System.CPUUsage(used.percent)]</property>
-				<visible>!Integer.IsGreater(System.CPUTemperature,0)</visible>
+				<visible>!Integer.IsGreater(System.CPUTemperature,0) + System.SupportsCPUUsage</visible>
 				<onclick>ActivateWindow(systeminfo)</onclick>
 			</item>
 		</controls>
@@ -1832,6 +1832,78 @@
 				<property name="fanart">$INFO[Skin.String(WeatherFanart.path)]$INFO[Window(weather).Property(36Hour.3.FanartCode)]$INFO[Skin.String(WeatherFanart.ext)]</property>
 				<onclick>ActivateWindow(weather)</onclick>
 				<visible>!String.IsEmpty(Window(Weather).Property(36Hour.3.Heading))</visible>
+			</item>
+		</controls>
+	</other>
+	<!-- PVR -->
+	<other include="TVRecordings">
+		<condition tag="property" attribute="name|widgetType.1">tvrecordings</condition>
+		<condition tag="property" attribute="name|widgetType.2">tvrecordings</condition>
+		<condition tag="property" attribute="name|widgetType.3">tvrecordings</condition>
+		<condition tag="property" attribute="name|widgetType.4">tvrecordings</condition>
+		<condition tag="property" attribute="name|widgetType.5">tvrecordings</condition>
+		<condition tag="property" attribute="name|widgetType.6">tvrecordings</condition>
+		<match>any</match>
+		<controls>
+			<item>
+				<label>$LOCALIZE[19043]</label>
+				<label2>$INFO[PVR.TVNowRecordingDateTime]</label2>
+				<icon>$INFO[Pvr.TVNowRecordingChannelIcon]</icon>
+				<property name="label3">$INFO[PVR.TVNowRecordingTitle]</property>
+				<onclick>ActivateWindow(TVTimers)</onclick>
+				<onclick condition="Pvr.IsRecordingRadio">ActivateWindow(RadioTimers)</onclick>
+				<visible>Pvr.IsRecordingTV</visible>
+			</item>
+			<item>
+				<label>$LOCALIZE[19157]</label>
+				<label2>$INFO[PVR.TVNextRecordingDateTime]</label2>
+				<icon>$INFO[Pvr.TVNextRecordingChannelIcon]</icon>
+				<property name="label3">$INFO[PVR.TVNextRecordingTitle]</property>
+				<onclick>ActivateWindow(TVTimers)</onclick>
+				<visible>Pvr.HasTVTimer</visible>
+			</item>
+			<item>
+				<label>$LOCALIZE[19157]</label>
+				<label2>$LOCALIZE[195]</label2>
+				<icon>special://skin/extras/icons/tv.png</icon>
+				<property name="label3">$LOCALIZE[19026]</property>
+				<onclick>ActivateWindow(TVTimers)</onclick>
+				<visible>!Pvr.HasTVTimer</visible>
+			</item>
+		</controls>
+	</other>
+	<other include="RadioRecordings">
+		<condition tag="property" attribute="name|widgetType.1">radiorecordings</condition>
+		<condition tag="property" attribute="name|widgetType.2">radiorecordings</condition>
+		<condition tag="property" attribute="name|widgetType.3">radiorecordings</condition>
+		<condition tag="property" attribute="name|widgetType.4">radiorecordings</condition>
+		<condition tag="property" attribute="name|widgetType.5">radiorecordings</condition>
+		<condition tag="property" attribute="name|widgetType.6">radiorecordings</condition>
+		<match>any</match>
+		<controls>
+			<item>
+				<label>$LOCALIZE[19043]</label>
+				<label2>$INFO[PVR.RadioNowRecordingDateTime]</label2>
+				<icon>$INFO[Pvr.RadioNowRecordingChannelIcon]</icon>
+				<property name="label3">$INFO[PVR.RadioNowRecordingTitle]</property>
+				<onclick>ActivateWindow(RadioTimers)</onclick>
+				<visible>Pvr.IsRecordingRadio</visible>
+			</item>
+			<item>
+				<label>$LOCALIZE[19157]</label>
+				<label2>$INFO[PVR.RadioNextRecordingDateTime]</label2>
+				<icon>$INFO[Pvr.RadioNextRecordingChannelIcon]</icon>
+				<property name="label3">$INFO[PVR.RadioNextRecordingTitle]</property>
+				<onclick>ActivateWindow(RadioTimers)</onclick>
+				<visible>Pvr.HasRadioTimer</visible>
+			</item>
+			<item>
+				<label>$LOCALIZE[19157]</label>
+				<label2>$LOCALIZE[195]</label2>
+				<icon>special://skin/extras/icons/radio.png</icon>
+				<property name="label3">$LOCALIZE[19026]</property>
+				<onclick>ActivateWindow(RadioTimers)</onclick>
+				<visible>!Pvr.HasRadioTimer</visible>
 			</item>
 		</controls>
 	</other>

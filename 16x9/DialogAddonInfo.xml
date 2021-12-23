@@ -50,7 +50,6 @@
 				<include>InfoDialogButtons</include>
 				<content>
 					<item id="101">
-						<visible>!Skin.HasSetting(KioskDisableInfoAddonSettings)</visible>
 						<description>Install</description>
 						<visible>Control.IsEnabled(6) + String.IsEqual(Control.GetLabel(6),$LOCALIZE[24038])</visible>
 						<label></label>
@@ -65,20 +64,11 @@
 						<onclick>SendClick(12)</onclick>
 					</item>
 					<item id="103">
-						<visible>!Skin.HasSetting(KioskDisableInfoAddonSettings)</visible>
 						<description>Settings</description>
 						<visible>Control.IsEnabled(9)</visible>
 						<label></label>
 						<label2>$LOCALIZE[1390]</label2>
 						<onclick>SendClick(9)</onclick>
-					</item>
-					<item id="104">
-						<visible>!Skin.HasSetting(KioskDisableInfoAddonSettings)</visible>
-						<description>Update</description>
-						<visible>Control.IsEnabled(8)</visible>
-						<label></label>
-						<label2>$LOCALIZE[24069]</label2>
-						<onclick>SendClick(8)</onclick>
 					</item>
 					<item id="105">
 						<description>Screenshots</description>
@@ -94,7 +84,6 @@
 						<onclick>SendClick(10)</onclick>
 					</item>
 					<item id="107">
-						<visible>!Skin.HasSetting(KioskDisableInfoAddonSettings)</visible>
 						<description>Enable/Disable</description>
 						<visible>Control.IsEnabled(7)</visible>
 						<label>$VAR[AddonInfoEnableIconVar]</label>
@@ -102,7 +91,6 @@
 						<onclick>SendClick(7)</onclick>
 					</item>
 					<item id="108">
-						<visible>!Skin.HasSetting(KioskDisableInfoAddonSettings)</visible>
 						<description>Auto update</description>
 						<visible>Control.IsEnabled(13)</visible>
 						<label>$VAR[AddonInfoAutoUpdateIconVar]</label>
@@ -112,10 +100,23 @@
 						<onclick>SetFocus(9000)</onclick>
 					</item>
 					<item id="109">
-						<visible>!Skin.HasSetting(KioskDisableInfoAddonSettings)</visible>
+						<description>Versions</description>
+						<visible>Control.IsVisible(14)</visible>
+						<label></label>
+						<label2>$LOCALIZE[24069]</label2>
+						<onclick>SendClick(14)</onclick>
+					</item>
+					<item id="104">
+						<description>Update</description>
+						<visible>Control.IsVisible(8)</visible>
+						<label></label>
+						<label2>$LOCALIZE[24138]</label2>
+						<onclick>SendClick(8)</onclick>
+					</item>
+					<item id="110">
 						<description>Uninstall</description>
 						<visible>Control.IsEnabled(6) + String.IsEqual(Control.GetLabel(6),$LOCALIZE[24037])</visible>
-						<label></label>
+						<label></label>
 						<label2>$LOCALIZE[24037]</label2>
 						<onclick>SendClick(6)</onclick>
 					</item>
@@ -143,6 +144,9 @@
 		</control>
 		<control type="radiobutton" id="13">
 			<visible allowhiddenfocus="true">true</visible>
+			<include>HiddenObject</include>
+		</control>
+		<control type="button" id="14">
 			<include>HiddenObject</include>
 		</control>
 	</controls>
