@@ -70,8 +70,32 @@
 				<onright>60531</onright>
 			</control>
 		</control>
-		<!-- Media flags -->
+		<!-- Media flags Fix overlapping icons when Movie & TV Show is linked -->
+
 		<control type="group">
+			<visible>Control.IsVisible(53)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<control type="group">
+				<visible>Control.IsVisible(53) + String.Contains(ListItem.DBType, "movie")</visible>
+				<include condition="Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(videoplaylist)">MediaFlagsVideos5</include>
+			</control>
+			<control type="group">
+				<visible>Control.IsVisible(53) + !String.Contains(ListItem.DBType, "season") &amp; String.Contains(ListItem.DBType, "episode")</visible>
+				<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsVideos5</include>
+			</control>
+			<control type="group">
+				<visible>Control.IsVisible(53) + String.Contains(ListItem.DBType, "season")</visible>
+				<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsTVShows</include>
+			</control>			
+			<control type="group">
+				<visible>Control.IsVisible(53) + String.Contains(ListItem.DBType, "tvshow") | Container.Content(tvshows) </visible>
+				<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsTVShows</include>
+			</control>			
+		</control>
+
+<!-- 		<control type="group">
 			<visible>Control.IsVisible(53)</visible>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
@@ -79,6 +103,8 @@
 			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsTVShows</include>
 			<include condition="Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(videoplaylist)">MediaFlagsVideos5</include>
 			<include condition="Window.IsVisible(MyMusicNav.xml) | Window.IsVisible(musicplaylist)">MediaFlagsAudio</include>
-		</control>
+		</control> -->
+
+
 	</include>
 </includes>

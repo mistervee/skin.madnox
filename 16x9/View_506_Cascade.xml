@@ -650,14 +650,37 @@
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
 			</include>
-			<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsTVShows">
+			
+			<control type="group">
+				<visible>Control.IsVisible(506) + String.Contains(ListItem.DBType, "movie")</visible>
+				<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsVideos4">
+					<param name="right">50</param>
+					<param name="bottom">35</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>Control.IsVisible(506) + String.Contains(ListItem.DBType, "season")</visible>
+				<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsTVShows">
+					<param name="right">50</param>
+					<param name="bottom">35</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>Control.IsVisible(506) + String.Contains(ListItem.DBType, "tvshow") | Container.Content(tvshows) </visible>
+				<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsTVShows">
+					<param name="right">50</param>
+					<param name="bottom">35</param>
+				</include>
+			</control>			
+			
+<!-- 			<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsTVShows">
 				<param name="right">50</param>
 				<param name="bottom">35</param>
 			</include>
 			<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsVideos4">
 				<param name="right">50</param>
 				<param name="bottom">35</param>
-			</include>
+			</include> -->
 			<include content="ViewCoverFlowScrollBar">
 				<param name="id">506</param>
 				<param name="top">1035</param>

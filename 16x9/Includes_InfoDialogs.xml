@@ -1629,6 +1629,12 @@
 		</control>
 	</include>
 	<!-- Variables -->
+	<variable name="BuildVersionName">
+		<value condition="String.StartsWith(System.BuildVersion,21.)">Omega</value>
+		<value condition="String.StartsWith(System.BuildVersion,20.)">Nexus</value>
+		<value condition="String.StartsWith(System.BuildVersion,19.)">Matrix</value>
+		<value condition="String.StartsWith(System.BuildVersion,18.)">Unsupported</value>
+	</variable>
 	<variable name="ViewInfoDateVar">
 		<value condition="!String.IsEmpty(Container.ListItem.Premiered) + !String.IsEqual(Container.ListItem.DBTYPE,movie)">$INFO[Container.ListItem.Premiered, ,  ]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Date)">$INFO[Container.ListItem.Date, ,  ]</value>

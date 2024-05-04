@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
-	<visible>Player.Seeking | Player.DisplayAfterSeek | [Player.Paused + !Player.Caching] | Player.Forwarding | Player.Rewinding | Player.ShowInfo | Window.IsActive(videoosd) | !String.IsEmpty(PVR.ChannelNumberInput)</visible>
+	<visible>Player.Seeking | Player.HasPerformedSeek(3) | [Player.Paused + !Player.Caching] | Player.Forwarding | Player.Rewinding | Player.ShowInfo | Window.IsActive(videoosd) | !String.IsEmpty(PVR.ChannelNumberInput)</visible>
 	<visible>Window.IsActive(fullscreenvideo)</visible>
 	<zorder>0</zorder>
 	<controls>
@@ -24,7 +24,7 @@
 				</control>
 				<control type="image">
 					<visible>!Skin.HasSetting(VideoOSDDisableClearArt) + [Skin.String(VideoOSDInfo,off) | ![Skin.String(VideoOSDInfo,persistant) | Player.ShowInfo]]</visible>
-					<animation effect="fade" end="100" delay="480" time="0" condition="!Player.DisplayAfterSeek">visible</animation>
+					<animation effect="fade" end="100" delay="480" time="0" condition="!Player.HasPerformedSeek(3)">visible</animation>
 					<include>AnimationVisibleFade</include>
 					<bottom>106</bottom>
 					<left>20</left>
@@ -136,7 +136,7 @@
 			</control>
 		</control>
 		<control type="grouplist">
-			<visible>!Skin.HasSetting(VideoOSDDisableSeekIcon) + !Player.Caching + [Player.Paused | Player.Forwarding | Player.Rewinding | Player.DisplayAfterSeek]</visible>
+			<visible>!Skin.HasSetting(VideoOSDDisableSeekIcon) + !Player.Caching + [Player.Paused | Player.Forwarding | Player.Rewinding | Player.HasPerformedSeek(3)]</visible>
 			<include>AnimationVisibleFade</include>
 			<itemgap>20</itemgap>
 			<align>center</align>
@@ -308,7 +308,7 @@
 					<param name="heighttexture">100</param>
 					<param name="flipy">true</param>
 				</include>
-				<include>MediaFlagsVideoFullscreen</include>
+				<include>MediaFlagsVideoFullscreen</include> <!-- VideoOSD CMB -->
 			</control>
 		</control>
 		<!-- Studio Logo check if image exists -->

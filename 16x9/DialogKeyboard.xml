@@ -3,6 +3,9 @@
 	<defaultcontrol>300</defaultcontrol>
 	<include>AnimationDialogPopupWindow</include>
 	<controls>
+		<control type="button" id="310">
+			<include>HiddenObject</include>
+		</control>
 		<control type="group">
 			<visible>!Window.IsVisible(numericinput)</visible>
 			<include>AnimationDialogPopupVisible</include>
@@ -147,16 +150,42 @@
 						<label>IP</label>
 						<onup>309</onup>
 						<ondown>303</ondown>
+						<width>70</width>
 						<include>DialogKeyboardButton</include>
 					</control>
 					<control type="togglebutton" id="304">
 						<description>Symbols</description>
-						<width>135</width>
+						<width>145</width>
 						<label>@#!</label>
 						<altlabel>ABC</altlabel>
 						<onup>309</onup>
 						<ondown>303</ondown>
 						<include>DialogKeyboardToggleButton</include>
+						<visible>!Control.IsVisible(310)</visible>
+					</control>
+					<control type="togglebutton" id="3104">
+						<description>Symbols</description>
+						<width>90</width>
+						<label>@#!</label>
+						<altlabel>ABC</altlabel>
+						<onup>309</onup>
+						<ondown>303</ondown>
+						<onclick>SendClick(304)</onclick>
+						<include>DialogKeyboardToggleButton</include>
+						<visible>Control.IsVisible(310)</visible>
+					</control>
+					<control type="togglebutton" id="3100">
+						<description>Show password button</description>
+						<label></label>
+						<altlabel></altlabel>
+						<onup>309</onup>
+						<ondown>303</ondown>
+						<width>60</width>
+						<font>Font28_Icon</font>
+						<onclick>SendClick(310)</onclick>
+						<usealttexture>String.IsEqual(Control.GetLabel(310), $LOCALIZE[12308])</usealttexture>
+						<include>DialogKeyboardToggleButton</include>
+						<visible>Control.IsVisible(310)</visible>
 					</control>
 					<control type="button" id="120">
 						<description>(1,0) key button</description>

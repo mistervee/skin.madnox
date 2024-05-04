@@ -48,14 +48,37 @@
 				<param name="logowidth">354</param>
 				<param name="logovisible">View504Logo</param>
 			</include>
-			<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsVideos6">
+
+			<control type="group">
+				<visible>Control.IsVisible(504) + String.Contains(ListItem.DBType, "movie")</visible>
+				<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsVideos6">
+					<param name="right">100</param>
+					<param name="bottom">25</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>Control.IsVisible(504) + String.Contains(ListItem.DBType, "season")</visible>
+				<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsTVShows">
+					<param name="right">100</param>
+					<param name="bottom">25</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>Control.IsVisible(504) + String.Contains(ListItem.DBType, "tvshow") | Container.Content(tvshows) </visible>
+				<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsTVShows">
+					<param name="right">100</param>
+					<param name="bottom">25</param>
+				</include>
+			</control>			
+
+<!-- 			<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsVideos6">
 				<param name="right">100</param>
 				<param name="bottom">25</param>
 			</include>
 			<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsTVShows">
 				<param name="right">100</param>
 				<param name="bottom">25</param>
-			</include>
+			</include> -->
 		</control>
 	</include>
 	<!-- Includes panel -->

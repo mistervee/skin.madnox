@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<defaultcontrol always="true">50</defaultcontrol>
+	<views>50,51,521,541</views>
+	<menucontrol>9050</menucontrol>
+	<controls>
+		<control type="group">
+			<include content="BackgroundDefault">
+			<param name="imagepath">$VAR[FavoritesBackgroundVar]</param>
+			<param name="animatedfanart">Skin.HasSetting(AddonAnimatedFanart)</param>
+			</include>
+			<include>AnimationVisibleFade</include>
+			<!-- List -->
+			<include>View50CoverList</include>
+			<include>View51SimpleList</include>
+			<!-- Icon -->
+			<include condition="!Skin.HasSetting(DisableViewSquareIcon)">View521SquareIcon</include>
+			<!-- Wall -->
+			<include condition="!Skin.HasSetting(DisableViewSquareWall)">View541SquareWall</include>
+			<!-- Topbar -->
+			<include content="TopBar">
+				<param name="icon">star.png</param>
+				<param name="label">$LOCALIZE[1036]</param>
+			</include>
+		</control>
+		<!-- Media Menu -->
+		<include content="MediaMenu">
+			<param name="contentvisible">true</param>
+			<param name="commontopvisible">true</param>
+			<param name="navigationid">50</param>
+		</include>
+	</controls>
+</window>
