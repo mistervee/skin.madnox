@@ -876,7 +876,8 @@
 			<control type="grouplist">
 				<visible>$PARAM[visible] + Skin.HasSetting(ShowLanguageFlags)</visible>
 				<top>12</top>
-				<left>-36</left>
+				<!-- <left>-36</left> CMB -->
+				<left>-12</left>
 				<width>26</width>
 				<height>80</height>
 				<itemgap>6</itemgap>
@@ -1067,11 +1068,27 @@
 				<texture>$VAR[MediaFlagsPathVar]mpaa/$VAR[VideoPlayerRatingFlagVar]</texture>
 				<include>MediaFlagImage</include>
 			</control>
+
+			<!-- CMB -->
 			<control type="image">
-				<visible>!String.IsEmpty(VideoPlayer.VideoAspect)</visible>
-				<texture>$VAR[MediaFlagsPathVar]$INFO[VideoPlayer.VideoAspect,videoaspect/,.png]</texture>
+				<visible>String.Contains(Player.Filename,"web-dl") | 
+					     String.Contains(Player.Filename,"webdl") | 
+						 String.Contains(Player.Filename,"webrip") | 
+						 String.Contains(Player.Filename,"web")</visible>
+				<texture>$VAR[MediaFlagsPathVar]videocodec/webdl.png</texture>
 				<include>MediaFlagImage</include>
 			</control>
+			<control type="image">
+				<visible>String.Contains(Player.Filename,"uhd")</visible>
+				<texture>$VAR[MediaFlagsPathVar]videoresolution/uhd.png</texture>
+				<include>MediaFlagImage</include>			
+			</control>		
+			<control type="image">
+				<visible>String.Contains(Player.Filename,"hdr")</visible>
+				<texture>$VAR[MediaFlagsPathVar]videoresolution/hdr.png</texture>
+				<include>MediaFlagImage</include>	
+			</control>
+			<!-- CMB -->		
 			<control type="image">
 				<visible>!String.IsEmpty(VideoPlayer.VideoCodec)</visible>
 				<texture>$VAR[PlayerVideoCodecFlagVar]</texture>
@@ -1683,53 +1700,117 @@
 	</variable>
 	<variable name="VideoCodecFlagVar">
 		<value condition="!Skin.HasSetting(SourceFlags)">$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoCodec,videocodec/,.png]</value>
-		<value condition="String.IsEqual(ListItem.VideoResolution,4k) | String.Contains(ListItem.filename,UHD)">$VAR[MediaFlagsPathVar]videocodec/4k.png</value>
-		<value condition="ListItem.IsStereoscopic | String.Contains(ListItem.filename,3D)">$VAR[MediaFlagsPathVar]videocodec/bluray3d.png</value>
-		<value condition="[String.Contains(ListItem.filename,pdtv) | String.Contains(ListItem.filename,sdtv) | String.Contains(ListItem.filename,sd tv)]">$VAR[MediaFlagsPathVar]videocodec/sdtv.png</value>
+		<value condition="String.IsEqual(ListItem.VideoResolution,4k) | String.Contains(ListItem.Filename,UHD)">$VAR[MediaFlagsPathVar]videocodec/4kuhd.png</value>
+<!-- 		<value condition="String.IsEqual(VideoPlayer.VideoResolution,4k) + 
+						  [String.Contains(Player.Filename,bluray)       |
+		  				   String.Contains(Player.Filename,blu-ray)      | 
+						   String.Contains(Player.Filename,bdrip)        | 
+						   String.Contains(Player.Filename,brrip)        | 
+						   String.Contains(Player.Filename,2160)		 |
+						   String.Contains(Player.Filename,uhd)		     |
+						   String.Contains(Player.Filename,hdr)		     |
+		 				   String.IsEqual(Player.FileExtension,bdmv)]">$VAR[MediaFlagsPathVar]videocodec/4kuhd.png</value> -->
+		<value condition="ListItem.IsStereoscopic | String.Contains(ListItem.Filename,3D)">$VAR[MediaFlagsPathVar]videocodec/bluray3d.png</value>
+		<value condition="[String.Contains(ListItem.Filename,pdtv) | String.Contains(ListItem.Filename,sdtv) | String.Contains(ListItem.Filename,sd tv)]">$VAR[MediaFlagsPathVar]videocodec/sdtv.png</value>
 		<value condition="[String.Contains(ListItem.Filename,hdtv) | String.Contains(ListItem.Filename,hd tv)]">$VAR[MediaFlagsPathVar]videocodec/hdtv.png</value>
 		<value condition="[String.Contains(ListItem.Filename,hddvd) | String.Contains(ListItem.Filename,hd-dvd)]">$VAR[MediaFlagsPathVar]videocodec/hddvd.png</value>
 		<value condition="[String.Contains(ListItem.Filename,bluray) | String.Contains(ListItem.Filename,blu-ray) | String.Contains(ListItem.Filename,bdrip) | String.Contains(ListItem.Filename,brrip) | String.IsEqual(ListItem.FileExtension,bdmv)]">$VAR[MediaFlagsPathVar]videocodec/bluray.png</value>
-		<value condition="String.Contains(ListItem.Filename,web-dl) | String.Contains(ListItem.Filename,webdl) | String.Contains(ListItem.Filename,webrip)">$VAR[MediaFlagsPathVar]videocodec/webdl.png</value>
+		<!-- <value condition="String.Contains(ListItem.Filename,web-dl) | String.Contains(ListItem.Filename,webdl) | String.Contains(ListItem.Filename,webrip)">$VAR[MediaFlagsPathVar]videocodec/webdl.png</value> -->
 		<value condition="String.Contains(ListItem.Filename,dvd) | String.IsEqual(ListItem.FileExtension,iso) | String.IsEqual(ListItem.FileExtension,ifo)">$VAR[MediaFlagsPathVar]videocodec/dvd.png</value>
 		<value>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoCodec,videocodec/,.png]</value>
 	</variable>
 	<variable name="Container7005VideoCodecFlagVar">
 		<value condition="!Skin.HasSetting(SourceFlags)">$VAR[MediaFlagsPathVar]$INFO[Container(7005).ListItem.VideoCodec,videocodec/,.png]</value>
-		<value condition="String.IsEqual(Container(7005).ListItem.VideoResolution,4k) | String.Contains(Container(7005).ListItem.filename,UHD)">$VAR[MediaFlagsPathVar]videocodec/4k.png</value>
-		<value condition="Container(7005).ListItem.IsStereoscopic | String.Contains(Container(7005).ListItem.filename,3D)">$VAR[MediaFlagsPathVar]videocodec/bluray3d.png</value>
-		<value condition="[String.Contains(Container(7005).ListItem.filename,pdtv) | String.Contains(Container(7005).ListItem.filename,sdtv) | String.Contains(Container(7005).ListItem.filename,sd tv)]">$VAR[MediaFlagsPathVar]videocodec/sdtv.png</value>
+		<value condition="String.IsEqual(Container(7005).ListItem.VideoResolution,4k) | String.Contains(Container(7005).ListItem.Filename,UHD)">$VAR[MediaFlagsPathVar]videocodec/4kuhd.png</value>
+		<value condition="Container(7005).ListItem.IsStereoscopic | String.Contains(Container(7005).ListItem.Filename,3D)">$VAR[MediaFlagsPathVar]videocodec/bluray3d.png</value>
+		<value condition="[String.Contains(Container(7005).ListItem.Filename,pdtv) | String.Contains(Container(7005).ListItem.Filename,sdtv) | String.Contains(Container(7005).ListItem.Filename,sd tv)]">$VAR[MediaFlagsPathVar]videocodec/sdtv.png</value>
 		<value condition="[String.Contains(Container(7005).ListItem.Filename,hdtv) | String.Contains(Container(7005).ListItem.Filename,hd tv)]">$VAR[MediaFlagsPathVar]videocodec/hdtv.png</value>
 		<value condition="[String.Contains(Container(7005).ListItem.Filename,hddvd) | String.Contains(Container(7005).ListItem.Filename,hd-dvd)]">$VAR[MediaFlagsPathVar]videocodec/hddvd.png</value>
 		<value condition="[String.Contains(Container(7005).ListItem.Filename,bluray) | String.Contains(Container(7005).ListItem.Filename,blu-ray) | String.Contains(Container(7005).ListItem.Filename,bdrip) | String.Contains(Container(7005).ListItem.Filename,brrip) | String.IsEqual(Container(7005).ListItem.FileExtension,bdmv)]">$VAR[MediaFlagsPathVar]videocodec/bluray.png</value>
-		<value condition="String.Contains(Container(7005).ListItem.Filename,web-dl) | String.Contains(Container(7005).ListItem.Filename,webdl) | String.Contains(Container(7005).ListItem.Filename,webrip)">$VAR[MediaFlagsPathVar]videocodec/webdl.png</value>
+		<!-- <value condition="String.Contains(Container(7005).ListItem.Filename,web-dl) | String.Contains(Container(7005).ListItem.Filename,webdl) | String.Contains(Container(7005).ListItem.Filename,webrip)">$VAR[MediaFlagsPathVar]videocodec/webdl.png</value> -->
 		<value condition="String.Contains(Container(7005).ListItem.Filename,dvd) | String.IsEqual(Container(7005).ListItem.FileExtension,iso) | String.IsEqual(Container(7005).ListItem.FileExtension,ifo)">$VAR[MediaFlagsPathVar]videocodec/dvd.png</value>
 		<value>$VAR[MediaFlagsPathVar]$INFO[Container(7005).ListItem.VideoCodec,videocodec/,.png]</value>
 	</variable>
-	<variable name="PlayerVideoCodecFlagVar">
+	<variable name="PlayerVideoCodecFlagVar">  <!-- Main Menu (Videos) Player VIDEOCODEC Flags -->
 		<value condition="!Skin.HasSetting(SourceFlags)">$VAR[MediaFlagsPathVar]$INFO[VideoPlayer.VideoCodec,videocodec/,.png]</value>
-		<value condition="String.IsEqual(VideoPlayer.VideoResolution,4k) | String.Contains(Player.filename,UHD)">$VAR[MediaFlagsPathVar]videocodec/4k.png</value>
-		<value condition="Player.IsStereoscopic | String.Contains(Player.filename,3D)">$VAR[MediaFlagsPathVar]videocodec/bluray3d.png</value>
-		<value condition="[String.Contains(Player.filename,pdtv) | String.Contains(Player.filename,sdtv) | String.Contains(Player.filename,sd tv)]">$VAR[MediaFlagsPathVar]videocodec/sdtv.png</value>
-		<value condition="[String.Contains(Player.Filename,hdtv) | String.Contains(Player.Filename,hd tv)]">$VAR[MediaFlagsPathVar]videocodec/hdtv.png</value>
-		<value condition="[String.Contains(Player.Filename,hddvd) | String.Contains(Player.Filename,hd-dvd)]">$VAR[MediaFlagsPathVar]videocodec/hddvd.png</value>
-		<value condition="[String.Contains(Player.Filename,bluray) | String.Contains(Player.Filename,blu-ray) | String.Contains(Player.Filename,bdrip) | String.Contains(Player.Filename,brrip) | String.IsEqual(Player.FileExtension,bdmv)]">$VAR[MediaFlagsPathVar]videocodec/bluray.png</value>
-		<value condition="String.Contains(Player.Filename,web-dl) | String.Contains(Player.Filename,webdl) | String.Contains(Player.Filename,webrip)">$VAR[MediaFlagsPathVar]videocodec/webdl.png</value>
-		<value condition="String.Contains(Player.Filename,dvd) | String.IsEqual(Player.FileExtension,iso) | String.IsEqual(Player.FileExtension,ifo)">$VAR[MediaFlagsPathVar]videocodec/dvd.png</value>
+		<value condition="String.IsEqual(VideoPlayer.VideoResolution,4k) + 
+						  [String.Contains(Container.ListItem,bluray)       |
+		 				   String.Contains(Container.ListItem,blu-ray)      | 
+						   String.Contains(Container.ListItem,bdrip)        | 
+						   String.Contains(Container.ListItem,brrip)        | 
+						   String.Contains(Container.ListItem,2160)		 |
+						   String.Contains(Container.ListItem,uhd)		     |
+						   String.Contains(Container.ListItem,hdr)		     |
+						   String.IsEqual(Player.FileExtension,bdmv)]">$VAR[MediaFlagsPathVar]videocodec/4kuhd.png</value>
+
+		<value condition="String.IsEqual(VideoPlayer.VideoResolution,4k) + 
+						  String.Contains(Player.Filename,264)">$VAR[MediaFlagsPathVar]videocodec/h264.png</value>
+
+		<value condition="String.IsEqual(VideoPlayer.VideoResolution,1080) | 
+						  String.IsEqual(VideoPlayer.VideoResolution,720)">$VAR[MediaFlagsPathVar]videocodec/bluray.png</value>
+
+		<value condition="Integer.IsLessOrEqual(ListItem.VideoResolution,540) + 
+						  String.Contains(Player.Filename,480) | 
+						  String.Contains(Player.Filename,360)">$VAR[MediaFlagsPathVar]videocodec/x264.png</value>
+
+		<value condition="Player.IsStereoscopic | String.Contains(Player.Filename,3D)">$VAR[MediaFlagsPathVar]videocodec/bluray3d.png</value>
+		<value condition="String.Contains(Player.Filename,pdtv)  | 
+						  String.Contains(Player.Filename,sdtv)  |
+						  String.Contains(Player.Filename,sd-tv) | 
+						  String.Contains(Player.Filename,sd tv)">$VAR[MediaFlagsPathVar]videocodec/sdtv.png</value>
+
+		<value condition="String.Contains(Player.Filename,hdtv)  | 
+						  String.Contains(Player.Filename,hd-tv) |
+						  String.Contains(Player.Filename,hd tv)">$VAR[MediaFlagsPathVar]videocodec/hdtv.png</value>
+
+		<value condition="String.Contains(Player.Filename,hddvd) | String.Contains(Player.Filename,hd-dvd)">$VAR[MediaFlagsPathVar]videocodec/hddvd.png</value>
+
+		<value condition="String.Contains(Player.Filename,dvd)      | 
+						  String.IsEqual (Player.FileExtension,iso) | 
+						  String.IsEqual (Player.FileExtension,ifo)">$VAR[MediaFlagsPathVar]videocodec/dvd.png</value>
+
 		<value>$VAR[MediaFlagsPathVar]$INFO[VideoPlayer.VideoCodec,videocodec/,.png]</value>
 	</variable>
-	<variable name="VideoResolutionFlagVar">
+	<variable name="VideoResolutionFlagVar"> <!-- Media VIDEORESOLUTION Flags -->
+		<value condition="String.Contains(Player.Filename,288) ">$VAR[MediaFlagsPathVar]videoresolution/288.png</value>
+		<value condition="String.Contains(Player.Filename,360) ">$VAR[MediaFlagsPathVar]videoresolution/360.png</value>
+		<value condition="String.Contains(Player.Filename,480) ">$VAR[MediaFlagsPathVar]videoresolution/480.png</value>
+		<value condition="String.Contains(Player.Filename,540) ">$VAR[MediaFlagsPathVar]videoresolution/540.png</value>
+		<value condition="String.Contains(Player.Filename,576) ">$VAR[MediaFlagsPathVar]videoresolution/576.png</value>
+		<value condition="String.Contains(Player.Filename,720) ">$VAR[MediaFlagsPathVar]videoresolution/720.png</value>
+		<value condition="String.Contains(Player.Filename,1080)">$VAR[MediaFlagsPathVar]videoresolution/1080.png</value>
+		<value condition="String.Contains(Player.Filename,2160)">$VAR[MediaFlagsPathVar]videoresolution/4kuhd.png</value>
+		<value condition="String.Contains(Player.Filename,4K)  ">$VAR[MediaFlagsPathVar]videoresolution/4kuhd.png</value>		
 		<value condition="String.IsEqual(ListItem.VideoResolution,4K) + String.Contains(ListItem.Filename,remux)">$VAR[MediaFlagsPathVar]videoresolution/4kremux.png</value>
 		<value condition="Integer.IsLess(ListItem.VideoResolution,720) + String.Contains(ListItem.Filename,remux)">$VAR[MediaFlagsPathVar]videoresolution/sdremux.png</value>
 		<value condition="String.Contains(ListItem.Filename,remux)">$VAR[MediaFlagsPathVar]videoresolution/hdremux.png</value>
 		<value>$VAR[MediaFlagsPathVar]$INFO[ListItem.VideoResolution,videoresolution/,.png]</value>
 	</variable>
-	<variable name="Container7005VideoResolutionFlagVar">
+	<variable name="Container7005VideoResolutionFlagVar"> <!-- Media VIDEORESOLUTION Flags -->
+		<value condition="String.Contains(Container(7005).Player.Filename,288) ">$VAR[MediaFlagsPathVar]videoresolution/288.png</value>
+		<value condition="String.Contains(Container(7005).Player.Filename,360) ">$VAR[MediaFlagsPathVar]videoresolution/360.png</value>
+		<value condition="String.Contains(Container(7005).Player.Filename,480) ">$VAR[MediaFlagsPathVar]videoresolution/480.png</value>
+		<value condition="String.Contains(Container(7005).Player.Filename,540) ">$VAR[MediaFlagsPathVar]videoresolution/540.png</value>
+		<value condition="String.Contains(Container(7005).Player.Filename,576) ">$VAR[MediaFlagsPathVar]videoresolution/576.png</value>
+		<value condition="String.Contains(Container(7005).Player.Filename,720) ">$VAR[MediaFlagsPathVar]videoresolution/720.png</value>
+		<value condition="String.Contains(Container(7005).Player.Filename,1080)">$VAR[MediaFlagsPathVar]videoresolution/1080.png</value>
+		<value condition="String.Contains(Container(7005).Player.Filename,2160)">$VAR[MediaFlagsPathVar]videoresolution/4kuhd.png</value>
+		<value condition="String.Contains(Container(7005).Player.Filename,4K)  ">$VAR[MediaFlagsPathVar]videoresolution/4kuhd.png</value>	
 		<value condition="String.IsEqual(Container(7005).ListItem.VideoResolution,4K) + String.Contains(Container(7005).ListItem.Filename,remux)">$VAR[MediaFlagsPathVar]videoresolution/4kremux.png</value>
 		<value condition="Integer.IsLess(Container(7005).ListItem.VideoResolution,720) + String.Contains(Container(7005).ListItem.Filename,remux)">$VAR[MediaFlagsPathVar]videoresolution/sdremux.png</value>
 		<value condition="String.Contains(Container(7005).ListItem.Filename,remux)">$VAR[MediaFlagsPathVar]videoresolution/hdremux.png</value>
 		<value>$VAR[MediaFlagsPathVar]$INFO[Container(7005).ListItem.VideoResolution,videoresolution/,.png]</value>
 	</variable>
-	<variable name="PlayerVideoResolutionFlagVar">
+	<variable name="PlayerVideoResolutionFlagVar"> <!-- Main Menu > Videos > Media VIDEORESOLUTION Flags -->
+		<value condition="String.Contains(Player.Filename,288) ">$VAR[MediaFlagsPathVar]videoresolution/288.png</value>
+		<value condition="String.Contains(Player.Filename,360) ">$VAR[MediaFlagsPathVar]videoresolution/360.png</value>
+		<value condition="String.Contains(Player.Filename,480) ">$VAR[MediaFlagsPathVar]videoresolution/480.png</value>
+		<value condition="String.Contains(Player.Filename,540) ">$VAR[MediaFlagsPathVar]videoresolution/540.png</value>
+		<value condition="String.Contains(Player.Filename,576) ">$VAR[MediaFlagsPathVar]videoresolution/576.png</value>
+		<value condition="String.Contains(Player.Filename,720) ">$VAR[MediaFlagsPathVar]videoresolution/720.png</value>
+		<value condition="String.Contains(Player.Filename,1080)">$VAR[MediaFlagsPathVar]videoresolution/1080.png</value>
+		<value condition="String.Contains(Player.Filename,2160)">$VAR[MediaFlagsPathVar]videoresolution/4kuhd.png</value>
+		<value condition="String.Contains(Player.Filename,4K)  ">$VAR[MediaFlagsPathVar]videoresolution/4kuhd.png</value>
 		<value condition="String.IsEqual(VideoPlayer.VideoResolution,4K) + String.Contains(Player.Filename,remux)">$VAR[MediaFlagsPathVar]videoresolution/4kremux.png</value>
 		<value condition="Integer.IsLess(VideoPlayer.VideoResolution,720) + String.Contains(Player.Filename,remux)">$VAR[MediaFlagsPathVar]videoresolution/sdremux.png</value>
 		<value condition="String.Contains(Player.Filename,remux)">$VAR[MediaFlagsPathVar]videoresolution/hdremux.png</value>

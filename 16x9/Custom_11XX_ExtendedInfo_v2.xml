@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="window" id="1190">
+    <defaultcontrol always="true">9999</defaultcontrol>
+    <controls>
+        <!-- <include>Global_Background</include> -->
+        <!-- Background -->
+		<include content="BackgroundDefault">
+			<!-- <param name="imagepath">$VAR[FavouritesBackgroundVar]</param> -->
+			<!-- <param name="animatedfanart">Skin.HasSetting(FavouritesAnimatedFanart)</param> -->
+		</include>
+        <!-- <include>Topbar</include> -->
+        <!-- Topbar -->
+        <include content="TopBar">
+            <param name="icon">star.png</param>
+            <!-- <param name="label">$LOCALIZE[1036]</param> -->
+        </include>        
+        <control type="list" id="9999">
+            <top>-1000</top>
+            <left>-1000</left>
+            <width>1</width>
+            <height>1</height>
+            <itemlayout />
+            <focusedlayout />
+            <content target="videos">$INFO[Window(Home).Property(TMDbHelper.Path.Current)]</content>            
+        </control>
+        <control type="group">
+            <visible>Container(9999).IsUpdating</visible>
+            <visible>!Window.IsVisible(DialogVideoInfo.xml)</visible>
+            <include>DialogBusy</include>
+        </control>
+
+        <control type="list" id="1000">
+            <width>1</width>
+            <height>1</height>
+            <itemlayout />
+            <focusedlayout />
+            <content>plugin://plugin.video.themoviedb.helper/?info=details&amp;type=movie&amp;query=[Container(9999).ListItem.Label]</content>
+            <!-- plugin://plugin.video.themoviedb.helper/?info=details&amp;type=movie&amp;query=$INFO[ListItem.Title] -->
+            <!-- <content>plugin://plugin.video.themoviedb.helper/?info=details&amp;type=movie&amp;query=$INFO[ListItem.Title]</content> -->
+            <control type="label" id="1190">
+                <description>Movie Name Label</description>
+                <top>10</top>
+                <left>10</left>
+                <width>500</width>
+                <height>50</height>
+                <font>font13</font>
+                <textcolor>white</textcolor>
+                <label>$INFO[Container(1190).ListItem.Title]</label>
+            </control>
+        </control>        
+    </controls>
+
+
+    <!-- <label>$INFO[Container(1190).ListItemAbsolute(0).Property(rottentomatoes_rating)]</label> -->
+    <!-- <label>$INFO[Container(9999).ListItem.Title</label> -->
+    
+<!--     <control type="list" id="1190">
+                            <width>1</width>
+                            <height>1</height>
+                            <itemlayout />
+                            <focusedlayout />
+                            <content>plugin://plugin.video.themoviedb.helper/?info=details&amp;type=person&amp;query=[Container(7000).ListItem.Label]</content>
+                        </control>
+                         <control type="label">
+                            <left>-100</left>
+                            <top>825</top>
+                            <align>center</align>
+                            <font>Font_trailer</font>
+                            <label>[Container(7000).ListItem.Label]</label>
+                        </control>
+                        <control type="label">
+                            <left>970</left>
+                            <top>0</top>
+                            <font>Font_bio30</font>
+                            <label>Born: [Container(1190).ListItem.Property(born)]</label>
+                            <visible>!Container(1190).IsUpdating</visible>
+                        </control>
+                         <control type="label">
+                            <left>970</left>
+                            <top>100</top>
+                            <font>Font_bio30</font>
+                            <label>Birthday: [Container(1190).ListItem.Property(birthday)]      Died Aged: [Container(1190).ListItem.Property(age)]    Death: [Container(1190).ListItem.Property(deathday)]</label>
+                            <visible>!Container(1190).IsUpdating + !String.IsEmpty([Container(1190).ListItem.Property(deathday)])</visible>
+                        </control>
+                         <control type="label">
+                            <left>970</left>
+                            <top>100</top>
+                            <font>Font_bio30</font>
+                            <label>Birthday: [Container(1190).ListItem.Property(birthday)]      Age: [Container(1190).ListItem.Property(age)]</label>
+                            <visible>!Container(1190).IsUpdating + String.IsEmpty([Container(1190).ListItem.Property(deathday)])</visible>
+                        </control>
+                       
+                         <control type="textbox">
+                            <left>970</left>
+                            <top>200</top>
+                            <width>810</width>
+                            <height>360</height>
+                            <font>font_plot</font>
+                            <label>[Container(1190).ListItem.Property(biography)]</label>
+                            <autoscroll delay="10000" time="3000" repeat="10000">!Skin.HasSetting(noallowscroll)</autoscroll>
+                            <visible>!Container(1190).IsUpdating</visible>
+                        </control>
+                        <control type="textbox">
+                            <left>970</left>
+                            <top>200</top>
+                            <width>810</width>
+                            <height>360</height>
+                            <font>font_plot</font>
+                            <label>No Bio Available</label>
+                            <autoscroll delay="10000" time="3000" repeat="10000">!Skin.HasSetting(noallowscroll)</autoscroll>
+                            <visible>String.IsEmpty([Container(1190).ListItem.Property(biography)])</visible>
+                        </control> -->
+</window>

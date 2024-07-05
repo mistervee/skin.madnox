@@ -191,11 +191,12 @@
 					</item>
 					<item id="101">
 						<description>TMDb info</description>
-						<visible>Skin.HasSetting(VideoInfoTMDb)</visible>
+						<!-- <visible>Skin.HasSetting(VideoInfoTMDb)</visible> -->
 						<label></label>
 						<label2>$LOCALIZE[31351]</label2>
-						<onclick>Dialog.Close(all)</onclick>
-						<onclick>$VAR[VideoInfoTMDbVar]</onclick>
+						<!-- <onclick>Dialog.Close(all)</onclick> -->
+						<!-- <onclick>$VAR[VideoInfoTMDbVar]</onclick> -->
+						<onclick>Runscript(plugin.video.themoviedb.helper,recommendations=5000|info=cast|true|info,window_id=1191,$VAR[TMDbHelperTypeVar],$VAR[TMDbHelperIDVar])</onclick>
 					</item>
 					<item id="104">
 						<description>Next episode</description>
@@ -1900,12 +1901,12 @@
 		<value condition="!Skin.HasSetting(VideoInfoDisableClearLogo) + !String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEqual(ListItem.DBType,musicvideo)">$INFO[ListItem.Art(clearlogo)]</value>
 		<value condition="!Skin.HasSetting(VideoInfoDisableDiscArt) + !String.IsEmpty(ListItem.Art(discart))">$INFO[ListItem.Art(discart)]</value>
 	</variable>
-	<variable name="VideoInfoCastVar">
+	<!-- <variable name="VideoInfoCastVar">
 		<value condition="String.IsEqual(ListItem.DBType,movie)">plugin://script.embuary.helper?info=getcast&amp;type=movie&amp;dbid=$INFO[ListItem.DBID]</value>
 		<value condition="String.IsEqual(ListItem.DBType,tvshow)">plugin://script.embuary.helper?info=getcast&amp;type=tvshow&amp;dbid=$INFO[ListItem.DBID]</value>
 		<value condition="String.IsEqual(ListItem.DBType,episode)">plugin://script.embuary.helper?info=getcast&amp;type=episode&amp;dbid=$INFO[ListItem.DBID]</value>
 		<value condition="String.IsEqual(ListItem.DBType,season)">plugin://script.embuary.helper?info=getcast&amp;type=tvshow&amp;dbid=$INFO[ListItem.DBID]&amp;idtype=season</value>
-	</variable>
+	</variable> -->
 	<variable name="VideoInfoTMDbVar">
 		<value condition="String.IsEqual(ListItem.DBType,movie)">RunScript(script.embuary.info,call=movie,dbid=$INFO[ListItem.DBID])</value>
 		<value condition="String.IsEqual(ListItem.DBType,tvshow)">RunScript(script.embuary.info,call=tv,dbid=$INFO[ListItem.DBID])</value>
@@ -2100,8 +2101,22 @@
 		<value condition="String.Contains(Control.GetLabel(13),*)"></value>
 		<value></value>
 	</variable>
-	<variable name="MusicInfoFolderPathVar">
+	<!-- <variable name="MusicInfoFolderPathVar">
 		<value condition="Container.Content(albums) + String.IsEmpty(ListItem.DiscNumber)">musicdb://albums/$INFO[ListItem.DBID]/-1/?albumid=$INFO[ListItem.DBID]</value>
 		<value condition="!ListItem.IsParentFolder + Container.Content(albums) + !String.IsEmpty(ListItem.DiscNumber)">$INFO[ListItem.FolderPath]</value>
+	</variable> -->
+	<variable name="TMDbHelperTypeVar">
+		<value condition="String.IsEqual(ListItem.DBTYPE,movie)">tmdb_type=movie</value>
+		<value condition="String.IsEqual(ListItem.DBTYPE,tvshow)">tmdb_type=tv</value>
+	</variable>
+	<variable name="TMDbHelperIDVar">
+		<value condition="String.StartsWith(ListItem.IMDbNumber,tt)">imdb_id=$INFO[ListItem.IMDbNumber]</value>
+		<value>tmdb_id=$INFO[ListItem.IMDbNumber]</value>
+	</variable>
+	<variable name="ThisPluginCanSuckMyAss">
+		<value condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(ListItem.FilenameAndPath) + !String.StartsWith(ListItem.FilenameAndPath,plugin://)">AlarmClock(PlayMovie,PlayMedia($INFO[ListItem.FilenameAndPath]),00:01,silent)</value>
+		<value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.DBID)">RunPlugin(plugin://plugin.video.themoviedb.helper/?info=play&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;type=movie)</value>
+		<value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(ListItem.DBID)">RunPlugin(plugin://plugin.video.themoviedb.helper/?info=play&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;season=1&amp;episode=1&amp;type=episode)</value>
+		<value condition="[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(ListItem.DBID)">ActivateWindow(videos,videodb://tvshows/titles/$INFO[ListItem.DBID]/,return)</value>
 	</variable>
 </includes>

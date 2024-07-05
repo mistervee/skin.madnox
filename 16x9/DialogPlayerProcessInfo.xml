@@ -7,197 +7,161 @@
 			<include content="AnimationSlideTopWindow">
 				<param name="slide">322</param>
 			</include>
-			<!-- Background -->
+			<!-- Background dropdown selector -->
 			<control type="group">
+				<!-- Background dropdown selector for Movies, TV, Video, Other -->
 				<visible>!VideoPlayer.Content(livetv)</visible>
 				<include content="PanelWide">
 					<param name="top">0</param>
 					<param name="toptexture">0</param>
-					<param name="topshadow">307</param>
-					<param name="height">327</param>
-					<param name="heighttexture">307</param>
+					<param name="topshadow">480</param>
+					<param name="height">510</param>
+					<param name="heighttexture">480</param>
 					<param name="flipy">true</param>
 				</include>
 			</control>
 			<control type="group">
+				<!-- Background dropdown selector for PVR Only -->
 				<visible>VideoPlayer.Content(livetv)</visible>
 				<include content="PanelWide">
 					<param name="top">0</param>
 					<param name="toptexture">0</param>
-					<param name="topshadow">424</param>
-					<param name="height">453</param>
-					<param name="heighttexture">424</param>
+					<param name="topshadow">538</param>
+					<param name="height">568</param>
+					<param name="heighttexture">538</param>
 					<param name="flipy">true</param>
 				</include>
 			</control>
-			<!-- Video -->
+			<!-- Video Section (Left)  -->
 			<control type="grouplist">
-				<top>17</top>
+				<top>5</top>
 				<left>25</left>
-				<width>607</width>
+				<width>608</width>
 				<height>600</height>
 				<control type="label">
-					<label>$LOCALIZE[291]</label>
+					<label>[B]$LOCALIZE[291][/B]</label>
 					<font>Font26_Bold_Caps</font>
 					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 					<include>VideoOSDProcessInfo</include>
 				</control>
 				<control type="label">
-					<visible>Player.Proces(videohwdecoder)</visible>
-					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[31075]  [/COLOR]$LOCALIZE[13281]</label>
+					<visible>Player.Process(videohwdecoder)</visible>
+					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[31075]:  [/COLOR]$LOCALIZE[13281]</label>
 					<include>VideoOSDProcessInfo</include>
 				</control>
 				<control type="label">
-					<visible>!Player.Proces(videohwdecoder)</visible>
-					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[31075]  [/COLOR]$LOCALIZE[13419]</label>
+					<visible>!Player.Process(videohwdecoder)</visible>
+					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[31075]:  [/COLOR]$LOCALIZE[13419]</label>
 					<include>VideoOSDProcessInfo</include>
 				</control>
 				<control type="label">
-					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[31073]  [/COLOR]$INFO[Player.Process(videodecoder)]</label>
+					<label>[COLOR $VAR[PanelTextColorVar]][CAPITALIZE]$LOCALIZE[31073][/CAPITALIZE]:  [/COLOR][UPPERCASE]$INFO[Player.Process(videodecoder)][/UPPERCASE]</label>
 					<include>VideoOSDProcessInfo</include>
 				</control>
 				<control type="label">
-					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[31074]  [/COLOR]$INFO[Player.Process(pixformat)]</label>
+					<label>[COLOR $VAR[PanelTextColorVar]][CAPITALIZE]$LOCALIZE[31074][/CAPITALIZE]:  [/COLOR][UPPERCASE]$INFO[Player.Process(pixformat)][/UPPERCASE]</label>
 					<include>VideoOSDProcessInfo</include>
 				</control>
 				<control type="label">
-					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[16038]  [/COLOR]$INFO[Player.Process(deintmethod)]</label>
+					<label>[COLOR $VAR[PanelTextColorVar]][CAPITALIZE]$LOCALIZE[16038][/CAPITALIZE]:  [/COLOR][CAPITALIZE]$INFO[Player.Process(deintmethod)][/CAPITALIZE]</label>
 					<include>VideoOSDProcessInfo</include>
 				</control>
 				<control type="label">
-					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[38031]  [/COLOR]$INFO[Player.Process(videowidth),,x]$INFO[Player.Process(videoheight),, px]$INFO[Player.Process(videodar),$COMMA AR ]</label>
+					<label>[COLOR $VAR[PanelTextColorVar]][CAPITALIZE]$LOCALIZE[38031][/CAPITALIZE]:  [/COLOR]$INFO[Player.Process(videowidth),,x]$INFO[Player.Process(videoheight),, px]$INFO[Player.Process(videodar),$COMMA AR ]</label>
 					<include>VideoOSDProcessInfo</include>
 				</control>
 				<control type="label">
-					<label>[COLOR $VAR[PanelTextColorVar]]FPS  [/COLOR]$INFO[Player.Process(videofps)]</label>
+					<label>[COLOR $VAR[PanelTextColorVar]]FPS:  [/COLOR]$INFO[Player.Process(videofps)]</label>
 					<include>VideoOSDProcessInfo</include>
 				</control>
 			</control>
-			<!-- Audio -->
+			<!-- Audio Section (Left)  -->
 			<control type="grouplist">
-				<top>17</top>
-				<left>656</left>
+				<top>280</top>
+				<left>25</left>
 				<width>608</width>
 				<height>600</height>
 				<animation effect="slide" end="-631,273" condition="VideoPlayer.Content(livetv)">Conditional</animation>
 				<control type="label">
-					<label>$LOCALIZE[292]</label>
+					<label>[B]$LOCALIZE[292][/B]</label>
 					<font>Font26_Bold_Caps</font>
 					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 					<include>VideoOSDProcessInfo</include>
 				</control>
 				<control type="label">
-					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[14301]  [/COLOR]$INFO[Player.Process(audiochannels)]</label>
+					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[14301]:  [/COLOR]$INFO[Player.Process(audiochannels)]</label>
 					<include>VideoOSDProcessInfo</include>
 				</control>
 				<control type="label">
-					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[460]  [/COLOR]$INFO[Player.Process(audiodecoder)]$INFO[Player.Process(audiobitspersample),$COMMA , bits]$INFO[Player.Process(audiosamplerate),$COMMA , Hz]</label>
+					<label>[COLOR $VAR[PanelTextColorVar]][CAPITALIZE]$LOCALIZE[460][/CAPITALIZE]:  [/COLOR][UPPERCASE]$INFO[Player.Process(audiodecoder)][/UPPERCASE]$INFO[Player.Process(audiobitspersample),$COMMA , Bits]$INFO[Player.Process(audiosamplerate),$COMMA , Hz]</label>
 					<include>VideoOSDProcessInfo</include>
 				</control>
 			</control>
-			<!-- PVR -->
+			<!-- Network Section (Left) -->			
 			<control type="grouplist">
-				<top>17</top>
-				<left>656</left>
+				<top>400</top> <!--  Was 140 -->
+				<left>25</left>
 				<width>608</width>
 				<height>600</height>
 				<visible>VideoPlayer.Content(livetv)</visible>
 				<control type="label">
-					<label>$LOCALIZE[19005]</label>
+					<label>[B]$LOCALIZE[705][/B]</label>
 					<font>Font26_Bold_Caps</font>
 					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 					<include>VideoOSDProcessInfo</include>
 				</control>
 				<control type="label">
-					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19012]  [/COLOR]$INFO[PVR.ActStreamClient]</label>
+					<label>[COLOR $VAR[PanelTextColorVar]][CAPITALIZE]$LOCALIZE[719][/CAPITALIZE]: [/COLOR]$INFO[Network.IPAddress], $INFO[Network.LinkState]</label>
 					<include>VideoOSDProcessInfo</include>
 				</control>
-				<control type="label">
-					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19006]  [/COLOR]$INFO[PVR.ActStreamDevice]</label>
+				<!-- <control type="label">
+					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[126]: [/COLOR]$INFO[Network.LinkState]</label>
+					<label>$INFO[Network.LinkState]</label>
 					<include>VideoOSDProcessInfo</include>
-				</control>
-				<control type="label">
-					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19007]  [/COLOR]$INFO[PVR.ActStreamStatus]</label>
-					<include>VideoOSDProcessInfo</include>
-				</control>
-				<control type="label">
-					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19010]  [/COLOR]$INFO[PVR.ActStreamBER]</label>
-					<include>VideoOSDProcessInfo</include>
-				</control>
-				<control type="label">
-					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19011]  [/COLOR]$INFO[PVR.ActStreamUNC]</label>
-					<include>VideoOSDProcessInfo</include>
-				</control>
-				<control type="label">
-					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19099]  [/COLOR]$INFO[PVR.ActStreamServiceName]</label>
-					<include>VideoOSDProcessInfo</include>
-				</control>
-				<control type="label">
-					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19015]  [/COLOR]$INFO[PVR.ActStreamEncryptionName]</label>
-					<include>VideoOSDProcessInfo</include>
-				</control>
-				<control type="label">
-					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19101]  [/COLOR]$INFO[PVR.ActStreamProviderName]</label>
-					<include>VideoOSDProcessInfo</include>
-				</control>
-				<control type="label">
-					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19100]  [/COLOR]$INFO[PVR.ActStreamMux]</label>
-					<include>VideoOSDProcessInfo</include>
-				</control>
+				</control> -->
 			</control>
-			<!--  System -->
+			<!-- Kodi General Info (Middle) -->
 			<control type="grouplist">
-				<top>17</top>
-				<right>25</right>
-				<width>607</width>
+				<top>5</top>
+				<left>656</left>
+				<width>608</width>
 				<height>600</height>
 				<usecontrolcoords>true</usecontrolcoords>
 				<control type="label">
-					<label>$LOCALIZE[13000]</label>
+					<label>[B]$LOCALIZE[128] $LOCALIZE[14116][/B]</label>
 					<font>Font26_Bold_Caps</font>
 					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 					<include>VideoOSDProcessInfo</include>
 				</control>
 				<control type="label">
-					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[31022] [/COLOR]$INFO[System.CpuUsage]</label>
+					<label>[COLOR $VAR[PanelTextColorVar]][CAPITALIZE]$LOCALIZE[20093][/CAPITALIZE]: [/COLOR][CAPITALIZE]$INFO[System.ProfileName][/CAPITALIZE]</label>
 					<include>VideoOSDProcessInfo</include>
-				</control>
+				</control>				
 				<control type="label">
-					<height>7</height>
-				</control>
-				<control type="progress">
-					<info>System.CpuUsage</info>
-				</control>
-				<control type="label">
-					<height>12</height>
-				</control>
-				<control type="label">
-					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[31023] [/COLOR]$INFO[System.Memory(used.percent)]</label>
+					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[20182]: [/COLOR]$INFO[System.UsedSpacePercent] of $INFO[System.TotalSpace] </label>
 					<include>VideoOSDProcessInfo</include>
-				</control>
+				</control>					
 				<control type="label">
-					<height>7</height>
-				</control>
-				<control type="progress">
-					<info>System.Memory(used)</info>
+                    <label>[COLOR $VAR[PanelTextColorVar]]Kodi $LOCALIZE[19114]: [/COLOR] $VAR[BuildVersionName] v$INFO[System.BuildVersionShort] </label>
+                    <include>VideoOSDProcessInfo</include>
 				</control>
 			</control>
-			<!--  Signal -->
+			<!-- Signal Section (Middle) -->
 			<control type="grouplist">
 				<visible>VideoPlayer.Content(livetv)</visible>
-				<top>216</top>
-				<right>25</right>
+				<top>348</top>
+				<left>656</left>
 				<width>607</width>
 				<height>600</height>
 				<usecontrolcoords>true</usecontrolcoords>
 				<control type="label">
-					<label>$LOCALIZE[31077]</label>
+					<label>[B]$LOCALIZE[31077][/B]</label>
 					<font>Font26_Bold_Caps</font>
 					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
 					<include>VideoOSDProcessInfo</include>
 				</control>
 				<control type="label">
-					<label>$INFO[PVR.ActStreamSignal,$LOCALIZE[19008] ]</label>
+					<label>$INFO[PVR.ActStreamSignal,[CAPITALIZE]$LOCALIZE[19008][/CAPITALIZE]: ]</label>
 					<include>VideoOSDProcessInfo</include>
 				</control>
 				<control type="label">
@@ -210,7 +174,7 @@
 					<height>12</height>
 				</control>
 				<control type="label">
-					<label>$INFO[PVR.ActStreamSNR,$LOCALIZE[19009] ]</label>
+					<label>$INFO[PVR.ActStreamSNR,$LOCALIZE[19009]: ]</label>
 					<include>VideoOSDProcessInfo</include>
 				</control>
 				<control type="label">
@@ -218,6 +182,94 @@
 				</control>
 				<control type="progress">
 					<info>PVR.ActStreamProgrSNR</info>
+				</control>
+			</control>										
+			<!-- PVR Section (Right)  -->
+			<control type="grouplist">
+				<top>5</top>
+				<right>25</right>
+				<width>608</width>
+				<height>600</height>
+				<visible>VideoPlayer.Content(livetv)</visible>
+				<control type="label">
+					<label>[B]$LOCALIZE[19005][/B]</label>
+					<font>Font26_Bold_Caps</font>
+					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+					<include>VideoOSDProcessInfo</include>
+				</control>
+				<control type="label">
+					<label>[COLOR $VAR[PanelTextColorVar]][CAPITALIZE]$LOCALIZE[19012][/CAPITALIZE]:  [/COLOR]$INFO[PVR.ActStreamClient]</label>
+					<include>VideoOSDProcessInfo</include>
+				</control>
+				<control type="label">
+					<label>[COLOR $VAR[PanelTextColorVar]][CAPITALIZE]$LOCALIZE[19006][/CAPITALIZE]:  [/COLOR][UPPERCASE]$INFO[PVR.ActStreamDevice][/UPPERCASE]</label>
+					<include>VideoOSDProcessInfo</include>
+				</control>
+				<control type="label">
+					<label>[COLOR $VAR[PanelTextColorVar]][CAPITALIZE]$LOCALIZE[19007][/CAPITALIZE]:  [/COLOR]$INFO[PVR.ActStreamStatus]</label>
+					<include>VideoOSDProcessInfo</include>
+				</control>
+				<control type="label">
+					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19010]:  [/COLOR]$INFO[PVR.ActStreamBer]</label>
+					<include>VideoOSDProcessInfo</include>
+				</control>
+				<control type="label">
+					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19011]:  [/COLOR]$INFO[PVR.ActStreamUnc]</label>
+					<include>VideoOSDProcessInfo</include>
+				</control>
+				<control type="label">
+					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19099]:  [/COLOR]$INFO[PVR.ActStreamServiceName]</label>
+					<include>VideoOSDProcessInfo</include>
+				</control>
+				<control type="label">
+					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19015]:  [/COLOR]$INFO[PVR.ActStreamEncryptionName]</label>
+					<include>VideoOSDProcessInfo</include>
+				</control>
+				<control type="label">
+					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19101]:  [/COLOR]$INFO[PVR.ActStreamProviderName]</label>
+					<include>VideoOSDProcessInfo</include>
+				</control>
+				<control type="label">
+					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[19100]:  [/COLOR]$INFO[PVR.ActStreamMux]</label>
+					<include>VideoOSDProcessInfo</include>
+				</control>
+			</control>
+			<!-- System Section (Middle <-> Right) -->
+			<control type="grouplist">
+				<top>5</top>
+				<right>25</right>
+				<width>607</width>
+				<height>600</height>
+				<animation effect="slide" end="-631,155" condition="VideoPlayer.Content(livetv)">Conditional</animation>
+				<usecontrolcoords>true</usecontrolcoords>
+				<control type="label">
+					<label>[B]$LOCALIZE[13000][/B]</label>
+					<font>Font26_Bold_Caps</font>
+					<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
+					<include>VideoOSDProcessInfo</include>
+				</control>
+				<control type="label">
+					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[31022]: [/COLOR]$INFO[System.CpuUsage]</label>
+					<include>VideoOSDProcessInfo</include>
+				</control>
+				<control type="label">
+					<height>7</height>
+				</control>
+				<control type="progress">
+					<info>System.CpuUsage</info>
+				</control>
+				<control type="label">
+					<height>12</height>
+				</control>
+				<control type="label">
+					<label>[COLOR $VAR[PanelTextColorVar]]$LOCALIZE[31023]: [/COLOR]$INFO[System.Memory(used.percent)]</label>
+					<include>VideoOSDProcessInfo</include>
+				</control>
+				<control type="label">
+					<height>7</height>
+				</control>
+				<control type="progress">
+					<info>System.Memory(used)</info>
 				</control>
 			</control>
 		</control>

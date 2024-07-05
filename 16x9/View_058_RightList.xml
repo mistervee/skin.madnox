@@ -1257,6 +1257,45 @@
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
 			</include>
+			<control type="group">
+				<visible>Control.IsVisible(58) + String.Contains(ListItem.DBType, "movie")</visible>
+			<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsVideos8">
+				<param name="right">30</param>
+				<param name="bottom">20</param>
+			</include>			
+			</control>
+			<control type="group">
+				<visible>Control.IsVisible(58) + !String.Contains(ListItem.DBType, "season") &amp; String.Contains(ListItem.DBType, "episode")</visible>
+			<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsVideos8">
+				<param name="right">30</param>
+				<param name="bottom">20</param>
+			</include>				
+			</control>			
+			<control type="group">
+				<visible>Control.IsVisible(58) + String.Contains(ListItem.DBType, "season")</visible>
+			<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsTVShows">
+				<param name="right">30</param>
+				<param name="bottom">20</param>
+			</include>				
+			</control>
+			<control type="group">
+				<visible>Control.IsVisible(58) + String.Contains(ListItem.DBType, "tvshow") | Container.Content(tvshows) </visible>
+			<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsTVShows">
+				<param name="right">30</param>
+				<param name="bottom">20</param>
+			</include>				
+			</control>
+			<include condition="Window.IsVisible(MyMusicNav.xml)" content="MediaFlagsAudio">
+				<param name="right">30</param>
+				<param name="bottom">20</param>
+			</include>
+		</control>
+
+<!-- 		<control type="group">
+			<visible>Control.IsVisible(58)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
 			<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsTVShows">
 				<param name="right">30</param>
 				<param name="bottom">20</param>
@@ -1269,6 +1308,6 @@
 				<param name="right">30</param>
 				<param name="bottom">20</param>
 			</include>
-		</control>
+		</control> -->
 	</include>
 </includes>

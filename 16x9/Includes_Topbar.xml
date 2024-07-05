@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <includes>
-	<!-- String.IsEmpty(Window(10025).Property(PlayingBackgroundMedia)) -->
+	<!-- String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia)) -->
 	<!-- Checks if service.tvtunes is running to hide now playing info -->
 	<include name="TopBarNowPlayingProgress">
 		<param name="visible">false</param>
@@ -13,7 +13,7 @@
 		<param name="midtexture">colors/white20.png</param>
 		<definition>
 			<control type="progress">
-				<visible>String.IsEmpty(Window(10025).Property(PlayingBackgroundMedia)) + [$PARAM[visible]]</visible>
+				<visible>String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia)) + [$PARAM[visible]]</visible>
 				<top>$PARAM[top]</top>
 				<width>$PARAM[width]</width>
 				<height>$PARAM[height]</height>
@@ -234,7 +234,7 @@
 		<definition>
 			<control type="grouplist">
 				<description>Breadcrumbs top bar</description>
-				<visible>!Player.HasMedia | [Player.HasMedia + Skin.HasSetting(DisableTopbarNowPlaying) | !String.IsEmpty(Window(10025).Property(PlayingBackgroundMedia))]</visible>
+				<visible>!Player.HasMedia | [Player.HasMedia + Skin.HasSetting(DisableTopbarNowPlaying) | !String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))]</visible>
 				<include>AnimationVisibleFade</include>
 				<left>5</left>
 				<width>$PARAM[width]</width>
@@ -291,7 +291,7 @@
 		<definition>
 			<control type="grouplist">
 				<description>now playing topbar</description>
-				<visible>Player.HasMedia + !Skin.HasSetting(DisableTopbarNowPlaying) + String.IsEmpty(Window(10025).Property(PlayingBackgroundMedia))</visible>
+				<visible>Player.HasMedia + !Skin.HasSetting(DisableTopbarNowPlaying) + String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))</visible>
 				<include>AnimationVisibleFade</include>
 				<left>5</left>
 				<width>$PARAM[width]</width>

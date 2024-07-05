@@ -4,8 +4,6 @@
 	<menucontrol>9050</menucontrol>
 	<onload condition="!System.AddonIsEnabled(script.skinshortcuts)">EnableAddon(script.skinshortcuts)</onload>
 	<onload condition="!System.HasAddon(script.skinshortcuts)">InstallAddon(script.skinshortcuts)</onload>
-	<onload condition="!System.AddonIsEnabled(script.skin.helper.colorpicker)">EnableAddon(script.skin.helper.colorpicker)</onload>
-	<onload condition="!System.HasAddon(script.skin.helper.colorpicker)">InstallAddon(script.skin.helper.colorpicker)</onload>
 	<onload condition="!System.AddonIsEnabled(script.image.resource.select)">EnableAddon(script.image.resource.select)</onload>
 	<onload condition="!System.HasAddon(script.image.resource.select)">InstallAddon(script.image.resource.select)</onload>
 	<onload condition="!System.AddonIsEnabled(script.embuary.helper)">EnableAddon(script.embuary.helper)</onload>
@@ -136,7 +134,7 @@
 			<include>AnimationVisibleFade</include>
 			<!-- Now playing -->
 			<control type="group">
-				<visible>Player.HasMedia + ![Skin.HasSetting(NowplayingHomeDisable) | Window.Next(musicplaylist) | Window.Next(visualisation)] + String.IsEmpty(Window(10025).Property(PlayingBackgroundMedia))</visible>
+				<visible>Player.HasMedia + ![Skin.HasSetting(NowplayingHomeDisable) | Window.Next(musicplaylist) | Window.Next(visualisation)] + String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))</visible>
 				<include>AnimationVisibleFade</include>
 				<include content="AnimationSlideBottomWindow">
 					<param name="slide">540</param>

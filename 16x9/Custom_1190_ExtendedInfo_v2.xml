@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="window" id="1190">
+	<defaultcontrol always="true">9999</defaultcontrol>
+	<controls>
+		<control type="list" id="9999">
+			<include>HiddenList</include>
+			<content target="videos">$INFO[Window(Home).Property(TMDbHelper.Path.Current)]</content>
+		</control>
+		<control type="group">
+			<visible>Container(9999).IsUpdating</visible>
+			<visible>!Window.IsVisible(DialogVideoInfo.xml)</visible>
+			<centerleft>50%</centerleft>
+			<centertop>50%</centertop>
+			<width>100</width>
+			<height>100</height>
+			<control type="image">
+				<animation effect="rotate" end="-360" center="auto" time="2000" loop="true" condition="true">Conditional</animation>
+				<texture colordiffuse="$VAR[PanelHighlightColorVar]">panels/spinner.png</texture>
+				<aspectratio>keep</aspectratio>
+			</control>
+		</control>
+	</controls>
+</window>

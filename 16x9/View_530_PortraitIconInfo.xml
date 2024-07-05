@@ -163,8 +163,27 @@
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
 			</include>
+			<control type="group">
+				<visible>Control.IsVisible(530) + String.Contains(ListItem.DBType, "movie")</visible>
+				<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsVideos4</include>
+			</control>
+			<control type="group">
+				<visible>Control.IsVisible(530) + String.Contains(ListItem.DBType, "season")</visible>
+				<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsTVShows</include>
+			</control>
+			<control type="group">
+				<visible>Control.IsVisible(530) + String.Contains(ListItem.DBType, "tvshow") | Container.Content(tvshows) </visible>
+				<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsTVShows</include>
+			</control>			
+		</control>
+
+<!-- 		<control type="group">
+			<visible>Control.IsVisible(530)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
 			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsTVShows</include>
 			<include condition="Window.IsVisible(MyVideoNav.xml)">MediaFlagsVideos4</include>
-		</control>
+		</control> -->
 	</include>
 </includes>

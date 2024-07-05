@@ -7,7 +7,7 @@
 			<control type="group">
 				<top>$PARAM[top]</top>
 				<control type="label">
-					<visible>![Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + String.IsEmpty(Window(10025).Property(PlayingBackgroundMedia))] + !String.IsEmpty(Container(9000).ListItem.Property(InfoLine)) + !Skin.HasSetting(HideInfoLine)</visible>
+					<visible>![Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))] + !String.IsEmpty(Container(9000).ListItem.Property(InfoLine)) + !Skin.HasSetting(HideInfoLine)</visible>
 					<left>5</left>
 					<width>$PARAM[width]</width>
 					<height>38</height>
@@ -17,7 +17,7 @@
 					<textcolor>$VAR[PanelTextColorVar]</textcolor>
 				</control>
 				<control type="grouplist">
-					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + String.IsEmpty(Window(10025).Property(PlayingBackgroundMedia))</visible>
+					<visible>Player.HasMedia + Skin.HasSetting(NowplayingSystemBar) + String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))</visible>
 					<include>AnimationVisibleFade</include>
 					<left>5</left>
 					<width>$PARAM[width]</width>
@@ -397,7 +397,7 @@
 				<control type="button" id="24">
 					<visible>!Skin.HasSetting(ShortCutDisableFav)</visible>
 					<label></label>
-					<onclick>ActivateWindow(favourites)</onclick>
+					<onclick>ActivateWindow(favouritesbrowser)</onclick>
 					<include>RSSShortcutsIcon</include>
 				</control>
 				<control type="button" id="25">
@@ -1187,16 +1187,14 @@
 		</control>
 		<control type="group">
 			<visible>$PARAM[infovisible]</visible>
-			<bottom>$PARAM[infoposition]</bottom>
+			<bottom>280</bottom>
 			<left>40</left>
 			<right>40</right>
-			<animation effect="slide" end="0,42" condition="Skin.HasSetting(InfoBarTop)">Conditional</animation>
 			<control type="grouplist">
 				<visible>ControlGroup(90010).HasFocus + !Control.HasFocus(1607)</visible>
 				<bottom>350</bottom>
 				<width>910</width>
 				<height>400</height>
-				<align>bottom</align>
 				<itemgap>10</itemgap>
 				<usecontrolcoords>true</usecontrolcoords>
 				<control type="label">
@@ -1295,7 +1293,6 @@
 				<control type="textbox" id="5306">
 					<visible>Skin.HasSetting(WidgetPlot) + [!String.IsEmpty(ListItem.PlotOutline) | !String.IsEmpty(ListItem.Property(Album_Description)) | !String.IsEmpty(ListItem.Property(Artist_Description)) | !String.IsEmpty(ListItem.AddonDescription) | !String.IsEmpty(ListItem.ContributorAndRole) | !String.IsEmpty(ListItem.Plot)]</visible>
 					<height>85</height>
-					<scroll>true</scroll>
 					<font>Font28_Reg_106</font>
 					<textcolor>$VAR[PanelSubTextColorVar]</textcolor>
 					<label>$VAR[ViewPlotVar]</label>
@@ -1309,7 +1306,7 @@
 				</control>
 			</control>
 			<control type="label">
-				<bottom>312</bottom>
+				<bottom>$PARAM[infoposition]</bottom>
 				<height>30</height>
 				<font>Font30_Reg</font>
 				<textcolor>$VAR[PanelHighlightColorVar]</textcolor>
@@ -1322,7 +1319,7 @@
 		<visible>Skin.HasSetting(WidgetNextButton) + !String.IsEmpty(Container(9000).ListItem.Property(widget.2))</visible>
 		<animation effect="fade" end="100" delay="480" time="240">WindowOpen</animation>
 		<animation effect="fade" start="100" end="0" time="0">WindowClose</animation>
-		<top>30</top>
+		<top>40</top>
 		<right>30</right>
 		<label></label>
 		<include>RSSShortcutsIcon</include>

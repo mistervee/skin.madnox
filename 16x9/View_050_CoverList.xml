@@ -258,6 +258,7 @@
 					<top>537</top>
 					<height>552</height>
 					<include content="ViewArtworkReflect">
+						<param name="aspect">keep</param>
 						<param name="art">$VAR[PosterVar]</param>
 						<param name="fallback">DefaultFile.png</param>
 					</include>
@@ -265,12 +266,52 @@
 				<include content="ViewArtwork">
 					<param name="art">$VAR[PosterVar]</param>
 					<param name="fallback">DefaultFile.png</param>
+					<param name="aspect">keep</param>
 					<param name="diffuse">diffuse/rounded5-532x532.png</param>
 				</include>
 			</control>
 		</control>
-		<!-- Media flags -->
+		<!-- Media flags Fix overlapping icons when Movie & TV Show is linked -->
 		<control type="group">
+			<visible>Control.IsVisible(50)</visible>
+			<include content="AnimationSlideBottomWindow">
+				<param name="slide">220</param>
+			</include>
+			<control type="group">
+				<visible>Control.IsVisible(50) + String.Contains(ListItem.DBType, "movie")</visible>
+				<include condition="Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(videoplaylist)" content="MediaFlagsVideos4">
+					<param name="right">100</param>
+					<param name="bottom">30</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>Control.IsVisible(50) + !String.Contains(ListItem.DBType, "season") &amp; String.Contains(ListItem.DBType, "episode")</visible>
+				<include condition="Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(videoplaylist)" content="MediaFlagsVideos4">
+					<param name="right">100</param>
+					<param name="bottom">30</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>Control.IsVisible(50) + String.Contains(ListItem.DBType, "season")</visible>
+				<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsTVShows">
+					<param name="right">100</param>
+					<param name="bottom">30</param>
+				</include>
+			</control>
+			<control type="group">
+				<visible>Control.IsVisible(50) + String.Contains(ListItem.DBType, "tvshow") | Container.Content(tvshows) </visible>
+				<include condition="Window.IsVisible(MyVideoNav.xml)" content="MediaFlagsTVShows">
+					<param name="right">100</param>
+					<param name="bottom">30</param>
+				</include>
+			</control>								
+			<include condition="Window.IsVisible(MyMusicNav.xml) | Window.IsVisible(musicplaylist)" content="MediaFlagsAudio">
+				<param name="right">100</param>
+				<param name="bottom">30</param>
+			</include>
+		</control>
+
+<!-- 		<control type="group">
 			<visible>Control.IsVisible(50)</visible>
 			<include content="AnimationSlideBottomWindow">
 				<param name="slide">220</param>
@@ -287,6 +328,6 @@
 				<param name="right">100</param>
 				<param name="bottom">30</param>
 			</include>
-		</control>
+		</control> -->
 	</include>
 </includes>

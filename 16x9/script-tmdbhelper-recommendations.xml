@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog">
+	<defaultcontrol always="true">9000</defaultcontrol>  
+	<controls>
+		<control type="image">
+			<include>FullScreenDimensions</include>
+			<texture>special://skin/media/colors/black.png</texture>
+		</control>
+
+		<!-- <control type="image">
+			<include>FullScreenDimensions</include>
+			<texture colordiffuse="$VAR[BackgroundShadowColorVar]">panels/patterns/shadow.png</texture>
+			<visible>Skin.HasSetting(BackgroundShadow)</visible>
+		</control> -->
+
+		<include content="TopBar">
+			<param name="icon">star.png</param>
+		</include>  
+		<!-- Container for the item details -->
+
+		<control type="group">
+			<top>16</top>
+			<left>736</left>
+			<right>25</right>
+			<control type="grouplist" id="6000">
+				<top>211</top>
+				<ondown>9000</ondown>
+				<control type="panel" id="5000">
+					<include content="DialogExtraInfo">
+						<param name="art">$INFO[ListItem.Art(poster)]</param>
+						<param name="visible">true</param>
+						<param name="labelvisible">true</param>
+						<param name="overlayiconvisible">true</param>
+					</include>
+				</control>
+			</control>
+			<control type="list" id="9000">
+				<top>555</top>
+				<left>-10</left>
+				<right>25</right>
+				<height>80</height>
+				<onup>6000</onup>
+				<include>InfoDialogButtons</include>
+				<content>
+					<item id = "601">
+						<description>Play</description>
+						<label></label>
+						<label2>$LOCALIZE[208]</label2>					
+						<!-- <onclick>RunPlugin(plugin://plugin.video.themoviedb.helper/?info=play&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;type=movie)</onclick> -->
+						<!-- <onclick>Runscript(plugin.video.themoviedb.helper,play=movie,tmdb_id=$INFO[ListItem.UniqueID(tmdb)]),imdb_id=$INFO[ListItem.UniqueID(imdb)])</onclick> -->
+					<onclick>$VAR[ThisPluginCanSuckMyAss]</onclick>
+					</item>
+					<item>
+						<description>Crew</description>
+						<label></label>
+						<label2>Crew</label2>
+					</item>
+					<item>
+						<description>Set</description>
+						<label></label>
+						<label2>Set</label2>
+					</item>
+					<item>
+						<description>Similiar</description>
+						<label></label>
+						<label2>Similiar</label2>
+					</item>
+					<item>
+						<description>Videos</description>
+						<label></label>
+						<label2>Videos</label2>
+					</item>
+					<item>
+						<description>Info</description>
+						<label></label>
+						<label2>Info</label2>
+					</item>															
+				</content>
+			</control>
+		</control>
+	</controls>
+</window>
